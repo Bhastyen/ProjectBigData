@@ -23,26 +23,49 @@ class Article:
         self.abstract = self.removeStopWord(self.abstract)
 
         # correct wrong words in abstract
-        self.preprocess()
+        if self.english_text:
+            self.preprocess(self.stop_en, self.dico_en)
+        else:
+            self.preprocess(self.stop_fr, self.dico_fr)
 
-    def preprocess(self):
+    def preprocess(self, stop_word, dico):
         strange_word = []
-        c1 = 0
-        c2 = 0
+        insert = []
+        c1, c2 = 0, 0
+        shift = 0
 
+        # search word which are not recognize
         for w in self.abstract:
             c2 += 1
-            if len(w) > 1 and w not in self.dico_en and w not in self.dico_fr:
-                strange_word.append(w)
+            if len(w) > 1 and w not in dico:
+                strange_word.append((w, c2))
                 c1 += 1
-
         #print(c1, c2)
 
-        for w in strange_word:
+        #print("Avant", self.abstract)
+
+        # search two new words from a detected strange word
+        for (w, index) in strange_word:
             for i in range(len(w)-1, 0, -1):
-                if w[:i] in self.dico_en or w[:i] in self.dico_fr:
-                    #print("w1", w[:i], "w2", w[i:])
+                if w[:i] in dico:
+                    if w[:i] not in stop_word and w[i:] not in stop_word:
+                        insert.append(w[:i])
+                        insert.append(w[i:])
+                        self.abstract = self.abstract[:index + shift - 1] + insert + self.abstract[index + shift:]
+                        shift += 1
+                    elif w[:i] not in stop_word and w[i:] in stop_word:
+                        insert.append(w[:i])
+                        self.abstract = self.abstract[:index + shift - 1] + insert + self.abstract[index + shift:]
+                    elif w[:i] in stop_word and w[i:] not in stop_word:
+                        insert.append(w[i:])
+                        self.abstract = self.abstract[:index + shift - 1] + insert + self.abstract[index + shift:]
+                    elif w[:i] in stop_word and w[i:] in stop_word:
+                        self.abstract = self.abstract[:index + shift - 1] + self.abstract[index + shift:]
+                        shift -= 1
+                    insert = []
                     break
+
+        #print("Apres", self.abstract)
 
     def isEnglish(self):
         l = len(self.abstract)
@@ -62,9 +85,11 @@ class Article:
         tab = []
 
         for w in data:
-            if w not in self.stop_en and w not in self.stop_fr:
+            if self.english_text:
+                if w not in self.stop_en:
+                    tab.append(w)
+            elif w not in self.stop_fr:
                 tab.append(w)
-
         return tab
 
     def __repr__(self):

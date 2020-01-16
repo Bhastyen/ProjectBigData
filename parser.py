@@ -1,5 +1,5 @@
 import pandas as pd
-import time
+import time, random
 from classes.Article import Article
 
 path_to_dic_en = "dictionnary/words.txt"
@@ -54,4 +54,4 @@ def parse_article_from_csv(path_articles):
 
 articles = parse_article_from_csv("data/export_articles_EGC_2004_2018.csv")
 
-print(articles[0])
+print(articles[random.randrange(0, len(articles))])
