@@ -7,13 +7,19 @@ class Article:
         self.title = re.sub(r'[^\w\s]', "", str(title)).lower().split(" ")
         self.year = year
         self.abstract = re.sub(r'[^\w\s]', " ", str(abstract)).lower().split(" ")  # remove punctuations in abstract
-        self.author = author.split(",")
+        self.authors = author.split(",")
         self.linkPdf = linkPdf
         self.dico_en = dico_en
         self.dico_fr = dico_fr
         self.stop_en = stop_word_en
         self.stop_fr = stop_word_fr
         self.english_text = False
+
+        # process authors to remove spaces
+        for i in range(len(self.authors)):
+            if self.authors[i][0] == " ":
+                self.authors[i] = self.authors[i][1:]
+            self.authors[i] = self.authors[i].replace(" ", "_")
 
         # detect if this article is in english or french language
         self.english_text = self.isEnglish()
@@ -97,6 +103,6 @@ class Article:
         if not self.english_text:
             english = "in french"
 
-        return "Article " + english + " with \n\tTitle " + str(self.title) + "\n\tYear " + str(self.year) + "\n\tAuthors " + str(self.author) + \
+        return "Article " + english + " with \n\tTitle " + str(self.title) + "\n\tYear " + str(self.year) + "\n\tAuthors " + str(self.authors) + \
                "\n\tAbstract Length " + str(len(self.abstract)) + " Content " + str(self.abstract) + \
                "\n\tFrom " + str(self.linkPdf)
