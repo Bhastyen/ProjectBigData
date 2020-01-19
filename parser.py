@@ -2,10 +2,12 @@ import pandas as pd
 import time, random
 from classes.Article import Article
 
+
 path_to_dic_en = "dictionnary/words.txt"
 path_to_dic_fr = "dictionnary/lexique-collecte.txt"
 path_to_stop_fr = "dictionnary/stop-word-french.txt"
 path_to_stop_en = "dictionnary/stop-word-en.txt"
+
 
 def parse_article_from_csv(path_articles):
     data = pd.read_csv(path_articles, sep="\t")
@@ -53,5 +55,29 @@ def parse_article_from_csv(path_articles):
     return articles
 
 articles = parse_article_from_csv("data/export_articles_EGC_2004_2018.csv")
-
 print(articles[random.randrange(0, len(articles))])
+
+def create_author_cluster(articles):
+    authors = {}
+    output = open("edge_list_authors.txt", "w", encoding="utf8")
+
+    # create dictionnary of authors
+    for art in articles:
+        for auth1 in art.authors:
+            for auth2 in art.authors:
+                if auth1 != auth2:
+                    if auth1 not in authors.keys():
+                        authors[auth1] = {}
+                    if auth2 not in authors[auth1].keys():
+                        authors[auth1][auth2] = 0
+                    authors[auth1][auth2] += 1
+
+    # create matrix adjency in txt format for R programs
+    for (auth1, colleagues) in authors.items():
+        for (auth2, weight) in colleagues.items():
+            if weight > 3:
+                output.write(auth1 + " " + auth2 + " " + str(weight) + "\n")
+
+    output.close()
+
+create_author_cluster(articles)
