@@ -1,5 +1,6 @@
-# Title     : TODO
-# Objective : TODO
-# Created by: ACER
-# Created on: 18/01/2020
+library(tm)
+library(XML)
+library(SnowballC)
+library(NLP)
+library(slam)
 
