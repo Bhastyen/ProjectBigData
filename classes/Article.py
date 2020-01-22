@@ -1,5 +1,7 @@
 import re
 
+import requests
+
 class Article:
 
     def __init__(self, title, year, abstract, author, linkPdf, dico_en, dico_fr, stop_word_en, stop_word_fr):
@@ -33,6 +35,31 @@ class Article:
             self.preprocess(self.stop_en, self.dico_en)
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
+            # traduction en anglais
+            # title_en = []
+            # url = 'http://translate.google.com/translate_a/t'
+            # for s in self.title:
+            #     params = {
+            #             "text": s,
+            #             "sl": "fr",
+            #             "tl": "en",
+            #             "client": "p"
+            #     }
+            #     title_en.append(requests.get(url, params=params).content)
+            # self.title = title_en
+            # abstract_en = []
+            # for s in self.abstract:
+            #     params = {
+            #             "text": s,
+            #             "sl": "fr",
+            #             "tl": "en",
+            #             "client": "p"
+            #     }
+            #     abstract_en.append(requests.get(url, params=params).content)
+            # self.abstract = abstract_en
+
+
+
 
     def preprocess(self, stop_word, dico):
         strange_word = []
