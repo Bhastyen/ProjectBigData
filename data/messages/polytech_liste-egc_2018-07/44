@@ -1,0 +1,1223 @@
+Return-Path: <neurodltensor@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 7189C2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 Jul 2018 12:53:18 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6F966628823
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 Jul 2018 12:53:18 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 688064821B1C
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jul 2018 12:53:18 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.888
+X-Spam-Level:
+X-Spam-Status: No, score=-4.888 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 10.6569 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id aJblUrSVp0Z2 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 25 Jul 2018 12:53:17 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-it0-x235.google.com (mail-it0-x235.google.com [IPv6:2607:f8b0:4001:c0b::235])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id A626847EC079
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jul 2018 12:53:16 +0200 (CEST)
+Received: by mail-it0-x235.google.com with SMTP id p4-v6so8015355itf.2
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jul 2018 03:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=FBos8C8hOvmTOKdl9xDESStkRXKXs8muqrbmPDVwuH8=;
+        b=KgTN8SRzFWlHf+Q0F/k8t8jdzqOwm/pAVrMamLOasfkXdheAR71fRtWXGqCjJIxv8l
+         fK3TFV1UrPAEfS/wKjNlDvAWLF4C6rEYmCrFuIiVlGKQnAfONeV1aMxXXqnkKGc4uOkG
+         Tnx0kA8xlYbpktaTGo/3wkIvDS1GEi2TT0AxdWGecSULaspLkhBAOGVoZCx6ifiVeitg
+         hbHeVJuACvxr9yLIWayaekKF8GKMoLf21Abd7akvi64OPGBQSVGbn9x1tLAclZnsTwRE
+         +BZ9mnRwh4tLLl6iCxVRcGQFZpeu6fiN6IU71vb2VX8r7Bee0ZLI3bABviRYL5kHulaC
+         mvQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=FBos8C8hOvmTOKdl9xDESStkRXKXs8muqrbmPDVwuH8=;
+        b=soaT/0/CCWlkAqLkwroArNJ99udOWL6edi8KZu2HNK6OEZ7YVl1AM4RMucCi1MkXF+
+         mr1tSIS286prbuv69Ge9uPDYoQweseUubeJoKcyJH+AbnRscRtE5i3gOb0T3n5xvnMwd
+         Y2wRjuM4Rd5IMEZzlNkdt9O/+zHMw7q6UrhrhGfaO7yq7Sw+Ia+I2jh5U5PWv8hjS0xa
+         sLAsVa1unJeHCxcylEY9yiyj99JRvZnyMEvI68hIf7MzbFwSn71ENBphc7/YptvauCQn
+         xULC4LdfYaxfYcuqHHLooRWDzKTUzwyISTUHogMo54VG29ckth40bWoyOOWs4J6C2rnC
+         tVZg==
+X-Gm-Message-State: AOUpUlGaxyzIIQSAE1Q0IHdbE3lbYDf7p72QumO+TmDIUHIa3GtvOkeu
+	jy3Bu1lvcKon3XjUN3NCh49MaBqVR6wg0/k6E2yMlykittE=
+X-Google-Smtp-Source: AAOMgpcGLNdWfdyIo0zV2CnvbicROU6Y7kiEIpcoOrKNfwpMzM0Ja+JT/TwiRLvR6t4tQCJmM/K2eiAi+UsXNDnWiXU=
+X-Received: by 2002:a02:891b:: with SMTP id o27-v6mr19793488jaj.23.1532515994987;
+ Wed, 25 Jul 2018 03:53:14 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4f:805a:0:0:0:0:0 with HTTP; Wed, 25 Jul 2018 03:53:14
+ -0700 (PDT)
+In-Reply-To: <CAKhQ9MreEspVLQjgotScCO+F4v0-pNQR5PmTfq+xmanm0KrOeA@mail.gmail.com>
+References: <CAKhQ9MreEspVLQjgotScCO+F4v0-pNQR5PmTfq+xmanm0KrOeA@mail.gmail.com>
+From: Evgeny Burnaev <neurodltensor@gmail.com>
+Date: Wed, 25 Jul 2018 13:53:14 +0300
+Message-ID: <CAKhQ9Mr2OVJX9StVc3=Um9Af-A3tQDsF5kiGLXFB3e=wDWHt1g@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="0000000000007e73c40571d0af1f"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: Re: [liste-egc] CALL FOR PAPERS: Deep Learning and Tensor/Matrix
+ Decomposition for Applications in Neuroscience
+
+--0000000000007e73c40571d0af1f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+                               CFP: Deep Learning and Tensor/Matrix
+Decomposition for Applications in Neuroscience
+
+
+
+---------------------------------------------------------------------------=
+-----------------------------------------------------
+
+                                                                       CALL
+FOR PAPERS
+
+
+DLAN   2018
+
+                                                                      Works=
+hop
+on Deep Learning and Tensor/Matrix Decomposition for Applications in
+Neuroscience will be held in conjunction with ICDM 2018
+
+                                               November 17th, 2018,
+Singapore
+
+
+
+
+https://crei.skoltech.ru/cdise/icdm-2018-workshop/
+
+
+
+---------------------------------------------------------------------------=
+------------------------------------------------------
+
+DLAN is a full day workshop, organized in conjunction with ICDM 2018.
+
+
+
+The IEEE International Conference on Data Mining series (ICDM) has
+established itself as the world=E2=80=99s premier research conference in da=
+ta
+mining. The main goal of current workshop is to bring together academics,
+researchers and practitioners to discuss and reflect on recent challenges
+in neuroscience in the context of Deep Learning.
+
+
+
+The workshop is oriented to all potential applications of deep learning and
+matrix/tensor decomposition and networks in feature extraction,
+classification, recognition, segmentation, enhancing, clustering, anomaly
+detection, and prediction of brain and behavior data =E2=80=93 as applied t=
+o the
+multi-modal brain data (MRI/fMRI/CT, EEG/MEG, and biomarker assays),
+especially for mental disorders. Special focus will be made on the
+practical aspects of how to design and train deep neural networks with
+appropriate reduction of the dimensionality, to achieve high classification
+performance and reliability.
+
+
+
+Because of recent breakthroughs in machine learning, especially deep neural
+networks, it is expected that physicians will be able to completely rely on
+the machine interpretation of MRIs, CT, PET scans using deep learning in
+the nearest future. Though deep neural networks have revolutionized
+computer vision through the end-to-end learning (i.e., learning from the
+raw data), it is still difficult to accomplish the early detection of the
+major neurodegenerative diseases (such as ADHD, Autism, or Alzheimer=E2=80=
+=99s)
+with the neural networks today, partially due to the need for development
+of optimization techniques in order to work with the Big Data in the most
+efficient way. These and related topics will be addressed at this workshop.
+
+
+
+
+
+IMPORTANT DATES
+
+---------------------------
+
+All deadlines are at 11:59PM Pacific Time.
+
+
+
+WORKSHOP PAPER SUBMISSIONS          August 7, 2018
+
+WORKSHOP PAPER NOTIFICATION         September 4, 2018
+
+WORKHSOP DATE           November 17, 2018
+
+
+
+
+
+
+
+
+
+TOPICS OF INTEREST
+
+--------------------------------
+
+We aim for a focus on the applications of Deep Learning to analysis of
+neuroimaging data. Topics of interests for the workshop include, but are
+not limited to:
+
+
+
+Magnetic Resonance Imaging (MRI) / functional Magnetic Resonance Imaging
+(fMRI)
+
+Electroencephalography (EEG)
+
+Magnetoencephalography (MEG)
+
+Positron Emission Tomography (PET)
+
+Near-infrared spectroscopy (NIRS)
+
+Computed Tomography (CT)
+
+Behavioral Data
+
+Physiological Data
+
+Electromyography (EMG)
+
+
+
+We encourage submissions describing innovative work in related fields that
+address the issue of interpretability in applications of DL to
+neuroscience.
+
+
+
+
+
+SUBMISSION GUIDELINES
+
+-------------------------------------
+
+Paper submissions should be limited to a maximum of ten (10) pages, in the
+IEEE 2-column format (link), including the bibliography and any possible
+appendices. Submissions longer than 10 pages will be rejected without
+review. Though the limit is 10 pages, papers with more than 8 pages will
+need to pay extra page fee.
+
+
+
+All submissions will be triple-blind reviewed by the Program Committee on
+the basis of technical quality, relevance to scope of the conference,
+originality, significance, and clarity. For further information, please
+visit the ICDM guidelines page http://icdm2018.org/calls/call-for-papers/.
+
+
+
+Manuscripts must be submitted electronically. We do not accept email
+submissions. Online submission system is available here.
+
+
+
+All the workshop dates might strictly follow the same deadlines as
+described on ICDM website http://icdm2018.org/key-dates/:
+
+
+
+
+
+
+
+Workshop paper submissions: August 7, 2018
+
+Workshop paper notification: September 4, 2018
+
+Camera-ready deadline and copyright forms: September 15, 2018
+
+All the submissions should follow the same format and page limit as ICDM
+regular submission: http://icdm2018.org/calls/call-for-papers/
+
+
+
+All accepted papers will be included in the IEEE ICDM 2018 Workshops
+Proceedings volume published by IEEE Computer Society Press, and will also
+be included in the IEEE Xplore Digital Library. =E2=80=8B=E2=80=8BTherefore=
+, papers must
+not have been accepted for publication elsewhere or be under review for
+another workshop, conferences or journals.
+
+
+
+
+
+If you are considering submitting to the workshop and have questions
+regarding the workshop scope or need further information, please do not
+hesitate to contact the organizers at NeuroDLTensor (at) gmail.com.
+
+
+
+
+
+
+
+
+
+
+
+ORGANIZERS
+
+---------------------------
+
+Andrzej Cichocki (Skoltech)
+
+Alexander Bernstein (Skoltech)
+
+Evgeny Burnaev (Skoltech)
+
+Dmitry Dylov (Skoltech)
+
+Ivan Oseledets (Skoltech)
+
+
+
+
+
+ CONTACT us at:
+
+ NeuroDLTensor (at) gmail.com
+
+2018-06-12 19:50 GMT+03:00 Evgeny Burnaev <neurodltensor@gmail.com>:
+
+> CALL FOR PAPERS
+>
+>
+> DLAN   2018
+>
+>                                                                       Wor=
+kshop
+> on Deep Learning and Tensor/Matrix Decomposition for Applications in
+> Neuroscience will be held in conjunction with ICDM 2018
+>
+>                                                November 17th, 2018,
+> Singapore
+>
+>
+>
+>                            https://crei.skoltech.ru/
+> cdise/icdm-2018-workshop/
+>
+>
+>
+> ------------------------------------------------------------
+> ---------------------------------------------------------------------
+>
+> DLAN is a full day workshop, organized in conjunction with ICDM 2018.
+>
+>
+>
+> The IEEE International Conference on Data Mining series (ICDM) has
+> established itself as the world=E2=80=99s premier research conference in =
+data
+> mining. The main goal of current workshop is to bring together academics,
+> researchers and practitioners to discuss and reflect on recent challenges
+> in neuroscience in the context of Deep Learning.
+>
+>
+>
+> The workshop is oriented to all potential applications of deep learning
+> and matrix/tensor decomposition and networks in feature extraction,
+> classification, recognition, segmentation, enhancing, clustering, anomaly
+> detection, and prediction of brain and behavior data =E2=80=93 as applied=
+ to the
+> multi-modal brain data (MRI/fMRI/CT, EEG/MEG, and biomarker assays),
+> especially for mental disorders. Special focus will be made on the
+> practical aspects of how to design and train deep neural networks with
+> appropriate reduction of the dimensionality, to achieve high classificati=
+on
+> performance and reliability.
+>
+>
+>
+> Because of recent breakthroughs in machine learning, especially deep
+> neural networks, it is expected that physicians will be able to completel=
+y
+> rely on the machine interpretation of MRIs, CT, PET scans using deep
+> learning in the nearest future. Though deep neural networks have
+> revolutionized computer vision through the end-to-end learning (i.e.,
+> learning from the raw data), it is still difficult to accomplish the earl=
+y
+> detection of the major neurodegenerative diseases (such as ADHD, Autism, =
+or
+> Alzheimer=E2=80=99s) with the neural networks today, partially due to the=
+ need for
+> development of optimization techniques in order to work with the Big Data
+> in the most efficient way. These and related topics will be addressed at
+> this workshop.
+>
+>
+>
+>
+>
+> IMPORTANT DATES
+>
+> ---------------------------
+>
+> All deadlines are at 11:59PM Pacific Time.
+>
+>
+>
+> WORKSHOP PAPER SUBMISSIONS          August 7, 2018
+>
+> WORKSHOP PAPER NOTIFICATION         September 4, 2018
+>
+> WORKHSOP DATE           November 17, 2018
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> TOPICS OF INTEREST
+>
+> --------------------------------
+>
+> We aim for a focus on the applications of Deep Learning to analysis of
+> neuroimaging data. Topics of interests for the workshop include, but are
+> not limited to:
+>
+>
+>
+> Magnetic Resonance Imaging (MRI) / functional Magnetic Resonance Imaging
+> (fMRI)
+>
+> Electroencephalography (EEG)
+>
+> Magnetoencephalography (MEG)
+>
+> Positron Emission Tomography (PET)
+>
+> Near-infrared spectroscopy (NIRS)
+>
+> Computed Tomography (CT)
+>
+> Behavioral Data
+>
+> Physiological Data
+>
+> Electromyography (EMG)
+>
+>
+>
+> We encourage submissions describing innovative work in related fields tha=
+t
+> address the issue of interpretability in applications of DL to
+> neuroscience.
+>
+>
+>
+>
+>
+> SUBMISSION GUIDELINES
+>
+> -------------------------------------
+>
+> We invite submission of unpublished original research papers that are not
+> under review elsewhere. All papers will be peer reviewed. If accepted, at
+> least one of the authors must attend the workshop to present their work.
+> Paper submissions should be limited to a maximum of ten (10) pages, in th=
+e
+> IEEE 2-column format (link), including the bibliography and any possible
+> appendices. Submissions longer than 10 pages will be rejected without
+> review. All submissions will be triple-blind reviewed by the Program
+> Committee on the basis of technical quality, relevance to scope of the
+> conference, originality, significance, and clarity. For further
+> information, please visit the ICDM guidelines page
+> http://icdm2018.org/calls/call-for-papers/.
+>
+>
+>
+> Manuscripts must be submitted electronically via the submission site.
+>
+> https://wi-lab.com/cyberchair/2018/icdm18/scripts/submit.
+> php?subarea=3DS26&undisplay_detail=3D1&wh=3D/cyberchair/2018/
+> icdm18/scripts/ws_submit.php
+>
+>
+>
+> We do not accept email submissions.
+>
+>
+>
+> Accepted papers will be published in the conference proceedings by the
+> IEEE Computer SocietyPress.
+>
+>
+>
+> If you are considering submitting to the workshop and have questions
+> regarding the workshop scope or need further information, please do not
+> hesitate to contact the organizers at NeuroDLTensor (at) gmail.com.
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> ORGANIZERS
+>
+> ---------------------------
+>
+> Andrzej Cichocki (Skoltech)
+>
+> Alexander Bernstein (Skoltech)
+>
+> Evgeny Burnaev (Skoltech)
+>
+> Dmitry Dylov (Skoltech)
+>
+> Ivan Oseledets (Skoltech)
+>
+>
+>
+>
+>
+>  CONTACT us at:
+>
+>  NeuroDLTensor (at) gmail.com
+>
+
+--0000000000007e73c40571d0af1f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span>CFP:
+Deep Learning and Tensor/Matrix Decomposition for Applications in Neuroscie=
+nce</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">-------------------------------------------------------------------------=
+-------------------------------------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </spa=
+n><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span>CALL FOR PAPERS</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 </span>DLAN<span>=C2=A0=C2=A0 </span>2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 </span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span>Workshop on
+Deep Learning and Tensor/Matrix Decomposition for Applications in Neuroscie=
+nce
+will be held in conjunction with ICDM 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span=
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=
+=C2=A0</span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span>November
+17th, 2018, Singapore</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span><a href=3D"https://crei.skoltech.ru/cdise/icdm-2018-workshop/">https=
+://crei.skoltech.ru/cdise/icdm-2018-workshop/</a></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">-------------------------------------------------------------------------=
+--------------------------------------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">DLAN is a full day workshop,
+organized in conjunction with ICDM 2018. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">The IEEE International Conference on
+Data Mining series (ICDM) has established itself as the world=E2=80=99s pre=
+mier
+research conference in data mining. The main goal of current workshop is to
+bring together academics, researchers and practitioners to discuss and refl=
+ect
+on recent challenges in neuroscience in the context of Deep Learning.</span=
+></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">The workshop is oriented to all
+potential applications of deep learning and matrix/tensor decomposition and=
+ networks
+in feature extraction, classification, recognition, segmentation, enhancing=
+,
+clustering, anomaly detection, and prediction of brain and behavior data =
+=E2=80=93 as
+applied to the multi-modal brain data (MRI/fMRI/CT, EEG/MEG, and biomarker
+assays), especially for mental disorders. Special focus will be made on the
+practical aspects of how to design and train deep neural networks with
+appropriate reduction of the dimensionality, to achieve high classification
+performance and reliability.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Because of recent breakthroughs in
+machine learning, especially deep neural networks, it is expected that
+physicians will be able to completely rely on the machine interpretation of
+MRIs, CT, PET scans using deep learning in the nearest future. Though deep
+neural networks have revolutionized computer vision through the end-to-end
+learning (i.e., learning from the raw data), it is still difficult to
+accomplish the early detection of the major neurodegenerative diseases (suc=
+h as
+ADHD, Autism, or Alzheimer=E2=80=99s) with the neural networks today, parti=
+ally due to
+the need for development of optimization techniques in order to work with t=
+he
+Big Data in the most efficient way. These and related topics will be addres=
+sed
+at this workshop.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">IMPORTANT DATES</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">---------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All deadlines are at 11:59PM Pacific
+Time.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKSHOP PAPER SUBMISSIONS<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 </span>August 7, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKSHOP PAPER NOTIFICATION<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 </span>September 4, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKHSOP DATE<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span>November 17, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">TOPICS OF INTEREST</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">--------------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We aim for a focus on the
+applications of Deep Learning to analysis of neuroimaging data. Topics of
+interests for the workshop include, but are not limited to:</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Magnetic Resonance Imaging (MRI) /
+functional Magnetic Resonance Imaging (fMRI)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Electroencephalography (EEG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Magnetoencephalography (MEG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Positron Emission Tomography (PET)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Near-infrared spectroscopy (NIRS)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Computed Tomography (CT)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Behavioral Data</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Physiological Data</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Electromyography (EMG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We encourage submissions describing
+innovative work in related fields that address the issue of interpretabilit=
+y in
+applications of DL to neuroscience. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">SUBMISSION GUIDELINES</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">-------------------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Paper submissions should be limited
+to a maximum of ten (10) pages, in the IEEE 2-column format (link), includi=
+ng
+the bibliography and any possible appendices. Submissions longer than 10 pa=
+ges
+will be rejected without review. Though the limit is 10 pages, papers with =
+more
+than 8 pages will need to pay extra page fee.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All submissions will be triple-blind
+reviewed by the Program Committee on the basis of technical quality, releva=
+nce
+to scope of the conference, originality, significance, and clarity. For fur=
+ther
+information, please visit the ICDM guidelines page <a href=3D"http://icdm20=
+18.org/calls/call-for-papers/">http://icdm2018.org/calls/call-for-papers/</=
+a>.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Manuscripts must be submitted
+electronically. We do not accept email submissions. Online submission syste=
+m is
+available here.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All the workshop dates might
+strictly follow the same deadlines as described on ICDM website <a href=3D"=
+http://icdm2018.org/key-dates/">http://icdm2018.org/key-dates/</a>:</span><=
+/p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Workshop paper submissions: August
+7, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Workshop paper notification:
+September 4, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Camera-ready deadline and copyright
+forms: September 15, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All the submissions should follow
+the same format and page limit as ICDM regular submission:
+<a href=3D"http://icdm2018.org/calls/call-for-papers/">http://icdm2018.org/=
+calls/call-for-papers/</a></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All accepted papers will be included
+in the IEEE ICDM 2018 Workshops Proceedings volume published by IEEE Comput=
+er
+Society Press, and will also be included in the IEEE Xplore Digital Library=
+.
+=E2=80=8B=E2=80=8BTherefore, papers must not have been accepted for publica=
+tion elsewhere or be
+under review for another workshop, conferences or journals.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">If you are considering submitting to
+the workshop and have questions regarding the workshop scope or need furthe=
+r
+information, please do not hesitate to contact the organizers at NeuroDLTen=
+sor
+(at) <a href=3D"http://gmail.com">gmail.com</a>.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">ORGANIZERS </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">---------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Andrzej Cichocki (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Alexander Bernstein (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Evgeny Burnaev (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Dmitry Dylov (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Ivan Oseledets (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0</span>CONTACT us at:</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0</span></span>NeuroDLTensor (at) <a href=3D"http://gmail.com"=
+>gmail.com</a></p>
+
+</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2018-06-12 =
+19:50 GMT+03:00 Evgeny Burnaev <span dir=3D"ltr">&lt;<a href=3D"mailto:neur=
+odltensor@gmail.com" target=3D"_blank">neurodltensor@gmail.com</a>&gt;</spa=
+n>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">CALL FOR PAPERS</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+<wbr>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span>DLAN<span>=C2=A0=C2=A0 </span>2018=
+</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 </span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span>Workshop on
+Deep Learning and Tensor/Matrix Decomposition for Applications in Neuroscie=
+nce
+will be held in conjunction with ICDM 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span>=C2=A0</span>=
+<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 </span>November 17th, 2018, Singapore</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span><a href=3D"https://crei.skoltech.ru/cdise/icdm-2018-workshop/" targe=
+t=3D"_blank">https://crei.skoltech.ru/<wbr>cdise/icdm-2018-workshop/</a></s=
+pan></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">------------------------------<wbr>------------------------------<wbr>---=
+---------------------------<wbr>------------------------------<wbr>--------=
+-</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">DLAN is a full day workshop,
+organized in conjunction with ICDM 2018. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">The IEEE International Conference on
+Data Mining series (ICDM) has established itself as the world=E2=80=99s pre=
+mier
+research conference in data mining. The main goal of current workshop is to
+bring together academics, researchers and practitioners to discuss and refl=
+ect
+on recent challenges in neuroscience in the context of Deep Learning.</span=
+></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">The workshop is oriented to all
+potential applications of deep learning and matrix/tensor decomposition and
+networks in feature extraction, classification, recognition, segmentation,
+enhancing, clustering, anomaly detection, and prediction of brain and behav=
+ior
+data =E2=80=93 as applied to the multi-modal brain data (MRI/fMRI/CT, EEG/M=
+EG, and
+biomarker assays), especially for mental disorders. Special focus will be m=
+ade
+on the practical aspects of how to design and train deep neural networks wi=
+th
+appropriate reduction of the dimensionality, to achieve high classification
+performance and reliability.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Because of recent breakthroughs in
+machine learning, especially deep neural networks, it is expected that
+physicians will be able to completely rely on the machine interpretation of
+MRIs, CT, PET scans using deep learning in the nearest future. Though deep
+neural networks have revolutionized computer vision through the end-to-end
+learning (i.e., learning from the raw data), it is still difficult to
+accomplish the early detection of the major neurodegenerative diseases (suc=
+h as
+ADHD, Autism, or Alzheimer=E2=80=99s) with the neural networks today, parti=
+ally due to
+the need for development of optimization techniques in order to work with t=
+he
+Big Data in the most efficient way. These and related topics will be addres=
+sed
+at this workshop.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">IMPORTANT DATES</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">---------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">All deadlines are at 11:59PM Pacific
+Time.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKSHOP PAPER SUBMISSIONS<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 </span>August 7, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKSHOP PAPER NOTIFICATION<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 </span>September 4, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">WORKHSOP DATE<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span>November 17, 2018</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">TOPICS OF INTEREST</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">------------------------------<wbr>--</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We aim for a focus on the
+applications of Deep Learning to analysis of neuroimaging data. Topics of
+interests for the workshop include, but are not limited to:</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Magnetic Resonance Imaging (MRI) /
+functional Magnetic Resonance Imaging (fMRI)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Electroencephalography (EEG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Magnetoencephalography (MEG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Positron Emission Tomography (PET)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Near-infrared spectroscopy (NIRS)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Computed Tomography (CT)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Behavioral Data</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Physiological Data</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Electromyography (EMG)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We encourage submissions describing
+innovative work in related fields that address the issue of interpretabilit=
+y in
+applications of DL to neuroscience. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">SUBMISSION GUIDELINES</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">------------------------------<wbr>-------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We invite submission of unpublished
+original research papers that are not under review elsewhere. All papers wi=
+ll
+be peer reviewed. If accepted, at least one of the authors must attend the
+workshop to present their work. Paper submissions should be limited to a
+maximum of ten (10) pages, in the IEEE 2-column format (link), including th=
+e
+bibliography and any possible appendices. Submissions longer than 10 pages =
+will
+be rejected without review. All submissions will be triple-blind reviewed b=
+y
+the Program Committee on the basis of technical quality, relevance to scope=
+ of
+the conference, originality, significance, and clarity. For further
+information, please visit the ICDM guidelines page
+<a href=3D"http://icdm2018.org/calls/call-for-papers/" target=3D"_blank">ht=
+tp://icdm2018.org/calls/<wbr>call-for-papers/</a>.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Manuscripts must be submitted
+electronically via the submission site. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><a href=3D"https://wi-lab.com/cyberchair/2018/icdm18/scripts/submit.php?s=
+ubarea=3DS26&amp;undisplay_detail=3D1&amp;wh=3D/cyberchair/2018/icdm18/scri=
+pts/ws_submit.php" target=3D"_blank">https://wi-lab.com/cyberchair/<wbr>201=
+8/icdm18/scripts/submit.<wbr>php?subarea=3DS26&amp;undisplay_<wbr>detail=3D=
+1&amp;wh=3D/cyberchair/2018/<wbr>icdm18/scripts/ws_submit.php</a></span></p=
+>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">We do not accept email submissions. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Accepted papers will be published in
+the conference proceedings by the IEEE Computer SocietyPress.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">If you are considering submitting to
+the workshop and have questions regarding the workshop scope or need furthe=
+r
+information, please do not hesitate to contact the organizers at NeuroDLTen=
+sor
+(at) <a href=3D"http://gmail.com" target=3D"_blank">gmail.com</a>.</span></=
+p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">ORGANIZERS </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">---------------------------</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Andrzej Cichocki (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Alexander Bernstein (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Evgeny Burnaev (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Dmitry Dylov (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">Ivan Oseledets (Skoltech)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0</span>CONTACT us at:</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+"><span>=C2=A0</span></span>NeuroDLTensor (at) <a href=3D"http://gmail.com"=
+ target=3D"_blank">gmail.com</a></p>
+
+</div>
+</blockquote></div><br></div>
+
+--0000000000007e73c40571d0af1f--
+

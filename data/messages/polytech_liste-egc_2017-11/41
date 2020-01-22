@@ -1,0 +1,371 @@
+Return-Path: <p_bruneau@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id B79BB2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 21 Nov 2017 10:29:27 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id B5621628823
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 21 Nov 2017 10:29:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id AD3214821B22
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 21 Nov 2017 10:29:27 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.803
+X-Spam-Level:
+X-Spam-Status: No, score=-3.803 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FORGED_HOTMAIL_RCVD2=1.187, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_MSPIKE_H2=-0.001, RCVD_IN_WSFF=0.01, SPF_HELO_PASS=-0.001,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 7.6229 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id bjbX9FjJ44MB for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 21 Nov 2017 10:29:25 +0100 (CET)
+X-Greylist: whitelisted by SQLgrey-1.6.7
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-oln040092068010.outbound.protection.outlook.com [40.92.68.10])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 9A5BB4821B1A
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 21 Nov 2017 10:29:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=q31ySvfUFY1FVH4NDaW47blE+DBVKfpXBns9Kvphfk4=;
+ b=Cw9ivm03arV3on6N1tREOu5iEr2kjQoQlYTqZNmxTywD+ju50V1nk6aF/NU9AQChDFbR9rPG3HDhAujbfZrkf9T1Fld8EbvQkxQlsYRPuTqFGvGGqD3TR9mveglsV2vw1oD2KJstw7hak+LVsx65hXFZf7ED/RkJH26hfQTqrIOHTpUHwGyfsXXShUbCCd60sTa1icdVgmso75cJIRZuYseB/lBUCvifZVkM/ylmLmebEpsR5/4H/ZEJYW4Fp2JA9VPojUgouidn23CbE40dgwolbWvmV5VjiS0eFLje7hsUizhSk2niZKauPVMd27rfKlfD8A9Uj8oQuRK2U6VU6Q==
+Received: from HE1EUR02FT045.eop-EUR02.prod.protection.outlook.com
+ (10.152.10.52) by HE1EUR02HT121.eop-EUR02.prod.protection.outlook.com
+ (10.152.10.189) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.20.218.12; Tue, 21
+ Nov 2017 09:29:24 +0000
+Received: from AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM (10.152.10.52) by
+ HE1EUR02FT045.mail.protection.outlook.com (10.152.11.238) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.20.218.12 via Frontend Transport; Tue, 21 Nov 2017 09:29:24 +0000
+Received: from AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a121:ccd9:92ae:ba86]) by AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a121:ccd9:92ae:ba86%14]) with mapi id 15.20.0239.009; Tue, 21 Nov
+ 2017 09:29:24 +0000
+From: Pierrick Bruneau <p_bruneau@hotmail.com>
+To: " bull-i3@irit.fr" <bull-i3@irit.fr>, "liste-egc@polytech.univ-nantes.fr"
+	<liste-egc@polytech.univ-nantes.fr>, "liste-gt-vif@univ-nantes.fr"
+	<liste-gt-vif@univ-nantes.fr>
+Thread-Topic: =?Windows-1252?Q?[2=E8me_appel]_CfP_Atelier_Visualisation_Interaction_et_?=
+ =?Windows-1252?Q?Fouille_de_Donn=E9es_-_EGC_2018?=
+Thread-Index: AQHTVupYgpx8JbtKd0yhWvqF05gr/aMeuCj/
+Date: Tue, 21 Nov 2017 09:29:24 +0000
+Message-ID: <AM4PR10MB152383BBD72F2EE5735D7C9F9A230@AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM>
+References: <AM4PR10MB1523F48C6FE5643B1B135F079A500@AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: <AM4PR10MB1523F48C6FE5643B1B135F079A500@AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: irit.fr; dkim=none (message not signed)
+ header.d=none;irit.fr; dmarc=none action=none header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:048C54CBD9F0A24C75A0C2DE25C857476829796CD8771A5E22ED24B2447E03A7;UpperCasedChecksum:28A0D7FC8C315AABA9C41C0EF690B26E122F4D97BAFFF0F677C1ED84C24F9FFA;SizeAsReceived:7356;Count:45
+x-tmn: [7PSsiVM4vKkSqvSqmpvYLm/8OlqCBjeg0adTikpm8ZI=]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics: 1;HE1EUR02HT121;6:a+I9sgqVHePyBWLmUCS3jBNwatb0x2MT5G8/6G9d/mesWXTuVAnvGkbyYLur755hCmPB5gpEKmd1VEiH/2Skll5QG8ozfpL+Pwp+ri4stRJWJbbY9NBu/2HPXz6ZovQeqXrFk8oGnmvvIpvR8G+OWiEImLJTh6GfED4cRAQieaSm+WRewaMKDXOPqVMdg+64Bc8LzUWNhr88EI6ZDNxuLXbhYSVSzWIpKzkYZatfVEt76auCzHycoxwRZ87FboXRX7KPcO6KbrcgrRQz06Y9v7fJCOwzlPART4j+EZLsmYbFWSlfOG5I/4e5WXF8A8Tjt19W5s8HukByXoxUJ2o1lOBwjLiguMjjw7jEv+nRcXc=;5:A3p494VDX+fd9TI0eV93YMHH+w1o/3FOkMuM4Up7AWt4BiqXFlFFT49EOZeeFCYlMQjFQTUM0co2vaalLFDEpvkmCBHgAM1EZqy4x/JhiWyVPmk3fTd3mTYMA2Sfpwt/MID6Quh6U4QU4USGGw7qojE+ciEuySVSqc4WeJRQMIA=;24:JyhHQo0CvcqapJZF4ZM/oTWOxGQgjQZ3IPmUxwPiVxTf+xRlBACPRD2mYn/AallWyn5ugHg6vGy8xt3y+FWAjAqPWfSVbhE3jHHVqbVe24w=;7:IpbTGpDlu7msM3ab2M2B5uRquj0FiyhHHjbCtSEAMq8o54gGjnZ/+b+j5XboRPZ0eOqb/fR4UGKeNBuLU1bwHf+icgqL1VUJzZu50rEOV9H2gwHKYAfKmrSVeAWkHL/RDKvvh76HqoyTafFHjEDkN6IjFXgr+esAyDm0tJ9znnNv2i0P5CZRSW8AJKjZhEfgJZZQ20o91xfkZ7+MAxCMfhmGX6qVdXuaHfj7NMN62i+OxDWsE+hbOFspZvTvM7/u
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 0a60c078-4292-42f9-ce20-08d530c25a8a
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031324274)(2017031323274)(2017031322404)(1603101448)(1601125374)(1701031045);SRVR:HE1EUR02HT121;
+x-ms-traffictypediagnostic: HE1EUR02HT121:
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(100000700101)(100105000095)(100000701101)(100105300095)(100000702101)(100105100095)(444000031);SRVR:HE1EUR02HT121;BCL:0;PCL:0;RULEID:(100000800101)(100110000095)(100000801101)(100110300095)(100000802101)(100110100095)(100000803101)(100110400095)(100000804101)(100110200095)(100000805101)(100110500095);SRVR:HE1EUR02HT121;
+x-forefront-prvs: 049897979A
+x-forefront-antispam-report: SFV:NSPM;SFS:(7070007)(98901004);DIR:OUT;SFP:1901;SCL:1;SRVR:HE1EUR02HT121;H:AM4PR10MB1523.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:;
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_AM4PR10MB152383BBD72F2EE5735D7C9F9A230AM4PR10MB1523EURP_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a60c078-4292-42f9-ce20-08d530c25a8a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2017 09:29:24.3003
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT121
+Subject: [liste-egc] =?WINDOWS-1252?Q?=5B2=E8me?= appel] CfP Atelier
+ Visualisation Interaction et Fouille de =?WINDOWS-1252?Q?Donn=E9es?= - EGC
+ 2018
+
+--_000_AM4PR10MB152383BBD72F2EE5735D7C9F9A230AM4PR10MB1523EURP_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+(D=E9sol=E9 pour les r=E9ceptions multiples)
+
+
+Atelier VIF : Visualisation d=92informations, Interaction, et Fouille de do=
+nn=E9es
+
+EGC 2018  Paris (Universit=E9 Paris 13) le 23 janvier 2018.
+
+http://gt-vif.polytech.univ-nantes.fr/egc-vif2018/
+
+
+
+
+=C9tabli =E0 EGC, l=92atelier VIF =E9mane du groupe de travail =AB Visualis=
+ation d=92Information, Interaction et Fouille de donn=E9es =BB, fruit de la=
+ collaboration entre les associations EGC et AFIHM. Celui-ci se propose de =
+faire le point sur l=92actualit=E9 en visualisation interactive d=92informa=
+tions, tant du point de vue fondamental qu=92applicatif. =C0 la confluence =
+des communaut=E9s EGC et VIS et =E0 la crois=E9e des disciplines (Informati=
+que, G=E9ographie, Ergonomie, Design, etc.), les m=E9thodes de visualisatio=
+n interactive et de fouille visuelle des donn=E9es sont au c=9Cur des pr=E9=
+occupations de cet atelier. Aussi, il aura pour vocation de favoriser l=92=
+=E9change sur l=92=E9volution r=E9cente des axes de recherche dans ces th=
+=E9matiques, et sur l=92application des m=E9thodes de visualisation =E0 des=
+ probl=E9matiques industrielles. Le traitement de donn=E9es massives (=91Bi=
+g Data=92) et des flux de donn=E9es fera l=92objet d=92une attention partic=
+uli=E8re.
+
+
+
+Cas d=92utilisation sugg=E9r=E9 : tout domaine applicatif restant appr=E9ci=
+=E9 par ailleurs, les chercheurs souhaitant pr=E9senter des m=E9thodes de v=
+isualisation et de fouille de donn=E9es visuelle s=92appliquant aux donn=E9=
+es textuelles sont encourag=E9s =E0 utiliser les donn=E9es du d=E9fi EGC 20=
+18.
+
+
+
+Th=E8mes de l'atelier (liste non exhaustive) :
+
+
+
+  *   Fouille de donn=E9es visuelle,
+  *   Immersive analytics,
+  *   Visualisation collaborative,
+  *   Visualisation dynamique et interactive,
+  *   Applications de la visualisation (e.g. business intelligence, donn=E9=
+es de capteurs),
+  *   Applications scientifiques (cf. environnement, science, m=E9decine),
+  *   Application cr=E9atives et =E9ditoriales (design de donn=E9es/data de=
+sign, journalisme de donn=E9es/datajournalisme, conception de services/prod=
+uits =E0 destination du grand public tirant parti de la visualisation de do=
+nn=E9es, etc.),
+  *   Supports logiciels et/ou mat=E9riels =E0 la visualisation
+
+
+
+Dates importantes
+
+  *   Date limite de soumission :  1er d=E9cembre 2017
+  *   Notification aux auteurs :  19 d=E9cembre 2017
+  *   Version finale : 10 janvier 2018
+  *   Atelier : 23 janvier 2018
+
+
+
+
+
+Modalit=E9s de soumission et organisation de l=92atelier :
+
+
+
+Les soumissions se feront sous la forme de r=E9sum=E9s de 2 pages maximum r=
+espectant le style/format RNTI : http://www.editions-rnti.fr/files/RNTI-X-Y=
+2.1.zip
+
+
+
+Le d=E9p=F4t des soumissions se fera via EasyChair =E0 l=92adresse suivante=
+ : https://easychair.org/conferences/?conf=3Degc2018
+
+
+
+Lors de l=92atelier, les auteurs disposeront de 15 minutes pour pr=E9senter=
+ leurs travaux. Chaque pr=E9sentation sera suivie de 5 minutes de questions=
+. Le cas =E9ch=E9ant, le temps de pr=E9sentation sera am=E9nag=E9 pour perm=
+ettre les d=E9monstrations, et favoriser les =E9changes avec l=92audience (=
+cf. outils utilis=E9s, donn=E9es).
+
+
+
+Comit=E9 d=92organisation :
+
+
+
+Pierrick Bruneau (Luxembourg Institute of Science and Technology),
+
+Fabien Picarougne (Universit=E9 de Nantes)
+
+--_000_AM4PR10MB152383BBD72F2EE5735D7C9F9A230AM4PR10MB1523EURP_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>(D=E9sol=E9 pour les r=E9ceptions multiples)</p>
+<div style=3D"color: rgb(0, 0, 0);">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr">
+<div><br>
+</div>
+</div>
+<div dir=3D"auto">
+<div><span></span></div>
+<div>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:6pt"><span sty=
+le=3D"background-color:rgba(255,255,255,0)"><b>Atelier VIF : Visualisation =
+d=92informations, Interaction,&nbsp;et Fouille de donn=E9es&nbsp;</b></span=
+></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:6pt"><b style=
+=3D"background-color:rgba(255,255,255,0)">EGC 2018&nbsp; Paris (Universit=
+=E9 Paris 13) le 23 janvier 2018.&nbsp;</b></p>
+<p style=3D"text-indent:0px; margin-right:0cm; margin-left:0.4pt; margin-bo=
+ttom:0.0001pt">
+<a href=3D"http://gt-vif.polytech.univ-nantes.fr/egc-vif2018/" class=3D"OWA=
+AutoLink" id=3D"LPlnk667473" previewremoved=3D"true">http://gt-vif.polytech=
+.univ-nantes.fr/egc-vif2018/</a><br>
+<br>
+</p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt; min-hei=
+ght:13.9px">
+<span style=3D"background-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">=C9tabli =E0 EGC, l=92atelier=
+ VIF =E9mane du groupe de travail =AB Visualisation d=92Information, Intera=
+ction et Fouille de donn=E9es =BB, fruit de la collaboration
+ entre les associations EGC et AFIHM. Celui-ci se propose de faire le point=
+ sur l=92actualit=E9 en visualisation interactive d=92informations, tant du=
+ point de vue fondamental qu=92applicatif. =C0 la confluence des communaut=
+=E9s EGC et VIS et =E0 la crois=E9e des disciplines
+ (Informatique, G=E9ographie, Ergonomie, Design, etc.), les m=E9thodes de v=
+isualisation interactive et de fouille visuelle des donn=E9es sont au c=9Cu=
+r des pr=E9occupations de cet atelier. Aussi, il aura pour vocation de favo=
+riser l=92=E9change sur l=92=E9volution r=E9cente des
+ axes de recherche dans ces th=E9matiques, et sur l=92application des m=E9t=
+hodes de visualisation =E0 des probl=E9matiques industrielles. Le traitemen=
+t de donn=E9es massives (=91Big Data=92) et des flux de donn=E9es fera l=92=
+objet d=92une attention particuli=E8re. &nbsp;</span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)"><i>Cas d=92utilisation sugg=
+=E9r=E9</i>&nbsp;: tout domaine applicatif restant appr=E9ci=E9 par ailleur=
+s, les chercheurs souhaitant pr=E9senter des m=E9thodes de
+ visualisation et de fouille de donn=E9es visuelle s=92appliquant aux donn=
+=E9es textuelles sont encourag=E9s =E0 utiliser les donn=E9es du d=E9fi EGC=
+ 2018.&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt; min-hei=
+ght:13.9px">
+<span style=3D"background-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"text-indent:0px; margin-right:0cm; margin-left:0.4pt; margin-bo=
+ttom:0.1pt">
+<span style=3D"background-color:rgba(255,255,255,0)"><b>Th=E8mes de l'ateli=
+er (liste non exhaustive) : &nbsp;</b></span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<ul type=3D"disc" style=3D"margin-bottom:0cm; margin-top:0cm">
+<li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span style=3D"ba=
+ckground-color:rgba(255,255,255,0)">Fouille de donn=E9es visuelle,&nbsp;</s=
+pan></li><li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span st=
+yle=3D"background-color:rgba(255,255,255,0)">Immersive analytics,</span></l=
+i><li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span style=3D"=
+background-color:rgba(255,255,255,0)">Visualisation collaborative, &nbsp;</=
+span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">Visualisation dynamique et in=
+teractive, &nbsp;</span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm =
+0cm 1.2pt"><span style=3D"background-color:rgba(255,255,255,0)">Application=
+s de la visualisation (e.g. business intelligence, donn=E9es de capteurs), =
+&nbsp;</span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"=
+><span style=3D"background-color:rgba(255,255,255,0)">Applications scientif=
+iques (cf. environnement, science, m=E9decine), &nbsp;</span></li><li class=
+=3D"x_MsoNormal" style=3D"margin:0cm 0cm 0.1pt"><span style=3D"background-c=
+olor:rgba(255,255,255,0)">Application cr=E9atives et =E9ditoriales (design =
+de donn=E9es/data design, journalisme de donn=E9es/datajournalisme, concept=
+ion de services/produits =E0 destination
+ du grand public tirant parti de la visualisation de donn=E9es, etc.),&nbsp=
+;</span></li><li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><spa=
+n style=3D"background-color:rgba(255,255,255,0)">Supports logiciels et/ou m=
+at=E9riels =E0 la visualisation</span></li></ul>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:1.05pt; min-he=
+ight:13.9px">
+<span style=3D"background-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"text-indent:0px; margin-right:0cm; margin-left:0.4pt; margin-bo=
+ttom:1.05pt">
+<span style=3D"background-color:rgba(255,255,255,0)"><b>Dates importantes</=
+b></span></p>
+<ul type=3D"disc" style=3D"margin-bottom:0cm; margin-top:0cm">
+<li class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span style=3D"ba=
+ckground-color:rgba(255,255,255,0)">Date limite de soumission :&nbsp;&nbsp;=
+<a href=3D"" dir=3D"ltr" style=3D"">1er d=E9cembre 2017</a></span></li><li =
+class=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span style=3D"backgr=
+ound-color:rgba(255,255,255,0)">Notification aux auteurs :&nbsp;&nbsp;<a hr=
+ef=3D"" dir=3D"ltr" style=3D"">19 d=E9cembre 2017</a></span></li><li class=
+=3D"x_MsoNormal" style=3D"margin:0cm 0cm 1.05pt"><span style=3D"background-=
+color:rgba(255,255,255,0)">Version finale :&nbsp;<a href=3D"" dir=3D"ltr" s=
+tyle=3D"">10 janvier 2018</a></span></li><li class=3D"x_MsoNormal" style=3D=
+"margin:0cm 0cm 1.05pt"><span style=3D"background-color:rgba(255,255,255,0)=
+">Atelier :&nbsp;<a href=3D"" dir=3D"ltr" style=3D"">23 janvier 2018</a></s=
+pan></li></ul>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:1.05pt; min-he=
+ight:13.9px">
+<span style=3D"background-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt; min-hei=
+ght:13.9px">
+<span style=3D"background-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)"><b>Modalit=E9s de soumission =
+et organisation de l=92atelier : &nbsp;</b></span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">Les soumissions se feront sou=
+s la forme de r=E9sum=E9s de 2 pages maximum respectant le style/format RNT=
+I :&nbsp;<u><a href=3D"http://www.editions-rnti.fr/files/RNTI-X-Y2.1.zip">h=
+ttp://www.editions-rnti.fr/files/RNTI-X-Y2.1.zip</a></u>&nbsp;</span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"text-indent:0px; margin-right:0cm; margin-left:0.4pt; margin-bo=
+ttom:0.0001pt">
+<span style=3D"background-color:rgba(255,255,255,0)">Le d=E9p=F4t des soumi=
+ssions se fera via EasyChair =E0 l=92adresse suivante :&nbsp;<a href=3D"htt=
+ps://easychair.org/conferences/?conf=3Degc2018">https://easychair.org/confe=
+rences/?conf=3Degc2018</a></span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"background-color:rgba(2=
+55,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">Lors de l=92atelier, les aute=
+urs disposeront de 15 minutes pour pr=E9senter leurs travaux. Chaque pr=E9s=
+entation sera suivie de 5 minutes de questions.
+ Le cas =E9ch=E9ant, le temps de pr=E9sentation sera am=E9nag=E9 pour perme=
+ttre les d=E9monstrations, et favoriser les =E9changes avec l=92audience (c=
+f. outils utilis=E9s, donn=E9es). &nbsp;</span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)"><b>Comit=E9 d=92organisation =
+:&nbsp;</b></span></p>
+<p style=3D"margin:0cm 0cm 0.0001pt; min-height:13.9px"><span style=3D"back=
+ground-color:rgba(255,255,255,0)">&nbsp;&nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">Pierrick Bruneau (Luxembourg =
+Institute of Science and Technology), &nbsp;</span></p>
+<p style=3D"margin-right:0cm; margin-left:0cm; margin-bottom:0.1pt"><span s=
+tyle=3D"background-color:rgba(255,255,255,0)">Fabien Picarougne (Universit=
+=E9 de Nantes)</span></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_AM4PR10MB152383BBD72F2EE5735D7C9F9A230AM4PR10MB1523EURP_--

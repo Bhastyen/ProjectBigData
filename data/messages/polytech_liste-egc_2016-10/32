@@ -1,0 +1,499 @@
+Return-Path: <julien.velcin@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id E18B01903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 19 Oct 2016 14:29:46 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id C4F459541
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 19 Oct 2016 14:29:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id B4D9FB4F44D
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 19 Oct 2016 14:29:46 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -15.118
+X-Spam-Level:
+X-Spam-Status: No, score=-15.118 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.147, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 17.9097 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yPPFvm1V6sOi for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 19 Oct 2016 14:29:44 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 3054863F32E
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 19 Oct 2016 14:29:44 +0200 (CEST)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id A8861139A6E
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 19 Oct 2016 14:29:43 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1476880183;
+	bh=JZNFL2uZj2TlMjd5JlcdTAJ58k9WMzR4lvhNguVnq8Y=;
+	h=Date:From:To:Subject;
+	b=sbqw/gHi8j8rADBqqI4tv1zpmxP+H/C55YGIpUM/YwSAjwVvTeL5luxmsUsADmtj8
+	 ynVXJINObpXdl8jZGYgOoo3YZT7YCN9APoovPCVWn2C/KKmW5B7bFU6zYKlXa/A2Z1
+	 tqtU0dSS3z/MQHDNP0RuALgdqSXqjkTbc0S2pn66cM5UtOvFeRhz9FHvGCJSQiPtka
+	 jgQNQ9VsxiK0o9IAI80CBREa5IXtpb0u0SoP3njx2tZbAQgZXci5nclHxIRmU1qR7g
+	 Km21VXRNvWVFCN4M0V7497bofuDXetdVp4sINtWVCw8NSmk6BNDKFGAlR2eYz6nDim
+	 kST8lhu0Hzvvg==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id K-7IvIHJx7fR for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 19 Oct 2016 14:29:42 +0200 (CEST)
+Received: from MacBook-Pro-de-Julien-6.local (MBP-de-Julien-6-dhcp-159-84-8-134.univ-lyon2.fr [159.84.8.134])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 19 Oct 2016 14:29:42 +0200 (CEST)
+Message-ID: <58076735.8080105@univ-lyon2.fr>
+Date: Wed, 19 Oct 2016 14:29:41 +0200
+From: Julien Velcin <julien.velcin@univ-lyon2.fr>
+User-Agent: Postbox 4.0.8 (Macintosh/20151105)
+MIME-Version: 1.0
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative;
+ boundary="------------070803040409070804050906"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] [Stage M2 recherche] =?WINDOWS-1252?Q?D=E9tection?= de
+ signaux faibles =?WINDOWS-1252?Q?=E0_l=92aide?= de =?WINDOWS-1252?Q?mod?=
+ =?WINDOWS-1252?Q?=E8les_th=E9matiques?= probabilistes (ERIC - EDF R&D)
+
+This is a multi-part message in MIME format.
+--------------070803040409070804050906
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour à tous,
+
+Veuillez trouver ci-dessous une proposition de stage orienté recherche 
+pour un étudiant de niveau Master 2, en collaboration entre EDF R&D et 
+le laboratoire ERIC. N'hésitez pas à la communiquer autour de vous.
+
+Cordialement,
+
+Julien Velcin
+Laboratoire ERIC
+
+---
+
+## Détection de signaux faibles à l’aide de,modèles de thématiques 
+probabilistes
+
+## Contexte
+
+EDF surveille l’évolution des thématiques discutées dans différents 
+types de corpus textuels : tweet, blogs, réclamations, etc. Un plan de 
+classement prédéfini permet de recourir à des algorithmes de 
+classification supervisée performants, mais de nombreux documents se 
+retrouvent mal ou même non classés. Cela peut être du au fait que les 
+catégories évoluent au fil du temps (principe de "dérive de concepts" ou 
+concept drift), par exemple avec l’apparition de nouveaux termes dans le 
+vocabulaire, ou au fait que de nouvelles catégories thématiques 
+apparaissent. Dans ce contexte, l’analyse des signaux faibles sur la 
+base des documents non classés est une piste envisagée sérieusement pour 
+mieux appréhender ces évolutions. De manière plus générale, l’entreprise 
+souhaite être en mesure de suivre les thématiques des textes dans le 
+temps, que celles-ci soient récurrentes ou qu’elles apparaissent et 
+disparaissent au fur et à mesure du temps.
+
+## Sujet du stage
+
+Le stage se divise en deux thématiques de recherche :
+
+- A partir d’une classification des textes en un certain nombre de 
+thématiques prédéfinies, le stagiaire travaillera sur l’identification 
+de signaux faibles à partir de l’ensemble des documents mal classés. En 
+particulier, il s’agira de distinguer les documents qui peuvent être 
+placés dans les classes existantes des documents qui constituent une 
+nouvelle classe émergente. Pour cela, la piste envisagée est de se baser 
+sur des modèles de thématiques probabilistes (Blei et al., 2003). Cette 
+piste a été clairement soulignée comme prometteuse dans le rapport du 
+projet européen TEL-Map (http://www.telmap.org). Elle devrait permettre, 
+notamment, de pouvoir résoudre les problèmes d’erreurs orthographiques 
+ou la question des synonymes. Une autre piste envisagée dans le stage 
+est d’avoir recourir à des techniques récentes de plongement de mots 
+(word embedding), issues des approches distributionnelles et récemment 
+mises en lumière par les succès du deep learning, afin de gérer les 
+néologismes ou les glissements sémantiques (Collobert et al., 2011).
+
+- A partir du travail précédent, le second objectif consiste à mettre au 
+point une application permettant de visualiser les thématiques et leur 
+évolution temporelle. Plusieurs interfaces ont été mises au point dans 
+la littérature, comme par exemple les systèmes Tiara (Wei et al., 2010), 
+TopicTable (Gohr et al., 2013) ou TopicFlow (Malik et al., 2013). Il 
+s’agira de voir quels systèmes peuvent être testés, voire améliorés, 
+dans le contexte spécifique de la « dérive de concepts » attachés aux 
+thématiques suivies et de l’apparition de nouvelles thématiques 
+émergentes. A ce titre, le stage devra déboucher sur l’élaboration d’un 
+prototype pouvant être ensuite utilisé par les équipes R&D d’EDF.
+
+En plus des solutions libres, le stagiaire aura à sa disposition les 
+outils utilisés dans l’entreprise. En particulier, pour l’analyse fine 
+des textes, il aura accès à l’analyseur XIP (Aït-Mokhtar et al., 2002). 
+Les méthodes innovantes seront testées sur des benchmarks de la 
+littérature (bases d’articles scientifiques, news) mais aussi sur des 
+données fournies par l’entreprise.
+
+## Lieu du stage
+
+Le stage aura principalement lieu dans les locaux du laboratoire ERIC, à 
+l’Université de Lyon 2 (site de Bron). Cependant, il faut prévoir au 
+moins une réunion par mois dans les locaux d’EDF à Clamart (aller-retour 
+pris en charge). En plus de cela, des réunions régulières avec les deux 
+équipes seront organisées par visio-conférence.
+
+## Rémunération
+
+Entre 800€ et 1000€ net par mois (en fonction de l’expérience du candidat).
+
+## Calendrier
+
+- réception des candidatures jusqu’au 31 octobre 2016
+- entretiens entre le 1er et le 15 novembre 2016
+- réponse envoyée aux candidats vers le 20 novembre 2016
+- démarrage du stage idéalement en février 2017
+
+## Pour candidater :
+
+Contact Université Lyon 2
+Julien Velcin    04.78.77.24.14    julien.velcin@univ-lyon2.fr 
+<mailto:julien.velcin@univ-lyon2.fr>
+
+Contacts EDF
+Anne Peradotto    01.47.65.44.89 anne.peradotto@edf.fr 
+<mailto:anne.peradotto@edf.fr>
+Delphine Lagarde    01.47.65.39.75 delphine.lagarde@edf.fr 
+<mailto:delphine.lagarde@edf.fr>
+
+## Références bibliographiques
+
+(Aït-Mokhtar et al., 2002) Aït-Mokhtar, S., Chanod, J.P. and C. Roux. 
+Robustness beyond shallowness: incremental dependency parsing. Natural 
+Language Engineering, 8(2/3), pp. 121-144, 2002.
+(Blei et al., 2003) Blei, David M., Andrew Y. Ng, and Michael I. Jordan. 
+Latent dirichlet allocation. Journal of machine Learning research, vol.3 
+(2003), pp.993-1022.
+(Collobert et al., 2011) R. Collobert, J. Weston, L. Bottou, M. Karlen, 
+K. Kavukcuoglu, and P. Kuksa. Natural language processing (almost) from 
+scratch. Journal of Machine Learning Research, vol.12 (2011), pp.2493-2537.
+(Gohr et al., 2013) Gohr, A., M. Spiliopoulou, et A. Hinneburg. Visually 
+summarizing semantic evolution in document streams with topic table. In 
+Knowledge Discovery, Knowledge Engineering and Knowledge Management, pp. 
+136–150. Springer, 2013.
+(Malik et al., 2013) Malik, S., Smith, A., Hawes, T., Papadatos, P., Li, 
+J., Dunne, C., & Shneiderman, B. (2013, August). TopicFlow: visualizing 
+topic alignment of twitter data over time. In Proceedings of the 
+IEEE/ACM international conference on advances in social networks 
+analysis and mining, pp. 720-726. ACM, 2013.
+(Wei et al., 2010) Wei, F., S. Liu, Y. Song, S. Pan, M. X. Zhou, W. 
+Qian, L. Shi, L. Tan, et Q. Zhang. Tiara : a visual exploratory text 
+analytic system. In Proceedings of the 16th ACM SIGKDD international 
+conference on Knowledge discovery and data mining, pp. 153–162. ACM, 2010.
+
+
+--------------070803040409070804050906
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta content="text/html; charset=windows-1252" 
+http-equiv="Content-Type">
+</head><body bgcolor="#FFFFFF" text="#000000">
+Bonjour à tous,<br>
+
+  <br>
+
+Veuillez trouver ci-dessous une proposition de stage orienté recherche 
+pour un étudiant de niveau Master 2, en collaboration entre EDF R&amp;D 
+et le laboratoire ERIC. N'hésitez pas à la communiquer autour de vous.<br>
+
+  <br>
+
+Cordialement,<br>
+
+  <br>
+
+Julien Velcin<br>
+
+Laboratoire ERIC<br>
+
+  <br>
+
+---<br>
+
+  <br>
+
+## Détection de signaux faibles à l’aide de,modèles de thématiques 
+probabilistes<br>
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+<link rel="File-List" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_filelist.xml">
+<link rel="themeData" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_themedata.xml">
+
+
+
+
+## Contexte
+<br>
+
+
+<br>
+EDF surveille
+l’évolution des thématiques discutées dans différents types de corpus 
+textuels :
+tweet, blogs, réclamations, etc. Un plan de classement prédéfini permet 
+de
+recourir à des algorithmes de classification supervisée performants, 
+mais de
+nombreux documents se retrouvent mal ou même non classés. Cela peut être
+ du au
+fait que les catégories évoluent au fil du temps (principe de "dérive de
+concepts" ou concept drift),
+par exemple avec l’apparition de nouveaux termes dans le vocabulaire, ou
+ au
+fait que de nouvelles catégories thématiques apparaissent. Dans ce 
+contexte,
+l’analyse des signaux faibles sur la base des documents non classés est 
+une
+piste envisagée sérieusement pour mieux appréhender ces évolutions. De 
+manière plus
+générale, l’entreprise souhaite être en mesure de suivre les thématiques
+ des
+textes dans le temps, que celles-ci soient récurrentes ou qu’elles 
+apparaissent
+et disparaissent au fur et à mesure du temps.<br>
+
+
+<br>
+
+
+
+
+
+
+
+
+
+<link rel="File-List" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_filelist.xml">
+<link rel="themeData" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_themedata.xml">
+
+
+
+
+## Sujet
+du stage<br>
+
+
+<br>
+Le
+stage se divise en deux thématiques de recherche :<br>
+
+
+<br>
+- A partir d’une classification des textes en un certain nombre de
+thématiques prédéfinies, le stagiaire travaillera sur l’identification 
+de signaux faibles à partir de l’ensemble des
+documents mal classés. En particulier, il s’agira de distinguer les 
+documents qui
+peuvent être placés dans les classes existantes des documents qui 
+constituent
+une nouvelle classe émergente. Pour cela, la piste envisagée est de se 
+baser
+sur des modèles de thématiques probabilistes (Blei et al., 2003). Cette 
+piste a
+été clairement soulignée comme prometteuse dans le rapport du projet 
+européen
+TEL-Map (<a href="http://www.telmap.org">http://www.telmap.org</a>).
+Elle devrait permettre, notamment, de pouvoir résoudre les problèmes 
+d’erreurs
+orthographiques ou la question des synonymes. Une autre piste envisagée 
+dans le
+stage est d’avoir recourir à des techniques récentes de plongement de 
+mots (word embedding), issues des approches
+distributionnelles et récemment mises en lumière par les succès du deep 
+learning, afin de gérer les
+néologismes ou les glissements sémantiques (Collobert et al., 2011).<br>
+
+
+<br>
+- A partir du travail précédent, le second objectif consiste à mettre
+au point une application permettant de visualiser
+les thématiques et leur évolution temporelle. Plusieurs interfaces ont 
+été
+mises au point dans la littérature, comme par exemple les systèmes Tiara
+ (Wei
+et al., 2010), TopicTable (Gohr et al., 2013) ou TopicFlow (Malik et 
+al.,
+2013). Il s’agira de voir quels systèmes peuvent être testés, voire 
+améliorés,
+dans le contexte spécifique de la « dérive de concepts » attachés aux
+thématiques suivies et de l’apparition de nouvelles thématiques 
+émergentes. A
+ce titre, le stage devra déboucher sur l’élaboration d’un prototype 
+pouvant
+être ensuite utilisé par les équipes R&amp;D d’EDF.<br>
+
+
+<br>
+En
+plus des solutions libres, le stagiaire aura à sa disposition les outils
+utilisés dans l’entreprise. En particulier, pour l’analyse fine des 
+textes, il
+aura accès à l’analyseur XIP (Aït-Mokhtar et al., 2002). Les méthodes
+innovantes seront testées sur des benchmarks
+de la littérature (bases d’articles scientifiques, news) mais aussi sur 
+des
+données fournies par l’entreprise.<br>
+<br>
+## Lieu
+du stage<br>
+
+
+<br>
+Le stage aura
+principalement lieu dans les locaux du laboratoire ERIC, à l’Université 
+de Lyon
+2 (site de Bron). Cependant, il faut prévoir au moins une réunion par 
+mois dans
+les locaux d’EDF à Clamart (aller-retour pris en charge). En plus de 
+cela, des
+réunions régulières avec les deux équipes seront organisées par
+visio-conférence.<br>
+
+
+<br>
+## Rémunération<br>
+
+
+<br>
+Entre 800€ et 1000€ net par mois (en fonction
+de l’expérience du candidat).<br>
+
+
+<br>
+## Calendrier<br>
+
+
+<br>
+-
+réception des candidatures
+jusqu’au 31 octobre 2016<br>
+-
+entretiens entre le 1er
+et le 15 novembre 2016<br>
+-
+réponse envoyée aux candidats vers
+le 20 novembre 2016<br>
+-
+démarrage du stage idéalement en
+février 2017<br>
+
+
+<br>
+## Pour candidater :<br>
+
+
+<br>
+Contact
+Université Lyon 2<br>
+Julien Velcin    04.78.77.24.14<a 
+href="mailto:julien.velcin@univ-lyon2.fr">    
+julien.velcin@univ-lyon2.fr</a><br>
+
+
+<br>
+Contacts EDF <br>
+Anne Peradotto    01.47.65.44.89    <a 
+href="mailto:anne.peradotto@edf.fr">anne.peradotto@edf.fr</a> <br>
+
+
+Delphine
+Lagarde    01.47.65.39.75    <a href="mailto:delphine.lagarde@edf.fr">delphine.lagarde@edf.fr</a><br>
+<br>
+
+
+
+
+
+
+
+
+
+<link rel="File-List" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_filelist.xml">
+<link rel="themeData" 
+href="file://localhost/private/var/folders/_r/pd1w2dps7lv8369zk66hc13h0000gr/T/TemporaryItems/msoclip/0/clip_themedata.xml">
+
+
+
+
+## Références bibliographiques<br>
+
+
+<br>
+(Aït-Mokhtar et al., 2002) Aït-Mokhtar, S., Chanod,
+J.P. and C. Roux. Robustness beyond shallowness: incremental dependency
+parsing. Natural Language Engineering, 8(2/3), pp. 121-144,
+2002. <br>
+(Blei et al.,
+2003) Blei, David M., Andrew Y. Ng, and Michael I. Jordan. Latent 
+dirichlet
+allocation. Journal of machine Learning
+research, vol.3 (2003), pp.993-1022.<br>
+(Collobert et
+al., 2011) R. Collobert, J. Weston, L. Bottou, M. Karlen, K. 
+Kavukcuoglu, and P.
+Kuksa. Natural language processing (almost) from scratch. Journal of 
+Machine Learning Research, vol.12 (2011), pp.2493-2537.<br>
+(Gohr et al., 2013) Gohr, A., M. Spiliopoulou,
+et A. Hinneburg. Visually summarizing semantic evolution in document
+streams with topic table. In Knowledge Discovery, Knowledge Engineering 
+and
+Knowledge Management, pp. 136–150. Springer, 2013. <br>
+(Malik et
+al., 2013) Malik, S., Smith, A., Hawes,
+T., Papadatos, P., Li, J., Dunne, C., &amp; Shneiderman, B. (2013, 
+August).
+TopicFlow: visualizing topic alignment of twitter data over time. In 
+Proceedings
+of the IEEE/ACM international conference on advances in social networks
+analysis and mining, pp. 720-726. ACM, 2013.<br>
+(Wei et al., 2010) Wei, F., S. Liu, Y. Song, S.
+Pan, M. X. Zhou, W. Qian, L. Shi, L. Tan, et Q. Zhang. Tiara : a
+visual exploratory text analytic system. In Proceedings of the 16th ACM
+SIGKDD international conference on Knowledge discovery and data mining, 
+pp.
+153–162. ACM,
+2010. <br>
+
+
+<div style="mso-element:footnote-list"><br>
+</div>
+</body>
+</html>
+
+--------------070803040409070804050906--

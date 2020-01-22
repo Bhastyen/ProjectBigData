@@ -1,0 +1,517 @@
+Return-Path: <ladjel.bellatreche@ensma.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 787FF190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Jan 2017 22:20:14 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id BC5A36D2215
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Jan 2017 22:20:09 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 94C074013460
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Jan 2017 22:20:09 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.95
+X-Spam-Level:
+X-Spam-Status: No, score=-4.95 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_FONT_FACE_BAD=0.289, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.0216 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=ensma.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kjG7BdVwtWPM for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Jan 2017 22:20:08 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from excalibur.ensma.fr (smtp.ensma.fr [193.55.167.4])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 6E0E34013449
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Jan 2017 22:20:08 +0100 (CET)
+Received: from localhost (arthur.ensma.fr [193.55.167.16])
+	by excalibur.ensma.fr (Postfix) with ESMTP id 17FE52800D0
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Jan 2017 22:20:09 +0100 (CET)
+X-Virus-Scanned: amavisd-new at ensma.fr
+Received: from excalibur.ensma.fr ([193.55.167.4])
+	by localhost (arthur.ensma.fr [193.55.167.16]) (amavisd-new, port 10024)
+	with ESMTP id z7kZrjKCgU-n for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Jan 2017 22:20:08 +0100 (CET)
+Received: from MacBook-Pro-de-Ladjel.local (vob86-1-78-207-192-18.fbx.proxad.net [78.207.192.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by excalibur.ensma.fr (Postfix) with ESMTPSA id B39482800CF
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Jan 2017 22:20:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ensma.fr; s=mail;
+	t=1483564808; bh=9qDrAYZZOeIqpKYf5pJ/mxgDDDAz6zJ9h1dU8UnQ/tw=;
+	h=Subject:References:To:From:Date:In-Reply-To;
+	b=FIQ+KYc6oNYqJAHju7FQ6q0vT+VHmX00qFJQ2XMdWMFeh4gDGPF3gO+Z9vmQZq4L+
+	 hgQZtbH/VRMMcbCp2Q3BBgsTAO6rrFVZCN2Sp7TrvTNB1G7ulWfYDaQGUxW7un4Rle
+	 gptCFQe96K+vKj/3CT/ITYj8MelrKDpyVOq4hMik=
+References: <d35136b5-ebfc-53ab-cc6c-c00c1a387cd2@dmi.uns.ac.rs>
+To: liste-egc@polytech.univ-nantes.fr
+From: Ladjel Bellatreche <ladjel.bellatreche@ensma.fr>
+X-Forwarded-Message-Id: <d35136b5-ebfc-53ab-cc6c-c00c1a387cd2@dmi.uns.ac.rs>
+Message-ID: <7a17415a-35b1-14df-5e9b-a9112f815946@ensma.fr>
+Date: Wed, 4 Jan 2017 22:20:06 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+ Gecko/20100101 Thunderbird/45.5.1
+MIME-Version: 1.0
+In-Reply-To: <d35136b5-ebfc-53ab-cc6c-c00c1a387cd2@dmi.uns.ac.rs>
+Content-Type: multipart/alternative;
+ boundary="------------3F09925D75206907B0337F53"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] MEDI 2017 Call for Papers
+
+This is a multi-part message in MIME format.
+--------------3F09925D75206907B0337F53
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+(apologies for multiple receptions)
+
+===========================================================
+CALL FOR PAPERS MEDI 2017
+The 7th International Conference on Model and Data Engineering (MEDI 2017)
+4 - 6 October 2017
+Barcelona, Spain
+URL: http://www.essi.upc.edu/dtim/medi2017/
+===========================================================
+
+IMPORTANT DATES:
+Full paper submission: April 28, 2017
+Notification of acceptance: June 20, 2017
+Camera-ready Submission: July 6, 2017
+Conference: October 4,5, and 6, 2017
+
+ABOUT MEDI
+The main objective MEDI conferences is to provide a forum for the 
+dissemination of research accomplishments and to promote the interaction 
+and collaboration between both modelling and data research communities. 
+For its second time in Spain, MEDI 2017 conference will continue the 
+tradition by providing a platform for researchers and practitioners form 
+industry and academic to report recent technology trends and research 
+results in Models & Data Engineering, as well applications in industrial 
+contexts. This international scientific event, initiated by researchers 
+from Euro Mediterranean countries, aims also at promoting the creation 
+of north-south scientific networks, projects and faculty/student exchanges.
+
+TOPICS
+MEDI 2017 encourages researchers to submit papers highlighting benefits 
+of modelling for data engineering and vice-versa, in areas such as 
+cyber-physical systems, big data, social media, etc. Specific areas of 
+interest to MEDI 2017 include but are not limited to:
+• Modelling languages and related standards
+• Modelling in software and complex system engineering
+• Formal methods, analysis, verification & validation
+• Model-based testing and performance analyses
+• Ontology-based modelling
+• Model integration, model transformation
+• Collaborative modelling and model repositories
+• Models as services and models monitoring
+• Modelling for reuse, dependability and maintainability
+• New models and architectures for databases
+• Heterogeneous data, data Integration, Interoperability
+• Data warehouses, OLAP and data mining
+• Database system Internals, performance analysis, self-tuning 
+benchmarking and testing
+• Database security, personalization, recommendation
+• Web databases, ontology-based databases
+• Service based data management
+• Service oriented applications
+• Urbanization of database applications
+
+CONFERENCE PROCEEDINGS & JOURNAL SPECIAL ISSUES
+Submissions must conform to Springer's LNCS style and should not exceed 
+14 pages. Submitted papers will be carefully evaluated based on 
+originality, significance, technical soundness, and clarity of 
+exposition. The program committee may decide to accept a submission as a 
+short paper if it reports interesting results, but does not justify 
+a publication as a full paper. All accepted papers including short 
+papers will be published in Springer LNCS series.
+Best papers will be invited for submission in special issues of the 
+following Journals:
+
+  * *Computing, Springer Verlag (5-year Impact Factor: 1.144)*
+  * *Computer Languages, Systems and Structures, Elsevier (5-year Impact
+    Factor: 0.459)*
+
+
+General Co-Chairs
+• Alberto Abelló, Universitat Politecnica de Catalunya, Spain
+• Ladjel Bellatreche, ISAE-ENSMA, France
+Program Committee Co-Chairs
+• Mirjana Ivanovic, University of Novi Sad, Serbia
+• Yassine Ouhammou, ISAE-ENSMA, France
+
+
+-- 
+Pozdrav,
+Best Regards
+
+M.
+
+--------------
+Mirjana Ivanovic, full professor
+
+Faculty of Science
+Department of Mathematics and Informatics
+Chair of Computer Science
+
+Trg Dositeja Obradovica 4
+21 000 Novi Sad
+Serbia
+
+e-mail:mira@dmi.uns.ac.rs
+http://perun.pmf.uns.ac.rs/index.php?option=com_content&task=view&id=68&Itemid=41
+
+
+--------------3F09925D75206907B0337F53
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <div class="moz-forward-container">
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <div class="">
+        <div class="undoreset body" tabindex="0"
+          id="yui_3_16_0_ym19_1_1483476225651_22953"
+          style="-webkit-padding-start: 0px; display: table; width:
+          427px; box-sizing: border-box; background-color: rgb(255, 255,
+          255); padding-top: 12px; padding-left: 0px; font-family:
+          'Helvetica Neue', 'Segoe UI', Helvetica, Arial, 'Lucida
+          Grande', sans-serif; font-size: 13px; font-variant-ligatures:
+          normal; orphans: 2; widows: 2;">
+          <div class="email-wrapped"
+            id="yui_3_16_0_ym19_1_1483476225651_22954"
+            style="-webkit-padding-start: 0px; display: table-cell;
+            width: auto; word-wrap: break-word; word-break: break-word;">(apologies
+            for multiple receptions)<br class="">
+            <br class="">
+          </div>
+        </div>
+      </div>
+      <div class="">
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">===========================================================</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">CALL FOR PAPERS MEDI 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">The 7th International
+              Conference on Model and Data Engineering (MEDI 2017)</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">4 - 6 October 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Barcelona, Spain</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">URL: </span></font><a
+            moz-do-not-send="true"
+            href="http://www.essi.upc.edu/dtim/medi2017/" class="">http://www.essi.upc.edu/dtim/medi2017/</a></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">===========================================================</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">IMPORTANT DATES:</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Full paper submission: April
+              28, 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Notification of acceptance:
+              June 20, 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Camera-ready Submission:
+              July 6, 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Conference: October 4,5, and
+              6, 2017</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">ABOUT MEDI</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">The main objective MEDI
+              conferences is to provide a forum for the dissemination of
+              research accomplishments and to promote the interaction
+              and collaboration between both modelling and data research
+              communities. For its second time in Spain, MEDI
+              2017 conference will continue the tradition by providing a
+              platform for researchers and practitioners form industry
+              and academic to report recent technology trends and
+              research results in Models &amp; Data Engineering, as well
+              applications in industrial contexts. This international
+              scientific event, initiated by researchers from Euro
+              Mediterranean countries, aims also at promoting the
+              creation of north-south scientific networks, projects and
+              faculty/student exchanges. </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">TOPICS</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">MEDI 2017 encourages
+              researchers to submit papers highlighting benefits of
+              modelling for data engineering and vice-versa, in
+              areas such as cyber-physical systems, big data, social
+              media, etc. Specific areas of interest to MEDI 2017
+              include but are not limited to:</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Modelling languages and related standards<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Modelling in software and complex system engineering<br
+                class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Formal methods, analysis, verification &amp; validation<br
+                class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Model-based testing and performance analyses<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Ontology-based modelling<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Model integration, model transformation<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Collaborative modelling and model repositories<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Models as services and models monitoring<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Modelling for reuse, dependability and maintainability<br
+                class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              New models and architectures for databases<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Heterogeneous data, data Integration, Interoperability<br
+                class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Data warehouses, OLAP and data mining<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Database system Internals, performance analysis,
+              self-tuning benchmarking and testing<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Database security, personalization, recommendation<br
+                class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Web databases, ontology-based databases<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Service based data management<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Service oriented applications<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Urbanization of database applications<br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class=""><br class="">
+            </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">CONFERENCE PROCEEDINGS &amp;
+              JOURNAL SPECIAL ISSUES</span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Submissions must conform to
+              Springer's LNCS style and should not exceed 14
+              pages. Submitted papers will be carefully evaluated based
+              on originality, significance, technical soundness, and
+              clarity of exposition. The program committee may decide to
+              accept a submission as a short paper if it reports
+              interesting results, but does not justify a publication as
+              a full paper. All accepted papers including short papers
+              will be published in Springer LNCS series. </span></font></div>
+        <div style="orphans: 2; widows: 2;" class=""><font class=""
+            face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+            Grande, sans-serif" size="2"><span style="background-color:
+              rgb(255, 255, 255);" class="">Best papers will be invited
+              for submission in special issues of the following
+              Journals:</span></font></div>
+        <ul>
+          <li><b><font class="" face="Helvetica Neue, Segoe UI,
+                Helvetica, Arial, Lucida Grande, sans-serif" size="2"><span
+                  style="background-color: rgb(255, 255, 255);" class="">Computing,
+                  Springer Verlag (5-year Impact Factor: 1.144)</span></font></b></li>
+          <li><b><font class="" face="Helvetica Neue, Segoe UI,
+                Helvetica, Arial, Lucida Grande, sans-serif" size="2"><span
+                  style="background-color: rgb(255, 255, 255);" class="">Computer
+                  Languages, Systems and Structures, Elsevier (5-year
+                  Impact Factor: 0.459)</span></font></b></li>
+        </ul>
+      </div>
+      <div style="orphans: 2; widows: 2;" class=""><font class=""
+          face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+          Grande, sans-serif" size="2"><span style="background-color:
+            rgb(255, 255, 255);" class=""><br class="">
+          </span></font></div>
+      <div style="orphans: 2; widows: 2;" class=""><span
+          style="background-color: rgb(255, 255, 255);" class=""><font
+            class="" face="Helvetica Neue, Segoe UI, Helvetica, Arial,
+            Lucida Grande, sans-serif" size="2">General Co-Chairs<br
+              class="">
+            <div class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Alberto Abelló, Universitat Politecnica de Catalunya,
+              Spain<br class="">
+            </div>
+            <div class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Ladjel Bellatreche, ISAE-ENSMA, France<br class="">
+            </div>
+            Program Committee Co-Chairs<br class="">
+            <div class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Mirjana Ivanovic, University of Novi Sad, Serbia<br
+                class="">
+            </div>
+            <div class=""><span class="Apple-tab-span" style="white-space:pre">	</span>•
+              Yassine Ouhammou, ISAE-ENSMA, France</div>
+          </font></span></div>
+      <div style="orphans: 2; widows: 2;" class=""><font class=""
+          face="Helvetica Neue, Segoe UI, Helvetica, Arial, Lucida
+          Grande, sans-serif" size="2"><span style="background-color:
+            rgb(255, 255, 255);" class=""><br class="">
+          </span></font></div>
+      <br>
+      <pre class="moz-signature" cols="72">-- 
+Pozdrav,
+Best Regards
+
+M.
+
+--------------
+Mirjana Ivanovic, full professor
+
+Faculty of Science
+Department of Mathematics and Informatics
+Chair of Computer Science
+
+Trg Dositeja Obradovica 4
+21 000 Novi Sad
+Serbia 
+
+<a moz-do-not-send="true" class="moz-txt-link-abbreviated" href="mailto:e-mail:mira@dmi.uns.ac.rs">e-mail:mira@dmi.uns.ac.rs</a>
+<a moz-do-not-send="true" class="moz-txt-link-freetext" href="http://perun.pmf.uns.ac.rs/index.php?option=com_content&amp;task=view&amp;id=68&amp;Itemid=41">http://perun.pmf.uns.ac.rs/index.php?option=com_content&amp;task=view&amp;id=68&amp;Itemid=41</a></pre>
+    </div>
+  </body>
+</html>
+
+--------------3F09925D75206907B0337F53--

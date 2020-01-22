@@ -1,0 +1,693 @@
+Return-Path: <hocine.cherifi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9D30C1903A88
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 22 Sep 2016 15:24:24 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 8BA74273B8F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 22 Sep 2016 15:24:24 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 82DA6B4F44C
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 15:24:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.354
+X-Spam-Level:
+X-Spam-Status: No, score=-3.354 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, SUBJ_ALL_CAPS=1.625,
+	T_FRT_PROFILE2=0.01, UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 9.9477 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yVC6iUBe27I4 for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 22 Sep 2016 15:24:21 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x235.google.com (mail-lf0-x235.google.com [IPv6:2a00:1450:4010:c07::235])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id B1F95627FF4
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 15:24:21 +0200 (CEST)
+Received: by mail-lf0-x235.google.com with SMTP id y6so67740228lff.1
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 06:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=P8QMNBtdiUvAGKqOBrPvcgZVgwEKH3hVNrC5/P4f9Ls=;
+        b=E0a3FHXcCxNw09/Qpxw/ucvme6VbAOikiihSUBxD6E8sy70fgCrw8+2uhgHctqhcID
+         Fif/0DSYQKaNXMfeZ6UjdjFMFdGEtNH2h/m3ZUzUmvhe7EJvdVZ5dVGvD0/zy1C7rrMw
+         YVe2gG4UXobBdpbGQDZnXDKJNVZtnLNhFiLMB2k4SmY8oM9TpmpXF/qruvx0TcMuWd6Q
+         9WHHUt8wCmvXXL9A9GEQSOB1fwpP1Or0d71g9L3mlaJwGKAvXQHZ3VZKuuDzgfKLOtS8
+         SsNbhlb4QGzdE9Eja0ZVAq7VUXpoZLIxGT3KRr95/kK177WWx9XX5AmI+Ydg6mGWgHUr
+         Mg6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=P8QMNBtdiUvAGKqOBrPvcgZVgwEKH3hVNrC5/P4f9Ls=;
+        b=IYusr0F9szCwyFHLkHz20uCTtNJhcFOu/rnJBtvyHkGTv1ag/o52Gc+fSaEqjRivpb
+         +dqDz4MAn2lHoYJ0mIa++d/Ua3RWfhJuz9z2AVK3Tx7ToPQhuoGUU8LqQ72o6xOZhNsb
+         mKD1kUYSCfCYM/L+eJDCH7/C9Hyci0dHjB6WXqG65kDB8q+FLursiUxTeXqDmiksRbP4
+         epqOSDT0uz+gXQltq7tuF+AATnEim6ebXPhf1B8ocjebA91R922MxH5w9bRKZbU8IrrU
+         2bfTEgaplaN335VTQFOACsXHKeuSkKMXaOpkndQVw05wR2YUazWZ6gjsL+ppj14M/jJu
+         DPCQ==
+X-Gm-Message-State: AA6/9RlbcRjHbKIDU/UHKPe0PmCYhFHVfBYGp9TRk6q6j3PNEIAB1BaqO/ZfY4tu9s9sQxMPhpYCHJwXdqnohA==
+X-Received: by 10.194.172.42 with SMTP id az10mr2022811wjc.178.1474550659544;
+ Thu, 22 Sep 2016 06:24:19 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.28.73.136 with HTTP; Thu, 22 Sep 2016 06:24:18 -0700 (PDT)
+From: Hocine Cherifi <hocine.cherifi@gmail.com>
+Date: Thu, 22 Sep 2016 15:24:18 +0200
+Message-ID: <CAFX-JVtAt2YPeFEPVZ-2Uje8EvrgU5cBHy-y-u4HyT8+Vz2gzw@mail.gmail.com>
+To: SOCNET@lists.ufl.edu, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, "bull-i3@irit.fr" <bull-i3@irit.fr>, 
+	tciin.isat@u-bourgogne.fr
+Content-Type: multipart/alternative; boundary=089e012292964400cc053d1894bd
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] COMPLEX NETWORKS 2016: TUTORIALS REGISTRATION IS NOW
+ OPEN
+
+--089e012292964400cc053d1894bd
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ COMPLEX NETWORKS 2016 The 5th International Workshop on Complex Networks
+and their Applications, MILAN November 30 =E2=80=93December 02, 2016
+
+
+
+
+
+*TUTORIALS: NOVEMBER 29, 2016*
+
+
+
+http://complexnetworks.org/ - tutorial
+<http://complexnetworks.org/#tutorial>
+
+
+
+
+
+
+
+*TUTORIAL REGISTRATION IS NOW OPEN!*
+
+
+
+Please use the following link: http://complexnetworks.org/#registration
+
+
+
+*Registration reminders: *
+
+
+
+=C2=B7       Please note that you do not need to register for the workshop =
+to
+register for the tutorials.
+
+
+
+=C2=B7       Registration is on a first-come, first-served basis and is lim=
+ited
+to 20 participants per tutorial. So please, register as soon as possible
+and preferably *before October 25, 2016*.
+
+
+
+=C2=B7       It will be possible to register to tutorials after that date,
+provided that capacity constraints are not already violated.
+
+
+
+
+
+*TUTORIAL 1:*
+
+*Consensus dynamics on networks. Theory and applications*
+<http://complexnetworks.org/#collapset2>
+
+*ERNESTO ESTRADA*
+
+
+
+
+
+Consensus is well documented across the social sciences, with examples
+ranging from behavioral flocking in popular cultural styles, emotional
+contagion, collective decision making, pedestrians=E2=80=99 walking behavio=
+r, and
+others. We can model consensus in a social group by encoding the state of
+each individual at a given time in a vector. The group reaches consensus at
+when the difference in the =E2=80=9Copinions=E2=80=9D for every pair of ind=
+ividuals is
+asymptotically zero, and the collective dynamics of the system is modeled
+by a diffusion equation dominated by the graph Laplacian. Decisions in
+groups trying to reach consensus are frequently influenced by a small
+proportion of the group who guides or dictates the behavior of the entire
+network. In this situation a group of leaders indicates and/or initiates
+the route to the consensus, and the rest of the group readily follows their
+attitudes. The study of leadership in social groups has always intrigued
+researchers in the social and behavioral sciences. Specifically, the way in
+which leaders emerge in social groups is not well understood. Leaders may
+emerge either randomly in response to particular historical circumstances
+or from the individual having the most prominent position (centrality) in
+the social network at any time. In this tutorial I will introduce the
+theoretical model of consensus in a network, for the general case of
+undirected as well as directed ones. First, I will introduce the
+mathematical concepts of the model, and show when in every case there is a
+consensus in the network. I will also introduce some properties of the
+Laplacian matrix for networks that will help to understand the main results
+of the model. Then, I will introduce a controllability problem and its
+solution in networks consisting of leaders and followers. Following this
+initial part I will how to use Matlab to model a consensus process in a
+given network (codes will be provided to participants). At this point I
+will motive the necessity of considering the indirect influence of peers
+apart from the direct peers pressure. In mathematical terms I will make a
+generalization of the Laplacian matrix on graphs to consider the k-path
+Laplacians and their transform. Using this transformed k-path Laplacians I
+will show how to study a few interesting topics on networks, such as the
+controllability of networks, the selection of leaders, the diffusion of
+innovations under direct+indirect peers pressure. Finally, I will prove and
+illustrate how the consensus and diffusion of innovations can be
+superdiffusive or ballistic in complex networks under the effect of direct
+and indirect peers pressure. Some examples, such as diffusion of methods
+among high schools or the adoption of a biotechnological product among
+farmers will be used in the tutorial.
+
+
+
+*Professor Estrada has an internationally leading reputation for shaping
+and developing the study of complex networks. His expertise ranges in the
+areas of network structure, algebraic network theory, dynamical systems on
+networks and the study of random models of networks. He has a distinguished
+track record of high-quality publications, which has attracted more than 8,
+500 citations. His h-index (number of papers with at least h citations) is
+53. His publications are in the areas of network theory and its
+applications to social, ecological, engineering, physical, chemical and
+biological real-world problems. Professor Estrada has published two text
+books on network sciences both published by Oxford University Press in 2011
+and 2015, respectively. He has demonstrated a continuous international
+leadership in his field where he has been invited and plenary speaker at
+the major conferences in network sciences and applied mathematics. His
+research interests include the use of matrix functions; random geometric
+networks; generalised Laplacian operators for networks; generalised
+diffusion models for networks; study of indirect peer pressure over
+consensus dynamics on networks; applications of network sciences to oil and
+gas exploration; spatial efficiency of networks; Euclidean geometrical
+embedding of networks, among many others.*
+
+
+
+*TUTORIAL 2:*
+
+*A pr**actical introduction to Machine **Learning (with Python)*
+<http://complexnetworks.org/#collapset2_2>
+
+*BRUNO GONCALVES:*
+
+
+
+The data deluge we currently witnessing presents both opportunities and
+challenges. Never before have so many aspects of our world been so
+thoroughly quantified as now and never before has data been so plentiful.
+On the other hand, the complexity of the analyses required to extract
+useful information from these piles of data is also rapidly increasing
+rendering more traditional and simpler approaches simply unfeasible or
+unable to provide new insights.
+
+
+In this tutorial we provide a practical introduction to some of the most
+important algorithms of machine learning that are relevant to the field of
+Complex Networks in general, with a particular emphasis on the analysis and
+modeling of empirical data. The goal is to provide the fundamental concepts
+necessary to make sense of the more sophisticated data analysis approaches
+that are currently appearing in the literature and to provide a field guide
+to the advantages an disadvantages of each algorithm.
+In particular, we will cover unsupervised learning algorithms such as
+K-means, Expectation-Maximization, and supervised ones like Support Vector
+Machines, Neural Networks and Deep Learning. Participants are expected to
+have a basic understanding of calculus and linear algebra as well as
+working proficiency with the Python programming language.
+
+
+
+*Bruno Gonc=CC=A7alves is a Data Science fellow at NYU's Center for Data Sc=
+ience
+while on leave from a tenured faculty position at Aix-Marseille Universit=
+=C3=A9.
+He has a strong expertise in using large scale datasets for the analysis of
+human behavior. After completing his joint PhD in Physics, MSc in C.S. at
+Emory University in Atlanta, GA in 2008 he joined the Center for Complex
+Networks and Systems Research at Indiana University as a Research
+Associate. From September 2011 until August 2012 he was an Associate
+Research Scientist at the Laboratory for the Modeling of Biological and
+Technical Systems at Northeastern University. Since 2008 he has been
+pursuing the use of Data Science and Machine Learning to study human
+behavior. By processing and analyzing large datasets from Twitter,
+Wikipedia, web access logs, and Yahoo! Meme he studied how we can observe
+both large scale and individual human behavior in an obtrusive and
+widespread manner. The main applications have been to the study of
+Computational Linguistics, Information Diffusion, Behavioral Change and
+Epidemic Spreading. He is the author of 60+ publications with over 3800+
+Google Scholar citations and an h-index of 26. In 2015 he was awarded the
+Complex Systems Society's 2015 Junior Scientific Award for "outstanding
+contributions in Complex Systems Science" and he is the editor of the book
+Social Phenomena: From Data Analysis to Models (Springer, 2015).*
+
+
+
+
+
+--=20
+
+*Join us at *:  COMPLEX NETWORKS 2016 Milan <http://complexnetworks.org/>
+
+*Publish your work on:* Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+*re**ad:
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>*Complex
+Networks & their Applications
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>
+***********************************************
+*   Pr Hocine CHERIFI                             *
+*          LE2I   UMR CNRS 6306              *
+*   Facult=C3=A9 des Sciences Mirande            *
+*    9 , avenue Alain Savary                     *
+*    BP 47870                                           *
+*    21078 DIJON    FRANCE                  *
+**********************************************
+
+--089e012292964400cc053d1894bd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 align=3D"center" style=3D"margin:15pt 0cm 7.5pt;text-align:center"><spa=
+n lang=3D"EN-US" style=3D"font-size:24pt;font-family:&#39;helvetica neue&#3=
+9;;color:windowtext;text-transform:uppercase;letter-spacing:0.75pt">COMPLEX
+NETWORKS 2016<span></span></span></h2>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span sty=
+le=3D"font-size:13.5pt;font-family:&#39;helvetica neue&#39;;letter-spacing:=
+0.75pt">The
+5th International Workshop on Complex Networks and their Applications, MILA=
+N <span></span></span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span sty=
+le=3D"font-size:13.5pt;font-family:&#39;helvetica neue&#39;;letter-spacing:=
+0.75pt">November
+30 =E2=80=93December 02, 2016<span></span></span></h4>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&#39;hel=
+vetica neue&#39;"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&#39;hel=
+vetica neue&#39;"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:20pt;font-family:&#39;helvetica neue&#39;">TUTORIALS: =
+NOVEMBER 29,
+2016<span></span></span></b></p>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;font-family:&#39;he=
+lvetica neue&#39;;color:white;letter-spacing:0.75pt"><span>=C2=A0</span></s=
+pan></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span l=
+ang=3D"EN-US"><a href=3D"http://complexnetworks.org/#tutorial"><span style=
+=3D"font-family:&#39;helvetica neue&#39;;letter-spacing:0.75pt">http://comp=
+lexnetworks.org/ - tutorial</span></a></span><b><span style=3D"font-size:12=
+pt;font-family:&#39;helvetica neue&#39;;color:red;letter-spacing:0.75pt"><s=
+pan></span></span></b></p>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;font-family:&#39;he=
+lvetica neue&#39;;color:white;letter-spacing:0.75pt"><span>=C2=A0</span></s=
+pan></b></p>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;font-family:&#39;he=
+lvetica neue&#39;;color:white;letter-spacing:0.75pt"><span>=C2=A0</span></s=
+pan></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-size:in=
+itial;background-origin:initial;background-clip:initial;background-position=
+:initial;background-repeat:initial"><span style=3D"font-size:9.5pt;font-fam=
+ily:arial"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;backgrou=
+nd-image:initial;background-size:initial;background-origin:initial;backgrou=
+nd-clip:initial;background-position:initial;background-repeat:initial"><b><=
+span style=3D"font-size:12pt;font-family:arial;color:red">TUTORIAL REGISTRA=
+TION IS NOW OPEN!<span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-size:in=
+itial;background-origin:initial;background-clip:initial;background-position=
+:initial;background-repeat:initial"><b><span style=3D"font-size:9.5pt;font-=
+family:arial"><span>=C2=A0</span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;backgrou=
+nd-image:initial;background-size:initial;background-origin:initial;backgrou=
+nd-clip:initial;background-position:initial;background-repeat:initial"><spa=
+n style=3D"font-size:9.5pt;font-family:&#39;century gothic&#39;">Please use=
+ the following link: </span><span lang=3D"EN-US"><a href=3D"http://complexn=
+etworks.org/#registration"><span style=3D"font-size:9.5pt;font-family:&#39;=
+century gothic&#39;">http://complexnetworks.org/#registration</span></a></s=
+pan><span style=3D"font-size:9.5pt;font-family:&#39;century gothic&#39;"><s=
+pan></span></span></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;backgrou=
+nd-image:initial;background-size:initial;background-origin:initial;backgrou=
+nd-clip:initial;background-position:initial;background-repeat:initial"><spa=
+n style=3D"font-size:9.5pt;font-family:&#39;century gothic&#39;"><span>=C2=
+=A0</span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-size:in=
+itial;background-origin:initial;background-clip:initial;background-position=
+:initial;background-repeat:initial"><b><span style=3D"font-size:13.5pt;font=
+-family:&#39;century gothic&#39;">Registration reminders:=C2=A0</span></b><=
+span style=3D"font-size:9.5pt;font-family:arial"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-size:in=
+itial;background-origin:initial;background-clip:initial;background-position=
+:initial;background-repeat:initial"><b><span style=3D"font-size:9.5pt;font-=
+family:arial"><span>=C2=A0</span></span></b></p>
+
+<p class=3D"gmail-MsoListParagraph" style=3D"text-align:justify"><span styl=
+e=3D"font-size:10.5pt;font-family:symbol">=C2=B7<span style=3D"font-stretch=
+:normal;font-size:7pt;font-family:&#39;times new roman&#39;">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:10.5pt;font-family:&#39;helvetica ne=
+ue&#39;">Please note that you do not need to register for the workshop to
+register for the tutorials.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;"><span>=C2=A0</span></span></=
+p>
+
+<p class=3D"gmail-MsoListParagraph" style=3D"text-align:justify"><span styl=
+e=3D"font-size:10.5pt;font-family:symbol">=C2=B7<span style=3D"font-stretch=
+:normal;font-size:7pt;font-family:&#39;times new roman&#39;">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:10.5pt;font-family:&#39;helvetica ne=
+ue&#39;">Registration is on a first-come, first-served basis and is limited=
+ to 20
+participants per tutorial. So please, register as soon as possible and
+preferably <b><i>before October 25, 2016</i></b>.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;"><span>=C2=A0</span></span></=
+p>
+
+<p class=3D"gmail-MsoListParagraph" style=3D"text-align:justify"><span styl=
+e=3D"font-size:10.5pt;font-family:symbol">=C2=B7<span style=3D"font-stretch=
+:normal;font-size:7pt;font-family:&#39;times new roman&#39;">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:10.5pt;font-family:&#39;helvetica ne=
+ue&#39;">It will be possible to register to tutorials after that date, prov=
+ided
+that capacity constraints are not already violated.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;"><span>=C2=A0</span></span></=
+p>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;font-family:&#39;he=
+lvetica neue&#39;;color:white;letter-spacing:0.75pt"><span>=C2=A0</span></s=
+pan></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:red;le=
+tter-spacing:0.75pt">TUTORIAL 1:<span></span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span l=
+ang=3D"EN-US"><a href=3D"http://complexnetworks.org/#collapset2"><b><span l=
+ang=3D"EN-US" style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;=
+letter-spacing:0.75pt;text-decoration:none"><span lang=3D"EN-US">Consensus
+dynamics on networks. Theory and applications</span></span></b></a></span><=
+b><span style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:=
+blue;letter-spacing:0.75pt"><span></span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:blue;l=
+etter-spacing:0.75pt">ERNESTO ESTRADA</span></b><b><span style=3D"font-size=
+:12pt;font-family:&#39;helvetica neue&#39;;color:red;letter-spacing:0.75pt"=
+><span></span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:white;=
+letter-spacing:0.75pt"><span>=C2=A0</span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:times">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;">Consensus
+is well documented across the social sciences, with examples ranging from
+behavioral flocking in popular cultural styles, emotional contagion, collec=
+tive
+decision making, pedestrians=E2=80=99 walking behavior, and others. We can =
+model
+consensus in a social group by encoding the state of each individual at a g=
+iven
+time in a vector. The group reaches consensus at when the difference in the
+=E2=80=9Copinions=E2=80=9D for every pair of individuals is asymptotically =
+zero, and the
+collective dynamics of the system is modeled by a diffusion equation domina=
+ted
+by the graph Laplacian. Decisions in groups trying to reach consensus are
+frequently influenced by a small proportion of the group who guides or dict=
+ates
+the behavior of the entire network. In this situation a group of leaders
+indicates and/or initiates the route to the consensus, and the rest of the
+group readily follows their attitudes. The study of leadership in social gr=
+oups
+has always intrigued researchers in the social and behavioral sciences.
+Specifically, the way in which leaders emerge in social groups is not well
+understood. Leaders may emerge either randomly in response to particular
+historical circumstances or from the individual having the most prominent
+position (centrality) in the social network at any time. In this tutorial I
+will introduce the theoretical model of consensus in a network, for the gen=
+eral
+case of undirected as well as directed ones. First, I will introduce the
+mathematical concepts of the model, and show when in every case there is a
+consensus in the network. I will also introduce some properties of the
+Laplacian matrix for networks that will help to understand the main results=
+ of
+the model. Then, I will introduce a controllability problem and its solutio=
+n in
+networks consisting of leaders and followers. Following this initial part I
+will how to use Matlab to model a consensus process in a given network (cod=
+es
+will be provided to participants). At this point I will motive the necessit=
+y of
+considering the indirect influence of peers apart from the direct peers
+pressure. In mathematical terms I will make a generalization of the Laplaci=
+an
+matrix on graphs to consider the k-path Laplacians and their transform. Usi=
+ng
+this transformed k-path Laplacians I will show how to study a few interesti=
+ng
+topics on networks, such as the controllability of networks, the selection =
+of
+leaders, the diffusion of innovations under direct+indirect peers pressure.
+Finally, I will prove and illustrate how the consensus and diffusion of
+innovations can be superdiffusive or ballistic in complex networks under th=
+e
+effect of direct and indirect peers pressure. Some examples, such as diffus=
+ion
+of methods among high schools or the adoption of a biotechnological product
+among farmers will be used in the tutorial.</span><span style=3D"font-famil=
+y:times"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:times">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:10.5pt;font-family:&#39;cmu classical serif italic&#39;">Professor Est=
+rada has an internationally leading reputation for shaping
+and developing the study of complex networks. His expertise ranges in the a=
+reas
+of network structure, algebraic network theory, dynamical systems on networ=
+ks
+and the study of random models of networks. He has a distinguished track re=
+cord
+of high-quality publications, which has attracted more than 8, 500 citation=
+s.
+His h-index (number of papers with at least h citations) is 53. His
+publications are in the areas of network theory and its applications to soc=
+ial,
+ecological, engineering, physical, chemical and biological real-world probl=
+ems.
+Professor Estrada has published two text books on network sciences both
+published by Oxford University Press in 2011 and 2015, respectively. He has
+demonstrated a continuous international leadership in his field where he ha=
+s
+been invited and plenary speaker at the major conferences in network scienc=
+es
+and applied mathematics. His research interests include the use of matrix
+functions; random geometric networks; generalised Laplacian operators for
+networks; generalised diffusion models for networks; study of indirect peer
+pressure over consensus dynamics on networks; applications of network scien=
+ces
+to oil and gas exploration; spatial efficiency of networks; Euclidean geome=
+trical
+embedding of networks, among many others.<span></span></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:10.5pt;font-family:&#39;cmu classical serif italic&#39;"><span>=C2=A0<=
+/span></span></i></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:red;le=
+tter-spacing:0.75pt">TUTORIAL 2:<span></span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span l=
+ang=3D"EN-US"><a href=3D"http://complexnetworks.org/#collapset2_2"><b><span=
+ lang=3D"EN-US" style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39=
+;;letter-spacing:0.75pt;text-decoration:none"><span lang=3D"EN-US">A pr</sp=
+an></span></b><b><span lang=3D"EN-US" style=3D"font-size:12pt;font-family:&=
+#39;helvetica neue&#39;;letter-spacing:0.75pt;text-decoration:none"><span l=
+ang=3D"EN-US">actical
+introduction to Machine </span></span></b><b><span lang=3D"EN-US" style=3D"=
+font-size:12pt;font-family:&#39;helvetica neue&#39;;letter-spacing:0.75pt;t=
+ext-decoration:none"><span lang=3D"EN-US">Learning (with
+Python)</span></span></b></a></span><b><span style=3D"font-size:12pt;font-f=
+amily:&#39;helvetica neue&#39;;color:blue;letter-spacing:0.75pt"><span></sp=
+an></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:12pt;font-family:&#39;helvetica neue&#39;;color:blue;l=
+etter-spacing:0.75pt">BRUNO GONCALVES:</span></b><b><span style=3D"font-siz=
+e:12pt;font-family:&#39;helvetica neue&#39;;color:red;letter-spacing:0.75pt=
+"><span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-US" st=
+yle=3D"color:red">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;">The data
+deluge we currently witnessing presents both opportunities and challenges.
+Never before have so many aspects of our world been so thoroughly quantifie=
+d as
+now and never before has data been so plentiful. On the other hand, the
+complexity of the analyses required to extract useful information from thes=
+e
+piles of data is also rapidly increasing rendering more traditional and sim=
+pler
+approaches simply unfeasible or unable to provide new insights.<span></span=
+></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;"><br>
+In this tutorial we provide a practical introduction to some of the most
+important algorithms of machine learning that are relevant to the field of
+Complex Networks in general, with a particular emphasis on the analysis and
+modeling of empirical data. The goal is to provide the fundamental concepts
+necessary to make sense of the more sophisticated data analysis approaches =
+that
+are currently appearing in the literature and to provide a field guide to t=
+he
+advantages an disadvantages of each algorithm.<br>
+In particular, we will cover unsupervised learning algorithms such as K-mea=
+ns,
+Expectation-Maximization, and supervised ones like Support Vector Machines,
+Neural Networks and Deep Learning. Participants are expected to have a basi=
+c
+understanding of calculus and linear algebra as well as working proficiency
+with the Python programming language.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;helvetica neue&#39;"><span>=C2=A0</span></span></=
+p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:10.5pt;font-family:&#39;cmu classical serif italic&#39;">Bruno Gonc=CC=
+=A7alves is a Data Science fellow at NYU&#39;s Center for Data
+Science while on leave from a tenured faculty position at Aix-Marseille
+Universit=C3=A9. He has a strong expertise in using large scale datasets fo=
+r the
+analysis of human behavior. After completing his joint PhD in Physics, MSc =
+in
+C.S. at Emory University in Atlanta, GA in 2008 he joined the Center for
+Complex Networks and Systems Research at Indiana University as a Research
+Associate. From September 2011 until August 2012 he was an Associate Resear=
+ch
+Scientist at the Laboratory for the Modeling of Biological and Technical
+Systems at Northeastern University. Since 2008 he has been pursuing the use=
+ of
+Data Science and Machine Learning to study human behavior. By processing an=
+d
+analyzing large datasets from Twitter, Wikipedia, web access logs, and Yaho=
+o!
+Meme he studied how we can observe both large scale and individual human
+behavior in an obtrusive and widespread manner. The main applications have =
+been
+to the study of Computational Linguistics, Information Diffusion, Behaviora=
+l
+Change and Epidemic Spreading. He is the author of 60+ publications with ov=
+er
+3800+ Google Scholar citations and an h-index of 26. In 2015 he was awarded=
+ the
+Complex Systems Society&#39;s 2015 Junior Scientific Award for &quot;outsta=
+nding
+contributions in Complex Systems Science&quot; and he is the editor of the =
+book
+Social Phenomena: From Data Analysis to Models (Springer, 2015).<span></spa=
+n></span></i></p>
+
+<p class=3D"MsoNormal"><i><span style=3D"font-size:10.5pt;font-family:&#39;=
+cmu classical serif italic&#39;"><span>=C2=A0</span></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:10.5pt;font-family:&#39;helvetica neue&#39;"><span>=C2=A0</span></span=
+></i></p>
+
+<div><br></div>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div><br></div><div><b>Join us at </b>:<span sty=
+le=3D"font-size:12.8px">=C2=A0 </span><a href=3D"http://complexnetworks.org=
+/" style=3D"font-size:12.8px" target=3D"_blank">COMPLEX NETWORKS 2016 Milan=
+</a></div><div><br></div><div><b>Publish your work on:</b>=C2=A0<a href=3D"=
+http://www.springer.com/physics/complexity/journal/41109" target=3D"_blank"=
+>Applied Network Science</a></div><div><b>re</b><span style=3D"font-size:12=
+.8px"><b>ad:<a href=3D"http://www.cambridgescholars.com/complex-networks-an=
+d-their-applications-9" target=3D"_blank"> </a></b><a href=3D"http://www.ca=
+mbridgescholars.com/complex-networks-and-their-applications-9" target=3D"_b=
+lank">Complex Networks &amp; their Applications</a></span></div><div>******=
+*****************************************<br>* =C2=A0 Pr Hocine CHERIFI =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 LE2I =C2=A0 UMR CNRS 6306 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0*<br>*=C2=A0=C2=A0 Facult=C3=A9 des Sciences Mirande =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>*=C2=A0 =C2=A0 9 , avenue Alain Savary =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=
+=C2=A0 =C2=A0 BP 47870 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 21078 DIJON=C2=A0 =C2=A0 FRANCE =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0* <br>*******=
+***************************************</div></div></div></div></div></div>=
+</div></div></div></div>
+</div>
+
+--089e012292964400cc053d1894bd--

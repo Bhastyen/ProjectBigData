@@ -1,0 +1,189 @@
+Return-Path: <juan.antonio.lossio@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A9CCA190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 19 Apr 2016 18:27:45 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 9A20E700DC
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 19 Apr 2016 18:27:45 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 833E82B2353
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Apr 2016 18:27:45 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.156
+X-Spam-Level:
+X-Spam-Status: No, score=-3.156 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_SORBS=1,
+	RCVD_IN_SORBS_WEB=0.614, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.9032 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ao16fWB9MTgE for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 19 Apr 2016 18:27:44 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-yw0-x244.google.com (mail-yw0-x244.google.com [IPv6:2607:f8b0:4002:c05::244])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 179C72C1702
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Apr 2016 18:27:44 +0200 (CEST)
+Received: by mail-yw0-x244.google.com with SMTP id o63so3220209ywe.0
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Apr 2016 09:27:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=from:content-transfer-encoding:subject:message-id:date:to
+         :mime-version;
+        bh=HcSXjK39lIZQYVfiW2Mjha8wgb46eLrxa/mFojLF2WM=;
+        b=tf5bm0kuPIDVFCgqF3NXHyTmJs/cHTZjPMvgEgoL2Ds1oW9eQvywNcRHWUfIt1slnI
+         MOOx9XJRz1z2On1zB6wpHOv5XX8O3EZUVCKlYYo5vwg2cncD+yqiEoz7JTUDbm/sJFAB
+         NaGD88jcaZHBnQr0dIEMVWuSurR1vq50jjLEfBg2BcrgGtZ9LQEHQFSY8Ws04g/aemI/
+         qdXJ8zOSgt+YLEPdbaCGx5QmBCo7rHDchNFuSyhrx9y6dy4xpzrAn6M7Ahk8F9YB23MB
+         IlkpLRa7nsoGmC6meKHC2fsMNeQtKLJSp3Uy7VDVSpXvwWyQKFDLDyx6Lo/xwCY/qXu3
+         yNtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:from:content-transfer-encoding:subject
+         :message-id:date:to:mime-version;
+        bh=HcSXjK39lIZQYVfiW2Mjha8wgb46eLrxa/mFojLF2WM=;
+        b=LqCnCavq3ptJW/u22/rL8fr2Qs5f85ljx83tWOHVEV38gCNwFrMW6jtnyg0UHtBLIs
+         A+nfmCOrmgwO9Frr+dO3VW2YE0qFVpfKEyzoOIL3PDR7lIULiVA+oM3574o+sZKnm0pw
+         g2uCwdtDKpc+tPMx9yQ78u42IdU7uGyyYp9dXzrmTmwQn+oQpetGeKrfq9gb+KhJjec6
+         smkhy/62IJn9NkDZje9vnlrAavdAVwS3I5/FiiQgNSbthQSAToyO9Q64yEtfzeP0HHMC
+         YfyrOidOYKLE2cINGcvaQxtwniGJ+gr6v09AH5Q4jp23siD5pRRK6iCaCRFvXjMsIZY/
+         hHAQ==
+X-Gm-Message-State: AOPr4FXtXlN9QzYPockA0tcZW6b3MHokRIWdra2DPQPHkH84jifCaQj/blcqpsdA7PYRfQ==
+X-Received: by 10.37.31.11 with SMTP id f11mr2291453ybf.110.1461083262900;
+        Tue, 19 Apr 2016 09:27:42 -0700 (PDT)
+Received: from [192.168.1.45] ([190.42.87.177])
+        by smtp.gmail.com with ESMTPSA id h131sm39693732ywb.25.2016.04.19.09.27.41
+        for <liste-egc@polytech.univ-nantes.fr>
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Tue, 19 Apr 2016 09:27:41 -0700 (PDT)
+From: Juan Antonio LOSSIO-VENTURA <juan.antonio.lossio@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <12EB9D81-76DE-472B-A444-50F19E8C140F@gmail.com>
+Date: Tue, 19 Apr 2016 18:27:39 +0200
+To: liste-egc@polytech.univ-nantes.fr
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
+X-Mailer: Apple Mail (2.2104)
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP SIMBig 2015 - Cuzco, Peru
+
+Apologies for cross-posting
+
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+FIRST CALL FOR PAPERS - SIMBig 2016
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+SIMBig 2016 - 3th Annual International Symposium on Information =
+Management and Big Data
+29-31 August 2016 - Cusco, PERU
+
+http://simbig.org/SIMBig2016/
+
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+OVERVIEW
+--------
+We live in an era of data deluge. To deal with this huge quantity of =
+data, we require new technologies and architectures in terms of data =
+acquisition, data integration, data storage, data management and data =
+analysis in order to extract value from it. SIMBig 2016 aims to bring =
+together academia, industry, research scholars, business entrepreneurs, =
+practitioners, managers, and policy makers responsible in information =
+management and analysis of huge quantity of data. This symposium will be =
+held on 29-31 August 2016 in Cusco, Peru as the previous editions.=20
+
+This third edition of SIMBig will be heightened by welcoming as keynote =
+speakers to:
+
+- Sophia Ananiadou, NaCTeM lab. and the University of Manchester, UK
+- Albert Bifet, T=C3=A9l=C3=A9com ParisTech, France and the Waikato =
+University, New Zeland
+- Fabio Crestani, University of Lugano, Switzerland
+- Maguelonne Teisseire, Cirad and TETIS Laboratory, France
+
+PUBLICATION
+---------------
+
+Best papers of SIMBig 2016 will be published by Springer-Verlag in the =
+LNCS series (LNCS is indexed in ISTP, EI and others).
+
+SIMBig 2016 proceedings will be indexed and distributed by DBLP and =
+CEUR-WS.=20
+Authors are invited to submit their work in the form of a Regular/Short =
+Paper or Demonstrations, representing completed and validated research, =
+portraying a report of work in progress or results of scientific =
+breakthroughs focused on one of the conference topic areas.
+
+
+IMPORTANT DATES
+---------------
+20 June 2016 -------> Full papers short papers and demonstration due
+15 July 2016 -------> Full papers, short papers and demonstration =
+acceptance notifications
+30 July 2016 -------> Final Paper Submission (long, short and =
+demonstration)
+25 July 2016 -------> Early bird registration deadline
+29-31 August 2016 --> Conference held in Cusco, Peru
+
+TOPICS OF INTEREST
+------------------
+SIMBig2016 has a broad scope. We invite contributions on theory and =
+practice, including but not limited to the following technical areas.
+
+- Big Data
+- Text Analytics
+- Information Retrieval
+- Data mining
+- Natural Language Processing
+- BioNLP
+- Bio Text Mining
+- OLAP and MDA Models
+- Text mining
+- Semantic Web
+- Linked Data=20
+- Data warehousing
+- Information management
+- Business intelligence
+- Data management
+- Social Media/Collaboration
+- Spatiotemporal data
+- Information Services and Resources
+- Biomedical Informatics
+
+SUBMISSION GUIDELIINES
+----------------------
+Authors should submit a paper in English, Spanish carefully checked for =
+correct grammar and spelling, addressing one or several of the =
+conference areas or topics. Papers should be submitted through the =
+SIMBig2016 online submission system, which is also the online review =
+system for the conference:
+https://easychair.org/conferences/?conf=3Dsimbig2016
+
+CONTACT
+-------
+SIMBig2016 General Chairs
+- Juan Antonio Lossio-Ventura, University of Florida, USA =
+(juan.lossio@lirmm.fr)
+- Hugo Alatrista-Salas, Pontificia Universidad Cat=C3=B3lica del Per=C3=BA=
+, Peru (halatrista@pucp.pe)
+

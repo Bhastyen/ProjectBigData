@@ -1,0 +1,269 @@
+Return-Path: <raja.chiky@isep.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A39FA2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 21:46:49 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 9FBAB6D21C7
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 21:46:49 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 966D9B4A241
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:46:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.239
+X-Spam-Level:
+X-Spam-Status: No, score=-0.239 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.7341 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=isep.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HWDGg5ehR5h6 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 21:46:49 +0200 (CEST)
+X-Greylist: delayed 00:07:47 by SQLgrey-1.6.7
+Received: from herbie.isep.fr (herbie.isep.fr [89.251.55.122])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 04F96661925
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:46:49 +0200 (CEST)
+Received: from herbie.isep.fr (localhost [127.0.0.1])
+	by herbie.isep.fr (Postfix) with ESMTP id 3963D5FDD2
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:39:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=isep.fr; s=herbie;
+	t=1529955542; bh=hW8/7IlSI35rgU8tvPPR2qPJ2/Dv0mlemnqTIFiwFHw=;
+	h=From:Subject:Date:To:From;
+	b=ppQFGAbIg/7XJk2GeZ1PnO6SXzGnEMUbMCOaGRHwRCPJx2tD5RnfjJhUqDHW17zg5
+	 MQK+pMSwSLhzvXV5aEO2MyoVLzM5QX6OUBhbNvJRNy4Qh8LTLFFwdSAV7oEDxul3k2
+	 GTZo+rfw25AsTHy0w3aLFLumo4aXugqHdJXUxig1JTSRMa/dErtIlvQNYsa/egqqka
+	 EpjEtXQc1ohZ0zW6wMTOMm58XT6ezNZvqNLHiv7YoucMwu0myfj+hYlbbnMGojiwUe
+	 7br/j1yiUymVZWwm84F6jOvvKq5e1Bkd4+HEdmrcxhJDeRTSPKkBozkEDN40nCbUNO
+	 5CGJ56i6L/dtw==
+Received: from miles.isep.fr (miles.isep.fr [192.168.50.50])
+	by herbie.isep.fr (Postfix) with ESMTP id AA9EC5FD65
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:39:01 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by miles.isep.fr (Postfix) with ESMTP id 0B8F08D4
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:39:01 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at isep.fr
+Received: from miles.isep.fr ([127.0.0.1])
+	by localhost (miles.isep.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RJPx3UmUbg0E for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 21:38:59 +0200 (CEST)
+Received: from [192.168.1.36] (ras75-2-82-66-121-97.fbx.proxad.net [82.66.121.97])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: rchiky)
+	by miles.isep.fr (Postfix) with ESMTPSA id 53E346C9
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 21:38:59 +0200 (CEST)
+From: Raja Chiky <raja.chiky@isep.fr>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_491AF01F-B1CB-4637-9522-332351B360FA"
+Mime-Version: 1.0 (Mac OS X Mail 11.4 \(3445.8.2\))
+Message-Id: <82E417EE-B7A4-4573-BEF6-C23FACFF336D@isep.fr>
+Date: Mon, 25 Jun 2018 21:38:58 +0200
+To: liste-egc@polytech.univ-nantes.fr
+X-Mailer: Apple Mail (2.3445.8.2)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] URGENT: poste enseignant-chercheur CDI Informatique
+ ISEP
+
+
+--Apple-Mail=_491AF01F-B1CB-4637-9522-332351B360FA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Bonjour
+
+Merci de diffuser cette offre
+
+
+
+L=E2=80=99Institut Sup=C3=A9rieur d=E2=80=99Electronique de Paris (ISEP, =
+http://www.isep.fr), grande =C3=A9cole d=E2=80=99ing=C3=A9nieur membre =
+de la FESIC situ=C3=A9e =C3=A0 Paris, recrute pour la rentr=C3=A9e 2018 =
+un(e) Enseignant(e)-Chercheur(euse) en informatique en CDI.
+
+L=E2=80=99enseignant(e)-chercheur/euse recrut=C3=A9(e) assurera des =
+enseignements dans le cycle ing=C3=A9nieur ISEP et participera aux =
+activit=C3=A9s de recherche de l'=C3=A9quipe RDI =
+(http://lisite.isep.fr/rdi/).=20
+
+Profil recherch=C3=A9=20
+
+Le candidat devra =C3=AAtre titulaire d=E2=80=99un doctorat en =
+*informatique* et doit faire preuve d=E2=80=99une grande autonomie et =
+d=E2=80=99un fort potentiel en recherche scientifique qui peut se =
+traduire par des publications et la participation/montage de projets =
+collaboratifs. Ces th=C3=A9matiques de recherche devront aussi =
+s=E2=80=99int=C3=A9grer dans l'un des deux axes de l=E2=80=99=C3=A9quipe =
+RDI (Recherche et D=C3=A9veloppement en Technologie de l=E2=80=99Informati=
+on)  du laboratoire LISITE: (i) gestion de donn=C3=A9es complexes ou =
+(ii) services, processus m=C3=A9tier et cloud.
+
+Le LISITE est associ=C3=A9 =C3=A0 l=E2=80=99Ecole Doctorale parisienne =
+EDITE (Universit=C3=A9 Paris Sorbonne).
+
+Concernant l=E2=80=99enseignement, il interviendra dans diff=C3=A9rents =
+modules en Informatique durant tout le cycle ing=C3=A9nieur de niveau =
+bac+3 =C3=A0 bac+5. Il doit faire preuve d=E2=80=99une exp=C3=A9rience =
+significative en enseignement et devra obligatoirement ma=C3=AEtriser =
+l=E2=80=99anglais (=C3=A9crit et oral).=20
+
+Il devra avoir une expertise ou une bonne ma=C3=AEtrise dans un ou =
+plusieurs des domaines suivants : technologies Web, programmation =
+orient=C3=A9e objet, Java, architectures distribu=C3=A9es et =
+cybers=C3=A9curit=C3=A9.
+
+***Comp=C3=A9tences g=C3=A9n=C3=A9rales
+
+Approche p=C3=A9dagogique innovante
+Sens de l=E2=80=99=C3=A9coute, bon relationnel, bonne communication
+Aptitude =C3=A0 se conformer aux objectifs et =C3=A0 =C3=AAtre efficace
+Ma=C3=AEtrise de la gestion de projet
+Bon niveau en anglais (B2) =E2=80=93 nombreux enseignements en anglais
+
+***Dipl=C3=B4mes et Exp=C3=A9rience
+
+Le poste exige un doctorat fran=C3=A7ais ou =C3=A9tranger (HDR =
+bienvenue).
+Poste ouvert =C3=A0 tous niveaux
+
+***R=C3=A9mun=C3=A9ration
+
+Fixe : en fonction de l=E2=80=99exp=C3=A9rience et de l=E2=80=99HDR =
+=C3=A9ventuelle,
+
+Variable : de la capacit=C3=A9 =C3=A0 monter et mener des projets de =
+recherche ou de prestations en partenariat avec des entreprises.
+
+***Processus de recrutement
+
+Les lettres de candidature, accompagn=C3=A9es d=E2=80=99un curriculum =
+vitae faisant =C3=A9tat des activit=C3=A9s d=E2=80=99enseignement, des =
+travaux de recherche et, =C3=A9ventuellement, des relations avec le =
+monde acad=C3=A9mique et industriel, sont =C3=A0 adresser  =C3=A0 =
+raja.chiky@isep.f <mailto:raja.chiky@isep.f> avec le sujet EC-ISEP-2018.
+
+Dans le cas d=E2=80=99un candidat titulaire d=E2=80=99une HDR, le =
+processus fait intervenir des HDR ext=C3=A9rieurs =C3=A0 l=E2=80=99ISEP.
+
+Le poste est bas=C3=A9 =C3=A0 Issy-les-Moulineaux, =C3=A0 20 minutes en =
+m=C3=A9tro du si=C3=A8ge de l=E2=80=99ISEP (Quartier Montparnasse) o=C3=B9=
+ certaines activit=C3=A9s d=E2=80=99enseignement ont =C3=A9galement =
+lieu.
+
+
+Date limite de candidature: *08 juillet 2018*=20
+
+--=20
+Prof. Raja CHIKY
+Directrice de la recherche
+Directrice du laboratoire LISITE-ISEP
+Professeur en Informatique
+Institut Superieur d'Electronique de Paris (ISEP)
+10 Rue de Vanves
+92130 Issy Les Moulineaux
+Tel. +33.(0)1.49.54.52.34
+Mob. +33.(0)6.84.67.45.95
+Skype ID: isep.rdi
+
+
+--Apple-Mail=_491AF01F-B1CB-4637-9522-332351B360FA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><div =
+class=3D"">Bonjour</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Merci de diffuser cette offre</div><div class=3D""><br =
+class=3D""></div><div class=3D""><br class=3D""></div><div class=3D""><br =
+class=3D""></div><div class=3D"">L=E2=80=99Institut Sup=C3=A9rieur =
+d=E2=80=99Electronique de Paris (ISEP, <a href=3D"http://www.isep.fr" =
+class=3D"">http://www.isep.fr</a>), grande =C3=A9cole d=E2=80=99ing=C3=A9n=
+ieur membre de la FESIC situ=C3=A9e =C3=A0 Paris, recrute pour la =
+rentr=C3=A9e 2018 un(e) Enseignant(e)-Chercheur(euse) en informatique en =
+CDI.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">L=E2=80=99enseignant(e)-chercheur/euse recrut=C3=A9(e) =
+assurera des enseignements dans le cycle ing=C3=A9nieur ISEP et =
+participera aux activit=C3=A9s de recherche de l'=C3=A9quipe RDI (<a =
+href=3D"http://lisite.isep.fr/rdi/" =
+class=3D"">http://lisite.isep.fr/rdi/</a>).&nbsp;</div><div class=3D""><br=
+ class=3D""></div><div class=3D""><u class=3D"">Profil =
+recherch=C3=A9&nbsp;</u></div><div class=3D""><br class=3D""></div><div =
+class=3D"">Le candidat devra =C3=AAtre titulaire d=E2=80=99un doctorat =
+en *informatique* et doit faire preuve d=E2=80=99une grande autonomie et =
+d=E2=80=99un fort potentiel en recherche scientifique qui peut se =
+traduire par des publications et la participation/montage de projets =
+collaboratifs. Ces th=C3=A9matiques de recherche devront aussi =
+s=E2=80=99int=C3=A9grer dans l'un des deux axes de l=E2=80=99=C3=A9quipe =
+RDI (Recherche et D=C3=A9veloppement en Technologie de l=E2=80=99Informati=
+on) &nbsp;du laboratoire LISITE: (i) gestion de donn=C3=A9es complexes =
+ou (ii) services, processus m=C3=A9tier et cloud.</div><div class=3D""><br=
+ class=3D""></div><div class=3D"">Le LISITE est associ=C3=A9 =C3=A0 =
+l=E2=80=99Ecole Doctorale parisienne EDITE (Universit=C3=A9 Paris =
+Sorbonne).</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Concernant l=E2=80=99enseignement, il interviendra dans =
+diff=C3=A9rents modules en Informatique durant tout le cycle ing=C3=A9nieu=
+r de niveau bac+3 =C3=A0 bac+5. Il doit faire preuve d=E2=80=99une =
+exp=C3=A9rience significative en enseignement et devra obligatoirement =
+ma=C3=AEtriser l=E2=80=99anglais (=C3=A9crit et oral).&nbsp;</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Il devra avoir une =
+expertise ou une bonne ma=C3=AEtrise dans un ou plusieurs des domaines =
+suivants : technologies Web, programmation orient=C3=A9e objet, Java, =
+architectures distribu=C3=A9es et cybers=C3=A9curit=C3=A9.</div><div =
+class=3D""><br class=3D""></div><div class=3D"">***Comp=C3=A9tences =
+g=C3=A9n=C3=A9rales<br class=3D""><br class=3D""><ul class=3D""><li =
+class=3D"">Approche p=C3=A9dagogique innovante</li><li class=3D"">Sens =
+de l=E2=80=99=C3=A9coute, bon relationnel, bonne communication</li><li =
+class=3D"">Aptitude =C3=A0 se conformer aux objectifs et =C3=A0 =C3=AAtre =
+efficace</li><li class=3D"">Ma=C3=AEtrise de la gestion de =
+projet</li><li class=3D"">Bon niveau en anglais (B2) =E2=80=93 nombreux =
+enseignements en anglais</li></ul><br class=3D"">***Dipl=C3=B4mes et =
+Exp=C3=A9rience<br class=3D""><br class=3D""><ul class=3D""><li =
+class=3D"">Le poste exige un doctorat fran=C3=A7ais ou =C3=A9tranger =
+(HDR bienvenue).</li><li class=3D"">Poste ouvert =C3=A0 tous =
+niveaux</li></ul><br class=3D"">***R=C3=A9mun=C3=A9ration<br =
+class=3D""><br class=3D"">Fixe : en fonction de l=E2=80=99exp=C3=A9rience =
+et de l=E2=80=99HDR =C3=A9ventuelle,<br class=3D""><br class=3D"">Variable=
+ : de la capacit=C3=A9 =C3=A0 monter et mener des projets de recherche =
+ou de prestations en partenariat avec des entreprises.<br class=3D""><br =
+class=3D"">***Processus de recrutement<br class=3D""><br class=3D"">Les =
+lettres de candidature, accompagn=C3=A9es&nbsp;d=E2=80=99un curriculum =
+vitae faisant =C3=A9tat des activit=C3=A9s d=E2=80=99enseignement, =
+des&nbsp;travaux de recherche et, =C3=A9ventuellement, des relations =
+avec le monde&nbsp;acad=C3=A9mique et industriel,&nbsp;sont =C3=A0 =
+adresser &nbsp;=C3=A0&nbsp;<a href=3D"mailto:raja.chiky@isep.f" =
+class=3D"">raja.chiky@isep.f</a>&nbsp;avec le sujet EC-ISEP-2018.<br =
+class=3D""><br class=3D"">Dans le cas d=E2=80=99un candidat titulaire =
+d=E2=80=99une HDR, le processus fait intervenir des HDR ext=C3=A9rieurs =
+=C3=A0 l=E2=80=99ISEP.<br class=3D""><br class=3D"">Le poste est bas=C3=A9=
+ =C3=A0 Issy-les-Moulineaux, =C3=A0&nbsp;20 minutes en m=C3=A9tro du =
+si=C3=A8ge de l=E2=80=99ISEP (Quartier Montparnasse) o=C3=B9&nbsp;certaine=
+s activit=C3=A9s d=E2=80=99enseignement ont =C3=A9galement =
+lieu.</div><div class=3D""><br class=3D""></div><div class=3D""><br =
+class=3D""></div><div class=3D"">Date limite de candidature: *08 juillet =
+2018*&nbsp;</div><div class=3D""><br class=3D""></div><div class=3D""><div=
+ style=3D"color: rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; =
+font-style: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: auto; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: auto; =
+word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;">--&nbsp;<br class=3D"">Prof. Raja =
+CHIKY<br class=3D"">Directrice de la recherche<br class=3D"">Directrice =
+du laboratoire LISITE-ISEP<br class=3D"">Professeur en Informatique<br =
+class=3D"">Institut Superieur d'Electronique de Paris&nbsp;(ISEP)<br =
+class=3D"">10 Rue de Vanves<br class=3D"">92130 Issy Les Moulineaux<br =
+class=3D"">Tel. +33.(0)1.49.54.52.34<br class=3D"">Mob. =
++33.(0)6.84.67.45.95<br class=3D"">Skype ID: isep.rdi</div>
+</div>
+<br class=3D""></body></html>=
+
+--Apple-Mail=_491AF01F-B1CB-4637-9522-332351B360FA--

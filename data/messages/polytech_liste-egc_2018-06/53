@@ -1,0 +1,610 @@
+Return-Path: <fatma.abdelhedi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 2AF202292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 27 Jun 2018 12:03:42 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 271046D21C7
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 27 Jun 2018 12:03:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 1F43C4222FFA
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 27 Jun 2018 12:03:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.512
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.512 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	J_BACKHAIR_16=1, MANGLED_DEALS=2.3, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.0743 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Y-VH1xrvgQbS for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 27 Jun 2018 12:03:41 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-io0-x234.google.com (mail-io0-x234.google.com [IPv6:2607:f8b0:4001:c06::234])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 889D44222FE2
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 27 Jun 2018 12:03:40 +0200 (CEST)
+Received: by mail-io0-x234.google.com with SMTP id e13-v6so1343205iof.6
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 27 Jun 2018 03:03:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=iB7/1b+GXlcNG5pavs2CBlGw8w+EkSv+nUef4nlO0Jc=;
+        b=LlIa47eMmYnhWt+mKJ59x2OwBHmamCJ4nvNyjFtzIYKvpUufBL2A3RsGHiBhVzqihH
+         emTzdWtpCgmTN8N90p65UfX9g/c4me4b+VIyarTbQz6uvZ15/i1NPoX+zKgUzuww7m2U
+         Vfv7/wN4Vk31ZneRTitJVHoR5pSldgLxRnDv+QlzisVCUgRdUcWu0+y9Y0TUVXfCjAG8
+         683VyaG6DvLgvlxF2vcIcFPbH2KeC9jj3KIb82gqyPxw6dYV21bODrZ7+ZRkY2TJFwpB
+         LKP2wLXqIBEHjAwUExOSAx9yeiIseXQmWnuyN+HWNlm9nD76RA01zt3s7wFmc/JlCsEe
+         gu+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=iB7/1b+GXlcNG5pavs2CBlGw8w+EkSv+nUef4nlO0Jc=;
+        b=YgHXpOmyTJb5WlzdekBvJNCOoPek68yH/WYoW1YTgPMNQBc/5hICZvI49BTO5DCG/1
+         GPjUhRO3ReiVyRWmuDRoSAnVwRNcfVz4B+N/IhSvGtuEZK0YoaSe+eB7IjiM3ADjDOOf
+         gUlnzKMrT0nDX/Iu4e3n0k+SrXGWet/v2CPPGlhYw2QyTG0g60GOueR+K/4sePAvoV8n
+         X11MgP/I2ZeyyxaLTq/PiCOUxZ0NWl1ppuhkFBfrdmCQufIq5q5p82iyCmfqlw1WfcHY
+         3ni1emUFL8y+CxDpsZHIDwfkf3/O80jzCm/YHhRWa4+92NVMS7jcez/ErjoF4ttrIO7m
+         5arg==
+X-Gm-Message-State: APt69E0Lcl7h0KwatHsQTNzP7gI+xMrbiEBVwso9espkdRnvv4do2SXy
+	2m1P/SD36PdOPyFHyvGnSjXHRBOlaa1y9W2rARTQCg==
+X-Google-Smtp-Source: AAOMgpfd7ByHxWZZ7lgnsQ0iP92aLx1nM6VYbbWMP8+8Xft1FBtD8T8lbjrPzZvvLbLY1aUR02xD6cCdDSF2bDegHog=
+X-Received: by 2002:a6b:4410:: with SMTP id r16-v6mr4157517ioa.70.1530093818891;
+ Wed, 27 Jun 2018 03:03:38 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4f:4cd4:0:0:0:0:0 with HTTP; Wed, 27 Jun 2018 03:03:08
+ -0700 (PDT)
+From: Fatma Abdelhedi <fatma.abdelhedi@gmail.com>
+Date: Wed, 27 Jun 2018 12:03:08 +0200
+Message-ID: <CALiS7nQTp8+NVSj1VgkzQ434Ke8WGhZfpMvCxjYPtqJyzdsAHw@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="0000000000008c5314056f9cbab4"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [Trimane-IRIT] Offre de =?UTF-8?Q?th=C3=A8se?= CIFRE en
+ BI et Big Data
+
+--0000000000008c5314056f9cbab4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+Nous cherchons un candidat pour pr=C3=A9parer une th=C3=A8se dans le cadre =
+d=E2=80=99une
+bourse CIFRE.
+
+Des comp=C3=A9tences en mati=C3=A8re de syst=C3=A8mes d=C3=A9cisionnels, de=
+ Big Data et
+d=E2=80=99apprentissage automatique seraient appr=C3=A9ci=C3=A9es, mais tou=
+tes les
+candidatures seront =C3=A9tudi=C3=A9es avec attention.
+
+Vous trouverez ci-dessous la description du sujet.
+
+Cordialement,
+
+Fatma ABDELHEDI
+
+*--------------------------------------------------------------------------=
+----------------------*
+
+*Th=C3=A8se de doctorat CIFRE*
+
+
+*Interrogation et analyse d'entrep=C3=B4ts de donn=C3=A9es massives bas=C3=
+=A9es sur des
+syst=C3=A8mes de pr=C3=A9diction.*
+
+*Laboratoire :* Institut de Recherche en Informatique de Toulouse (IRIT)
+
+*Entreprise :* Soci=C3=A9t=C3=A9 TRIMANE =E2=80=93 Laboratoire CBI=C2=B2
+
+*Localisation :* TRIMANE =E2=80=93 Saint Germain-en-Laye
+
+*Candidature :* CV d=C3=A9taill=C3=A9 + lettre de motivation + relev=C3=A9s=
+ de notes
+licence et master + deux personnes r=C3=A9f=C3=A9rentes (ou lettres de
+recommandation). A transmettre par mail =C3=A0  <Fatma.Abdelhedi@trimane.fr=
+>
+Fatma.Abdelhedi@trimane.fr etGilles.Zurfluh@ut-capitole.fr
+
+*Pr=C3=A9sentation du sujet*
+
+    -  *Contexte*
+
+Les entrep=C3=B4ts de donn=C3=A9es actuels sont principalement =C3=A9labor=
+=C3=A9s =C3=A0 partir de
+bases de donn=C3=A9es relationnelles. Or les besoins d=E2=80=99analyses =C3=
+=A9voluent et
+exigent de plus en plus la prise en compte de nouvelles sources de donn=C3=
+=A9es,
+peu ou pas structur=C3=A9es, issues de capteurs, d=E2=80=99applications int=
+ernet ou du
+Web mobile. Il convient donc d=E2=80=99extraire le plus de valeur possible =
+du Big
+Data, c=E2=80=99est-=C3=A0-dire d=E2=80=99ensembles de donn=C3=A9es r=C3=A9=
+partis repr=C3=A9sentant un volume
+consid=C3=A9rable avec des types et des formats extr=C3=AAmement vari=C3=A9=
+s.
+
+Les syst=C3=A8mes NoSQL permettent de g=C3=A9rer des Big Data en apportant =
+de bonnes
+performances et une grande souplesse en mati=C3=A8re de stockage de donn=C3=
+=A9es
+structur=C3=A9es et non structur=C3=A9es. Mais ces syst=C3=A8mes pr=C3=A9se=
+ntent des
+caract=C3=A9ristiques (sch=C3=A9ma de donn=C3=A9es variable, langages non s=
+tandard) qui
+rendent inop=C3=A9rants les mod=C3=A8les et langages de bases de donn=C3=A9=
+es actuels.
+
+    -  *Probl=C3=A9matique*
+
+Pour effectuer des analyses et des pr=C3=A9dictions, les d=C3=A9cideurs doi=
+vent
+pouvoir acc=C3=A9der =C3=A0 de grandes masses de donn=C3=A9es en toute auto=
+nomie, sans
+avoir recours =C3=A0 des informaticiens ou bien =C3=A0 des logiciels et lan=
+gages
+complexes.
+
+    -  *Application*
+
+Le projet que nous d=C3=A9veloppons vise =C3=A0 mettre =C3=A0 la dispositio=
+n des
+professionnels du droit (analystes juridiques) un outil de pr=C3=A9diction =
+de
+l=E2=80=99issue d=E2=80=99un contentieux. Selon la nature du tribunal saisi=
+, la dur=C3=A9e
+estim=C3=A9e du proc=C3=A8s, la nature du d=C3=A9fendeur et les arguments a=
+vanc=C3=A9s, le
+r=C3=A9sultat d=E2=80=99un jugement peut varier.
+
+L=E2=80=99objectif est de pouvoir pr=C3=A9dire l=E2=80=99issue d=E2=80=99un=
+ contentieux (ou du moins son
+pourcentage de r=C3=A9ussite), la dur=C3=A9e de la proc=C3=A9dure ainsi qu=
+=E2=80=99un montant
+probable des indemnit=C3=A9s. Cette pr=C3=A9diction qui s=E2=80=99appuiera =
+sur la
+jurisprudence, pourrait prendre en compte des crit=C3=A8res complexes tels =
+que
+l=E2=80=99=C3=A9volution des pr=C3=A9judices entre le moment o=C3=B9 la pro=
+c=C3=A9dure sera engag=C3=A9e et
+l=E2=80=99=C3=A9tablissement du jugement.
+
+    -  *Objectifs*
+
+Pour r=C3=A9pondre =C3=A0 la probl=C3=A9matique, il est n=C3=A9cessaire d=
+=E2=80=99=C3=A9tendre les processus
+existants et de faire appel =C3=A0 de nouveaux mod=C3=A8les et techniques d=
+e gestion
+de donn=C3=A9es et de pr=C3=A9diction. Notamment des connaissances compl=C3=
+=A9mentaires
+doivent =C3=AAtre d=C3=A9duites des donn=C3=A9es et des comportements des u=
+tilisateurs.
+Des mod=C3=A8les et algorithmes issus de l'apprentissage automatique seront
+utilis=C3=A9s et =C3=A9valu=C3=A9s dans le cadre de l=E2=80=99application.
+
+    -  *Plan d=E2=80=99=C3=A9tude*
+
+Pour r=C3=A9pondre =C3=A0 cette probl=C3=A9matique de recherche, plusieurs =
+points doivent
+=C3=AAtre =C3=A9tudi=C3=A9s. Il conviendra *d=E2=80=99analyser les donn=C3=
+=A9es* de l=E2=80=99application pour
+en isoler les caract=C3=A9ristiques essentielles, notamment la dimension
+temporelle, puis les mod=C3=A9liser au plan s=C3=A9mantique. Pour *pr=C3=A9=
+dire les
+d=C3=A9cisions*, il sera utile d=E2=80=99=C3=A9tudier des mod=C3=A8les pr=
+=C3=A9dictifs bas=C3=A9s sur
+l=E2=80=99apprentissage automatique ; ceux-ci seront appliqu=C3=A9s sur les=
+ masses de
+donn=C3=A9es juridiques. Au plan de *l=E2=80=99autonomie*, le d=C3=A9cideur=
+ devra =C3=AAtre
+capable d=E2=80=99exprimer des requ=C3=AAtes complexes afin d=E2=80=99extra=
+ire les donn=C3=A9es des
+sources, ceci sans faire appel =C3=A0 un informaticien.
+
+
+*Profil du candidat* : dipl=C3=B4m=C3=A9 d=E2=80=99un master ou d=E2=80=99u=
+ne =C3=A9cole d=E2=80=99ing=C3=A9nieur en
+informatique avec un bon niveau acad=C3=A9mique.
+
+Certains acquis parmi les comp=C3=A9tences suivantes seront appr=C3=A9ci=C3=
+=A9s :
+
+-          Mod=C3=A8les et langages de bases de donn=C3=A9es.
+
+-          Connaissances et exp=C3=A9riences dans les Big Data (NoSQL : Had=
+oop,
+MongoDB).
+
+-          Connaissances en Machine Learning.
+
+-          Bonnes comp=C3=A9tences en programmation (Java, R, Python, etc.)=
+.
+
+-          Bonnes qualit=C3=A9s r=C3=A9dactionnelles (pr=C3=A9cision, synth=
+=C3=A8se, clart=C3=A9).
+
+-          Un bon niveau en anglais (=C3=A9crit et oral).
+
+
+*Dates*
+
+    -   *Candidature** : *le plus t=C3=B4t possible.
+
+    -   *D=C3=A9but de th=C3=A8se** :* octobre /novembre 2018.
+
+
+
+*Contacts*
+
+    -   <Gilles.Zurfluh@ut-capitole.fr>Gilles.Zurfluh@ut-capitole.fr
+    -   <Fatma.Abdelhedi@trimane.fr>Fatma.Abdelhedi@trimane.fr
+
+
+
+*Dr. Fatma ABDELHEDI*
+
+Directrice du laboratoire de recherche CBI=C2=B2
+
+[image: TRIMANE]
+
+3-5, Place Royale
+78100 Saint Germain en Laye
+
+*T=C3=A9l *01 72 55 00 68
+*Mail* Fatma.Abdelhedi@trimane.fr <mail@trimane.fr>
+
+*http://www.trimane.fr/* <http://www.trimane.fr/>
+
+--0000000000008c5314056f9cbab4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif;color:#0b5394">
+
+<div class=3D"gmail_default" style=3D""><p class=3D"MsoNormal" style=3D"mar=
+gin:0px 0px 0.0001pt;text-decoration-style:initial;text-decoration-color:in=
+itial;background-color:rgb(255,255,255);text-align:left;line-height:normal"=
+><big><font face=3D"georgia, serif" size=3D"2"></font></big></p></div></div=
+>
+
+
+
+
+
+<div class=3D"gmail_default" style=3D"font-size:small;text-decoration-style=
+:initial;text-decoration-color:initial;font-family:georgia,serif;color:rgb(=
+11,83,148)"><div class=3D"gmail_default"><p class=3D"MsoNormal" style=3D"ma=
+rgin:0px 0px 0.0001pt;text-decoration-style:initial;text-decoration-color:i=
+nitial;background-color:rgb(255,255,255);text-align:left;line-height:normal=
+"><big><font face=3D"georgia, serif" size=3D"2">Bonjour,=C2=A0</font></big>=
+</p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;text-decoration=
+-style:initial;text-decoration-color:initial;background-color:rgb(255,255,2=
+55);text-align:left;line-height:normal"><big><font face=3D"georgia, serif" =
+size=3D"2">Nous cherchons un candidat pour pr=C3=A9parer une th=C3=A8se dan=
+s le cadre d=E2=80=99une bourse CIFRE.</font></big></p><p class=3D"MsoNorma=
+l" style=3D"margin:0px;text-decoration-style:initial;text-decoration-color:=
+initial;background-color:rgb(255,255,255);text-align:left"><big><font face=
+=3D"georgia, serif" size=3D"2"><span style=3D"line-height:18.4px">Des comp=
+=C3=A9tences en mati=C3=A8re de syst=C3=A8mes d=C3=A9cisionnels, de Big Dat=
+a et d=E2=80=99apprentissage automatique seraient appr=C3=A9ci=C3=A9es, mai=
+s toutes les candidatures seront =C3=A9tudi=C3=A9es avec attention.</span><=
+/font></big></p><p class=3D"MsoNormal" style=3D"margin:0px;text-decoration-=
+style:initial;text-decoration-color:initial;background-color:rgb(255,255,25=
+5);text-align:left"><big><font face=3D"georgia, serif" size=3D"2"><span sty=
+le=3D"line-height:18.4px">Vous trouverez ci-dessous la description du sujet=
+.</span></font></big></p><p class=3D"MsoNormal" style=3D"margin:0px;text-de=
+coration-style:initial;text-decoration-color:initial;background-color:rgb(2=
+55,255,255);text-align:left"><big><font face=3D"georgia, serif" size=3D"2">=
+<span style=3D"line-height:18.4px">Cordialement,</span></font></big></p><p =
+class=3D"MsoNormal" style=3D"margin:0px;text-decoration-style:initial;text-=
+decoration-color:initial;background-color:rgb(255,255,255);text-align:left"=
+><big><font face=3D"georgia, serif" size=3D"2"><span style=3D"line-height:1=
+8.4px">Fatma ABDELHEDI</span></font></big></p><b style=3D"font-family:georg=
+ia,serif;font-size:12.8px;background-color:rgb(255,255,255);text-decoration=
+-style:initial;text-decoration-color:initial"><big><br></big></b><p style=
+=3D"font-family:georgia,serif;font-size:12.8px;background-color:rgb(255,255=
+,255);text-decoration-style:initial;text-decoration-color:initial"></p><p c=
+lass=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-si=
+ze:12.8px;text-decoration-style:initial;text-decoration-color:initial;color=
+:rgb(34,34,34);background-color:rgb(255,255,255)"><b><span><big>-----------=
+---------------------------------------------------------------------------=
+----------</big></span></b></p><p class=3D"MsoNormal" style=3D"margin:0px;f=
+ont-family:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;=
+text-decoration-color:initial;color:rgb(34,34,34);background-color:rgb(255,=
+255,255)"><b><span><big>Th=C3=A8se de doctorat CIFRE</big><span></span></sp=
+an></b></p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:arial,san=
+s-serif;font-size:12.8px;text-decoration-style:initial;text-decoration-colo=
+r:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><b><span><=
+big><big><big>Interrogation et analyse d&#39;entrep=C3=B4ts de donn=C3=A9es=
+ massives<span>=C2=A0</span><br>bas=C3=A9es sur des syst=C3=A8mes de pr=C3=
+=A9diction.</big></big></big><span></span></span></b></p><p class=3D"MsoNor=
+mal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8px;text=
+-decoration-style:initial;text-decoration-color:initial;color:rgb(34,34,34)=
+;background-color:rgb(255,255,255)"><b><span>Laboratoire=C2=A0:</span></b><=
+span><span>=C2=A0</span>Institut de Recherche en Informatique de Toulouse (=
+IRIT)<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px;fon=
+t-family:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;te=
+xt-decoration-color:initial;color:rgb(34,34,34);background-color:rgb(255,25=
+5,255)"><b><span>Entreprise=C2=A0:</span></b><span><span>=C2=A0</span>Soci=
+=C3=A9t=C3=A9 TRIMANE =E2=80=93 Laboratoire CBI=C2=B2<span></span></span></=
+p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;f=
+ont-size:12.8px;text-decoration-style:initial;text-decoration-color:initial=
+;color:rgb(34,34,34);background-color:rgb(255,255,255)"><b><span>Localisati=
+on=C2=A0:</span></b><span><span>=C2=A0</span>TRIMANE =E2=80=93 Saint Germai=
+n-en-Laye</span></p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:=
+arial,sans-serif;font-size:12.8px;text-decoration-style:initial;text-decora=
+tion-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><=
+span><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px;fon=
+t-family:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;te=
+xt-decoration-color:initial;color:rgb(34,34,34);background-color:rgb(255,25=
+5,255)"><b><span>Candidature=C2=A0:</span></b><b><span><span>=C2=A0</span><=
+/span></b><span>CV d=C3=A9taill=C3=A9 + lettre de motivation + relev=C3=A9s=
+ de notes licence et master + deux personnes r=C3=A9f=C3=A9rentes (ou lettr=
+es de recommandation). A transmettre par mail =C3=A0<span>=C2=A0</span><a h=
+ref=3D"mailto:Fatma.Abdelhedi@trimane.fr" target=3D"_blank" style=3D"color:=
+rgb(17,85,204)"></a><a class=3D"gmail-m_6610717722269381572gmail-m_-7842154=
+150623115185moz-txt-link-abbreviated" href=3D"mailto:Fatma.Abdelhedi@triman=
+e.fr" target=3D"_blank" style=3D"color:rgb(17,85,204)">Fatma.Abdelhedi@trim=
+ane.fr</a>=C2=A0</span><span>e<wbr>t<a href=3D"mailto:Gilles.Zurfluh@ut-cap=
+itole.fr" target=3D"_blank" style=3D"color:rgb(17,85,204)">Gilles.<span cla=
+ss=3D"gmail-m_6610717722269381572gmail-il">Zurfluh</span>@ut-capitole.fr</a=
+></span></p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sa=
+ns-serif;font-size:12.8px;text-decoration-style:initial;text-decoration-col=
+or:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><b><span>=
+Pr=C3=A9sentation du sujet<span></span></span></b></p><p class=3D"gmail-m_6=
+610717722269381572gmail-m_-7842154150623115185gmail-MsoListParagraph" style=
+=3D"font-family:arial,sans-serif;font-size:12.8px;text-decoration-style:ini=
+tial;text-decoration-color:initial;color:rgb(34,34,34);background-color:rgb=
+(255,255,255)"><span><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0<span>=C2=A0</sp=
+an><span></span></span></span></span><u><span>Contexte</span></u><b><span><=
+span></span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0px;font-=
+family:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;text=
+-decoration-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,=
+255)"><span>Les entrep=C3=B4ts de donn=C3=A9es actuels sont principalement =
+=C3=A9labor=C3=A9s =C3=A0 partir de bases de donn=C3=A9es relationnelles. O=
+r les besoins d=E2=80=99analyses =C3=A9voluent et exigent de plus en plus l=
+a prise en compte de nouvelles sources de donn=C3=A9es, peu ou pas structur=
+=C3=A9es, issues de capteurs, d=E2=80=99applications internet ou du Web mob=
+ile. Il convient donc d=E2=80=99extraire le plus de valeur possible du Big =
+Data, c=E2=80=99est-=C3=A0-dire d=E2=80=99ensembles de donn=C3=A9es r=C3=A9=
+partis repr=C3=A9sentant un volume consid=C3=A9rable avec des types et des =
+formats extr=C3=AAmement vari=C3=A9s.<span></span></span></p><p class=3D"Ms=
+oNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8px;=
+text-decoration-style:initial;text-decoration-color:initial;color:rgb(34,34=
+,34);background-color:rgb(255,255,255)"><span>Les syst=C3=A8mes NoSQL perme=
+ttent de g=C3=A9rer des Big Data en apportant de bonnes performances et une=
+ grande souplesse en mati=C3=A8re de stockage de donn=C3=A9es structur=C3=
+=A9es et non structur=C3=A9es. Mais ces syst=C3=A8mes pr=C3=A9sentent des c=
+aract=C3=A9ristiques (sch=C3=A9ma de donn=C3=A9es variable,=C2=A0langages n=
+on standard) qui rendent inop=C3=A9rants les mod=C3=A8les et langages de ba=
+ses de donn=C3=A9es actuels.<span></span></span></p><p class=3D"gmail-m_661=
+0717722269381572gmail-m_-7842154150623115185gmail-MsoListParagraph" style=
+=3D"font-family:arial,sans-serif;font-size:12.8px;text-decoration-style:ini=
+tial;text-decoration-color:initial;color:rgb(34,34,34);background-color:rgb=
+(255,255,255)"><span><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0<span>=C2=A0</sp=
+an><span></span></span></span></span><u><span>Probl=C3=A9matique</span></u>=
+<b><span><span></span></span></b></p><p class=3D"MsoNormal" style=3D"margin=
+:0px;font-family:arial,sans-serif;font-size:12.8px;text-decoration-style:in=
+itial;text-decoration-color:initial;color:rgb(34,34,34);background-color:rg=
+b(255,255,255)"><span>Pour effectuer des analyses et des pr=C3=A9dictions, =
+les d=C3=A9cideurs=C2=A0doivent pouvoir acc=C3=A9der =C3=A0 de grandes mass=
+es de donn=C3=A9es en toute autonomie, sans avoir recours =C3=A0 des inform=
+aticiens ou bien =C3=A0 des logiciels et langages complexes.<span></span></=
+span></p><p class=3D"gmail-m_6610717722269381572gmail-m_-784215415062311518=
+5gmail-MsoListParagraph" style=3D"font-family:arial,sans-serif;font-size:12=
+.8px;text-decoration-style:initial;text-decoration-color:initial;color:rgb(=
+34,34,34);background-color:rgb(255,255,255)"><span><span>=C2=A0=C2=A0=C2=A0=
+ -<span>=C2=A0<span>=C2=A0</span><span></span></span></span></span><u><span=
+>Application</span></u><b><span><span></span></span></b></p><p class=3D"Mso=
+Normal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8px;t=
+ext-decoration-style:initial;text-decoration-color:initial;color:rgb(34,34,=
+34);background-color:rgb(255,255,255)"><span>Le projet que nous d=C3=A9velo=
+ppons vise =C3=A0 mettre =C3=A0 la disposition des professionnels du droit =
+(analystes juridiques) un outil de pr=C3=A9diction de l=E2=80=99issue d=E2=
+=80=99un contentieux. Selon la nature du tribunal saisi, la dur=C3=A9e esti=
+m=C3=A9e du proc=C3=A8s, la nature du d=C3=A9fendeur et les arguments avanc=
+=C3=A9s, le r=C3=A9sultat d=E2=80=99un jugement peut varier.<span></span></=
+span></p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sans-=
+serif;font-size:12.8px;text-decoration-style:initial;text-decoration-color:=
+initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><span>L=E2=
+=80=99objectif est de pouvoir pr=C3=A9dire l=E2=80=99issue d=E2=80=99un con=
+tentieux (ou du moins son pourcentage de r=C3=A9ussite), la dur=C3=A9e de l=
+a proc=C3=A9dure ainsi qu=E2=80=99un montant probable des indemnit=C3=A9s. =
+Cette pr=C3=A9diction qui s=E2=80=99appuiera sur la jurisprudence, pourrait=
+ prendre en compte des crit=C3=A8res complexes tels que l=E2=80=99=C3=A9vol=
+ution des pr=C3=A9judices entre le moment o=C3=B9 la proc=C3=A9dure sera en=
+gag=C3=A9e et l=E2=80=99=C3=A9tablissement du jugement.<span></span></span>=
+</p><p class=3D"gmail-m_6610717722269381572gmail-m_-7842154150623115185gmai=
+l-MsoListParagraph" style=3D"font-family:arial,sans-serif;font-size:12.8px;=
+text-decoration-style:initial;text-decoration-color:initial;color:rgb(34,34=
+,34);background-color:rgb(255,255,255)"><span><span>=C2=A0=C2=A0=C2=A0 -<sp=
+an>=C2=A0<span>=C2=A0</span><span></span></span></span></span><u><span>Obje=
+ctifs</span></u><b><span><span></span></span></b></p><p class=3D"MsoNormal"=
+ style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8px;text-dec=
+oration-style:initial;text-decoration-color:initial;color:rgb(34,34,34);bac=
+kground-color:rgb(255,255,255)"><span>Pour r=C3=A9pondre =C3=A0 la probl=C3=
+=A9matique, il est n=C3=A9cessaire d=E2=80=99=C3=A9tendre les processus exi=
+stants et de faire appel =C3=A0 de nouveaux mod=C3=A8les et techniques de g=
+estion de donn=C3=A9es et de pr=C3=A9diction. Notamment des connaissances c=
+ompl=C3=A9mentaires doivent =C3=AAtre d=C3=A9duites des donn=C3=A9es et des=
+ comportements des utilisateurs. Des mod=C3=A8les et algorithmes issus de l=
+&#39;apprentissage automatique seront utilis=C3=A9s et =C3=A9valu=C3=A9s da=
+ns le cadre de l=E2=80=99application.<span></span></span></p><p class=3D"gm=
+ail-m_6610717722269381572gmail-m_-7842154150623115185gmail-MsoListParagraph=
+" style=3D"font-family:arial,sans-serif;font-size:12.8px;text-decoration-st=
+yle:initial;text-decoration-color:initial;color:rgb(34,34,34);background-co=
+lor:rgb(255,255,255)"><span><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0<span>=C2=
+=A0</span><span></span></span></span></span><span></span><u><span>Plan d=E2=
+=80=99=C3=A9tude</span></u><b><span><span></span></span></b></p><p class=3D=
+"MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8=
+px;text-decoration-style:initial;text-decoration-color:initial;color:rgb(34=
+,34,34);background-color:rgb(255,255,255)"><span>Pour r=C3=A9pondre =C3=A0 =
+cette probl=C3=A9matique de recherche, plusieurs points doivent =C3=AAtre =
+=C3=A9tudi=C3=A9s. Il conviendra=C2=A0<u>d=E2=80=99analyser les donn=C3=A9e=
+s</u>=C2=A0de l=E2=80=99application pour en isoler les caract=C3=A9ristique=
+s essentielles, notamment la dimension temporelle, puis les mod=C3=A9liser =
+au plan s=C3=A9mantique. Pour=C2=A0</span><u><span>pr=C3=A9dire les d=C3=A9=
+cisions</span></u><span>, il sera utile d=E2=80=99=C3=A9tudier des mod=C3=
+=A8les pr=C3=A9dictifs bas=C3=A9s sur l=E2=80=99apprentissage automatique=
+=C2=A0; ceux-ci seront appliqu=C3=A9s sur les masses de donn=C3=A9es juridi=
+ques. Au plan de<span>=C2=A0</span></span><u><span>l=E2=80=99autonomie</spa=
+n></u><span>, le d=C3=A9cideur devra =C3=AAtre capable d=E2=80=99exprimer d=
+es requ=C3=AAtes complexes afin d=E2=80=99extraire les donn=C3=A9es des sou=
+rces, ceci sans faire appel =C3=A0 un informaticien.</span></p><p class=3D"=
+MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8p=
+x;text-decoration-style:initial;text-decoration-color:initial;color:rgb(34,=
+34,34);background-color:rgb(255,255,255)"><b><span><br>Profil du candidat</=
+span></b><span><span>=C2=A0</span>: d</span><span>ipl=C3=B4m=C3=A9 d=E2=80=
+=99un master ou d=E2=80=99une =C3=A9cole d=E2=80=99ing=C3=A9nieur en inform=
+atique avec un bon niveau acad=C3=A9mique.<span></span></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-size:1=
+2.8px;text-decoration-style:initial;text-decoration-color:initial;color:rgb=
+(34,34,34);background-color:rgb(255,255,255)"><span>Certains acquis parmi l=
+es comp=C3=A9tences suivantes seront appr=C3=A9ci=C3=A9s=C2=A0:<span></span=
+></span></p><p class=3D"gmail-m_6610717722269381572gmail-m_-784215415062311=
+5185gmail-MsoListParagraphCxSpFirst" style=3D"font-family:arial,sans-serif;=
+font-size:12.8px;text-decoration-style:initial;text-decoration-color:initia=
+l;color:rgb(34,34,34);background-color:rgb(255,255,255)"><span><span>-<span=
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span><=
+/span></span></span><span>Mod=C3=A8les et langages de bases de donn=C3=A9es=
+.<span></span></span></p><p class=3D"gmail-m_6610717722269381572gmail-m_-78=
+42154150623115185gmail-MsoListParagraphCxSpMiddle" style=3D"font-family:ari=
+al,sans-serif;font-size:12.8px;text-decoration-style:initial;text-decoratio=
+n-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><spa=
+n><span>-<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=
+=C2=A0</span></span></span></span><span>Connaissances et exp=C3=A9riences d=
+ans les Big Data (NoSQL=C2=A0: Hadoop, MongoDB).<span></span></span></p><p =
+class=3D"gmail-m_6610717722269381572gmail-m_-7842154150623115185gmail-MsoLi=
+stParagraphCxSpMiddle" style=3D"font-family:arial,sans-serif;font-size:12.8=
+px;text-decoration-style:initial;text-decoration-color:initial;color:rgb(34=
+,34,34);background-color:rgb(255,255,255)"><span><span>-<span>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span>=
+</span><span>Connaissances en Machine Learning.<span></span></span></p><p c=
+lass=3D"gmail-m_6610717722269381572gmail-m_-7842154150623115185gmail-MsoLis=
+tParagraphCxSpMiddle" style=3D"font-family:arial,sans-serif;font-size:12.8p=
+x;text-decoration-style:initial;text-decoration-color:initial;color:rgb(34,=
+34,34);background-color:rgb(255,255,255)"><span><span>-<span>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></span>=
+</span><span>Bonnes comp=C3=A9tences en programmation (Java, R, Python, etc=
+.).<span></span></span></p><p class=3D"gmail-m_6610717722269381572gmail-m_-=
+7842154150623115185gmail-MsoListParagraphCxSpMiddle" style=3D"font-family:a=
+rial,sans-serif;font-size:12.8px;text-decoration-style:initial;text-decorat=
+ion-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><s=
+pan><span>-<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<spa=
+n>=C2=A0</span></span></span></span><span>Bonnes qualit=C3=A9s r=C3=A9dacti=
+onnelles (pr=C3=A9cision, synth=C3=A8se, clart=C3=A9).<span></span></span><=
+/p><p class=3D"gmail-m_6610717722269381572gmail-m_-7842154150623115185gmail=
+-MsoListParagraphCxSpLast" style=3D"font-family:arial,sans-serif;font-size:=
+12.8px;text-decoration-style:initial;text-decoration-color:initial;color:rg=
+b(34,34,34);background-color:rgb(255,255,255)"><span><span>-<span>=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<span>=C2=A0</span></span></sp=
+an></span><span>Un bon niveau en anglais (=C3=A9crit et oral).<span></span>=
+</span></p><p class=3D"MsoNormal" style=3D"margin:0px;font-family:arial,san=
+s-serif;font-size:12.8px;text-decoration-style:initial;text-decoration-colo=
+r:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"><b><span><=
+br>Dates<span></span></span></b></p><p class=3D"gmail-m_6610717722269381572=
+gmail-m_-7842154150623115185gmail-MsoListParagraphCxSpFirst" style=3D"font-=
+family:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;text=
+-decoration-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,=
+255)"><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0=C2=A0<span>=C2=A0</span><span>=
+</span></span></span><u><span>Candidature</span></u><b><span>=C2=A0:<span>=
+=C2=A0</span></span></b><span>le plus t=C3=B4t possible.<span></span></span=
+></p><p class=3D"gmail-m_6610717722269381572gmail-m_-7842154150623115185gma=
+il-MsoListParagraphCxSpLast" style=3D"font-family:arial,sans-serif;font-siz=
+e:12.8px;text-decoration-style:initial;text-decoration-color:initial;color:=
+rgb(34,34,34);background-color:rgb(255,255,255)"><span><span>=C2=A0=C2=A0=
+=C2=A0 -<span>=C2=A0=C2=A0=C2=A0<span></span></span></span></span><u><span>=
+D=C3=A9but de th=C3=A8se</span></u><b><span>=C2=A0:</span></b><span>=C2=A0o=
+ctobre /novembre 2018.<span></span></span></p><p class=3D"MsoNormal" style=
+=3D"margin:0px;font-family:arial,sans-serif;font-size:12.8px;text-decoratio=
+n-style:initial;text-decoration-color:initial;color:rgb(34,34,34);backgroun=
+d-color:rgb(255,255,255)"><b><span><span>=C2=A0</span></span></b></p><p cla=
+ss=3D"MsoNormal" style=3D"margin:0px;font-family:arial,sans-serif;font-size=
+:12.8px;text-decoration-style:initial;text-decoration-color:initial;color:r=
+gb(34,34,34);background-color:rgb(255,255,255)"><b><span>Contacts</span></b=
+><span><span></span></span></p><p class=3D"gmail-m_6610717722269381572gmail=
+-m_-7842154150623115185gmail-MsoListParagraphCxSpFirst" style=3D"font-famil=
+y:arial,sans-serif;font-size:12.8px;text-decoration-style:initial;text-deco=
+ration-color:initial;color:rgb(34,34,34);background-color:rgb(255,255,255)"=
+><span><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0<span><span>=C2=A0</span></spa=
+n></span></span></span><a href=3D"mailto:Gilles.Zurfluh@ut-capitole.fr" tar=
+get=3D"_blank" style=3D"color:rgb(17,85,204)"><span></span></a><a class=3D"=
+gmail-m_6610717722269381572gmail-m_-7842154150623115185moz-txt-link-abbrevi=
+ated" href=3D"mailto:Gilles.Zurfluh@ut-capitole.fr" target=3D"_blank" style=
+=3D"color:rgb(17,85,204)">Gilles.<span class=3D"gmail-m_6610717722269381572=
+gmail-il">Zurfluh</span>@ut-capitole.<wbr>fr</a><span><span></span></span><=
+/p><span style=3D"font-family:arial,sans-serif;font-size:12.8px;text-decora=
+tion-style:initial;text-decoration-color:initial;color:rgb(34,34,34);backgr=
+ound-color:rgb(255,255,255)"><span>=C2=A0=C2=A0=C2=A0 -<span>=C2=A0<span><s=
+pan>=C2=A0</span></span></span></span></span><a href=3D"mailto:Fatma.Abdelh=
+edi@trimane.fr" target=3D"_blank" style=3D"color:rgb(17,85,204);font-family=
+:arial,sans-serif;font-size:12.8px;background-color:rgb(255,255,255)"><span=
+></span></a><a class=3D"gmail-m_6610717722269381572gmail-m_-784215415062311=
+5185moz-txt-link-abbreviated" href=3D"mailto:Fatma.Abdelhedi@trimane.fr" ta=
+rget=3D"_blank" style=3D"color:rgb(17,85,204);font-family:arial,sans-serif;=
+font-size:12.8px;background-color:rgb(255,255,255)">Fatma.Abdelhedi@trimane=
+.fr</a><span style=3D"font-family:georgia,serif;font-size:12.8px;background=
+-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color=
+:initial;float:none;display:inline"><span>=C2=A0</span></span><span>=C2=A0<=
+/span><br clear=3D"all"></div><div><div class=3D"gmail_signature"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><br class=3D"gmail-Apple-in=
+terchange-newline"><table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+style=3D"color:rgb(34,34,34);font-size:small;font-style:normal;font-weight:=
+normal;letter-spacing:normal;text-align:start;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255=
+);font-family:&quot;Times New Roman&quot;"><tbody><tr><td colspan=3D"2" sty=
+le=3D"font-family:arial,sans-serif;margin:0px;padding:0cm"><p style=3D"marg=
+in:0cm 0cm 0.0001pt;font-family:&quot;Times New Roman&quot;,serif"><font si=
+ze=3D"1"><strong><span style=3D"font-family:Arial,sans-serif"><br></span></=
+strong></font></p><p style=3D"margin:0cm 0cm 0.0001pt;font-family:&quot;Tim=
+es New Roman&quot;,serif"><font size=3D"1"><strong><span style=3D"font-fami=
+ly:Arial,sans-serif"><br></span></strong></font></p><p style=3D"margin:0cm =
+0cm 0.0001pt;font-family:&quot;Times New Roman&quot;,serif"><font size=3D"1=
+"><strong><span style=3D"font-family:Arial,sans-serif">Dr. Fatma ABDELHEDI<=
+/span></strong><span style=3D"font-family:Arial,sans-serif"><br></span></fo=
+nt></p><p style=3D"margin:0cm 0cm 0.0001pt;font-family:&quot;Times New Roma=
+n&quot;,serif"><span style=3D"font-family:Arial,sans-serif"><font size=3D"1=
+">Directrice du laboratoire de recherche CBI=C2=B2</font></span></p></td></=
+tr><tr style=3D"height:97.5pt"><td style=3D"font-family:arial,sans-serif;ma=
+rgin:0px;color:rgb(34,34,34);font-size:small;font-style:normal;font-variant=
+-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:n=
+ormal;text-align:start;text-indent:0px;text-transform:none;white-space:norm=
+al;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-style=
+:initial;text-decoration-color:initial;padding:0cm;height:97.5pt"><table ce=
+llspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"font-family:Arial,H=
+elvetica,sans-serif"><tbody><tr><td colspan=3D"2" style=3D"font-family:aria=
+l,sans-serif;margin:0px;font-size:13px"><br></td></tr><tr><td height=3D"130=
+" style=3D"font-family:arial,sans-serif;margin:0px"><img src=3D"https://sta=
+tic.wixstatic.com/media/7388fe_ee5bd8c2673c43d7ad670c8c0a869c21.png/v1/crop=
+/x_0,y_100,w_1181,h_819/fill/w_163,h_113,al_c,usm_0.66_1.00_0.01/7388fe_ee5=
+bd8c2673c43d7ad670c8c0a869c21.png" alt=3D"TRIMANE"></td><td valign=3D"top" =
+style=3D"font-family:arial,sans-serif;margin:0px;font-size:11px;color:rgb(4=
+1,38,42)"><p>3-5, Place Royale<br>78100 Saint Germain en Laye<br><br><stron=
+g style=3D"color:rgb(229,47,42)">T=C3=A9l=C2=A0</strong>01 72 55 00 68<br><=
+strong style=3D"color:rgb(150,190,25)">Mail</strong>=C2=A0<a href=3D"mailto=
+:mail@trimane.fr" target=3D"_blank" style=3D"color:rgb(41,38,42)">Fatma.Abd=
+elhedi@trimane.fr</a><br><br><a href=3D"http://www.trimane.fr/" target=3D"_=
+blank" style=3D"color:rgb(41,38,42)"><strong>http://www.trimane.fr/</strong=
+></a></p></td></tr></tbody></table></td></tr></tbody></table></div></div></=
+div></div></div></div><br clear=3D"all"></div><div style=3D"font-size:small=
+;text-decoration-style:initial;text-decoration-color:initial"><div class=3D=
+"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></=
+div></div></div></div></div>
+
+<div><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div=
+ dir=3D"ltr"><div></div></div></div></div>
+</div>
+
+--0000000000008c5314056f9cbab4--

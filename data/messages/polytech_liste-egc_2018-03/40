@@ -1,0 +1,416 @@
+Return-Path: <chelly.zaineb@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D6A20229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 12 Mar 2018 15:59:22 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id D475962882E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 12 Mar 2018 15:59:22 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id CF768B4A244
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 12 Mar 2018 15:59:22 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.888
+X-Spam-Level:
+X-Spam-Status: No, score=-0.888 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -2.0293 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id d-JHDUE2HuzR for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 12 Mar 2018 15:59:21 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x232.google.com (mail-wm0-x232.google.com [IPv6:2a00:1450:400c:c09::232])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id A3364661922
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 12 Mar 2018 15:59:21 +0100 (CET)
+Received: by mail-wm0-x232.google.com with SMTP id 139so16808517wmn.2
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 12 Mar 2018 07:59:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Z7YhS2BFGx/Puyl4w3r/k4zwMU5snZYyjnhPUtVHnDo=;
+        b=F02vXlmqvKlPk2JAhk0ZwXnjUH27T+FZZ/QV+gZMDOus2FNrzCrDZ9MGsSAw892PgN
+         L8Li6mX9x4GTB0mSNErg5b+e32/Mo0JYUaVBiFcakRme1/38N+id1sOxfHDtRdITm+kd
+         e/SwI+hLxXqyuB93Ldcg01mYUClz2JFXG5u6JmJRuMqLAcDOfI1/vrFxstxwtcY/o3L7
+         QsxMeF0O4OBfoFQzlPcCyIk5P8/aVquPud4zFnLy3vQ3gZ00s53IaHcqiOMNDquHokiK
+         4/U9Pk5ftNxlcvCUnUYXGvP5ZF9XOH/TVnW8PSTOqRun7TvbnAdwB5p5SRfCO3Hnxmc3
+         0O/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Z7YhS2BFGx/Puyl4w3r/k4zwMU5snZYyjnhPUtVHnDo=;
+        b=UisRWS0Kup8GB6xP2ng932NwUEx0UJssGvPrHmSH47P9EnT+gNq62gxm9j3u5XJzCY
+         VYn40Y01CnmV0jvsYislnVBuIOyt9dcoCR97/ojmK7gqf9IR+IOyYfEcRuJfE+0lfbSd
+         dZNdltqdGhYPcT7pnmpEqP1bVysLQoMmrS9WzJ+FU7EkoXL8qzgYrqpDFiepeVkIFo+7
+         MLh3IarlwjzIGTr3vM6H206ZWq8ECedy8h44E+f2Z+hr1g9MnDArQlPI3r5rCv10c11x
+         bAnjuG3AFd7VDOVjU4b1hprannCE6AjasAvrnHU7W8YZTZnWGCsP4nUtAiVeUx3vat+P
+         rURg==
+X-Gm-Message-State: AElRT7ETPJRvOv/hwm6pgv1bik9HEQomOcNvLjFJYjLHC/AUHdOYwT0u
+	V8jjWyn2/94USru8pqppI9T4ui3eIBLzdT3gSj3P/w==
+X-Google-Smtp-Source: AG47ELsEekIj9uxJT0wuukdmFfSZcwu38fKrHwul7WCLw2pnAluBfMKhTUQHSijZ0W046+fF6srJRVa5cFNECswJ3HM=
+X-Received: by 10.80.167.225 with SMTP id i88mr11326399edc.66.1520866760949;
+ Mon, 12 Mar 2018 07:59:20 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.80.162.228 with HTTP; Mon, 12 Mar 2018 07:59:20 -0700 (PDT)
+From: Zaineb Chelly <chelly.zaineb@gmail.com>
+Date: Mon, 12 Mar 2018 15:59:20 +0100
+Message-ID: <CAH8Drye7+zeh8M3gGkYhW2=o31sKCgpYC0prP0dSP9mJYCgjwA@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr, "bull-i3@irit. fr" <bull-i3@irit.fr>, gdr.gpl@imag.fr, 
+	liste-proml@lists.lri.fr, MaDICS <webmaster@madics.fr>
+Content-Type: multipart/alternative; boundary="94eb2c19592a09882d05673863fd"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] MESS 2018 - Metaheuristics Summer School - from Design
+ to Implementation -
+
+--94eb2c19592a09882d05673863fd
+Content-Type: text/plain; charset="UTF-8"
+
+Call for Participation (apologies for multiple copies)
+-- SCHOLARSHIPS & TITLE OF THE LECTURES --
+
+-----------------------------------------------------------------------
+MESS 2018 - Metaheuristics Summer School
+- from Design to Implementation -
+21-25 July 2018, Taormina, Italy
+
+https://www.ANTs-lab.it/mess2018/ <https://www.ants-lab.it/mess2018/>
+mess.school@ANTs-lab.it
+-----------------------------------------------------------------------
+
+
+** APPLICATION DEADLINE: 15th April 2018 **
+
+
+MESS 2018 is aimed at qualified and strongly motivated MSc and PhD
+students; post-docs; young researchers, and both academic and industrial
+professionals to provide an overview on the several metaheuristics
+techniques, and an in-depth analysis of the state-of-the-art. As first
+edition, MESS 2018 wants to analyze all metaheuristics from its designing
+to its implementation. In particular, in MESS 2018 will be analyzed modern
+heuristic methods for search and optimization problems, as well as the
+classical exact optimization methods, seen also in the metaheuristics
+context.
+
+All participants will have plenty of opportunities for debate and work with
+leaders in the field, benefiting from direct interaction and discussions in
+a stimulating environment. They will also have the possibility to present
+their recently results and/or their working in progress through oral or
+poster presentations, and interact with their scientific peers, in a
+friendly and constructive environment.
+
+
+** Confirmed Speakers
+
++ Christian Blum, IIIA-CSIC, Barcelona, Spain
+- Lecture 1: Construct, Merge, Solve & Adapt: A Recent Hybrid Metaheuristic
+- Lecture 2: Swarm Intelligence in Combinatorial Optimization
+
++ Juergen Branke, Warwick Business School, UK
+- Lecture 1: Simulation-based optimisation
+- Lecture 2: Multi-objective optimisation
+
++ Salvatore Greco, University of Catania, Italy & University of Portsmouth,
+UK
+- Lecture 1: Basic Concepts of Multiple Criteria Decision Aiding/Making
+- Lecture 2:Using Preference Elicitation in Evolutionary Multiobjective
+Optimization
+
++ Yaochu Jin, University of Surrey, UK
+- Lecture 1:Data-driven surrogate-assisted evolutionary multi-objective
+optimization
+- Lecture 2: Multi-objective machine learning
+
++ Gunther Raidl, Technische Universitat Wien, Austria
+- Lecture 1: TBA
+- Lecture 2: TBA
+
++ Helena Ramalhinho Lourenco, Universitat Pompeu Fabra, Spain
+- Lecture 1: Extensions of Iterated Local Search
+- Lecture 2: Issues and examples of applying metaheuristics in business
+
++ Mauricio Resende, AMAZON, USA
+- Lecture 1: TBA
+- Lecture 2: TBA
+
++ Celso Ribeiro, Universidade Federal Fluminense, Brazil
+- Lecture 1: Optimization by GRASP ? Part I
+- Lecture 2: Optimization by GRASP ? Part II
+
++ Andrea Schaerf, University of Udine, Italy
+- Lecture 1: Simulated Annealing and Friends: Introduction to Randomized
+Local Search Methods
+- Lecture 2: Simulated Annealing, we need to talk: Critical Analysis of
+Real-World Applications of Randomized Local Search Methods to Scheduling
+and Timetabling Problems
+
++ Fabio Schoen, Unviersity of Florence, Italy
+- Lecture 1: Large scale global optimization methods: basics
+- Lecture 2: Large scale global optimization methods: examples of
+applications
+
++ El-Ghazali Talbi, University of Lille 1, France
+- Lecture 1: TBA
+- Lecture 2: TBA
+
++ Daniele Vigo, University of Bologna, Italy
+- Lecture 1: TBA
+- Lecture 2: TBA
+
+
+** Tutorial
+
++ Luca Di Gaspero, University of Udine, Italy
+
++ Paola Festa, University of Naples ?Federico II?, Italy
+?Successful applications of GRASP and its hybrids for hard combinatorial
+problems?
+
+
+** Short Talk and Poster Presentation
+
+All participants may submit an abstract of their recent results, or works
+in progress, for presentation and having the opportunities for debate and
+interact with leaders in the field. Mini-Workshop Organizers and Scientific
+Committee will review the abstracts and will recommend for the format of
+the presentation (oral or poster). All abstracts will be published on the
+electronic hands-out book of the summer school.
+
+The Abstracts must be submitted by *April 15, 2018*.
+
+
+** Sponsor & Scholarships:
+
+Thanks to the sponsorship by EU/ME METAHEURISTICS working group (
+https://www.euro-online.org/websites/eume/), some scholarships for the best
+participants will be available.
+
+More sponsors and scholarships will be announced soon!!
+
+
+** Certificate:
+Participants will be delivered a certificate of attendance indicating the
+number of hours of lectures.
+
+
+** School Directors
+
++ Salvatore Greco, University of Catania, Italy
++ Panos Pardalos, University of Florida, USA
++ Mario Pavone, University of Catania, Italy
++ El-Ghazali Talbi, University of Lille 1, France
++ Daniele Vigo, University of Bologna, Italy
+
+
+** Oral & Poster Presentation Organizers
+
++ Luca Di Gaspero, Unviersity of Udine, Italy
++ Paola Festa, University of Naples "Federico II", Italy
+
+
+** Metaheuristics Competition Chair
+
++ Raffaele Cerulli, University of Salerno, Italy
+
+
+** More Information:
+
+https://www.ANTs-lab.it/mess2018/ <https://www.ants-lab.it/mess2018/>   --
+ mess.school@ANTs-lab.it
+Facebook Group: https://www.facebook.com/groups/MetaheuristicsSchool/
+Twitter: https://twitter.com/MESS_school
+
+--------------------------
+Zaineb Chelly Dagdia
+Marie Curie Research Fellow
+Department of Computer Science
+Aberystwyth University, UK
+
+--94eb2c19592a09882d05673863fd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">Call for Participation (a=
+pologies for multiple copies)</span><br style=3D"font-size:12.8px"><span st=
+yle=3D"font-size:12.8px">-- SCHOLARSHIPS &amp; TITLE OF THE LECTURES --</sp=
+an><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span styl=
+e=3D"font-size:12.8px">------------------------------</span><wbr style=3D"f=
+ont-size:12.8px"><span style=3D"font-size:12.8px">-------------------------=
+-----</span><wbr style=3D"font-size:12.8px"><span style=3D"font-size:12.8px=
+">-----------</span><br style=3D"font-size:12.8px"><span style=3D"font-size=
+:12.8px">MESS 2018 - Metaheuristics Summer School</span><br style=3D"font-s=
+ize:12.8px"><span style=3D"font-size:12.8px">- from Design to Implementatio=
+n -</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">2=
+1-25 July 2018, Taormina, Italy</span><br style=3D"font-size:12.8px"><br st=
+yle=3D"font-size:12.8px"><a href=3D"https://www.ants-lab.it/mess2018/" rel=
+=3D"noreferrer" target=3D"_blank" style=3D"font-size:12.8px">https://www.AN=
+Ts-lab.it/mess20<wbr>18/</a><br style=3D"font-size:12.8px"><span style=3D"f=
+ont-size:12.8px">mess.school@ANTs-lab.it</span><br style=3D"font-size:12.8p=
+x"><span style=3D"font-size:12.8px">------------------------------</span><w=
+br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">------------=
+------------------</span><wbr style=3D"font-size:12.8px"><span style=3D"fon=
+t-size:12.8px">-----------</span><br style=3D"font-size:12.8px"><br style=
+=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-si=
+ze:12.8px">** APPLICATION DEADLINE: 15th April 2018 **</span><br style=3D"f=
+ont-size:12.8px"><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8=
+px"><span style=3D"font-size:12.8px">MESS 2018 is aimed at qualified and st=
+rongly motivated MSc and PhD students; post-docs; young researchers, and bo=
+th academic and industrial professionals to provide an overview on the seve=
+ral metaheuristics techniques, and an in-depth analysis of the state-of-the=
+-art. As first edition, MESS 2018 wants to analyze all metaheuristics from =
+its designing to its implementation. In particular, in MESS 2018 will be an=
+alyzed modern heuristic methods for search and optimization problems, as we=
+ll as the classical exact optimization methods, seen also in the metaheuris=
+tics context.</span><br style=3D"font-size:12.8px"><br style=3D"font-size:1=
+2.8px"><span style=3D"font-size:12.8px">All participants will have plenty o=
+f opportunities for debate and work with leaders in the field, benefiting f=
+rom direct interaction and discussions in a stimulating environment. They w=
+ill also have the possibility to present their recently results and/or thei=
+r working in progress through oral or poster presentations, and interact wi=
+th their scientific peers, in a friendly and constructive environment.</spa=
+n><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><br style=
+=3D"font-size:12.8px"><span style=3D"font-size:12.8px">** Confirmed Speaker=
+s</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span=
+ style=3D"font-size:12.8px">+ Christian Blum, IIIA-CSIC, Barcelona, Spain</=
+span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lect=
+ure 1: Construct, Merge, Solve &amp; Adapt: A Recent Hybrid Metaheuristic</=
+span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lect=
+ure 2: Swarm Intelligence in Combinatorial Optimization</span><br style=3D"=
+font-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:1=
+2.8px">+ Juergen Branke, Warwick Business School, UK</span><br style=3D"fon=
+t-size:12.8px"><span style=3D"font-size:12.8px">- Lecture 1: Simulation-bas=
+ed optimisation</span><br style=3D"font-size:12.8px"><span style=3D"font-si=
+ze:12.8px">- Lecture 2: Multi-objective optimisation</span><br style=3D"fon=
+t-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">+ Salvatore Greco, University of Catania, Italy &amp; University of Por=
+tsmouth, UK</span><br style=3D"font-size:12.8px"><span style=3D"font-size:1=
+2.8px">- Lecture 1: Basic Concepts of Multiple Criteria Decision Aiding/Mak=
+ing</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">-=
+ Lecture 2:Using Preference Elicitation in Evolutionary Multiobjective Opti=
+mization</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px=
+"><span style=3D"font-size:12.8px">+ Yaochu Jin, University of Surrey, UK</=
+span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lect=
+ure 1:Data-driven surrogate-assisted evolutionary multi-objective optimizat=
+ion</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">-=
+ Lecture 2: Multi-objective machine learning</span><br style=3D"font-size:1=
+2.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ Gu=
+nther Raidl, Technische Universitat Wien, Austria</span><br style=3D"font-s=
+ize:12.8px"><span style=3D"font-size:12.8px">- Lecture 1: TBA</span><br sty=
+le=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lecture 2: TBA</=
+span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span st=
+yle=3D"font-size:12.8px">+ Helena Ramalhinho Lourenco, Universitat Pompeu F=
+abra, Spain</span><br style=3D"font-size:12.8px"><span style=3D"font-size:1=
+2.8px">- Lecture 1: Extensions of Iterated Local Search</span><br style=3D"=
+font-size:12.8px"><span style=3D"font-size:12.8px">- Lecture 2: Issues and =
+examples of applying metaheuristics in business</span><br style=3D"font-siz=
+e:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+=
+ Mauricio Resende, AMAZON, USA</span><br style=3D"font-size:12.8px"><span s=
+tyle=3D"font-size:12.8px">- Lecture 1: TBA</span><br style=3D"font-size:12.=
+8px"><span style=3D"font-size:12.8px">- Lecture 2: TBA</span><br style=3D"f=
+ont-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12=
+.8px">+ Celso Ribeiro, Universidade Federal Fluminense, Brazil</span><br st=
+yle=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lecture 1: Opti=
+mization by GRASP ? Part I</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">- Lecture 2: Optimization by GRASP ? Part II</span><b=
+r style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"=
+font-size:12.8px">+ Andrea Schaerf, University of Udine, Italy</span><br st=
+yle=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lecture 1: Simu=
+lated Annealing and Friends: Introduction to Randomized Local Search Method=
+s</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- L=
+ecture 2: Simulated Annealing, we need to talk: Critical Analysis of Real-W=
+orld Applications of Randomized Local Search Methods to Scheduling and Time=
+tabling Problems</span><br style=3D"font-size:12.8px"><br style=3D"font-siz=
+e:12.8px"><span style=3D"font-size:12.8px">+ Fabio Schoen, Unviersity of Fl=
+orence, Italy</span><br style=3D"font-size:12.8px"><span style=3D"font-size=
+:12.8px">- Lecture 1: Large scale global optimization methods: basics</span=
+><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lecture =
+2: Large scale global optimization methods: examples of applications</span>=
+<br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">+ El-Ghazali Talbi, University of Lille 1, France</sp=
+an><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">- Lectur=
+e 1: TBA</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8=
+px">- Lecture 2: TBA</span><br style=3D"font-size:12.8px"><br style=3D"font=
+-size:12.8px"><span style=3D"font-size:12.8px">+ Daniele Vigo, University o=
+f Bologna, Italy</span><br style=3D"font-size:12.8px"><span style=3D"font-s=
+ize:12.8px">- Lecture 1: TBA</span><br style=3D"font-size:12.8px"><span sty=
+le=3D"font-size:12.8px">- Lecture 2: TBA</span><br style=3D"font-size:12.8p=
+x"><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span styl=
+e=3D"font-size:12.8px">** Tutorial</span><br style=3D"font-size:12.8px"><br=
+ style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ Luca Di Gasp=
+ero, University of Udine, Italy</span><br style=3D"font-size:12.8px"><br st=
+yle=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ Paola Festa, Un=
+iversity of Naples ?Federico II?, Italy</span><br style=3D"font-size:12.8px=
+"><span style=3D"font-size:12.8px">?Successful applications of GRASP and it=
+s hybrids for hard combinatorial problems?</span><br style=3D"font-size:12.=
+8px"><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span st=
+yle=3D"font-size:12.8px">** Short Talk and Poster Presentation</span><br st=
+yle=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font=
+-size:12.8px">All participants may submit an abstract of their recent resul=
+ts, or works in progress, for presentation and having the opportunities for=
+ debate and interact with leaders in the field. Mini-Workshop Organizers an=
+d Scientific Committee will review the abstracts and will recommend for the=
+ format of the presentation (oral or poster). All abstracts will be publish=
+ed on the electronic hands-out book of the summer school.</span><br style=
+=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-si=
+ze:12.8px">The Abstracts must be submitted by *April 15, 2018*.</span><br s=
+tyle=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><br style=3D"font-=
+size:12.8px"><span style=3D"font-size:12.8px">** Sponsor &amp; Scholarships=
+:</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span=
+ style=3D"font-size:12.8px">Thanks to the sponsorship by EU/ME METAHEURISTI=
+CS working group (</span><a href=3D"https://www.euro-online.org/websites/eu=
+me/" rel=3D"noreferrer" target=3D"_blank" style=3D"font-size:12.8px">https:=
+//www.euro-online.org/w<wbr>ebsites/eume/</a><span style=3D"font-size:12.8p=
+x">), some scholarships for the best participants will be available.</span>=
+<br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">More sponsors and scholarships will be announced soon=
+!!</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><br =
+style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">** Certificate:=
+</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">Part=
+icipants will be delivered a certificate of attendance indicating the numbe=
+r of hours of lectures.</span><br style=3D"font-size:12.8px"><br style=3D"f=
+ont-size:12.8px"><br style=3D"font-size:12.8px"><span style=3D"font-size:12=
+.8px">** School Directors</span><br style=3D"font-size:12.8px"><br style=3D=
+"font-size:12.8px"><span style=3D"font-size:12.8px">+ Salvatore Greco, Univ=
+ersity of Catania, Italy</span><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">+ Panos Pardalos, University of Florida, USA</span><b=
+r style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ Mario Pavon=
+e, University of Catania, Italy</span><br style=3D"font-size:12.8px"><span =
+style=3D"font-size:12.8px">+ El-Ghazali Talbi, University of Lille 1, Franc=
+e</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ D=
+aniele Vigo, University of Bologna, Italy</span><br style=3D"font-size:12.8=
+px"><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span sty=
+le=3D"font-size:12.8px">** Oral &amp; Poster Presentation Organizers</span>=
+<br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span style=
+=3D"font-size:12.8px">+ Luca Di Gaspero, Unviersity of Udine, Italy</span><=
+br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">+ Paola Fest=
+a, University of Naples &quot;Federico II&quot;, Italy</span><br style=3D"f=
+ont-size:12.8px"><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8=
+px"><span style=3D"font-size:12.8px">** Metaheuristics Competition Chair</s=
+pan><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><span sty=
+le=3D"font-size:12.8px">+ Raffaele Cerulli, University of Salerno, Italy</s=
+pan><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><br style=
+=3D"font-size:12.8px"><span style=3D"font-size:12.8px">** More Information:=
+</span><br style=3D"font-size:12.8px"><br style=3D"font-size:12.8px"><a hre=
+f=3D"https://www.ants-lab.it/mess2018/" rel=3D"noreferrer" target=3D"_blank=
+" style=3D"font-size:12.8px">https://www.ANTs-lab.it/mess20<wbr>18/</a><spa=
+n style=3D"font-size:12.8px">=C2=A0 =C2=A0--=C2=A0 =C2=A0mess.school@ANTs-l=
+ab.it</span><br style=3D"font-size:12.8px"><span style=3D"font-size:12.8px"=
+>Facebook Group:=C2=A0</span><a href=3D"https://www.facebook.com/groups/Met=
+aheuristicsSchool/" rel=3D"noreferrer" target=3D"_blank" style=3D"font-size=
+:12.8px">https://www.facebook.com/group<wbr>s/MetaheuristicsSchool/</a><br =
+style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">Twitter:=C2=A0<=
+/span><a href=3D"https://twitter.com/MESS_school" rel=3D"noreferrer" target=
+=3D"_blank" style=3D"font-size:12.8px">https://twitter.com/MESS_schoo<wbr>l=
+</a><br><div><br></div><div>--------------------------</div><div>Zaineb Che=
+lly Dagdia</div><div>Marie Curie Research Fellow</div><div>Department of Co=
+mputer Science</div><div>Aberystwyth University, UK</div><div><br></div><di=
+v><br></div><div><br></div></div>
+
+--94eb2c19592a09882d05673863fd--

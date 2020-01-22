@@ -1,0 +1,433 @@
+Return-Path: <singh.d.kamal@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id CAD01190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 11 Jul 2016 00:22:11 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id B618026A4AA
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 11 Jul 2016 00:22:11 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id A7262B4B131
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 11 Jul 2016 00:22:11 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.111
+X-Spam-Level: **
+X-Spam-Status: No, score=2.111 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( -2.5854 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2MsslxPsXbcH for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 11 Jul 2016 00:22:08 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qk0-x243.google.com (mail-qk0-x243.google.com [IPv6:2607:f8b0:400d:c09::243])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 7596863F80D
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 11 Jul 2016 00:22:08 +0200 (CEST)
+Received: by mail-qk0-x243.google.com with SMTP id r68so14368185qka.3
+        for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Jul 2016 15:22:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=IaK6uGyYF2IvXEi7bN0g+e7HiD2TcnMdYoswxy8oltM=;
+        b=bZSjv0L3hQDpUdErCFBJCJXORtIF+g27D9kqXAtb18DB+SjYWAiHXCViG0A9NCRCAI
+         FNSRxx6iSNhnsuX9QRfy5Qpf+0Ze4I6LojrwWkwS1ivQEhAlOJmM8PPU80kDLHON+T/w
+         4DcFNXM4AUjzzATJgq/2IbwNwhDQ/0qQFGYCwMiA511GHSgKggjdqBTxmFspzF1Gshlb
+         ZuFR83iU6UrrMuf71FgL+JaQmIeY9C7+RWTUeIroEeJLWyQEwPEeB0RcmSuOI79XbTHw
+         ssjeFaWGiinBDouI4Mxwsqchb6BJKGZSqhfazNZE+NhLFCW9l3p+2J48ObYuIrmLFYDU
+         KiLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=IaK6uGyYF2IvXEi7bN0g+e7HiD2TcnMdYoswxy8oltM=;
+        b=ewk1cZVkFixWxQZIOtLj6WsXUb1+3WufRBB3p+Br2EqxrEg6bPMAml34v4ueOOHNdh
+         nR87fEWF4jv2WdHciHLYpRGvMKCA/qp+UoourzGP81AJJTJAkgG99hQQ7TStWcsljimg
+         02wzZy4En31hQ63wJfxh4vh+15dGzzP9r/2EUIGFDYmmZ5smJgeWvxCD/eJRfqZGGaVt
+         q2Fe2/rxSQbHuBntrdNgGlWghIgIVTNv6aeNNzY9ZeRI5tw2pLiBUrjLlytlSWfB+BnT
+         1kUwb4+ViL03x291bb9wOLgShqytNq6YbayTYFPbJpCSu1Q+vB06J4jDv7cr9wcq2F6V
+         syPQ==
+X-Gm-Message-State: ALyK8tKMKKwJYvpwqVHz2sMbf329OP1zm/9mw/ldA2IfrWoLWrHCLi7NGRvi6XXvehAyssSrxMmG5g575Kb5vQ==
+X-Received: by 10.233.239.87 with SMTP id d84mr22518435qkg.68.1468189327047;
+ Sun, 10 Jul 2016 15:22:07 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.55.215.146 with HTTP; Sun, 10 Jul 2016 15:22:06 -0700 (PDT)
+From: Kamal Singh <singh.d.kamal@gmail.com>
+Date: Mon, 11 Jul 2016 00:22:06 +0200
+Message-ID: <CAHT1pDM_JSWrx61fnc0HS3vTV2iQzmz6y-hA3f=7hjamxowD4g@mail.gmail.com>
+To: tccc-announce@comsoc.org, rsd-forum@cines.fr, bull-i3@irit.fr, 
+	liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=94eb2c0b821a4d420005374f7746
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP: IWSSS'16, 28th November, Hiroshima, Japan - The
+ First International Workshop on Smart Sensing Systems
+
+--94eb2c0b821a4d420005374f7746
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+*Our apologies if you receive multiple copies of this CFP*
+
+The First International Workshop on Smart Sensing Systems (IWSSS '16)
+Hiroshima, Japan
+November 28, 2016
+
+in conjunction with MobiQuitous 2016  In cooperation with Smart Sensing
+Systems Group, the Society of Instrument and Control System (SICE)
+
+http://rcl.it.aoyama.ac.jp/IWSSS2016/
+
+
+CALL FOR PAPERS
+
+During the past years, sensing technologies have become an important field
+for computer science and technologies as seen in the trend of cyber
+physical system (CPS), machine-to-machine (M2M) systems, and the Internet
+of Things (IoT). Researchers in sensing technologies provide technological
+means to capture environmental, technical, physiological and other data.
+They provide the raw material on which applications and services will be
+built. Sensor data are the basis for the smart world. Due to various
+characteristics of sensor data and their corresponding processing
+requirements, such as multi-source, heterogeneous, real-time, voluminous,
+continuous, streaming, ever-expanding and spatio-temporal, many traditional
+data processing and integration approaches begin to show their limitations,
+particularly when dealing with situations like sensor data and its
+application deluge.
+
+Streaming data analysis, knowledge extraction (data mining, machine
+learning) and complex event processing are required to treat and
+pre-process these data, to detect correlations in data and to discover
+patterns or abnormalities in dynamically evolving situations. Data files as
+well as data streams need to be treated, variety of representation are used
+depending on the Web-based systems and the means for handling, storing and
+accessing this information to make valuable decisions need to be studied.
+Semantic web technologies have provided particle means to this aim. Social
+applications, and ubiquitous and pervasive computing are examples of areas
+making use of semantised sensed or processed data. Semantisation, privacy,
+trust, context awareness, community management, and data visualization are
+the core issues related to this area. We aim to find bring together topics
+from several layers of data processing; from devices to services to enable
+novel ideas and collaboration combining the information from multiple
+sources.
+
+The workshop intends to provide a forum for exchange of experiences among
+researchers from industry and academia actively involved in research,
+development and evaluation of new concepts, theoretical methods and
+experimental characterization and for debating different innovative
+solutions. Practitioners involved in applications domains are also welcome
+to present their tasks and to participate to these discussions. The
+workshop will feature a selective technical program consisting of regular
+research papers as well as position talks. This workshop is continuation of
+International Workshop of Web Intelligence and Smart Sensing Systems
+(IWWISS). The name of the workshop is changed to focus more on system
+aspects.  We invite authors to submit original research as well as review
+articles, posters and demos to present latest progresses, determine future
+goals, and show techniques for future development in the field.
+
+
+TOPICS OF THE WORKSHOP
+
+IWSSS '16  is intended to foster the dissemination of research in at least
+one of the four areas below. Especially interesting will be papers that
+study the aspects of multidisciplinary topics.
+
+*Web intelligence
+
+Architectures for sensor data management in smart cities
+Semantic reasoning in sensor networks
+Semantic sensor context management and provenance
+Ontology Based Sensory Semantic Knowledge
+Semantic sensor networks (SSN), semantic sensor web
+Semantic Modeling and Annotations of Sensor Data
+Mash-up technologies for the Semantic Sensor Web
+Crowd-sourcing
+Collective Intelligence
+Natural Interfaces
+Ambient Intelligence
+Social Computing
+Situation-Awareness/Context Streaming
+Sensor Data Analytics
+Knowledge discovery
+Machine learning
+Complex Event Processing (CEP)
+Agent-based systems, Services, Security
+
+ *Smart Sensing
+
+Sensing Devices
+Context-aware sensing
+Compressive Sensing
+Communication Protocols for Smart Sensing
+Dependability of Smart Sensing Systems
+Virtualization of Sensing Systems
+Human Probes
+Middleware for Smart Sensing
+Cloud computing for sensor data processing
+Sensor Data Fusion
+Sensor Device/Data Interoperability
+
+*Signal Processing for Sensor Data
+
+Participatory Sensing
+Urban Sensing
+Large Scale Data Collection
+Prototypes/Testbeds/
+Field Studies of Smart Sensing Systems
+Performance Evaluations of Smart Sensing Systems, etc
+Utilization of Drones/UAVs for Sensing
+
+*Applications
+
+Combining smart sensing and web intelligence techniques
+Smart sensing applications for smart cities
+Smart sensing for social infrastructure including bridges and roads
+Smart sensor networks for water management
+Smart sensor networks and applications in transportation
+Big data for smart sensing applications
+
+
+PAPER SUBMISSION GUIDELINES
+
+Submission Instruction and Review Process: We accept regular 6 pages or
+short 2 pages original research articles.
+
+Submissions should be sent through Confy conference system from the
+following link:
+
+http://confy.eai.eu/#conftrack-overview/conf/52262/cid/52262
+
+All paper submissions will be reviewed by at least three program committee
+members. Papers must be in PDF format and must be submitted via the
+submission site. All submissions must describe original research, not
+published or currently under review for another workshop, conference, or
+journal.
+
+Please prepare your paper using the same format as the MobiQuitous main
+conference. For details, please visit:
+
+http://mobiquitous.org/2016/show/authors-kit
+
+Accepted 6-pages workshop papers will be published in ACM Digital Library.
+Two-pages short papers will appear on the workshop Web.
+
+ORGANIZING COMMITTEE
+
+Program Chairs
+Susanna Pirttikangas, University of Oulu, Finland
+Kamal Singh, Telecom Saint-=C3=89tienne / University of Jean Monnet, France
+Yoshito Tobe, Aoyama Gakuin University, Japan
+
+Technical Advisors
+Michael Beigl, Karlsruhe Institute of Technology, Germany
+Pierre Maret, LHC Universit=C3=A9 de Saint-=C3=89tienne, France
+Satoshi Honda, Keio University, Japan
+
+Technical Program Committee
+Rajendra Akerkar, Western Norway Research Institute, Norway
+Bert-Jan Van Beijnum, University of Twente, Netherlands
+Schahram Dustdar, TU Wien, Austria
+Tapio Frantti, University of Oulu, Finland
+Hiroki Ishizuka, KDDI Labs, Japan
+Masayuki Iwai, Tokyo Denki University, Japan
+Takeshi Iwamoto, Toyama Prefectural University, Japan
+Jean-Paul Jamont, LCIS, Universit=C3=A9 de Grenoble, France
+Jason Jung, Chung-Ang University, Korea
+Mohan Kankanhalli, National University of Singapore, Singapore
+Yuusuke Kawakita, the University of Electro-Communications, Japan
+Hideyuki Kawashima, University of Tsukuba, Japan
+Narito Kurata, Tsukuba University of Technology, Japan
+Guillaume Lopez, Aoyama Gakuin University, Japan
+Simon Mayer, ETH Zurich, Switzerland
+Lionel M=C3=A9dini, LIRIS, France
+Manfred Meyer, Westphalian University of Applied Sciences, Bocholt, Germany
+Yasuaki Monnai, Keio University, Japan
+Michael Mrissa, Universit=C3=A9 de Lyon, CNRS, France
+Mandar Mutalikdesai, IBM India, India
+Martin Alexander Neumann, Karlsruhe Institute of Technology, Germany
+Tadashi Okoshi, Keio University, Japan
+Osamu Saito, Ibaraki University, Japan
+Makoto Suzuki, University of Tokyo, Japan
+Till Riedel, TecO, Karlsruhe Institute of Technology (KIT), Germany
+Xavier Serpaggi, =C3=89cole des Mines de Saint-=C3=89tienne, France
+Stephan Sigg, Aalto University, Finland
+Junji Takahashi, Aoyama Gakuin University, Japan
+Niwat Thepvilojanapong, Mie University, Japan
+Takuro Yonezawa, Keio University, Japan
+Xiaolong Zheng, Tsinghua University, China
+
+IMPORTANT DATES
+*Regular paper submission deadline: August 9, 2016
+*Short paper submission deadline: August 23, 2016
+*Notification of acceptance: September 14, 2016
+*Camera-ready submission: September 28, 2016
+
+--94eb2c0b821a4d420005374f7746
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">*Our apologies if you receive multiple copies of this CFP*=
+<br><br>The First International Workshop on Smart Sensing Systems (IWSSS &#=
+39;16)<br>Hiroshima, Japan
+<br>November 28, 2016<br><br>in conjunction with MobiQuitous 2016=C2=A0
+In cooperation with Smart Sensing Systems Group, the Society of Instrument =
+and Control System (SICE)=C2=A0=C2=A0
+<br><br><a href=3D"http://rcl.it.aoyama.ac.jp/IWSSS2016/" target=3D"_blank"=
+>http://rcl.it.aoyama.ac.jp/IWSSS2016/</a><br><br><br>CALL FOR PAPERS
+<br><br>During the past years, sensing technologies have become an=20
+important field for computer science and technologies as seen in the=20
+trend of cyber physical system (CPS), machine-to-machine (M2M) systems,=20
+and the Internet of Things (IoT). Researchers in sensing technologies=20
+provide technological means to capture environmental, technical,=20
+physiological and other data. They provide the raw material on which=20
+applications and services will be built. Sensor data are the basis for=20
+the smart world. Due to various characteristics of sensor data and their
+ corresponding processing requirements, such as multi-source,=20
+heterogeneous, real-time, voluminous, continuous, streaming,=20
+ever-expanding and spatio-temporal, many traditional data processing and
+ integration approaches begin to show their limitations, particularly=20
+when dealing with situations like sensor data and its application=20
+deluge.
+<br><br>Streaming data analysis, knowledge extraction (data mining, machine=
+=20
+learning) and complex event processing are required to treat and=20
+pre-process these data, to detect correlations in data and to discover=20
+patterns or abnormalities in dynamically evolving situations. Data files
+ as well as data streams need to be treated, variety of representation=20
+are used depending on the Web-based systems and the means for handling,=20
+storing and accessing this information to make valuable decisions need=20
+to be studied.
+Semantic web technologies have provided particle means to this aim.=20
+Social applications, and ubiquitous and pervasive computing are examples
+ of areas making use of semantised sensed or processed data.=20
+Semantisation, privacy, trust, context awareness, community management,=20
+and data visualization are the core issues related to this area. We aim=20
+to find bring together topics from several layers of data processing;=20
+from devices to services to enable novel ideas and collaboration=20
+combining the information from multiple sources.
+<br><br>The workshop intends to provide a forum for exchange of experiences=
+=20
+among researchers from industry and academia actively involved in=20
+research, development and evaluation of new concepts, theoretical=20
+methods and experimental characterization and for debating different=20
+innovative solutions. Practitioners involved in applications domains are
+ also welcome to present their tasks and to participate to these=20
+discussions. The workshop will feature a selective technical program=20
+consisting of regular research papers as well as position talks.
+This workshop is continuation of International Workshop of Web=20
+Intelligence and Smart Sensing Systems (IWWISS). The name of the=20
+workshop is changed to focus more on system aspects.=C2=A0
+We invite authors to submit original research as well as review=20
+articles, posters and demos to present latest progresses, determine=20
+future goals, and show techniques for future development in the field.
+<br><br><br>TOPICS OF THE WORKSHOP=C2=A0
+<br><br>IWSSS &#39;16 =C2=A0is intended to foster the dissemination of rese=
+arch=20
+in at least one of the four areas below. Especially interesting will be=20
+papers that study the aspects of multidisciplinary topics.=C2=A0
+<br><br>*Web intelligence
+<br><br>Architectures for sensor data management in smart cities <br>Semant=
+ic reasoning in sensor networks<br>Semantic sensor context management and p=
+rovenance <br>Ontology Based Sensory Semantic Knowledge
+<br>Semantic sensor networks (SSN), semantic sensor web <br>Semantic Modeli=
+ng and Annotations of Sensor Data <br>Mash-up technologies for the Semantic=
+ Sensor Web <br>Crowd-sourcing<br>Collective Intelligence<br>Natural Interf=
+aces<br>Ambient Intelligence<br>Social Computing <br>Situation-Awareness/Co=
+ntext Streaming <br>Sensor Data Analytics <br>Knowledge discovery
+<br>Machine learning=C2=A0
+<br>Complex Event Processing (CEP) <br>Agent-based systems, Services, Secur=
+ity<br><br>=C2=A0*Smart Sensing
+<br><br>Sensing Devices<br>Context-aware sensing<br>Compressive Sensing
+<br>Communication Protocols for Smart Sensing
+<br>Dependability of Smart Sensing Systems <br>Virtualization of Sensing Sy=
+stems
+<br>Human Probes
+<br>Middleware for Smart Sensing
+<br>Cloud computing for sensor data processing
+<br>Sensor Data Fusion
+<br>Sensor Device/Data Interoperability
+<br><br>*Signal Processing for Sensor Data
+<br><br>Participatory Sensing
+<br>Urban Sensing
+<br>Large Scale Data Collection
+<br>Prototypes/Testbeds/<br>Field Studies of Smart Sensing Systems
+<br>Performance Evaluations of Smart Sensing Systems, etc<br>Utilization of=
+ Drones/UAVs for Sensing
+<br><br>*Applications
+<br><br>Combining smart sensing and web intelligence techniques <br>Smart s=
+ensing applications for smart cities=C2=A0
+<br>Smart sensing for social infrastructure including bridges and roads
+<br>Smart sensor networks for water management
+<br>Smart sensor networks and applications in transportation <br>Big data f=
+or smart sensing applications<br><br><br>PAPER SUBMISSION GUIDELINES
+<br><br>Submission Instruction and Review Process:
+We accept regular 6 pages or short 2 pages original research articles. <br>=
+<br>Submissions should be sent through Confy conference system from the fol=
+lowing link:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 <br><br><a href=3D"http://confy.eai.eu/#conftrack-overview/conf/52262/c=
+id/52262" target=3D"_blank">http://confy.eai.eu/#conftrack-overview/conf/52=
+262/cid/52262</a>
+<br><br>All paper submissions will be reviewed by at least three program
+ committee members. Papers must be in PDF format and must be submitted=20
+via the submission site. All submissions must describe original=20
+research, not published or currently under review for another workshop,=20
+conference, or journal.<br><br>Please prepare your paper using the same for=
+mat as the MobiQuitous main conference. For details, please visit:<br><br><=
+a href=3D"http://mobiquitous.org/2016/show/authors-kit" target=3D"_blank">h=
+ttp://mobiquitous.org/2016/show/authors-kit</a>=C2=A0
+<br><br>Accepted 6-pages workshop papers will be published in ACM=20
+Digital Library. Two-pages short papers will appear on the workshop Web.
+<br><br>ORGANIZING COMMITTEE<br><br>Program Chairs<br>
+Susanna Pirttikangas, University of Oulu, Finland<br>
+Kamal Singh, Telecom Saint-=C3=89tienne / University of Jean Monnet, France=
+<br>
+Yoshito Tobe, Aoyama Gakuin University, Japan<br>
+<br>
+Technical Advisors<br>
+Michael Beigl, Karlsruhe Institute of Technology, Germany<br>
+Pierre Maret, LHC Universit=C3=A9 de Saint-=C3=89tienne, France<br>
+Satoshi Honda, Keio University, Japan<br>
+<br>
+Technical Program Committee<br>
+Rajendra Akerkar, Western Norway Research Institute, Norway<br>
+Bert-Jan Van Beijnum, University of Twente, Netherlands<br>
+Schahram Dustdar, TU Wien, Austria<br>
+Tapio Frantti, University of Oulu, Finland<br>
+Hiroki Ishizuka, KDDI Labs, Japan<br>
+Masayuki Iwai, Tokyo Denki University, Japan<br>
+Takeshi Iwamoto, Toyama Prefectural University, Japan<br>
+Jean-Paul Jamont, LCIS, Universit=C3=A9 de Grenoble, France<br>
+Jason Jung, Chung-Ang University, Korea<br>
+Mohan Kankanhalli, National University of Singapore, Singapore<br>
+Yuusuke Kawakita, the University of Electro-Communications, Japan<br>
+Hideyuki Kawashima, University of Tsukuba, Japan<br>
+Narito Kurata, Tsukuba University of Technology, Japan<br>
+Guillaume Lopez, Aoyama Gakuin University, Japan<br>
+Simon Mayer, ETH Zurich, Switzerland<br>
+Lionel M=C3=A9dini, LIRIS, France<br>
+Manfred Meyer, Westphalian University of Applied Sciences, Bocholt, Germany=
+<br>
+Yasuaki Monnai, Keio University, Japan<br>
+Michael Mrissa, Universit=C3=A9 de Lyon, CNRS, France<br>
+Mandar Mutalikdesai, IBM India, India<br>
+Martin Alexander Neumann, Karlsruhe Institute of Technology, Germany<br>
+Tadashi Okoshi, Keio University, Japan<br>
+Osamu Saito, Ibaraki University, Japan<br>
+Makoto Suzuki, University of Tokyo, Japan<br>
+Till Riedel, TecO, Karlsruhe Institute of Technology (KIT), Germany<br>
+Xavier Serpaggi, =C3=89cole des Mines de Saint-=C3=89tienne, France<br>
+Stephan Sigg, Aalto University, Finland<br>Junji Takahashi, Aoyama Gakuin U=
+niversity, Japan<br>
+Niwat Thepvilojanapong, Mie University, Japan<br>
+Takuro Yonezawa, Keio University, Japan<br>
+Xiaolong Zheng, Tsinghua University, China<br><br>IMPORTANT DATES
+<br>*Regular paper submission deadline: August 9, 2016<br>*Short paper subm=
+ission deadline: August 23, 2016<br>*Notification of acceptance: September =
+14, 2016<br>*Camera-ready submission: September 28, 2016</div>
+
+--94eb2c0b821a4d420005374f7746--

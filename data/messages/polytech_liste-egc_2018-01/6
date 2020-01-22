@@ -1,0 +1,501 @@
+Return-Path: <alammehw@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D2E24229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 Jan 2018 15:36:17 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id D0DD76D222E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 Jan 2018 15:36:17 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id C615B41E11A6
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 Jan 2018 15:36:17 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 6.161
+X-Spam-Level: ******
+X-Spam-Status: Yes, score=6.161 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	MY_DSL=0.85, OPT_OUT=1, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, UN_STOCK3=4, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.2477 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id h-aoQEVqQONC for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  4 Jan 2018 15:36:16 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x242.google.com (mail-wm0-x242.google.com [IPv6:2a00:1450:400c:c09::242])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id F01D2440C00E
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 Jan 2018 15:36:15 +0100 (CET)
+Received: by mail-wm0-x242.google.com with SMTP id n138so3864887wmg.2
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 04 Jan 2018 06:36:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:content-transfer-encoding:subject:date:message-id:cc:to
+         :mime-version;
+        bh=E0X+lIDmMN9OCeUNgUa6pNI1c+zg+WQ/slLLD4p3jIw=;
+        b=tbE66+7a3zn2ef+PQEraN3pu5l6CcGscdsmr9jPYmxQ38C4NpH/DZt1SdybhVb/vH+
+         KnI14AHlyj2ZXnLe9Z8/v+YGlAPZPzw/p66lsh1a5Sf8A4KJADQjvsIBvjEBNAStx7KX
+         AoKSsU/9aBIB3TaoNZAOZC+F6m/YnGaw1csI+6VAmJzCV7r0SUNMFFz5fQZNfOMWVoXK
+         FrrJumq9DpEOCSLn5HPV9XNOyhgZRpm1M35GHPyAE+NYowfRVwLY/oUf9lGYW0a0ALdX
+         AvaoJ8nFRCI+0beyeuYJdthp4KnuIINh+1FxbuC/8Alet8kXxsFCwx+DKS6OrqyljaEB
+         du9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:content-transfer-encoding:subject:date
+         :message-id:cc:to:mime-version;
+        bh=E0X+lIDmMN9OCeUNgUa6pNI1c+zg+WQ/slLLD4p3jIw=;
+        b=bZHiCT9AurH+7qz/XKSgXAs4pkhWbHOzHkvlZw5Dh7XoADLL1TAbRaazGtfs6aL3kj
+         PI4XYhvk+YuVOt+iOLom5ABJCp1RUorr4yWC51KdgR/2vUb3AIZKNQeIuK9bQJ17b/B1
+         B4GV3PRre7EmkApRL+iVBhxh4wFblKFAn4Inm4pRGImxiyHq0/eMCfDgWLzgL4RbysPE
+         cB+X2xBJrqnIdtcrMnJILZA25icm6rd/IeB0F2YqENlsJdSvTzROxww79OUTTjKaHveF
+         wAQbvEXV9aHzdT/8SR9XjxBORfBLr8r43BxmL7CfkAGWqpIEnY6ZvzWzNDKpxlrifGQM
+         ZnWw==
+X-Gm-Message-State: AKGB3mKoEbq9WL8W0zG15BU+pwH/pdWm4vk4u3GR7IVeNOHls1JSyAqU
+	IWHDBupQP1dvsNtnwKfUOGA=
+X-Google-Smtp-Source: ACJfBotUDycHF6q6vDsVfn0v6HE/nKvLAJBEr60tDAANgRgojn+/c4aqvyZYS7OfZEr0wA9jIeLrVw==
+X-Received: by 10.28.196.194 with SMTP id u185mr4624385wmf.133.1515076575137;
+        Thu, 04 Jan 2018 06:36:15 -0800 (PST)
+Received: from mehwishs-air.station (net-37-182-44-121.cust.vodafonedsl.it. [37.182.44.121])
+        by smtp.gmail.com with ESMTPSA id o98sm11832861wrb.40.2018.01.04.06.36.11
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 04 Jan 2018 06:36:13 -0800 (PST)
+From: Mehwish Alam <alammehw@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 4 Jan 2018 15:36:10 +0100
+Message-Id: <F0F44530-372E-4EBD-B5DE-35CE9E732CEB@gmail.com>
+Cc: Mehwish Alam <alammehw@gmail.com>
+To: corpora@uib.no,
+ semantic-web@w3.org,
+ dl@dl.kr.org,
+ bull-i3@irit.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ dbpedia-discussion@lists.sourceforge.net,
+ info-ic@listes.irisa.fr,
+ ln@cines.fr,
+ web.semantique@inria.fr
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [SPAM] ESWC 2018: Reminder for the abstract submission
+ deadline tomorrow
+
+[Apologies for multiple postings.]
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * =
+* * * * * * * * * *
+CALL FOR PAPERS
+
+This is a joint call for the Research, In-Use, and Resources tracks.
+
+The Fifteenth Extended Semantic Web Conference (ESWC 2018)
+June 3rd - June 7th, 2018, Heraklion, Crete, Greece.
+
+Web Page: https://2018.eswc-conferences.org =20
+Twitter: @eswc_conf=20
+Facebook: https://www.facebook.com/ESWCCONF =20
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * =
+* * * * * * * * * *
+
+Important Dates (Hawaii Time)
+
+Abstract submission:           Friday 5th January 2018
+Paper submission:              Friday 12th January 2018=20
+Opening of rebuttal period: Friday 16th February=20
+Closing of rebuttal period:   Wednesday 21st February
+Notification to authors:        Friday 2nd March
+Camera ready papers due: Friday 23rd March
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * =
+* * * * * * * * * *
+
+ESWC Conference:
+
+ESWC is one of the key academic conferences to present research results =
+and new developments in the area of the Semantic Web. For its 15th =
+edition, ESWC will be back in Heraklion (Crete, Greece) from Sunday 3rd =
+June to Thursday 7th June 2018. ESWC2018 features three main tracks =
+(Research, Resources, In-Use), introduces a novel fully open review =
+policy, as well as alternative publishing and decentralisation measures. =
+This is the first call for papers for each of the main tracks.
+
+General Chair: Aldo Gangemi
+
+* * * * * * * * * * * * * * * * * * * * * * * *
+Call for Research Track Papers
+* * * * * * * * * * * * * * * * * * * * * * * *
+
+Scope and Topics
+
+The goal of the Semantic Web is to create a network of data and =
+knowledge that interconnect across the Web, and where both content and =
+its meaning are manipulated by processes, services and applications. =
+This endeavour naturally draws from and impacts on many disciplines of =
+computing (and connected areas), related to data and information =
+management, knowledge engineering, machine intelligence, human knowledge =
+and languages, software services and applications. We are therefore =
+seeking contribution to research at the intersection of the Semantic Web =
+and these areas, as described in the 9 research tracks of the =
+conferences.
+
+In addition to the main focus on advances in Semantic Web research and =
+technologies, ESWC 2018 is looking to broaden the Semantic Web research =
+community=E2=80=99s understanding and focus on problems and areas that =
+directly impact the development of the Semantic Web. Thus, the 15th =
+edition of ESWC 2018 includes 2 additional research tracks: the =
+Benchmarking and Empirical Evaluations track, and the Semantic Web for =
+Science track.
+
+The aim of the  Benchmarking and Empirical Evaluations track is to =
+encourage the community to submit papers on results of empirical =
+evaluations of state-of-the-art Semantic Web methods; extensive =
+evaluation using existing benchmarks are expected. The papers of this =
+track should follow the scientific method and ensure reproducibility of =
+the reported results by using analytical modelling and statistical =
+methods. Submissions could report on the verification or refutation of =
+already published results, as well as the empirical comparison of =
+state-of-the-art methods.=20
+
+Moreover, in the Semantic Web for Science track, submissions presenting =
+domain specific problems that require the use of Semantic Web =
+technologies to be solved are expected. Biomedicine, pharmacogenomic, =
+sociology, scholarly, maritime, or journalism are examples of scientific =
+domains.  The introduction of this theme integrates well with and builds =
+upon tracks of Semantic Data Management and Machine Learning, and allows =
+for the submission of research papers where novel solutions for the =
+management and analytics of scientific data are required.
+
+Research Subtracks:
+
+- Vocabularies, Schemas, Ontologies. Chairs:  Sofia Pinto, Christoph =
+Lange
+- Reasoning. Chairs: Jeff Pan, Diego Calvanese=20
+- Linked Data. Chairs: Hala Skaf-Molli, Jorge Gracia
+- Social Web and Web Science. Chairs:  Stefan Dietze, Harald Sack
+- Semantic Data Management, Big data, Scalability. Chairs: Maribel =
+Acosta, Olaf Hartig=20
+- Natural Language Processing and Information Retrieval. Chairs: John =
+McCrae, Valentina Presutti
+- Machine Learning - Chairs:  Andreas Hotho, Achim Rettinger
+- Mobile Web, Sensors and Semantic Streams. Chairs: Themis Palpanas, =
+Intizar Ali
+- Services, APIs, Processes and Cloud Computing. Chairs: Amrapali =
+Zaveri, Ruben Verborgh
+
+Special Subtracks:
+
+- Benchmarking and Empirical Evaluations. Chairs: Oscar Corcho, Emanuele =
+Della Valle
+- Semantic Web for Science. Chairs: Catia Pesquita, Adrian Paschke
+
+Research Track chairs
+
+- Maria-Esther Vidal, Leibniz Information Centre For Science and =
+Technology University Library, Germany, and Universidad Simon Bolivar, =
+Venezuela
+- Roberto Navigli, Sapienza University of Rome, Italy
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Call for In-Use & Industrial Track Papers
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+The Semantic Web In-Use and Industry track provides a forum for =
+researchers and industry to discuss novel research taken to the market, =
+or on any other relevant uptake of semantic technologies outside the =
+lab. Submissions to the track will provide a deeper insight on the =
+exploitation of Semantic Web technologies in different sectors. The =
+track takes a broad view of semantic technologies including natural =
+language processing and machine learning techniques.
+
+Papers will be evaluated on the basis of measurable impact of semantic =
+technologies, and on the extent to which they address real-life =
+problems. In addition, papers will be assessed on the novelty of the =
+techniques applied in practice, and should include an evaluation of the =
+technology or reflect on the pros and cons of the approach.=20
+
+Topics:
+
+- Best practices and lessons learnt from the use of semantic =
+technologies in real-world settings
+- Comparison of semantic technologies with alternative or conventional =
+approaches
+- Industry and business trends regarding the use of semantic =
+technologies
+- Ontology-based data access in large-scale and industrial systems
+- Cloud Computing and Mobile apps based on semantic technologies
+- Knowledge Graphs in real-world settings
+- Semantic technologies and Machine Learning
+- Natural Language Processing and machine reading techniques applied in =
+practice
+- Sentiment Analysis and Social Networks in action
+- Intelligent User Interfaces and Interaction paradigms for semantic =
+applications
+- Corporate Data and Knowledge Management over large, heterogeneous and =
+diverse data; Semantic Big Data
+- Semantic technologies and corporate data governance=20
+- The use of Schema.org, microformats and other open markup languages =
+and standards
+- Security and Privacy issues in semantic applications
+- Collaborative Content Management Systems, including Wikis
+- Industry and Business Analytics solutions using semantic technology
+- Internet of Things, sensor networks
+- Applications in domain-specific areas such as Health & Life Sciences, =
+Digital Libraries & Cultural Heritage, Media & Entertainment, Smart =
+Cities, and Open Government
+
+In-use Track chairs:
+
+- Anna Tordai, Elsevier
+- Laura Hollink, Centrum Wiskunde & Informatica (CWI), NL
+
+* * * * * * * * * * * * * * * * * * * * * * * * *
+Call for Resources Track Papers
+* * * * * * * * * * * * * * * * * * * * * * * * *
+
+Scope and Topics
+
+Many of the research efforts in the areas of the Semantic Web and Linked =
+Data focus on publishing scientific papers that prove a hypothesis. =
+However, scientific advancement is often reliant on good quality =
+resources, that provide the necessary scaffolding to support the =
+scientific publications; yet the resources themselves rarely get the =
+same recognition as the advances they facilitate. Sharing these =
+resources and the best practices that have lead to their development =
+with the research community is crucial, to consolidate research =
+material, ensure reproducibility of results and in general gain new =
+scientific insights.
+
+The ESWC 2018 Resources Track aims to promote the sharing of resources =
+including, but not restricted to: datasets, evaluation benchmarks and =
+annotated corpora, ontologies and vocabularies, knowledge graphs of =
+remarkable interest, machine learning models (e.g. embeddings) that are =
+not trivial to (re-)train, software frameworks, tools, libraries and =
+APIs attached to an open license, etc. In particular, we encourage the =
+sharing of such resources following best and well established practices =
+within the Semantic Web community, including the provision of an open =
+license and a permalink identifying the resource. This track calls for =
+contributions that provide a concise and clear description of a resource =
+and its usage.=20
+
+A typical Resource track paper may reporting on one of the following =
+categories, though the list is not exhaustive:
+
+- Ontologies developed for an application, with a focus on describing =
+the modelling process underlying their creation and their usage;
+- Datasets and annotated corpora produced to support specific evaluation =
+tasks;
+- Knowledge graphs or remarkable interest that comprehensively cover new =
+vertical domains;
+- Machine learning models that would impact the knowledge engineering =
+community. Examples include comprehensive word embeddings trained on =
+large corpora, models for computer vision such as Inception v3 or =
+ResNet50, CRNN for music, etc. See also =
+https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_resear=
+ch  =20
+- Description of a reusable research prototype / service supporting =
+research or applications;=20
+- Description of community shared software frameworks that can be =
+extended or adapted.
+
+Specific Review Criteria for Resource Papers
+
+The program committee will consider the quality of both the resource and =
+ the paper in its review process. Therefore, authors must ensure =
+unfettered access to the resource during the review process, ideally by =
+the resource being cited at a permanent location specific for the =
+resource. For example, data available in a repository such as FigShare, =
+Zenodo, or a domain specific repository; or software code being =
+available in public code repository such as GitHub or BitBucket. The =
+resource MUST be publicly available.
+
+We welcome the description of well established as well as emerging =
+resources. Resources will be evaluated along the following generic =
+review criteria that should be carefully considered both by authors and =
+reviewers:
+
+Potential impact:
+
+- Does the resource break new ground?
+- Does the resource plug an important gap?
+- How does the resource advance the state of the art?
+- Has the resource been compared to other existing resources (if any) of =
+similar scope?
+- Is the resource of interest to the Semantic Web community?
+- Is the resource of interest to society in general?
+- Will the resource have an impact, especially in supporting the =
+adoption of Semantic Web technologies?
+- Is the resource relevant and sufficiently general, does it measure =
+some significant aspect?
+
+Reusability:
+
+- Is there evidence of usage by a wider community beyond the resource =
+creators or their project? Alternatively, what is the resource=E2=80=99s =
+potential for being (re)used; for example, based on the activity volume =
+on discussion forums, mailing list, issue tracker, support portal, etc?
+- Is the resource easy to (re)use?  For example, does it have good =
+quality documentation? Are there tutorials availability? etc.
+- Is the resource general enough to be applied in a wider set of =
+scenarios, not just for the originally designed use?
+- Is there potential for extensibility to meet future requirements?
+- Does the resource clearly explain how others use the data and =
+software?
+- Does the resource description clearly state what the resource can and =
+cannot do, and the rationale for the exclusion of some functionality?
+
+Design & Technical quality:
+
+- Does the design of the resource follow resource specific best =
+practices?
+- Did the authors perform an appropriate re-use or extension of suitable =
+high-quality resources?  For example, in the case of ontologies, authors =
+might  extend upper ontologies and/or reuse ontology design patterns.
+- Is the resource suitable to solve the task at hand?
+- Does the resource provide an appropriate description (both human and =
+machine readable), thus encouraging the adoption of FAIR principles? Is =
+there a schema diagram? For datasets, is the description available in =
+terms of VoID/DCAT/DublinCore?
+- If the resource proposes performance metrics, are such metrics =
+sufficiently broad and relevant?
+- If the resource is a comparative analysis or replication study, was =
+the coverage of systems reasonable, or were any obvious choices missing?
+
+Availability:
+
+- Is the resource (and related results) published at a persistent URI =
+(PURL, DOI, w3id)?
+- Does the resource provide a licence specification? (See =
+creativecommons.org, opensource.org for more information)
+- How is the resource publicly available? For example as API, Linked =
+Open Data, Download, Open Code Repository.
+- Is the resource publicly findable? Is it registered in (community) =
+registries (e.g. Linked Open Vocabularies, BioPortal, or DataHub)? Is it =
+registered in generic repositories such as  FigShare, Zenodo or GitHub?
+- Is there a sustainability plan specified for the resource? Is there a =
+plan for the maintenance of the resource?
+- Does it use open standards, when applicable, or have good reason not =
+to?
+
+Resource Track Chairs
+Pascal Hitzler, Wright State University, USA
+Rapha=C3=ABl Troncy, EURECOM, France
+
+The chairs can be contacted at =
+eswc2018-resource-track-chairs@googlegroups.com
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * *
+Submission Information, Reviewing
+* * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+ESWC 2018 welcomes the submission of original research and application =
+papers dealing with all aspects of representing and using semantics on =
+the Web. We encourage theoretical, methodological, empirical, and =
+applications papers. Submitted papers should describe original work, =
+present significant results, and provide rigorous, principled, and =
+repeatable evaluation.=20
+We strongly encourage and appreciate the submission of papers =
+incorporating links to data sets and other material used for evaluation =
+as well as to live demos and software source code.=20
+ESWC will not accept papers that, at the time of submission, are under =
+review for or have already been published in or accepted for publication =
+in a journal, another conference, or another ESWC track. The conference =
+organizers may share information on submissions with other venues to =
+ensure that this rule is not violated.
+The proceedings of this conference will be published in Springer's =
+Lecture Notes in Computer Science series. Decentralised publishing of =
+pre- and post-prints e.g. along the lines of LORC and Linked Data =
+Notifications (see https://linkedresearch.org/cloud) is strongly =
+encouraged, and will be supported by a dedicated team.
+
+Rules include:
+
+- Pre-submission of abstracts is a strict requirement. All papers and =
+abstracts have to be submitted electronically via the EasyChair =
+conference submission system. Abstracts alone will not be reviewed.
+- Papers describing a resource must not exceed 15 pages (including =
+references). Papers that exceed the page limit will be rejected without =
+review.
+- All research submissions must be in English.
+- Submissions must be either in PDF or in HTML, formatted in the style =
+of the Springer Publications format for Lecture Notes in Computer =
+Science (LNCS). For details on the LNCS style, see Springer=E2=80=99s =
+Author Instructions. For HTML submission guidance, see below, and the =
+website.=20
+- We encourage embedding metadata in the PDF/HTML to provide a machine =
+readable link from the paper to the resource.
+- Authors will have the opportunity to submit a rebuttal to the reviews =
+to clarify questions posed by program committee members.
+- Authors of accepted papers will be required to provide semantic =
+annotations for the abstract of their submission, which will be made =
+available on the conference web site. Details will be provided at the =
+time of acceptance.
+- Accepted papers will be distributed to conference attendees and also =
+published by Springer in the printed conference proceedings, as part of =
+the Lecture Notes in Computer Science series.
+- At least one author of each accepted paper must register for the =
+conference and present the paper there.
+
+* * * * * * * * * * * * * * * * * * * * * * *
+Useful tips for HTML submissions
+* * * * * * * * * * * * * * * * * * * * * * *=20
+
+The Research Articles in Simplified HTML (RASH) Framework provides a =
+terse markup language for writing scientific articles in (X)HTML. It is =
+possible to include also RDF statements as RDFa annotations and/or as =
+Turtle, JSON-LD and RDF/XML triples by using the tag "script". Tools =
+exist for converting RASH-compliant ODT or DOCX to LaTeX (see =
+http://dasplab.cs.unibo.it/rocs).
+Dokieli is a client-side editor for decentralized article publishing in =
+HTML+RDFa, annotations and social interactions, compliant with the =
+Linked Research initiative. There are a variety of examples available =
+online https://github.com/linkeddata/dokieli/wiki#examples-in-the-wild, =
+where the LNCS author guidelines as a template may be particularly =
+useful.
+Accepted papers for which there is an HTML version will be made =
+available online through the ESWC website. For HTML submission, please =
+submit a ZIP archive containing an HTML file with all the additional =
+stylesheets and scripts for guaranteeing a correct visualization of the =
+document in browsers.
+For references, e.g. see the "Reference" section in =
+https://datasciencehub.net/content/guidelines-authors.
+Please note that independent of the format used, we require submissions =
+to abide by the permitted number of pages, font sizes, font selection, =
+margins, etc. This is to ensure visual consistency of the proceedings as =
+well as to have comparative page limits.
+
+Submissions and reviewing will be supported by the EasyChair system: =
+https://easychair.org/conferences/?conf=3Deswc2018=20
+
+* * * * * * * * * * * * * * * * * * * *
+A Fully Open Review Policy
+* * * * * * * * * * * * * * * * * * * *
+
+This year, the ESWC 2018 review process will be fully open. The basic =
+principles are:
+
+- The submitted papers will be publicly posted on the ESWC 2018 web site =
+upon submission
+- The authors will be known to reviewers (i.e., submissions are NOT =
+anonymous)
+- The reviewers will be known to authors by default. However, reviewers =
+can also explicitly opt-out.
+- The reviews and the rebuttal will be made publicly available upon =
+final notification (post-rebuttal), including reviewer identity (unless =
+they have opted out), both for the PC members (unless they have opted =
+out) and the senior PC members (which cannot opt out).
+- On explicit request made by the authors, the rejected papers and their =
+reviews will be removed from the Web after the conference.
+- For accepted papers, the reviews will stay online at least 12 months. =
+They will be removed at the author=E2=80=99s requests after this embargo =
+period.
+- Upon posting submissions on the ESWC 2018 web site (point 1 above), =
+any researcher can also contribute open reviews. Decentralisation will =
+be handy here e.g. with openreview.org (for PDF) or hypothes.is or =
+dokieli (for HTML), plus Linked Data Notifications.=

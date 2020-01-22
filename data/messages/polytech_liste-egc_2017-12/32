@@ -1,0 +1,381 @@
+Return-Path: <alammehw@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 24DC8229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 14 Dec 2017 11:07:26 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 22EA873A1B1
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 14 Dec 2017 11:07:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 1D28F414A82F
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Dec 2017 11:07:26 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.978
+X-Spam-Level:
+X-Spam-Status: No, score=-4.978 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 11.8559 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id QldDUYNCbHGu for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 14 Dec 2017 11:07:25 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wr0-x234.google.com (mail-wr0-x234.google.com [IPv6:2a00:1450:400c:c0c::234])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 031FE4013495
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Dec 2017 11:07:24 +0100 (CET)
+Received: by mail-wr0-x234.google.com with SMTP id x49so4623519wrb.13
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Dec 2017 02:07:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:message-id:date:to:mime-version;
+        bh=HdFmvGpZtvl4Nkn0uHo/ALEAfsMujGLh66LPslhhQXo=;
+        b=H9VRwVSA0o0vCy8ihbN5CvJtUlKrx9qhfHiMfqYOgyy53X64yHdqa6TLWgjTrzXtDP
+         RQjywj2EITJtuSs6dayXhI+zKuT4WsvOSxoY8BUkgCfcRWQ2RtU16TN5cykAdrCQ1lpI
+         mqu70jjqv2TntTYzfkW+mer6xEzF7EpDtY3MHThegg2CCaL1/Ru3rz+fujK4Xgd+dtBm
+         EyyIww4Tq0k5UoDQjq38V+CiAixq8LBwZqhdduBplGP6oasM1SScq03ffnP+Kh5TGqYJ
+         s1donfRWGpr35BqA6Rk+XeUqNb8chDs6h1fgiIASRqPKf/S0llnw2UdA0sCQRmsn4uky
+         y34w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:message-id:date:to:mime-version;
+        bh=HdFmvGpZtvl4Nkn0uHo/ALEAfsMujGLh66LPslhhQXo=;
+        b=ME/VJ2q1T0qalJOmQrpOaemXV0LIg2b9kcCQ7aorjMyI4YiBj2V0IJbWeug3OY7Qfy
+         kVxos54+jtYu2eW5nwo3wXdfTVf8YBw0ksRvDoitEC8AHC5fKS0pxVu2r9lXS1B/AOxw
+         354N/MtIDgSk7PyD9yojw2d6cgOzN3Cb3tVG7Ive3/IgDzVAzAWkpcgwHABb8WZVpeux
+         /89arFpqsn7bivuwB/ig67Yz/PtmcdmpLqFlMpg6PgKm/CzsD5gwsONkoYtS12JDxrXC
+         e/4DNKFDydVoXGTthb9rh7bmts+uddOMZs4GrrlgsV0630ER4nPHHKRHMwmg7SPlzKvh
+         7oPw==
+X-Gm-Message-State: AKGB3mLWvsUxGpMdMazzrgKG8eDiLUdl+VWkkqE88cMgbJpZbafmE9RC
+	4DP4JrDzgWgXV33ISD1SuTU=
+X-Google-Smtp-Source: ACJfBot9elFbUnRo97AVnEPm/26kaTvv/YBj+mc6brHEQdxvBkd8tYIxUEx6AMcII2oQXgsX7CwKPg==
+X-Received: by 10.223.177.135 with SMTP id q7mr4948575wra.217.1513246044530;
+        Thu, 14 Dec 2017 02:07:24 -0800 (PST)
+Received: from [10.200.11.169] ([137.204.150.16])
+        by smtp.gmail.com with ESMTPSA id d9sm3787936wrf.45.2017.12.14.02.07.22
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 14 Dec 2017 02:07:23 -0800 (PST)
+From: Mehwish Alam <alammehw@gmail.com>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_4739794C-9BCD-4B26-99AE-3BC105446263"
+Message-Id: <A47101D7-7BC4-4248-A697-A4DBEA830820@gmail.com>
+Date: Thu, 14 Dec 2017 11:07:22 +0100
+To: diglib@infoserv.inist.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ info-ic@listes.irisa.fr,
+ ln@cines.fr,
+ semantic-web@w3.org,
+ web.semantique@inria.fr,
+ dbpedia-discussion@lists.sourceforge.net,
+ bull-i3@irit.fr
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] ESWC 2018: Call for Challenges
+
+
+--Apple-Mail=_4739794C-9BCD-4B26-99AE-3BC105446263
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+[Apologies for multiple postings.]
+
+
+* * * * * * *
+Overview
+* * * * * * *=20
+
+The ESWC organizers are glad to announce that the Challenges Track will =
+be included again in the program of ESWC 2018. Five challenges were held =
+last year [1] and allowed the ESWC2017 conference to attract a broader =
+audience beyond the Semantic Web community, also spanning across =
+disciplines such as Recommender Systems or Knowledge Extraction.=20
+
+For the 2018 edition, a call for challenges is open in order to allow =
+the selection of challenges to be held at the conference. The purpose of =
+challenges is to showcase the maturity of state of the art methods and =
+tools on tasks common to the Semantic Web community and adjacent =
+disciplines, in a controlled setting involving rigorous evaluation.
+Semantic Web Challenges are an official track of the conference, =
+ensuring significant visibility for the challenges as well as =
+participants. Challenge participants are asked to present their =
+submissions as well as provide a paper describing their work.  These =
+papers must undergo a peer-review by experts relevant to the challenge =
+task, and will be published in the challenge proceedings.
+Next to the publication of proceedings, challenges at ESWC2018 will =
+benefit from high visibility and direct access to the ESWC audience and =
+community.
+
+[1] https://2017.eswc-conferences.org/call-challenges =
+<https://2017.eswc-conferences.org/call-challenges>=20
+
+* * * * * * * * * * * * * * *
+Challenge Proposals
+* * * * * * * * * * * * * * *
+
+Challenge organizers are encouraged to submit proposals adhering to the =
+following criteria:
+
+- At least one task involving semantics in data.=20
+The task(s) should be well defined and related to the Semantic Web but =
+not necessarily confined to it. It is highly encouraged to consider =
+tasks which involve other, highly related communities, such as NLP, =
+Recommender Systems, Machine Learning or Information Retrieval. If =
+multiple tasks are provided the tasks should be independent so that =
+participants may choose which to participate in.
+
+- Task descriptions are likely to be interesting to a wider audience.=20
+We encourage the challenge organizers to propose at least one basic task =
+that can be addressed by a larger audience from their community. =
+Engaging with your challenge audience and obtaining feedback from your =
+target group on the task design might be helpful for shaping the task =
+and ensuring sufficient number of participants.
+
+- Clear and rigorous definition of the tasks.=20
+For each task, you should define a deterministic and objective way to =
+verify if the goal of the task has been achieved, and to which extent it =
+has been achieved (if applicable). The best way is usually to provide =
+detailed examples of input data and expected output. The examples must =
+cover all the possible situations that can occur while performing the =
+task, and should leave no place to ambiguity about whether in a =
+particular case the task is done or not.
+
+- Valid dataset (if applicable).=20
+If accepted, you should find or create a dataset that will be used for =
+the challenge. In any case, you must specify the provenance of the =
+dataset (if it contains human annotation =E2=80=93 how were those =
+obtained). You must make sure you have the right to use/publish this =
+dataset and clearly state the license for its use within the challenge. =
+The dataset should be split at least in two parts =E2=80=93 the training =
+part, and the evaluation part. The training part contains the data, and =
+the results that should be obtained when performing the task. As for the =
+evaluation part, you should only publish the data, and make sure that =
+the correct results have not previously been available to the =
+participants. When proposing the challenge you must provide details on =
+the dataset and on the way it is/will be created =E2=80=93 the dataset =
+can be made available later.
+
+- Challenge Committee.=20
+Composed of at least 3 respected researchers with experience in the =
+tasks of the challenge. They help evaluate the papers submitted by the =
+participants, and also validate the evaluation procedure.
+
+- Evaluation metrics and procedure. For each task there must be at least =
+two objective criteria (metrics) (e.g. precision and recall). The =
+evaluation procedure and the way in which the metrics will be calculated =
+must be clearly specified and made transparent to participants (having =
+in the website of the challenge evaluation scripts available for =
+participants would be a good practice to use).
+Among the selection criteria for choosing the supported challenges are:
+-- Potential number to interested participants
+-- Rigor and transparency of the evaluation procedure
+-- Relevance for the Semantic Web community
+-- Endorsements (from researchers working on the task, from industry =
+players interested in results, from future participants)
+
+* * * * * * * * * * *
+Important Dates
+* * * * * * * * * * *
+
+-	Challenges proposals due: Friday December 22th, 2017 - 23:59 =
+Hawaii Time
+-	Challenges chosen/merged =E2=80=93 notification to organizers =
+sent: Friday December 29th, 2017
+-	Training data ready and challenges Calls for Papers: Friday =
+January 12th, 2018
+-	Challenge papers submission deadline (5 pages document): Friday =
+March 9th, 2018
+-	Challenge paper reviews: Thursday April 5th, 2018
+-	Notifications sent to participants and invitations to submit =
+task results: Monday April 9th, 2018
+-	Test data (and other participation tools) published: Monday 16 =
+April 7th, 2018
+-	Camera ready papers for the conference (5 pages document): =
+Monday April 23rd, 2018
+-	Submission of challenge results: free choice of organizers
+-	Proclamation of winners: During ESWC2018 closing ceremony
+-	Camera ready paper for the challenge post proceedings (15 pages =
+document): Friday July 6th, 2018 (tentative deadline)
+
+* * * * * * * * * * * * * *
+Submission Details
+* * * * * * * * * * * * * *
+
+The challenges proposals should contain at least the following elements:
+-	A summary description of the challenge and tasks
+-	How the training/testing data will be built and/or procured
+-	The evaluation methodology to be used, including clear =
+evaluation criteria and the exact way in which they will be measured. =
+Who will perform the evaluation and how will transparency be assured?
+-	The anticipated availability of the necessary resources to the =
+participants
+-	The resources required to prepare the tasks (computation and =
+annotation time, costs of annotations, etc.)
+-	The list of challenge committee members who will evaluate the =
+challenge papers (please indicate which of the listed members already =
+accepted the role)
+
+In case of doubt, feel free to send us your challenge proposal drafts as =
+early as possible =E2=80=93 the challenges chairs will provide you with =
+feedback and answers to questions you may have.
+Please submit proposals via Easychair at =
+https://easychair.org/conferences/?conf=3Dchallengeeswc2018 =
+<https://easychair.org/conferences/?conf=3Dchallengeeswc2018> as soon as =
+possible and no later than *22 December 2017*.=
+
+--Apple-Mail=_4739794C-9BCD-4B26-99AE-3BC105446263
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">[Apologies for multiple postings.]<br class=3D""><br =
+class=3D""><br class=3D"">* * * * * * *<br class=3D"">Overview<br =
+class=3D"">* * * * * * *&nbsp;<br class=3D""><br class=3D"">The ESWC =
+organizers are glad to announce that the Challenges Track will be =
+included again in the program of ESWC 2018. Five challenges were held =
+last year [1] and allowed the ESWC2017 conference to attract a broader =
+audience beyond the Semantic Web community, also spanning across =
+disciplines such as Recommender Systems or Knowledge =
+Extraction.&nbsp;<br class=3D""><br class=3D"">For the 2018 edition, a =
+call for challenges is open in order to allow the selection of =
+challenges to be held at the conference. The purpose of challenges is to =
+showcase the maturity of state of the art methods and tools on tasks =
+common to the Semantic Web community and adjacent disciplines, in a =
+controlled setting involving rigorous evaluation.<br class=3D"">Semantic =
+Web Challenges are an official track of the conference, ensuring =
+significant visibility for the challenges as well as participants. =
+Challenge participants are asked to present their submissions as well as =
+provide a paper describing their work. &nbsp;These papers must undergo a =
+peer-review by experts relevant to the challenge task, and will be =
+published in the challenge proceedings.<br class=3D"">Next to the =
+publication of proceedings, challenges at ESWC2018 will benefit from =
+high visibility and direct access to the ESWC audience and community.<br =
+class=3D""><br class=3D"">[1]&nbsp;<a =
+href=3D"https://2017.eswc-conferences.org/call-challenges" =
+class=3D"">https://2017.eswc-conferences.org/call-challenges</a>&nbsp;<br =
+class=3D""><br class=3D"">* * * * * * * * * * *&nbsp;* *&nbsp;* *<br =
+class=3D"">Challenge Proposals<br class=3D"">* * * * * * * * * * =
+*&nbsp;* *&nbsp;* *<br class=3D""><br class=3D"">Challenge organizers =
+are encouraged to submit proposals adhering to the following =
+criteria:<br class=3D""><br class=3D"">- At least one task involving =
+semantics in data.&nbsp;<br class=3D"">The task(s) should be well =
+defined and related to the Semantic Web but not necessarily confined to =
+it. It is highly encouraged to consider tasks which involve other, =
+highly related communities, such as NLP, Recommender Systems, Machine =
+Learning or Information Retrieval. If multiple tasks are provided the =
+tasks should be independent so that participants may choose which to =
+participate in.<br class=3D""><br class=3D"">- Task descriptions are =
+likely to be interesting to a wider audience.&nbsp;<br class=3D"">We =
+encourage the challenge organizers to propose at least one basic task =
+that can be addressed by a larger audience from their community. =
+Engaging with your challenge audience and obtaining feedback from your =
+target group on the task design might be helpful for shaping the task =
+and ensuring sufficient number of participants.<br class=3D""><br =
+class=3D"">- Clear and rigorous definition of the tasks.&nbsp;<br =
+class=3D"">For each task, you should define a deterministic and =
+objective way to verify if the goal of the task has been achieved, and =
+to which extent it has been achieved (if applicable). The best way is =
+usually to provide detailed examples of input data and expected output. =
+The examples must cover all the possible situations that can occur while =
+performing the task, and should leave no place to ambiguity about =
+whether in a particular case the task is done or not.<br class=3D""><br =
+class=3D"">- Valid dataset (if applicable).&nbsp;<br class=3D"">If =
+accepted, you should find or create a dataset that will be used for the =
+challenge. In any case, you must specify the provenance of the dataset =
+(if it contains human annotation =E2=80=93 how were those obtained). You =
+must make sure you have the right to use/publish this dataset and =
+clearly state the license for its use within the challenge. The dataset =
+should be split at least in two parts =E2=80=93 the training part, and =
+the evaluation part. The training part contains the data, and the =
+results that should be obtained when performing the task. As for the =
+evaluation part, you should only publish the data, and make sure that =
+the correct results have not previously been available to the =
+participants. When proposing the challenge you must provide details on =
+the dataset and on the way it is/will be created =E2=80=93 the dataset =
+can be made available later.<br class=3D""><br class=3D"">- Challenge =
+Committee.&nbsp;<br class=3D"">Composed of at least 3 respected =
+researchers with experience in the tasks of the challenge. They help =
+evaluate the papers submitted by the participants, and also validate the =
+evaluation procedure.<br class=3D""><br class=3D"">- Evaluation metrics =
+and procedure. For each task there must be at least two objective =
+criteria (metrics) (e.g. precision and recall). The evaluation procedure =
+and the way in which the metrics will be calculated must be clearly =
+specified and made transparent to participants (having in the website of =
+the challenge evaluation scripts available for participants would be a =
+good practice to use).<br class=3D"">Among the selection criteria for =
+choosing the supported challenges are:<br class=3D"">-- Potential number =
+to interested participants<br class=3D"">-- Rigor and transparency of =
+the evaluation procedure<br class=3D"">-- Relevance for the Semantic Web =
+community<br class=3D"">-- Endorsements (from researchers working on the =
+task, from industry players interested in results, from future =
+participants)<br class=3D""><br class=3D"">* * * * * * * * *&nbsp;* *<br =
+class=3D"">Important Dates<br class=3D"">* * * * * * * * *&nbsp;* *<br =
+class=3D""><br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>Challenges proposals due: Friday =
+December 22th, 2017 - 23:59 Hawaii Time<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>Challenges chosen/merged =E2=80=93 notification to organizers =
+sent: Friday December 29th, 2017<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>Training =
+data ready and challenges Calls for Papers: Friday January 12th, 2018<br =
+class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>Challenge papers submission deadline (5 pages document): Friday =
+March 9th, 2018<br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>Challenge paper reviews: Thursday =
+April 5th, 2018<br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>Notifications sent to =
+participants and invitations to submit task results: Monday April 9th, =
+2018<br class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>Test data (and other participation tools) published: =
+Monday 16 April 7th, 2018<br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>Camera ready papers for the =
+conference (5 pages document): Monday April 23rd, 2018<br =
+class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>Submission of challenge results: free choice of organizers<br =
+class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>Proclamation of winners: During ESWC2018 closing ceremony<br =
+class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: pre;">	=
+</span>Camera ready paper for the challenge post proceedings (15 pages =
+document): Friday July 6th, 2018 (tentative deadline)<br class=3D""><br =
+class=3D"">* * * * * * * * * *&nbsp;* *&nbsp;* *<br class=3D"">Submission =
+Details<br class=3D"">* * * * * * * * * *&nbsp;* *&nbsp;* *<br =
+class=3D""><br class=3D"">The challenges proposals should contain at =
+least the following elements:<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>A summary =
+description of the challenge and tasks<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>How the =
+training/testing data will be built and/or procured<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>The =
+evaluation methodology to be used, including clear evaluation criteria =
+and the exact way in which they will be measured. Who will perform the =
+evaluation and how will transparency be assured?<br class=3D"">-<span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>The =
+anticipated availability of the necessary resources to the =
+participants<br class=3D"">-<span class=3D"Apple-tab-span" =
+style=3D"white-space: pre;">	</span>The resources required to prepare =
+the tasks (computation and annotation time, costs of annotations, =
+etc.)<br class=3D"">-<span class=3D"Apple-tab-span" style=3D"white-space: =
+pre;">	</span>The list of challenge committee members who will evaluate =
+the challenge papers (please indicate which of the listed members =
+already accepted the role)<br class=3D""><br class=3D"">In case of =
+doubt, feel free to send us your challenge proposal drafts as early as =
+possible =E2=80=93 the challenges chairs will provide you with feedback =
+and answers to questions you may have.<br class=3D"">Please submit =
+proposals via Easychair at&nbsp;<a =
+href=3D"https://easychair.org/conferences/?conf=3Dchallengeeswc2018" =
+class=3D"">https://easychair.org/conferences/?conf=3Dchallengeeswc2018</a>=
+&nbsp;as soon as possible and no later than *22 December =
+2017*.</body></html>=
+
+--Apple-Mail=_4739794C-9BCD-4B26-99AE-3BC105446263--

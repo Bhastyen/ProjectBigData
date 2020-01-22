@@ -1,0 +1,209 @@
+Return-Path: <romain.vuillemot@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id EAFE2229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 25 Apr 2017 17:39:48 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id E6DC62426C4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 25 Apr 2017 17:39:48 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id DDB58B4A27A
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 25 Apr 2017 17:39:48 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.939
+X-Spam-Level:
+X-Spam-Status: No, score=-4.939 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	MY_DSL=0.85, RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.8075 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 31X4WraK7sHN for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 25 Apr 2017 17:39:46 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x229.google.com (mail-wm0-x229.google.com [IPv6:2a00:1450:400c:c09::229])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id D77C269C3E0
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 25 Apr 2017 17:39:46 +0200 (CEST)
+Received: by mail-wm0-x229.google.com with SMTP id m123so100003801wma.0
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 25 Apr 2017 08:39:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:to:message-id:date:user-agent:mime-version
+         :content-transfer-encoding;
+        bh=eKhRS/X7mLPpMjhP7qZmMlGiOr3+3+DRdgv1MKD/V9w=;
+        b=lytSr9cz5nv2KUXBU1BKNOL++KrrHYiIdYBHyeyLBDjZtqRsNcK9Ngllb3HWyRtySO
+         aeXCEgFpUtD9k0k9hqVqPLSexP3hZL2GtfrVTIc/wjwBSGDyTUlSjzZ3uR1a3fz8XjkP
+         oZqpcM5IFhQjZIE9Ek7g6SH8EvJNK6s1WDvZcqOELMRZOHnpHGiWFRqW1NEGDSIpr2Lv
+         XrHDPOwzODyQ2As3aTRQk276YJzH+4pvvQsN9bahHJwjiyPb7CrItpe8jI+phYnw7ZYB
+         1SPeAr5VCbmG01T/RDTwjkjYcHX2pOX30ZsUSv3SokgiRc1ANThjHzalnjqLSJylsY/U
+         v9NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:message-id:date:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=eKhRS/X7mLPpMjhP7qZmMlGiOr3+3+DRdgv1MKD/V9w=;
+        b=rdI3KmB91Soe6n5NzoN0RpAArbw82Hvorfz311bQVbm6RY6J5Ox+5IOKRvJ4kZ9nH+
+         Y/Ds/0J0Gs4DWKQCCYKx6aEr3DxsLC1N5OXsXEIl21/sNlWmLP4//2MZVwbCIiVdO/ha
+         A7u/sqSh+ENvtHN81hrrvnqLJE2LN7YunH5x4DgnaNEIfVOolyOlSMNPg4ZBO2b/sIoq
+         BtgdHQfOnRjvHP8mLkOI6CauMWFzre9sPpUmsLUgcLyxF41uU+4CAOH1Zw7xRzIa+YT+
+         3ORnGy000YVvW2kAKceGjr7jngfCKFEWJ11PmvuIs17KIcpRh10J/sIC6nRiRuN11MaO
+         L43g==
+X-Gm-Message-State: AN3rC/4q2wJDLjuRq4131w3fj8kqTFsZn+OVdHz6NKoXHklahdbF2K5u
+	lzyepnI5d8wCVw==
+X-Received: by 10.28.22.78 with SMTP id 75mr13856947wmw.85.1493134786380;
+        Tue, 25 Apr 2017 08:39:46 -0700 (PDT)
+Received: from [192.168.1.47] (tok69-h02-5-50-220-82.dsl.sta.abo.bbox.fr. [5.50.220.82])
+        by smtp.googlemail.com with ESMTPSA id 187sm3501767wmt.16.2017.04.25.08.39.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 25 Apr 2017 08:39:45 -0700 (PDT)
+From: Romain Vuillemot <romain.vuillemot@gmail.com>
+To: annonces@afihm.org, gdr-igrv@unistra.fr, rsd-forum@cines.fr,
+ asr-forum@cines.fr, gdr-igrv@unistra.fr, calcul@listes.math.cnrs.fr,
+ forum@asso-afig.fr, annonces@listes.societe-informatique-de-france.fr,
+ liste-egc@polytech.univ-nantes.fr, bull-i3@irit.fr
+Message-ID: <aa98026d-e743-81dc-c67a-2dc68865a958@gmail.com>
+Date: Tue, 25 Apr 2017 17:39:43 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:45.0)
+ Gecko/20100101 Thunderbird/45.8.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] EXTENSION DEADLINE: =?UTF-8?Q?Journ=C3=A9es?= Visu 2017
+ les 7-8 juin 2017 (nouvelle deadline le 3 mai)
+
+=====================================================================
+Journées Visu 2017
+http://visu2017.liris.cnrs.fr/
+=====================================================================
+
+7-8 juin 2017, IFP Energies nouvelles
+
+EXTENSION DEADLINE: Soumissions d'articles le 3 mai, notification le 5 
+mai 2017.
+
+Les journées annuelles du GT Visualisation du GDR IGRV auront lieu les 
+mercredi 7 juin et jeudi 8 juin 2017 dans les locaux d’IFP Energies 
+nouvelles à Rueil-Malmaison. Ces journées ont vocation à rassembler les 
+acteurs, académiques et industriels, de la communauté française en 
+visualisation, afin d'échanger sur les problématiques et les enjeux 
+actuels et à venir de la visualisation en France. Ces journées couvrent 
+en particulier les problématiques de la visualisation scientifique 
+(SciVis) et de la visualisation d'informations (InfoVis).
+
+Les thématiques couvertes par l'appel sont celles du GT Visualisation.
+
+* Visualisation scientifique
+* Visualisation d’informations
+* Visualisation analytique
+* Visualisation in-situ
+* Visualisation hautes performances
+* Interaction visuelle
+* Perception visuelle
+* Évaluation de la visualisation
+* Visualisation de données relationnelles
+* Fouille visuelle des données
+* Architectures client-serveur pour la visualisation de données distantes
+* Visualisation sur dispositifs nouveaux (tablettes tactiles, 
+smartphones, etc)
+* Visualisation de données géolocalisées
+* Visualisation de données biologiques et moléculaires
+* Visualisation de données incertaines
+
+Cette année, les journées se déroulent en deux parties :
+
+* Une journée doctorale réservée aux doctorants en visualisation (le 7 juin)
+* Une journée scientifique ouverte au public (le 8 juin)
+
+**Journée doctorale du mercredi 7 juin 2017**
+
+La journée doctoriale, où chaque doctorant présente son travail de thèse 
+afin d’avoir un retour sur ses travaux et d’échanger avec des chercheurs 
+reconnus dans la communauté de la visualisation. Nous invitons à 
+soumettre tous les étudiants des domaines de visualisation scientifique, 
+visualisation d'information et visualisation analytique.
+
+Pour plus d’informations, consulter cette page 
+http://visu2017.liris.cnrs.fr/doctoriale.html
+
+**Journée scientifique du jeudi 8 juin 2017**
+
+Cette journée comporte des présentations variées (académiques, 
+techniques, problématiques industrielles, projets en cours, ...) 
+entrecoupées de larges pauses afin de favoriser les échanges. Un espace 
+sera mis à la disposition des participants pour des démonstrations de 
+logiciels ou pour l’affichage de posters.
+
+Nous sollicitons 2 types de soumissions pour la journée scientifique :
+
+* Des soumissions sur résumé, dont l'objectif est de permettre de 
+présenter des travaux de quelque nature que ce soit (recherche en cours, 
+projets ANR, Europe ou autres, activités industrielles, etc) en 
+minimisant le coût de la préparation de l'évènement pour leurs auteurs.
+
+* Des soumissions sur article complet, dont l'objectif est de permettre 
+à des chercheurs de présenter des travaux et d'avoir un retour de la 
+communauté. Il peut s'agir de travaux qui ont été soumis mais pas 
+acceptés, dans le but de les améliorer en vue d'une nouvelle soumission 
+ou tout simplement afin de "valoriser" l'investissement, ou de travaux 
+non encore soumis, en vue d'avoir un premier retour de la communauté. 
+L'objectif n'est pas de faire de la sélection mais au contraire de 
+permettre à tout le monde de présenter ses travaux.
+
+Les thématiques couvertes par l'appel sont celles du GT Visualisation 
+http://visu.labri.fr/doku.php?id=activites_scientifiques
+
+* visualisation scientifique,
+* visualisation d’informations,
+* visualisation de grandes masses de données et visualisation hautes * 
+performances,
+* visualisation analytique (Visual Analytics),
+* perception visuelle et visualisation,
+* interactions dans un contexte d'analyse visuelle,
+* évaluation de la visualisation,
+* couplage simulation / visualisation : visualisation des résultats de * 
+simulation, couplage HPC, pilotage visuel de codes de calcul,
+* visualisation de données relationnelles et notamment visualisation des 
+réseaux * sociaux,
+* fouille visuelle des données et les techniques de navigation dans les 
+* entrepôts de données,
+* visualisation collaborative, co-localisée ou à distance, synchrone ou 
+* asynchrone,
+* visualisation sur dispositifs nouveaux tels que les murs d'écrans, 
+utilisant * des dispositifs d'entrée variés et multiples, tels que les 
+écrans tactiles ou * les capteurs 3D,
+* méthodes topologiques pour la visualisation,
+* visualisation de données géolocalisées,
+* visualisation de données biologiques et moléculaires.
+
+**Inscriptions**
+
+La journée Visu est gratuite et ouverte à tous dans la limite des 
+capacités d'accueil. Inscriptions en ligne sur le site des journées
+
+**Responsables scientifique**
+
+Romain Vuillemot, LIRIS / École Centrale de Lyon
+
+**Responsable de l'organisation**
+
+Jean-Louis Pajon, IFP Energies nouvelles
+
+Cette journée est financée par IFP Energies nouvelles et le CNRS, via le 
+GDR IGRV.
+
+Plus d'informations : http://visu2017.liris.cnrs.fr/
+Pour toute question : romain.vuillemot@ec-lyon.fr
+
+-- 
+Romain Vuillemot
+Assistant Professor, Ecole Centrale Lyon, France
+http://romain.vuillemot.net/
+

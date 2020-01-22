@@ -1,0 +1,309 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id F41D02292950
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  6 Nov 2018 05:25:17 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id F28096D32A9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  6 Nov 2018 05:25:17 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id ED4FFB4A250
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  6 Nov 2018 05:25:17 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.571
+X-Spam-Level:
+X-Spam-Status: No, score=0.571 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -2.1089 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 8yNV_P4Jx5cb for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  6 Nov 2018 05:25:15 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id C3AC3B190C8
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  6 Nov 2018 05:25:15 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id 983F13FA35
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  6 Nov 2018 05:25:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:in-reply-to:references:mime-version:received:received
+	:received; s=default; t=1541478315; x=1543292716; bh=oP2rqYJRQy+
+	ENxkqkWCsudZpJXII0Vv19Li+w3iCmN4=; b=fMQC8x60WVbFp4E1taxwFdQyvUk
+	78/Vl54Q/QM998pcOu+GvRYT9xJxbxgX0PTAXx1jEWRnmD8DTwS/rAWtw6oMq6OX
+	BS7bkFH+elHFbJa3JsKJXayVHYOKqm8tUnjQFjH82Wq6XEcabHiLA2XbYd4d8LbC
+	pckHb9wfcvb1CCOw=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id dG3UhSmQlOC8 for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  6 Nov 2018 05:25:15 +0100 (CET)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 1B7273FA37
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  6 Nov 2018 05:25:15 +0100 (CET)
+Received: by mail-lj1-f179.google.com with SMTP id q186-v6so10172290ljb.5
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 05 Nov 2018 20:25:15 -0800 (PST)
+X-Gm-Message-State: AGRZ1gJV1Ctwdde3kLwAOYOnY5PaTzspl8M52DRVoPaRD6c11dWTESJa
+	W4ZRhNGfTPJ+1Jj5+TkA484TxrK3u/fzQJR7MCU=
+X-Google-Smtp-Source: AJdET5cxhlLKUWnUXvxN6XXqFNt8W4/Tye6dsUH7D3f9lce990Y8BK1Lp8HSvTsUrQYrrLjQwXyW/tyOfjqHNnDJ110=
+X-Received: by 2002:a2e:93ca:: with SMTP id p10-v6mr11816891ljh.158.1541478314471;
+ Mon, 05 Nov 2018 20:25:14 -0800 (PST)
+MIME-Version: 1.0
+References: <ED7DAC55-4B9E-4CC1-9884-557706F1E2C9@anu.edu.au>
+In-Reply-To: <ED7DAC55-4B9E-4CC1-9884-557706F1E2C9@anu.edu.au>
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Tue, 6 Nov 2018 05:24:05 +0100
+X-Gmail-Original-Message-ID: <CALsPASWn1MdGnMON2wDQ4hjpruOFicRcVfM0-2DcSHUbLqty7Q@mail.gmail.com>
+Message-ID: <CALsPASWn1MdGnMON2wDQ4hjpruOFicRcVfM0-2DcSHUbLqty7Q@mail.gmail.com>
+To: maxime.lefrancois@emse.fr
+Content-Type: multipart/alternative; boundary="0000000000005cfa6e0579f763ce"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CfP: Special Issue on the Sensors, Observations,
+ Actuators and the Web of Linked Data and Things
+
+--0000000000005cfa6e0579f763ce
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+***************************************************************************=
+*****************************************
+
+[Apologies for multiple postings]
+
+
+
+http://www.semantic-web-journal.net/blog/special-issue-web-linked-data-and-=
+things
+
+***************************************************************************=
+*****************************************
+
+
+
+Special Issue on the Sensors, Observations, Actuators and the Web of Linked
+Data and Things
+
+in Semantic Web Journal
+
+
+
+* Important dates
+
+Paper submission deadline: December 14 2018
+
+Envisioned First round notification: February 2019
+
+
+
+* Scope
+
+The rapid advancement and ubiquitous penetration of mobile networks,
+Web-based information creation and sharing, and software-defined networking
+technology enable us to sense, predict and control the physical world using
+information technology=E2=80=94on top of the resulting Internet of Things (=
+IoT),
+business models and processes have been redesigned on the Web across a
+broad range of industries leading to the so-called Web of Things (WoT). To
+maximize its social and economic benefit, issues of interoperability, data
+and service mash-ups, the development of open platforms, and
+standardization on the application layer have to be addressed.
+
+The capabilities of new networks of devices presents us with several new
+and complex challenges that need to be solved before data, device and
+service interoperability on the Web of Things can deliver their promised
+potential. Without connecting the data and its semantics that is generated
+by potentially billions of sensing, actuating and sampling devices, the
+users of the Web of Things will end up in silos of information that require
+different applications to access and use it. A description of the
+capabilities of these devices using semantic technologies may help in
+deciding how to communicate with the device and manage the data that is
+produced or the actions that can be performed. Besides the well researched
+area of cloud computing, new approaches such as edge computing and fog
+computing have been proposed to address parts of the scalability problem.
+The goal of these new approaches is to not transport all data but only
+relevant data across the Internet.
+
+On the other hand, successfully interconnecting devices on the Web of
+Things will lead to a deluge of data that will present scalability problems
+to the data analysis and knowledge extraction and management. Further,
+issues around access to devices and privacy issues of what information can
+be shared in a highly interconnected Web of Things are also intensifying.
+
+
+
+The focus of this special issue is to showcase novel approaches of applying
+semantic technologies to solve the problems of device and data integration.
+The topics of interest for the special issue include (but are not limited
+to):
+
+* Semantic Web and Linked Data technologies for Web of Thing devices
+
+* Semantic Web and Linked Data technologies for Web of Things=E2=80=99 data
+
+* Semantic technologies and Web of Things constraints and architectures
+
+* Web of Things and Data applications and application development
+
+* Semantic interoperability and standardization overcoming siloization of
+IoT systems
+
+* Coupling between semantics and other AI techniques for the Web of Things
+and Data (deep learning, multi-agent systems, etc.)
+
+* Trust, privacy, and security in the Web of Things and Data
+
+* Experience in sensor network applications of semantic technologies
+
+
+
+Special issue editors
+
+Federica Cena, University of Turin, IT <federica.cena@unito.it>
+
+Armin Haller, Australian National University, AU <armin.haller@anu.edu.au>
+
+Maxime Lefran=C3=A7ois, =C3=89cole des Mines de Saint-=C3=89tienne, FR <
+maxime.lefrancois@emse.fr>
+
+--0000000000005cfa6e0579f763ce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"gmail_quote"><div class=3D"gmail_forwarded"><div lang=3D"EN-A=
+U" link=3D"#0563C1" vlink=3D"#954F72"><div class=3D"m_5509859302161658070Wo=
+rdSection1"><p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:=
+11.0pt">*******************************************************************=
+*************************************************<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">[Apo=
+logies for multiple postings]<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><a h=
+ref=3D"http://www.semantic-web-journal.net/blog/special-issue-web-linked-da=
+ta-and-things" target=3D"_blank">http://www.semantic-web-journal.net/blog/s=
+pecial-issue-web-linked-data-and-things</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">****=
+***************************************************************************=
+*************************************<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Spec=
+ial Issue on the Sensors, Observations, Actuators and the Web of Linked Dat=
+a and Things<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">in S=
+emantic Web Journal<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Im=
+portant dates<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Pape=
+r submission deadline: December 14 2018<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Envi=
+sioned First round notification: February 2019<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Sc=
+ope<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">The =
+rapid advancement and ubiquitous penetration of mobile networks, Web-based =
+information creation and sharing, and software-defined networking technolog=
+y enable us to sense, predict and control
+ the physical world using information technology=E2=80=94on top of the resu=
+lting Internet of Things (IoT), business models and processes have been red=
+esigned on the Web across a broad range of industries leading to the so-cal=
+led Web of Things (WoT). To maximize its
+ social and economic benefit, issues of interoperability, data and service =
+mash-ups, the development of open platforms, and standardization on the app=
+lication layer have to be addressed.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">The =
+capabilities of new networks of devices presents us with several new and co=
+mplex challenges that need to be solved before data, device and service int=
+eroperability on the Web of Things can
+ deliver their promised potential. Without connecting the data and its sema=
+ntics that is generated by potentially billions of sensing, actuating and s=
+ampling devices, the users of the Web of Things will end up in silos of inf=
+ormation that require different
+ applications to access and use it. A description of the capabilities of th=
+ese devices using semantic technologies may help in deciding how to communi=
+cate with the device and manage the data that is produced or the actions th=
+at can be performed. Besides the
+ well researched area of cloud computing, new approaches such as edge compu=
+ting and fog computing have been proposed to address parts of the scalabili=
+ty problem. The goal of these new approaches is to not transport all data b=
+ut only relevant data across the
+ Internet.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">On t=
+he other hand, successfully interconnecting devices on the Web of Things wi=
+ll lead to a deluge of data that will present scalability problems to the d=
+ata analysis and knowledge extraction
+ and management. Further, issues around access to devices and privacy issue=
+s of what information can be shared in a highly interconnected Web of Thing=
+s are also intensifying.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">The =
+focus of this special issue is to showcase novel approaches of applying sem=
+antic technologies to solve the problems of device and data integration. Th=
+e topics of interest for the special issue
+ include (but are not limited to):<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Se=
+mantic Web and Linked Data technologies for Web of Thing devices<u></u><u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Se=
+mantic Web and Linked Data technologies for Web of Things=E2=80=99 data<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Se=
+mantic technologies and Web of Things constraints and architectures<u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* We=
+b of Things and Data applications and application development<u></u><u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Se=
+mantic interoperability and standardization overcoming siloization of IoT s=
+ystems<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Co=
+upling between semantics and other AI techniques for the Web of Things and =
+Data (deep learning, multi-agent systems, etc.)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Tr=
+ust, privacy, and security in the Web of Things and Data<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">* Ex=
+perience in sensor network applications of semantic technologies<u></u><u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Spec=
+ial issue editors<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Fede=
+rica Cena, University of Turin, IT &lt;<a href=3D"mailto:federica.cena@unit=
+o.it" target=3D"_blank">federica.cena@unito.it</a>&gt;<u></u><u></u></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Armi=
+n Haller, Australian National University, AU &lt;<a href=3D"mailto:armin.ha=
+ller@anu.edu.au" target=3D"_blank">armin.haller@anu.edu.au</a>&gt;<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt">Maxi=
+me Lefran=C3=A7ois, =C3=89cole des Mines de Saint-=C3=89tienne, FR &lt;<a h=
+ref=3D"mailto:maxime.lefrancois@emse.fr" target=3D"_blank">maxime.lefrancoi=
+s@emse.fr</a>&gt;<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt"><u><=
+/u>=C2=A0<u></u></span></p>
+</div>
+</div>
+
+</div></div>
+
+--0000000000005cfa6e0579f763ce--

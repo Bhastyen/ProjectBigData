@@ -1,0 +1,379 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9A9392292952
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  9 Apr 2018 09:55:39 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 988A76287D9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  9 Apr 2018 09:55:39 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 9280F422CE89
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Apr 2018 09:55:39 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.519
+X-Spam-Level:
+X-Spam-Status: No, score=-4.519 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MONOTONE_WORDS_15_2=1,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, T_KAM_HTML_FONT_INVALID=0.01,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.8090 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ZOehDhmmD_hK for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  9 Apr 2018 09:55:38 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 7E1ED4391A29
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Apr 2018 09:55:38 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id 53C9A3F9D6
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Apr 2018 09:55:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:mime-version:received:received:received; s=default;
+	 t=1523260538; x=1525074939; bh=K+f9RekoC3CKTKkzpZhqX6qnOqga5BwY
+	GhInzK+T/mQ=; b=QegUkinlXOUQUfU+Z6Fng/aO3ZP8hLhGBywI3D0F4BXqFJO/
+	66SNgbuKRJFRDjfeeet12glsiN69pRC2L5oKrAq0yZeYcNkUo5RkLCGEqBN1bAHh
+	YpGM7bLCPBNPDezVWFwaSRymxW/MQiAWQqjUYexabi4YAMTiueXgZGnIwJs=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id j5jotRmRoCJS for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  9 Apr 2018 09:55:38 +0200 (CEST)
+Received: from mail-wr0-f174.google.com (mail-wr0-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 2416D3F9DB
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Apr 2018 09:55:38 +0200 (CEST)
+Received: by mail-wr0-f174.google.com with SMTP id n2so8280584wrj.7
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 09 Apr 2018 00:55:38 -0700 (PDT)
+X-Gm-Message-State: ALQs6tCu5pzoRP+ziymV+j3q4FZUHPqGTVd2ULl+nT0CN1dXHP6kmMh4
+	6dm/jPv4GfYtO9iweQc/t9BaBzAbGFd0k7itsFE=
+X-Google-Smtp-Source: AIpwx4/PDRcUBhZiu4a+4jdoPb+VedxlwX4hbKVKjt+FP1IhMJgCEuC8RF026KFWTk3xSRdLafDnRFR+k6+buisdSW4=
+X-Received: by 2002:a19:5745:: with SMTP id l66-v6mr22059217lfb.135.1523260537774;
+ Mon, 09 Apr 2018 00:55:37 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Mon, 09 Apr 2018 07:55:27 +0000
+X-Gmail-Original-Message-ID: <CALsPASVQTgoj2_+7bZ-L=sMFg_6+3C4h7N3tvqSOYXtBgUmFpw@mail.gmail.com>
+Message-ID: <CALsPASVQTgoj2_+7bZ-L=sMFg_6+3C4h7N3tvqSOYXtBgUmFpw@mail.gmail.com>
+To: iot2018wt@easychair.org
+Content-Type: multipart/alternative; boundary="00000000000041292a056965bb22"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] IoT 2018: Call for Workshop proposals - May 15th
+
+--00000000000041292a056965bb22
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Apologies for cross-posting
+
+
+=3D Web: http://iot-conference.org/iot2018
+
+=3D=3D Deadline: May 15th, 2018
+https://easychair.org/conferences/?conf=3Diot2018wt
+
+
+Workshops collocated with the *8th International Conference on the Internet
+of Things (IoT 2018)* are opportunities to strengthen communities of
+researchers and practitioners working in specific topics related to the
+IoT. These events foster the exchange of new ideas, ongoing work, and
+latests results, in established or emerging sub-domains of interest. They
+are opportunities for IoT pioneers and practitioners in industry to share
+hands-on experience with IoT systems (use cases, deployments,
+architectures, etc.), and for researchers to present and receive feedback
+on early research result.
+
+We invite submission of half-day workshop proposals, with a clearly defined
+scope that falls in the general topics of the conference. We also encourage
+the submission of workshops that follow alternative formats such as
+hackathons, plugfests, demo jams, or breakout sessions.
+
+Review Criteria
+
+A limited number of workshop proposals will be accepted to IoT 2018. Each
+proposal will be evaluated based on the quality of the proposal, and its
+appeal to the IoT community. In particular, the proposals should
+demonstrate the following:
+
+
+   -
+
+   the workshops topics fall in the general scope of IoT2018
+   -
+
+   there is a clear identity and a focus on a specific problem or technolog=
+y
+   -
+
+   there is an existing community of researchers and practitioners that are
+   susceptible to contribute to this event
+   -
+
+   the organization and format are appealing for potential contributors and
+   participants
+
+
+In case overlapping workshops are proposed, the Workshop Chairs may contact
+the organisers to discuss the possibility of merging workshops. The
+organisers of accepted workshops will be responsible for their own
+reviewing process and publicity (e.g., website, timelines and call for
+papers).
+
+Workshop Proposals
+
+Submissions should be submitted no later than May 15th 2018 via EasyChair (
+https://easychair.org/conferences/?conf=3Diot2018wt ) as a 200 words
+abstract, along with a single PDF file of 4 pages maximum, containing the
+following section:
+
+   -
+
+   Title, acronym, potentially logo
+   -
+
+   Topics of interest covered by the workshop
+   -
+
+   Motivation: Why is the topic of particular interest to a reasonable
+   fraction of the  IoT community? If applicable, a brief discussion of the
+   workshop=E2=80=99s history (experiences, number of submissions and atten=
+dees,
+   etc.).
+   -
+
+   Organization and Format: Description of the intended organization,
+   selection process for the contributors, and schedule of the event.
+   -
+
+   Community: Evidence that there is an existing community of researchers
+   and practitioners that are susceptible to contribute to this event.
+   References to work relating to the core topic of the workshop that are n=
+ot
+   only co-authored by the organizers.
+   -
+
+   Chairs: Name, affiliation, email address, homepage and short biography
+   of each chair, explaining the chair=E2=80=99s expertise for the workshop
+   -
+
+   Program Committee: Names and affiliations of potential PC members, half
+   of the potential PC members should have confirmed at the time of submiss=
+ion.
+
+
+All workshop participants will be required to register for the full
+conference as well. Workshop organizers will receive one complimentary
+conference ticket for one organizer or one workshop participant. At the
+discretion of the chairs, workshops may be cancelled if organisers have not
+registered in a timely manner or if a workshop has received too few
+submissions.
+
+
+
+Workshop/ Tutorial Chairs - Grant McKenzie (University of Maryland, USA) -
+Maxime Lefran=C3=A7ois (=C3=89cole des Mines de Saint-=C3=89tienne, FR)
+
+--00000000000041292a056965bb22
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span id=3D"inbox-inbox-docs-internal-guid-130f4bcb-a95d-2=
+b51-10d9-b70a9a1ad0e3"> <p style=3D"line-height:1.38;margin-top:0pt;margin-=
+bottom:0pt"><span style=3D"background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;vertical-align:baseline"><font face=
+=3D"Arial"><span style=3D"font-size:14.6667px;white-space:pre-wrap">Apologi=
+es for cross-posting</span></font></span></p><p style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
+:baseline"><font face=3D"Arial"><span style=3D"font-size:14.6667px;white-sp=
+ace:pre-wrap"><br></span></font></span></p><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
+ical-align:baseline"><font face=3D"Arial"><span style=3D"font-size:14.6667p=
+x;white-space:pre-wrap">=3D </span></font></span><span style=3D"font-size:1=
+4.6667px;white-space:pre-wrap;font-family:Arial;background-color:transparen=
+t">Web: <a href=3D"http://iot-conference.org/iot2018">http://iot-conference=
+.org/iot2018</a></span></p><p style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt"><font face=3D"Arial"><span style=3D"font-size:14.6667px;whit=
+e-space:pre-wrap">=3D=3D Deadline: May 15th</span><span style=3D"white-spac=
+e:pre-wrap">, 2018</span></font><span style=3D"font-family:Arial;font-size:=
+14.6667px;white-space:pre-wrap"> </span><a href=3D"https://easychair.org/co=
+nferences/?conf=3Diot2018wt" style=3D"font-family:Arial;font-size:14.6667px=
+;white-space:pre-wrap">https://easychair.org/conferences/?conf=3Diot2018wt<=
+/a><span style=3D"font-family:Arial;font-size:14.6667px;white-space:pre-wra=
+p"> </span></p><p style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><br class=3D"inbox-inbox-Apple-interchange-newline"></p><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
+ont-size:11pt;font-family:Arial;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-=
+space:pre-wrap">Workshops collocated with the <b>8th International Conferen=
+ce on the Internet of Things (IoT 2018)</b> are opportunities to strengthen=
+ communities of researchers and practitioners working in specific topics re=
+lated to the IoT. These events foster the exchange of new ideas, ongoing wo=
+rk, and latests results, in established or emerging sub-domains of interest=
+. They are opportunities for IoT pioneers and practitioners in industry to =
+share hands-on experience with IoT systems (use cases, deployments, archite=
+ctures, etc.), and for researchers to present and receive feedback on early=
+ research result. </span></p><br><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:=
+Arial;background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">We invite =
+submission of half-day workshop proposals, with a clearly defined scope tha=
+t falls in the general topics of the conference. We also encourage the subm=
+ission of workshops that follow alternative formats such as hackathons, plu=
+gfests, demo jams, or breakout sessions.</span></p><br><h2 dir=3D"ltr" styl=
+e=3D"line-height:1.2;margin-top:18pt;margin-bottom:6pt;text-align:justify">=
+<span style=3D"font-size:16pt;font-family:Arial;background-color:transparen=
+t;font-weight:400;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;vertical-align:baseline;white-space:pre-wrap">Review Criteria</span></h2>=
+<br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt"><span style=3D"font-size:11pt;font-family:Arial;background-color:transp=
+arent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">A limited number of workshop proposals =
+will be accepted to IoT 2018. Each proposal will be evaluated based on the =
+quality of the proposal, and its appeal to the IoT community. In particular=
+, the proposals should demonstrate the following:</span></p><br><ul style=
+=3D"margin-top:0pt;margin-bottom:0pt"><li dir=3D"ltr" style=3D"list-style-t=
+ype:disc;font-size:11pt;font-family:Arial;background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transpa=
+rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">the workshops topics fall in the general=
+ scope of IoT2018</span></p></li><li dir=3D"ltr" style=3D"list-style-type:d=
+isc;font-size:11pt;font-family:Arial;background-color:transparent;font-vari=
+ant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;w=
+hite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent;=
+font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:b=
+aseline;white-space:pre-wrap">there is a clear identity and a focus on a sp=
+ecific problem or technology</span></p></li><li dir=3D"ltr" style=3D"list-s=
+tyle-type:disc;font-size:11pt;font-family:Arial;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
+:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
+cal-align:baseline;white-space:pre-wrap">there is an existing community of =
+researchers and practitioners that are susceptible to contribute to this ev=
+ent </span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size=
+:11pt;font-family:Arial;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
+e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
+-space:pre-wrap">the organization and format are appealing for potential co=
+ntributors and participants</span></p></li></ul><br><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-siz=
+e:11pt;font-family:Arial;background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:p=
+re-wrap">In case overlapping workshops are proposed, the Workshop Chairs ma=
+y contact the organisers to discuss the possibility of merging workshops. T=
+he organisers of accepted workshops will be responsible for their own revie=
+wing process and publicity (e.g., website, timelines and call for papers).<=
+/span></p><br><h2 dir=3D"ltr" style=3D"line-height:1.38;margin-top:12pt;mar=
+gin-bottom:2pt"><span style=3D"font-size:16pt;font-family:Arial;background-=
+color:transparent;font-weight:400;font-variant-numeric:normal;font-variant-=
+east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Workshop Pr=
+oposals</span></h2><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;vertical-align:baseline;white-space:pre-wrap">Submissions should be su=
+bmitted no later than </span><span style=3D"font-size:11pt;font-family:&quo=
+t;Times New Roman&quot;;background-color:transparent;font-weight:700;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
+e;white-space:pre-wrap">May 15th 2018</span><span style=3D"font-size:11pt;f=
+ont-family:Arial;background-color:transparent;font-variant-numeric:normal;f=
+ont-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap"=
+> via EasyChair ( <a href=3D"https://easychair.org/conferences/?conf=3Diot2=
+018wt">https://easychair.org/conferences/?conf=3Diot2018wt</a> ) as a 200 w=
+ords abstract, along with a single PDF file of 4 pages maximum, containing =
+the following section:</span></p><ul style=3D"margin-top:0pt;margin-bottom:=
+0pt"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fami=
+ly:Arial;background-color:transparent;font-variant-numeric:normal;font-vari=
+ant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
+;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wra=
+p">Title, acronym, potentially logo</span></p></li><li dir=3D"ltr" style=3D=
+"list-style-type:disc;font-size:11pt;font-family:Arial;background-color:tra=
+nsparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertica=
+l-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-=
+color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;vertical-align:baseline;white-space:pre-wrap">Topics of interest covered =
+by the workshop</span></p></li><li dir=3D"ltr" style=3D"list-style-type:dis=
+c;font-size:11pt;font-family:Arial;background-color:transparent;font-varian=
+t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
+te-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
+n-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent;fo=
+nt-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:bas=
+eline;white-space:pre-wrap">Motivation: Why is the topic of particular inte=
+rest to a reasonable fraction of the =C2=A0IoT community? If applicable, a =
+brief discussion of the workshop=E2=80=99s history (experiences, number of =
+submissions and attendees, etc.). </span></p></li><li dir=3D"ltr" style=3D"=
+list-style-type:disc;font-size:11pt;font-family:Arial;background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-c=
+olor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal=
+;vertical-align:baseline;white-space:pre-wrap">Organization and Format: Des=
+cription of the intended organization, selection process for the contributo=
+rs, and schedule of the event.</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type:disc;font-size:11pt;font-family:Arial;background-color:transpar=
+ent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
+gn:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color=
+:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ver=
+tical-align:baseline;white-space:pre-wrap">Community: Evidence that there i=
+s an existing community of researchers and practitioners that are susceptib=
+le to contribute to this event. References to work relating to the core top=
+ic of the workshop that are not only co-authored by the organizers.</span><=
+/p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-f=
+amily:Arial;background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D=
+"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span sty=
+le=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-w=
+rap">Chairs: Name, affiliation, email address, homepage and short biography=
+ of each chair, explaining the chair=E2=80=99s expertise for the workshop</=
+span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;=
+font-family:Arial;background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
+:pre-wrap">Program Committee: Names and affiliations of potential PC member=
+s, half of the potential PC members should have confirmed at the time of su=
+bmission.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family=
+:Arial;background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">All works=
+hop participants will be required to register for the full conference as we=
+ll. Workshop organizers will receive one complimentary conference ticket fo=
+r one organizer or one workshop participant. At the discretion of the chair=
+s, workshops may be cancelled if organisers have not registered in a timely=
+ manner or if a workshop has received too few submissions.</span></p><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;font-family:Arial;background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:basel=
+ine;white-space:pre-wrap"><br></span></p><p style=3D"line-height:1.38;margi=
+n-top:0pt;margin-bottom:0pt"><font face=3D"Arial"><span style=3D"font-size:=
+14.6667px;white-space:pre-wrap"><br></span></font></p><p style=3D"line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt"><font face=3D"Arial"><span style=
+=3D"font-size:14.6667px;white-space:pre-wrap">Workshop/ Tutorial Chairs
+- Grant McKenzie (University of Maryland, USA)
+- Maxime Lefran=C3=A7ois (=C3=89cole des Mines de Saint-=C3=89tienne, FR)</=
+span></font><br></p></span><br class=3D"inbox-inbox-Apple-interchange-newli=
+ne"></div>
+
+--00000000000041292a056965bb22--

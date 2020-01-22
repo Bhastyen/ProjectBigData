@@ -1,0 +1,450 @@
+Return-Path: <lakhdar.sais@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id F3CB0190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 16 Jan 2017 19:56:58 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id DD8A16D21C8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 16 Jan 2017 19:56:58 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id CF3FB414A8C0
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 16 Jan 2017 19:56:58 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.522
+X-Spam-Level: *
+X-Spam-Status: No, score=1.522 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, MANGLED_MEDS=2.3,
+	RCVD_IN_DNSWL_LOW=-1, SPF_PASS=-0.001,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.7767 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id g1HvEwOPvygJ for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 16 Jan 2017 19:56:57 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qt0-x243.google.com (mail-qt0-x243.google.com [IPv6:2607:f8b0:400d:c0d::243])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 6D0B54114790
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 16 Jan 2017 19:56:57 +0100 (CET)
+Received: by mail-qt0-x243.google.com with SMTP id n13so15974432qtc.0
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 16 Jan 2017 10:56:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to:cc;
+        bh=wxLztJn0Ymy0BaUFORIXlUYBDq6OL/2W+TIvP5BniqE=;
+        b=mjOrZC4baygUMKUJF4fi7Wagm2qUpQSO4b/HRXk5uiWVgxj0aDHjb+B1VbuAGGIV1R
+         8AQysIpqK0jXPbEniT6uLM3T2WXeAxk6tv9wpkp3zwVdAUS1SPNDvWI4krhMWMO136M+
+         nYEyvUO/L8YRLQTi7MJj8smkwLIhoj2gIU5DnZGE6Xk1+eGoo88Ci8G0j8FuYoj5Ttcb
+         80uqVaSlCCX83scQM4sV/f0GEDeZyHUhsso1QJeqCJT7uDs8X2OXfM8JsX7/MH428ps3
+         hAg89IxgmR6DR/yCsNRHzagKsR3JUBS95l6wpS8Wc9vxlRuNqv5CFHu4h+w2akj0Pw5Q
+         klew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:cc;
+        bh=wxLztJn0Ymy0BaUFORIXlUYBDq6OL/2W+TIvP5BniqE=;
+        b=OAlF4/OIgk2Yz8yKgX8vm+5H4WZCfII1VpEgw7iAlr54zkaOcKsQNAXGl8V5eKpl9g
+         AFBhLgTgAyiPb76La3mlWlKlCaMOsbG7q4yq6Dt2ZVadghCLsfT/c5Q+YrGqrjajy2uJ
+         P+pLqoDf854C4bn1iz6GjgCgZdDXcA7WX5PyUrA9sSRKZ9LbfaKFG6Nbawp+Yo6nh1pK
+         7VYI3ldt4D9DMiv5rH8KmLw66snt8l5ZdN15n/aQoR9xpKjgdTwh+ijpqhfaUJlJwlO5
+         Eoux9VOwr9dO/1DXGOmwFzBMGmeUNP95k75yhmzZM+J+BopXgLMBFFbKpUzWYH1/+OUP
+         mM+A==
+X-Gm-Message-State: AIkVDXL6KyYl6eUM0zcJG2B2RLcBn/MhrYtT0O/fl3B0z3Rbld/qRN1psC6ZqvM9WI6QF7UnqAYwJ/A/hmtlQA==
+X-Received: by 10.200.53.70 with SMTP id z6mr32705911qtb.150.1484593016132;
+ Mon, 16 Jan 2017 10:56:56 -0800 (PST)
+MIME-Version: 1.0
+Sender: lakhdar.sais@gmail.com
+Received: by 10.237.54.65 with HTTP; Mon, 16 Jan 2017 10:56:55 -0800 (PST)
+From: Lakhdar Sais <sais@cril.fr>
+Date: Mon, 16 Jan 2017 19:56:55 +0100
+X-Google-Sender-Auth: yHn5TQ8-jjgjOTjlcbPQFrJX5SY
+Message-ID: <CAMLWrY997yanLWd-W=PL9XQ8Dxw4_hv0FTF+3d_it0GVTeV6UQ@mail.gmail.com>
+To: bull-i3@irit.fr
+Cc: gazettebd3@imag.fr, liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a11397df85cf30505463abff5
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Second Appel - COSI 2017, Colloque sur l'Optimisation
+ et les =?UTF-8?Q?Syst=C3=A8mes?= d'Information
+
+--001a11397df85cf30505463abff5
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+[Veuillez nous excuser pour les r=C3=A9ceptions multiples]
+
+*COSI'2017*
+
+*14=C3=A8me Colloque sur l'Optimisation et les Syst=C3=A8mes d'Information*
+
+14 =E2=80=93 16 Mai 2017
+
+Universit=C3=A9  de Bouira, Akli Mohand Oulhadj (Alg=C3=A9rie)
+
+http://www.isima.fr/cosi/cosi2017/
+
+------------------------------------------------------------
+----------------------
+
+*Dates Importantes*
+
+Soumission des r=C3=A9sum=C3=A9s des articles : 4 F=C3=A9vrier 2017
+
+Soumission des articles/d=C3=A9monstrations : 11 F=C3=A9vrier 2017
+
+Notification aux auteurs :   8 Avril 2017
+
+R=C3=A9ception des articles en version finale : 22 Avril 2017
+
+Colloque COSI : 14 - 16 Mai 2017
+
+------------------------------------------------------------
+----------------------
+
+COSI (Colloque sur l'Optimisation et les Syst=C3=A8mes d'Information) a pou=
+r
+objectif de regrouper des chercheurs en Informatique et Math=C3=A9matiques,
+issus principalement des communaut=C3=A9s Optimisation combinatoire, Th=C3=
+=A9orie des
+graphes, Syst=C3=A8mes d'information et Intelligence Artificielle. Cette
+quatorzi=C3=A8me =C3=A9dition de COSI, qui se tiendra =C3=A0 Bouira du 14 a=
+u 16 mai 2017,
+sera organis=C3=A9e par l=E2=80=99Universit=C3=A9 de Bouira - Akli Mohand O=
+ulhadj. Elle fait
+suite aux =C3=A9ditions ant=C3=A9rieures qui se sont d=C3=A9roul=C3=A9es =
+=C3=A0 Tizi-Ouzou (2004),
+Bejaia (2005), Alger (2006), Oran (2007), Tizi-Ouzou (2008), Annaba (2009),
+Ouargla (2010), Guelma (2011), Tlemcen (2012), Alger (2013), Bejaia (2014),
+Oran (2015) et S=C3=A9tif (2016).
+
+COSI se veut un lieu convivial de rencontres, d'=C3=A9changes et de discuss=
+ions
+entre chercheurs du nord et du sud. Dans la continuit=C3=A9 des =C3=A9ditio=
+ns
+pr=C3=A9c=C3=A9dentes, l=E2=80=99=C3=A9dition 2017 comportera des conf=C3=
+=A9rences invit=C3=A9es de premier
+plan,  des articles scientifiques originaux et des d=C3=A9monstrations de
+prototype de recherche.
+
+Le programme de cette 14=C3=A8me =C3=A9dition de COSI sera suivi d=E2=80=99=
+une demi-journ=C3=A9e
+de cours =C3=A0 destination des =C3=A9tudiants et des enseignants chercheur=
+s sur les
+avanc=C3=A9s r=C3=A9centes autour des th=C3=A9matiques de COSI.
+
+Un autre objectif est de permettre aux doctorants de pr=C3=A9senter leurs
+travaux =C3=A0 l'ensemble de la communaut=C3=A9 scientifique de COSI. Aussi=
+,
+ils/elles sont encourag=C3=A9s =C3=A0 soumettre leurs travaux en cours.
+
+Nous sollicitons deux types d=E2=80=99articles :
+
+-          Des papiers classiques ne devant pas exc=C3=A9der 12 pages (form=
+at
+LNCS).
+
+-          Des papiers d=C3=A9monstration ne devant pas exc=C3=A9der 4 page=
+s
+
+ Les propositions d=E2=80=99articles doivent imp=C3=A9rativement =C3=AAtre =
+soumises  par voie
+=C3=A9lectronique au format .pdf, voir les modalit=C3=A9s (nombre de pages,=
+ styles
+latex et word =E2=80=A6) sur http://www.isima.fr/cosi/cosi2017/soumettre.ph=
+p
+
+Tous les articles accept=C3=A9s par le CP seront publi=C3=A9s dans les acte=
+s du
+Colloque. Les meilleurs papiers de chaque th=C3=A8me seront s=C3=A9lectionn=
+=C3=A9s pour
+=C3=AAtre publi=C3=A9s dans une revue du domaine.
+
+La conf=C3=A9rence COSI est organis=C3=A9e autour de 4 grands th=C3=A8mes a=
+vec deux
+responsables par th=C3=A8me. Pour chacun d=E2=80=99eux, une liste non exhau=
+stive de mots
+cl=C3=A9s est donn=C3=A9e ci-dessous :
+
+Th=C3=A8me A : Syst=C3=A8mes d=E2=80=99information
+
+=E2=80=A2          Bases de donn=C3=A9es (langages, contraintes, optimisati=
+on,
+indexation, stockage, s=C3=A9curit=C3=A9=E2=80=A6)
+
+=E2=80=A2          Extraction et gestion de connaissances (e.g. r=C3=A8gles=
+, treillis,
+=C3=A9num=C3=A9ration de motifs, m=C3=A9thodes statistiques)
+
+=E2=80=A2          Traitement et gestion de donn=C3=A9es massives (Big Data=
+)
+
+=E2=80=A2         Int=C3=A9gration d'information et d'applications (syst=C3=
+=A8mes de
+m=C3=A9diation, Services Web, Web s=C3=A9mantique=E2=80=A6)
+
+Th=C3=A8me B : Recherche op=C3=A9rationnelle et aide =C3=A0 la d=C3=A9cisio=
+n
+
+=E2=80=A2          Optimisation combinatoire, programmation math=C3=A9matiq=
+ue,
+
+=E2=80=A2          Algorithmiques et th=C3=A9orie des graphes
+
+=E2=80=A2          Heuristiques et m=C3=A9ta heuristiques=E2=80=A6
+
+=E2=80=A2          Ordonnancement et gestion de production =E2=80=A6
+
+ Th=C3=A8me C : Intelligence Artificielle
+
+=E2=80=A2          Repr=C3=A9sentation des connaissances et raisonnement
+
+=E2=80=A2          Programmation par contraintes
+
+=E2=80=A2          Apprentissage automatique
+
+=E2=80=A2          Traitement d'images et vision artificielle
+
+Th=C3=A8me D : Applications Innovantes
+
+=E2=80=A2          R=C3=A9seaux dynamiques (Adhoc, WSN, VANETS,=E2=80=A6)
+
+=E2=80=A2          R=C3=A9seaux sociaux (recherche de communaut=C3=A9s, alg=
+orithmes de
+recommandation, s=C3=A9curit=C3=A9 dans les r=C3=A9seaux sociaux)
+
+=E2=80=A2          Sant=C3=A9 et Biologie
+
+=E2=80=A2          Transport et logistique
+
+=E2=80=A2          Environnement et d=C3=A9veloppement durable=E2=80=A6
+
+
+*Pr=C3=A9sidente du comit=C3=A9 d'organisation :*
+
+Dr. Kahina Louadj, Universit=C3=A9 de Bouira =E2=80=93 Akli Mohand Oulhadj =
+(Alg=C3=A9rie)
+
+
+*Pr=C3=A9sident du comit=C3=A9 de programme :*
+
+Mourad Ba=C3=AFou, Directeur de recherche CNRS
+
+LIMOS, Universit=C3=A9 Clermont Auvergne (France)
+
+--001a11397df85cf30505463abff5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"font-size:12.8px">[Veuillez nous excuser po=
+ur les r=C3=A9ceptions multiples]</span><br style=3D"font-size:12.8px"><br =
+style=3D"font-size:12.8px"><p class=3D"MsoNormal" style=3D"font-size:12.8px=
+;text-align:justify"><b><span lang=3D"FR" style=3D"font-family:&quot;times =
+new roman&quot;">COSI&#39;2017<u></u><u></u></span></b></p><p class=3D"MsoN=
+ormal" style=3D"font-size:12.8px;text-align:justify"><b><span lang=3D"FR" s=
+tyle=3D"font-family:&quot;times new roman&quot;">14=C3=A8me Colloque sur l&=
+#39;Optimisation et les Syst=C3=A8mes d&#39;Information<u></u><u></u></span=
+></b></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justif=
+y"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">14 =
+=E2=80=93 16 Mai 2017<u></u><u></u></span></p><p class=3D"MsoNormal" style=
+=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-fa=
+mily:&quot;times new roman&quot;">Universit=C3=A9=C2=A0=C2=A0de Bouira, Akl=
+i Mohand Oulhadj (Alg=C3=A9rie)<u></u><u></u></span></p><p class=3D"MsoNorm=
+al" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR"><a href=
+=3D"http://www.isima.fr/cosi/cosi2017/" target=3D"_blank">http://www.isima.=
+fr/cosi/<wbr>cosi2017/</a></span><span lang=3D"FR" style=3D"font-family:&qu=
+ot;times new roman&quot;">=C2=A0=C2=A0=C2=A0<u></u><u></u></span></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=
+=3D"FR" style=3D"font-family:&quot;times new roman&quot;">-----------------=
+-------------<wbr>------------------------------<wbr>----------------------=
+<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;t=
+ext-align:justify"><b><span lang=3D"FR" style=3D"font-family:&quot;times ne=
+w roman&quot;">Dates Importantes<u></u><u></u></span></b></p><p class=3D"Ms=
+oNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" st=
+yle=3D"font-family:&quot;times new roman&quot;">Soumission des r=C3=A9sum=
+=C3=A9s des articles : 4 F=C3=A9vrier 2017<u></u><u></u></span></p><p class=
+=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"=
+FR" style=3D"font-family:&quot;times new roman&quot;">Soumission des articl=
+es/d=C3=A9monstrations : 11 F=C3=A9vrier 2017<u></u><u></u></span></p><p cl=
+ass=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=
+=3D"FR" style=3D"font-family:&quot;times new roman&quot;">Notification aux =
+auteurs :=C2=A0=C2=A0=C2=A08 Avril 2017<u></u><u></u></span></p><p class=3D=
+"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR"=
+ style=3D"font-family:&quot;times new roman&quot;">R=C3=A9ception des artic=
+les en version finale : 22 Avril 2017<u></u><u></u></span></p><p class=3D"M=
+soNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" s=
+tyle=3D"font-family:&quot;times new roman&quot;">Colloque COSI : 14 - 16 Ma=
+i 2017<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12=
+.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times=
+ new roman&quot;">------------------------------<wbr>----------------------=
+--------<wbr>----------------------<u></u><u></u></span></p><p class=3D"Mso=
+Normal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" sty=
+le=3D"font-family:&quot;times new roman&quot;">COSI (Colloque sur l&#39;Opt=
+imisation et les Syst=C3=A8mes d&#39;Information) a pour objectif de regrou=
+per des chercheurs en Informatique et Math=C3=A9matiques, issus principalem=
+ent des communaut=C3=A9s Optimisation combinatoire, Th=C3=A9orie des graphe=
+s, Syst=C3=A8mes d&#39;information et Intelligence Artificielle. Cette quat=
+orzi=C3=A8me =C3=A9dition de COSI, qui se tiendra =C3=A0 Bouira du 14 au 16=
+ mai 2017, sera organis=C3=A9e par l=E2=80=99Universit=C3=A9 de Bouira - Ak=
+li Mohand Oulhadj. Elle fait suite aux =C3=A9ditions ant=C3=A9rieures qui s=
+e sont d=C3=A9roul=C3=A9es =C3=A0 Tizi-Ouzou (2004), Bejaia (2005), Alger (=
+2006), Oran (2007), Tizi-Ouzou (2008), Annaba (2009), Ouargla (2010), Guelm=
+a (2011), Tlemcen (2012), Alger (2013), Bejaia (2014), Oran (2015) et S=C3=
+=A9tif (2016).<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font=
+-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&qu=
+ot;times new roman&quot;">COSI se veut un lieu convivial de rencontres, d&#=
+39;=C3=A9changes et de discussions entre chercheurs du nord et du sud. Dans=
+ la continuit=C3=A9 des =C3=A9ditions pr=C3=A9c=C3=A9dentes, l=E2=80=99=C3=
+=A9dition 2017 comportera des conf=C3=A9rences invit=C3=A9es de premier pla=
+n,=C2=A0=C2=A0des articles scientifiques originaux et des d=C3=A9monstratio=
+ns de prototype de recherche.<u></u><u></u></span></p><p class=3D"MsoNormal=
+" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"=
+font-family:&quot;times new roman&quot;">Le programme de cette 14=C3=A8me =
+=C3=A9dition de COSI sera suivi d=E2=80=99une demi-journ=C3=A9e de cours =
+=C3=A0 destination des =C3=A9tudiants et des enseignants chercheurs sur les=
+ avanc=C3=A9s r=C3=A9centes autour des th=C3=A9matiques de COSI.=C2=A0=C2=
+=A0<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8p=
+x;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times ne=
+w roman&quot;">Un autre objectif est de permettre aux doctorants de pr=C3=
+=A9senter leurs travaux =C3=A0 l&#39;ensemble de la communaut=C3=A9 scienti=
+fique de COSI. Aussi, ils/elles sont encourag=C3=A9s =C3=A0 soumettre leurs=
+ travaux en cours.<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"=
+font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family=
+:&quot;times new roman&quot;">Nous sollicitons deux types d=E2=80=99article=
+s :<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8p=
+x;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times ne=
+w roman&quot;">-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0Des papiers classiques ne devant pas exc=C3=A9der 12 pages (format LNCS)=
+.<u></u><u></u></span><span lang=3D"FR" style=3D"font-family:&quot;times ne=
+w roman&quot;"><br></span></p><p class=3D"MsoNormal" style=3D"font-size:12.=
+8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times =
+new roman&quot;">-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0Des papiers d=C3=A9monstration ne devant pas exc=C3=A9der 4 pages<u></u>=
+<u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-ali=
+gn:justify"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&qu=
+ot;"><u></u>=C2=A0<u></u></span><span lang=3D"FR" style=3D"font-family:&quo=
+t;times new roman&quot;">Les propositions d=E2=80=99articles doivent imp=C3=
+=A9rativement =C3=AAtre soumises=C2=A0=C2=A0par voie =C3=A9lectronique au f=
+ormat .pdf, voir les modalit=C3=A9s (nombre de pages, styles latex et word =
+=E2=80=A6) sur=C2=A0</span><span lang=3D"FR"><a href=3D"http://www.isima.fr=
+/cosi/cosi2017/soumettre.php" target=3D"_blank">http://www.isima.fr/cosi/<w=
+br>cosi2017/soumettre.php</a></span><span lang=3D"FR" style=3D"font-family:=
+&quot;times new roman&quot;">=C2=A0=C2=A0<u></u><u></u></span></p><p class=
+=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"=
+FR" style=3D"font-family:&quot;times new roman&quot;">Tous les articles acc=
+ept=C3=A9s par le CP seront publi=C3=A9s dans les actes du Colloque. Les me=
+illeurs papiers de chaque th=C3=A8me seront s=C3=A9lectionn=C3=A9s pour =C3=
+=AAtre publi=C3=A9s dans une revue du domaine.<u></u><u></u></span></p><p c=
+lass=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=
+=3D"FR" style=3D"font-family:&quot;times new roman&quot;">La conf=C3=A9renc=
+e COSI est organis=C3=A9e autour de 4 grands th=C3=A8mes avec deux responsa=
+bles par th=C3=A8me. Pour chacun d=E2=80=99eux, une liste non exhaustive de=
+ mots cl=C3=A9s est donn=C3=A9e ci-dessous :<u></u><u></u></span></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=
+=3D"FR" style=3D"font-family:&quot;times new roman&quot;">Th=C3=A8me A : Sy=
+st=C3=A8mes d=E2=80=99information<u></u><u></u></span></p><p class=3D"MsoNo=
+rmal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Bases de donn=C3=A9es (langages, con=
+traintes, optimisation, indexation, stockage, s=C3=A9curit=C3=A9=E2=80=A6)<=
+u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;te=
+xt-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times new ro=
+man&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0Extraction et gestion de connaissances (e.g. r=C3=A8gles, treillis, =
+=C3=A9num=C3=A9ration de motifs, m=C3=A9thodes statistiques)<u></u><u></u><=
+/span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justi=
+fy"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">=E2=
+=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Traitemen=
+t et gestion de donn=C3=A9es massives (Big Data)<u></u><u></u></span></p><p=
+ class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span la=
+ng=3D"FR" style=3D"font-family:&quot;times new roman&quot;">=E2=80=A2 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 Int=C3=A9gration d&#39;information et d&#39;applic=
+ations (syst=C3=A8mes de m=C3=A9diation, Services Web, Web s=C3=A9mantique=
+=E2=80=A6)<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-siz=
+e:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;t=
+imes new roman&quot;">Th=C3=A8me B : Recherche op=C3=A9rationnelle et aide =
+=C3=A0 la d=C3=A9cision<u></u><u></u></span></p><p class=3D"MsoNormal" styl=
+e=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-f=
+amily:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Optimisation combinatoire, programmation math=
+=C3=A9matique,<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font=
+-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&qu=
+ot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0Algorithmiques et th=C3=A9orie des graphes<u></u><u></=
+u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:ju=
+stify"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">=
+=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Heuris=
+tiques et m=C3=A9ta heuristiques=E2=80=A6<u></u><u></u></span></p><p class=
+=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"=
+FR" style=3D"font-family:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Ordonnancement et gestion d=
+e production =E2=80=A6<u></u><u></u></span></p><p class=3D"MsoNormal" style=
+=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-fa=
+mily:&quot;times new roman&quot;"><u></u>=C2=A0<u></u></span><span lang=3D"=
+FR" style=3D"font-family:&quot;times new roman&quot;">Th=C3=A8me C : Intell=
+igence Artificielle<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D=
+"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-famil=
+y:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0Repr=C3=A9sentation des connaissances et raisonn=
+ement<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.=
+8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times =
+new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0Programmation par contraintes<u></u><u></u></span></p><p class=
+=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"=
+FR" style=3D"font-family:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Apprentissage automatique<u=
+></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;tex=
+t-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times new rom=
+an&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0Traitement d&#39;images et vision artificielle<u></u><u></u></span></=
+p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><spa=
+n lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">Th=C3=A8me =
+D : Applications Innovantes<u></u><u></u></span></p><p class=3D"MsoNormal" =
+style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"fo=
+nt-family:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0R=C3=A9seaux dynamiques (Adhoc, WSN, VANET=
+S,=E2=80=A6)<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-s=
+ize:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot=
+;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0R=C3=A9seaux sociaux (recherche de communaut=C3=A9s, algo=
+rithmes de recommandation, s=C3=A9curit=C3=A9 dans les r=C3=A9seaux sociaux=
+)<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;=
+text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;times new =
+roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0Sant=C3=A9 et Biologie<u></u><u></u></span></p><p class=3D"MsoNorm=
+al" style=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:&quot;times new roman&quot;">=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Transport et logistique<u></u><u></u=
+></span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:jus=
+tify"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">=
+=E2=80=A2=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Enviro=
+nnement et d=C3=A9veloppement durable=E2=80=A6<u></u><u></u></span><span la=
+ng=3D"FR" style=3D"font-family:&quot;times new roman&quot;"><u></u><u></u><=
+/span></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justi=
+fy"><b><span lang=3D"FR" style=3D"font-family:&quot;times new roman&quot;">=
+<br></span></b></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-al=
+ign:justify"><b><span lang=3D"FR" style=3D"font-family:&quot;times new roma=
+n&quot;">Pr=C3=A9sidente du comit=C3=A9 d&#39;organisation=C2=A0:<u></u><u>=
+</u></span></b></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-al=
+ign:justify"><span lang=3D"FR" style=3D"font-family:&quot;times new roman&q=
+uot;">Dr. Kahina Louadj, Universit=C3=A9 de Bouira =E2=80=93 Akli Mohand Ou=
+lhadj (Alg=C3=A9rie)<u></u><u></u></span></p><p class=3D"MsoNormal" style=
+=3D"font-size:12.8px;text-align:justify"><b><span lang=3D"FR" style=3D"font=
+-family:&quot;times new roman&quot;"><br></span></b></p><p class=3D"MsoNorm=
+al" style=3D"font-size:12.8px;text-align:justify"><b><span lang=3D"FR" styl=
+e=3D"font-family:&quot;times new roman&quot;">Pr=C3=A9sident du comit=C3=A9=
+ de programme=C2=A0:<u></u><u></u></span></b></p><p class=3D"MsoNormal" sty=
+le=3D"font-size:12.8px;text-align:justify"><span lang=3D"FR" style=3D"font-=
+family:&quot;times new roman&quot;">Mourad Ba=C3=AFou, Directeur de recherc=
+he CNRS<u></u><u></u></span></p><p class=3D"MsoNormal" style=3D"font-size:1=
+2.8px;text-align:justify"><span lang=3D"FR" style=3D"font-family:&quot;time=
+s new roman&quot;">LIMOS, Universit=C3=A9 Clermont Auvergne (France)</span>=
+</p>
+</div>
+
+--001a11397df85cf30505463abff5--

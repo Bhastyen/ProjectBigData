@@ -1,0 +1,182 @@
+Return-Path: <philippe.lenca@telecom-bretagne.eu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8B7251903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 22 Jun 2016 12:56:48 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 7D9687012F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 22 Jun 2016 12:56:48 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 6ED6C2F2C5B
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 22 Jun 2016 12:56:48 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.671
+X-Spam-Level:
+X-Spam-Status: No, score=-4.671 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_MED=-10, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING=4, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.5111 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=telecom-bretagne.eu
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id lrTM8d0ReK1q for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 22 Jun 2016 12:56:47 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy210.enst-bretagne.fr (zproxy210.enst-bretagne.fr [192.108.117.8])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 66F302F2C68
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 22 Jun 2016 12:56:47 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id 589DD232027
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 22 Jun 2016 12:56:47 +0200 (CEST)
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id PJihAPN7-D3e for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 22 Jun 2016 12:56:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id 86276232055
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 22 Jun 2016 12:56:46 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy210.enst-bretagne.fr 86276232055
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telecom-bretagne.eu;
+	s=CFDC2CFA-4654-11E5-AACD-7BCC68B6580D; t=1466593006;
+	bh=aAXwNXnyIGsHknp4rcHJxO95LHGsIJZr6nvqP1YNIlI=;
+	h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding;
+	b=q10k2Z8ifAWMGuGtKlF3g9LQwC8irxaGmframTTYJ9SQ4EWvcwzXNrquJDTMxIUqO
+	 l6dG2sJcb9+NiXXo+N879H7Kc7ArOgrES3I1bAtandZU9keTtuEZTD/GUejq38WwaT
+	 rUF+paFtTfLFeLL2MA5mjvWp8rNGVKyQ2Qx83Qnc=
+X-Virus-Scanned: amavisd-new at zproxy210.enst-bretagne.fr
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id OXIk-2p8Rxnu for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 22 Jun 2016 12:56:46 +0200 (CEST)
+Received: from [192.168.0.16] (81-64-131-136.rev.numericable.fr [81.64.131.136])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTPSA id 517EE232027
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 22 Jun 2016 12:56:46 +0200 (CEST)
+From: Philippe Lenca <philippe.lenca@telecom-bretagne.eu>
+To: liste-egc@polytech.univ-nantes.fr
+Message-ID: <576A6EED.2090804@telecom-bretagne.eu>
+Date: Wed, 22 Jun 2016 12:56:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.8.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] [these] Proposition de =?UTF-8?Q?th=C3=A8se_financ?=
+ =?UTF-8?Q?=C3=A9e?= par =?UTF-8?Q?Ark=C3=A9a?= / =?UTF-8?Q?Cr=C3=A9dit?=
+ Mutuel : =?UTF-8?Q?Mod=C3=A9lisation?= et fouille
+ =?UTF-8?Q?s=C3=A9mantiques?= des interactions
+ =?UTF-8?Q?client/=C3=A9tablissement?= bancaire =?UTF-8?Q?=C3=A0?=
+ partir de =?UTF-8?Q?donn=C3=A9es?= massives
+
+[these] Proposition de th=C3=A8se financ=C3=A9e par Ark=C3=A9a / Cr=C3=A9=
+dit Mutuel :=20
+Mod=C3=A9lisation et fouille s=C3=A9mantiques des interactions=20
+client/=C3=A9tablissement bancaire =C3=A0 partir de donn=C3=A9es massives
+
+
+
+De : Yannis Haralambous <yannis.haralambous@telecom-bretagne.eu>
+
+Proposition de th=C3=A8se financ=C3=A9e par Ark=C3=A9a / Cr=C3=A9dit Mutu=
+el
+
+http://perso.telecom-bretagne.eu/yannisharalambous/data/Arkea-these-05-20=
+16.pdf
+
+Titre :
+
+Mod=C3=A9lisation et fouille s=C3=A9mantiques des interactions=20
+client/=C3=A9tablissement bancaire =C3=A0 partir de donn=C3=A9es massives
+
+R=C3=A9sum=C3=A9 du projet :
+
+La communication entre une entreprise et ses clients est complexe =C3=A0=20
+appr=C3=A9hender. De nombreux travaux ont d=C3=A9j=C3=A0 pu =C3=AAtre men=
+=C3=A9s autour de la=20
+d=C3=A9tection d=E2=80=99attrition, ou des diff=C3=A9rentes facettes de l=
+a relation=20
+client-fournisseur. Cette th=C3=A8se se propose d=E2=80=99approfondir ces=
+ travaux,=20
+avec l=E2=80=99analyse de nouveaux facteurs, comme l=E2=80=99analyse s=C3=
+=A9mantique des=20
+=C3=A9l=C3=A9ments textuels d=E2=80=99=C3=A9changes entre les parties, de=
+s r=C3=A9seaux sociaux, de=20
+l=E2=80=99Open Data, en plus des donn=C3=A9es concernant le compte et les=
+ op=C3=A9rations=20
+du client. En effet, en tenant compte de toutes les interactions entre=20
+client et =C3=A9tablissement bancaire, on peut construire un mod=C3=A8le=20
+qualitatif global de la relation bancaire. L'apport des donn=C3=A9es=20
+num=C3=A9riques et transactionnelles =C3=A0 ce mod=C3=A8le est connu depu=
+is longtemps,=20
+l'innovation consiste ici =C3=A0 utiliser conjointement les donn=C3=A9es=20
+textuelles diverses et =C3=A0 indexer s=C3=A9mantiquement l'ensemble des =
+donn=C3=A9es=20
+(num=C3=A9riques, transactionnelles, textuelles). Les motifs num=C3=A9riq=
+ues et=20
+transactionnels d'un c=C3=B4t=C3=A9, lexicaux, s=C3=A9mantiques ou rh=C3=A9=
+toriques de=20
+l'autre, caract=C3=A9risent dans une certaine mesure la qualit=C3=A9 de l=
+a=20
+relation et permettent de calculer des indices, qui peuvent =C3=A0 leur t=
+our=20
+servir dans un deuxi=C3=A8me temps au d=C3=A9clenchement de nouvelles str=
+at=C3=A9gies=20
+au regard de la relation attendue. Aux donn=C3=A9es textuelles issues des=
+=20
+=C3=A9changes avec le client peut s'ajouter une analyse de donn=C3=A9es O=
+pen Data=20
+(donn=C3=A9es sociales =C3=A9conomiques g=C3=A9olocalis=C3=A9es par exemp=
+le), coupl=C3=A9e avec=20
+des =C3=A9l=C3=A9ments provenant de r=C3=A9seaux sociaux ou bases de donn=
+=C3=A9es internes,=20
+ce qui pourrait aussi permettre la d=C3=A9tection de clusters d=E2=80=99i=
+nfluence,=20
+g=C3=A9ographiques, temporels, causaux ou d=E2=80=99int=C3=A9r=C3=AAt, af=
+in de mieux=20
+comprendre, sur un plan global, des ph=C3=A9nom=C3=A8nes de groupe ou de=20
+mim=C3=A9tisme. Ce sujet de th=C3=A8se porte sur l=E2=80=99analyse des di=
+ff=C3=A9rents corpus=20
+de donn=C3=A9es, en vue d=E2=80=99=C3=A9laborer un mod=C3=A8le de la qual=
+it=C3=A9 de la relation=20
+client fournisseur, et la r=C3=A9alisation d=E2=80=99un d=C3=A9monstrateu=
+r logiciel.
+
+Lieu : T=C3=A9l=C3=A9com Bretagne, Brest. (Laboratoire Lab-STICC, =C3=A9q=
+uipe DECIDE)
+
+Contact : yannis.haralambous@telecom-bretagne.eu  et=20
+laurent.le-bodic@arkea.com
+
+D=C3=A9but de th=C3=A8se : octobre 2016
+
+--=20
+-------------------------------------------------------
+Yannis Haralambous
+Professor
+Institut Mines-T=C3=A9l=C3=A9com, T=C3=A9l=C3=A9com Bretagne
+Computer Science Department
+UMR CNRS 6285 Lab-STICC
+Technop=C3=B4le Brest Iroise
+CS 83818, 29238 Brest Cedex 3, France
+Email: yannis.haralambous@telecom-bretagne.eu
+Internet: http://perso.telecom-bretagne.eu/yannisharalambous/
+ICBM address: 48=C2=B021'31.57"N 4=C2=B034'16.76"W
+Twitter: y_haralambous
+-------------------------------------------------------
+...the ball I threw while playing in the park
+has not yet reached the ground
+(Dylan Thomas)
+
+Es gab eine Zeit, wo ich nur ungern =C3=BCber Schubert sprechen,
+nur N=C3=A4chtens den B=C3=A4umen und Sternen von ihm vorerz=C3=A4hlen m=C3=
+=B6gen.
+(Robert Schumann)
+

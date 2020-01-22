@@ -1,0 +1,326 @@
+Return-Path: <atmani.baghdad@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 66C2D2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 29 May 2018 17:40:08 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 650E9661320
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 29 May 2018 17:40:08 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 5E2FE41E4EC7
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 May 2018 17:40:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.112
+X-Spam-Level:
+X-Spam-Status: No, score=0.112 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.6410 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 4DByygI4VYuv for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 29 May 2018 17:40:07 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-ot0-x243.google.com (mail-ot0-x243.google.com [IPv6:2607:f8b0:4003:c0f::243])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id DA44C41E4EC0
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 May 2018 17:40:06 +0200 (CEST)
+Received: by mail-ot0-x243.google.com with SMTP id 15-v6so17449659otn.12
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 May 2018 08:40:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=LkBWkiI+TL6j7OqUrkXfmqvTiBHXDttCeTkbGTXMNMw=;
+        b=U7RIyR5JqREThyXcmzBC7/QRGMzWmmao0oDVrtEhrpATOquw7OZwFsj6G+fxtVtWze
+         HLfCSSp6gE+vL+btdxJcQC3mXvD1i+s4Tl13V+6cR9Smqb+E0YwaFZ5yDGvaXcWcxLHv
+         H45hPPsw4dQcQVkRNT+TG7aOj/gIqKVvFtBJzNS61brMIWN45H5HYsxrv6AiotMUI+EZ
+         vf+GcwQRLCFmuf5wy4qfjdABUvTjS+AcoWAlT8VIxeM2UDJA4/r3hbFlOmKFuRdOMGDb
+         HwldXkMsS3Wj9UgnrkAUcyLKGCZGsP9NM8wqp8m/DlQFmm5yo8vz9EmGhYR88f0d7o+3
+         3JmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=LkBWkiI+TL6j7OqUrkXfmqvTiBHXDttCeTkbGTXMNMw=;
+        b=iLyORgMGhjbLY4Vdo/RmuIjZw3Si6dlyZ3O4j6tLV+FZfCg9MBTeb5d61r1ayeTNd0
+         umrBBA+3JWVwwPe7gFdTolwYPKE0o7XnQb2d9daXetUAduecMVDLUlJRWr1coYuznlcV
+         ZlkzEVY1tYGbtAs4wnu07my75QVLRquSS1h0gW1Se1YEmELP5lysJTY3rn+ATtIbly9d
+         Ug3wpTlxV0SnWWDin0g4rno9e8BFfJOAuLZe27SlJksQlUiBIr1YvDPBaoxrOFQKcNbb
+         bbt3UM/O1iH/FtWd4lYwzwEwJvHPvBt9Ej6dPzHYulns+AyTczbDwVo+P1jGFgPUtYUw
+         k8ag==
+X-Gm-Message-State: ALKqPwfjgSCYYMg2kKYWAGtnEBQ/BsYL4Fqz96i+PrI4RY9lJRTOiyQC
+	64jt695nDPsYp3txifytNPCh+hVzAcSaPhO2mCztCg==
+X-Google-Smtp-Source: ADUXVKISwYFA5LYlWg4A7chswP7SH9+h4+m8auZ2ETnB0Y100tHMgo9vriaRn1yxutNlgddYLjtBPWck+Wis1n/ogZ0=
+X-Received: by 2002:a9d:1307:: with SMTP id f7-v6mr8599060ote.307.1527608405336;
+ Tue, 29 May 2018 08:40:05 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4a:6458:0:0:0:0:0 with HTTP; Tue, 29 May 2018 08:40:04
+ -0700 (PDT)
+From: Baghdad Atmani <atmani.baghdad@gmail.com>
+Date: Tue, 29 May 2018 17:40:04 +0200
+Message-ID: <CAJX=208ws0Cd85u7CkXJYaPtmr3cFW1TQcn2=LN2VPf0Tmw+YQ@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="0000000000005b2a48056d5a0c2c"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call for papers Workshop AIMC@MEDI'2018
+
+--0000000000005b2a48056d5a0c2c
+Content-Type: text/plain; charset="UTF-8"
+
+ ### Apologies if you receive multiple copies of this CFP ###
+
+Dear Colleagues,
+
+We are pleased to announce the AIMC Workshop which will be held in
+Marrakesh, Morocco, from 24 to 26 October 2018, during the 8th
+International Conference on Models and Data Engineering MEDI'2018 (
+http://medi2018.uca.ma/) .
+
+The *AIMC 2018* will provide to the scientific community a dedicated forum
+for discussing and representing experiences, state-of-the-art reports, and
+work in-progress related to the delivery of healthcare services.
+
+
+Please consider contributing with a communication or participating in
+AIMC'2018.
+
+*Topics of interest*
+
+The workshop calls for original papers describing the theories,
+methodologies, and solutions about the innovative application of AI and MC
+to deal with the daily life accidents.
+
+
+Topics of works suitable at AIMC 2018 include, but are not limited to :
+
+   - AIMC for medical decision-making;
+   - AIMC for the delivery of healthcare services;
+   - AIMC for Interoperability of medical resources and services;
+   - AIMC and Case-based reasoning for medical decision-making support;
+   - AIMC for Information and Knowledge Retrieval;
+   - AIMC and Data Mining for medical decision-making support;
+   - AIMC and Data Warehouses for medical decision-making support;
+   - AIMC and Big Data Analytics;
+   - AIMC for emergency management;
+   - AIMC for Clinical Data and Knowledge Management;
+   - Case studies using AIMC;
+
+Visit the website https://www.univ-oran1.dz/images/actualite/
+AIMC-2018/index.html to get information about the submission process and
+deadlines.
+
+*Important dates*
+Abstract submission: *June 7, 2018*
+Paper submission: *June 15, 2018*
+
+
+*Publication*
+
+All accepted papers for the workshop will be scheduled for oral
+presentations and will be included in the MEDI'2018 proceedings, which will
+be published by Springer-Verlag.
+
+The selective outstanding papers presented at the workshops, after further
+revision, will be considered for publication in journals special issues.
+*Workshop chairs*
+Baghdad Atmani & Fatiha Barigou
+
+--0000000000005b2a48056d5a0c2c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+<div style=3D"color:rgb(34,34,34);font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;letter-spacing:normal;text-align:start;text=
+-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-de=
+coration-style:initial;text-decoration-color:initial"><div style=3D""><font=
+ face=3D"arial, helvetica, sans-serif" style=3D"background-color:rgb(255,25=
+5,255)">
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:1=
+2.8px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:nor=
+mal;letter-spacing:normal;text-align:start;text-indent:0px;text-transform:n=
+one;white-space:normal;word-spacing:0px;text-decoration-style:initial;text-=
+decoration-color:initial"><font face=3D"comic sans ms, sans-serif" color=3D=
+"#000000" size=3D"1" style=3D"">### Apologies if you receive multiple copie=
+s of this CFP ###</font></span>=C2=A0<br></font></div><div style=3D"font-we=
+ight:400;background-color:rgb(255,255,255)"><font face=3D"arial, helvetica,=
+ sans-serif" style=3D""><br></font></div><div style=3D"font-weight:400;back=
+ground-color:rgb(255,255,255)"><font face=3D"arial, helvetica, sans-serif" =
+style=3D"">Dear Colleagues,</font></div><div style=3D"font-weight:400;backg=
+round-color:rgb(255,255,255)"><font face=3D"arial, helvetica, sans-serif" s=
+tyle=3D""><br></font></div><div style=3D"font-weight:400;background-color:r=
+gb(255,255,255)"><font face=3D"arial, helvetica, sans-serif">We are pleased=
+ to announce the AIMC Workshop which will be held in Marrakesh, Morocco, fr=
+om 24 to 26 October 2018, during the 8th International Conference on Models=
+ and Data Engineering MEDI&#39;2018 (<span>=C2=A0</span><span lang=3D"EN-GB=
+" style=3D"color:rgb(34,34,34);font-style:normal;font-variant-ligatures:nor=
+mal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-ind=
+ent:0px;text-transform:none;white-space:normal;word-spacing:0px;background-=
+color:rgb(255,255,255);text-decoration-style:initial;text-decoration-color:=
+initial;text-align:justify"><a href=3D"http://medi2018.uca.ma/" target=3D"_=
+blank" style=3D"color:blue">http://medi2018.uca.ma/</a></span><span lang=3D=
+"EN-GB" style=3D"color:rgb(34,34,34);font-style:normal;font-variant-ligatur=
+es:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;te=
+xt-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;backg=
+round-color:rgb(255,255,255);text-decoration-style:initial;text-decoration-=
+color:initial;text-align:justify">)</span><span>=C2=A0</span>.</font></div>=
+<div style=3D"font-weight:400;background-color:rgb(255,255,255)"><font face=
+=3D"arial, helvetica, sans-serif"><br></font></div><div style=3D"font-weigh=
+t:400;background-color:rgb(255,255,255)"><font face=3D"arial, helvetica, sa=
+ns-serif"><span style=3D"color:rgb(0,0,0)">The</span><span style=3D"color:r=
+gb(0,0,0)">=C2=A0</span><strong style=3D"color:rgb(0,0,0)">AIMC 2018</stron=
+g><span style=3D"color:rgb(0,0,0)">=C2=A0</span><span style=3D"color:rgb(0,=
+0,0)">will provide to the scientific community a dedicated forum for discus=
+sing and representing experiences, state-of-the-art reports, and work in-pr=
+ogress related to the delivery of healthcare services.</span><br></font></d=
+iv></div><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;color:rgb(=
+34,34,34);font-style:normal;font-variant-ligatures:normal;font-variant-caps=
+:normal;font-weight:400;letter-spacing:normal;text-indent:0px;text-transfor=
+m:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,255=
+);text-decoration-style:initial;text-decoration-color:initial;text-align:ju=
+stify;line-height:normal"><span style=3D"color:rgb(0,0,0)"><font face=3D"ar=
+ial, helvetica, sans-serif"><br></font></span></p><p class=3D"MsoNormal" st=
+yle=3D"margin:0cm 0cm 0.0001pt;color:rgb(34,34,34);font-style:normal;font-v=
+ariant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spa=
+cing:normal;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
+xt-decoration-color:initial;text-align:justify;line-height:normal"><font fa=
+ce=3D"arial, helvetica, sans-serif"><span style=3D"color:rgb(0,0,0)"></span=
+></font></p><div style=3D"color:rgb(34,34,34);font-style:normal;font-varian=
+t-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:=
+normal;text-align:start;text-indent:0px;text-transform:none;white-space:nor=
+mal;word-spacing:0px;background-color:rgb(255,255,255);text-decoration-styl=
+e:initial;text-decoration-color:initial"><div><font face=3D"arial, helvetic=
+a, sans-serif">Please consider contributing with a communication or partici=
+pating in AIMC&#39;2018.</font></div></div><p style=3D"color:rgb(34,34,34);=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-t=
+ransform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,=
+255,255);text-decoration-style:initial;text-decoration-color:initial"></p><=
+p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;color:rgb(34,34,34);=
+font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fo=
+nt-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;text-align:justify;line=
+-height:normal"><font face=3D"arial, helvetica, sans-serif"><span style=3D"=
+color:rgb(0,0,0)"><strong style=3D"font-style:normal;font-variant-ligatures=
+:normal;font-variant-caps:normal;letter-spacing:normal;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(25=
+5,255,255);text-decoration-style:initial;text-decoration-color:initial;colo=
+r:rgb(0,0,0);text-align:start">Topics of interest</strong></span><span styl=
+e=3D"color:rgb(0,0,0)">=C2=A0</span></font></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 0.0001pt;color:rgb(34,34,34);font-style:normal;font-vari=
+ant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacin=
+g:normal;text-indent:0px;text-transform:none;white-space:normal;word-spacin=
+g:0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-=
+decoration-color:initial;text-align:justify;line-height:normal"><span style=
+=3D"color:rgb(0,0,0)"><font face=3D"arial, helvetica, sans-serif">The works=
+hop calls for original papers describing the theories, methodologies, and s=
+olutions about the innovative application of AI and MC to deal with the dai=
+ly life accidents.</font></span></p><div style=3D"color:rgb(34,34,34);font-=
+style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-we=
+ight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transf=
+orm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,2=
+55);text-decoration-style:initial;text-decoration-color:initial"><font face=
+=3D"arial, helvetica, sans-serif" color=3D"#000000" style=3D"font-style:nor=
+mal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;=
+letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;=
+white-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-=
+decoration-style:initial;text-decoration-color:initial"><p class=3D"MsoNorm=
+al" style=3D"margin:0cm 0cm 0.0001pt;line-height:normal;background:white"><=
+span lang=3D"EN-GB"><br></span></p><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 0.0001pt;line-height:normal;background:white"><span lang=3D"EN-GB">T=
+opics of works suitable at=C2=A0AIMC 2018=C2=A0include, but are not limited=
+ to :<span></span></span></p></font><ul style=3D"color:rgb(34,34,34);font-s=
+tyle:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-wei=
+ght:400;letter-spacing:normal;text-align:start;text-indent:0px;text-transfo=
+rm:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255,25=
+5);text-decoration-style:initial;text-decoration-color:initial"><li style=
+=3D"margin-left:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"=
+#000000">AIMC for medical decision-making;<br></font></li><li style=3D"marg=
+in-left:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"#000000"=
+>AIMC for the delivery of healthcare services;<br></font></li><li style=3D"=
+margin-left:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"#000=
+000">AIMC for Interoperability of medical resources and services;<br></font=
+></li><li style=3D"margin-left:15px"><font face=3D"arial, helvetica, sans-s=
+erif" color=3D"#000000">AIMC and Case-based reasoning for medical decision-=
+making support;<br></font></li><li style=3D"margin-left:15px"><font face=3D=
+"arial, helvetica, sans-serif" color=3D"#000000">AIMC for Information and K=
+nowledge Retrieval;<br></font></li><li style=3D"margin-left:15px"><font fac=
+e=3D"arial, helvetica, sans-serif" color=3D"#000000">AIMC and Data Mining f=
+or medical decision-making support;<br></font></li><li style=3D"margin-left=
+:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"#000000">AIMC a=
+nd Data Warehouses for medical decision-making support;<br></font></li><li =
+style=3D"margin-left:15px"><font face=3D"arial, helvetica, sans-serif" colo=
+r=3D"#000000">AIMC and Big Data Analytics;<br></font></li><li style=3D"marg=
+in-left:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"#000000"=
+>AIMC for emergency management;<br></font></li><li style=3D"margin-left:15p=
+x"><font face=3D"arial, helvetica, sans-serif" color=3D"#000000">AIMC for C=
+linical Data and Knowledge Management;<br></font></li><li style=3D"margin-l=
+eft:15px"><font face=3D"arial, helvetica, sans-serif" color=3D"#000000">Cas=
+e studies using AIMC;</font></li></ul><font face=3D"arial, helvetica, sans-=
+serif" style=3D"color:rgb(34,34,34);font-style:normal;font-variant-ligature=
+s:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;tex=
+t-align:start;text-indent:0px;text-transform:none;white-space:normal;word-s=
+pacing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;=
+text-decoration-color:initial"></font><div style=3D"color:rgb(34,34,34);fon=
+t-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-=
+weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tran=
+sform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,255=
+,255);text-decoration-style:initial;text-decoration-color:initial"><div><fo=
+nt face=3D"arial, helvetica, sans-serif">Visit the website<span>=C2=A0</spa=
+n><a href=3D"https://www.univ-oran1.dz/images/actualite/AIMC-2018/index.htm=
+l" target=3D"_blank" style=3D"color:rgb(17,85,204)">https://www.univ-<wbr>o=
+ran1.dz/images/actualite/<wbr>AIMC-2018/index.html</a><span>=C2=A0</span>to=
+ get information about the submission process and deadlines.</font></div><d=
+iv><font color=3D"#000000" style=3D"" face=3D"arial, helvetica, sans-serif"=
+><br></font></div><div><font color=3D"#000000" style=3D"" face=3D"arial, he=
+lvetica, sans-serif"><b>Important dates</b></font></div><div><font face=3D"=
+arial, helvetica, sans-serif"><font color=3D"#000000" style=3D"">Abstract s=
+ubmission:<span>=C2=A0</span></font><font color=3D"#ff0000" style=3D""><b>J=
+une 7, 2018</b></font></font></div><div><font face=3D"arial, helvetica, san=
+s-serif"><font color=3D"#000000" style=3D"">Paper submission:<span>=C2=A0</=
+span></font><font color=3D"#ff0000" style=3D""><b>June 15, 2018</b></font><=
+/font></div><div><font face=3D"arial, helvetica, sans-serif"><p class=3D"gm=
+ail-m_-7280448373698445768gmail-m_-807424097000148583gmail-MsoListParagraph=
+CxSpMiddle" style=3D"color:rgb(0,0,0);font-weight:bold;margin:0cm 0cm 0.000=
+1pt 36pt;line-height:normal;background:white"><br></p></font></div><div><fo=
+nt face=3D"arial, helvetica, sans-serif"><b style=3D"color:rgb(0,0,0)">Publ=
+ication</b><br></font></div><div><p class=3D"MsoNormal" style=3D"margin:0cm=
+ 0cm 0.0001pt;line-height:normal"><font face=3D"arial, helvetica, sans-seri=
+f"><span style=3D"color:rgb(0,0,0)">All accepted papers for the workshop wi=
+ll be scheduled for oral presentations and will be included in the MEDI&#39=
+;2018 proceedings, which will be published by Springer-Verlag.</span><br></=
+font></p></div></div><p style=3D"font-style:normal;font-variant-ligatures:n=
+ormal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-a=
+lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
+ing:0px;text-decoration-style:initial;text-decoration-color:initial;padding=
+:0px 20px 10px 0px;color:rgb(0,0,0);background-color:rgb(255,255,255)"><fon=
+t face=3D"arial, helvetica, sans-serif">The selective outstanding papers pr=
+esented at the workshops, after further revision, will be considered for pu=
+blication in journals special issues.</font></p><div style=3D"color:rgb(34,=
+34,34);font-style:normal;font-variant-ligatures:normal;font-variant-caps:no=
+rmal;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px=
+;text-transform:none;white-space:normal;word-spacing:0px;background-color:r=
+gb(255,255,255);text-decoration-style:initial;text-decoration-color:initial=
+"><b><font face=3D"arial, helvetica, sans-serif">Workshop chairs</font></b>=
+</div><div style=3D"color:rgb(34,34,34);font-style:normal;font-variant-liga=
+tures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal=
+;text-align:start;text-indent:0px;text-transform:none;white-space:normal;wo=
+rd-spacing:0px;background-color:rgb(255,255,255);text-decoration-style:init=
+ial;text-decoration-color:initial"><font face=3D"arial, helvetica, sans-ser=
+if">Baghdad Atmani &amp; Fatiha Barigou</font></div></div>
+
+<div><br></div><div class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><div><div dir=3D"ltr"><p></p></div></div></div></div=
+>
+</div>
+
+--0000000000005b2a48056d5a0c2c--

@@ -1,0 +1,1266 @@
+Return-Path: <juan.antonio.lossio@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 785DD2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  9 Jun 2018 03:48:10 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 70EC76287FB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  9 Jun 2018 03:48:10 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 5AA7F4222DC0
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  9 Jun 2018 03:48:10 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.967
+X-Spam-Level:
+X-Spam-Status: No, score=-4.967 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	KHOP_BIG_TO_CC=0.001, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, UN_JPG_ATTACH=0.01,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 9.6432 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id IizrIL7ioG_i for <liste-egc@polytech.univ-nantes.fr>;
+	Sat,  9 Jun 2018 03:48:07 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-yw0-x241.google.com (mail-yw0-x241.google.com [IPv6:2607:f8b0:4002:c05::241])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 5FF32401C113
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  9 Jun 2018 03:48:07 +0200 (CEST)
+Received: by mail-yw0-x241.google.com with SMTP id v197-v6so4700863ywc.13
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 08 Jun 2018 18:48:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:message-id:mime-version:date:subject:cc:to;
+        bh=hnRZATl+tEc1Noq5xvTt4bK29SiJkVu+/+JgT3mjqtA=;
+        b=t5ROGDtoukhrRXriSREdPOqfk/+O4/dmuIyRCLjb2vDsISF2GAhy+DVtGvZEPDN77s
+         owkU+3L1BUH/ApJAhFJvPmRUHm2eGtpWAbAVIyvAaihRQbM4MC5BQEIpr39b7wCIVqhb
+         eBN62w7gzSqWIfB5IAXn//aUMuCNm6Cfq7askVmAGgtImcAyC9YO49pL9YhEiJgft3wg
+         mB6qT2KO9GFpv0qZTY6sCA0rlPtPkeS0H2CN/3FCVtIf0/PP0A5UCCQd1wzEpJ4fLZdi
+         hyNXvtk3rOZNk1Nbpw1mV+OfnU67Zrg+eZ7sfqpTX3eO+rAjqgQ/WQXHl/IKV4zIIKX4
+         XJ7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:message-id:mime-version:date:subject:cc:to;
+        bh=hnRZATl+tEc1Noq5xvTt4bK29SiJkVu+/+JgT3mjqtA=;
+        b=cCGsxXjXIaXi03gG4zX3SptlHU1zQg4VJk2Hi2fWoLR76jHMtcjCvhrScxfQCE8ajN
+         vgLp1tRr55BDsZAVOsG6882Wwxez0RqgKllkwtYfIN98lfs3v50Y4+6+d4MDjuJMyF9t
+         RjA1JpH1LGMSKQGaATOx9fesRPIyIRiS1M/y9ARfWGglThgQK5o2icD+fZST+TDXlWMJ
+         5iQipsOnI1vzJgXAc7A7c6fE+w4m2/zeC8pmEBW4ZxMVRnG+958Qpt1Wd1mlJKHpwKCI
+         8QziepfKZ4ZM2ivq5Ke1MCV7yXKga+pKlH54X/uh7rWjn9xtBevmesPM0SQgAb/lkZCf
+         iRVA==
+X-Gm-Message-State: APt69E2evMflrEFnIaLvkR0jIFVo83E8VbQBmUpjjS7uLywvfDn1Mly4
+	qVnhxiVr9JDUl/h8jnZmr7U=
+X-Google-Smtp-Source: ADUXVKI0E1GPqppMPMJWVXkoiCkc6NXOZACLD+Gu+H4uvuJortzff7KGxbPnzW5q97CpN+evRtHuMw==
+X-Received: by 2002:a81:50d4:: with SMTP id e203-v6mr5138753ywb.421.1528508886071;
+        Fri, 08 Jun 2018 18:48:06 -0700 (PDT)
+Received: from [172.18.34.241] ([70.158.100.138])
+        by smtp.gmail.com with ESMTPSA id v72-v6sm10264249ywg.25.2018.06.08.18.48.04
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 08 Jun 2018 18:48:04 -0700 (PDT)
+From: Juan Antonio Lossio-Ventura <juan.antonio.lossio@gmail.com>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_5EEC71D7-2994-4CA3-80E0-6B2B62582995"
+Message-Id: <535FCB85-4615-416E-979F-67AC0EF351E3@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Date: Fri, 8 Jun 2018 21:48:04 -0400
+Cc: Hugo Alatrista Salas <h.alatristas@up.edu.pe>
+To: sigbiomed@googlegroups.com,
+ irlist@lists.shef.ac.uk,
+ corpora@uib.no,
+ acl@aclweb.org,
+ ISWORLD@listserv.heanet.ie,
+ SIGIR@LISTSERV.ACM.ORG,
+ bionlp@bionlp.org,
+ ln@cines.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ bull-i3@irit.fr,
+ semantic-web@w3.org,
+ dariah-all@gwdg.de,
+ naacl-latin-america@googlegroups.com
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Firm deadline to June 14 - SIMBig 2018 - Peru:
+ Proceedings (Elsevier Journals and Springer), Travel awards
+
+
+--Apple-Mail=_5EEC71D7-2994-4CA3-80E0-6B2B62582995
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+> Apologies for cross-posting
+>=20
+
+> ***** Due to multiple requests: Firm submission deadline fixed to June =
+14, 2018 *****
+>=20
+> =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> Call for Papers - SIMBig 2018
+> =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+>=20
+> SIMBig 2018 - 5th International Conference on Information Management =
+and Big Data
+> September 3-5, 2018 - Universidad del Pac=C3=ADfico - Lima, PERU
+>=20
+> http://simbig.org/SIMBig2018/ <http://simbig.org/SIMBig2018/>
+> =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+>=20
+> OVERVIEW
+> ----------------------------------
+>=20
+> SIMBig is one of the first conferences in Latin America grouping =
+related areas, such as Data Science, Natural Language Processing, =
+Machine Learning, Semantic Web, Software Engineering, Privacy, etc.
+>=20
+>=20
+> KEYNOTE SPEAKERS
+> ----------------------------------
+>=20
+>  Andrei Broder, Google, USA
+>  Dina Demmer-Fushman, National Library of Medicine, USA
+>  Lise Getoor, University of California, USA
+>  Ian Horrocks, University of Oxford, UK
+>  Jian Pei, JD.com - China, SFU - Canada
+>=20
+> PUBLICATION
+> ----------------------------------
+>=20
+> All papers of SIMBig 2018 will be published with Springer CCSI series =
+<https://www.springer.com/series/7899> (Communications in Computer and =
+Information Science).
+>=20
+> The best papers of SIMBig 2018 will be invited to submit an extended =
+and revised version in one of the following two journals:
+>=20
+> Knowledge Based Systems Journal =
+<https://www.journals.elsevier.com/knowledge-based-systems/>, from =
+Elsevier (Impact Factor: 4.529, Q1 in SCImago).
+> Information Systems Journal =
+<https://www.journals.elsevier.com/information-systems/>, from Elsevier =
+(Impact Factor: 2.777, Q1 in SCImago).
+>=20
+>=20
+>=20
+> STUDENT TRAVEL AWARD
+> ----------------------------------
+>=20
+> The North American Chapter of the Association for Computational =
+Linguistics (NAACL <http://naacl.org/>) is offering two sponsored travel =
+grants for students to attend the conference. Each grant will cover the =
+travel expenses with an amount up to $ 500.=20
+>=20
+>=20
+>=20
+> SPECIAL TRACKS
+> ----------------------------------
+>=20
+> SIMBig2018 proposes four special track in addition to the main =
+conference:
+>=20
+> DISE <http://simbig.org/SIMBig2018/en/dise.html>- Data-drIven Software =
+Engineering=20
+> SNMAM <http://simbig.org/SIMBig2018/en/snmam.html>- Social Network and =
+Media Analysis and Mining=20
+> ANLP <http://simbig.org/SIMBig2018/en/anlp.html>- Applied Natural =
+Language Processing=20
+> PSCBig <http://simbig.org/SIMBig2018/en/PSCBig.html>- Privacy and =
+Security Challenges on Big Data=20
+>=20
+> IMPORTANT DATES
+> ----------------------------------
+>=20
+> May 14, 2018June 14, 2018--> Full papers, short papers and =
+demonstration due=20
+> June 14, 2018June 30, 2018--> Acceptance notifications=20
+> September 3 - 5, 2018 --> Conference held in Lima, Peru=20
+>=20
+> TOPICS OF INTEREST
+> ----------------------------------
+>=20
+> SIMBig2018 has a broad scope. We invite contributions on theory and =
+practice, including but not limited to the following technical areas:
+>=20
+> Data Science=20
+> Big Data=20
+> Data Mining=20
+> Natural Language Processing=20
+> Semantic Web=20
+> Software Engineering=20
+> Data Privacy and Security=20
+> BioNLP and Healthcare Informatics=20
+> Information Retrieval=20
+> Machine Learning=20
+> Ontologies and Knowledge Representation
+> Social Networks and Social Web
+> Information Visualization=20
+> OLAP and Business intelligence=20
+> Spatiotemporal Databases=20
+> Data-driven Software Engineering=20
+>=20
+> CONTACT
+> ----------------------------------
+>=20
+> SIMBig2018 General Chairs
+>=20
+> Juan Antonio Lossio-Ventura, University of Florida, USA =
+(jlossioventura@ufl.edu)=20
+> Hugo Alatrista-Salas, Universidad del Pac=C3=ADfico, Peru =
+(h.alatristas@up.edu.pe)=20
+>=20
+> SIMBig2018
+>=20
+
+--Apple-Mail=_5EEC71D7-2994-4CA3-80E0-6B2B62582995
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="Apple-Mail=_4399ED95-9951-467C-8478-459009462661"
+
+
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"><base></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><base class=3D""><div class=3D"Apple-Mail-URLShareWrapperClass"=
+ style=3D"position: relative !important;"><br class=3D""><blockquote =
+type=3D"cite" style=3D"border-left-style: none; color: inherit; padding: =
+inherit; margin: inherit;" class=3D""><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">Apologies for =
+cross-posting</p><i style=3D"box-sizing: border-box; color: rgb(51, 51, =
+51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""></i></blockquote><br class=3D""><blockquote type=3D"cite" =
+style=3D"border-left-style: none; color: inherit; padding: inherit; =
+margin: inherit;" class=3D""><i style=3D"box-sizing: border-box; color: =
+rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><font color=3D"red" style=3D"box-sizing: border-box;" =
+class=3D"">***** Due to multiple requests: Firm submission deadline =
+fixed to June 14, 2018 *****</font></i><span style=3D"color: rgb(51, 51, =
+51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""></span><br style=3D"box-sizing: border-box; color: rgb(51, =
+51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br style=3D"box-sizing: border-box;" =
+class=3D""><span style=3D"box-sizing: border-box; font-weight: 700;" =
+class=3D"">Call for Papers - SIMBig 2018</span><br style=3D"box-sizing: =
+border-box;" =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br style=3D"box-sizing: border-box;" =
+class=3D""><br style=3D"box-sizing: border-box;" class=3D"">SIMBig 2018 =
+- 5th International Conference on Information Management and Big Data<br =
+style=3D"box-sizing: border-box;" class=3D""><i style=3D"box-sizing: =
+border-box;" class=3D"">September 3-5, 2018 - Universidad del Pac=C3=ADfic=
+o - Lima, PERU</i><br style=3D"box-sizing: border-box;" class=3D""><br =
+style=3D"box-sizing: border-box;" class=3D""><a =
+href=3D"http://simbig.org/SIMBig2018/" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" =
+class=3D"">http://simbig.org/SIMBig2018/</a><br style=3D"box-sizing: =
+border-box;" =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br style=3D"box-sizing: border-box;" =
+class=3D""></p><p style=3D"box-sizing: border-box; margin: 0px 0px 10px; =
+color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><span style=3D"box-sizing: border-box; font-weight: 700;" =
+class=3D"">OVERVIEW</span><br style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">SIMBig is one of the =
+first conferences in Latin America grouping related areas, such as Data =
+Science, Natural Language Processing, Machine Learning, Semantic Web, =
+Software Engineering, Privacy, etc.</p><br style=3D"box-sizing: =
+border-box; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', =
+Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: border-box; =
+margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Helvetica =
+Neue', Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><span style=3D"box-sizing: border-box; =
+font-weight: 700;" class=3D"">KEYNOTE SPEAKERS</span><br =
+style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><ul style=3D"box-sizing: =
+border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, =
+51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><li =
+style=3D"box-sizing: border-box;" class=3D""><div class=3D"text-md-center"=
+ style=3D"box-sizing: border-box;"><img class=3D"img-circle" alt=3D"Andrei=
+ Broder" valign=3D"center" style=3D"box-sizing: border-box; border: 0px; =
+vertical-align: middle; border-top-left-radius: 50%; =
+border-top-right-radius: 50%; border-bottom-right-radius: 50%; =
+border-bottom-left-radius: 50%;" apple-inline=3D"yes" =
+id=3D"B5BE38ED-CDD5-44D0-9377-CC1F6D07ED15" height=3D"60" width=3D"60" =
+apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:BD6451CC-E357-444A-B3A3-F25B8C86BC2D"><span =
+style=3D"box-sizing: border-box; font-weight: 700;" =
+class=3D"">&nbsp;Andrei Broder</span>, Google,&nbsp;<i =
+style=3D"box-sizing: border-box;" class=3D"">USA</i></div></li><li =
+style=3D"box-sizing: border-box;" class=3D""><div class=3D"text-md-center"=
+ style=3D"box-sizing: border-box;"><img class=3D"img-circle" alt=3D"Dina =
+Demmer-Fushman" style=3D"box-sizing: border-box; border: 0px; =
+vertical-align: middle; border-top-left-radius: 50%; =
+border-top-right-radius: 50%; border-bottom-right-radius: 50%; =
+border-bottom-left-radius: 50%;" apple-inline=3D"yes" =
+id=3D"602FEC5C-F65D-4595-BC02-8D45CBEA3B3A" height=3D"60" width=3D"60" =
+apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:8475E433-A159-4483-B7F1-230043547357"><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">&nbsp;Dina =
+Demmer-Fushman</span>, National Library of Medicine,&nbsp;<i =
+style=3D"box-sizing: border-box;" class=3D"">USA</i></div></li><li =
+style=3D"box-sizing: border-box;" class=3D""><div class=3D"text-md-center"=
+ style=3D"box-sizing: border-box;"><img class=3D"img-circle" alt=3D"Lise =
+Getoor" style=3D"box-sizing: border-box; border: 0px; vertical-align: =
+middle; border-top-left-radius: 50%; border-top-right-radius: 50%; =
+border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;" =
+apple-inline=3D"yes" id=3D"48D58F23-F157-47C4-86F7-5A99E0F6907B" =
+height=3D"60" width=3D"60" apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:8106506F-1EAB-46BF-AF20-A0D9E4EADEF1"><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">&nbsp;Lise =
+Getoor</span>, University of California,&nbsp;<i style=3D"box-sizing: =
+border-box;" class=3D"">USA</i></div></li><li style=3D"box-sizing: =
+border-box;" class=3D""><div class=3D"text-md-center" style=3D"box-sizing:=
+ border-box;"><img class=3D"img-circle" alt=3D"Ian Horrocks" =
+style=3D"box-sizing: border-box; border: 0px; vertical-align: middle; =
+border-top-left-radius: 50%; border-top-right-radius: 50%; =
+border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;" =
+apple-inline=3D"yes" id=3D"5DED5412-C795-45F8-9F99-85F5AEB767D9" =
+height=3D"60" width=3D"60" apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:DEC193E4-5BFA-42DC-A560-E36EF5C517C9"><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">&nbsp;Ian =
+Horrocks</span>, University of Oxford,&nbsp;<i style=3D"box-sizing: =
+border-box;" class=3D"">UK</i></div></li><li style=3D"box-sizing: =
+border-box;" class=3D""><div class=3D"text-md-center" style=3D"box-sizing:=
+ border-box;"><img class=3D"img-circle" alt=3D"Jian Pei" =
+style=3D"box-sizing: border-box; border: 0px; vertical-align: middle; =
+border-top-left-radius: 50%; border-top-right-radius: 50%; =
+border-bottom-right-radius: 50%; border-bottom-left-radius: 50%;" =
+apple-inline=3D"yes" id=3D"B5C24BDE-F815-4328-B4A9-EE0999B40B8A" =
+height=3D"60" width=3D"60" apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:9ABB0D0C-9525-4716-A8DC-6002C7C0976C"><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">&nbsp;Jian =
+Pei</span>, <a href=3D"http://jd.com" class=3D"">JD.com</a> -&nbsp;<i =
+style=3D"box-sizing: border-box;" class=3D"">China</i>, SFU -&nbsp;<i =
+style=3D"box-sizing: border-box;" class=3D"">Canada</i></div></li></ul><br=
+ style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><span =
+style=3D"box-sizing: border-box; font-weight: 700;" =
+class=3D"">PUBLICATION</span><br style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">All papers of SIMBig =
+2018 will be published with&nbsp;<a =
+href=3D"https://www.springer.com/series/7899" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" class=3D"">Springer CCSI =
+series</a>&nbsp;(Communications in Computer and Information =
+Science).</p><p style=3D"box-sizing: border-box; margin: 0px 0px 10px; =
+color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D"">The best papers of SIMBig 2018 will be invited to submit an =
+extended and revised version in one of the following two =
+journals:</p><ul style=3D"box-sizing: border-box; margin-top: 0px; =
+margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 'Helvetica =
+Neue', Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><li style=3D"box-sizing: border-box;" =
+class=3D""><a =
+href=3D"https://www.journals.elsevier.com/knowledge-based-systems/" =
+target=3D"_blank" style=3D"box-sizing: border-box; background-color: =
+transparent; color: rgb(51, 122, 183); text-decoration: none;" =
+class=3D"">Knowledge Based Systems Journal</a>, from Elsevier (Impact =
+Factor: 4.529, Q1 in SCImago).</li><li style=3D"box-sizing: border-box;" =
+class=3D""><a =
+href=3D"https://www.journals.elsevier.com/information-systems/" =
+target=3D"_blank" style=3D"box-sizing: border-box; background-color: =
+transparent; color: rgb(51, 122, 183); text-decoration: none;" =
+class=3D"">Information Systems Journal</a>, from Elsevier (Impact =
+Factor: 2.777, Q1 in SCImago).</li></ul><br style=3D"box-sizing: =
+border-box; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', =
+Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><div style=3D"box-sizing: border-box; =
+color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><img alt=3D"SIMBig2018-CFP" style=3D"box-sizing: border-box; =
+border: 0px; vertical-align: middle;" apple-inline=3D"yes" =
+id=3D"EF5CE040-4B5F-4F14-95CD-8621807F9CC7" height=3D"54" width=3D"601" =
+apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:29F70271-4DBB-4AC5-B696-BFCF3EA10663" class=3D""></div><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><br style=3D"box-sizing:=
+ border-box; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', =
+Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: border-box; =
+margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Helvetica =
+Neue', Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><span style=3D"box-sizing: border-box; =
+font-weight: 700;" class=3D"">STUDENT TRAVEL AWARD</span><br =
+style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">The&nbsp;<span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D""><i =
+style=3D"box-sizing: border-box;" class=3D"">North American Chapter of =
+the Association for Computational Linguistics</i></span>&nbsp;(<a =
+href=3D"http://naacl.org/" target=3D"_blank" style=3D"box-sizing: =
+border-box; background-color: transparent; color: rgb(51, 122, 183); =
+text-decoration: none;" class=3D"">NAACL</a>) is offering two sponsored =
+travel grants for students to attend the conference. Each grant will =
+cover the travel expenses with an amount up to&nbsp;<span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">$ =
+500</span>.&nbsp;</p><div style=3D"box-sizing: border-box; color: =
+rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><img alt=3D"SIMBig2018-CFP" style=3D"box-sizing: border-box; =
+border: 0px; vertical-align: middle;" apple-inline=3D"yes" =
+id=3D"8D027E1A-8F90-4C1F-B701-F5C8FBD542D6" height=3D"59" width=3D"180" =
+apple-width=3D"yes" apple-height=3D"yes" =
+src=3D"cid:FE43DDA6-F264-426B-9272-D9E1304046B5" class=3D""></div><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><br style=3D"box-sizing:=
+ border-box; color: rgb(51, 51, 51); font-family: 'Helvetica Neue', =
+Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: border-box; =
+margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: 'Helvetica =
+Neue', Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><span style=3D"box-sizing: border-box; =
+font-weight: 700;" class=3D"">SPECIAL TRACKS</span><br =
+style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">SIMBig2018 proposes =
+four special track in addition to the main conference:</p><ul =
+style=3D"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; =
+color: rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><li style=3D"box-sizing: border-box;" class=3D""><a =
+href=3D"http://simbig.org/SIMBig2018/en/dise.html" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" class=3D"">DISE</a>- =
+Data-drIven Software Engineering&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D""><a =
+href=3D"http://simbig.org/SIMBig2018/en/snmam.html" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" class=3D"">SNMAM</a>- Social =
+Network and Media Analysis and Mining&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D""><a =
+href=3D"http://simbig.org/SIMBig2018/en/anlp.html" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" class=3D"">ANLP</a>- Applied =
+Natural Language Processing&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D""><a =
+href=3D"http://simbig.org/SIMBig2018/en/PSCBig.html" target=3D"_blank" =
+style=3D"box-sizing: border-box; background-color: transparent; color: =
+rgb(51, 122, 183); text-decoration: none;" class=3D"">PSCBig</a>- =
+Privacy and Security Challenges on Big Data&nbsp;</li></ul><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">IMPORTANT =
+DATES</span><br style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><ul style=3D"box-sizing: =
+border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, =
+51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><li =
+style=3D"box-sizing: border-box;" class=3D""><strike style=3D"box-sizing: =
+border-box;" class=3D"">May 14, 2018</strike><font color=3D"red" =
+style=3D"box-sizing: border-box;" class=3D"">June 14, 2018</font>--&gt; =
+Full papers, short papers and demonstration due&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D""><strike style=3D"box-sizing: =
+border-box;" class=3D"">June 14, 2018</strike><font color=3D"red" =
+style=3D"box-sizing: border-box;" class=3D"">June 30, 2018</font>--&gt; =
+Acceptance notifications&nbsp;</li><li style=3D"box-sizing: border-box;" =
+class=3D"">September 3 - 5, 2018 --&gt; Conference held in Lima, =
+Peru&nbsp;</li></ul><br style=3D"box-sizing: border-box; color: rgb(51, =
+51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><p =
+style=3D"box-sizing: border-box; margin: 0px 0px 10px; color: rgb(51, =
+51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><span =
+style=3D"box-sizing: border-box; font-weight: 700;" class=3D"">TOPICS OF =
+INTEREST</span><br style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">SIMBig2018 has a broad =
+scope. We invite contributions on theory and practice, including but not =
+limited to the following technical areas:</p><ul style=3D"box-sizing: =
+border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(51, 51, =
+51); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; =
+font-size: 14px; background-color: rgb(255, 255, 255);" class=3D""><li =
+style=3D"box-sizing: border-box;" class=3D"">Data Science&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">Big Data&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">Data Mining&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">Natural Language =
+Processing&nbsp;</li><li style=3D"box-sizing: border-box;" =
+class=3D"">Semantic Web&nbsp;</li><li style=3D"box-sizing: border-box;" =
+class=3D"">Software Engineering&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D"">Data Privacy and Security&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">BioNLP and Healthcare =
+Informatics&nbsp;</li><li style=3D"box-sizing: border-box;" =
+class=3D"">Information Retrieval&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D"">Machine Learning&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">Ontologies and Knowledge =
+Representation</li><li style=3D"box-sizing: border-box;" class=3D"">Social=
+ Networks and Social Web</li><li style=3D"box-sizing: border-box;" =
+class=3D"">Information Visualization&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D"">OLAP and Business intelligence&nbsp;</li><li =
+style=3D"box-sizing: border-box;" class=3D"">Spatiotemporal =
+Databases&nbsp;</li><li style=3D"box-sizing: border-box;" =
+class=3D"">Data-driven Software Engineering&nbsp;</li></ul><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><span =
+style=3D"box-sizing: border-box; font-weight: 700;" =
+class=3D"">CONTACT</span><br style=3D"box-sizing: border-box;" =
+class=3D"">----------------------------------</p><p style=3D"box-sizing: =
+border-box; margin: 0px 0px 10px; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D"">SIMBig2018 General =
+Chairs</p><ul style=3D"box-sizing: border-box; margin-top: 0px; =
+margin-bottom: 10px; color: rgb(51, 51, 51); font-family: 'Helvetica =
+Neue', Helvetica, Arial, sans-serif; font-size: 14px; background-color: =
+rgb(255, 255, 255);" class=3D""><li style=3D"box-sizing: border-box;" =
+class=3D"">Juan Antonio Lossio-Ventura, University of Florida, USA (<a =
+href=3D"mailto:jlossioventura@ufl.edu" =
+class=3D"">jlossioventura@ufl.edu</a>)&nbsp;</li><li style=3D"box-sizing: =
+border-box;" class=3D"">Hugo Alatrista-Salas, Universidad del Pac=C3=ADfic=
+o, Peru (<a href=3D"mailto:h.alatristas@up.edu.pe" =
+class=3D"">h.alatristas@up.edu.pe</a>)&nbsp;</li></ul><br =
+style=3D"box-sizing: border-box; color: rgb(51, 51, 51); font-family: =
+'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; =
+background-color: rgb(255, 255, 255);" class=3D""><span style=3D"color: =
+rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D"">SIMBig2018</span><br style=3D"box-sizing: border-box; color: =
+rgb(51, 51, 51); font-family: 'Helvetica Neue', Helvetica, Arial, =
+sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);" =
+class=3D""><br style=3D"box-sizing: border-box; color: rgb(51, 51, 51); =
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: =
+14px; background-color: rgb(255, 255, 255);" =
+class=3D""></blockquote></div></body></html>=
+
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=andrei1.jpg
+Content-Type: image/jpeg;
+	name="andrei1.jpg"
+Content-Id: <BD6451CC-E357-444A-B3A3-F25B8C86BC2D>
+
+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
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=dina1.jpg
+Content-Type: image/jpeg;
+	name="dina1.jpg"
+Content-Id: <8475E433-A159-4483-B7F1-230043547357>
+
+/9j/4AAQSkZJRgABAQAASABIAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUA
+AAAAABDUHYzZjwCyBOmACZjs+EJ+/+EAZEV4aWYAAE1NACoAAAAIAAMBBgADAAAAAQACAAABEgAD
+AAAAAQABAACHaQAEAAAAAQAAADIAAAAAAAOgAQADAAAAAQABAACgAgAEAAAAAQAAATagAwAEAAAA
+AQAAATYAAAAA/9sAQwABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
+AQEBAQEBAQEBAQEBAQEBAQEBAQEB/9sAQwEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB
+AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB/8AAEQgAPAA8AwEiAAIRAQMRAf/EABsA
+AQEAAwEBAQAAAAAAAAAAAAoJBgcIBQIE/8QANRAAAQQCAQIFBAECAwkAAAAAAwECBAUGEQcIIQAJ
+EhMxFBUiQVEjYQoWMiQzQ1JTcXORof/EABoBAAMBAAMAAAAAAAAAAAAAAAUGBwgBAgP/xAAvEQAC
+AgEDAgUDAgcBAAAAAAABAgMRBAUSIQAxBhMiQVEyYXEUIwczQoGRscHx/9oADAMBAAIRAxEAPwCp
+ZYSkVdaRu9oml2n/AM/f78foDDZpGq3aondV2iJ/2Tt22nb9/tfGW/QMVXfrfwnbSfC7bpNp/Hdf
+Hj5PcY/hmMX+Y5RYRKbGsXqbC9vreW5rI8CrrIz5cs71cqep6CG5oRp+ZzvEAaOIRrVMHjk8fnoQ
+BZAHckD/ADx1pbmnmbi/p1wO25M5XyaNjeL1ae20jkQ9lZ2BGOfHpqGta9h7a2kta8g4YVagowjS
+5Zo0QJZDJQxf8QRxHV3jYELpy5QscHDKGBmVmyvGa+3kC+oG181mOpXzYjRJFV8scMd/Jll9DQNd
+6y+pkrc+5H5r81jqursFYP8Ay/VzpNjE47wdyyrDHONOP65w51llOQojAMt76TBLAsr+W4cYMy2n
+VVDCQMUUN46l1XkPcKY6Yc3Msn5AyyYsWP7XuWsGpYQzQqqFZFrRvSGgTKqxRjM72mI1ilIu3+Fj
+U/EWPgyrHcjVRbZE7jaW2gsbAAJBHz066T4LydXg8wLDtVq3zTrHbFQSECgudvBPBAvk8HqrnSB5
+ivTF1oW9/ifFmQW9dnWPgNZFwzNqttBd3OOge0b8mxhrZcyLeVYXEH9yjx5CW1KhBEtK+MAiG8ZD
+5ikdGdIfMaJ2auHXjVRP1uvkKuu3zr43v8u69vBUeqbpxzPy9eU8I6h+CMmtWuwLJotuBklfXMx2
+Uw/pDGnHAwTbPGLoRTVNzGkMa41fPnxDoYJ9sShzrzriHVJ5YVvz1hzXCo+ReKbK7WuQyGPR2466
+ZDyLH5L0RdSKK8iWNWqu/MgowjL/AL5PBLTNVi1SB5cfcP2pDyu30rav3J5HH5BFDv0F1Hw/PoWr
+YkTqK86MfWsik71KMCu1ir2RyN1qbqx0BejGNJR2BcrnI9yPXaaVGt7uTsnZfUiL++3bv4St00gR
+vDeII5GuX6Jul0/49sSa7dvlF1/bW+/g2VFHYswiBX2fW5XORVc7bE16k/lF18fra/HZfCcumKBv
+hbDnI7/VDRV120qsF/O/AbBVmz8sKNzcEjjdtsiyeFoX6QPUB9XN9UjxnHv8N6b5lKG1BwNnA9MJ
+O0A2RW48ngjbXNjpL7Igl9SPb3R2kVERu001UXWl/n+f7eIz+c1zGuAcI03G8KwdBm8o2bYKiE94
+3Px+jjSrbJZT2sVv1A1QNbXI3e2yJDBqrUkq19sGxfy056a0q/pN/OvSvq77X+PBFvPg5viE6iqD
+jqZStiSeOsKDX1s48d8ObbpmMgGQHKAhCvSxpDyAwYoJEcA2vJXWAnvI5jGia9WLR4jMzc0sQPu9
+tZ7ezKWWj8H56lWlxJPmRhmXagMjcj+kemue+4qR3/717vk8fW4rk/O3Lcems7exrcTp8cAKpxUm
+XXKWVrc2+Y2ECppA2NO2ad9LCxsfsTLqtiDSMwshxnshxn3uqepq7uOJrrk/M8YWlTHI81GVciiN
+i1/fONFRYMAFDNlWi1942S4MKVD+6T44J5EYh2uacY57eUNb4Dx904ch5BChiz2HkEXGcym1Vagp
+NpHsJmMthyae5itQhIloWwhsJHjHE0RY5ASBmSO15U35z7m9xacM282BZcXEWVKqj2J5bsyp67Cj
+V9qk2wrYMyHjVnAtJVYggwxPnxo6yThlTp0pYcgUdkoyppZsqRgkNMzGmBVlUIAFYMw9hweOT2qh
+1oDQsHFiwMfdMVZVKLtplLyNvdwY/Tx5hBJuyCQd3HU0ev7lO+5K4N5cj5Px47HrQGM2M6FDHV53
+H95kGvZkLXQ7/IMZq8by32qsSktxY5IKSulKxqoVGHYzRXlcdRpk6Besno6zyZ9HlmKY9Yc3cb1c
+s4ZC2uBZpjrB5V9pKAxgmbXW7Ka0kxROUgEu5JyIj0ksFQTqg5mw696b8bhy4VNHn8l49JgstveC
+mMyoCNWvuLKLbSfbELGTjOY4GIQLW/UoFn9Ufg4nBOf0dv1YZdfYjfyEoZXHHJXGtLDcFyMt8Zr8
+CmU9SjStX0JGlki/cmhK33TqkdzyIqqjDnhuUxrMBGsaMTZ3hgSUC1an0tVt8DtZsWr+MMGA5OG3
+6hpJkaMR0VsbZnlL88hVVUGwUzOxojsOaKPT5q6G4bV9XZNouuyuRHabr1fG/wC29Lrwn/phjqvC
+uG6fpPom61/4xfOvnXxv9ppfjwY6g2Sxehm+n1L8Kq+v1prsqKm99/hV+UVF7L4U30wVyk4Vw1zG
+I1qwWa9Tdqv9IW1RdfCrvXglopB1TO9+CwPt9ZAI+/3+L/tx4/WvDWlNwb1B1JVSrEiBmJcNybsG
+6Av37jpFrPfMVGojlajd+58NRUX/AEqqfC6XaeD5efj0lcWZ5x1hHUxb5tTYRyFhMiBxwaFcGR6Z
+/jFzMlzK+DUQxnHN/wAxYtaFLNZLECTCTH5toyckZ4IchUZMhMGnpa5UYjflfnf8qq9ta8cJeYb0
+tUnVt0wclcckPT1eTRa0N9guUXc9tNT1GU0cplhXivrtxYgY1DOQZ4kwU+UtWCSaHbS4p31gUY9Z
+sPn40sYRXagyK1fWpBFFuATyL9gT3HHUT02ZcbKx5Ca3SASUePJsEg1fuvII5A7e/Rv/ACXeo4uB
+dQWXcMWoG5BjXJnGEizYamjkKYdxxCBxWTokDallDnYxb30OSyOpCn+0wjxgPG1BpaTqK6jul20x
+2WGTm4La/CI7SVEcE901iNcxzo8iIECyCTGeliD+qG9ovaGvfSeDoeW3xnlOBeZTw7i8O6xLKZ2L
+DzYuTSuO8prM2x2DjTcXyCotYTcloDTaKSZJk6ujr9tsrCMhDMAkl0lJI463M46ZONs0qZr8nqGq
+qR1PbPh1dRAs5jTOaJkBloGs+4asCOYAhRHZLlMOZFO1xFf4kOtRSY+a6SQkTPEjTeYSrjcWC7ie
+7FQAAbparuD1ffDeYE09TCFMSNJHCUG2PYQLK0KYW7qSvBrb7HoiXmWdVMzPKrh/FcZrbANC6WBG
+fcGlgNn02JkG6upoQ00aJWfcbCPPnyVar5kkCNVfQj3u466KuPKhc+yyynQCTS1HE/J9njUlxCNh
+nsqCiNGsp6uEm3jhxSnfH05AIcRGlR6K1PHX/m94pUYl1H4xQ1daCtx6jwSQmKxIh46EdYHvLKDY
+TJUMDVdBr41jUJDh+81VsQQ3kF62De9fny06aKTEep6dkdjx3uDwhmuLYLBu89xGnzoN3k7a6bey
+ccwaZZtyvKq21rYz698yFWLApTvsGx5RpEyRHC0aRp2Smk4znDcY7hp2mVQQdzkAuwX1A7KBPsPj
+pM1jKgk1yQvIN4mggY7yQpTYTS2QlM5NAcG7sg9TcxhxnzhkKqO9xUKTWvxcvpe56dk3pVXar87T
+ab+FZ9L52N4Swpq7RW17E/X/AExr+1T+fBs67iu4ikC9RtjM/pq5xQmb29KIulcjPhvfumtJ+1Tx
+ffgLlTHsc4rxenOKdKNDiIMhY4CKNXowaKibZtFTW9d+yp48tEWRM7JklQxh41rcCg3FrIAPb7f+
+dMf8QpcRtC0zDx8yHJmiznlk2yqdsbQlVttxBViVKj5s+/W0vM481jmzgfLsb4G4Ct6zFM8g4/V5
+XyZyDYY/UZNPrm3cd5aPE8cq76JNqIUk0J4ru+uJUKVKY2VWV1cKO36+SQ6vMHUd1BdQ010vmzmj
+kbkxj3OI6sybJp5sdj+t3qUcPFIToGMRB7/FrI1MNGt0jfjx7PV5mF9m3VZ1C5HkMx0y0mcp8kxn
+F/NGBh4/kRaGmgxmOe/2YddUVUCDGC1yoMIGoi7VVXnphHsjEIi/k0CvTe9epGb3/wC/F3w8ODHi
+iYxo8gRS8hUbmbaC1Xu2gm6r5+9dQz1hY2UxhnND9tRVjjkC/b4/10o7yNelqgreLrXqddIlBzPk
+a2yPE6954MdYsDCsPtCVtdDpCECpYse3tAWNhaGjpuS8EOOxwmQ2q5EWXXEWnxC8yLLbyvxipoKq
+Xkd1cwgg9yDTY3DfaS5hzSEIhPooEIskZFa3Si7J+15H8urEqHGOivpahU8FkYBOGMDtCpv1OLPu
+axlvZyCLpPUSZYT5Ugy6T1PJ3+PGFecbkVthXl585zMfkLDlXxcIweedN+6uO5fmlLWX8QLhuGon
+Tq33oD3/AJf7LKkjVq+4itzLJFN4g8TSRPJ5S52rPCbZm8qNsgqAAKvZHSoBtHpA9IFjREZj0nQ4
+f08UYbD04S/y0IeSOBZGY7g25neyzODu7sLPQj+ork636guYM65UtpEkpclvZ8qgh2MhzlrMZEcg
+sWove9lzYwq+mSKwysB6VmvmSXsU0gjnaSDXKsgr5/0ZJo2g2KO1XihqiOIFzCkV5FM9hfX7qew5
+WoN7Rj3vxkIF9cku/hXfCdkT1K1V1r4+e2vjxiwzkSsfM3/XmzDnO/8A5nvklAiIifDRhAEQ29/S
+wbU7+NOJjY+OkGPFGFgjiWJYwBXlQKiRowoBgq0KoAi/x1B5ZpJ5ZJ5XZ5ZXaR3J5LsbJv8APau3
+YUOtgA5ZzXGK0dct0tnVi0KPBvWJafTKu9NhSCPbYRhtRNIIUpQtT/hp28Ws6NOdMLy7hGslTi43
+S21TdWlFc19lJA1zLCEOGb34j5GjFgy4cqJKjvenrH7z471e8LnuPfcFJIsJQyOVWRADcFqa7OMq
+Ne5VXaq7SdlRU+V3vx5EKbNjBcONMlR2KRz1YCSYLVe5G7erRvaiuVERvqVN+lrW701NLWfgYM2Q
+7LjRxMx+pEVfpCg2Foc+3erPXcvLPGIDI5VbbmRvkdq5H49+v//Z
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=lise1.jpg
+Content-Type: image/jpeg;
+	name="lise1.jpg"
+Content-Id: <8106506F-1EAB-46BF-AF20-A0D9E4EADEF1>
+
+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
+vjkcDj1b0BbX/9k=
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=ian1.jpg
+Content-Type: image/jpeg;
+	name="ian1.jpg"
+Content-Id: <DEC193E4-5BFA-42DC-A560-E36EF5C517C9>
+
+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
+pX/Rvnpj/9k=
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=jian1.jpg
+Content-Type: image/jpeg;
+	name="jian1.jpg"
+Content-Id: <9ABB0D0C-9525-4716-A8DC-6002C7C0976C>
+
+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
+quOv/9k=
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=publis1-2.jpg
+Content-Type: image/jpeg;
+	name="publis1-2.jpg"
+Content-Id: <29F70271-4DBB-4AC5-B696-BFCF3EA10663>
+
+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
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename=naacl_small.jpg
+Content-Type: image/jpeg;
+	name="naacl_small.jpg"
+Content-Id: <FE43DDA6-F264-426B-9272-D9E1304046B5>
+
+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
+--Apple-Mail=_4399ED95-9951-467C-8478-459009462661--
+
+--Apple-Mail=_5EEC71D7-2994-4CA3-80E0-6B2B62582995--

@@ -1,0 +1,345 @@
+Return-Path: <olivier.lezoray@unicaen.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id CDE1D229294F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sun, 10 Dec 2017 17:23:30 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id CD77073A1B9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sun, 10 Dec 2017 17:23:30 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id C2B574821B19
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:30 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -5.007
+X-Spam-Level:
+X-Spam-Status: No, score=-5.007 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SARE_RMML_Stock18=0.222, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 12.1200 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=unicaen.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id i31G8-pbXv9j for <liste-egc@polytech.univ-nantes.fr>;
+	Sun, 10 Dec 2017 17:23:30 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mailout.unicaen.fr (mailout4.unicaen.fr [194.199.107.92])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 12FCC47EC074
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:30 +0100 (CET)
+Received: from wzproxy1.unicaen.fr (wzproxy1.unicaen.fr [193.55.120.52])
+	by mailout.unicaen.fr (Postfix) with ESMTP id EABD846B7AEC
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=unicaen.fr; s=mail;
+	t=1512923009; bh=TU81ErZmjaREy/rWbCo+E1EcOtD8+fXQuAjod9Ieqg4=;
+	h=From:Subject:Date:To:From;
+	b=A8LCI5DWLjyI79lWknDx01tcT2gbuwsJUfFbhnYoky9aJaJn3NBY3sshq/cVeDoae
+	 RJF3zfsNa6aUoYKyTGvzs4FKRKjfoC5XzNquA2cm8khbEXZTEtwtfxPID3XTO7TWjd
+	 eIQSJVu+8xndzVeS5JfkWz0qVnr/N0uDMacuzrx4=
+Received: from localhost (localhost [127.0.0.1])
+	by wzproxy1.unicaen.fr (Postfix) with ESMTP id B7D4A120D19
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:29 +0100 (CET)
+X-Virus-Scanned: amavisd-new at wzproxy1.unicaen.fr
+Received: from wzproxy1.unicaen.fr ([127.0.0.1])
+	by localhost (wzproxy1.unicaen.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id T9wC1CeZdN_i for <liste-egc@polytech.univ-nantes.fr>;
+	Sun, 10 Dec 2017 17:23:29 +0100 (CET)
+Received: from lsmtp2.unicaen.fr (lsmtp2.unicaen.fr [193.55.120.33])
+	by wzproxy1.unicaen.fr (Postfix) with ESMTP id A121812067E
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:29 +0100 (CET)
+Received: from [192.168.0.19] (bay14-1-78-242-80-81.fbx.proxad.net [78.242.80.81])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by lsmtp2.unicaen.fr (Postfix) with ESMTPSA id 91E70427C312
+	for <liste-egc@polytech.univ-nantes.fr>; Sun, 10 Dec 2017 17:23:27 +0100 (CET)
+From: Olivier Lezoray <olivier.lezoray@unicaen.fr>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_D78984EC-843F-4EC8-BEF1-93098A1DCC62"
+Message-Id: <C19AB96F-2C62-4B09-B95D-E6AFAA6E5A15@unicaen.fr>
+Date: Sun, 10 Dec 2017 17:23:27 +0100
+To: liste-egc@polytech.univ-nantes.fr
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
+X-Mailer: Apple Mail (2.2104)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Postdoctoral position on speaker identification
+
+
+--Apple-Mail=_D78984EC-843F-4EC8-BEF1-93098A1DCC62
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+We are seeking an outstanding postdoctoral research fellow with =
+experience in deep learning to work with us at Caen University, France =
+on a project investigating the design of algorithms for speaker =
+identification for intelligent home speakers.
+
+Context:
+---------
+The postdoctoral position is funded under the research project =
+HomeKeeper supported by the French National Future Investments Program. =
+The HomeKeeper project gathers companies and universities around the =
+design of a personal home speaker assistant that communicates with =
+humans through sound media. Within this framework, the personal =
+assistant should be able to discriminate the different persons living in =
+a house and entitled to communicate with it.
+
+Background:
+-----------
+Intelligent Home Speakers such as Amazon Echo and Google Home are a =
+causing a wave of excitement amongst consumers. Their shipments reached =
+5.9 million units globally in 2016 and should grow tenfold by 2022. The =
+promise of conversational, hands-free interaction with the Internet is a =
+very compelling one and the development of personal home speaker =
+assistants is likely to strongly benefit of cutting-edge research =
+developments in speech recognition, especially with the recent advent of =
+Deep Learning techniques. Such advancements in voice biometrics and =
+voice authentication will help ease privacy concerns and make the =
+devices more adaptable to multi-user environments. The Home- Keeper =
+project falls within that line of research and aims at developing an =
+innovative intelligent home speaker connected to a service platform, and =
+will rely on Artificial Intelligence and vocal interaction to ensure =
+secure access to the services.
+
+Objectives and challenges:=20
+---------------------------
+Several bottlenecks will have to be overpassed in order to perform the =
+speaker identification. The first one will consists in defining a deep =
+learning architecture sufficiently generic for the framework of the =
+application. The second challenge will consists to deal with the re- =
+duced number of available data. This problem is particularly challenging =
+in the deep learning context which usually require huge mass of data in =
+order to perform an accurate learning. The insight of the project will =
+be focused on these two points, the second one being hardly addressed by =
+the literature.
+
+Work plan:
+-----------
+The position will start by a large state of the art and an encoding of =
+the best non deep methods. This first step should take 3 months and will =
+allow to provide a first result to the other partners of the project.
+The second step, evaluated to 6 months will consists in designing a deep =
+learning architecture and to train it in order to identify several =
+members of the project.
+The last step, evaluated to 3 month, will consists in designing a first =
+functional prototype and to evaluate its performances (in terms of size =
+of the training set, precision and recall) when a deep network is =
+trained on a new set of persons. This new training will be performed =
+either thanks to random weighs or thanks to the weighs obtained at the =
+previous step. The network architecture will remain unchanged.
+
+Candidate profile:=20
+------------------
+The candidate must have a recent Ph.D. (within 5 years) in Computer =
+Science (or Applied Mathematics) in the filed of Machine Learning. =
+Knowledge and experience within the Deep Learning frameworks is also =
+very welcomed. The candidate will perform research and algorithmic =
+development and solid programming skills are required. Excellent =
+interpersonal skills and the ability to work well individually or as a =
+member of a project team are recommended. Good written and verbal =
+communication skills are required, the candidate has to be fluent in =
+spoken French or English and written English. Working language can be =
+English or French.
+
+Location:
+-----------
+Caen, France in the GREYC UMR CNRS laboratory. Situated in the Normandy =
+region of France close to the sea and about 240km west of Paris; the =
+city still has many old quarters, a population of around 120,000; the =
+city area has roughly 250,000 inhabitants.
+
+Application:
+-------------
+Interested candidates should submit their application to =
+luc.brun@ensicaen.fr and olivier.lezoray@unicaen.fr
+Please include in your application email one Curriculum Vitae, one =
+statement of research letter ex- plaining your interest and your skills =
+for this position, and 2 reference letters (all in a single pdf file). =
+Applications will be admitted until the position is filled.
+
+Additional information:
+-----------------------
+Host institution: University of Caen Normandy and CNRS, GREYC laboratory =
+(UMR 6072)=20
+Gross Salary: 2074 euros per month (charges included)
+Duration: One year, expendable to 18 months
+Starting date: from January/February 2018
+Advantages: Possibility of French courses, participation in transport =
+costs, possibility of restoration on site.
+
+Olivier L=C3=89ZORAY, Full Professor of Computer Science, University of =
+Caen Normandy
+olivier.lezoray@unicaen.fr <mailto:olivier.lezoray@unicaen.fr>	 	 =
+	https://lezoray.users.greyc.fr <https://lezoray.users.greyc.fr/>	=
+=20
+Cherbourg Institute of Technology
+Multimedia and Internet Department
+120 Rue de l'exode
+F-50000 SAINT-LO
+Tel: +33(0)233775510	 	University of Caen
+GREYC UMR CNRS 6072
+6 Bd. Marechal Juin
+F-14000 CAEN
+Tel: +33(0)231452927
+
+
+--Apple-Mail=_D78984EC-843F-4EC8-BEF1-93098A1DCC62
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D"">We are seeking an outstanding postdoctoral =
+research fellow with experience in deep learning to work with us at Caen =
+University, France on a project investigating the design of algorithms =
+for speaker identification for intelligent home speakers.</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Context:</div><div =
+class=3D"">---------</div><div class=3D"">The postdoctoral position is =
+funded under the research project HomeKeeper supported by the French =
+National Future Investments Program. The HomeKeeper project gathers =
+companies and universities around the design of a personal home speaker =
+assistant that communicates with humans through sound media. Within this =
+framework, the personal assistant should be able to discriminate the =
+different persons living in a house and entitled to communicate with =
+it.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Background:</div><div class=3D"">-----------</div><div =
+class=3D"">Intelligent Home Speakers such as Amazon Echo and Google Home =
+are a causing a wave of excitement amongst consumers. Their shipments =
+reached 5.9 million units globally in 2016 and should grow tenfold by =
+2022. The promise of conversational, hands-free interaction with the =
+Internet is a very compelling one and the development of personal home =
+speaker assistants is likely to strongly benefit of cutting-edge =
+research developments in speech recognition, especially with the recent =
+advent of Deep Learning techniques. Such advancements in voice =
+biometrics and voice authentication will help ease privacy concerns and =
+make the devices more adaptable to multi-user environments. The Home- =
+Keeper project falls within that line of research and aims at developing =
+an innovative intelligent home speaker connected to a service platform, =
+and will rely on Artificial Intelligence and vocal interaction to ensure =
+secure access to the services.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Objectives and =
+challenges:&nbsp;</div><div =
+class=3D"">---------------------------</div><div class=3D"">Several =
+bottlenecks will have to be overpassed in order to perform the speaker =
+identification. The first one will consists in defining a deep learning =
+architecture sufficiently generic for the framework of the application. =
+The second challenge will consists to deal with the re- duced number of =
+available data. This problem is particularly challenging in the deep =
+learning context which usually require huge mass of data in order to =
+perform an accurate learning. The insight of the project will be focused =
+on these two points, the second one being hardly addressed by the =
+literature.</div><div class=3D""><br class=3D""></div><div class=3D"">Work=
+ plan:</div><div class=3D"">-----------</div><div class=3D"">The =
+position will start by a large state of the art and an encoding of the =
+best non deep methods. This first step should take 3 months and will =
+allow to provide a first result to the other partners of the =
+project.</div><div class=3D"">The second step, evaluated to 6 months =
+will consists in designing a deep learning architecture and to train it =
+in order to identify several members of the project.</div><div =
+class=3D"">The last step, evaluated to 3 month, will consists in =
+designing a first functional prototype and to evaluate its performances =
+(in terms of size of the training set, precision and recall) when a deep =
+network is trained on a new set of persons. This new training will be =
+performed either thanks to random weighs or thanks to the weighs =
+obtained at the previous step. The network architecture will remain =
+unchanged.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Candidate profile:&nbsp;</div><div =
+class=3D"">------------------</div><div class=3D"">The candidate must =
+have a recent Ph.D. (within 5 years) in Computer Science (or Applied =
+Mathematics) in the filed of Machine Learning. Knowledge and experience =
+within the Deep Learning frameworks is also very welcomed. The candidate =
+will perform research and algorithmic development and solid programming =
+skills are required. Excellent interpersonal skills and the ability to =
+work well individually or as a member of a project team are recommended. =
+Good written and verbal communication skills are required, the candidate =
+has to be fluent in spoken French or English and written English. =
+Working language can be English or French.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Location:</div><div =
+class=3D"">-----------</div><div class=3D"">Caen, France in the GREYC =
+UMR CNRS laboratory. Situated in the Normandy region of France close to =
+the sea and about 240km west of Paris; the city still has many old =
+quarters, a population of around 120,000; the city area has roughly =
+250,000 inhabitants.</div><div class=3D""><br class=3D""></div><div =
+class=3D"">Application:</div><div class=3D"">-------------</div><div =
+class=3D"">Interested candidates should submit their application to <a =
+href=3D"mailto:luc.brun@ensicaen.fr" class=3D"">luc.brun@ensicaen.fr</a> =
+and <a href=3D"mailto:olivier.lezoray@unicaen.fr" =
+class=3D"">olivier.lezoray@unicaen.fr</a></div><div class=3D"">Please =
+include in your application email one Curriculum Vitae, one statement of =
+research letter ex- plaining your interest and your skills for this =
+position, and 2 reference letters (all in a single pdf file). =
+Applications will be admitted until the position is filled.</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Additional =
+information:</div><div class=3D"">-----------------------</div><div =
+class=3D"">Host institution: University of Caen Normandy and CNRS, GREYC =
+laboratory (UMR 6072)&nbsp;</div><div class=3D"">Gross Salary: 2074 =
+euros per month (charges included)</div><div class=3D"">Duration: One =
+year, expendable to 18 months</div><div class=3D"">Starting date: from =
+January/February 2018</div><div class=3D"">Advantages: Possibility of =
+French courses, participation in transport costs, possibility of =
+restoration on site.</div><div class=3D"">
+
+<span style=3D"font-family: Verdana, Arial, Sans-Serif; font-size: 10pt; =
+color: #000000;  margin-top: 0pt;" class=3D""><br style=3D"line-height: =
+9pt;" class=3D"">
+<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" class=3D"">
+    <tbody class=3D""><tr class=3D"">
+        <td width=3D"100%" align=3D"left" valign=3D"top" style=3D"padding:=
+ 8px 0 8px 0; font-family: Verdana, Arial, Sans-Serif; font-size: 9pt; =
+color: #777777; border-top: 1px solid #c0c0c0; " class=3D"">
+            <span style=3D"color: #666666;" class=3D""><strong =
+style=3D"color: #666666;" class=3D"">Olivier L=C3=89ZORAY</strong>, Full =
+Professor of Computer Science, University of Caen Normandy</span>
+            <table class=3D"">
+                <tbody class=3D""><tr class=3D"">
+                    <td nowrap=3D"" class=3D""><span style=3D"color: =
+#666666;font-size: 9pt;font-family: Verdana, Arial, =
+Sans-Serif;white-space: nowrap;" class=3D""><a =
+href=3D"mailto:olivier.lezoray@unicaen.fr" style=3D"color: =
+#666666;text-decoration: underline;" =
+class=3D"">olivier.lezoray@unicaen.fr</a></span></td>
+                    <td class=3D"">&nbsp;</td>
+                    <td class=3D"">&nbsp;</td>
+                    <td nowrap=3D"" class=3D""><span style=3D"color: =
+#666666;font-size: 9pt;font-family: Verdana, Arial, =
+Sans-Serif;white-space: nowrap;" class=3D""><a =
+href=3D"https://lezoray.users.greyc.fr" style=3D"color: =
+#666666;text-decoration: underline;" =
+class=3D"">https://lezoray.users.greyc.fr</a></span></td>
+                    <td class=3D"">&nbsp;</td>
+                 </tr>
+                 <tr style=3D"color: #666666;font-size: 9pt;font-family: =
+Verdana, Arial, Sans-Serif;white-space: nowrap;" class=3D"">
+                    <td colspan=3D"2" class=3D"">
+                        Cherbourg Institute of Technology<br class=3D"">
+                        Multimedia and Internet Department<br class=3D"">
+                        120 Rue de l'exode<br class=3D"">
+                        F-50000 SAINT-LO<br class=3D"">
+                        Tel: +33(0)233775510
+                    </td>
+                    <td class=3D"">&nbsp;</td>
+                    <td colspan=3D"2" style=3D"border-left:1px solid =
+#c0c0c0; padding-left:5px;" class=3D"">
+                        University of Caen<br class=3D"">
+                        GREYC UMR CNRS 6072<br class=3D"">
+                        6 Bd. Marechal Juin<br class=3D"">
+                        F-14000 CAEN<br class=3D"">
+                        Tel: +33(0)231452927
+                    </td>
+                 </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+</span></div>
+<br class=3D""></body></html>=
+
+--Apple-Mail=_D78984EC-843F-4EC8-BEF1-93098A1DCC62--

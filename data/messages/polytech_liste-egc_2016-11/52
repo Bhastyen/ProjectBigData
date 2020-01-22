@@ -1,0 +1,296 @@
+Return-Path: <p_bruneau@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 5BE111904841
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 28 Nov 2016 14:32:53 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 59E7B700DE
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 28 Nov 2016 14:32:53 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 515D6B4B130
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 28 Nov 2016 14:32:53 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.026
+X-Spam-Level:
+X-Spam-Status: No, score=-0.026 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RP_MATCHES_RCVD=-0.147, SPF_PASS=-0.001, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.2280 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LK-8pxiWgOcG for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 28 Nov 2016 14:32:52 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from BLU004-OMC1S25.hotmail.com (blu004-omc1s25.hotmail.com [65.55.116.36])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id B128E642A61
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 28 Nov 2016 14:32:51 +0100 (CET)
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com ([65.55.116.8]) by BLU004-OMC1S25.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Mon, 28 Nov 2016 05:32:50 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=lf0yH2nJEe02uEIYU0w/PzgA6vaKf8bdSwrl/prbAkk=;
+ b=GPs3NG/DBm76OEdwyJceIo+tYHPSdyh9lY8h2PZya6i/C0h/Hu853tzO0e5bFtTvZ7fPxIk3fu02/4WvXrHAKQTYEUIiuFVoi2yb4QnQLGpSlIuvc3zyUMhSlroWz4lPV1pt3WsyN2zwjyPiZq7jEUxmjFrT7+ZlSxZVtqygOrBP6+kaR/2u4xjQx4xmX1TRAVi/wPPX8ioD6zv9t/lVazquyn9ixAZYSD3FuL5BOq7P9BC7dD94QNHZoqeQVFzOI+lQsFOVd9ZitTx5jEmMUuF+vOPHAjzl/sqzWE5wKFC0FNAsMWqX5sRrwfj5vzCy4aOm3WdPgEIEmywVcVLHMA==
+Received: from HE1EUR02FT033.eop-EUR02.prod.protection.outlook.com
+ (10.152.10.52) by HE1EUR02HT009.eop-EUR02.prod.protection.outlook.com
+ (10.152.10.160) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.734.4; Mon, 28 Nov
+ 2016 13:32:48 +0000
+Received: from AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM (10.152.10.53) by
+ HE1EUR02FT033.mail.protection.outlook.com (10.152.10.152) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.734.4 via Frontend Transport; Mon, 28 Nov 2016 13:32:48 +0000
+Received: from AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM ([10.168.0.144]) by
+ AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM ([10.168.0.144]) with mapi id
+ 15.01.0747.015; Mon, 28 Nov 2016 13:32:48 +0000
+From: Pierrick Bruneau <p_bruneau@hotmail.com>
+To: "bull-i3@irit.fr" <bull-i3@irit.fr>, "info-ic@inria.fr"
+	<info-ic@inria.fr>, "liste-egc@polytech.univ-nantes.fr"
+	<liste-egc@polytech.univ-nantes.fr>, "liste-gt-vif@univ-nantes.fr"
+	<liste-gt-vif@univ-nantes.fr>
+Thread-Topic: =?iso-8859-1?Q?Atelier_VIF_(EGC_2017)_-_appel_=E0_communications_?=
+Thread-Index: AQHSNoPnOlYyUGzVLkihFW3mMgmrU6Dumz75
+Date: Mon, 28 Nov 2016 13:32:48 +0000
+Message-ID: <AM4PR1001MB09002989C2E474CF489B81139A8A0@AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM>
+References: <AM4PR1001MB090017C436AAC84D247BC7C59AA20@AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM>
+In-Reply-To: <AM4PR1001MB090017C436AAC84D247BC7C59AA20@AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: irit.fr; dkim=none (message not signed)
+ header.d=none;irit.fr; dmarc=none action=none header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:;UpperCasedChecksum:;SizeAsReceived:7649;Count:38
+x-tmn: [cIp/zzwRB1Nl+RitmQXDNoiFNckIx6Mr]
+x-incomingheadercount: 38
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1;HE1EUR02HT009;7:NHZMveyGsSg7PJ9YDgDQ32OzTSL7smarJQxRAU2NeinKqnm9aJYK2LzFcV8PDsZVDpUI08YZdnTO8yw+pacAidSoPTTqdj/25+Vx4dYWK2Y6DWqWE8MUc8ZP+rlfnGOXJ3SzSa9CpJjK9hj2JzPr4GSSqBsBzP//oZ4M+q7Hewdga7KWdW5FCVjGOxODiqnaVNcnB3mrfO4vX35pim/QX0M48JbM6IR2lr+9j8XBuYPCPi3kQBSP/sw3s5v9wNbOeFwILlNJ/rtNA2ctWLIZ6/8F0c7DBbwMZsRWGaG+o+Gvxm3owHwwjGO5FuOhRn6GC7htdozXWBXd9eICEVvgwLWBVOjTCW1F+Xyzt0wkBEs=
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900003);DIR:OUT;SFP:1102;SCL:1;SRVR:HE1EUR02HT009;H:AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:fr;
+x-ms-office365-filtering-correlation-id: 331cf98a-49e3-4257-f6c9-08d417930b82
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(1601124038)(1603103113)(1601125047);SRVR:HE1EUR02HT009;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(432015012)(82015046);SRVR:HE1EUR02HT009;BCL:0;PCL:0;RULEID:;SRVR:HE1EUR02HT009;
+x-forefront-prvs: 01401330D1
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_AM4PR1001MB09002989C2E474CF489B81139A8A0AM4PR1001MB0900_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Nov 2016 13:32:48.6025
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT009
+X-OriginalArrivalTime: 28 Nov 2016 13:32:50.0878 (UTC) FILETIME=[EA5AA5E0:01D2497B]
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Atelier VIF (EGC 2017) - appel =?ISO-8859-1?Q?=E0?=
+ communications
+
+--_000_AM4PR1001MB09002989C2E474CF489B81139A8A0AM4PR1001MB0900_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+
+
+D=E9sormais bien =E9tabli =E0 EGC, l'atelier VIF =E9mane du groupe de trava=
+il =AB Visualisation d'Information, Interaction et Fouille de donn=E9es =BB=
+, fruit de la collaboration entre les associations EGC et AFIHM. Celui-ci s=
+e propose de faire le point sur l'actualit=E9 en visualisation interactive =
+d'informations, tant du point de vue fondamental qu'applicatif.
+
+=C0 la confluence des communaut=E9s EGC et VIS et =E0 la crois=E9e des disc=
+iplines (Informatique, G=E9ographie, Ergonomie, Design, etc.), les m=E9thod=
+es de visualisation interactive et de fouille visuelle des donn=E9es sont a=
+u coeur des pr=E9occupations de cet atelier. Aussi, il aura pour vocation d=
+e favoriser l'=E9change sur l'=E9volution r=E9cente des axes de recherche d=
+ans ces th=E9matiques, et sur l'application des m=E9thodes de visualisation=
+ =E0 des probl=E9matiques industrielles. Le traitement de donn=E9es massive=
+s ('Big Data') et des flux de donn=E9es fera l'objet d'une attention partic=
+uli=E8re.
+
+
+
+Les auteurs de soumissions au d=E9fi EGC pr=E9sentant une dimension visuali=
+sation sont bien entendu les bienvenus pour pr=E9senter cette derni=E8re =
+=E0 l'atelier.
+
+
+
+PLUS D'INFORMATION SUR LE SITE WEB DE L'ATELIER :
+
+
+
+http://gt-vif.polytech.univ-nantes.fr/egc-vif2017
+
+
+
+
+DATES IMPORTANTES :
+
+
+
+                * 2 d=E9cembre 2016 : Date limite de r=E9ception des propos=
+itions
+
+                * 14 d=E9cembre 2016 : Notification aux auteurs
+
+                * 18 d=E9cembre 2016 : Mise en ligne du programme
+
+                * 24 janvier 2017 : Atelier
+
+
+
+INSTRUCTIONS AUX AUTEURS :
+
+
+
+Les soumissions se feront sous la forme de r=E9sum=E9s de 2 pages maximum e=
+n suivant le format d'EGC (voir http://www.editions-rnti.fr/files/RNTI-X-Y2=
+.1.zip), et doivent =EAtre soumis avant le 2 d=E9cembre 2016 (notification =
+aux auteurs le 14 d=E9cembre 2016). Les r=E9sum=E9s et les pr=E9sentations =
+collect=E9es le jour de l'atelier seront de plus mis =E0 disposition sur le=
+ Web.
+
+
+
+Les soumissions sont =E0 faire via le site easychair de la conf=E9rence EGC=
+ 2017 =E0 l'URL suivante https://easychair.org/conferences/?conf=3Degc2017 =
+en choisissant le track "VIF : Visualisation d'informations, Interaction, e=
+t Fouille de donn=E9es".
+
+
+
+
+COMIT=C9 D'ORGANISATION :
+
+
+
+                * Fabien Picarougne, LINA, Universit=E9 de Nantes
+
+                * Pierrick Bruneau, Luxembourg Institute of Science and Tec=
+hnology
+
+                * Hanene Azzag, LIPN, Universit=E9 de Paris 13
+
+                * David Bihanic, Universit=E9 Paris 1 Panth=E9on-Sorbonne
+
+
+--_000_AM4PR1001MB09002989C2E474CF489B81139A8A0AM4PR1001MB0900_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p><span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-=
+size: 12pt;">Bonjour,</span><br>
+</p>
+<div style=3D"color: rgb(0, 0, 0);">
+<div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; font-family:Calibri,Arial,Helvetica,sans-serif">
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">D=E9sormais bien =E9tabli =E0 EGC, l'atelier VIF =
+=E9mane du groupe de travail =AB Visualisation d'Information, Interaction e=
+t Fouille de donn=E9es =BB, fruit de la collaboration entre les association=
+s EGC et AFIHM. Celui-ci se propose de faire le
+ point sur l'actualit=E9 en visualisation interactive d'informations, tant =
+du point de vue fondamental qu'applicatif.</p>
+<p class=3D"MsoPlainText">=C0 la confluence des communaut=E9s EGC et VIS et=
+ =E0 la crois=E9e des disciplines (Informatique, G=E9ographie, Ergonomie, D=
+esign, etc.), les m=E9thodes de visualisation interactive et de fouille vis=
+uelle des donn=E9es sont au c&#339;ur des pr=E9occupations
+ de cet atelier. Aussi, il aura pour vocation de favoriser l'=E9change sur =
+l'=E9volution r=E9cente des axes de recherche dans ces th=E9matiques, et su=
+r l'application des m=E9thodes de visualisation =E0 des probl=E9matiques in=
+dustrielles. Le traitement de donn=E9es massives
+ (&#8217;Big Data&#8217;) et des flux de donn=E9es fera l'objet d'une atten=
+tion particuli=E8re.</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">Les auteurs de soumissions au d=E9fi EGC pr=E9sen=
+tant une dimension visualisation sont bien entendu les bienvenus pour pr=E9=
+senter cette derni=E8re =E0 l'atelier.</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">PLUS D'INFORMATION SUR LE SITE WEB DE L'ATELIER :=
+</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText"><a href=3D"http://gt-vif.polytech.univ-nantes.fr/=
+egc-vif2017" id=3D"LPlnk125281" previewremoved=3D"true">http://gt-vif.polyt=
+ech.univ-nantes.fr/egc-vif2017</a></p>
+<br>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">DATES IMPORTANTES :</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 2 d=E9cembre 2016 : Date limite de r=
+=E9ception des propositions</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 14 d=E9cembre 2016 : Notification au=
+x auteurs</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 18 d=E9cembre 2016 : Mise en ligne d=
+u programme</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * 24 janvier 2017 : Atelier</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">INSTRUCTIONS AUX AUTEURS :</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">Les soumissions se feront sous la forme de r=E9su=
+m=E9s de 2 pages maximum en suivant le format d'EGC (voir
+<a href=3D"http://www.editions-rnti.fr/files/RNTI-X-Y2.1.zip" id=3D"LPlnk59=
+8397" previewremoved=3D"true">
+http://www.editions-rnti.fr/files/RNTI-X-Y2.1.zip</a>), et doivent =EAtre s=
+oumis avant le 2 d=E9cembre 2016 (notification aux auteurs le 14 d=E9cembre=
+ 2016). Les r=E9sum=E9s et les pr=E9sentations collect=E9es le jour de l'at=
+elier seront de plus mis =E0 disposition sur le
+ Web.</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">Les soumissions sont =E0 faire via le site easych=
+air de la conf=E9rence EGC 2017 =E0 l'URL suivante
+<a href=3D"https://easychair.org/conferences/?conf=3Degc2017" id=3D"LPlnk72=
+4489" previewremoved=3D"true">
+https://easychair.org/conferences/?conf=3Degc2017</a> en choisissant le tra=
+ck &quot;VIF : Visualisation d&#8217;informations, Interaction, et Fouille =
+de donn=E9es&quot;.</p>
+<br>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">COMIT=C9 D'ORGANISATION :</p>
+<p class=3D"MsoPlainText">&nbsp;</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Fabien Picarougne, LINA, Universit=
+=E9 de Nantes</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Pierrick Bruneau, Luxembourg Institu=
+te of Science and Technology</p>
+<p class=3D"MsoPlainText">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Hanene Azzag, LIPN, Universit=E9 de =
+Paris 13</p>
+<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * David Bihanic, Universit=E9 Par=
+is 1 Panth=E9on-Sorbonne</p>
+<br>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_AM4PR1001MB09002989C2E474CF489B81139A8A0AM4PR1001MB0900_--

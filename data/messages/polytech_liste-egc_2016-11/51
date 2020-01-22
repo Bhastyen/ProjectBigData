@@ -1,0 +1,364 @@
+Return-Path: <jean-claude.regnier@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 06C7B1904841
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 28 Nov 2016 12:28:47 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id EB02C700C4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 28 Nov 2016 12:28:46 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id D3DF22D8757
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 28 Nov 2016 12:28:46 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -14.918
+X-Spam-Level:
+X-Spam-Status: No, score=-14.918 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10,
+	RP_MATCHES_RCVD=-0.147, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PDF_ATTACH=0.01, UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 19.2480 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TWGKlhnPKDts for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 28 Nov 2016 12:28:44 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id DAD752D71FE
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 28 Nov 2016 12:28:44 +0100 (CET)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id 60F1C139993
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 28 Nov 2016 12:28:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1480332524;
+	bh=ZDk5rOovUEUiEl6yQF3KUO6BEgJZLZbPTl+UpUsGylM=;
+	h=From:To:Cc:Subject:Date;
+	b=gLgbPvyrWOj3Je1YysAQ41VLyH/LAtRvhIlD0BDSbHQpz8yPKtBnnvJZazkjl6R7D
+	 P8uUG+M8/xvAiAigYNxHzpgh3ScbiRUu6xmsUYHsjF91KcXCmqlzUOumipRmW//T73
+	 s98kIbkA8M0RId/L8RyjU4X7th9Wwh42kfYb2SWQ1EPoujPMNRT685XhE4pITVbiYn
+	 i94S+69R/epYQfuFsfNnnKduEsBbNTnINtVte3SS3SSsGeBe4PFuk02vLShACDAc6V
+	 Wpp8Dl11bzYsdRjinbHiLmqo1+sjFTyzS0niU979bAlCp0bdeOj5tcLzk2Yak/3FHP
+	 EK4uR2hVqJY9w==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id S0Z0j5qOe4LQ; Mon, 28 Nov 2016 12:28:42 +0100 (CET)
+Received: from REGNIERPCDELL (ADijon-654-1-159-104.w92-130.abo.wanadoo.fr [92.130.138.104])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA;
+	Mon, 28 Nov 2016 12:28:42 +0100 (CET)
+From: "Jean-Claude Regnier" <jean-claude.regnier@univ-lyon2.fr>
+To: <liste-egc@polytech.univ-nantes.fr>,
+	<groupasi@listes.univ-lyon2.fr>
+Cc: "Jean-Claude Regnier" <jean-claude.regnier@univ-lyon2.fr>,
+	"Denis Poizat" <denis.poizat@univ-lyon2.fr>
+Date: Mon, 28 Nov 2016 12:28:43 +0100
+Message-ID: <!&!AAAAAAAAAAAYAAAAAAAAAGDjSY5w8ZhIgAiqzVHplbzCgAAAEAAAAFJ/dIEdZFhEpR2SB+HnqR0BAAAAAA==@univ-lyon2.fr>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0037_01D24972.F6122790"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdJJaYvuOfR5W1mRSiel7XGTa5XJdg==
+Content-Language: fr
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Offre de stage
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0037_01D24972.F6122790
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0038_01D24972.F6124EA0"
+
+
+------=_NextPart_001_0038_01D24972.F6124EA0
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Ch=E8r-es Coll=E8gues
+
+=20
+
+Je vous transmets une offre de stage r=E9mun=E9r=E9 d=92une dur=E9e de 2 =
+mois pour
+un-e =E9tudiant-e en Master 2 pour assurer des traitements statistiques =
+dans
+un laboratoire de sciences de l=92=E9ducation =E0 l=92Universit=E9 =
+Lumi=E8re Lyon2.
+
+=20
+
+=20
+
+********************************************************
+Cordialement
+Jean-Claude R=E9gnier
+Professeur des Universit=E9s
+Pr=E9sident coordinateur du Groupe d'Experts Internes section 16 =
+(psychologie)
+et 70 (sciences de l'=E9ducation de l'Universit=E9 Lyon2
+
+=20
+
+PVE 2015-2018- Pesquisador Visitante Especial do Programa Ci=EAncia sem
+fronteiras - CAPES Brasil - UFRPE
+Professeur invit=E9 de l'Universit=E9 d'Etat de Tomsk (Russie)
+Recherche : UMR 5191 ICAR (ICAR2)- Universit=E9 de Lyon - Lyon2
+<http://icar.univ-lyon2.fr/membres/jcregnier/>
+http://icar.univ-lyon2.fr/membres/jcregnier/
+Directeur de th=E8ses ED485 EPIC  <http://epic.univ-lyon2.fr/>
+http://epic.univ-lyon2.fr/=20
+Enseignement : ISPEF Sciences de l'=E9ducation 86 Rue Pasteur (G317) =
+69007
+Lyon
+ <http://icar.univ-lyon2.fr/membres/jcregnier/enseignements.htm>
+http://icar.univ-lyon2.fr/membres/jcregnier/enseignements.htm
+
+=20
+
+Publications :  <http://hal.inria.fr/aut/jean-claude+regnier/>
+http://hal.inria.fr/aut/jean-claude+regnier/
+=20
+CNPq Brasil  <http://lattes.cnpq.br/1826238948662593>
+http://lattes.cnpq.br/1826238948662593
+
+=20
+
+
+------=_NextPart_001_0038_01D24972.F6124EA0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1"><meta name=3DGenerator content=3D"Microsoft Word =
+15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFR =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Ch=E8r-es Coll=E8gues<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Je vous =
+transmets une offre de stage r=E9mun=E9r=E9 d&#8217;une dur=E9e de 2 =
+mois pour un-e =E9tudiant-e en Master 2 pour assurer des traitements =
+statistiques dans un laboratoire de sciences de l&#8217;=E9ducation =E0 =
+l&#8217;Universit=E9 Lumi=E8re Lyon2.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DES-CL><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-lang=
+uage:FR'>********************************************************<br>Cord=
+ialement<br>Jean-Claude R=E9gnier<br>Professeur des =
+Universit=E9s<br>Pr=E9sident coordinateur du Groupe d'Experts Internes =
+section 16 (psychologie) et 70 (sciences de l'=E9ducation de =
+l'Universit=E9 Lyon2</span><span =
+style=3D'mso-fareast-language:FR'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:FR'>&nbsp;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-lang=
+uage:FR'>PVE 2015-2018- Pesquisador Visitante Especial do Programa =
+Ci=EAncia sem fronteiras - CAPES Brasil - UFRPE<br>Professeur invit=E9 =
+de l'Universit=E9 d'Etat de Tomsk (Russie)<br>Recherche : UMR 5191 ICAR =
+(ICAR2)- Universit=E9 de Lyon - Lyon2 <a =
+href=3D"http://icar.univ-lyon2.fr/membres/jcregnier/"><span =
+style=3D'color:blue'>http://icar.univ-lyon2.fr/membres/jcregnier/</span><=
+/a><br>Directeur de th=E8ses ED485 EPIC <a =
+href=3D"http://epic.univ-lyon2.fr/"><span =
+style=3D'color:blue'>http://epic.univ-lyon2.fr/</span></a> =
+<br>Enseignement : ISPEF Sciences de l'=E9ducation 86 Rue Pasteur (G317) =
+69007 Lyon<br><a =
+href=3D"http://icar.univ-lyon2.fr/membres/jcregnier/enseignements.htm"><s=
+pan =
+style=3D'color:blue'>http://icar.univ-lyon2.fr/membres/jcregnier/enseigne=
+ments.htm</span></a></span><span =
+style=3D'mso-fareast-language:FR'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:FR'>&nbsp;<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;mso-fareast-lang=
+uage:FR'>Publications : <a =
+href=3D"http://hal.inria.fr/aut/jean-claude+regnier/"><span =
+style=3D'color:blue'>http://hal.inria.fr/aut/jean-claude+regnier/</span><=
+/a><br>&nbsp;<br>CNPq Brasil <a =
+href=3D"http://lattes.cnpq.br/1826238948662593"><span =
+style=3D'color:blue'>http://lattes.cnpq.br/1826238948662593</span></a></s=
+pan><span style=3D'mso-fareast-language:FR'><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_001_0038_01D24972.F6124EA0--
+
+------=_NextPart_000_0037_01D24972.F6122790
+Content-Type: application/pdf;
+	name="StagiaireM2statistique_ECP_Lyon2.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="StagiaireM2statistique_ECP_Lyon2.pdf"
+
+JVBERi0xLjQKJcfsj6IKNCAwIG9iago8PC9MaW5lYXJpemVkIDEvTCA2NTY1L0hbIDQwMTUgMTM4
+XS9PIDYvRSA0MDE1L04gMS9UIDY0NDQ+PgplbmRvYmoKICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAp4cmVmCjQgMTIKMDAwMDAwMDAxNSAwMDAw
+MCBuIAowMDAwMDAwNTQ4IDAwMDAwIG4gCjAwMDAwMDA2NjEgMDAwMDAgbiAKMDAwMDAwMDgyMSAw
+MDAwMCBuIAowMDAwMDAzNTg5IDAwMDAwIG4gCjAwMDAwMDM2MDkgMDAwMDAgbiAKMDAwMDAwMzY1
+MCAwMDAwMCBuIAowMDAwMDAzNzE2IDAwMDAwIG4gCjAwMDAwMDM3OTkgMDAwMDAgbiAKMDAwMDAw
+MzgyOSAwMDAwMCBuIAowMDAwMDAzODcwIDAwMDAwIG4gCjAwMDAwMDQwMTUgMDAwMDAgbiAKCnRy
+YWlsZXIKPDwvU2l6ZSAxNi9JbmZvIDEgMCBSL1Jvb3QgNSAwIFIvSURbPDBCMDlERTRFMjRCNjRF
+RkVGMTkwREM5MjMzODdFM0M0PjwwQjA5REU0RTI0QjY0RUZFRjE5MERDOTIzMzg3RTNDND5dL1By
+ZXYgNjQzNj4+CnN0YXJ0eHJlZg0KMAolJUVPRgogICAgIAo1IDAgb2JqCjw8L1R5cGUgL0NhdGFs
+b2cgL1BhZ2VzIDIgMCBSCi9QYWdlTGF5b3V0L1NpbmdsZVBhZ2UKL1BhZ2VNb2RlL1VzZU5vbmUK
+L1BhZ2UgMQovTWV0YWRhdGEgMyAwIFIKPj4KZW5kb2JqCjYgMCBvYmoKPDwvVHlwZS9QYWdlL01l
+ZGlhQm94IFswIDAgNTk1IDg0Ml0KL1JvdGF0ZSAwL1BhcmVudCAyIDAgUgovUmVzb3VyY2VzPDwv
+UHJvY1NldFsvUERGIC9UZXh0XQovRXh0R1N0YXRlIDEyIDAgUgovRm9udCAxMyAwIFIKPj4KL0Nv
+bnRlbnRzIDcgMCBSCj4+CmVuZG9iago3IDAgb2JqCjw8L0xlbmd0aCA4IDAgUi9GaWx0ZXIgL0Zs
+YXRlRGVjb2RlPj4Kc3RyZWFtCnictVtJcxy3Fb7Pr5ibe1KadmPpTSfbSS4ppSpWmFykHChyKFPF
+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
+agoxMCAwIG9iago8PC9CYXNlRm9udC9UaW1lcy1Cb2xkL1R5cGUvRm9udAovU3VidHlwZS9UeXBl
+MT4+CmVuZG9iagoxMSAwIG9iago8PC9CYXNlRm9udC9UaW1lcy1Sb21hbi9UeXBlL0ZvbnQKL0Vu
+Y29kaW5nIDE0IDAgUi9TdWJ0eXBlL1R5cGUxPj4KZW5kb2JqCjEyIDAgb2JqCjw8L1I3CjkgMCBS
+Pj4KZW5kb2JqCjEzIDAgb2JqCjw8L1I4CjEwIDAgUi9SOQoxMSAwIFI+PgplbmRvYmoKMTQgMCBv
+YmoKPDwvVHlwZS9FbmNvZGluZy9EaWZmZXJlbmNlc1sKMzkvcXVvdGVzaW5nbGUKMjAxL0VhY3V0
+ZQoyMjQvYWdyYXZlCjIzMS9jY2VkaWxsYS9lZ3JhdmUvZWFjdXRlCjIzOC9pY2lyY3VtZmxleAoy
+NDQvb2NpcmN1bWZsZXhdPj4KZW5kb2JqCjE1IDAgb2JqCjw8L0xlbmd0aCAgICAgICAgIDY3Ci9T
+ICAgICAgICAgMzY+PgpzdHJlYW0KAAAAAAAAApUAAQAAAAAAAQAAAzUAAQAACtAAAQAAAAEAAQAB
+AAAAAAAAAAAAAAAJAAAACQAAAAEAAAAAAAAAAQAAAAplbmRzdHJlYW0KZW5kb2JqCjEgMCBvYmoK
+PDwvUHJvZHVjZXIoXDM3NlwzNzdcMDAwUFwwMDBEXDAwMEZcMDAwQ1wwMDByXDAwMGVcMDAwYVww
+MDB0XDAwMG9cMDAwclwwMDAgXDAwMDJcMDAwLlwwMDAyXDAwMC5cMDAwMlwwMDAuXDAwMDApCi9D
+cmVhdGlvbkRhdGUoRDoyMDE2MTEyODEyMDgzNiswMScwMCcpCi9Nb2REYXRlKEQ6MjAxNjExMjgx
+MjA4MzYrMDEnMDAnKQovVGl0bGUoXDM3NlwzNzdcMDAwU1wwMDB0XDAwMGFcMDAwZ1wwMDBpXDAw
+MGFcMDAwaVwwMDByXDAwMGVcMDAwTVwwMDAyXDAwMHNcMDAwdFwwMDBhXDAwMHRcMDAwaVwwMDBz
+XDAwMHRcMDAwaVwwMDBxXDAwMHVcMDAwZVwwMDBfXDAwMEVcMDAwQ1wwMDBQXDAwMF9cMDAwTFww
+MDB5XDAwMG9cMDAwblwwMDAyKQovQXV0aG9yKFwzNzZcMzc3XDAwMFJcMDAwRVwwMDBHXDAwME5c
+MDAwSVwwMDBFXDAwMFIpCi9TdWJqZWN0KCkKL0tleXdvcmRzKCkKL0NyZWF0b3IoXDM3NlwzNzdc
+MDAwUFwwMDBEXDAwMEZcMDAwQ1wwMDByXDAwMGVcMDAwYVwwMDB0XDAwMG9cMDAwclwwMDAgXDAw
+MDJcMDAwLlwwMDAyXDAwMC5cMDAwMlwwMDAuXDAwMDApPj5lbmRvYmoKMiAwIG9iago8PCAvVHlw
+ZSAvUGFnZXMgL0tpZHMgWwo2IDAgUgpdIC9Db3VudCAxCj4+CmVuZG9iagozIDAgb2JqCjw8L1R5
+cGUvTWV0YWRhdGEKL1N1YnR5cGUvWE1ML0xlbmd0aCAxNTg1Pj5zdHJlYW0KPD94cGFja2V0IGJl
+Z2luPSfvu78nIGlkPSdXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQnPz4KPD9hZG9iZS14YXAtZmls
+dGVycyBlc2M9IkNSTEYiPz4KPHg6eG1wbWV0YSB4bWxuczp4PSdhZG9iZTpuczptZXRhLycgeDp4
+bXB0az0nWE1QIHRvb2xraXQgMi45LjEtMTMsIGZyYW1ld29yayAxLjYnPgo8cmRmOlJERiB4bWxu
+czpyZGY9J2h0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMnIHhtbG5z
+OmlYPSdodHRwOi8vbnMuYWRvYmUuY29tL2lYLzEuMC8nPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjph
+Ym91dD0ndXVpZDo4MWQ2Y2RmMS1iN2I2LTExZTYtMDAwMC1lM2ExNTA0ZWFiMDEnIHhtbG5zOnBk
+Zj0naHR0cDovL25zLmFkb2JlLmNvbS9wZGYvMS4zLyc+PHBkZjpQcm9kdWNlcj5QREZDcmVhdG9y
+IDIuMi4yLjA8L3BkZjpQcm9kdWNlcj4KPHBkZjpLZXl3b3Jkcz48L3BkZjpLZXl3b3Jkcz4KPC9y
+ZGY6RGVzY3JpcHRpb24+CjxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSd1dWlkOjgxZDZjZGYx
+LWI3YjYtMTFlNi0wMDAwLWUzYTE1MDRlYWIwMScgeG1sbnM6eG1wPSdodHRwOi8vbnMuYWRvYmUu
+Y29tL3hhcC8xLjAvJz48eG1wOk1vZGlmeURhdGU+MjAxNi0xMS0yOFQxMjowODozNiswMTowMDwv
+eG1wOk1vZGlmeURhdGU+Cjx4bXA6Q3JlYXRlRGF0ZT4yMDE2LTExLTI4VDEyOjA4OjM2KzAxOjAw
+PC94bXA6Q3JlYXRlRGF0ZT4KPHhtcDpDcmVhdG9yVG9vbD5QREZDcmVhdG9yIDIuMi4yLjA8L3ht
+cDpDcmVhdG9yVG9vbD48L3JkZjpEZXNjcmlwdGlvbj4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJv
+dXQ9J3V1aWQ6ODFkNmNkZjEtYjdiNi0xMWU2LTAwMDAtZTNhMTUwNGVhYjAxJyB4bWxuczp4YXBN
+TT0naHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLycgeGFwTU06RG9jdW1lbnRJRD0ndXVp
+ZDo4MWQ2Y2RmMS1iN2I2LTExZTYtMDAwMC1lM2ExNTA0ZWFiMDEnLz4KPHJkZjpEZXNjcmlwdGlv
+biByZGY6YWJvdXQ9J3V1aWQ6ODFkNmNkZjEtYjdiNi0xMWU2LTAwMDAtZTNhMTUwNGVhYjAxJyB4
+bWxuczpkYz0naHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8nIGRjOmZvcm1hdD0nYXBw
+bGljYXRpb24vcGRmJz48ZGM6dGl0bGU+PHJkZjpBbHQ+PHJkZjpsaSB4bWw6bGFuZz0neC1kZWZh
+dWx0Jz5TdGFnaWFpcmVNMnN0YXRpc3RpcXVlX0VDUF9MeW9uMjwvcmRmOmxpPjwvcmRmOkFsdD48
+L2RjOnRpdGxlPjxkYzpjcmVhdG9yPjxyZGY6U2VxPjxyZGY6bGk+UkVHTklFUjwvcmRmOmxpPjwv
+cmRmOlNlcT48L2RjOmNyZWF0b3I+PGRjOmRlc2NyaXB0aW9uPjxyZGY6QWx0PjxyZGY6bGkgeG1s
+Omxhbmc9J3gtZGVmYXVsdCc+PC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6ZGVzY3JpcHRpb24+PC9y
+ZGY6RGVzY3JpcHRpb24+CjwvcmRmOlJERj4KPC94OnhtcG1ldGE+CiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIAog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAKPD94cGFja2V0IGVuZD0ndyc/PgplbmRzdHJlYW0KZW5kb2JqCnhyZWYK
+MCA0CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwNDE1MyAwMDAwMCBuIAowMDAwMDA0NzE2IDAw
+MDAwIG4gCjAwMDAwMDQ3NzUgMDAwMDAgbiAKdHJhaWxlcgo8PC9TaXplIDQ+PgpzdGFydHhyZWYK
+MTQ2CiUlRU9GCg==
+
+------=_NextPart_000_0037_01D24972.F6122790--
+

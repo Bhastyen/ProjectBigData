@@ -1,0 +1,388 @@
+Return-Path: <jerome.darmont@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id DA60E229294E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Feb 2018 14:44:26 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id D11EB6D2211
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Feb 2018 14:44:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id C4DD9B4A246
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Feb 2018 14:44:26 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -14.53
+X-Spam-Level:
+X-Spam-Status: No, score=-14.53 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SARE_LWHUGE=1, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 17.1009 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GQaWapZfCtGa for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  5 Feb 2018 14:44:05 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id DAD19631DF6
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Feb 2018 14:44:05 +0100 (CET)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id 60FCC1398E0;
+	Mon,  5 Feb 2018 14:44:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1517838245;
+	bh=gi3OaPbVrr4QSn1YLzqDHtTihglyWUBzYZa3pEPUkl8=;
+	h=Date:From:To:In-Reply-To:Subject;
+	b=rEM/hVr+EAUqJlefWI1BctoxlmEbkMFBNJHvK6Aq/XSzWf+ReMcGEnEHJHjG10QGD
+	 FXaDn+F99fRpaY6IbVD1yUrMrixWb4yRGxrdyMlMKi160RukvxaiIrwFOnZz/z2u2t
+	 PojshgZdBBVBqe4CmxfJbggkETifK5CqDtTxW7DRbpNzO4DcIIsSBvn6Izj0pjx5Cw
+	 RS+htRuwqQHqyfQ81HlVDUDu8dazDvPNEp0tUnEtTsN9sZV+d+2qeHH2mXeqDVh1xR
+	 6nIQRv70iH6VUe/KsDaqm+G/ry7sL4Q688Km4knwocNK42YbAtRBSxDu81qCN7+FTt
+	 7h8gPSegjXtNw==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 8getrjmBR5l6; Mon,  5 Feb 2018 14:44:04 +0100 (CET)
+Received: from localhost (serenity-dhcp-159-84-128-97.univ-lyon2.fr [159.84.128.97])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA;
+	Mon,  5 Feb 2018 14:44:04 +0100 (CET)
+Date: Mon, 5 Feb 2018 14:43:21 +0100 (CET)
+From: =?utf-8?B?SsOpcsO0bWU=?= Darmont <jerome.darmont@univ-lyon2.fr>
+To: "annonces " <annonces@madics.fr>, 
+	"liste-egc " <liste-egc@polytech.univ-nantes.fr>, 
+	"eda-liste " <eda-liste@listes.univ-lyon2.fr>, 
+	"Bull-i3 " <Bull-i3@irit.fr>, "gazettebd3 " <gazettebd3@imag.fr>, 
+	"fil-tmd " <fil-tmd@groupes.renater.fr>
+Message-ID: <698015019.896.1517838201359.JavaMail.Jerome@serenity>
+In-Reply-To: <201802031932.w13JW7pw013807@igor.cs.wisc.edu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_895_45984540.1517838201357"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CfP EDA 2018 Business Intelligence & Big Data
+
+------=_Part_895_45984540.1517838201357
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+----- Mail original -----
+
+> De: "HASSAN BADIR" <hbadir@uae.ac.ma>
+> Envoy=C3=A9: Samedi 3 F=C3=A9vrier 2018 20:37:42
+> Objet : [Dbworld] CfP EDA 2018 Business Intelligence & Big Data
+
+> EDA 2018
+> Business Intelligence & Big Data
+> http://eda2018.uae.ma/
+> October 4-6, 2018, Tangier, Morocco
+> -------------------------------------------------------------------------=
+--------------------------------------------
+
+> Decision-support information systems notably rest on data warehouses
+> and on-line analytical processing (OLAP), two pillars of business
+> intelligence (BI) that are nowadays confronted to new scientific and
+> technological challenges. Traditional BI indeed rests on so-called
+> classical data warehouses that can handle hundreds of terabytes of
+> data, but hardly manage little-structured or unstructured data such
+> as texts and graphs, nor quickly incoming data, thus inefficiently
+> supporting real-time BI.
+
+> In parallel, with the emergence of big data-related technologies and
+> the diffusion of data mining and machine learning algorithms, new
+> perspectives open for analytical and decision-support uses. The
+> proliferation of little-structured or unstructured data, data flows
+> from, e.g., sensors, the Internet of things or social media, coming
+> in huge volumes, is indeed a huge opportunity for BI and sparkles
+> new research areas in data warehousing and OLAP.
+
+> Data warehousing and OLAP still operate in various organizations to
+> structure and analyze both legacy and new data. They retain a key
+> role in piloting such organizations (administrations, companies,
+> hospitals...). Then the question is how to preserve their strengths
+> while moving data warehouses and OLAP toward solving big data
+> issues? Big data bring us into a new scientific and technological
+> era offering architectures and infrastructures (clouds, Hadoop-like
+> computing, NoSQL databases...) that allow better data management and
+> analytics for decision-making. Such an evolution raises new problems
+> that require the design of new approaches for data integration,
+> modeling, querying, analysis, optimization and security, both in
+> traditional and big data warehouses.
+
+> Since 2005, the French-speaking conference on data warehousing and
+> OLAP (EDA) has been offering a regular meeting framework to
+> researchers, industrials and users interested in the latest
+> scientific and technological advances in this domain. We call all
+> researchers and experts in this domain to present their work. We
+> particularly encourage young researchers to participate.
+
+> The 14th Data Warehouse and Online Analysis Days, which will be held
+> in Tangier, Morocco, in October 2018, are a context of meetings and
+> exchanges between researchers, industrialists and users interested
+> in the advances in these two fields. . They will be organized by the
+> Tangiers National School of Applied Sciences and the Data and
+> Systems Engineering Team at Abdelmalek Essaadi Tangier-Tetouan
+> University.
+
+> Submitted papers may be written either in French or in English and
+> must describe original research and applications related to the
+> following topics (non-exhaustive list).
+
+> Conference Scope
+
+> Theme #1 Data warehousing and OLAP
+> =C3=A2?=C2=A2 Data warehouse architectures
+> =C3=A2?=C2=A2 Data warehouse design
+> =C3=A2?=C2=A2 Extract, transform, load (ETL)
+> =C3=A2?=C2=A2 Data warehouse physical organization
+> =C3=A2?=C2=A2 Multidimensional modeling
+> =C3=A2?=C2=A2 On-line analytical processing (OLAP)
+> =C3=A2?=C2=A2 Data warehouse maintenance and administration
+> =C3=A2?=C2=A2 Performance optimization and tuning, benchmarks
+
+> Theme #2 Big data management
+> =C3=A2?=C2=A2 Big data integration and modeling
+> =C3=A2?=C2=A2 Big data quality and integrity
+> =C3=A2?=C2=A2 Big data security and reliability
+> =C3=A2?=C2=A2 Big data security, privacy and trust
+> =C3=A2?=C2=A2 Data lakes
+> =C3=A2?=C2=A2 NoSQL databases
+> =C3=A2?=C2=A2 Text, graph, stream=C3=A2?=C2=A6 data
+> =C3=A2?=C2=A2 Distributed environments: Hadoop, Spark, Flink=C3=A2?=C2=A6
+> =C3=A2?=C2=A2 Big data engineering: virtualization, elasticity, distribut=
+ed
+> computing, big data frameworks
+> =C3=A2?=C2=A2 Semantic web, ontologies
+> =C3=A2?=C2=A2 High performance/parallel computing
+> =C3=A2?=C2=A2 Mobility and big data
+
+> Theme #3 BI & Big data
+
+> =C3=A2?=C2=A2 Distributed data warehouses
+> =C3=A2?=C2=A2 Data integration in the cloud
+> =C3=A2?=C2=A2 NoSQL data warehouses & OLAP
+> =C3=A2?=C2=A2 Cloud BI
+> =C3=A2?=C2=A2 Cloud BI Security
+
+> Theme #4 Big data analytics
+> =C3=A2?=C2=A2 Business analytics
+> =C3=A2?=C2=A2 Data mining and machine learning
+> =C3=A2?=C2=A2 Information retrieval
+> =C3=A2?=C2=A2 Social media analysis
+> =C3=A2?=C2=A2 Data visualization
+> =C3=A2?=C2=A2 Search and mining of variety of data including scientific a=
+nd
+> engineering, social, sensor/IoT/IoE, and multimedia data
+> =C3=A2?=C2=A2 Real-time/Right-time and Event-based Analytics
+> =C3=A2?=C2=A2 Analytics for Temporal, Spatial, Spatio-temporal, and Mobil=
+e Data
+
+> Theme #5 Applications
+
+> =C3=A2?=C2=A2 Applications: bioinformatics, administration, science, heal=
+th,
+> society, =C3=A2?=C2=A6
+> =C3=A2?=C2=A2 Internet of things
+> =C3=A2?=C2=A2 Energy-efficient computing for big data
+> =C3=A2?=C2=A2 Open data exploitation
+> =C3=A2?=C2=A2 Alert systems
+> =C3=A2?=C2=A2 Mobile applications
+> =C3=A2?=C2=A2 eSCM and Logistic
+
+> Key information
+
+> -Conference website: http://eda2018.uae.ma
+
+> -Important dates
+> -April 15, 2018 : Paper submission
+> -Jun 15, 2018 : Notification
+> -Jully 15, 2018 : Camera-ready versions of accepted papers and
+> posters
+> -Septembre 10, 2018 : Author registration and registration fee
+> payment deadline
+> -October 4-6, 2018 : Conference
+
+> -Submission instructions
+
+> Articles submitted for publication may be written in French or in
+> English. Each of them will be evaluated by at least three members of
+> the program committee. The proceedings of the conference will be
+> published in a special issue of the journal RNTI (Revue de New
+> Technologies de l=C3=A2?TInformation) Hermann Publishing.
+> There are 3 categories of papers:
+> * Long papers (15 pages max ) : Classic research articles.
+> * Papiers courts (8 pages max) : Articles describing feedback from
+> research / industrial or other projects.
+> * Papiers doctorant(e) (4 pages max) : Presentation of the thesis
+> subject, state of the art with presentation by poster during the
+> conference.
+
+> Articles will be submitted on the link:
+> https://easychair.org/conferences/?conf=3Deda2018
+> Submissions of articles can be done in a format (Word, Latex). If
+> accepted, any article must be in Latex format, the only format
+> accepted by the editor of the journal RNTI.
+> A selection of the best articles, expanded and translated into
+> English, will be submitted to a special issue of a International
+> Journal.
+> For any additional information, please contact us at the following
+> address : eda2018@uae.ac.ma
+> _______________________________________________
+> Please do not post msgs that are not relevant to the database
+> community at large. Go to www.cs.wisc.edu/dbworld for guidelines and
+> posting forms.
+> To unsubscribe, go to
+> https://lists.cs.wisc.edu/mailman/listinfo/dbworld
+
+------=_Part_895_45984540.1517838201357
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style type=3D'text/css'>p { margin: 0; }</style></head><body><=
+div style=3D'font-family: arial,helvetica,sans-serif; font-size: 10pt; colo=
+r: #000000'><br><br><div><br></div><hr id=3D"zwchr"><blockquote style=3D"bo=
+rder-left:2px solid #1010FF;margin-left:5px;padding-left:5px;color:#000;fon=
+t-weight:normal;font-style:normal;text-decoration:none;font-family:Helvetic=
+a,Arial,sans-serif;font-size:12pt;"><b>De: </b>"HASSAN BADIR" &lt;hbadir@ua=
+e.ac.ma&gt;<br><b>Envoy=C3=A9: </b>Samedi 3 F=C3=A9vrier 2018 20:37:42<br><=
+b>Objet&nbsp;: </b>[Dbworld] CfP EDA 2018 Business Intelligence &amp; Big D=
+ata<br><br>EDA 2018<br>Business Intelligence &amp; Big Data<br>http://eda20=
+18.uae.ma/<br>October 4-6, 2018, Tangier, Morocco<br>----------------------=
+---------------------------------------------------------------------------=
+--------------------<br><br>Decision-support information systems notably re=
+st on data warehouses and on-line analytical processing (OLAP), two pillars=
+ of business intelligence (BI) that are nowadays confronted to new scientif=
+ic and technological challenges. Traditional BI indeed rests on so-called c=
+lassical data warehouses that can handle hundreds of terabytes of data, but=
+ hardly manage little-structured or unstructured data such as texts and gra=
+phs, nor quickly incoming data, thus inefficiently supporting real-time BI.=
+<br><br>In parallel, with the emergence of big data-related technologies an=
+d the diffusion of data mining and machine learning algorithms, new perspec=
+tives open for analytical and decision-support uses. The proliferation of l=
+ittle-structured or unstructured data, data flows from, e.g., sensors, the =
+Internet of things or social media, coming in huge volumes, is indeed a hug=
+e opportunity for BI and sparkles new research areas in data warehousing an=
+d OLAP.<br><br>Data warehousing and OLAP still operate in various organizat=
+ions to structure and analyze both legacy and new data. They retain a key r=
+ole in piloting such organizations (administrations, companies, hospitals..=
+.). Then the question is how to preserve their strengths while moving data =
+warehouses and OLAP toward solving big data issues? Big data bring us into =
+a new scientific and technological era offering architectures and infrastru=
+ctures (clouds, Hadoop-like computing, NoSQL databases...) that allow bette=
+r data management and analytics for decision-making. Such an evolution rais=
+es new problems that require the design of new approaches for data integrat=
+ion, modeling, querying, analysis, optimization and security, both in tradi=
+tional and big data warehouses.<br><br>Since 2005, the French-speaking conf=
+erence on data warehousing and OLAP (EDA) has been offering a regular meeti=
+ng framework to researchers, industrials and users interested in the latest=
+ scientific and technological advances in this domain. We call all research=
+ers and experts in this domain to present their work. We particularly encou=
+rage young researchers to participate. <br><br>The 14th Data Warehouse and =
+Online Analysis Days, which will be held in Tangier, Morocco, in October 20=
+18, are a context of meetings and exchanges between researchers, industrial=
+ists and users interested in the advances in these two fields. . They will =
+be organized by the Tangiers National School of Applied Sciences and the Da=
+ta and Systems Engineering Team at Abdelmalek Essaadi Tangier-Tetouan Unive=
+rsity.<br><br>Submitted papers may be written either in French or in Englis=
+h and must describe original research and applications related to the follo=
+wing topics (non-exhaustive list).<br><br>Conference Scope<br><br>Theme #1 =
+Data warehousing and OLAP<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;Data warehouse architectures<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data warehouse design<br>=C3=A2?=C2=A2&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extract, transform, load (ETL)<=
+br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data wareho=
+use physical organization<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;Multidimensional modeling<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On-line analytical processing (OLAP)<br>=C3=
+=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data warehouse ma=
+intenance and administration<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;Performance optimization and tuning, benchmarks<br><br>Th=
+eme #2 Big data management<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;Big data integration and modeling<br>=C3=A2?=C2=A2&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big data quality and integrity<br>=
+=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big data secur=
+ity and reliability<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;Big data security, privacy and trust<br>=C3=A2?=C2=A2&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data lakes<br>=C3=A2?=C2=A2&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NoSQL databases<br>=C3=A2?=C2=A2&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Text, graph, stream=C3=A2?=C2=A6 da=
+ta<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distribu=
+ted environments: Hadoop, Spark, Flink=C3=A2?=C2=A6<br>=C3=A2?=C2=A2&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Big data engineering: virtualizati=
+on, elasticity, distributed computing, big data frameworks<br>=C3=A2?=C2=A2=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Semantic web, ontologies<br=
+>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;High performa=
+nce/parallel computing <br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;Mobility and big data<br><br>Theme #3 BI &amp; Big data <br><b=
+r>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Distributed =
+data warehouses<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;Data integration in the cloud<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;NoSQL data warehouses &amp; OLAP<br>=C3=A2?=C2=A2&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cloud BI<br>=C3=A2?=C2=A2&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cloud BI Security<br><br>Theme =
+#4 Big data analytics<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;Business analytics<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;Data mining and machine learning<br>=C3=A2?=C2=A2&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Information retrieval<br>=C3=A2?=
+=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social media analysis=
+<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data visua=
+lization<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Se=
+arch and mining of variety of data including scientific and engineering, so=
+cial, sensor/IoT/IoE, and multimedia data<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Real-time/Right-time and Event-based Analyti=
+cs<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytic=
+s for Temporal, Spatial, Spatio-temporal, and Mobile Data<br><br>Theme #5 A=
+pplications<br><br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;Applications: bioinformatics, administration, science, health, society=
+, =C3=A2?=C2=A6<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;Internet of things<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;Energy-efficient computing for big data<br>=C3=A2?=C2=A2&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Open data exploitation<br>=C3=A2?=
+=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alert systems<br>=C3=
+=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile applicatio=
+ns<br>=C3=A2?=C2=A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eSCM and=
+ Logistic<br>&nbsp;&nbsp; &nbsp; &nbsp; <br>Key information<br><br>-Confere=
+nce website: &nbsp;http://eda2018.uae.ma<br><br>-Important dates<br>&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-April 15, 2018&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;: Paper submission<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-Ju=
+n 15, 2018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Notification<br>&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;-Jully 15, 2018&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Camera-ready ve=
+rsions of accepted papers and posters <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;-Septembre 10, 2018 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;: Author registration and registration fee payment deadline<br>&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-October 4-6, 2018 &nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Conference<br><br>-Submission instruc=
+tions<br><br>&nbsp;&nbsp; &nbsp; &nbsp; Articles submitted for publication =
+may be written in French or in English. Each of them will be evaluated by a=
+t least three members of the program committee. The proceedings of the conf=
+erence will be published in a special issue of the journal RNTI (Revue de N=
+ew Technologies de l=C3=A2?TInformation) Hermann Publishing.<br>There are 3=
+ categories of papers:<br>*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+Long papers (15 pages max ) : Classic research articles.<br>*&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Papiers courts (8 pages max) : Articles d=
+escribing feedback from research / industrial or other projects.<br>*&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Papiers doctorant(e) (4 pages max=
+) : Presentation of the thesis subject, state of the art with presentation =
+by poster during the conference.<br><br>Articles will be submitted on the l=
+ink: https://easychair.org/conferences/?conf=3Deda2018<br>Submissions of ar=
+ticles can be done in a format (Word, Latex). If accepted, any article must=
+ be in Latex format, the only format accepted by the editor of the journal =
+RNTI.<br>A selection of the best articles, expanded and translated into Eng=
+lish, will be submitted to a special issue of a International Journal. <br>=
+For any additional information, please contact us at the following address =
+: eda2018@uae.ac.ma<br>_______________________________________________<br>P=
+lease do not post msgs that are not relevant to the database community at l=
+arge. &nbsp;Go to www.cs.wisc.edu/dbworld for guidelines and posting forms.=
+<br>To unsubscribe, go to https://lists.cs.wisc.edu/mailman/listinfo/dbworl=
+d<br></blockquote><br></div></body></html>
+------=_Part_895_45984540.1517838201357--

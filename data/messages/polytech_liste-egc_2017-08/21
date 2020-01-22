@@ -1,0 +1,496 @@
+Return-Path: <abdelmalek.amine@univ-saida.dz>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id BFC5C229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 22 Aug 2017 15:02:22 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id BAD7F6287DD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 22 Aug 2017 15:02:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id AC09E414A8E8
+	for <polytech_liste-egc@univ-nantes.fr>; Tue, 22 Aug 2017 15:02:22 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.782
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.782 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, HTML_MESSAGE=0.001,
+	IMPRO_URI_2=1, IMPRO_URI_3=1, NO_RDNS2=0.01, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, T_DKIM_INVALID=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001, VOWEL_URI_6=2] autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.1016 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=neutral
+	reason="invalid (public key: not available)" header.d=univ-saida.dz
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BDKOSBl8gXbv for <polytech_liste-egc@univ-nantes.fr>;
+	Tue, 22 Aug 2017 15:02:21 +0200 (CEST)
+X-Greylist: delayed 19:49:29 by SQLgrey-1.6.7
+Received: from mail.univ-saida.dz (mail1.univ-saida.dz [193.194.87.137])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 6C213401342C
+	for <polytech_liste-egc@univ-nantes.fr>; Tue, 22 Aug 2017 15:02:21 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id 1F7BA2416F080;
+	Mon, 21 Aug 2017 19:21:57 +0200 (CEST)
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id bXghhLYCvyS4; Mon, 21 Aug 2017 19:21:57 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id E5CC22416F085;
+	Mon, 21 Aug 2017 19:21:56 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.univ-saida.dz E5CC22416F085
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-saida.dz; s=-u;
+	t=1503336116; bh=547ALSkgZnKvwv3aQQHtmBLUxKwLgzJ6JrfBc86y/jE=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=dc/dimZPTObV9eX0iwdihifF82ntdmamzTHNUqgjbjEcMuduJdVVqtCOk2KELddrE
+	 3zJbquduENrpPonTA8XaBEo8GdpSBzmZ74viB5e1twVrA0YgNDdqfCU9UQ5awcrijk
+	 CfW/5xtuR4OxygT/4/Qv3GfbPxOM8f8fJLmRX9UZTYwq6xjPOh+BJKvJdllQgQR2lW
+	 Y2p1zlw1S6KKH6YkBMiMo8XLacv9svzluHe9vxWYz39RitPhjnP66ZBdiHO6rpTkX+
+	 vTM9TQEgNzL5YZNseSypt9OvETNSm0n2gVGHAf6jkunWWr+If3apXkYoHJexROZ7aF
+	 PpxbXNVC+f9vQ==
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id Z_sj1YMCO9JN; Mon, 21 Aug 2017 19:21:56 +0200 (CEST)
+Received: from mail.univ-saida.dz (mail.univ-saida.dz [10.168.100.119])
+	by mail.univ-saida.dz (Postfix) with ESMTP id BF6242416F080;
+	Mon, 21 Aug 2017 19:21:56 +0200 (CEST)
+Date: Mon, 21 Aug 2017 19:21:56 +0200 (CEST)
+From:  abdelmalek amine <abdelmalek.amine@univ-saida.dz>
+To: abdelmalek amine <abdelmalek.amine@univ-saida.dz>
+Cc: polytech liste-egc <polytech_liste-egc@univ-nantes.fr>
+Message-ID: <524149211.789.1503336116617.JavaMail.zimbra@univ-saida.dz>
+In-Reply-To: <12578511.2792.1498581931035.JavaMail.zimbra@univ-saida.dz>
+References: <12578511.2792.1498581931035.JavaMail.zimbra@univ-saida.dz>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_b2b571df-9e8b-4c38-9cac-8692b7186772"
+X-Originating-IP: [10.168.100.119]
+X-Mailer: Zimbra 8.7.11_GA_1854 (ZimbraWebClient - IE11 (Win)/8.7.11_GA_1854)
+Thread-Topic: Call for Papers: IFIP CIIA'2018 - 6th IFIP International Conference on Computer Intelligence and Its Applications
+Thread-Index: Pb6yciJI2IqoN0RCHrz0EZaEbZzAEBg1fKug
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call for Papers: IFIP CIIA'2018 - 6th IFIP
+ International Conference on Computer Intelligence and Its Applications
+
+--=_b2b571df-9e8b-4c38-9cac-8692b7186772
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[We apologize for multiple receptions] 
+
+6th IFIP International Conference on Computer Intelligence and Its Applications 
+CIIA'2018 
+May 6-8, 2018 
+
+
+USTO-MB University, Oran, Algeria 
+
+[ http://ciia2018.encs.concordia.ca/ | http://ciia2018.encs.concordia.ca ] 
+
+
+
+The 6th IFIP ( International Federation for Information Processing ) International Conference on Computer Intelligence and Its Applications (CIIA 2018) will be held on May 6-8, 2018, at the University of Science and Technology of Oran "Mohamed Boudiaf" (USTO-MB) in Oran, Algeria. USTO-MB is the main organizer together with the support of the University Moulay Tahar of Saida, Concordia University and the University of Regina. CIIA 2018 provides an international forum for researchers and practitioners to present their latest research findings and innovations in the area of Computational Intelligence. The aim of this event is to facilitate and to exchange ideas and advances in all aspects of nature-inspired computational methodologies, and to foster scientific cooperation between Africa and the rest of the World. 
+
+
+
+
+The proceedings of the conference will be published in the Springer-Verlag IFIP Advances in Information and Communication Technology (IFIP AICT) . Extended versions of selected papers, accepted and presented at the conference, will be considered for publication in a special issue of a peer reviewed international journal. 
+
+Workshops, tutorials and a doctoral symposium will be scheduled on the first day of the conference. 
+
+
+
+Important Dates 
+
+
+
+Paper Submission: November 20, 2017 
+
+Notification of Acceptance/Rejection: January 31, 2018 
+
+Camera Ready Paper Submission: February 14, 2018 
+
+Conference Dates: May 6-8, 2018 
+
+
+
+Topics of interest 
+
+
+Adaptive Control 
+Agents Systems 
+Ambient Intelligence 
+Argumentation Systems 
+Artificial Immune Systems 
+Bayesian Networks 
+Automated Reasoning 
+Autonomous Agents 
+Bio-informatics 
+Case-based Reasoning 
+Cognitive Modeling 
+Computer Animation 
+Computer Vision 
+Cognitive Models 
+Constraint Programming 
+Data Mining 
+Decision Support Systems 
+Description Logics 
+Evolutionary Computation 
+
+Expert Systems 
+Fuzzy Logic 
+Games 
+Genetic Programming 
+Information Retrieval 
+Heuristic Search 
+Human Robot Interaction 
+Intelligent Systems 
+Intelligent Systems in Education 
+Knowledge Management 
+Knowledge Representation 
+Knowledge Processing 
+Machine Learning 
+Meta-heuristics 
+Model-based Reasoning 
+Multi-Agent Systems 
+Multi Media Processing 
+Multi Criteria Decision Making 
+Natural Language Processing 
+
+Neural Networks 
+Non-Monotonic Logics 
+Optimization 
+Planning and Scheduling 
+Preference Reasoning 
+Privacy Preserving Data Mining 
+Reasoning under Uncertainty 
+SAT 
+Search 
+Smart Graphics 
+Social Networks Applications 
+Soft Computing 
+Swarm Intelligence 
+Temporal and Spatial Reasoning 
+Speech Recognition 
+Uncertainty 
+User Modeling 
+Web Semantics 
+Ontologie 
+
+General CoChairs 
+
+Abdelmalek Amine, University of Saida, Algeria 
+Bachir Djebbar, USTO-MB, Algeria 
+
+Program Committee CoChairs 
+
+Otmane Ait Mohamed, Concordia University, Canada 
+Malek Mouhoub, University of Regina, Canada 
+
+Organisation 
+[ http://ciia2018.encs.concordia.ca/organization.html | http://ciia2018.encs.concordia.ca/organization.html ] 
+
+
+--=_b2b571df-9e8b-4c38-9cac-8692b7186772
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color: rgb(0, 0, 0); font-family: arial, helvetic=
+a, sans-serif; font-size: 12pt;"><div style=3D"text-align: center;" data-mc=
+e-style=3D"text-align: center;"><span id=3D"m_8287329153522485836gmail-m_24=
+46240907778932750gmail-yui_3_16_0_ym19_1_1498497789652_10691" lang=3D"EN-GB=
+">[We apologize for multiple receptions]</span><br></div><div><div dir=3D"l=
+tr"><span id=3D"m_8287329153522485836gmail-m_2446240907778932750gmail-yui_3=
+_16_0_ym19_1_1498497789652_10691" lang=3D"EN-GB"></span><span id=3D"m_82873=
+29153522485836gmail-m_2446240907778932750gmail-yui_3_16_0_ym19_1_1498497789=
+652_10691" lang=3D"EN-GB"><br></span><div dir=3D"ltr"><div style=3D"text-al=
+ign: center;"><div><span id=3D"m_8287329153522485836gmail-m_-46190609138669=
+42462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_=
+0_ym19_1_1498497789652_10691" lang=3D"EN-GB"><font id=3D"m_8287329153522485=
+836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_75634202=
+21172881740gmail-yui_3_16_0_ym19_1_1498497789652_10690" size=3D"4"><span id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1068=
+9" style=3D"color: rgb(255, 0, 0);"><span id=3D"m_8287329153522485836gmail-=
+m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_75634202211728817=
+40gmail-yui_3_16_0_ym19_1_1498497789652_10688" style=3D"background-color: r=
+gb(255, 255, 255);"><b id=3D"m_8287329153522485836gmail-m_-4619060913866942=
+462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_=
+ym19_1_1498497789652_10687">6th </b></span></span></font></span><span id=3D=
+"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522613=
+722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10691" =
+lang=3D"EN-GB"><font id=3D"m_8287329153522485836gmail-m_-461906091386694246=
+2gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym=
+19_1_1498497789652_10690" size=3D"4"><span id=3D"m_8287329153522485836gmail=
+-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_7563420221172881=
+740gmail-yui_3_16_0_ym19_1_1498497789652_10689" style=3D"color: rgb(255, 0,=
+ 0);"><span id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_=
+-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498=
+497789652_10688" style=3D"background-color: rgb(255, 255, 255);"><b>IFIP</b=
+><b id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596=
+289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_149849778965=
+2_10687"><b> </b>International Conference on Computer Intelligence and Its =
+Applications</b></span></span></font></span><br></div><span id=3D"m_8287329=
+153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m=
+_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10691" lang=3D"EN=
+-GB"><font id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-=
+2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_14984=
+97789652_10690" size=3D"4"><span id=3D"m_8287329153522485836gmail-m_-461906=
+0913866942462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-y=
+ui_3_16_0_ym19_1_1498497789652_10689" style=3D"color: rgb(255, 0, 0);"><spa=
+n id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-209459628=
+9522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_=
+10688" style=3D"background-color: rgb(255, 255, 255);"></span></span></font=
+></span></div><div style=3D"text-align: center;"><span id=3D"m_828732915352=
+2485836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_7563=
+420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10691" lang=3D"EN-GB">=
+<font id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789=
+652_10690" size=3D"4"><span id=3D"m_8287329153522485836gmail-m_-46190609138=
+66942462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_=
+16_0_ym19_1_1498497789652_10689" style=3D"color: rgb(255, 0, 0);"><span id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1068=
+8" style=3D"background-color: rgb(255, 255, 255);"><b id=3D"m_8287329153522=
+485836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_75634=
+20221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10687">
+CIIA'2018</b></span></span></font></span><br><span id=3D"m_8287329153522485=
+836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_75634202=
+21172881740gmail-yui_3_16_0_ym19_1_1498497789652_10691" lang=3D"EN-GB"><fon=
+t id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-209459628=
+9522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_=
+10690" size=3D"4"><span id=3D"m_8287329153522485836gmail-m_-461906091386694=
+2462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0=
+_ym19_1_1498497789652_10689" style=3D"color: rgb(255, 0, 0);"><span id=3D"m=
+_8287329153522485836gmail-m_-4619060913866942462gmail-m_-209459628952261372=
+2gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10688" st=
+yle=3D"background-color: rgb(255, 255, 255);"><b id=3D"m_828732915352248583=
+6gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_7563420221=
+172881740gmail-yui_3_16_0_ym19_1_1498497789652_10687">
+May 6-8, 2018</b></span></span></font></span></div><p align=3D"center" styl=
+e=3D"text-align: center; margin-top: 15pt;"><span lang=3D"EN-GB">
+<b>USTO-MB University, Oran, Algeria</b></span></p><p align=3D"center" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1076=
+4" style=3D"text-align: center; margin-top: 15pt;"><span lang=3D"EN-GB">
+</span><font id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m=
+_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_149=
+8497789652_10763" size=3D"4"><b id=3D"m_8287329153522485836gmail-m_-4619060=
+913866942462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yu=
+i_3_16_0_ym19_1_1498497789652_10762"><a id=3D"m_8287329153522485836gmail-m_=
+-4619060913866942462gmail-m_-2094596289522613722gmail-m_7563420221172881740=
+gmail-yui_3_16_0_ym19_1_1498497789652_10761" href=3D"http://ciia2018.encs.c=
+oncordia.ca/" target=3D"_blank" rel=3D"nofollow" data-saferedirecturl=3D"ht=
+tps://www.google.com/url?hl=3Dfr&amp;q=3Dhttp://ciia2018.encs.concordia.ca&=
+amp;source=3Dgmail&amp;ust=3D1503419941147000&amp;usg=3DAFQjCNG7punlq8UyCNw=
+p4WL9rgDyH_RBEw"><span id=3D"m_8287329153522485836gmail-m_-4619060913866942=
+462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_=
+ym19_1_1498497789652_10760" lang=3D"EN-GB">http://ciia2018.encs.concordia<w=
+br>.ca</span></a></b></font><span lang=3D"EN-GB"></span></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1069=
+8" style=3D"text-align: justify;"><span id=3D"m_8287329153522485836gmail-m_=
+-4619060913866942462gmail-m_-2094596289522613722gmail-m_7563420221172881740=
+gmail-yui_3_16_0_ym19_1_1498497789652_10697" lang=3D"EN-GB"><br>
+<br>
+The 6th IFIP (</span><span id=3D"m_8287329153522485836gmail-m_-461906091386=
+6942462gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yui_3_1=
+6_0_ym19_1_1498497789652_10697" lang=3D"EN-GB"><span>International Federati=
+on for Information Processing<span>)</span></span> International Conference=
+ on Computer Intelligence and Its Applications
+(CIIA 2018) will be held on May 6-8, 2018, at the University of Science and
+Technology of Oran "Mohamed Boudiaf" (USTO-MB) in Oran, Algeria.
+USTO-MB is the main organizer together with the support of the University
+Moulay Tahar of Saida, Concordia University and the University of Regina. C=
+IIA
+2018 provides an international forum for researchers and practitioners to
+present their latest research findings and innovations in the area of
+Computational Intelligence. The aim of this event is to facilitate and to
+exchange ideas and advances in all aspects of nature-inspired computational
+methodologies, and to foster scientific cooperation between Africa and the =
+rest
+of the World.</span></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1076=
+5" style=3D"text-align: justify;"><b><span lang=3D"EN-GB"><span><br></span>=
+</span></b></p><p class=3D"m_8287329153522485836gmail-m_-461906091386694246=
+2gmail-m_-2094596289522613722gmail-m_7563420221172881740gmail-yiv2854831708=
+MsoNormal" id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-=
+2094596289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_14984=
+97789652_10768" style=3D"text-align: justify;"><b id=3D"m_82873291535224858=
+36gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-m_756342022=
+1172881740gmail-yui_3_16_0_ym19_1_1498497789652_10767"><span id=3D"m_828732=
+9153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522613722gmail-=
+m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_10766" lang=3D"E=
+N-GB">The proceedings of the conference will be published in the <b style=
+=3D"color: rgb(0, 0, 0);">Springer-Verlag IFIP Advances in Information and =
+Communication Technology (IFIP AICT)</b>. Extended versions of selected pap=
+ers, accepted and
+presented at the conference, will be considered for publication in a specia=
+l
+issue of a peer reviewed international journal. </span></b></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1076=
+9" style=3D"text-align: justify;"><b><span lang=3D"EN-GB" style=3D"color: b=
+lack;">Workshops, tutorials and a doctoral
+symposium will be scheduled on the first day of the conference.</span></b><=
+span lang=3D"EN-GB"><br>
+<br>
+</span><b><span lang=3D"EN-GB" style=3D"line-height: 115%; font-size: 18pt;=
+"></span></b></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1077=
+0" style=3D"line-height: normal; margin-bottom: 0pt;"><font size=3D"4"><b><=
+span lang=3D"EN-GB">Important Dates</span></b></font></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" id=
+=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-2094596289522=
+613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652_1077=
+1" style=3D"line-height: normal; margin-bottom: 0pt;"><span lang=3D"EN-GB">=
+&nbsp;</span></p>
+
+<p style=3D"margin: 0cm 0cm 0pt;"><b><span lang=3D"EN-GB" style=3D"font-siz=
+e: 11pt;">Paper Submission:</span></b><span lang=3D"EN-GB" style=3D"font-si=
+ze: 11pt;"> November 20, 2017</span></p>
+
+<p id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945962=
+89522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652=
+_10772" style=3D"margin: 0cm 0cm 0pt;"><b><span lang=3D"EN-GB" style=3D"fon=
+t-size: 11pt;">Notification of Acceptance/Rejection:</span></b><span lang=
+=3D"EN-GB" style=3D"font-size: 11pt;"> January 31, 2018</span></p>
+
+<p style=3D"margin: 0cm 0cm 0pt;"><b><span lang=3D"EN-GB" style=3D"font-siz=
+e: 11pt;">Camera Ready Paper Submission:</span></b><span lang=3D"EN-GB" sty=
+le=3D"font-size: 11pt;"> February 14, 2018</span></p>
+
+<p id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945962=
+89522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652=
+_10773" style=3D"margin: 0cm 0cm 0pt;"><b><span lang=3D"EN-GB" style=3D"fon=
+t-size: 11pt;">Conference Dates:</span></b><span lang=3D"EN-GB" style=3D"fo=
+nt-size: 11pt;"> May 6-8, 2018</span><span lang=3D"EN-GB" style=3D"font-siz=
+e: 15pt;"></span></p>
+
+<div id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-209459=
+6289522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_14984977896=
+52_10774" style=3D"border-width: 1pt medium medium; border-style: solid non=
+e none; border-color: rgb(214, 214, 214) currentColor currentColor; padding=
+: 15pt 0cm 0cm;">
+
+<p style=3D"padding: 0cm; border: currentColor; border-image: none; margin-=
+top: 15pt;"><span lang=3D"EN-GB"><br>
+</span><b><span lang=3D"EN-GB" style=3D"font-size: 16pt;">Topics of interes=
+t</span></b><span lang=3D"EN-GB" style=3D"font-size: 16pt;"></span></p>
+
+</div>
+
+<p id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945962=
+89522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652=
+_10775" style=3D"margin: 0cm 0cm 0pt;"><span lang=3D"EN-GB">Adaptive
+Control <br>
+Agents Systems <br>
+Ambient Intelligence <br>
+Argumentation Systems <br>
+Artificial Immune Systems <br>
+Bayesian Networks <br>
+Automated Reasoning <br>
+Autonomous Agents <br>
+Bio-informatics <br>
+Case-based Reasoning <br>
+Cognitive Modeling <br>
+Computer Animation <br>
+Computer Vision <br>
+Cognitive Models <br>
+Constraint Programming <br>
+Data Mining <br>
+Decision Support Systems<br>
+Description Logics <br>
+Evolutionary Computation </span></p>
+
+<p id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945962=
+89522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652=
+_10776" style=3D"margin: 0cm 0cm 0pt;"><span lang=3D"EN-GB">Expert
+Systems <br>
+Fuzzy Logic <br>
+Games <br>
+Genetic Programming <br>
+Information Retrieval <br>
+Heuristic Search <br>
+Human Robot Interaction <br>
+Intelligent Systems <br>
+Intelligent Systems in Education <br>
+Knowledge Management <br>
+Knowledge Representation <br>
+Knowledge Processing <br>
+Machine Learning <br>
+Meta-heuristics <br>
+Model-based Reasoning <br>
+Multi-Agent Systems <br>
+Multi Media Processing <br>
+Multi Criteria Decision Making <br>
+Natural Language Processing </span></p>
+
+<p id=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945962=
+89522613722gmail-m_7563420221172881740gmail-yui_3_16_0_ym19_1_1498497789652=
+_10777" style=3D"margin: 0cm 0cm 0pt;"><span lang=3D"EN-GB">Neural
+Networks <br>
+Non-Monotonic Logics <br>
+Optimization <br>
+Planning and Scheduling <br>
+Preference Reasoning <br>
+Privacy Preserving Data Mining <br>
+Reasoning under Uncertainty <br>
+SAT <br>
+Search <br>
+Smart Graphics <br>
+Social Networks Applications <br>
+Soft Computing <br>
+Swarm Intelligence <br>
+Temporal and Spatial Reasoning <br>
+Speech Recognition <br>
+Uncertainty <br>
+User Modeling <br>
+Web Semantics <br>
+Ontologie</span></p>
+
+<p class=3D"m_8287329153522485836gmail-m_-4619060913866942462gmail-m_-20945=
+96289522613722gmail-m_7563420221172881740gmail-yiv2854831708MsoNormal" styl=
+e=3D"margin-bottom: 0pt;"><span lang=3D"EN-GB" style=3D"line-height: 115%; =
+font-size: 12pt;">&nbsp;</span></p>
+
+<b><span lang=3D"EN-GB" style=3D"line-height: 115%; font-size: 16pt;">Gener=
+al CoChairs</span></b><span lang=3D"EN-GB"> <br>
+<br>
+Abdelmalek Amine, University of Saida, Algeria <br>
+Bachir Djebbar, USTO-MB, Algeria <br>
+<br>
+</span><b><span lang=3D"EN-GB" style=3D"line-height: 115%; font-size: 16pt;=
+">Program
+Committee CoChairs</span></b><span lang=3D"EN-GB"> <br>
+<br>
+Otmane Ait Mohamed, Concordia University, Canada <br>
+Malek Mouhoub, University of Regina, Canada <br>
+<br>
+</span><b><span lang=3D"EN-GB" style=3D"line-height: 115%; font-size: 16pt;=
+">Organisation</span></b><span lang=3D"EN-GB"> <br>
+<a href=3D"http://ciia2018.encs.concordia.ca/organization.html" target=3D"_=
+blank" rel=3D"nofollow" data-saferedirecturl=3D"https://www.google.com/url?=
+hl=3Dfr&amp;q=3Dhttp://ciia2018.encs.concordia.ca/organization.html&amp;sou=
+rce=3Dgmail&amp;ust=3D1503419941147000&amp;usg=3DAFQjCNElfkaMpGNVeaFaY9Ub8S=
+Vneagf_w">http://ciia2018.encs.concordia<wbr>.ca/organization.html</a></spa=
+n></div></div><br data-mce-bogus=3D"1"></div></div></body></html>
+--=_b2b571df-9e8b-4c38-9cac-8692b7186772--

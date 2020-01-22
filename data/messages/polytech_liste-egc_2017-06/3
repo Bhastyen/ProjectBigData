@@ -1,0 +1,874 @@
+Return-Path: <ladjel.bellatreche@ensma.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 5276D229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Jun 2017 12:04:55 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 5077D73A1A3
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Jun 2017 12:04:55 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 438FCB4A242;
+	Mon,  5 Jun 2017 12:04:55 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.997
+X-Spam-Level: **
+X-Spam-Status: No, score=2.997 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, KHOP_BIG_TO_CC=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	SUBJ_ALL_CAPS=1.625, UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1,
+	URIBL_BLOCKED=0.001, VOWEL_TOCC_6=1.5] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.0951 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=ensma.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RI99NeSl0yUg; Mon,  5 Jun 2017 12:04:54 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from excalibur.ensma.fr (smtp.ensma.fr [193.55.167.4])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 39F7B69C3E3;
+	Mon,  5 Jun 2017 12:04:54 +0200 (CEST)
+Received: from localhost (arthur.ensma.fr [193.55.167.16])
+	by excalibur.ensma.fr (Postfix) with ESMTP id 0D4852800A5;
+	Mon,  5 Jun 2017 12:04:53 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at ensma.fr
+Received: from excalibur.ensma.fr ([193.55.167.4])
+	by localhost (arthur.ensma.fr [193.55.167.16]) (amavisd-new, port 10024)
+	with ESMTP id Bm4sRqbb2oUG; Mon,  5 Jun 2017 12:04:51 +0200 (CEST)
+Received: from MacBook-Pro-de-Ladjel.local (vob86-1-78-207-192-18.fbx.proxad.net [78.207.192.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by excalibur.ensma.fr (Postfix) with ESMTPSA id 1E6E728009B;
+	Mon,  5 Jun 2017 12:03:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ensma.fr; s=mail;
+	t=1496657091; bh=HoUSiPeOk6oMl4i/22W3guPIDa+DTRieIeY9ZFTrR7A=;
+	h=To:From:Subject:Date;
+	b=A8oNkJz5qnfU5R7nL0HwQvmk3L3QRBs0rFVXg44GgdO9WVdx3EtsVsq0ZAYS8T7S+
+	 E/L2v1wMOIIxHhuMpSMtdMDTlwVLk18fZkB97M7b9ojz0vUISi9az7drxWE+TKXHiw
+	 2gBsM/bA+t5+XEDbnxCIAPHlQRuVM2Zj3wBLA8fE=
+To: hanachi@univ-tlse1.fr, Abbache Farid <abbache_farid@yahoo.fr>,
+ Abdel Aloui <alouiabdel@gmail.com>,
+ "Abdel.Ennaji@univ-rouen.fr" <Abdel.Ennaji@univ-rouen.fr>,
+ Abdelbaki Bouguerra <abaki.bouguerra@gmail.com>,
+ ABDELHAMID MAOUCHE <abdelhamid68@gmail.com>,
+ Abdelkamel TARI <tarikamel59@gmail.com>,
+ abdelli Leila <abdelli.leila@gmail.com>,
+ Abdelouahab MOUSSAOUI <moussaoui.abdel@gmail.com>,
+ abdelraouf zerroug <zerroug.abdelraouf@gmail.com>,
+ Abdelsatar Ghemougui <gabdelsatar@gmail.com>,
+ "abdenour.mokrane@ema.fr" <abdenour.mokrane@ema.fr>,
+ "abdourahamane.balde@inria.fr" <abdourahamane.balde@inria.fr>,
+ Abidin Kaya <nabidin@gmail.com>,
+ "acis@acisinternational.org" <acis@acisinternational.org>,
+ adel bendjeddou <adelbendjeddo@gmail.com>,
+ "admission@etsmtl.ca" <admission@etsmtl.ca>,
+ "admission@uqo.ca" <admission@uqo.ca>,
+ "aek.benyettou@univ-usto.dz" <aek.benyettou@univ-usto.dz>,
+ afaf benslimane <flying07angel@gmail.com>,
+ "agnes.braud" <agnes.braud@unistra.fr>,
+ "agnes.braud@urs.u-strasbg.fr" <agnes.braud@urs.u-strasbg.fr>,
+ Ahlem Mustapha Bouzaroura <ahlem-a@hotmail.com>,
+ "ahlem.nabli@gmail.com" <ahlem.nabli@gmail.com>,
+ ahmed ahmed <contactahmed09@gmail.com>,
+ ahmed moussa <Ahmed.moussa2@gmail.com>,
+ "ahmed.djaalab@yahoo.com" <ahmed.djaalab@yahoo.com>,
+ "aicha_khadidja@yahoo.fr" <aicha_khadidja@yahoo.fr>,
+ aissa zidane <doctorialeresyd@gmail.com>,
+ "ait@ece.concordia.ca" <ait@ece.concordia.ca>,
+ AJ RENE CASSIN <strasbourg.rene-cassin@fuaj.org>,
+ "akaya@fatih.edu.tr" <akaya@fatih.edu.tr>,
+ "akouomou@irisa.fr" <akouomou@irisa.fr>,
+ "alexandre.vautier@irisa.fr" <alexandre.vautier@irisa.fr>,
+ "alhassor28@yahoo.com" <alhassor28@yahoo.com>,
+ Ali MAKRI <ali@interlignes.net>,
+ "ali.charara@hds.utc.fr" <ali.charara@hds.utc.fr>,
+ "alnemdili@yahoo.com" <alnemdili@yahoo.com>,
+ "Amedeo.Napoli@loria.fr" <Amedeo.Napoli@loria.fr>,
+ amel mesiliya <amel.khemayese@gmail.com>,
+ amina alloiani <aminaalloiani@yahoo.com>,
+ amirouche hamadouche <gladiateur06@hotmail.com>,
+ "ammar@illaftrain.co.uk" <ammar@illaftrain.co.uk>,
+ Amri Said <amrisaid13@yahoo.fr>, Amroune Nacer-Eddine
+ <nsr.amr.cs@gmail.com>, Amroune Nacer-Eddine <nsramrcs@gmail.com>,
+ Anne Laurent <laurent@lirmm.fr>,
+ "Ansaf.Salleb@irisa.fr" <Ansaf.Salleb@irisa.fr>,
+ Ariouat Youcef <youcef.ariouat@gmail.com>,
+ Ariouat Youcef <youcefariouat@gmail.com>,
+ "Arnaud.Martin@ensieta.fr" <Arnaud.Martin@ensieta.fr>,
+ Assas Ouarda <Assas_warda@yahoo.fr>, Assas Ouarda <assas.warda@gmail.com>,
+ Assas Ouarda <assas_ou@hotmail.com>, Athmani Samir <samir1904@yahoo.fr>,
+ Atir Azzedine <azeddine.attir@gmail.com>,
+ Atir Azzedine <azeddineattir@gmail.com>,
+ Author Services <support@elsevier.com>,
+ "azeddine1728@yahoo.fr" <azeddine1728@yahoo.fr>,
+ "b-salim@just.edu.jd" <b-salim@just.edu.jd>,
+ "b.noureddine@outlook.com" <b.noureddine@outlook.com>,
+ babah taregh <tareghba@yahoo.fr>, Bachir Malika <malika_klm@yahoo.fr>,
+ badir <hbadir@gmail.com>, Baghdad ATMANI <atmani.baghdad@gmail.com>,
+ Bahi Amira <amirabahi@yahoo.fr>,
+ "baptiste.jeudy@univ-st-etienne.fr" <baptiste.jeudy@univ-st-etienne.fr>,
+ Barkat Abdelbasset <barkatab@gmail.com>,
+ belazoui abdelouahab <belazoui@yahoo.fr>,
+ Belhadj Foudil <belhadjfdl@yahoo.fr>,
+ belkacem benmerad <benmeradbelka@yahoo.fr>,
+ Belomoh Amin <info_amin@yahoo.com>, Belouadah Hocine
+ <hbelouadah@hotmail.fr>, BELOUDAH Hocine <hbelouadah@yahoo.fr>,
+ Benabderrahmane Benyattou <bbenyattou@yahoo.com>,
+ Benahcen Derradji Rachid <benahcene@yahoo.fr>,
+ Benahcen Derradji Rachid <benahcene@mail.lagh-univ.dz>,
+ benali2 rachid <rachidbenali2@hotmail.com>, Benazi <benmak99@gmail.com>,
+ Benazi Makhlouf <benazimakhlouf@yahoo.fr>,
+ "benelhadj@lycos.com" <benelhadj@lycos.com>,
+ "benhaddo@univ-usto.dz" <benhaddo@univ-usto.dz>,
+ benhamidouche nordine <benhamidouche@yahoo.fr>,
+ Benouis Mohamed <mhbenouis@yahoo.com>,
+ "benyettou@simpa-usto.net" <benyettou@simpa-usto.net>,
+ "bernadette.bouchon-meunier@lip6.fr" <bernadette.bouchon-meunier@lip6.fr>,
+ bilal lounnas <lounnas.bilal@gmail.com>,
+ "blanchard@leri.univ-reims.fr" <blanchard@leri.univ-reims.fr>,
+ "bo_milas@yahoo.fr" <bo_milas@yahoo.fr>, Bouamama Salim
+ <bouamamas@gmail.com>, Boubakir Mohamed <boubakirmohamed@yahoo.fr>,
+ boubaya <hboubaya@free.fr>, "Boubaya, Hocine" <Hocine.boubaya@hp.com>,
+ Boudaa Abdelghani <ghani.boudaa@gmail.com>,
+ "boudaoudab@yahoo.fr" <boudaoudab@yahoo.fr>,
+ Bouderah Brahim <bouderah_b@yahoo.fr>, Boudia Malika
+ <boudiamalika@gmail.com>, Bougrara seddik <sed_boug@yahoo.fr>,
+ Bouhouita Salah-Eddine <bouhouita@usa.com>,
+ "boukeram@gmail.com" <boukeram@gmail.com>,
+ "boukerram@hotmail.com" <boukerram@hotmail.com>,
+ "Bounif_mohamed@univ-msila.dz" <Bounif_mohamed@univ-msila.dz>,
+ Bourahla Mustapha <MBOURAHLA@hotmail.com>,
+ Brahimi Belkacem <belkacem.brahimi@yahoo.fr>,
+ Brahimi Mahmoud <ibrahimidz@yahoo.fr>,
+ Brigitte Trousse <Brigitte.Trousse@inria.fr>,
+ "Brigitte.Grau@ensiie.fr" <Brigitte.Grau@ensiie.fr>,
+ Brik Mourad <mourad50200@yahoo.fr>,
+ "Bruno.Cremilleux@info.unicaen.fr" <Bruno.Cremilleux@info.unicaen.fr>,
+ "carl.frelicot@univ-lr.fr" <carl.frelicot@univ-lr.fr>,
+ "cd@sdiwc.net" <cd@sdiwc.net>,
+ "Cedric.Archaux@ensieta.fr" <Cedric.Archaux@ensieta.fr>,
+ "cedric.mannu@bsc-france.com" <cedric.mannu@bsc-france.com>,
+ Celyane Ben <celyane.ben@gmail.com>, Chalabi Baya <b_chalabi@esi.dz>,
+ "charakamar@gmail.com" <charakamar@gmail.com>,
+ Chatra Mohamed <chatramouh@hotmail.fr>,
+ "cherif.mihoubi@yahoo.fr" <cherif.mihoubi@yahoo.fr>,
+ Chikouche Noureddine <chiknour28@yahoo.fr>,
+ "christel.vrain@lifo.univ-orleans.fr" <christel.vrain@lifo.univ-orleans.fr>,
+ "Christel.Vrain@univ-orleans.fr" <Christel.Vrain@univ-orleans.fr>,
+ "Christine.Largeron@univ-st-etienne.fr"
+ <Christine.Largeron@univ-st-etienne.fr>,
+ "christine@vicov.com" <christine@vicov.com>,
+ "citic08@gmail.com" <citic08@gmail.com>,
+ =?UTF-8?Q?Citic2008_S=c3=a9tif=2c_Alg=c3=a9rie?=
+ <citic2008.setif@gmail.com>,
+ "citic2008@univ-setif.dz" <citic2008@univ-setif.dz>,
+ cnepru cnepru <cnepru@yahoo.fr>,
+ "conference.ciia@gmail.com" <conference.ciia@gmail.com>,
+ "conference2015.gmes@univ-constantine2.dz"
+ <conference2015.gmes@univ-constantine2.dz>,
+ "confirm-s2-3raiji0hxfgdbe3oqhf04lmr0aa0n2dd-tmehenni=gmail.com@yahoogroupes.fr"
+ <confirm-s2-3raiji0hxfgdbe3oqhf04lmr0aa0n2dd-tmehenni=gmail.com@yahoogroupes.fr>,
+ CSCC Conference <info@cscc.co>, "csernel@enst.fr" <csernel@enst.fr>,
+ "cu.helioropes@crous.u-strasbg.fr" <cu.helioropes@crous.u-strasbg.fr>,
+ Dabba Ali <alidabba@gmail.com>, "Darenchris ." <choosenone.a@gmail.com>,
+ "ddg@di.ubi.pt" <ddg@di.ubi.pt>, Debbi Aimad-Eddine <aimad_ne@yahoo.fr>,
+ Dehmeche Lkhayer <Khierdehmeche2005@yahoo.fr>,
+ "demarchi@math.univ-bpclermont.fr" <demarchi@math.univ-bpclermont.fr>,
+ "deptinformatique@univ-msila.dz" <deptinformatique@univ-msila.dz>,
+ "dip@sdiwc.net" <dip@sdiwc.net>, "directeur@lirmm.fr" <directeur@lirmm.fr>,
+ Djaber Khaled <khaled.djaber@gmail.com>,
+ Djamel Abdelouahab <abdeljam@yahoo.fr>,
+ "djeriouaissa@yahoo.fr" <djeriouaissa@yahoo.fr>,
+ "djoudi@online.fr" <djoudi@online.fr>, Dris KORICHI <dkorichi@gmail.com>,
+ "ds09@liaad.up.pt" <ds09@liaad.up.pt>,
+ "dse@ac-strasbourg.fr" <dse@ac-strasbourg.fr>,
+ "dztice-subscribe@yahoogroupes.fr" <dztice-subscribe@yahoogroupes.fr>,
+ "dztice@yahoogroupes.fr" <dztice@yahoogroupes.fr>,
+ "eamonn@cs.ucr.edu" <eamonn@cs.ucr.edu>,
+ EasyChair Installation <installation-request@easychair.org>,
+ Editor IJACSA <editorijacsa@thesai.org>, EGC 2010 <egc2010@easychair.org>,
+ EGC-M 2011 <egcm2011@easychair.org>, "egcm2010@gmail.com"
+ <egcm2010@gmail.com>, "egcm2011@gmail.com" <egcm2011@gmail.com>,
+ "elghazel@bat710.univ-lyon1.fr" <elghazel@bat710.univ-lyon1.fr>,
+ "elghazel@bat710.univ-lyon1.fr" <haytham.elghazel@gmail.com>,
+ Elisa Bartomeus <ebartomeus@pacifico-meetings.com>,
+ "Elsevier Ltd, Editorial-Production Department"
+ <corrections.esch@elsevier.sps.co.in>,
+ "enadc@eric.univ-lyon2.fr" <enadc@eric.univ-lyon2.fr>,
+ Engelbert Mephu Nguifo <engelbert.mephu_nguifo@univ-bpclermont.fr>,
+ Engelbert Mephu Nguifo <nguifo.mephu@gmail.com>,
+ "english-amel52@yahoo.fr" <english-amel52@yahoo.fr>,
+ "Eric.Gaussier@xrce.xerox.com" <Eric.Gaussier@xrce.xerox.com>,
+ "ES4@mbc.net" <ES4@mbc.net>, "etalle@cs.utwente.nl" <etalle@cs.utwente.nl>,
+ "Fabrice.Guillet@polytech.univ-nantes.fr"
+ <Fabrice.Guillet@polytech.univ-nantes.fr>,
+ faiz si abdellah <faiz3500@hotmail.com>,
+ Fares Mezrag <fares.mezrag@gmail.com>,
+ "fares.mezrag@univ-msila.dz" <fares.mezrag@univ-msila.dz>,
+ "farouk.toumani@univ-bpclermont.fr" <farouk.toumani@univ-bpclermont.fr>,
+ =?UTF-8?Q?Faruk_=c3=96zger?= <farukozger@gmail.com>,
+ Fatima Fatima <fatima78911@yahoo.fr>,
+ "feedback@languagesapp.com" <feedback@languagesapp.com>,
+ Fernini Linda Abdelouahab <Ferblinda@hotmail.com>,
+ "fiot@lirmm.fr" <fiot@lirmm.fr>, "firon_2008@live.fr" <firon_2008@live.fr>,
+ "Florent.Masseglia@sophia.inria.fr" <Florent.Masseglia@sophia.inria.fr>,
+ "Francois.Rioult@info.unicaen.fr" <Francois.Rioult@info.unicaen.fr>,
+ ftoumani <ftoumani@isima.fr>, "fuaj@fuaj.org" <fuaj@fuaj.org>,
+ "gaaloul@loria.fr" <gaaloul@loria.fr>,
+ Garderie Panossas-Veyssilieu <dgnsl04@free.fr>,
+ Gasmi Abdelkader <GASMI_A@yahoo.fr>,
+ Ghemougui Abdelssatar <inf8508@gmail.com>,
+ "ghilousse@ayahoo.fr" <ghilousse@ayahoo.fr>,
+ "ghilousse@yahoo.fr" <ghilousse@yahoo.fr>, GRAINI Abid
+ <grainiabid@yahoo.fr>, Guerna Abderrahim <gurahim@gmail.com>,
+ Guesmia Salah <guesmia.salah@gmail.com>, Hachem Slimani
+ <haslimani@gmail.com>, hadjab lotfi <dido_lot@yahoo.fr>,
+ Hajer acile <kaoutar-05@live.fr>, Hakim Hakim <touamahakim28@gmail.com>,
+ Hamamache Kheddouci <hkheddou@bat710.univ-lyon1.fr>,
+ Hamani Said <saidhamani@hotmail.com>,
+ hamdani khadidja <hamdani.khadidja@gmail.com>,
+ "hameur@irit.fr" <hameur@irit.fr>, hamza boudiaf <hamza.b.oud@hotmail.fr>,
+ hamza Nsr <hamzanouasri.tic@gmail.com>, "han@cs.sfu.ca" <han@cs.sfu.ca>,
+ "hanj@cs.uiuc.edu" <hanj@cs.uiuc.edu>, Happy Girl <girlh1260@gmail.com>,
+ HASSEN CHAIBI <chaibih@yahoo.fr>, "hebrail@enst.fr" <hebrail@enst.fr>,
+ Hellasa Madiha <madiha_info_isl@yahoo.fr>, Hemmak Allaoua
+ <Hem_all@yahoo.fr>, "hichem.debbi@gmail.com" <hichem.debbi@gmail.com>,
+ Hocine BOUBAYA <hocine.boubaya@neuf.fr>,
+ "houria061@hotmail.fr" <houria061@hotmail.fr>,
+ "hubert.marteau@etu.univ-tours.fr" <hubert.marteau@etu.univ-tours.fr>,
+ Ibrahim meslem <bahi.meslem@gmail.com>,
+ "ibrahim.osman@aub.edu.lb" <ibrahim.osman@aub.edu.lb>,
+ ICAI09 <icai09@yahoo.com>, "icar-dir@univ-lyon2.fr"
+ <icar-dir@univ-lyon2.fr>, icics icics <icics09@gmail.com>,
+ ICIT-2014 <icit@thescienceone.com>, "icwit@univ-sba.dz" <icwit@univ-sba.dz>,
+ "idir.belaidi@gmail.com" <idir.belaidi@gmail.com>,
+ "ieee-dz@algeriescience.org" <ieee-dz@algeriescience.org>,
+ "ifors2014@pacifico-meetings.com" <ifors2014@pacifico-meetings.com>,
+ "ihm@setit.rnu.tn" <ihm@setit.rnu.tn>, IJIT JOURNAL
+ <ijitjournal@airccse.org>, Iman Lamrad <lamradiman@yahoo.fr>,
+ Imane DAOUD <imane.master2011@gmail.com>,
+ imane seddiki <imaneseddiki5@gmail.com>,
+ "imane_daoud@hotmail.fr" <imane_daoud@hotmail.fr>,
+ INASE non-profit <inase.editorial1@gmail.com>,
+ INASE non-profit <inase.editorial@gmail.com>,
+ info ifors2014 <info@ifors2014.org>,
+ "info.esalg@vfshelpline.com" <info.esalg@vfshelpline.com>,
+ "info@saintjohnmadaba.com" <info@saintjohnmadaba.com>,
+ "irdm2m2011@gmail.com" <irdm2m2011@gmail.com>,
+ irshed msila <irshedmsila28@gmail.com>, Jacek Kitowski <kito@agh.edu.pl>,
+ "jean-francois.boulicaut@insa-lyon.fr"
+ <jean-francois.boulicaut@insa-lyon.fr>,
+ Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>,
+ "Jean-Paul.Sachet@univ-nantes.fr" <Jean-Paul.Sachet@univ-nantes.fr>,
+ "jjk@lsiit.u-strasbg.fr" <jjk@lsiit.u-strasbg.fr>,
+ "jmpetit@math.univ-bpclermont.fr" <jmpetit@math.univ-bpclermont.fr>,
+ "joab@lirmm.fr" <joab@lirmm.fr>,
+ "joannes.vermorel@ens.fr" <joannes.vermorel@ens.fr>,
+ "Joseph, Janet Amali (ELS-CHN)" <J.Joseph@elsevier.com>,
+ jozef pro <yasseramri19@gmail.com>,
+ "kadi.o.moumen@yahoo.fr" <kadi.o.moumen@yahoo.fr>,
+ Kadir Halit Tufan <ktufan@fatih.edu.tr>,
+ "kadr.said28@gmail.com" <kadr.said28@gmail.com>,
+ kadri abd elhak <kadrisoft2009@gmail.com>,
+ Kadri Said <kadri.said28@gmail.com>,
+ "kadri.said@yahoo.fr" <kadri.said@yahoo.fr>,
+ kamal amroun <k_amroun25@yahoo.fr>, Kamel Mohamed <kamelbox@gmail.com>,
+ Kaoutar Acile <kaoutaracile_05@yahoo.com>,
+ "karabenyekhlef@yahoo.fr" <karabenyekhlef@yahoo.fr>,
+ "kdd@ics.uci.edu" <kdd@ics.uci.edu>, "kh_saadi@yahoo.fr"
+ <kh_saadi@yahoo.fr>, "khadidja_ha@yahoo.fr" <khadidja_ha@yahoo.fr>,
+ khawla drif <khawladrif@gmail.com>, Kheddouci <hamamachek@gmail.com>,
+ Khettaf Abdelouahab <a_khettaf@esi.dz>,
+ "koukoukhaoula46@yahoo.fr" <koukoukhaoula46@yahoo.fr>,
+ "krim_f_ieee_org@yahoo.fr" <krim_f_ieee_org@yahoo.fr>,
+ "krim_f@ieee.org" <krim_f@ieee.org>, "kufan@fatih.edu.tr"
+ <kufan@fatih.edu.tr>, Labid Kacem <lbdkcm94@gmail.com>,
+ =?UTF-8?Q?Ladislav_Hluch=c3=bd?= <cai.ui@savba.sk>,
+ "Ladislav.Hluchy@savba.sk" <Ladislav.Hluchy@savba.sk>,
+ Lakehal Ayat Raouf Ouanis <raouf@lakehal-ayat.com>,
+ Lakehal Meftah <lkmeftah@yahoo.fr>,
+ "lakhal@lif.univ-mrs.fr" <lakhal@lif.univ-mrs.fr>,
+ Lamiche Chaabane <lamiche07@gmail.com>,
+ "lamis.hawarah@imag.fr" <lamis.hawarah@imag.fr>,
+ "laouadi_nab@yahoo.fr" <laouadi_nab@yahoo.fr>, Larou youc
+ <laryouc@gmail.com>, latifa chabane <latifa.chabane2@gmail.com>,
+ "lebbah@lodyc.jussieu.fr" <lebbah@lodyc.jussieu.fr>,
+ LEMAIRE Vincent <vincent.lemaire@orange-ftgroup.com>,
+ "li@univ-tours.fr" <li@univ-tours.fr>,
+ "li0676@hotmail.com" <li0676@hotmail.com>,
+ Lina Soualmia <lina.soualmia@gmail.com>,
+ "lina-dir@univ-nantes.fr" <lina-dir@univ-nantes.fr>,
+ Linda Smail <lsmail@nyit.edu>, Linda Smail <linda.smail@nyit.edu.jo>,
+ "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>,
+ "LISTSERV@nic.surfnet.nl" <LISTSERV@nic.surfnet.nl>,
+ "lorival@lirmm.fr" <lorival@lirmm.fr>, Luisa bouaka <bluisa@hotmail.fr>,
+ "lylia.abrouk@u-bourgogne.fr" <lylia.abrouk@u-bourgogne.fr>,
+ "m_hanoune@yahoo.fr" <m_hanoune@yahoo.fr>,
+ Mahdjoubi Roussafi <mahdjoubir@yahoo.fr>,
+ Mahmoud Gourar <mahmoud.gourar@gmail.com>,
+ Mahmoud HAMOUCHE <m.hamouche06@gmail.com>,
+ "makri_mustapha@yahoo.fr" <makri_mustapha@yahoo.fr>,
+ Malek Ghenima <malekghenima@gmail.com>, Malek Khadidja <makdja@yahoo.com>,
+ malika <malikawaboudia@yahoo.fr>, Mansouri Kamel <mansouri_kl@yahoo.fr>,
+ Manuscript Review <engs@academicjournals.org>,
+ "marc.boulle@orange-ftgroup.com" <marc.boulle@orange-ftgroup.com>,
+ "marc.plantevit@lirmm.fr" <marc.plantevit@lirmm.fr>,
+ "marc.sebban@univ-st-etienne.fr" <marc.sebban@univ-st-etienne.fr>,
+ "mariam-a@just.edu.jo" <mariam-a@just.edu.jo>,
+ "Marie_Aude.Aufaure@inria.fr" <Marie_Aude.Aufaure@inria.fr>,
+ "marie-helene.abel@utc.fr" <marie-helene.abel@utc.fr>,
+ "mariemsak21@gmail.com" <mariemsak21@gmail.com>,
+ "Marinette.bouet@cust.univ-bpclermont.fr"
+ <Marinette.bouet@cust.univ-bpclermont.fr>, "mark@cs.sfu.ca"
+ <mark@cs.sfu.ca>, "martine.cadot@wanadoo.fr" <martine.cadot@wanadoo.fr>,
+ "masterglmsila@yahoo.fr" <masterglmsila@yahoo.fr>,
+ "Mathieu.Roche@lirmm.fr" <Mathieu.Roche@lirmm.fr>,
+ Mawloud OMAR <mawloud.omar@gmail.com>,
+ "Mayssam@cs.wisc.edu" <Mayssam@cs.wisc.edu>,
+ "mbendraouche@yahoo.fr" <mbendraouche@yahoo.fr>,
+ "mbernard@sic.univ-poitiers.fr" <mbernard@sic.univ-poitiers.fr>,
+ "mbresyd2@gmail.com" <mbresyd2@gmail.com>,
+ "Mebarek.Anane@lafarge.com" <Mebarek.Anane@lafarge.com>,
+ "mebarek.annane@lafarge.com" <mebarek.annane@lafarge.com>,
+ med charrak <moha200918@gmail.com>,
+ "medbahache@gmail.com" <medbahache@gmail.com>,
+ "medileh@yahoo.fr" <medileh@yahoo.fr>,
+ Mehdi slimane kadi <mahdillas@gmail.com>, Mehenni Tahar
+ <tmehenni@gmail.com>, Meliouh Amel <amel.dz.07@gmail.com>,
+ Meliouh Amel <amel_74563@yahoo.fr>,
+ "mephu@cril.univ-artois.fr" <mephu@cril.univ-artois.fr>,
+ MESSAOUD AKHDAR <akhdarmessaoud@gmail.com>,
+ Meziane Farid <f.meziane@salford.ac.uk>,
+ "mezrag_fares@yahoo.com" <mezrag_fares@yahoo.com>,
+ Mhand Abid <mhand.abid@cevital.com>, "mhbenouis@yahoo.fr"
+ <mhbenouis@yahoo.fr>, Mi Msila <fmimsila@gmail.com>,
+ Michel Simonet <michel.simonet@imag.fr>,
+ "Michele.Raphalen@univ-ubs.fr" <Michele.Raphalen@univ-ubs.fr>,
+ Miquel Grau <miquel.grau@hoteles-catalonia.es>,
+ "mirsiadaty@virginia.edu" <mirsiadaty@virginia.edu>,
+ "mmstic2011gmail@gmail.com" <mmstic2011gmail@gmail.com>,
+ Moh Bou <mohbou92@gmail.com>, Mohamed Boudjellal <mboudjelal28@gmail.com>,
+ Mohamed Chaouki Babahenini <chaouki.babahenini@gmail.com>,
+ "mohamed_gasmi@ymail.com" <mohamed_gasmi@ymail.com>,
+ Mohamed-Khireddine Kholladi <misc_2010_symposium@yahoo.com>,
+ "mohamed.nadif@univ-metz.fr" <mohamed.nadif@univ-metz.fr>,
+ Mohammed MEHENNI <mehenni_mohammed@hotmail.fr>,
+ Mokhtar Essaid <mokialge@gmail.com>,
+ Mokhtari Rabah <ra_mokhtari2000@yahoo.fr>,
+ "mouad.1937@hotmail.com" <mouad.1937@hotmail.com>,
+ Mouhoub Nacer Eddine <mouhoub_n@yahoo.fr>,
+ Mounir Allal <allalmounir@gmail.com>, "Mourad Ykhlef, PhD."
+ <ykhlef@ksu.edu.sa>, Moussaoui Adel <adel_moussaoui@hotmail.com>,
+ moussaoui_abdel <moussaoui_abdel@yahoo.fr>,
+ "mshacid@bat710.univ-lyon1.fr" <mshacid@bat710.univ-lyon1.fr>,
+ "msila28000@gmail.com" <msila28000@gmail.com>,
+ "mss4x@virginia.edu" <mss4x@virginia.edu>,
+ mustapha titah <titeh_mustapha@yahoo.fr>,
+ "Nacer.Boudjlida@loria.fr" <Nacer.Boudjlida@loria.fr>,
+ "nadir_kh@yahoo.fr" <nadir_kh@yahoo.fr>,
+ nadjet algeria <algeria.nadjet03@yahoo.com>,
+ Nadjet Benyounes <nadjetbenyounes@yahoo.fr>,
+ Nadjet Kamel <nadjet.kamel@gmail.com>, Nadjet KAMEL <nkamel@univ-setif.dz>,
+ "nasreddine.amroune@gmail.com" <nasreddine.amroune@gmail.com>,
+ "nasro_amr@yahoo.fr" <nasro_amr@yahoo.fr>,
+ nassima barka <nassimabarka@gmail.com>,
+ Nicolas Lachiche <nicolas.lachiche@unistra.fr>,
+ "nicolas.ragot@univ-tours.fr" <nicolas.ragot@univ-tours.fr>,
+ "noel.novelli@labri.u-bordeaux.fr" <noel.novelli@labri.u-bordeaux.fr>,
+ nOREPLY <noreply@nticweb.com>, Nouioua Layla <nouioua.edtas@gmail.com>,
+ "nouiribrahim@yahoo.fr" <nouiribrahim@yahoo.fr>,
+ nourdine baza <interbaza07@yahoo.fr>, Office Osscom <Office@osscom.org>,
+ "olfa.mabrouki@univ-paris12.fr" <olfa.mabrouki@univ-paris12.fr>,
+ omar bicho <omarben2009@yahoo.fr>,
+ Omar BOUSSAID <omar.boussaid@univ-lyon2.fr>,
+ Osama gueroud <osamavalenc@gmail.com>, ouali dehimi <oualium@yahoo.com>,
+ oukacha brahim <oukachabrahim@yahoo.fr>,
+ Ouldmohamedi Najib <nedjib@gmail.com>, Pascal Poncelet <poncelet@lirmm.fr>,
+ "Pascal.Poncelet@ema.fr" <Pascal.Poncelet@ema.fr>,
+ "patrice.bellot@univ-avignon.fr" <patrice.bellot@univ-avignon.fr>,
+ patrick gallinari <Patrick.Gallinari@lip6.fr>,
+ Pattern Recognition Letters <prletters@elsevier.com>,
+ Pavol Navrat <pavol.navrat@stuba.sk>, Petr Berka <berka@vse.cz>,
+ Philippe Leray <philippe.Leray@univ-nantes.fr>,
+ Pierre Gancarski <gancarski@unistra.fr>,
+ "pierre-francois.marteau@univ-ubs.fr" <pierre-francois.marteau@univ-ubs.fr>,
+ "Pierre.Gancarski@dpt-info.u-strasbg.fr"
+ <Pierre.Gancarski@dpt-info.u-strasbg.fr>,
+ "popova@sic.sp2mi.univ-poitiers.fr" <popova@sic.sp2mi.univ-poitiers.fr>,
+ "quiniou@irisa.fr" <quiniou@irisa.fr>,
+ "rachid.arezki@ema.fr" <rachid.arezki@ema.fr>, "roche@lri.fr"
+ <roche@lri.fr>,
+ "3qool+subscribe@googlegroups.com" <3qool+subscribe@googlegroups.com>,
+ ADD STIC M'sila <addstic2011@gmail.com>,
+ Mehenni Tahar <taharmehenni@gmail.com>,
+ "registraire@etsmtl.ca" <registraire@etsmtl.ca>,
+ =?UTF-8?Q?R=c3=a9pondre_par_courrier_=c3=a9lectronique?=
+ <m+80o8252h000000hlokvs003zp75r3w5q28q@reply.facebook.com>,
+ =?UTF-8?Q?R=c3=a9pondre_par_courrier_=c3=a9lectronique?=
+ <m+806cslqm000000hlokvs004kdu1aeaqd28v@reply.facebook.com>,
+ =?UTF-8?Q?R=c3=a9pondre_par_courrier_=c3=a9lectronique?=
+ <m+9164rr2i000000hlokvs2yrjm8pldp5qjbg5mowvfaoolrc295@reply.facebook.com>,
+ =?UTF-8?Q?R=c3=a9pondre_par_courrier_=c3=a9lectronique?=
+ <m+30hfww9h000000hlokvs00002lban31joop75b66a648ff2t2et@reply.facebook.com>,
+ "romaric@lri.fr" <romaric@lri.fr>, =?UTF-8?Q?Rub=c3=a9n_Ruiz_Garc=c3=ada?=
+ <rruiz@eio.upv.es>, Sadek Outayeb <soutayeb@gmail.com>,
+ Sahbi Sidhom <sahbi.sidhom@loria.fr>, Sahbi Sidhom <sahbi.sidhom@gmail.com>,
+ Sahraoui Mohamed <sahraoui.m@gmail.com>,
+ Salem Al-Agtash <alagtash@gju.edu.jo>, samia tenzer <dgrsdt.org@gmail.com>,
+ Saoudi Lalia <saoudi_l@yahoo.fr>, Sayad Lamri <siad_lamri@yahoo.fr>,
+ "sebag@lri.fr" <sebag@lri.fr>, "sebillot@irisa.fr" <sebillot@irisa.fr>,
+ "secretariat@datamining-conf.org" <secretariat@datamining-conf.org>,
+ "secretariat@eric.univ-lyon2.fr" <secretariat@eric.univ-lyon2.fr>,
+ "Selt.omar@yahoo.fr" <selt.omar@yahoo.fr>,
+ Sevim Akyuz <sakyuz@republika.com.tr>, Sihem Ajissa <sihem_zebiri@yahoo.fr>,
+ Simo Ben <oussama_b28@yahoo.fr>, "sitis@u-bourgogne.fr"
+ <sitis@u-bourgogne.fr>, "skima2009@gmail.com" <skima2009@gmail.com>,
+ Slimane BELLAOUAR <bellaouar_s@yahoo.fr>,
+ "slimani_y09@yahoo.fr" <slimani_y09@yahoo.fr>,
+ "socle.commun.mi@gmail.com" <socle.commun.mi@gmail.com>,
+ "Somia.lakehali@gmail.com" <Somia.lakehali@gmail.com>,
+ souad mazari <souadmazari@gmail.com>, soualah soufiane
+ <soualahs1@gmail.com>, soumia lekehali <mirage.soumia@gmail.com>,
+ ssa ass <soma.youcef@gmail.com>,
+ "stefan.nickel@kit.edu" <stefan.nickel@kit.edu>,
+ "stephane.lopez@prism.uvsq.fr" <stephane.lopez@prism.uvsq.fr>,
+ "steve@iaria.org" <steve@iaria.org>,
+ =?UTF-8?Q?STIC_M'sila_Multim=c3=a9dia?= <mmstic2011@gmail.com>,
+ "support@inase.org" <support@inase.org>,
+ "tablennehas1@yahoo.fr" <tablennehas1@yahoo.fr>, tahar <mehnita@yahoo.fr>,
+ Tahri Zohir <tahri.zohair@yahoo.com>, "Tayoub90@gmail.com"
+ <Tayoub90@gmail.com>, "tct.msila@gmail.com" <tct.msila@gmail.com>,
+ "teisseire@lirmm.fr" <teisseire@lirmm.fr>, "th@sdiwc.net" <th@sdiwc.net>,
+ Therafi Abdellah <abdellahth@gmail.com>,
+ Therafi Abdellah <abdellahth@yahoo.fr>,
+ Therafi Abdellah <abdellahth@hotmail.fr>, Titouna Chafik <c_titouna@esi.dz>,
+ "toumiab@ensieta.fr" <toumiab@ensieta.fr>,
+ Veronique Eglin <veronique.eglin@insa-lyon.fr>,
+ "vincent@univ-tours.fr" <vincent@univ-tours.fr>,
+ Violaine Prince <prince@lirmm.fr>, Xiaoxin Yin <xiaoxin@gmail.com>,
+ "xyin@microsoft.com" <xyin@microsoft.com>,
+ Yacine SLIMANI <slimani_y09@hotmail.com>,
+ Yagoubi Rached <rached.yagoubi@gmail.com>,
+ youcef bentaleb <youcefbba@live.fr>,
+ "Younes.Bennani@lipn.univ-paris13.fr" <Younes.Bennani@lipn.univ-paris13.fr>,
+ Zedam Lemnaouar <l.zedam@yahoo.fr>, Zedam Lemnaouar <l.zedam@gmail.com>,
+ ziane brahim <brahziane@gmail.com>,
+ "zighed@univ-lyon2.fr" <zighed@univ-lyon2.fr>, zino dj <zinosoft@gmail.com>,
+ Zouaoui Lila <lila.zouaoui@yahoo.fr>, =?UTF-8?B?2KfZhNmK2KfYsyDYpdmE2Yo=?=
+ =?UTF-8?B?2KfYsw==?= <ilyalime17@gmail.com>
+From: Ladjel Bellatreche <ladjel.bellatreche@ensma.fr>
+Message-ID: <6254eca1-ff51-f688-59ba-443920207641@ensma.fr>
+Date: Mon, 5 Jun 2017 12:03:55 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+ Gecko/20100101 Thunderbird/45.8.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------465BCD4403D78E6C2DA81919"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] DATA, INFORMATION AND KNOWLEDGE ENGINEERING TRACK @
+ SOFSEM'2018: NEWS, KEYNOTES
+
+This is a multi-part message in MIME format.
+--------------465BCD4403D78E6C2DA81919
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Sorry for multiple posting:
+
+
+************************************************************************************************************************************************
+
+*DATA, INFORMATION AND KNOWLEDGE ENGINEERING TRACK of the 44rd 
+International Conference on Current Trends in Theory and Practice of 
+Computer Science*
+
+*Danube University Krems, Austria*
+
+*29 January - February, 2, 2018*
+
+*http://www.sofsem.cz/sofsem18/*
+
+************************************************************************************************************************************************
+
+*NEWS: KEYNOTE SPEAKERS FOR DATA, INFORMATION AND KNOWLEDGE ENGINEERING
+*
+
+************************************************************************************************************************************************
+
+  * Prof. Yannis Manolopoulos, Professor with the Department of
+    Informatics of the Aristotle University of Thessaloniki, Greece:
+    http://delab.csd.auth.gr/~manolopo/
+  * Prof. Dr. Thomas Eiter, Professor of Computer Science, TU Wien,
+    Austria: http://www.kr.tuwien.ac.at/staff/eiter/
+
+************************************************************************************************************************************************
+*The SOFSEM proceedings, containing all accepted and invited papers, 
+will appear in the Springer Lecture Notes on Computer Science series.*
+
+_*Best Papers of DATA, INFORMATION AND KNOWLEDGE ENGINEERING TRACK, will 
+be Invited for Extended Submissions to Top-Quality Journals.*_
+
+_*Conference Timeline*_
+
+  * Paper Abstracts Deadline June 23, 2017
+  * Full Papers Deadline June 30, 2017
+  * Notification (Acceptance/Rejection)September 21, 2017
+  * Camera-ready Papers October 4, 2017
+  * Author Registration Deadline October 15, 2017
+  * Poster Deadline November 20, 2017
+  * Early Registration Deadline November 24, 2017
+  * Posters Camera-ready December 5, 2017
+  * Poster Author Registration Deadline Dec 12, 2017
+  * Late Registration Deadline January 28, 2018
+  * Conference January 29 - February 2, 2018
+
+SOFSEM 2018 consists of three tracks covering major subareas of current 
+computer science: the traditional track on Foundations of Computer 
+Science and two tracks devoted to leading developments in areas – 
+Software Engineering: Methods, Tools, Applications, and Data, 
+Information and Knowledge Engineering. Original contributions are 
+solicited, presenting new research results in the theory and practice of 
+computer science in each subarea designated for SOFSEM 2018. Each track 
+has its own program chair and program committee for peer reviewing and 
+feedback to authors. Please consider the appropriate track of SOFSEM 
+2018 for your contribution.
+
+*Data, Information and Knowledge Engineering**Track:
+*
+
+*Track Chair: Ladjel Bellatreche, ISAE-ENSMA, Poitiers, France 
+(bellatreche@ensma.fr)
+*
+
+The track is devoted to all aspects of eliciting, acquiring, modeling, 
+storing, and managing data, information, and knowledge. Contributions 
+concerning all steps in the development of data and knowledge-intensive 
+systems – theoretical foundations, design, implementation and 
+maintenance techniques – are welcome.
+
+Topics include, but are not limited to:
+
+  * Big Data storage, processing and analytics,
+  * business process modeling, automation, and management
+  * data and information modeling,
+  * data and information semantics,
+  * data integration, data cleaning,
+  * data intensive applications,
+  * data warehousing,
+  * data mining, knowledge discovery and machine learning,
+  * data privacy and security,
+  * information retrieval,
+  * intelligent agents, multi-agent systems,
+  * knowledge modeling and processing,
+  * knowledge acquisition and engineering,
+  * linked data and open data,
+  * mobile data and information,
+  * multimedia, spatial, and temporal data and knowledge,
+  * parallel and distributed data platforms
+  * probabilistic databases, uncertainty and approximate querying,
+  * query and natural language processing,
+  * provenance and trust in data management and knowledge engineering,
+  * stream data management,
+  * web and semantic web data and knowledge engineering.
+
+*Submission*
+
+Authors are invited to submit high-quality manuscripts reporting 
+original unpublished research in any one of the tracks of the 
+Conference. Simultaneous submission to other conferences or workshops 
+with published proceedings is not allowed.
+
+Submissions must be formatted in LNCS style and must not exceed 12 
+pages, excluding references. Proofs omitted for space reasons must be 
+placed in an appendix to be read by the program committee at its 
+discretion. The first page must include an indication whether the paper 
+is to be considered for the Student Research Forum (including the Best 
+Student Paper Award, see below).
+
+Papers are to be submitted electronically through EasyChair at 
+https://easychair.org/conferences/?conf=sofsem2018.
+
+
+*Student Research Forum*
+
+PhD students may submit their paper in any one of the SOFSEM tracks, as 
+part of the Student Research Forum (SRF). To be eligible for the SRF, 
+all authors must be students (except for their advisors). All student 
+papers are reviewed by the Program Committee of the respective track as 
+regular submissions. However, those not accepted for the main Springer 
+LNCS proceedings but still proposing novel and contributing ideas will 
+be reviewed again. Well written and promising student papers will be 
+published in a separate online document.
+
+During the conference there will be a pecial Session devoted to the SRF 
+papers which includes (i) oral presentation of the papers for the 
+plenary SOFSEM audience, and (ii) a poster session to enable further 
+discussion between student authors and SOFSEM participants. Best Student 
+Paper and Best Student Presentation Awards will be awarded during the 
+conference.
+
+Submissions to the SRF must satisfy the same format requirements and 
+should be submitted according to the same time schedule as regular 
+submissions.
+
+Formatting Instructions for Submissions
+Your submission has to follow the regular format of the Lecture Notes in 
+Computer Science. Do not change the settings of margins and vertical 
+spacing, and use numbered pages. Submissions must not exceed 12 pages 
+(excluding references).
+
+Submit your paper in PDF, no later than the deadline using EasyChair.
+
+By submitting a paper the authors acknowledge that in case of acceptance 
+at least one of the authors must register at SOFSEM 2018, attend the 
+conference, and present the paper.
+
+*Contact Details*
+Austrian Computer Society (OCG)
+Christine Haas
+Wollzeile 1 | 1010 Vienna | Austria
+P: +43 (1) 5120235-51
+E: christine.haas[at]ocg.at
+
+*Venue*
+Danube University Krems
+Dr.-Karl-Dorrek-Str. 30 | 3500 Krems an der Donau | Austria
+
+-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail:bellatreche@ensma.fr
+URL:http://www.lias-lab.fr/members/bellatreche
+
+
+-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: bellatreche@ensma.fr
+URL: http://www.lias-lab.fr/members/bellatreche
+
+
+--------------465BCD4403D78E6C2DA81919
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>
+    </p>
+    <div class="moz-text-html" lang="x-unicode">
+      <p>Sorry for multiple posting:</p>
+      <p><br>
+************************************************************************************************************************************************<br>
+        <br>
+        <font size="+1"><b>DATA, INFORMATION AND KNOWLEDGE ENGINEERING
+            TRACK of the 44rd International Conference on Current Trends
+            in Theory and Practice of Computer Science</b></font><br>
+        <br>
+        <font size="+1"><b>Danube University Krems, Austria</b></font><br>
+        <br>
+        <font size="+1"><b>29 January - February, 2, 2018</b></font><br>
+        <br>
+        <font size="+1"><b><a class="moz-txt-link-freetext"
+              href="http://www.sofsem.cz/sofsem18/">http://www.sofsem.cz/sofsem18/</a></b></font><br>
+        <br>
+************************************************************************************************************************************************<br>
+      </p>
+      <p><font size="+1"><b>NEWS: KEYNOTE SPEAKERS FOR DATA, INFORMATION
+            AND KNOWLEDGE ENGINEERING<br>
+          </b></font></p>
+      <p>************************************************************************************************************************************************<br>
+      </p>
+      <ul>
+        <li>Prof. Yannis Manolopoulos, Professor with the Department of
+          Informatics of the Aristotle University of Thessaloniki,
+          Greece: <a class="moz-txt-link-freetext"
+            href="http://delab.csd.auth.gr/%7Emanolopo/">http://delab.csd.auth.gr/~manolopo/</a></li>
+        <li>Prof. Dr. Thomas Eiter, Professor of Computer Science, TU
+          Wien, Austria: <a class="moz-txt-link-freetext"
+            href="http://www.kr.tuwien.ac.at/staff/eiter/">http://www.kr.tuwien.ac.at/staff/eiter/</a></li>
+      </ul>
+      <p>************************************************************************************************************************************************<br>
+        <font size="+1"><b>The SOFSEM proceedings, containing all
+            accepted and invited papers, will appear in the Springer
+            Lecture Notes on Computer Science series.</b></font><br>
+      </p>
+      <p><u><font size="+1"><b>Best Papers of <font color="#ff0000">DATA,
+                INFORMATION AND KNOWLEDGE ENGINEERING TRACK</font>, will
+              be Invited for Extended Submissions to Top-Quality
+              Journals.</b></font></u></p>
+      <p><u><font size="+1"><b>Conference Timeline</b></font></u><br>
+      </p>
+      <ul>
+        <li> Paper Abstracts Deadline June 23, 2017</li>
+        <li> Full Papers Deadline June 30, 2017</li>
+        <li> Notification (Acceptance/Rejection)September 21, 2017</li>
+        <li> Camera-ready Papers October 4, 2017</li>
+        <li> Author Registration Deadline October 15, 2017</li>
+        <li> Poster Deadline November 20, 2017</li>
+        <li> Early Registration Deadline November 24, 2017</li>
+        <li> Posters Camera-ready December 5, 2017</li>
+        <li> Poster Author Registration Deadline Dec 12, 2017</li>
+        <li> Late Registration Deadline January 28, 2018</li>
+        <li> Conference January 29 - February 2, 2018</li>
+      </ul>
+      <p>SOFSEM 2018 consists of three tracks covering major subareas of
+        current computer science: the traditional track on Foundations
+        of Computer Science and two tracks devoted to leading
+        developments in areas – Software Engineering: Methods, Tools,
+        Applications, and Data, Information and Knowledge Engineering.
+        Original contributions are solicited, presenting new research
+        results in the theory and practice of computer science in each
+        subarea designated for SOFSEM 2018. Each track has its own
+        program chair and program committee for peer reviewing and
+        feedback to authors. Please consider the appropriate track of
+        SOFSEM 2018 for your contribution.<br>
+        <br>
+        <b>Data, Information and Knowledge Engineering</b><b> Track: <br>
+        </b></p>
+      <p><b>Track Chair: Ladjel Bellatreche, ISAE-ENSMA, Poitiers,
+          France (<a class="moz-txt-link-abbreviated"
+            href="mailto:bellatreche@ensma.fr">bellatreche@ensma.fr</a>)<br>
+        </b></p>
+      <p>The track is devoted to all aspects of eliciting, acquiring,
+        modeling, storing, and managing data, information, and
+        knowledge. Contributions concerning all steps in the development
+        of data and knowledge-intensive systems – theoretical
+        foundations, design, implementation and maintenance techniques –
+        are welcome.<br>
+        <br>
+        Topics include, but are not limited to:<br>
+      </p>
+      <ul>
+        <li>Big Data storage, processing and analytics,</li>
+        <li>business process modeling, automation, and management</li>
+        <li>data and information modeling,</li>
+        <li>data and information semantics,</li>
+        <li>data integration, data cleaning,</li>
+        <li>data intensive applications,</li>
+        <li>data warehousing,</li>
+        <li>data mining, knowledge discovery and machine learning,</li>
+        <li>data privacy and security,</li>
+        <li>information retrieval,</li>
+        <li>intelligent agents, multi-agent systems,</li>
+        <li>knowledge modeling and processing,</li>
+        <li>knowledge acquisition and engineering,</li>
+        <li>linked data and open data,</li>
+        <li>mobile data and information,</li>
+        <li>multimedia, spatial, and temporal data and knowledge,</li>
+        <li>parallel and distributed data platforms</li>
+        <li>probabilistic databases, uncertainty and approximate
+          querying,</li>
+        <li>query and natural language processing,</li>
+        <li>provenance and trust in data management and knowledge
+          engineering,</li>
+        <li>stream data management,</li>
+        <li>web and semantic web data and knowledge engineering.</li>
+      </ul>
+      <font size="+1"><b>Submission</b></font><br>
+      <br>
+      Authors are invited to submit high-quality manuscripts reporting
+      original unpublished research in any one of the tracks of the
+      Conference. Simultaneous submission to other conferences or
+      workshops with published proceedings is not allowed.<br>
+      <br>
+      Submissions must be formatted in LNCS style and must not exceed 12
+      pages, excluding references. Proofs omitted for space reasons must
+      be placed in an appendix to be read by the program committee at
+      its discretion. The first page must include an indication whether
+      the paper is to be considered for the Student Research Forum
+      (including the Best Student Paper Award, see below).<br>
+      <br>
+      Papers are to be submitted electronically through EasyChair at <a
+        class="moz-txt-link-freetext"
+        href="https://easychair.org/conferences/?conf=sofsem2018">https://easychair.org/conferences/?conf=sofsem2018</a>.<br>
+      <br>
+      <br>
+      <b><font size="+1">Student Research Forum</font></b><br>
+      <br>
+      PhD students may submit their paper in any one of the SOFSEM
+      tracks, as part of the Student Research Forum (SRF). To be
+      eligible for the SRF, all authors must be students (except for
+      their advisors). All student papers are reviewed by the Program
+      Committee of the respective track as regular submissions. However,
+      those not accepted for the main Springer LNCS proceedings but
+      still proposing novel and contributing ideas will be reviewed
+      again. Well written and promising student papers will be published
+      in a separate online document.<br>
+      <br>
+      During the conference there will be a pecial Session devoted to
+      the SRF papers which includes (i) oral presentation of the papers
+      for the plenary SOFSEM audience, and (ii) a poster session to
+      enable further discussion between student authors and SOFSEM
+      participants. Best Student Paper and Best Student Presentation
+      Awards will be awarded during the conference.<br>
+      <br>
+      Submissions to the SRF must satisfy the same format requirements
+      and should be submitted according to the same time schedule as
+      regular submissions.<br>
+      <br>
+      Formatting Instructions for Submissions<br>
+      Your submission has to follow the regular format of the Lecture
+      Notes in Computer Science. Do not change the settings of margins
+      and vertical spacing, and use numbered pages. Submissions must not
+      exceed 12 pages (excluding references).<br>
+      <br>
+      Submit your paper in PDF, no later than the deadline using
+      EasyChair.<br>
+      <br>
+      By submitting a paper the authors acknowledge that in case of
+      acceptance at least one of the authors must register at SOFSEM
+      2018, attend the conference, and present the paper.<br>
+      <br>
+      <font size="+1"><b>Contact Details</b></font><br>
+      Austrian Computer Society (OCG)<br>
+      Christine Haas<br>
+      Wollzeile 1 | 1010 Vienna | Austria<br>
+      P: +43 (1) 5120235-51<br>
+      E: christine.haas[at]ocg.at<br>
+      <br>
+      <font size="+2"><b>Venue</b></font><br>
+      Danube University Krems<br>
+      Dr.-Karl-Dorrek-Str. 30 | 3500 Krems an der Donau | Austria<br>
+      <br>
+      <pre class="moz-signature" cols="72">-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA  
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: <a class="moz-txt-link-abbreviated" href="mailto:bellatreche@ensma.fr">bellatreche@ensma.fr</a>
+URL: <a class="moz-txt-link-freetext" href="http://www.lias-lab.fr/members/bellatreche">http://www.lias-lab.fr/members/bellatreche</a></pre>
+    </div>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA  
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: <a class="moz-txt-link-abbreviated" href="mailto:bellatreche@ensma.fr">bellatreche@ensma.fr</a>
+URL: <a class="moz-txt-link-freetext" href="http://www.lias-lab.fr/members/bellatreche">http://www.lias-lab.fr/members/bellatreche</a></pre>
+  </body>
+</html>
+
+--------------465BCD4403D78E6C2DA81919--

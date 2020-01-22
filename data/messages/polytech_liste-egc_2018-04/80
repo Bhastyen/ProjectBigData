@@ -1,0 +1,471 @@
+Return-Path: <christine.sinoquet@univ-nantes.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 63F852292948
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sun, 29 Apr 2018 01:16:24 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 5DBC96005EE
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sun, 29 Apr 2018 01:16:24 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id BE8DD485673B
+	for <polytech_liste-egc@univ-nantes.fr>; Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=univ-nantes.fr header.b=GOZHvM8b; dkim=pass (1024-bit key)
+	header.d=univ-nantes.fr header.b=GOZHvM8b
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jFOQcs4s2aJa for <polytech_liste-egc@univ-nantes.fr>;
+	Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp-tls.univ-nantes.fr (smtptls1-cha.cpub.univ-nantes.fr [IPv6:2001:660:7220:385:193:52:103:113])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id A52C9448F4EF
+	for <polytech_liste-egc@univ-nantes.fr>; Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp-tls.univ-nantes.fr (Postfix) with ESMTP id 975BD401627
+	for <polytech_liste-egc@univ-nantes.fr>; Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-nantes.fr;
+	s=mail; t=1524957383;
+	bh=exK17xgGYhNfDUSGHFIeZpFse8RVyMtf61Ih3wdyUqM=;
+	h=From:Subject:To:References:Date:In-Reply-To:From;
+	b=GOZHvM8bUxI8smh/c9AUeoDTja+5cG+pqCze0jl98CRWdKWfreQO4/XRue4eYlhS3
+	 d/g20WPebixipj6k8lT1Xgy8YuaGsWPKc0y3Y39/lujKDdW8eT5irE/0FImn54bzdw
+	 s2d7jN8GTDpufIyK0X64KL3XD7pc6ZqBpG7NTGJI=
+X-Virus-Scanned: Debian amavisd-new at smtptls1-lmb.cpub.univ-nantes.fr
+Received: from smtp-tls.univ-nantes.fr ([127.0.0.1])
+	by localhost (smtptls1-cha.cpub.univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id eMO1YeMbEO6W for <polytech_liste-egc@univ-nantes.fr>;
+	Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+Received: from [IPv6:2a02:1811:b10d:cd00:4422:e329:fca3:ecee] (ptr-czrz9zpq9xv9zf0p432.18120a2.ip6.access.telenet.be [IPv6:2a02:1811:b10d:cd00:4422:e329:fca3:ecee])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp-tls.univ-nantes.fr (Postfix) with ESMTPSA id 2714B401620
+	for <polytech_liste-egc@univ-nantes.fr>; Sun, 29 Apr 2018 01:16:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-nantes.fr;
+	s=mail; t=1524957383;
+	bh=exK17xgGYhNfDUSGHFIeZpFse8RVyMtf61Ih3wdyUqM=;
+	h=From:Subject:To:References:Date:In-Reply-To:From;
+	b=GOZHvM8bUxI8smh/c9AUeoDTja+5cG+pqCze0jl98CRWdKWfreQO4/XRue4eYlhS3
+	 d/g20WPebixipj6k8lT1Xgy8YuaGsWPKc0y3Y39/lujKDdW8eT5irE/0FImn54bzdw
+	 s2d7jN8GTDpufIyK0X64KL3XD7pc6ZqBpG7NTGJI=
+From: Christine Sinoquet <christine.sinoquet@univ-nantes.fr>
+To: polytech_liste-egc@univ-nantes.fr
+References: <2cc552b8-524b-d862-3b98-23861700e3ac@univ-nantes.fr>
+Message-ID: <9e65679f-fa58-223e-a69d-0194a8babf70@univ-nantes.fr>
+Date: Sun, 29 Apr 2018 01:16:23 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+In-Reply-To: <2cc552b8-524b-d862-3b98-23861700e3ac@univ-nantes.fr>
+Content-Type: multipart/alternative;
+ boundary="------------26DF0FDCB818C5A347519BF3"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] offre de =?UTF-8?Q?th=C3=A8se?= en =?UTF-8?Q?mod?=
+ =?UTF-8?Q?=C3=A9lisation?= des connaissances et apprentissage automatique
+
+This is a multi-part message in MIME format.
+--------------26DF0FDCB818C5A347519BF3
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Bonjour,
+
+Merci d’avance de bien vouloir diffuser l’annonce suivante. Désolée pour 
+les réceptions multiples.
+
+Nous cherchons à identifier un candidatà proposer pour le sujet de thèse 
+suivant, à l'école doctorale MathSTIC de l’UBL (Université 
+Bretagne-Loire), dans le domaine des Sciences et technologies de 
+l’information et de la communication.
+
+
+*Sujet de thèse*
+*Modélisation et comparaison à grande échelle de profils de patients * 
+*pour l’amélioration du diagnostic et du traitement. **Contribution aux 
+avancéespour la médecine du futur.***
+
+*Descriptif**: *
+
+La généralisation des dossiers numérisés dans les hôpitaux génère de 
+grandes biobanques qui permettent de mémoriser des masses inédites 
+d’informations. Ces données permettent, à partir de données observées 
+chez un patient, d’écarter et de sélectionner diverses hypothèses de 
+diagnostic et/ou diverses pistes de traitements. La fédération de 
+données sur de grandes cohortes permet en effet d’envisager la 
+possibilité de rattacher un patient donné à d’autres patients, pour 
+lesquels on dispose de retours sur la réponseàl’administration de 
+traitements, par exemple.
+
+Cependant, pour recommander un traitement destiné à un patient, il faut 
+être capable d’identifier l’appartenance de ce dernier à un groupe de 
+patients. Mais la fédération de cohortes dépasse le cadre d’un unique 
+établissement hospitalier. Les sujets décrits dans unebiobanque le sont 
+donc de façon hétérogène, tant du point de vue des mesures compilées 
+(données brutes, texte, images, séries temporelles, données 
+environnementales, que du niveau d’abstraction de l’information stockée 
+(référence à des régions du génome, marqueurs biologiques, échelles de 
+temps différentes). De plus, des valeurs peuvent manquer pour certaines 
+mesures.
+
+Le travail demandé dans le cadrede la thèse concerne la prédiction de 
+diagnostic ou de risque, ou encore la définition d’un traitement 
+thérapeutique, basée sur la similarité d’un patient «requête» avec 
+d’autres patients. Au préalable, il sera nécessaire d’examinercomment 
+modéliser /dynamiquement/le profil dupatient requête, en fonction des 
+observations disponibles pour lui, et des observations disponibles pour 
+les autres patients - dont il s’agit également de modéliser rapidement 
+et efficacement les profils -.Une étape suivante consistera à proposer 
+des métriques, permettant la comparaison de tels profils.
+
+Deux hypothèses de travail seront considérées. Selon la plus simple, un 
+groupe de patients «jugé /a priori/» intéressant est considéré. Le 
+problème s’énonce alors comme un problème de comparaison, mais reste 
+complexe (données hétérogènes, manquantes, incluant des données 
+temporelles à des échelles différentes, sur des périodes différentes 
+...). La deuxième hypothèse ne s’appuie suraucun /a priori/et 
+s’apparente à un problème de clustering où il s’agit d’identifier un 
+groupe de patients «suffisamment similaires»aupatient requête.
+
+Un objectif final sera de quantifier la confiance en un diagnostic, ou 
+en une recommandationde traitement, en fonction de la classe de patients 
+ciblée (première hypothèse) ou du groupe de patients identifiés proches 
+du patient requête (deuxième hypothèse). D’ailleurs, à l’inverse, il 
+sera étudié, dans cette dernière hypothèse, s’il est possible de fixer 
+un seuil de confiance en un objectif (poser un diagnostic, recommanderun 
+traitement), pour guider l’identification du groupe. Pour cette dernière 
+partie sont notamment envisagées des expérimentations incluant des 
+simulations à grande échelle.
+
+*Mots-clés *: Modélisation de connaissances, modélisation de traces, 
+comparaison de profils, recommandation, apprentissage automatique, 
+apprentissage statistique, métrique, incertitude, modèle probabiliste, 
+données massives, simulations
+
+*L**ocalisation *: Université de Nantes, LS2N (Laboratoire des Sciences 
+du Numérique de Nantes) / UMR CNRS 6004,
+Equipe DUKe (Data User Knowledge)
+
+*Direction de thèse* : Christine Sinoquet 
+(christine.sinoquet@univ-nantes.fr)
+
+*Financement* : 36 mois sur bourse ministérielle
+
+*Profil du candidat* : candidat dans le 1er tiers du classement sur les 
+résultats théoriques du 1er semestre du Master 2
+
+Desprécisions sur le sujet de thèse sont fournies 
+àhttps://uncloud.univ-nantes.fr/index.php/apps/files/?dir=/thesis_subject_april_2018&fileid=61072601
+
+*Candidature*: Les candidats intéressés sont invités à envoyer le plus 
+rapidement possible une lettre de motivation, un CV, un relevé de notes 
+avec classement du Master 2, les coordonnées (affiliation, adresse 
+électronique et coordonnées téléphoniques) de deux personnes référentes, 
+/*avant le *//*mardi *//*0*//*8*//**//*mai*//*2018, 
+*/àchristine.sinoquet@univ-nantes.fr.
+
+-------------------
+
+Christine Sinoquet, MC HdR 2014
+http://christinesinoquet.wixsite.com/christinesinoquet
+
+Faculté des Sciences
+Université de Nantes
+LS2N / UMR CNRS 6004
+https://www.ls2n.fr/
+
+
+
+
+
+
+--------------26DF0FDCB818C5A347519BF3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Bonjour,<br>
+    <div class="moz-forward-container"><br>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <font face="Arial, sans-serif"><font style="font-size: 12pt"
+          size="3">Merci d’avance de bien vouloir diffuser l’annonce
+          suivante. Désolée pour les réceptions multiples.</font></font>
+      <pre class="western"><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3">Nous cherchons à identifier un candidat</font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3">  </font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3">à p</font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">roposer  pour </span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">l</span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">e sujet </span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">de thèse suivant, </span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">
+à l'école doctorale MathSTIC de l’U</span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">B</span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">L (Université Bretagne-Loire), 
+</span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">dans le </span></font></font><font face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><span lang="fr-FR">domaine des Sciences et technologies de l’information et de la communication. </span></font></font>
+
+
+</pre>
+      <b><font face="Arial, sans-serif"><font style="font-size: 12pt"
+            size="3">Sujet de thèse</font></font></b><br>
+      <font face="Arial, sans-serif"><font style="font-size: 13pt"
+          size="3"><b>Modélisation et comparaison à grande échelle de
+            profils de patients </b></font></font> <font face="Arial,
+        sans-serif"><font style="font-size: 12pt" size="3"><b><font
+              style="font-size: 13pt" size="3"><span lang="fr-FR">pour
+                l’amélioration du diagnostic et du traitement</span></font><font
+              style="font-size: 13pt" size="3"><span lang="fr-FR">. </span></font></b></font></font><font
+        face="Arial, sans-serif"><font style="font-size: 12pt" size="3"><b><font
+              style="font-size: 13pt" size="3"><span lang="fr-FR">Contribution
+                aux avancées</span></font><font style="font-size: 13pt"
+              size="3"><span lang="fr-FR"><font face="Arial, serif"> </font></span></font><font
+              face="Arial, serif"><font style="font-size: 13pt" size="3"><span
+                  lang="fr-FR">pour la médecine du futur.</span></font></font></b></font></font><font
+        size="+3" face="Arial,sans-serif"><font style="font-size: 12pt"><font
+            color="#000000"><font style="font-size: 7pt"><b> </b></font></font></font></font>
+      <br>
+      <p style="margin-bottom: 0cm"><font face="Arial, sans-serif"><font
+            style="font-size: 11pt" size="2"><font color="#000000"><b>Descriptif</b></font><font
+              color="#000000"><b> : </b></font></font></font> </p>
+      <font face="Arial, sans-serif"><font style="font-size: 11pt"
+          size="2"><span lang="fr-FR">L</span><span lang="fr-FR">a
+            généralisation des </span><span lang="fr-FR">dossiers
+            numérisés dans les </span><span lang="fr-FR">hôpitaux
+            génère de grandes </span><span lang="fr-FR">biobanques </span><span
+            lang="fr-FR">qui permettent de </span><span lang="fr-FR">mémoriser
+          </span><span lang="fr-FR">des </span><span lang="fr-FR">masses
+          </span><span lang="fr-FR">inédites </span><span lang="fr-FR">d’informations</span><span
+            lang="fr-FR">. </span><span lang="fr-FR">Ces données
+            permettent, à partir de données observées chez un patient,
+            d’écarter et de sélectionner diverses hypothèses de
+            diagnostic </span><span lang="fr-FR">et/ou </span><span
+            lang="fr-FR">diverses pistes de traitements. La fédération
+            de données sur de grandes cohortes permet en effet
+            d’envisager la possibilité de rattacher un patient donné à
+            d’autres patients, pour lesquels on dispose de retours </span><span
+            lang="fr-FR">sur la réponse</span><span lang="fr-FR"> </span><span
+            lang="fr-FR">à</span><span lang="fr-FR"> l’administration de
+            traitements, par exemple. </span></font></font>
+      <p style="margin-bottom: 0cm; font-weight: normal; line-height:
+        100%" align="justify"> <font face="Arial, sans-serif"><font
+            style="font-size: 11pt" size="2"><font color="#000000"><span
+                lang="fr-FR">Cependant, pour recommander un traitement </span></font><font
+              color="#000000"><span lang="fr-FR">destiné </span></font><font
+              color="#000000"><span lang="fr-FR">à un patient, il faut
+                être capable d’identifier </span></font><font
+              color="#000000"><span lang="fr-FR">l’</span></font><font
+              color="#000000"><span lang="fr-FR">appartenance </span></font><font
+              color="#000000"><span lang="fr-FR">de ce dernier </span></font><font
+              color="#000000"><span lang="fr-FR">à un groupe </span></font><font
+              color="#000000"><span lang="fr-FR">de patients</span></font><font
+              color="#000000"><span lang="fr-FR">. </span></font><font
+              color="#000000"><span lang="fr-FR">Mais l</span></font><font
+              color="#000000"><span lang="fr-FR">a fédération de
+                cohortes dépasse le cadre d’un unique établissement
+                hospitalier. </span></font><font color="#000000"><span
+                lang="fr-FR">Les sujets décrits dans </span></font><font
+              color="#000000"><span lang="fr-FR">une</span></font><font
+              color="#000000"><span lang="fr-FR"> biobanque le sont donc
+                de façon hétérogène, tant du point de vue des mesures
+                compilées (données brutes, texte, images, séries
+                temporelles, </span></font><font color="#000000"><span
+                lang="fr-FR">données environnementales</span></font><font
+              color="#000000"><span lang="fr-FR">, que du niveau
+                d’abstraction de l’information stockée (</span></font><font
+              color="#000000"><span lang="fr-FR">référence à des régions
+                du génome</span></font><font color="#000000"><span
+                lang="fr-FR">, marqueurs biologiques, échelles de temps
+                différentes). De plus, des valeurs peuvent manquer pour
+                certaines mesures. </span></font></font></font> </p>
+      <p style="margin-bottom: 0cm; font-weight: normal" align="justify"><font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR">Le
+                travail demandé dans le c</span><span lang="fr-FR">adre</span><span
+                lang="fr-FR"> de la thèse </span><span lang="fr-FR">concerne
+                la prédiction de diagnostic ou de risque, ou encore la
+                définition d’un traitement thérapeutique, basée sur la
+                similarité </span><span lang="fr-FR">d’un patient
+                «requête» </span><span lang="fr-FR">avec d’autres
+                patients. Au préalable, </span><span lang="fr-FR">il
+                sera nécessaire d’examiner</span><span lang="fr-FR">
+                comment modéliser </span><span lang="fr-FR"><i>dynamiquement</i></span><span
+                lang="fr-FR"> le profil d</span><span lang="fr-FR">u</span><span
+                lang="fr-FR"> patient </span><span lang="fr-FR">requête</span><span
+                lang="fr-FR">, en fonction des observations disponibles
+                pour lui, et des observations disponibles pour les
+                autres patients - dont il s’agit également de modéliser
+                rapidement et efficacement les profils -.</span><span
+                lang="fr-FR"> </span><span lang="fr-FR">Une étape
+                suivante consistera à proposer des métriques, </span><span
+                lang="fr-FR">permettant la comparaison de tels profils.</span></font></font></font>
+      </p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 100%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR">D</span><span
+                lang="fr-FR">eux hypothèses de travail </span><span
+                lang="fr-FR">seront considérées</span><span lang="fr-FR">.
+                Selon la plus simple, un groupe de patients «jugé </span><span
+                lang="fr-FR"><i>a priori</i></span><span lang="fr-FR">»
+                intéressant est considéré. </span><span lang="fr-FR">Le
+                problème s’énonce alors comme un problème de
+                comparaison, mais reste complexe (données hétérogènes,
+                manquantes, incluant des données temporelles à des
+                échelles différentes, sur des périodes différentes ...).
+                La deuxième hypothèse ne </span><span lang="fr-FR">s’appuie
+                sur</span><span lang="fr-FR"> aucun </span><span
+                lang="fr-FR"><i>a priori</i></span><span lang="fr-FR">
+                et s’apparente à un problème de clustering </span><span
+                lang="fr-FR">où il s’agit d’identifier un groupe de
+                patients «suffisamment </span><span lang="fr-FR">similaires</span><span
+                lang="fr-FR">»</span><span lang="fr-FR"> </span><span
+                lang="fr-FR">au</span><span lang="fr-FR"> patient
+                requête. </span></font></font></font> </p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 100%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR">Un
+                objectif final sera de </span><span lang="fr-FR">quantifier
+                la confiance en un diagnostic, ou en une </span><span
+                lang="fr-FR">recommandation</span><span lang="fr-FR"> de
+                traitement, en fonction de la classe de patients ciblée
+                (première hypothèse) ou du groupe de patients identifiés
+                proches du patient requête (deuxième hypothèse).
+                D’ailleurs, à l’inverse, </span><span lang="fr-FR">il
+                sera étudié</span><span lang="fr-FR">, dans cette
+                dernière hypothèse, s’il est possible de fixer un seuil
+                de confiance en un objectif (poser un diagnostic, </span><span
+                lang="fr-FR">recommander</span><span lang="fr-FR"> un
+                traitement), pour guider l’identification du groupe. </span><span
+                lang="fr-FR">Pour cette dernière partie sont notamment
+                envisagées des expérimentations incluant des simulations
+                à grande échelle. </span></font></font></font> </p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 138%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR"><b>Mots-clés
+                </b></span><span lang="fr-FR">: </span><span
+                lang="fr-FR">Modélisation de connaissances, </span><span
+                lang="fr-FR">modélisation de traces, comparaison de
+                profils, </span><span lang="fr-FR">recommandation, </span><span
+                lang="fr-FR">apprentissage automatique, </span><span
+                lang="fr-FR">apprentissage statistique, </span><span
+                lang="fr-FR">métrique, incertitude, modèle probabiliste,
+                données massives, </span><span lang="fr-FR">simulations</span></font></font></font></p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 100%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR"><b>L</b></span><span
+                lang="fr-FR"><b>ocalisation </b></span><span
+                lang="fr-FR">: Université de Nantes, LS2N (Laboratoire
+                des Sciences du Numérique de Nantes) / UMR CNRS 6004,<br>
+              </span><span lang="fr-FR">Equipe DUKe (Data User
+                Knowledge)</span></font></font></font></p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 138%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR"><b>Direction
+                  de thèse</b></span><span lang="fr-FR"> : Christine
+                Sinoquet (<a class="moz-txt-link-abbreviated"
+                  href="mailto:christine.sinoquet@univ-nantes.fr"
+                  moz-do-not-send="true">christine.sinoquet@univ-nantes.fr</a>)</span></font></font></font></p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 138%" align="justify"> <font
+          color="#000000"><font face="Arial, sans-serif"><font
+              style="font-size: 11pt" size="2"><span lang="fr-FR"><b>Financement</b></span><span
+                lang="fr-FR"> : 36 mois sur bourse ministérielle</span></font></font></font></p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; line-height:
+        138%" align="justify"> <font face="Arial, sans-serif"><font
+            style="font-size: 11pt" size="2"><font color="#000000"><span
+                lang="fr-FR"><b>Profil du candidat</b></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"> : </span></span></font><span
+              lang="fr-FR">candidat dans le 1er tiers du classement sur
+              les résultats théoriques du 1er semestre du M</span><span
+              lang="fr-FR">aster </span><span lang="fr-FR">2</span></font></font></p>
+      <p style="margin-top: 0.35cm; margin-bottom: 0cm; font-weight:
+        normal; line-height: 138%" align="left"> <font color="#000000"><font
+            face="Arial, sans-serif"><font style="font-size: 11pt"
+              size="2"><span lang="fr-FR">De</span><span lang="fr-FR">s</span><span
+                lang="fr-FR"> </span><span lang="fr-FR">précisions sur
+                le sujet de thèse sont fournies à</span><span
+                lang="fr-FR"> </span><span lang="fr-FR"><a
+                  class="moz-txt-link-freetext"
+href="https://uncloud.univ-nantes.fr/index.php/apps/files/?dir=/thesis_subject_april_2018&amp;fileid=61072601"
+                  moz-do-not-send="true">https://uncloud.univ-nantes.fr/index.php/apps/files/?dir=/thesis_subject_april_2018&amp;fileid=61072601</a></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><b>Candidature</b></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">: Les candidats intéressés
+                  sont invités à envoyer </span></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">le plus rapidement
+                  possible </span></span></font><font color="#000000"><span
+                lang="fr-FR"><span style="font-weight: normal">une
+                  lettre de motivation, un CV, un relevé de notes avec
+                  classement du Master 2, </span></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">les coordonnées
+                  (affiliation, adresse électronique et coordonnées
+                  téléphoniques) de deux personnes référentes, </span></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b>avant le </b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b>mardi </b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b>0</b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b>8</b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b> </b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b>mai</b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><i><b> 2018, </b></i></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-style: normal"><span style="font-weight:
+                    normal">à</span></span></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"> </span></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"><a
+                    class="moz-txt-link-abbreviated"
+                    href="mailto:christine.sinoquet@univ-nantes.fr"
+                    moz-do-not-send="true">christine.sinoquet@univ-nantes.fr</a></span></span></font><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">.</span></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">-------------------</span></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"><font face="Arial,
+                    sans-serif">Christine Sinoquet, MC HdR 2014 <br>
+                    <a moz-do-not-send="true"
+                      href="http://christinesinoquet.wixsite.com/christinesinoquet">http://christinesinoquet.wixsite.com/christinesinoquet</a><br>
+                  </font></span></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal">Faculté des Sciences<font
+                    face="Arial, sans-serif"><br>
+                    Université de <font face="Arial, sans-serif">Nantes<br>
+                      <font face="Arial, sans-serif">LS2N / UMR CNRS
+                        6004 </font><br>
+                    </font></font></span></span></font></font></font><font
+          face="Arial, sans-serif"><font style="font-size: 11pt"
+            size="2"><font color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"><font face="Arial,
+                    sans-serif"><font face="Arial, sans-serif"><font
+                        face="Arial, sans-serif"><cite class="iUh30"><a
+                            moz-do-not-send="true"
+                            href="https://www.ls2n.fr/">https://www.ls2n.fr/</a></cite></font></font></font></span></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"><br>
+                </span></span></font></font></font></p>
+      <p style="margin-bottom: 0cm" align="left"><font face="Arial,
+          sans-serif"><font style="font-size: 11pt" size="2"><font
+              color="#000000"><span lang="fr-FR"><span
+                  style="font-weight: normal"><br>
+                </span></span></font></font></font> </p>
+      <pre class="western"><font face="Arial,sans-serif"><font size="+3" color="#000000"><font style="font-size: 7pt"><span lang="fr-FR"><span style="font-weight: normal"></span></span></font></font><font size="+3" color="#000000"><font style="font-size: 7pt"><span lang="fr-FR"><span style="font-weight: normal"></span></span></font></font></font>
+
+</pre>
+    </div>
+  </body>
+</html>
+
+--------------26DF0FDCB818C5A347519BF3--

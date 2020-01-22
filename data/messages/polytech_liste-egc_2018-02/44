@@ -1,0 +1,433 @@
+Return-Path: <prvs=581e4372d=arnaud.giacometti@univ-tours.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id BFC50229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 19 Feb 2018 21:01:58 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id BD153660944
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 19 Feb 2018 21:01:58 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id B5AB04821B05
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Feb 2018 21:01:58 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -2.329
+X-Spam-Level:
+X-Spam-Status: No, score=-2.329 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, J_CHICKENPOX_52=0.6,
+	MANGLED_FREE=2.3, MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SPF_PASS=-0.001, UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 9.7601 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new);
+	domainkeys=pass (1024-bit key)
+	header.from=arnaud.giacometti@univ-tours.fr header.d=univ-tours.fr;
+	dkim=pass (1024-bit key) header.d=univ-tours.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id IN3DlfiGTPA5 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 19 Feb 2018 21:01:56 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from angelia.univ-tours.fr (angelia.univ-tours.fr [193.52.209.20])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id D08FF47EC0A5
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Feb 2018 21:01:56 +0100 (CET)
+DomainKey-Signature: s=main; d=univ-tours.fr; c=nofws; q=dns;
+  h=IronPort-PHdr:X-IronPort-Anti-Spam-Filtered:
+   X-IronPort-Anti-Spam-Result:X-IPAS-Result:Received:From:
+   Content-Type:Mime-Version:Subject:Message-Id:Date:To:
+   X-Mailer;
+  b=MtumjvXVaJHjfVD9XX/WddsjlH9FVhoiu+atj6rQlrR1s8JcesbIlbRz
+   UpBuy6l3OF6lyw/jftSp1KKQCQlkG5K5UjaHO+GA248HsZp/M0yIIgShx
+   Izdwm9gYslLrNOFOLzBnNpYZDxs7xq6DKt3L/UMo8N5cGMDVNgzJqbUkp
+   U=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=univ-tours.fr; i=@univ-tours.fr; q=dns/txt; s=main;
+  t=1519070516; x=1550606516;
+  h=from:mime-version:subject:message-id:date:to;
+  bh=F7gjHRN+gQRXu7m+MAE2sZAWNYowDJrxtspLzucz9u0=;
+  b=dA/zrVZ5v70kzYiMogsIKVfIah/tz3pUwSKv7Rvawg3FXkNE9235YKjp
+   2k9tbslT4yFpXyq+mNvu1AeKluCIUJ7gvdK7mtz4qTm5fCxu3NB7GHCfy
+   ajZiu2Kigog9AUZd1f1upkbyOteq3FiQgrxEg56ZmWvru6WqxfXY1ql5X
+   g=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AN8mZERYj5yQ1TU3MBDAySyj/LSx+4OfEezUN459i?=
+ =?us-ascii?q?sYplN5qZr8q4bnLW6fgltlLVR4KTs6sC17KN9fy9Ej1eqb+681k6OKRWUBEEjc?=
+ =?us-ascii?q?hE1ycBO+WiTXPBEfjxciYhF95DXlI2t1uyMExSBdqsLwaK+i764jEdAAjwOhRo?=
+ =?us-ascii?q?LerpBIHSk9631+ev8JHPfglEnjWwba98IRmsogjctsYajI9jJ60s1hbHv3xEdv?=
+ =?us-ascii?q?hMy2h1P1yThRH85smx/J5n7Stdvu8q+tBDX6vnYak2VKRUAzs6PW874s3rrgTD?=
+ =?us-ascii?q?QhCU5nQASGUWkwFHDBbD4RrnQ5r+qCr6tu562CmHIc37SK0/VDq+46t3ThLjlS?=
+ =?us-ascii?q?EKPCM7/m7KkMx9lKJVrw6uqBJiwIDabp+bOv1lc6zHYd8aQHBMXsZNWyFDBI63?=
+ =?us-ascii?q?cosBD/AGPeZdt4Twu0EOrR2kCgmxGezk1z5Ghn7s0qIm1OQhFB/J3BA8H9IPrX?=
+ =?us-ascii?q?/Zq8/6NL0UUe+v0anH0C/Pb/xX2Tjn9IfIdRUhru+QXbJscMrc0lQvFwXEjlWO?=
+ =?us-ascii?q?sIDlIzSV1vkXs2iA9eZgW/ivhnchpgpsrDavwcIshZPIhoIT0l3E6CN5wIcrJd?=
+ =?us-ascii?q?GhVE57ZsOkEIFLty2AOYt2WMUvSHxrtiYi0rALu522cDIUxJkpyBPTceKLfoeJ?=
+ =?us-ascii?q?7x75SeqcIzh1iXR4c7ylnRmy61KvyujkW8mx11ZFszRKn8HXtnAIyxzT8s+HSu?=
+ =?us-ascii?q?Zh/ku52TaAyQTT6uZcLE8wiKbWL4AtzqQtmpcSsknPBDP6lF/ogKKScEoo4umo?=
+ =?us-ascii?q?6+L5bbX6vpKRNYx5hhvgPqkglcGzG/o0PwcPUmSB5Oix1rLu8VX8QLpQj/02lq?=
+ =?us-ascii?q?fZsIrdJcQevqO2GRVV0oA55BaiEjiqytsYnXgdI11ZfxKHipbmO03SIPD5Fvq/?=
+ =?us-ascii?q?nlKskDZ1x/zfIr3hBYjNLmLYkLv7c7Z98VZQyBAvwtBH+5JUFrYBLer3Wk/wr9?=
+ =?us-ascii?q?zYEgE2PxWqzOboFNpwzZseWWWLAq6ZLKPdr0OH5uI1L+mRYo8VuSj9J+Ej5/H0?=
+ =?us-ascii?q?i385hUESfbKz0ZsZcnDrVshhdkGYembhx9oOGk8SuQ4vUOHhiBufVz9NInC7Wb?=
+ =?us-ascii?q?4x/Xc1EtGIF4DGE6m3hrWc0G+UH5RdYWVLFkyNWSPhbYONRvtKZyObKchknyAY?=
+ =?us-ascii?q?VJC8TY4/kA2pqRXhjbR9eLmHshYEvI7ugYAmr9bYkgs/oGR5?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GnAQDJLIta/6726k4NTxYJgmyBW4EYg?=
+ =?us-ascii?q?yVCm0KYXwofhRkBAgKDMxQBAgEBAQEBAQIBAoNIIhFLWQEBAQEBASMCE2oXb0E?=
+ =?us-ascii?q?DAkgqijKYK50GboInhQGDeIIeAQEBJIULg3+BaCmICAEBKiqCYTGCNAWLVZhgC?=
+ =?us-ascii?q?YEZgTSLfpwGlFGDToE8NoF0dHUBghgJNYQ5dwGLJw0fgh8BAQE?=
+X-IPAS-Result: =?us-ascii?q?A2GnAQDJLIta/6726k4NTxYJgmyBW4EYgyVCm0KYXwofhRk?=
+ =?us-ascii?q?BAgKDMxQBAgEBAQEBAQIBAoNIIhFLWQEBAQEBASMCE2oXb0EDAkgqijKYK50Gb?=
+ =?us-ascii?q?oInhQGDeIIeAQEBJIULg3+BaCmICAEBKiqCYTGCNAWLVZhgCYEZgTSLfpwGlFG?=
+ =?us-ascii?q?DToE8NoF0dHUBghgJNYQ5dwGLJw0fgh8BAQE?=
+Received: from eu141-3-78-234-246-174.fbx.proxad.net (HELO [192.168.0.29]) ([78.234.246.174])
+  by angelia2.univ-tours.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Feb 2018 21:01:55 +0100
+From: Arnaud Giacometti <arnaud.giacometti@univ-tours.fr>
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_375E4E89-8CD8-47F5-89AF-8F1544C3E3D4"
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Message-Id: <8BFFD8B6-EDF0-46E0-8C29-043BDB861569@univ-tours.fr>
+Date: Mon, 19 Feb 2018 21:01:51 +0100
+To: liste-egc@polytech.univ-nantes.fr
+X-Mailer: Apple Mail (2.3273)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Poste MCF section 27/61 - =?UTF-8?Q?Universit=C3=A9?=
+ de Tours / IUT de Blois
+
+
+--Apple-Mail=_375E4E89-8CD8-47F5-89AF-8F1544C3E3D4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Bonjour,
+
+Un poste de Ma=C3=AEtre de conf=C3=A9rences en informatique (section =
+27/61, num=C3=A9ro local MCF 8023) est ouvert au concours
+=C3=A0 l=E2=80=99Universit=C3=A9 de Tours.
+
+
+Sur le plan de l=E2=80=99enseignement, le candidat recrut=C3=A9 devra =
+s'impliquer dans les enseignements d'informatique au niveau
+du D.U.T. R=C3=A9seaux et T=C3=A9l=C3=A9communications et de la L.P. =
+Qualit=C3=A9 =E2=80=93 S=C3=A9curit=C3=A9 des Syst=C3=A8mes =
+d=E2=80=99Information
+de l=E2=80=99IUT de Blois. Pour toutes informations compl=C3=A9mentaires, =
+vous pouvez contacter Arnaud Soulet, ma=C3=AEtre
+de conf=C3=A9rences =C3=A0 l=E2=80=99IUT de Blois =
+(arnaud.soulet@univ-tours.fr <mailto:arnaud.soulet@univ-tours.fr>).
+
+Sur le plan de la recherche, le poste est ouvert, et le candidat pourra =
+int=C3=A9grer une des trois grandes =C3=A9quipes=20
+du Laboratoire d'Informatique Fondamentale et Appliqu=C3=A9e de Tours =
+(LIFAT, EA 6300), =C3=A0 savoir :
+- l=E2=80=99=C3=A9quipe Bases de donn=C3=A9es et Traitement des langues =
+naturelles =C2=BB (BDTLN), ou
+- l=E2=80=99=C3=A9quipe Reconnaissance des Formes et Analyse d'Images =C2=BB=
+ (RFAI),ou
+- l'=C3=A9quipe Recherche Op=C3=A9rationnelle : Ordonnancement Transport =
+=C2=BB (ROOT).
+
+Plus sp=C3=A9cifiquement, une int=C3=A9gration dans l=E2=80=99=C3=A9quipe =
+BDTLN du LIFAT devra s=E2=80=99effectuer dans un de ses
+trois axes de recherche :
+
+- Exploration et analyse interactive de donn=C3=A9es : afin =
+d=E2=80=99am=C3=A9liorer la qualit=C3=A9 des analyses exploratoires, le =
+d=C3=A9fi g=C3=A9n=C3=A9ral
+que cet axe cherche =C3=A0 relever est de d=C3=A9velopper des outils =
+d=E2=80=99analyse centr=C3=A9s utilisateurs, donnant un statut =
+privil=C3=A9gi=C3=A9
+=C3=A0 leurs attentes et pr=C3=A9f=C3=A9rences. Dans ce cadre, cet axe =
+s=E2=80=99int=C3=A9resse aussi bien =C3=A0 la proposition de langages
+et algorithmes pour l=E2=80=99analyse et la fouille de donn=C3=A9es, =
+qu=E2=80=99=C3=A0 la mod=C3=A9lisation et analyse d=E2=80=99usage pour =
+faciliter
+l=E2=80=99analyse exploratoire de donn=C3=A9es (contact : =
+arnaud.giacometti@univ-tours.fr =
+<mailto:arnaud.giacometti@univ-tours.fr>).
+
+- Intelligence des donn=C3=A9es et services : partant de probl=C3=A9matiqu=
+es sur la gestion des donn=C3=A9es XML (correction
+ou =C3=A9volution de sch=C3=A9mas et validation de contraintes =
+d=E2=80=99int=C3=A9grit=C3=A9), cet axe s=E2=80=99int=C3=A9resse =
+d=C3=A9sormais aux donn=C3=A9es
+et aux services d=E2=80=99un point de vue s=C3=A9mantique, pour extraire =
+de mani=C3=A8re intelligente des donn=C3=A9es pertinentes
+depuis plusieurs sources h=C3=A9t=C3=A9rog=C3=A8nes et composer de =
+nouveaux services =C3=A0 partir de descriptions s=C3=A9mantiques
+des services web, ou concevoir des syst=C3=A8mes intelligents pour =
+manipuler des donn=C3=A9es et des services complexes
+(contact : thomas.devogele@univ-tours.fr =
+<mailto:thomas.devogele@univ-tours.fr>).
+
+- Traitement automatique des langues : les recherches de cet l=E2=80=99axe=
+ se sont focalis=C3=A9es vers des traitements linguistiques
+utiles =C3=A0 la recherche d=E2=80=99information (RI) dans les documents =
+num=C3=A9riques dont la modalit=C3=A9 peut aussi bien =C3=AAtre =
+l=E2=80=99=C3=A9crit
+que l=E2=80=99oral (parole transcrite). Nos activit=C3=A9s sont =
+centr=C3=A9es autour des traitements et ressources mobilis=C3=A9es par
+le passage du MOT (langue), telle qu=E2=80=99il apparait dans le =
+document, au CONCEPT, c=E2=80=99est-=C3=A0-dire au niveau d=E2=80=99interf=
+ace
+avec le web s=C3=A9mantique (contact : jean-yves.antoine@univ-tours.fr =
+<mailto:jean-yves.antoine@univ-tours.fr>).
+
+Pour toute demande d=E2=80=99information compl=C3=A9mentaire, vous =
+pouvez =C3=A9galement contacter Arnaud Giacometti
+(arnaud.giacometti@univ-tours.fr =
+<mailto:arnaud.giacometti@univ-tours.fr>) et Laurent Etienne =
+(laurent.etienne@univ-tours.fr <mailto:laurent.etienne@univ-tours.fr>) =
+co-responsables
+de l=E2=80=99=C3=A9quipe BDTLN.
+
+Attention : deux =C3=A9tapes sont indispensables pour la prise en compte =
+des candidatures :
+- Une inscription dans Galaxie =C3=A0 partir du vendredi 9 f=C3=A9vrier =
+2018 =C3=A0 10h00, jusqu'au lundi 12 mars 2018 =C3=A0 16:00.
+- Un d=C3=A9p=C3=B4t de dossier de candidatures dans l=E2=80=99application=
+ d=C3=A9di=C3=A9e Recut-ec du vendredi 9 f=C3=A9vrier 2018 =C3=A0 10h00
+au mercredi 14 mars 2018 =C3=A0 16h00 (pour pouvoir acc=C3=A9der =C3=A0 =
+cette application, tout candidat inscrit dans Galaxie
+recevra un mail avec ses identifiants et le lien pour acc=C3=A9der =C3=A0 =
+l'application d=C3=A9di=C3=A9e Recrut-ec.
+Cordialement,
+
+Arnaud Giacometti
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Pr. Arnaud GIACOMETTI / Professor of Computer Sciences
+University of Tours - LI Laboratory (http://www.li.univ-tours.fr/ =
+<http://www.li.univ-tours.fr/>)
+(+33) 2 54 55 21 14 - http://www.info.univ-tours.fr/~giaco/ =
+<http://www.info.univ-tours.fr/~giaco/>
+Adr : Campus Universitaire de Blois, 3 pl. J. Jaur=C3=A8s, F-41000 Blois
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+--Apple-Mail=_375E4E89-8CD8-47F5-89AF-8F1544C3E3D4
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div dir=3D"auto" class=3D"" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><p =
+class=3D"" style=3D"background-color: rgb(255, 255, =
+255);">Bonjour,</p><p class=3D"" style=3D"background-color: rgb(255, =
+255, 255);">Un poste de Ma=C3=AEtre de conf=C3=A9rences en informatique =
+(section 27/61, num=C3=A9ro local MCF 8023) est ouvert au concours<br =
+class=3D"">=C3=A0 l=E2=80=99Universit=C3=A9 de Tours.</p><div =
+class=3D""><br class=3D""></div><div class=3D"">Sur le plan de =
+l=E2=80=99enseignement, le candidat recrut=C3=A9 devra s'impliquer dans =
+les enseignements d'informatique au niveau</div><div class=3D"">du =
+D.U.T. R=C3=A9seaux et T=C3=A9l=C3=A9communications et de la L.P. =
+Qualit=C3=A9 =E2=80=93&nbsp;S=C3=A9curit=C3=A9 des Syst=C3=A8mes =
+d=E2=80=99Information</div><div class=3D"">de l=E2=80=99IUT de Blois. =
+Pour toutes informations compl=C3=A9mentaires, vous pouvez contacter =
+Arnaud Soulet, ma=C3=AEtre</div><div class=3D"">de conf=C3=A9rences =C3=A0=
+ l=E2=80=99IUT de Blois (<a href=3D"mailto:arnaud.soulet@univ-tours.fr" =
+class=3D"">arnaud.soulet@univ-tours.fr</a>).</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Sur le plan de la recherche, le poste =
+est ouvert, et le candidat pourra int=C3=A9grer une des trois grandes =
+=C3=A9quipes&nbsp;</div><div class=3D"">du Laboratoire d'Informatique =
+Fondamentale et Appliqu=C3=A9e de Tours (LIFAT, EA 6300), =C3=A0 savoir =
+:</div><div class=3D"">- l=E2=80=99=C3=A9quipe Bases de donn=C3=A9es et =
+Traitement des langues naturelles =C2=BB (BDTLN), ou</div><div =
+class=3D"">- l=E2=80=99=C3=A9quipe Reconnaissance des Formes et Analyse =
+d'Images =C2=BB (RFAI),ou</div><div class=3D"">- l'=C3=A9quipe Recherche =
+Op=C3=A9rationnelle : Ordonnancement Transport =C2=BB (ROOT).</div><div =
+class=3D""><br class=3D""></div><div class=3D"">Plus sp=C3=A9cifiquement, =
+une int=C3=A9gration dans l=E2=80=99=C3=A9quipe BDTLN du LIFAT devra =
+s=E2=80=99effectuer dans un de ses</div><div class=3D"">trois axes de =
+recherche :</div><div class=3D""><br class=3D""></div><div =
+class=3D"">-&nbsp;<b class=3D"">Exploration et analyse interactive de =
+donn=C3=A9es</b>&nbsp;: afin d=E2=80=99am=C3=A9liorer la qualit=C3=A9 =
+des analyses&nbsp;exploratoires, le d=C3=A9fi g=C3=A9n=C3=A9ral</div><div =
+class=3D"">que cet axe cherche =C3=A0 relever est =
+de&nbsp;d=C3=A9velopper&nbsp;des outils d=E2=80=99analyse centr=C3=A9s =
+utilisateurs,&nbsp;donnant un statut&nbsp;privil=C3=A9gi=C3=A9</div><div =
+class=3D"">=C3=A0 leurs attentes et pr=C3=A9f=C3=A9rences. Dans ce =
+cadre, cet axe s=E2=80=99int=C3=A9resse aussi bien =C3=A0 la proposition =
+de&nbsp;langages</div><div class=3D"">et algorithmes pour l=E2=80=99analys=
+e et la fouille de donn=C3=A9es, qu=E2=80=99=C3=A0 la mod=C3=A9lisation =
+et&nbsp;analyse d=E2=80=99usage pour faciliter</div><div =
+class=3D"">l=E2=80=99analyse exploratoire de donn=C3=A9es (contact =
+:&nbsp;<a href=3D"mailto:arnaud.giacometti@univ-tours.fr" =
+class=3D"">arnaud.giacometti@univ-tours.fr</a>).</div><div class=3D""><br =
+class=3D""></div><div class=3D"">-&nbsp;<b class=3D"">Intelligence des =
+donn=C3=A9es et services&nbsp;</b>: partant de probl=C3=A9matiques sur =
+la gestion des&nbsp;donn=C3=A9es XML (correction</div><div class=3D"">ou =
+=C3=A9volution de sch=C3=A9mas et validation de =
+contraintes&nbsp;d=E2=80=99int=C3=A9grit=C3=A9), cet axe s=E2=80=99int=C3=A9=
+resse d=C3=A9sormais aux donn=C3=A9es</div><div class=3D"">et aux =
+services d=E2=80=99un&nbsp;point de vue s=C3=A9mantique, pour extraire =
+de mani=C3=A8re intelligente des donn=C3=A9es&nbsp;pertinentes</div><div =
+class=3D"">depuis plusieurs sources h=C3=A9t=C3=A9rog=C3=A8nes et =
+composer de nouveaux&nbsp;services =C3=A0 partir de descriptions =
+s=C3=A9mantiques</div><div class=3D"">des services web, ou =
+concevoir&nbsp;des syst=C3=A8mes intelligents pour manipuler des =
+donn=C3=A9es et des services complexes</div><div class=3D"">(contact =
+:&nbsp;<a href=3D"mailto:thomas.devogele@univ-tours.fr" =
+class=3D"">thomas.devogele@univ-tours.fr</a>).</div><div class=3D""><br =
+class=3D""></div><div class=3D"">-&nbsp;<b class=3D"">Traitement =
+automatique des langues</b>&nbsp;: les recherches de cet l=E2=80=99axe =
+se sont focalis=C3=A9es vers des&nbsp;traitements =
+linguistiques</div><div class=3D"">utiles =C3=A0 la recherche =
+d=E2=80=99information (RI) dans les&nbsp;documents num=C3=A9riques dont =
+la modalit=C3=A9 peut aussi&nbsp;bien =C3=AAtre l=E2=80=99=C3=A9crit</div>=
+<div class=3D"">que l=E2=80=99oral&nbsp;(parole transcrite). Nos =
+activit=C3=A9s sont centr=C3=A9es autour des traitements =
+et&nbsp;ressources mobilis=C3=A9es par</div><div class=3D"">le passage =
+du MOT (langue), telle qu=E2=80=99il apparait&nbsp;dans&nbsp;le =
+document, au CONCEPT, c=E2=80=99est-=C3=A0-dire au niveau =
+d=E2=80=99interface</div><div class=3D"">avec le web&nbsp;s=C3=A9mantique =
+(contact :&nbsp;<a href=3D"mailto:jean-yves.antoine@univ-tours.fr" =
+class=3D"">jean-yves.antoine@univ-tours.fr</a>).</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Pour toute demande d=E2=80=99information =
+compl=C3=A9mentaire, vous pouvez =C3=A9galement contacter Arnaud =
+Giacometti</div><div class=3D"">(<a =
+href=3D"mailto:arnaud.giacometti@univ-tours.fr" =
+class=3D"">arnaud.giacometti@univ-tours.fr</a>) et Laurent Etienne (<a =
+href=3D"mailto:laurent.etienne@univ-tours.fr" =
+class=3D"">laurent.etienne@univ-tours.fr</a>) co-responsables</div><div =
+class=3D"">de l=E2=80=99=C3=A9quipe BDTLN.</div><div class=3D""><br =
+class=3D""></div><div class=3D""><b class=3D"">Attention</b>&nbsp;: deux =
+=C3=A9tapes sont indispensables pour la prise en compte des candidatures =
+:</div><div dir=3D"auto" class=3D"" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">- Une =
+inscription dans&nbsp;<b class=3D"">Galaxie</b>&nbsp;=C3=A0 partir du =
+vendredi 9 f=C3=A9vrier 2018 =C3=A0 10h00, jusqu'au&nbsp;<b =
+class=3D"">lundi 12 mars 2018 =C3=A0 16:00</b>.</div></div><div =
+dir=3D"auto" class=3D"" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">- Un =
+d=C3=A9p=C3=B4t de dossier de candidatures&nbsp;dans l=E2=80=99application=
+ d=C3=A9di=C3=A9e&nbsp;<b class=3D"">Recut-ec</b>&nbsp;du vendredi 9 =
+f=C3=A9vrier 2018 =C3=A0 10h00</div><div dir=3D"auto" class=3D"" =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space;">au&nbsp;<b class=3D"">mercredi =
+14 mars 2018 =C3=A0 16h00</b>&nbsp;(pour pouvoir acc=C3=A9der =C3=A0 =
+cette application, tout candidat inscrit dans Galaxie</div><div =
+dir=3D"auto" class=3D"" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;">recevra un mail avec ses identifiants et le lien =
+pour acc=C3=A9der =C3=A0 l'application d=C3=A9di=C3=A9e Recrut-ec.<br =
+class=3D""><div class=3D""><div class=3D""><p class=3D"" =
+style=3D"background-color: rgb(255, 255, 255);">Cordialement,</p><div =
+class=3D"">Arnaud Giacometti</div><div class=3D""><br =
+class=3D""></div></div></div></div><div class=3D"">
+<span style=3D"color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
+14px; font-style: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; display: inline !important; float: =
+none;" =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</spa=
+n><br style=3D"color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
+14px; font-style: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: =
+inline !important; float: none;" class=3D"">Pr. Arnaud GIACOMETTI / =
+Professor of Computer Sciences</span><br style=3D"color: rgb(0, 0, 0); =
+font-family: Helvetica; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
+class=3D""><span style=3D"color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; display: inline !important; float: =
+none;" class=3D"">University of Tours - LI Laboratory (</span><a =
+href=3D"http://www.li.univ-tours.fr/" style=3D"font-family: Helvetica; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;" =
+class=3D"">http://www.li.univ-tours.fr/</a><span style=3D"color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: =
+inline !important; float: none;" class=3D"">)</span><br style=3D"color: =
+rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
+class=3D""><span style=3D"color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; display: inline !important; float: =
+none;" class=3D"">(+33) 2 54 55 21 14 -</span><span style=3D"color: =
+rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+display: inline !important; float: none;" class=3D"">&nbsp;</span><a =
+href=3D"http://www.info.univ-tours.fr/~giaco/" style=3D"font-family: =
+Helvetica; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;" =
+class=3D"">http://www.info.univ-tours.fr/~giaco/</a><br style=3D"color: =
+rgb(0, 0, 0); font-family: Helvetica; font-size: 14px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px;" =
+class=3D""><span style=3D"color: rgb(0, 0, 0); font-family: Helvetica; =
+font-size: 14px; font-style: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; display: inline !important; float: =
+none;" class=3D"">Adr : Campus Universitaire de Blois, 3 pl. J. Jaur=C3=A8=
+s, F-41000 Blois</span><br style=3D"color: rgb(0, 0, 0); font-family: =
+Helvetica; font-size: 14px; font-style: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px;" class=3D""><span style=3D"color: rgb(0, =
+0, 0); font-family: Helvetica; font-size: 14px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; display: =
+inline !important; float: none;" =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</spa=
+n>
+</div>
+
+<br class=3D""></body></html>=
+
+--Apple-Mail=_375E4E89-8CD8-47F5-89AF-8F1544C3E3D4--

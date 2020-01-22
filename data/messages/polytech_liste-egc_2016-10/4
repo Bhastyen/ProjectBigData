@@ -1,0 +1,413 @@
+Return-Path: <m.lamolle@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 04CAD1903BAB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  5 Oct 2016 09:26:54 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id E598C26A4DB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  5 Oct 2016 09:26:53 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id DD3A0B4F44C
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  5 Oct 2016 09:26:53 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.511
+X-Spam-Level:
+X-Spam-Status: No, score=0.511 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	J_BACKHAIR_11=1, MANGLED_MEDS=2.3, SPF_PASS=-0.001,
+	UN_COMMAS_IN_SUBJ=2, UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 7.4677 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id awksOKAbd6ZY for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  5 Oct 2016 09:26:52 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qk0-x232.google.com (mail-qk0-x232.google.com [IPv6:2607:f8b0:400d:c09::232])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id B74A9624248
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  5 Oct 2016 09:26:51 +0200 (CEST)
+Received: by mail-qk0-x232.google.com with SMTP id n189so138575385qke.0
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 05 Oct 2016 00:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=66TwcFcOJpZkwOrC8OyDnNcMbLkZgFvqijPb+KNvG9Q=;
+        b=CrcpT/aa3P0T5ofFv9CdBl7GWadHz0rx+rEJSS3cH26SEaV8RvBQ/lmgFWemUiPCBt
+         K9JM4IPmxunLaN+/sXYtYVIzNUZ/Z5S0KXF/3U7YySDKLTN6Go1X9zdIHKviniXWSO23
+         sHq9HBgPLSV82tj97cS6lB7jxHEItx6UfEcg6jF1fsUJYy7xwpzoVtY6qDaNrX63KHaK
+         hCMg7W6I1fPS41lzcyFAAidgdZ9ho0MGpO/hBKuwI/mONUR2RqB9LuefoJdSMbwNQYJ3
+         szObArN4SVvWWa0JJM42wXOJhnMYisRCXYB7VapHLWPdrOYDc+bQj3R7gZbmiHyhuRMP
+         9Tjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=66TwcFcOJpZkwOrC8OyDnNcMbLkZgFvqijPb+KNvG9Q=;
+        b=mni6EiCw7qmPHBA7qhAwQBpqmzHj3+LEg/pENw+qVaqA73cTx8tpkKAEkwaKnFCjAB
+         8kt5uYiJY0mOQpSY2V+xcYaYOHIhtS8yY3cZl656HaBeQipfa2965BqnQ2oueaoY/fHY
+         As/HDEC+h1Lak9tLlbhQu/6LMAa9BF9YMNuyoed2HEqYoAZSR28xMipyg+iUc75fD94i
+         9jZCFcJ444H8WNvSu2I8KfbHrfoiTXK9CKyZ6XPn4FtfImJL2AUokU8KDIzvqxE9eTDB
+         Etf9MR+IeHXXQR5d3h886YucFSiYKYSJF900ehqHPs4huLX6mmMPC7014I4xMpxUid6P
+         GmkA==
+X-Gm-Message-State: AA6/9Rn0ap8IaNHW0w+GEQCzG09iE96qj4cB9h0wiRDF8O2+9pcRYkJRijvcs+U3zzcSfoJec+druSEb41iuew==
+X-Received: by 10.55.192.70 with SMTP id o67mr7782540qki.164.1475652410636;
+ Wed, 05 Oct 2016 00:26:50 -0700 (PDT)
+MIME-Version: 1.0
+Reply-To: m.lamolle@iut.univ-paris8.fr
+Sender: m.lamolle@gmail.com
+Received: by 10.200.42.145 with HTTP; Wed, 5 Oct 2016 00:26:50 -0700 (PDT)
+From: Myriam Lamolle <m.lamolle@iut.univ-paris8.fr>
+Date: Wed, 5 Oct 2016 09:26:50 +0200
+X-Google-Sender-Auth: HNmMMPjTvRCilDaKlY4p_lJmd4M
+Message-ID: <CAKvY+7WQLx7udyJgWSZ-=keHbqmoHO69p4quC96B93ZmO8+=hQ@mail.gmail.com>
+To: bull-i3@irit.fr, gazettebd3@imag.fr, info-ic@listes.irisa.fr, 
+	liste-egc@polytech.univ-nantes.fr, liste-proml@lri.fr, echos_digest@ens.fr, 
+	"labo@ai.univ-paris8.fr" <labo@ai.univ-paris8.fr>, mgsi@iut.univ-paris8.fr
+Content-Type: multipart/alternative; boundary=001a1149ae12bf8779053e191974
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Fwd: [these] Avis soutenance : =?UTF-8?Q?Nourh=C3=A8n?=
+ =?UTF-8?Q?e?= Alaya, Managing The Empirical Hardness of The Ontology
+ Reasoning using The Predictive Modelling ,Montreuil, 13 oct. 2016, 14h30
+
+--001a1149ae12bf8779053e191974
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+RECTIFICATIF TITRE de la th=C3=A8se :
+Managing The Empirical Hardness of The Ontology Reasoning using The
+Predictive Modelling
+
+
+---------- Message transf=C3=A9r=C3=A9 ----------
+De : Myriam Lamolle <m.lamolle@iut.univ-paris8.fr>
+Date : 5 octobre 2016 =C3=A0 09:11
+Objet : [these] Avis soutenance : Nourh=C3=A8ne Alaya, ,Montreuil, 13 oct. =
+2016,
+14h30
+=C3=80 : bull-i3@irit.fr, gazettebd3@imag.fr, info-ic@listes.irisa.fr,
+liste-egc@polytech.univ-nantes.fr, liste-proml@lri.fr, echos_digest@ens.fr,
+"labo@ai.univ-paris8.fr" <labo@ai.univ-paris8.fr>, mgsi@iut.univ-paris8.fr
+
+
+Bonjour,
+
+j'ai le plaisir de vous inviter =C3=A0 ma soutenance de th=C3=A8se, qui s'i=
+ntitule :
+"Normalisation orthographique de corpus bruit=C3=A9s".
+
+La soutenance aura lieu le jeudi 13 Octobre, =C3=A0 14h30, dans la salle
+visio-conf=C3=A9rence du B=C3=A2timent E de l'IUT de Montreuilt, situ=C3=A9=
+ 140 rue de la
+Nouvelle France, 93100 Montreuil (venir =C3=A0 l'IUT =3D>
+https://www.iut.univ-paris8.fr/plan-acces)
+
+Vous =C3=AAtes =C3=A9galement convi=C3=A9s au pot qui suivra.
+
+Cordialement,
+
+Nourh=C3=A8ne Alaya
+
+
+Composition du jury :
+
+Pr. Hajer Baazaoui-Zhgal, Universit=C3=A9 de la Manouba, Tunisie (Rapportri=
+ce)
+Pr. Narjes Bellamine Ben Saoud,Universit=C3=A9 de la Manouba, Tunisie
+(Examinatrice)
+Dr Olivier Cur=C3=A9 (HDR), Universit=C3=A9 Paris-Est (Rapporteur)
+Pr. Nhan Le Thanh,Universit=C3=A9 de Nice Sophia-Antipolis (Examinateur)
+Pr. Sadok Ben Yahia, Facult=C3=A9 des Sciences de Tunis (Co-Directeur)
+Pr. Myriam Lamolle, Universit=C3=A9 Paris 8 (Co-directrice)
+
+*R=C3=A9sum=C3=A9* :
+
+Le raisonnement en logique de description (LD) autour des ontologies
+=C3=A9crites en OWL est un r=C3=A9el d=C3=A9fi en raison du niveau d'expres=
+sivit=C3=A9 =C3=A9lev=C3=A9 de
+ce langage. En effet, la complexit=C3=A9 dans le pire cas de raisonnement a=
+vec
+une ontologie OWL2 (DL) est 2N-EXPTIME-complet. De multiples approches de
+raisonnement et de techniques d=E2=80=99optimisation ont =C3=A9t=C3=A9 impl=
+=C3=A9ment=C3=A9es afin de
+surmonter le compromis entre la complexit=C3=A9 des algorithmes de raisonne=
+ment
+et l=E2=80=99expressivit=C3=A9 du langage de formulation de l=E2=80=99ontol=
+ogie. Cependant les
+compagnes d'=C3=A9valuation des raisonneurs continuent de confirmer l'aspec=
+t
+*impr=C3=A9visible* et *al=C3=A9atoire* des performances de ces logiciels =
+=C3=A0 l'=C3=A9gard
+des ontologies issues du monde r=C3=A9el.
+
+Partant de ces observations, l'objectif principal de cette th=C3=A8se est
+d=E2=80=99assurer une meilleure compr=C3=A9hension du comportement empiriqu=
+e des
+raisonneurs en fouillant davantage le contenu des ontologies. Nous avons
+d=C3=A9ploy=C3=A9 des techniques d'apprentissage supervis=C3=A9 afin de cap=
+turer les
+relations de corr=C3=A9lation entre, d'une part, les attributs qui d=C3=A9c=
+rivent les
+mod=C3=A8les conceptuels des ontologies et d'autre part, l'historique des
+performances des raisonneurs. Les relations d=C3=A9couvertes sont exploit=
+=C3=A9es
+afin de permettre la pr=C3=A9diction des comportements futurs des raisonneu=
+rs.
+Nos propositions sont =C3=A9tablies sous forme d'un syst=C3=A8me d'assistan=
+ce aux
+utilisateurs afin de faire face au ph=C3=A9nom=C3=A8ne de variabilit=C3=A9 =
+de performance
+des raisonneurs. Quatre composantes principales ont =C3=A9t=C3=A9 propos=C3=
+=A9es. La
+premi=C3=A8re est un profileur d=E2=80=99ontologie qui d=C3=A9crit son mod=
+=C3=A8le conceptuel par
+l'interm=C3=A9diaire de 116 descripteurs. La deuxi=C3=A8me composante est u=
+n module
+d'apprentissage supervis=C3=A9 capable d'=C3=A9tablir des mod=C3=A8les pr=
+=C3=A9dictifs de la
+robustesse des raisonneurs et de la difficult=C3=A9 empirique des ontologie=
+s. La
+troisi=C3=A8me composante est un module de classement automatique de
+raisonneurs, mise en place afin d'aider =C3=A0 la s=C3=A9lection du raisonn=
+eur le
+plus robuste =C3=A9tant donn=C3=A9e une ontologie. Nous avons propos=C3=A9 =
+deux approches
+de classement ; la premi=C3=A8re fond=C3=A9e sur la pr=C3=A9diction mono-la=
+bel et la
+seconde sur la pr=C3=A9diction multi-label. La derni=C3=A8re composante de =
+notre
+syst=C3=A8me offre la possibilit=C3=A9 d'identifier les parties potentielle=
+ment les
+plus complexes d'une ontologie. Notre solution repose sur l'approche de
+d=C3=A9composition atomique et de l'extraction de modules ontologiques de
+localit=C3=A9. L'identification des modules complexes est guid=C3=A9e par n=
+otre
+mod=C3=A8le de pr=C3=A9diction du niveau de difficult=C3=A9 d'une ontologie=
+. Chaque
+composante du syst=C3=A8me propos=C3=A9e a =C3=A9t=C3=A9 valid=C3=A9e gr=C3=
+=A2ce =C3=A0 une large palette
+d'exp=C3=A9rimentations.
+
+*Mots cl=C3=A9: ontologie, logique de description, raisonnement, apprentiss=
+age
+supervis=C3=A9, pr=C3=A9diction, classement, extraction.*
+
+
+--=20
+Myriam Lamolle - Professeur des Universit=C3=A9s
+IUT de Montreuil - D=C3=A9partement Informatique
+140, rue de la Nouvelle France
+93100 Montreuil
+Laboratoire LIASD - Universit=C3=A9 Paris8
+2 rue de la Libert=C3=A9 - 93526 Saint-Denis cedex
+
+http//:www.iut.univ-paris8.fr/~lamolle
+<http://www.iut.univ-paris8.fr/%7Elamolle>
+T=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67
+
+
+
+--=20
+Myriam Lamolle - Professeur des Universit=C3=A9s
+IUT de Montreuil - D=C3=A9partement Informatique
+140, rue de la Nouvelle France
+93100 Montreuil
+Laboratoire LIASD - Universit=C3=A9 Paris8
+2 rue de la Libert=C3=A9 - 93526 Saint-Denis cedex
+
+http//:www.iut.univ-paris8.fr/~lamolle
+<http://www.iut.univ-paris8.fr/%7Elamolle>
+T=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67
+
+--001a1149ae12bf8779053e191974
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">RECTIFICATIF TITRE de la th=C3=A8se :<br>Managing The Empi=
+rical Hardness of The Ontology Reasoning using The Predictive Modelling<br>=
+<br><br><div><div class=3D"gmail_quote">---------- Message transf=C3=A9r=C3=
+=A9 ----------<br>De=C2=A0: <b class=3D"gmail_sendername">Myriam Lamolle</b=
+> <span dir=3D"ltr">&lt;<a href=3D"mailto:m.lamolle@iut.univ-paris8.fr">m.l=
+amolle@iut.univ-paris8.fr</a>&gt;</span><br>Date=C2=A0: 5 octobre 2016 =C3=
+=A0 09:11<br>Objet=C2=A0: [these] Avis soutenance : Nourh=C3=A8ne Alaya, ,M=
+ontreuil, 13 oct. 2016, 14h30<br>=C3=80=C2=A0: <a href=3D"mailto:bull-i3@ir=
+it.fr">bull-i3@irit.fr</a>, <a href=3D"mailto:gazettebd3@imag.fr">gazettebd=
+3@imag.fr</a>, <a href=3D"mailto:info-ic@listes.irisa.fr">info-ic@listes.ir=
+isa.fr</a>, <a href=3D"mailto:liste-egc@polytech.univ-nantes.fr">liste-egc@=
+polytech.univ-nantes.fr</a>, <a href=3D"mailto:liste-proml@lri.fr">liste-pr=
+oml@lri.fr</a>, <a href=3D"mailto:echos_digest@ens.fr">echos_digest@ens.fr<=
+/a>, &quot;<a href=3D"mailto:labo@ai.univ-paris8.fr">labo@ai.univ-paris8.fr=
+</a>&quot; &lt;<a href=3D"mailto:labo@ai.univ-paris8.fr">labo@ai.univ-paris=
+8.fr</a>&gt;, <a href=3D"mailto:mgsi@iut.univ-paris8.fr">mgsi@iut.univ-pari=
+s8.fr</a><br><br><br><div dir=3D"ltr"><div>Bonjour,<br>
+<br>
+j&#39;ai le plaisir de vous inviter =C3=A0 ma <span class=3D"gmail-m_556828=
+9761605826842gmail-il">soutenance</span> de <span class=3D"gmail-m_55682897=
+61605826842gmail-il">th=C3=A8se</span>, qui s&#39;intitule : &quot;Normalis=
+ation orthographique de corpus bruit=C3=A9s&quot;.<br>
+<br>
+La <span class=3D"gmail-m_5568289761605826842gmail-il">soutenance</span> au=
+ra lieu le jeudi 13 Octobre, =C3=A0 14h30, dans la salle visio-conf=C3=A9re=
+nce du B=C3=A2timent E de l&#39;IUT de Montreuilt, situ=C3=A9 140 rue de la=
+ Nouvelle France, 93100 Montreuil (venir =C3=A0 l&#39;IUT =3D&gt; <a href=
+=3D"https://www.iut.univ-paris8.fr/plan-acces" target=3D"_blank">https://ww=
+w.iut.univ-paris8.<wbr>fr/plan-acces</a>)<br>
+<br>
+Vous =C3=AAtes =C3=A9galement convi=C3=A9s au pot qui suivra.<br>
+<br>
+Cordialement,<br>
+<br>Nourh=C3=A8ne Alaya<br>
+<br>
+<br></div>
+Composition du jury :<span style=3D"font-family:arial,helvetica,sans-serif"=
+><span lang=3D"fr-FR"><span style=3D"font-style:normal"><br><br>Pr.</span><=
+/span><span lang=3D"fr-FR"> Hajer Baazaoui</span><span lang=3D"fr-FR"><span=
+ style=3D"font-style:normal">-Zhgal, Universit=C3=A9 de la Manouba, Tunisie=
+ (Rapportrice)</span></span></span><span style=3D"font-family:arial,helveti=
+ca,sans-serif"><br>Pr. Narjes Bellamine Ben Saoud,Universit=C3=A9 de la Man=
+ouba, Tunisie (Examinatrice)</span><span style=3D"font-family:arial,helveti=
+ca,sans-serif"><span lang=3D"fr-FR"><span style=3D"font-style:normal"><br>D=
+r Olivier Cur=C3=A9 (HDR), Universit=C3=A9
+	Paris-Est</span></span></span> (Rapporteur)
+	<span style=3D"font-family:arial,helvetica,sans-serif"><span lang=3D"fr-FR=
+"><span style=3D"font-style:normal"><br>Pr. Nhan Le Thanh,Universit=C3=A9 d=
+e Nice
+	Sophia-Antipolis</span></span></span>
+	<span style=3D"font-family:arial,helvetica,sans-serif"><span lang=3D"fr-FR=
+"><span style=3D"font-style:normal">(Examinateur)<br>Pr. Sadok Ben Yahia, F=
+acult=C3=A9 des Sciences de Tunis (Co-Directeur)</span></span></span><font =
+face=3D"Ubuntu"><span lang=3D"fr-FR"><span style=3D"font-style:normal"><spa=
+n style=3D"font-family:arial,helvetica,sans-serif"><br><font face=3D"Ubuntu=
+">Pr.</font> Myriam Lamolle, Universit=C3=A9 Paris 8 (Co-directrice)</span>=
+<br></span></span></font><div>
+
+<br><b>R=C3=A9sum=C3=A9</b> :<br>
+
+
+=09
+=09
+=09
+=09
+
+
+<p class=3D"gmail-m_5568289761605826842gmail-western" style=3D"margin-botto=
+m:0.35cm;line-height:115%" align=3D"justify">
+<font size=3D"2"><span style=3D"font-family:arial,helvetica,sans-serif">Le
+<span style=3D"font-style:normal">raisonnement
+en</span>
+logique
+de description (LD) autour des ontologies =C3=A9crites en OWL  est un
+r=C3=A9el d=C3=A9fi en raison du niveau d&#39;expressivit=C3=A9 =C3=A9lev=
+=C3=A9 de ce
+langage. En effet, la
+complexit=C3=A9 dans le pire cas d<span style=3D"font-style:normal">e</span=
+>
+raisonnement avec une ontologie <span style=3D"font-style:normal">OWL2</spa=
+n>
+(DL) est 2N-EXPTIME-complet. De multiples approches de raisonnement
+et de techniques d=E2=80=99optimisation ont =C3=A9t=C3=A9 impl=C3=A9ment=C3=
+=A9es afin de
+surmonter le compromis entre la complexit=C3=A9 des algorithmes de
+raisonnement et l=E2=80=99expressivit=C3=A9 du langage de formulation de
+l=E2=80=99ontologie. Cependant les compagnes d&#39;=C3=A9valuation des rais=
+onneurs
+continuent de confirmer l&#39;aspect <i>impr=C3=A9visible</i>
+et <i>al=C3=A9atoire</i>
+des performances de ces logiciels =C3=A0 l&#39;=C3=A9gard des ontologies is=
+sues
+du monde r=C3=A9el.</span></font></p><font size=3D"2"><span style=3D"font-f=
+amily:arial,helvetica,sans-serif">
+</span></font><p class=3D"gmail-m_5568289761605826842gmail-western" style=
+=3D"margin-bottom:0.35cm;line-height:115%" align=3D"justify">
+<font size=3D"2"><span style=3D"font-family:arial,helvetica,sans-serif">Par=
+tant
+de ces observations, l&#39;objectif principal de cette th=C3=A8se est
+d=E2=80=99assurer une meilleure compr=C3=A9hension du comportement empiriqu=
+e
+des raisonneurs en fouillant <span style=3D"font-style:normal">davantage</s=
+pan>
+le contenu des ontologies. Nous avons d=C3=A9ploy=C3=A9 des techniques
+d&#39;apprentissage supervis=C3=A9 afin de capturer les relations de
+corr=C3=A9lation entre, d&#39;une part, les attributs qui d=C3=A9crivent le=
+s
+mod=C3=A8les conceptuels des ontologies et <span style=3D"font-style:normal=
+">d&#39;autre</span>
+part, l&#39;historique des performances des raisonneurs. Les relations
+d=C3=A9couvertes sont exploit=C3=A9es afin de permettre la pr=C3=A9diction =
+des
+comportements <span style=3D"font-style:normal">futurs</span><span style=3D=
+"font-style:normal">
+</span>des
+raisonneurs. Nos propositions sont =C3=A9tablies sous forme d&#39;un syst=
+=C3=A8me
+d&#39;assistance aux utilisateurs afin de faire face au ph=C3=A9nom=C3=A8ne=
+ de
+variabilit=C3=A9 de performance des raisonneurs. Quatre composantes
+principales ont =C3=A9t=C3=A9 propos=C3=A9es. La premi=C3=A8re est un profi=
+leur
+d=E2=80=99ontologie qui d=C3=A9crit son mod=C3=A8le conceptuel <span style=
+=3D"font-style:normal">par</span>
+l&#39;interm=C3=A9diaire de 116 descripteurs. La deuxi=C3=A8me composante e=
+st un
+module d&#39;apprentissage supervis=C3=A9 capable d&#39;=C3=A9tablir des mo=
+d=C3=A8les
+<span style=3D"font-style:normal">pr=C3=A9dictifs</span>
+de la robustesse des raisonneurs et de la difficult=C3=A9 empirique des
+ontologies. La troisi=C3=A8me composante est un module de classement
+automatique de raisonneurs, mise en place afin d&#39;aider =C3=A0 la
+s=C3=A9lection du raisonneur le plus robuste =C3=A9tant donn=C3=A9e une
+ontologie. Nous avons propos=C3=A9 deux approches de classement=C2=A0<span =
+style=3D"font-style:normal">;</span>
+la premi=C3=A8re fond=C3=A9e sur la pr=C3=A9diction mono-label et la second=
+e sur
+la pr=C3=A9diction multi-label. La derni=C3=A8re composante de notre syst=
+=C3=A8me
+offre la possibilit=C3=A9 d&#39;identifier les parties potentiellement les
+plus complexes d&#39;une ontologie. Notre solution repose sur l&#39;approch=
+e
+de d=C3=A9composition atomique et de l&#39;extraction de modules ontologiqu=
+es
+de localit=C3=A9. L&#39;identification des modules complexes est guid=C3=A9=
+e par
+notre mod=C3=A8le de pr=C3=A9diction d<span style=3D"font-style:normal">u
+niveau</span>
+<span style=3D"font-style:normal">de</span>
+difficult=C3=A9 d&#39;une ontologie. Chaque composante du syst=C3=A8me prop=
+os=C3=A9e
+a =C3=A9t=C3=A9 valid=C3=A9e gr=C3=A2ce =C3=A0 une large palette d&#39;exp=
+=C3=A9rimentations.</span></font></p><font size=3D"2"><span style=3D"font-f=
+amily:arial,helvetica,sans-serif">
+</span></font><p class=3D"gmail-m_5568289761605826842gmail-western" style=
+=3D"margin-bottom:0.35cm;line-height:115%" align=3D"justify">
+<font size=3D"2"><span style=3D"font-family:arial,helvetica,sans-serif"><i>=
+<b>Mots
+cl=C3=A9: ontologie, logique de description, raisonnement, apprentissage
+supervis=C3=A9, pr=C3=A9diction, classement, extraction.</b></i></span></fo=
+nt></p><span class=3D"gmail-HOEnZb"><font color=3D"#888888">
+
+<br clear=3D"all"><div><br>-- <br><div class=3D"gmail-m_5568289761605826842=
+gmail_signature">Myriam Lamolle - Professeur des Universit=C3=A9s<br>IUT de=
+ Montreuil - D=C3=A9partement Informatique<br>140, rue de la Nouvelle Franc=
+e<br>93100 Montreuil<br>Laboratoire LIASD - Universit=C3=A9 Paris8<br>2 rue=
+ de la Libert=C3=A9 - 93526 Saint-Denis cedex<br><br>http//:<a href=3D"http=
+://www.iut.univ-paris8.fr/%7Elamolle" target=3D"_blank">www.iut.univ-paris8=
+.fr/<wbr>~lamolle</a><br>T=C3=A9l: <a href=3D"tel:%2B33%280%291%2048%2070%2=
+034%2061" value=3D"+33148703461" target=3D"_blank">+33(0)1 48 70 34 61</a> =
+Fax : <a href=3D"tel:%2B33%280%291%2048%2070%2034%2067" value=3D"+331487034=
+67" target=3D"_blank">+33(0)1 48 70 34 67</a></div>
+</div></font></span></div></div>
+</div><br><br clear=3D"all"><br>-- <br><div class=3D"gmail_signature">Myria=
+m Lamolle - Professeur des Universit=C3=A9s<br>IUT de Montreuil - D=C3=A9pa=
+rtement Informatique<br>140, rue de la Nouvelle France<br>93100 Montreuil<b=
+r>Laboratoire LIASD - Universit=C3=A9 Paris8<br>2 rue de la Libert=C3=A9 - =
+93526 Saint-Denis cedex<br><br>http//:<a href=3D"http://www.iut.univ-paris8=
+.fr/%7Elamolle" target=3D"_blank">www.iut.univ-paris8.fr/~lamolle</a><br>T=
+=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67</div>
+</div></div>
+
+--001a1149ae12bf8779053e191974--

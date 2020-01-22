@@ -1,0 +1,724 @@
+Return-Path: <eric.lefevre@univ-artois.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 91DD12292948
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 27 Apr 2018 10:00:42 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 86CEB62882B
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 27 Apr 2018 10:00:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 7FCB04821A80
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 27 Apr 2018 10:00:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -5.429
+X-Spam-Level:
+X-Spam-Status: No, score=-5.429 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	UN_PDF_ATTACH=0.01, UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 6.3244 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-artois.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 3eGoSkP2siKe for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 27 Apr 2018 10:00:41 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp-out.univ-artois.fr (smtp-out.univ-artois.fr [193.49.115.59])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 6D0C04494C24
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 27 Apr 2018 10:00:41 +0200 (CEST)
+Received: from univ-artois.fr
+        by smtp-out.univ-artois.fr (8.14.9/8.14.9) with ESMTP
+        id w3R80ev2067132
+        for <liste-egc@polytech.univ-nantes.fr>: Fri, 27 Apr 2018 10:00:40 +0200 (CEST)
+Received: from univ-artois.fr
+        by univ-artois.fr (8.14.9/8.14.4) with ESMTP
+        id w3R80WZV012303
+        for <liste-egc@polytech.univ-nantes.fr>: Fri, 27 Apr 2018 10:00:37 +0200 (CEST)
+Received: from [172.20.28.95] (beti-28-95.irsf [172.20.28.95])
+	(authenticated bits=0)
+	by smtp-auth.univ-artois.fr (8.14.5/8.14.5) with ESMTP id w3R80PIT068093
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 27 Apr 2018 10:00:30 +0200 (CEST)
+	(envelope-from eric.lefevre@univ-artois.fr)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-artois.fr;
+	s=02E6D1FA-C218-11E6-A8AC-456614E19C0A; t=1524816030;
+	bh=WToZzuHwiP+G4DyrOxzARCvQmrpcbrnk36MdMbLFsP4=;
+	h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type;
+	b=XHL71BQWcCkM+GR98GaFD5I6WLungi70qbwPs9HGhlU0NnBx76rNJGNyFiYka/Kba
+	 sZhElv11Xe4yy3UiFpyVcsAk4rbIVLKdUTXKI/8zFtturXBb2v/IKWaMM1Gwj4J7y5
+	 DXjmPiQHI9mDyuqJmpcCeLu7zB1wHqyeSeYf18YF/H8TnRyz3bNxdQ7tVwo/6LeLO4
+	 tV+YYHw+PR0zj8cEU6r8oE8uaEmRaRKZIcYDbeto7vBs7T/zA76k0JZoG4ciNgIzER
+	 8zKazS17AtX52akdx2Q7LlBmTvJDUqCURCoYFw56iVnElRD9x/9EajYIPG9p+SzG9l
+	 dOBqp1cW5AkMA==
+From: Eric Lefevre <eric.lefevre@univ-artois.fr>
+To: liste-egc@polytech.univ-nantes.fr
+Message-ID: <4761e222-266f-2aeb-5118-e272f92c4c8c@univ-artois.fr>
+Date: Fri, 27 Apr 2018 10:00:20 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="------------7C491323CD1A5E574C16D00F"
+Content-Language: fr
+X-Virus-Scanned: clamav-milter 0.98.4 at mailserv
+X-Virus-Status: Clean
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Offre de =?UTF-8?Q?th=C3=A8se?= : =?UTF-8?Q?Tourn?=
+ =?UTF-8?Q?=C3=A9e?= de =?UTF-8?Q?v=C3=A9hicules?= et fonctions de croyance
+
+This is a multi-part message in MIME format.
+--------------7C491323CD1A5E574C16D00F
+Content-Type: multipart/alternative;
+ boundary="------------95AAD88CEA4D685E49296F26"
+
+
+--------------95AAD88CEA4D685E49296F26
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Titre de la thèse :
+Tournée de véhicules avec fenêtre de temps et temps de parcours 
+incertains : une réponse fondée sur les fonctions de croyance
+
+Encadrement :
+directeur de thèse : Eric Lefevre (PR, eric.lefevre@univ-artois.fr), 
+co-encadrants : Sohaib Afifi (MCF, sohaib.lafifi@univ-artois.fr) et 
+Frédéric Pichon (MCF, frederic.pichon@univ-artois.fr)
+
+Laboratoire :
+Laboratoire Informatique et d’Automatique de l’Artois (LGI2A), EA 3926, 
+Faculté des Sciences Appliquées, Béthune, France
+
+Date de début :
+octobre 2018
+
+Financement prévu :
+Contrat doctoral 100% Université d'Artois
+
+Descriptif de la problématique :
+Les activités de transport jouent un rôle crucial tant dans le domaine 
+de la production que dans celui des services. Elles permettent d’assurer 
+la distribution de biens et de services entre fournisseurs, unités de 
+production, entrepôts, distributeurs, et clients finaux. Améliorer 
+l’efficacité des activités de transport est une étape critique pour 
+augmenter la compétitivité et réduire l’impact environnemental des 
+organisations.
+Le problème de tournées de véhicules (VRP) [1] consiste alors à 
+déterminer, en minimisant le coût, un ensemble de tournées pour un 
+nombre limité de véhicules, commençant et finissant à un dépôt, de telle 
+façon que chaque client soit visité exactement une fois par un véhicule. 
+Ce problème a ensuite été décliné sous différentes formes par exemple :
+•        tournée de véhicules avec contraintes de capacité (CVRP) : les 
+véhicules desservant (ou ramassant) les marchandises chez les clients 
+ont une capacité limité.
+•        tournée de véhicules avec fenêtres de temps (VRPTW) : chaque 
+client dispose d’une fenêtre de temps à l’intérieur de laquelle il 
+désire être servi [2, 3, 4].
+En pratique, le VRP implique bien souvent de travailler avec des 
+paramètres connus de manière non exacte (imprécise et/ou incertaine). 
+L’incertitude peut concerner les demandes des clients, leur présence ou 
+le temps de déplacement et de service. Par exemple, une entreprise 
+devant résoudre un problème de CVRP pour ses opérations de logistique, 
+ne connait pas toujours à l’avance les demandes de ses clients.
+Classiquement, la théorie des probabilités a été utilisée pour prendre 
+en compte l’incertitude. On parle alors d’optimisation stochastique. 
+Plus récemment, d’autres théories ont vu le jour pour gérer les données 
+imparfaites : théories des probabilités imprécises [5], théorie des 
+possibilités [6, 7] et théorie des fonctions de croyance [8, 9].
+Dans le cadre de cette dernière théorie, nous avons étendu le problème 
+de CVRP lorsque les demandes des clients sont connues sous la forme de 
+fonction de croyance [10, 11]. Nous avons ainsi proposé deux modèles 
+pour ce problème. Le premier est une extension de l'approche 
+chance-constrained Programming, qui impose des bornes minimales pour la 
+croyance et la plausibilité que la somme des demandes sur chaque route 
+respecte la capacité des véhicules. Le deuxième modèle étend l'approche 
+stochastic programming with recourse. Dans ce cas, l'incertitude sur les 
+recours (actions correctives) possibles sur chaque route est représentée 
+par une fonction de croyance et le coût d'une route est alors son coût 
+classique (sans recours) additionné du pire coût espéré des recours.
+Ces premiers travaux ont été réalisés en considérant que les 
+incertitudes interviennent au niveau des contraintes. Toutefois, les 
+incertitudes peuvent se trouver sur le calcul de la fonction objective. 
+C’est le cas par exemple si les temps de déplacement ou de service sont 
+incertains.
+Ainsi dans le cadre de cette thèse, nous nous proposons de poursuivre 
+nos travaux sur l’emploi de la théorie des fonctions de croyance, dans 
+un premier temps, dans le cadre du problème de tournée de véhicules avec 
+fenêtre de temps. Nous formulerons une variante à ce problème classique 
+dans lequel les temps de trajet entre les clients seront connus sous 
+forme de fonctions de croyance. Ceci implique la prise en compte de 
+l’incertitude au niveau de la fonction objective mais également au 
+niveau des contraintes afin de respecter les fenêtres de temps données 
+par les clients.
+Par ailleurs, dans nos travaux précédents, nous avions utilisé une 
+méthode de type métaheuristique, appelé recuit simulé, afin de résoudre 
+le problème de CVRP défini. Dans cette thèse, l’utilisation d’autres 
+méthodes de résolution, comme par exemple les algorithmes 
+évolutionnaires, sera étudiée.
+
+Mots clés :
+Optimisation, Tournées de véhicules avec fenêtres de temps (VRPTW), 
+Incertitudes, Théorie des fonctions de croyance.
+
+Références :
+[1] G. B. Dantzig et J. H. Ramser, “The truck dispatching problem”, 
+Management Science, Vol. 6, n°1, pages 80–91, 1959
+[2] M.M. Solomon. “Algorithms for the Vehicle Routing and Scheduling 
+Problems with Time Window Constraints”, Operations Research 35, pages 
+254-265, 1987.
+[3] J.F. Cordeau, G. Desaulniers, J. Desrosiers, M.M. Solomon et F. 
+Soumis, “The VRP with Time Windows”, SIAM Monographs on Discrete 
+Mathematics and Applications, 9, P. Toth et D. Vigo (eds.), SIAM, 
+Philadelphia, PA, pages 157-193, 2002.
+[4] O. Bräysy et M. Gendreau, ”Vehicle routing problem with time 
+windows, Part I: Route construction and local search algorithms”, 
+Transportation Science, Vol. 39, n°1, pages 104-118, 2005.
+[5] P .Walley, “Statistical reasoning with imprecise probabilities”, 
+Chapman & Hall, 1991.
+[6] L.A. Zadeh, “Fuzzy sets as a basis for a theory of possibility”, 
+Fuzzy Sets and Systems, Vol. 1, pages 3–28, 1978.
+[7] D. Dubois et H. Prade, “Théorie des possibilités : applications à la 
+représentation des connaissances en informatique”, Masson, 1985.
+[8] A. P. Dempster. “Upper and lower probabilities induced by a 
+multivalued mapping”, The annals of mathematical statistics, Vol. 38, n° 
+2, pages 325–339, 1967.
+[9] G. Shafer. “A mathematical theory of evidence. Princeton University 
+Press, 1976.
+[10] N. Helal, “An evidential answer for the capacitated vehicle routing 
+problem with uncertain
+demands”, Thèse de doctorat de l’Université d’Artois, Décembre 2017.
+[11] N. Helal, F. Pichon, D. Porumbel, D. Mercier et É. Lefèvre. “The 
+capacitated vehicle routing problem with evidential demands”, 
+International Journal of Approximate Reasoning, Vol. 95, pages 124-151, 
+2018.
+
+Profil recherché :
+Le candidat devra être titulaire d'un master ou d'un titre d'ingénieur 
+en informatique, recherche opérationnelle ou optimisation. Des 
+connaissances en intelligence artificielle seraient un plus.
+
+Candidature :
+Envoyer CV, lettre de motivation, relevés de notes et classements des 
+deux dernières années d'études ainsi que des lettres de recommandation à 
+: eric.lefevre@univ-artois.fr, frederic.pichon@univ-artois.fr et 
+sohaib.lafifi@univ-artois.fr.
+
+--------------95AAD88CEA4D685E49296F26
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div style="color: rgb(0, 0, 0); font-family: arial, helvetica,
+      sans-serif; font-size: 12pt;">
+      <div><span style="text-decoration: underline; background-color:
+          rgb(255, 255, 255);" data-mce-style="text-decoration:
+          underline; background-color: #ffffff;"><span style="color:
+            rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Titre
+            de la thèse :</span></span> </div>
+      <div>Tournée de véhicules avec fenêtre de temps et temps de
+        parcours incertains : une réponse fondée sur les fonctions de
+        croyance<br>
+      </div>
+      <div><br data-mce-bogus="1">
+      </div>
+      <div><span style="text-decoration: underline;"
+          data-mce-style="text-decoration: underline;"><span
+            style="color: rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Encadrement
+            :</span></span>  </div>
+      <div>directeur de thèse : Eric Lefevre (PR,
+        <a class="moz-txt-link-abbreviated" href="mailto:eric.lefevre@univ-artois.fr">eric.lefevre@univ-artois.fr</a>), co-encadrants : Sohaib Afifi (MCF,
+        <a class="moz-txt-link-abbreviated" href="mailto:sohaib.lafifi@univ-artois.fr">sohaib.lafifi@univ-artois.fr</a>) et Frédéric Pichon (MCF,
+        <a class="moz-txt-link-abbreviated" href="mailto:frederic.pichon@univ-artois.fr">frederic.pichon@univ-artois.fr</a>)<br>
+        <br>
+        <span style="text-decoration: underline;"
+          data-mce-style="text-decoration: underline;"><span
+            style="color: rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Laboratoire
+            :</span></span> </div>
+      <div>Laboratoire Informatique et d’Automatique de l’Artois
+        (LGI2A), EA 3926, Faculté des Sciences Appliquées, Béthune,
+        France<br>
+        <br>
+        <span style="text-decoration: underline;"
+          data-mce-style="text-decoration: underline;"><span
+            style="color: rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Date
+            de début :</span></span> </div>
+      <div>octobre 2018<br>
+        <br>
+        <span style="text-decoration: underline;"
+          data-mce-style="text-decoration: underline;"><span
+            style="color: rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Financement
+            prévu :</span></span> </div>
+      <div>Contrat doctoral 100% Université d'Artois<br>
+        <br>
+        <span style="color: rgb(0, 0, 255); text-decoration: underline;"
+          data-mce-style="color: #0000ff; text-decoration: underline;">Descriptif
+          de la problématique : </span><br>
+        Les activités de transport jouent un rôle crucial tant dans le
+        domaine de la production que dans celui des services. Elles
+        permettent d’assurer la distribution de biens et de services
+        entre fournisseurs, unités de production, entrepôts,
+        distributeurs, et clients finaux. Améliorer l’efficacité des
+        activités de transport est une étape critique pour augmenter la
+        compétitivité et réduire l’impact environnemental des
+        organisations.<br>
+        Le problème de tournées de véhicules (VRP) [1] consiste alors à
+        déterminer, en minimisant le coût, un ensemble de tournées pour
+        un nombre limité de véhicules, commençant et finissant à un
+        dépôt, de telle façon que chaque client soit visité exactement
+        une fois par un véhicule. Ce problème a ensuite été décliné sous
+        différentes formes par exemple : <br>
+        •        tournée de véhicules avec contraintes de capacité
+        (CVRP) : les véhicules desservant (ou ramassant) les
+        marchandises chez les clients ont une capacité limité. <br>
+        •        tournée de véhicules avec fenêtres de temps (VRPTW) :
+        chaque client dispose d’une fenêtre de temps à l’intérieur de
+        laquelle il désire être servi [2, 3, 4].<br>
+        En pratique, le VRP implique bien souvent de travailler avec des
+        paramètres connus de manière non exacte (imprécise et/ou
+        incertaine). L’incertitude peut concerner les demandes des
+        clients, leur présence ou le temps de déplacement et de service.
+        Par exemple, une entreprise devant résoudre un problème de CVRP
+        pour ses opérations de logistique, ne connait pas toujours à
+        l’avance les demandes de ses clients.<br>
+        Classiquement, la théorie des probabilités a été utilisée pour
+        prendre en compte l’incertitude. On parle alors d’optimisation
+        stochastique. Plus récemment, d’autres théories ont vu le jour
+        pour gérer les données imparfaites : théories des probabilités
+        imprécises [5], théorie des possibilités [6, 7] et théorie des
+        fonctions de croyance [8, 9]. <br>
+        Dans le cadre de cette dernière théorie, nous avons étendu le
+        problème de CVRP lorsque les demandes des clients sont connues
+        sous la forme de fonction de croyance [10, 11]. Nous avons ainsi
+        proposé deux modèles pour ce problème. Le premier est une
+        extension de l'approche chance-constrained Programming, qui
+        impose des bornes minimales pour la croyance et la plausibilité
+        que la somme des demandes sur chaque route respecte la capacité
+        des véhicules. Le deuxième modèle étend l'approche stochastic
+        programming with recourse. Dans ce cas, l'incertitude sur les
+        recours (actions correctives) possibles sur chaque route est
+        représentée par une fonction de croyance et le coût d'une route
+        est alors son coût classique (sans recours) additionné du pire
+        coût espéré des recours.<br>
+        Ces premiers travaux ont été réalisés en considérant que les
+        incertitudes interviennent au niveau des contraintes. Toutefois,
+        les incertitudes peuvent se trouver sur le calcul de la fonction
+        objective. C’est le cas par exemple si les temps de déplacement
+        ou de service sont incertains.<br>
+        Ainsi dans le cadre de cette thèse, nous nous proposons de
+        poursuivre nos travaux sur l’emploi de la théorie des fonctions
+        de croyance, dans un premier temps, dans le cadre du problème de
+        tournée de véhicules avec fenêtre de temps. Nous formulerons une
+        variante à ce problème classique dans lequel les temps de trajet
+        entre les clients seront connus sous forme de fonctions de
+        croyance. Ceci implique la prise en compte de l’incertitude au
+        niveau de la fonction objective mais également au niveau des
+        contraintes afin de respecter les fenêtres de temps données par
+        les clients. <br>
+        Par ailleurs, dans nos travaux précédents, nous avions utilisé
+        une méthode de type métaheuristique, appelé recuit simulé, afin
+        de résoudre le problème de CVRP défini. Dans cette thèse,
+        l’utilisation d’autres méthodes de résolution, comme par exemple
+        les algorithmes évolutionnaires, sera étudiée.<br>
+        <br>
+        <span style="color: rgb(0, 0, 255); text-decoration: underline;"
+          data-mce-style="color: #0000ff; text-decoration: underline;">Mots
+          clés :</span> </div>
+      <div>Optimisation, Tournées de véhicules avec fenêtres de temps
+        (VRPTW), Incertitudes, Théorie des fonctions de croyance.<br>
+        <br>
+        <span style="text-decoration: underline;"
+          data-mce-style="text-decoration: underline;"><span
+            style="color: rgb(0, 0, 255); text-decoration: underline;"
+            data-mce-style="color: #0000ff; text-decoration: underline;">Références
+            :</span> </span><br>
+        [1] G. B. Dantzig et J. H. Ramser, “The truck dispatching
+        problem”, Management Science, Vol. 6, n°1, pages 80–91, 1959<br>
+        [2] M.M. Solomon. “Algorithms for the Vehicle Routing and
+        Scheduling Problems with Time Window Constraints”, Operations
+        Research 35, pages 254-265, 1987.<br>
+        [3] J.F. Cordeau, G. Desaulniers, J. Desrosiers, M.M. Solomon et
+        F. Soumis, “The VRP with Time Windows”, SIAM Monographs on
+        Discrete Mathematics and Applications, 9, P. Toth et D. Vigo
+        (eds.), SIAM, Philadelphia, PA, pages 157-193, 2002.<br>
+        [4] O. Bräysy et M. Gendreau, ”Vehicle routing problem with time
+        windows, Part I: Route construction and local search
+        algorithms”, Transportation Science, Vol. 39, n°1, pages
+        104-118, 2005.<br>
+        [5] P .Walley, “Statistical reasoning with imprecise
+        probabilities”, Chapman &amp; Hall, 1991.<br>
+        [6] L.A. Zadeh, “Fuzzy sets as a basis for a theory of
+        possibility”, Fuzzy Sets and Systems, Vol. 1, pages 3–28, 1978.<br>
+        [7] D. Dubois et H. Prade, “Théorie des possibilités :
+        applications à la représentation des connaissances en
+        informatique”, Masson, 1985.<br>
+        [8] A. P. Dempster. “Upper and lower probabilities induced by a
+        multivalued mapping”, The annals of mathematical statistics,
+        Vol. 38, n° 2, pages 325–339, 1967.<br>
+        [9] G. Shafer. “A mathematical theory of evidence. Princeton
+        University Press, 1976.<br>
+        [10] N. Helal, “An evidential answer for the capacitated vehicle
+        routing problem with uncertain<br>
+        demands”, Thèse de doctorat de l’Université d’Artois, Décembre
+        2017.<br>
+        [11] N. Helal, F. Pichon, D. Porumbel, D. Mercier et É. Lefèvre.
+        “The capacitated vehicle routing problem with evidential
+        demands”, International Journal of Approximate Reasoning, Vol.
+        95, pages 124-151, 2018.<br>
+        <br>
+        <span style="color: rgb(0, 0, 255); text-decoration: underline;"
+          data-mce-style="color: #0000ff; text-decoration: underline;">Profil
+          recherché :</span><br>
+        Le candidat devra être titulaire d'un master ou d'un titre
+        d'ingénieur en informatique, recherche opérationnelle ou
+        optimisation. Des connaissances en intelligence artificielle
+        seraient un plus.</div>
+      <div><br>
+        <span style="color: rgb(0, 0, 255); text-decoration: underline;"
+          data-mce-style="color: #0000ff; text-decoration: underline;">Candidature
+          :</span><br>
+        Envoyer CV, lettre de motivation, relevés de notes et
+        classements des deux dernières années d'études ainsi que des
+        lettres de recommandation à : <a class="moz-txt-link-abbreviated" href="mailto:eric.lefevre@univ-artois.fr">eric.lefevre@univ-artois.fr</a>,
+        <a class="moz-txt-link-abbreviated" href="mailto:frederic.pichon@univ-artois.fr">frederic.pichon@univ-artois.fr</a> et <a class="moz-txt-link-abbreviated" href="mailto:sohaib.lafifi@univ-artois.fr">sohaib.lafifi@univ-artois.fr</a>.<br>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------95AAD88CEA4D685E49296F26--
+
+--------------7C491323CD1A5E574C16D00F
+Content-Type: application/pdf;
+ name="Sujet de these DFI LGI2A.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="Sujet de these DFI LGI2A.pdf"
+
+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
+Mjl925GMqKYWXpTTQC9+e/Z/O1A512VuZHN0cmVhbQplbmRvYmoKMTUgMCBvYmoKNjMwMgpl
+bmRvYmoKNCAwIG9iago8PC9UeXBlL1BhZ2UvTWVkaWFCb3ggWzAgMCA1OTUgODQyXQovUm90
+YXRlIDAvUGFyZW50IDMgMCBSCi9SZXNvdXJjZXM8PC9Qcm9jU2V0Wy9QREYgL1RleHRdCi9G
+b250IDEyIDAgUgo+PgovQ29udGVudHMgNSAwIFIKPj4KZW5kb2JqCjEzIDAgb2JqCjw8L1R5
+cGUvUGFnZS9NZWRpYUJveCBbMCAwIDU5NSA4NDJdCi9Sb3RhdGUgMC9QYXJlbnQgMyAwIFIK
+L1Jlc291cmNlczw8L1Byb2NTZXRbL1BERiAvVGV4dF0KL0ZvbnQgMTYgMCBSCj4+Ci9Db250
+ZW50cyAxNCAwIFIKPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFsK
+NCAwIFIKMTMgMCBSCl0gL0NvdW50IDIKPj4KZW5kb2JqCjEgMCBvYmoKPDwvVHlwZSAvQ2F0
+YWxvZyAvUGFnZXMgMyAwIFIKL01ldGFkYXRhIDE5IDAgUgo+PgplbmRvYmoKMTIgMCBvYmoK
+PDwvUjgKOCAwIFIvUjkKOSAwIFIvUjEwCjEwIDAgUi9SMTEKMTEgMCBSL1I3CjcgMCBSPj4K
+ZW5kb2JqCjE2IDAgb2JqCjw8L1I4CjggMCBSL1IxMAoxMCAwIFIvUjcKNyAwIFI+PgplbmRv
+YmoKOCAwIG9iago8PC9CYXNlRm9udC9UaW1lcy1Sb21hbi9UeXBlL0ZvbnQKL0VuY29kaW5n
+IDE3IDAgUi9TdWJ0eXBlL1R5cGUxPj4KZW5kb2JqCjE3IDAgb2JqCjw8L1R5cGUvRW5jb2Rp
+bmcvRGlmZmVyZW5jZXNbCjM5L3F1b3Rlc2luZ2xlCjE0Ni9xdW90ZXJpZ2h0L3F1b3RlZGJs
+bGVmdC9xdW90ZWRibHJpZ2h0CjE1MC9lbmRhc2gKMTc2L2RlZ3JlZQoyMDEvRWFjdXRlCjIy
+NC9hZ3JhdmUKMjI4L2FkaWVyZXNpcwoyMzEvY2NlZGlsbGEvZWdyYXZlL2VhY3V0ZS9lY2ly
+Y3VtZmxleAoyNDQvb2NpcmN1bWZsZXgKMjUxL3VjaXJjdW1mbGV4XT4+CmVuZG9iago5IDAg
+b2JqCjw8L0Jhc2VGb250L1N5bWJvbC9UeXBlL0ZvbnQKL1N1YnR5cGUvVHlwZTE+PgplbmRv
+YmoKMTAgMCBvYmoKPDwvQmFzZUZvbnQvSGVsdmV0aWNhL1R5cGUvRm9udAovU3VidHlwZS9U
+eXBlMT4+CmVuZG9iagoxMSAwIG9iago8PC9CYXNlRm9udC9UaW1lcy1JdGFsaWMvVHlwZS9G
+b250Ci9TdWJ0eXBlL1R5cGUxPj4KZW5kb2JqCjcgMCBvYmoKPDwvQmFzZUZvbnQvVGltZXMt
+Qm9sZC9UeXBlL0ZvbnQKL0VuY29kaW5nIDE4IDAgUi9TdWJ0eXBlL1R5cGUxPj4KZW5kb2Jq
+CjE4IDAgb2JqCjw8L1R5cGUvRW5jb2RpbmcvRGlmZmVyZW5jZXNbCjIzMi9lZ3JhdmUvZWFj
+dXRlXT4+CmVuZG9iagoxOSAwIG9iago8PC9UeXBlL01ldGFkYXRhCi9TdWJ0eXBlL1hNTC9M
+ZW5ndGggMTU1OD4+c3RyZWFtCjw/eHBhY2tldCBiZWdpbj0n77u/JyBpZD0nVzVNME1wQ2Vo
+aUh6cmVTek5UY3prYzlkJz8+Cjw/YWRvYmUteGFwLWZpbHRlcnMgZXNjPSJDUkxGIj8+Cjx4
+OnhtcG1ldGEgeG1sbnM6eD0nYWRvYmU6bnM6bWV0YS8nIHg6eG1wdGs9J1hNUCB0b29sa2l0
+IDIuOS4xLTEzLCBmcmFtZXdvcmsgMS42Jz4KPHJkZjpSREYgeG1sbnM6cmRmPSdodHRwOi8v
+d3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjJyB4bWxuczppWD0naHR0cDov
+L25zLmFkb2JlLmNvbS9pWC8xLjAvJz4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9J3V1
+aWQ6OTcxZjU1NGEtNGMzOC0xMWU4LTAwMDAtNjAxNDI1OTc2MjRjJyB4bWxuczpwZGY9J2h0
+dHA6Ly9ucy5hZG9iZS5jb20vcGRmLzEuMy8nPjxwZGY6UHJvZHVjZXI+R1BMIEdob3N0c2Ny
+aXB0IDkuMTA8L3BkZjpQcm9kdWNlcj4KPHBkZjpLZXl3b3Jkcz4oKTwvcGRmOktleXdvcmRz
+Pgo8L3JkZjpEZXNjcmlwdGlvbj4KPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9J3V1aWQ6
+OTcxZjU1NGEtNGMzOC0xMWU4LTAwMDAtNjAxNDI1OTc2MjRjJyB4bWxuczp4bXA9J2h0dHA6
+Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8nPjx4bXA6TW9kaWZ5RGF0ZT4yMDE4LTA0LTI3VDA3
+OjM3OjI4KzAyOjAwPC94bXA6TW9kaWZ5RGF0ZT4KPHhtcDpDcmVhdGVEYXRlPjIwMTgtMDQt
+MjdUMDc6Mzc6MjgrMDI6MDA8L3htcDpDcmVhdGVEYXRlPgo8eG1wOkNyZWF0b3JUb29sPlBE
+RkNyZWF0b3IgVmVyc2lvbiAxLjcuMzwveG1wOkNyZWF0b3JUb29sPjwvcmRmOkRlc2NyaXB0
+aW9uPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0ndXVpZDo5NzFmNTU0YS00YzM4LTEx
+ZTgtMDAwMC02MDE0MjU5NzYyNGMnIHhtbG5zOnhhcE1NPSdodHRwOi8vbnMuYWRvYmUuY29t
+L3hhcC8xLjAvbW0vJyB4YXBNTTpEb2N1bWVudElEPSd1dWlkOjk3MWY1NTRhLTRjMzgtMTFl
+OC0wMDAwLTYwMTQyNTk3NjI0YycvPgo8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0ndXVp
+ZDo5NzFmNTU0YS00YzM4LTExZTgtMDAwMC02MDE0MjU5NzYyNGMnIHhtbG5zOmRjPSdodHRw
+Oi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLycgZGM6Zm9ybWF0PSdhcHBsaWNhdGlvbi9w
+ZGYnPjxkYzp0aXRsZT48cmRmOkFsdD48cmRmOmxpIHhtbDpsYW5nPSd4LWRlZmF1bHQnPlN1
+amV0IGRlIHRoZXNlPC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6dGl0bGU+PGRjOmNyZWF0b3I+
+PHJkZjpTZXE+PHJkZjpsaT5MZWZldnJlPC9yZGY6bGk+PC9yZGY6U2VxPjwvZGM6Y3JlYXRv
+cj48ZGM6ZGVzY3JpcHRpb24+PHJkZjpTZXE+PHJkZjpsaT4oKTwvcmRmOmxpPjwvcmRmOlNl
+cT48L2RjOmRlc2NyaXB0aW9uPjwvcmRmOkRlc2NyaXB0aW9uPgo8L3JkZjpSREY+CjwveDp4
+bXBtZXRhPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgCjw/eHBhY2tl
+dCBlbmQ9J3cnPz4KZW5kc3RyZWFtCmVuZG9iagoyIDAgb2JqCjw8L1Byb2R1Y2VyKEdQTCBH
+aG9zdHNjcmlwdCA5LjEwKQovQ3JlYXRpb25EYXRlKEQ6MjAxODA0MjcwNzM3MjgrMDInMDAn
+KQovTW9kRGF0ZShEOjIwMTgwNDI3MDczNzI4KzAyJzAwJykKL0F1dGhvcihcMzc2XDM3N1ww
+MDBMXDAwMGVcMDAwZlwwMDBlXDAwMHZcMDAwclwwMDBlKQovQ3JlYXRvcihcMzc2XDM3N1ww
+MDBQXDAwMERcMDAwRlwwMDBDXDAwMHJcMDAwZVwwMDBhXDAwMHRcMDAwb1wwMDByXDAwMCBc
+MDAwVlwwMDBlXDAwMHJcMDAwc1wwMDBpXDAwMG9cMDAwblwwMDAgXDAwMDFcMDAwLlwwMDA3
+XDAwMC5cMDAwMykKL0tleXdvcmRzKCkKL1N1YmplY3QoKQovVGl0bGUoXDM3NlwzNzdcMDAw
+U1wwMDB1XDAwMGpcMDAwZVwwMDB0XDAwMCBcMDAwZFwwMDBlXDAwMCBcMDAwdFwwMDBoXDAw
+MGVcMDAwc1wwMDBlKT4+ZW5kb2JqCnhyZWYKMCAyMAowMDAwMDAwMDAwIDY1NTM1IGYgCjAw
+MDAwMTMyNjQgMDAwMDAgbiAKMDAwMDAxNTc0MyAwMDAwMCBuIAowMDAwMDEzMTk4IDAwMDAw
+IG4gCjAwMDAwMTI5MTIgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDA2NDk3
+IDAwMDAwIG4gCjAwMDAwMTM5NjAgMDAwMDAgbiAKMDAwMDAxMzQ0OSAwMDAwMCBuIAowMDAw
+MDEzNzY2IDAwMDAwIG4gCjAwMDAwMTM4MjcgMDAwMDAgbiAKMDAwMDAxMzg5MiAwMDAwMCBu
+IAowMDAwMDEzMzI5IDAwMDAwIG4gCjAwMDAwMTMwNTQgMDAwMDAgbiAKMDAwMDAwNjUxNyAw
+MDAwMCBuIAowMDAwMDEyODkxIDAwMDAwIG4gCjAwMDAwMTMzOTkgMDAwMDAgbiAKMDAwMDAx
+MzUzMSAwMDAwMCBuIAowMDAwMDE0MDQxIDAwMDAwIG4gCjAwMDAwMTQxMDggMDAwMDAgbiAK
+dHJhaWxlcgo8PCAvU2l6ZSAyMCAvUm9vdCAxIDAgUiAvSW5mbyAyIDAgUgovSUQgWzwwMzk4
+NUI5MDVDM0ZEQzc2MzZGNUVGN0JGNENCNDU2RT48MDM5ODVCOTA1QzNGREM3NjM2RjVFRjdC
+RjRDQjQ1NkU+XQo+PgpzdGFydHhyZWYKMTYxNjgKJSVFT0YK
+--------------7C491323CD1A5E574C16D00F--
+

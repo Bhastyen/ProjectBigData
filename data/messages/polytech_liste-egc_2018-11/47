@@ -1,0 +1,2159 @@
+Return-Path: <germain.forestier@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id EB4632292950
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 21 Nov 2018 16:34:31 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id E852C6D2553
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 21 Nov 2018 16:34:31 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id D9F5DB4A24C
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Nov 2018 16:34:31 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 5.825
+X-Spam-Level: *****
+X-Spam-Status: Yes, score=5.825 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, LONGWORDS=1.844,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SARE_GIF_ATTACH=0.75,
+	SARE_HEAD_8BIT_SPAM=0.888, SPF_PASS=-0.001,
+	TVD_FW_GRAPHIC_NAME_MID=0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_COMMAS_IN_SUBJ=2,
+	UN_GIF_ATTACH=0.01, UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.5669 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=uha-fr.20150623.gappssmtp.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id BkNxzRN1BbUX for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 21 Nov 2018 16:34:26 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 5A0BFB190A7
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Nov 2018 16:34:25 +0100 (CET)
+Received: by mail-ot1-x341.google.com with SMTP id f18so3708802otl.11
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Nov 2018 07:34:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=uha-fr.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=fRSw2mqbxMbBpjc74MOWJc0rspgIfkL+tJXs7dHiTc8=;
+        b=vJtqqNfuWg6VWrBwV6pRWXqeQujtql7qX+Kgjto78t7aOEHcwGYvOv92nQjWDJ26Qv
+         Ur8Lz22EA2cJSUQL5WFVTMdDSG4juJONhs4XdR1CAOqKYZOmry7ln9Fi4N6gUuKYSuBq
+         MpaG+x0BNsG5CGKaP2a+fLpdNn6aPArOPYaNyd9pUCwJ7OrIp90fQWtgI9W7MERMbwRw
+         A8mYcEk4X7AOzFFgZGIRVTZ1x+1InFOddVZsrGwrwEsM/CqWhYzT4ur2tFP62Sgbg7B8
+         LMMi2lpArJM7QpoZX9gLj8LQRlLmVMW4Ner3oTMG5Bd5Rm+wbUWgrrkjNfaKjTfKVQVE
+         8SWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=fRSw2mqbxMbBpjc74MOWJc0rspgIfkL+tJXs7dHiTc8=;
+        b=kOHQkpQFFjShsoX+X+UkOasIRvuB7kCXN/ziIuIbFnr7jO9CQ+Di61MOuJK3hF7M22
+         xUlxT1iejM68lG41ViSwQXLl6fsnbQuGVNMZEGaLXCp3PTRBDBSc1x3Aq5Xx7mzOl17s
+         nyFF285YrW/TWmm+iTfXIaTbYd/7WrR+83MYmbcfWOuzg6QTOyF15Mne9xU1lMrwU+ci
+         eLoz8NZ9clxW61jCdRv76cfzQkMNYJ0WdxGXmOqaGUBY2mR3L3zMQj0hBwXtRDcrhu4N
+         r1AeHH9Cj3X2TGz7NDJsUUvynVdtnQtI7TmbrOpMpf1yUSiggb/djL37vX+TPlwQZD7H
+         2UTA==
+X-Gm-Message-State: AA+aEWbW9u6dsib36b/84cHb2EjwuQCiKLyclHU0QCOIQpGPe1RrTOcD
+	06FVV4CY/f7pnS9w+7goEl1B475012RVAmF2IvhDQW+v
+X-Google-Smtp-Source: AFSGD/XM8cMQ+kkhjhuiODeyF7SszSIBj6/njTuNqS6Z1OrcW5BqhUoMhbhJ04h/zrF+0im23PrQuF884pcxfKh86FA=
+X-Received: by 2002:a9d:a48:: with SMTP id 66mr4204458otg.308.1542814460845;
+ Wed, 21 Nov 2018 07:34:20 -0800 (PST)
+MIME-Version: 1.0
+References: <0102016718caf794-3e797291-2ce4-47e3-8a57-c67581fb9d18-000000@eu-west-1.amazonses.com>
+ <6CE77CC6-6103-4AE6-A29D-BE7B43582064@univ-rennes1.fr>
+In-Reply-To: <6CE77CC6-6103-4AE6-A29D-BE7B43582064@univ-rennes1.fr>
+From: Germain Forestier <germain.forestier@uha.fr>
+Date: Wed, 21 Nov 2018 16:34:08 +0100
+Message-ID: <CAJO=9uTOK8UCTn7jP2Gn84itg2WiqHXbBz4OHDbhjmT=piHW3g@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr, bull-i3@irit.fr, webmaster@madics.fr
+Content-Type: multipart/related; boundary="000000000000e65a6f057b2e7bd1"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [SPAM] Call for Papers =?UTF-8?Q?=E2=80=93?= CARS 2019,
+ June 18 =?UTF-8?Q?=E2=80=93?= 21, Rennes, France
+
+--000000000000e65a6f057b2e7bd1
+Content-Type: multipart/alternative; boundary="000000000000e65a6d057b2e7bd0"
+
+--000000000000e65a6d057b2e7bd0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+If this newsletter is not shown correctly you may try the online version
+here
+<http://nl.zwo-null.de/browser.php?key=3DD92-1C-01-BB2249DBAE8C23C1B092C00D=
+B165B1B6-0B70B8E40BDE97CF01FD&rid=3D01_08_04_18>
+.
+[image: Newsletter-Head]
+
+*CALL FOR PAPERS*
+
+*Deadline for abstract / paper submissions: 10th January 2019*
+
+http://www.cars-int.org/
+<http://nl.zwo-null.de/link.php?link=3D01_08_04_18_1_D92-1C-01-BB2249DBAE8C=
+23C1B092C00DB165B1B6-0B70B8E40BDE97CF01FD>
+
+Dear Colleague,
+
+The CARS congress is the annual event for a distinguished international
+community of scientists, engineers and physicians to present and discuss
+the key innovations that shape modern medicine on a worldwide basis.
+
+Founded in 1983, CARS has played a leading role in medical and imaging
+informatics for more than 30 years by focusing on research and development
+on novel algorithms and systems and their applications in radiology and
+surgery. Its growth and impact is due to CARS=E2=80=99s close collaboration=
+ with
+the IFCARS, ISCAS, CAR, CAD, CMI and IPCAI organizations.
+
+Recent successful CARS congresses have taken place in Barcelona, Berlin,
+Paris, Tokyo, San Francisco, London, Chicago, Osaka, Geneva, Pisa, Fukuoka,
+and Heidelberg. We would be delighted to welcome you at CARS 2019, which
+will take place in Rennes, one of the leading cities for medical research
+and development in France, where the congress will take place in a very
+special historic setting.
+
+Following the long term successful cooperation with CARS congresses in many
+parts of the world, in 2019 these prestigious scientific communities will
+jointly hold their annual meetings as part of the 33rd CARS Congress in
+Rennes, France.
+
+At the CARS congress you will have the opportunity to meet scholars and
+practising experts in the fields of radiology, surgery, clinical medicine,
+engineering, informatics and healthcare management who have an interest in
+topics, such as
+
+   - artificial intelligence in radiology and surgery
+   - advanced medical imaging
+   - image- and model-guided interventions
+   - image processing and visualization
+   - intelligent operating room of the future
+   - decision and action support in surgical management
+   - computer aided diagnosis
+   - medical simulation and evaluation
+   - surgical navigation and robotics
+   - model-guided and personalised medicine
+   - machine learning
+   - multidisciplinary computational anatomy
+   - integrated patient care
+
+New IT-systems adapted to clinical environments, such as the operating
+room, but in particular, new methods and IT-tools for modelling the patient
+and medical processes as well as artificial intelligence (AI) systems are
+increasingly shaping the scope of CARS. Clinical specialties represented at
+CARS include:
+
+   - computer assisted neuro-, ENT-, orthopaedic and spinal surgery,
+   cardiovascular- and thoracic surgery, gastroenterological-, gynaecologic=
+al-
+   and urological surgery
+   - imaging and interventional radiology
+   - computed maxillofacial imaging
+   - computer assisted radiation therapy
+   - image guided navigation surgery
+   - minimally invasive and robotic surgery
+   - pathology informatics
+   - computer assisted radiology and minimally invasive therapies
+
+In close cooperation with institutions which presented clinical results of
+novel IT methods and tools in IJCARS, special emphasis will be given to
+innovative clinical investigations which show significant advances in
+clinical workflows and patient outcomes.
+
+Please note that the deadline for paper and abstract submissions for CARS
+2019 in Rennes is January 10, 2019. In addition to the abstract/paper
+submission, you are invited to submit short and informal proposals on
+tutorials, workshops and other special events which potentially can enhance
+the mission of CARS which is innovation, interdisciplinarity and
+internationality.
+
+*Congress format*
+The four-day congress consists of invited talks by internationally
+recognized experts, approx. 200 paper presentations, as well as exhibits
+and posters. Special focus sessions as well as product exhibits in the
+industrial exhibition are planned to give participants access to hot topics
+and new CARS-related products.
+Tutorials, workshops and special events related to the above topics
+complement the regular sessions of CARS and are organized under the
+auspices of the International Foundation of CARS.
+
+*Congress Topics*
+Relevant research and developments in Radiology, Surgery, Dentistry,
+Computer Science, and Biomedical Engineering and Modelling including but
+not limited to:
+
+*33rd International Congress and Exhibition on Computer Assisted Radiology
+(CAR)*
+Chair: Ulrich Bick, MD (D)
+
+   - Medical Imaging, e.g.
+   - DR, CT, MR, Virtual Endoscopy, US, SPECT, PET and Molecular Imaging
+   - Computer Assisted Cardiovascular Imaging
+   - Image Processing and Display
+   - Quantitative Imaging Biomarkers
+   - Medical Workstations
+   - Interventional Radiology
+   - Minimally Invasive Spinal Therapy
+   - Image Guided Diagnosis and Therapy of the Prostate
+   - Ablation Therapies
+   - Image Guided Radiation Therapy
+   - Nanotechnology for Imaging and Therapy
+   - Telemedicine, E-health and Multimedia EPR
+   - Expert Systems and Computer Assisted Education
+   - Economic and Management Issues
+   - Security, Legal and Ethical Aspects
+   - PACS Architecture, Workstation Design and Workflow
+   - Image Distribution, Storage and Archiving Strategies
+   - Interoperability and Standardization
+   - Managing Radiation Dose and Contrast Media
+   - Clinical Decision Support Systems
+
+------------------------------
+*23rd Annual Conference of the International Society for Computer Aided
+Surgery*
+President: Kensaku Mori, PhD (J)
+
+   - Artificial Intelligence Assisted Surgery
+   - Machine Learning in Surgery
+   - Augmented Reality, Virtual Reality for Surgery and Interventions
+   - Image Processing and Visualization
+   - Intraoperative Devices and Sensors
+   - Intraoperative Imaging
+   - Computer-assisted Planning
+   - Surgical Navigation
+   - Navigated Control
+   - Surgical Robotics and Instrumentation
+   - 3D Modelling and Rapid Prototyping
+   - Methods of Validation and Verification
+   - Evaluation of CAS Systems
+   - Postoperative Result Assessment
+   - Surgical Knowledge and Decision Management
+   - Decision and Action Support in Surgical Management
+   - Situation Awareness in the OR
+   - Surgical Skill Assessment
+   - Surgical Workflow Analysis
+   - Surgical Simulation, Education and Training
+   - Ergonomics, User Interfaces, Haptics and Multimodal Devices in
+   Surgical Applications
+   - Brain-Computer Interface, Neurostimulation
+   - Clinical specialties:
+   Computer aided surgery in neurosurgery, ENT surgery, orthopaedic and
+   spinal surgery, cardiovascular surgery, thoracic surgery,
+   gastroenterological surgery, gynaecological surgery, urological surgery
+   - Image Guided Navigation Surgery
+   - Minimally Invasive Robotic Surgery
+   - Image Guided Therapy
+
+------------------------------
+*21st International Workshop on Computer-Aided Diagnosis and Artificial
+Intelligence*
+Chair: Hiroyuki Yoshida, PhD (USA)
+
+   - Deep Learning / Machine Learning
+   - Radiomics
+   - CAD for Precision Medicine
+   - 3D Printing
+   - Grand Challenges in CAD
+   - Quantitative Imaging
+   - Risk Assessment
+   - Decision Support Systems
+   - Comparative Evaluation and Fusing CAD systems
+   - Content-based Image Retrieval
+   - Observer Performance Studies
+   - Clinical Evaluation
+   - Cloud CAD
+   - CAD for Breast, Lung, Colon and Gastrointestinal Tract, Eye/Retina,
+   Head and Neck, Liver, Prostate, Musculoskeletal, (Cardio-)Vascular,
+   Multiple Organ Systems, and Dentistry
+   - CAD for Oncology
+   - CAD for Histopathology and Microscopy
+
+------------------------------
+*25th Computed Maxillofacial Imaging Congress*
+Chair: Christos Angelopoulos, PhD (USA)
+Co-chair: Yoshihiko Hayakawa, PhD (J)
+
+   - New Imaging Devices and Novel Applications
+   - Evidence-based Selection Criteria in Digital Maxillofacial Imaging
+   - Craniomaxillofacial Computer-Aided Diagnosis
+   - Maxillofacial Image Processing
+   - Cranial and Maxillofacial Image Guided Surgery
+   - Image Navigated Dental Implantology
+   - Orthodontic and Endodontic Applications of Computed Imaging
+   - Imaging and Modelling for Maxillofacial Prosthodontics
+   - Cone Beam and Multislice CT
+   - Maxillofacial MRI and Ultrasound Imaging
+   - Image Fusion and Subtraction
+   - 3D and 4D Imaging
+   - Multi-dimensional Maxillofacial Modelling
+   - Virtual Reality and Dental Robotics
+   - Interoperability and Maxillofacial Applications in IHE
+
+------------------------------
+*10th Conference on Information Processing in Computer-Assisted
+Intervention (IPCAI)*
+Chairs: Kensaku Mori, PhD (J), Parvin Mousavi, PhD (CDN), Danail Stoyanov,
+PhD (UK)
+
+   - Surgical Data Science
+   - Interventional Imaging
+   - Systems and Software
+   - Evaluation and Validation
+   - Tracking and Navigation
+   - Interventional Robotics
+   - Surgical Planning and Simulation
+   - Advanced Intra-operative Visualization and User Interfaces
+   - Augmented Reality for Medical Applications
+   - Surgical Skill Analysis and Workflow
+
+------------------------------
+*21st IFCARS / SPIE / ISCAS Joint Workshop on the Digital Operating Room*
+Chairs: Yoshihiro Muragaki, MD (J), Heinz U. Lemke, PhD (D)
+
+   - Surgical Workflow
+   - Intelligent Operating Room
+   - Therapy Imaging and Model Management Systems
+   - Surgical PACS
+   - DICOM and IHE in Surgery
+   - Management and Assessment of OR Systems Integration
+   - Architectures of ORs and Imaging Suites
+
+------------------------------
+*4th ISCAS / CAD / IFCARS Joint Symposium on Multidisciplinary
+Computational Anatomy*
+Chairs: Makoto Hashizume, MD (J), Hiroyuki Yoshida, PhD (USA)
+
+   - Micro-computational Anatomy
+   - Physiological Modeling in Multi-computational Anatomy
+   - Surgery Using Multi-computational Anatomy
+   - Mathematical Foundation of Multi-disciplinary Computational Anatomy
+   - Robotics and Multi-disciplinary Computational Anatomy
+   - Multi-disciplinary Computational Anatomy Assisting Radiology
+
+------------------------------
+*12th CARS Clinical Day*
+Chairs: Leonard Berliner, MD (USA), Eric vanSonnenberg, MD (USA),
+Hubertus Feussner, MD (D)
+
+   - Clinical Innovations in Imaging and Interventional Radiology
+   - Clinical Innovations in Surgery
+   - The Future: Impact of Engineering/Informatics in Radiology and Surgery
+   - Computer Assisted Radiology and Minimally Invasive Therapy
+   - Results of Innovative Clinical Investigations
+
+------------------------------
+*Submissions*
+Extended abstracts or full papers including new methods, devices, systems
+and applications, clinical studies, position papers, and poster topics for
+presentation at the congress are solicited. Submissions will be
+peer-reviewed by members of the CARS international program committee.
+
+CARS follows a two-tier system:
+1) Extended abstracts of accepted lecture and poster presentations
+(typically containing novel work-in-progress results) will be published in
+the CARS 2019 Proceedings, Supplement of IJCARS, which will be distributed
+to all congress participants.
+2) Peer-reviewed and after thorough revision accepted full paper
+contributions (typically containing validated results of original R&D work)
+will be included in regular issues of the International Journal of CARS.
+
+Authors should send their submissions through the CARS website, see further
+information and guidelines at www.cars-int.org.
+*Timetable*
+Submission of abstracts / papers: *January 10, 2019*
+Notification of acceptance: *February 8, 2019*
+Registration of presenting authors: *March 4, 2019*
+Submission of final abstracts: *March 8, 2019*
+Publication of final papers: *after the peer-review process*
+------------------------------
+*Special Events*
+
+*6**th** SURGETICA Conference p**re-located to CARS*
+Chairs: Pascal Haigron (F), Antoine Simon (F), Pierre Jannin (F)
+------------------------------
+*Tutorials*
+
+*Tutorial AR/VR: Perceptual Capacities and Constraints in AR/VR for the
+visualization of 3D biomedical image data*
+Roy Eagleson (CDN), Georges Hattab (D)
+
+*Tutorial SlicerIGT: Deep learning and computer vision for real-time
+procedure annotation*
+Tamas Ungi (CDN), Sonia M. Pujol (USA), Javier Pascau (E), Gabor Fichtinger
+(CDN)
+
+*Tutorial  on Applied Deep Learning for Medical Scientists working with
+Image Data*
+Daniel L=C3=BCckehe (D), Gabriele von Voigt (D)
+
+*Tutorial on Advanced Deep Learning for Medical Imaging Data*
+John D.H. Baxter (F)
+------------------------------
+*Congress Venue*
+The Congress will be held at the Le Couvent des Jacobins Convention Center,
+Rennes, France
+
+*CARS 2019 President*
+Pierre Jannin, PhD (F)
+
+*Congress Organizer*
+Heinz Lemke, PhD (D)
+
+International Foundation for CARS, Germany
+hulemke@cars-int.org
+
+*Congress Committees*
+see www.cars-int.org/committees.html
+
+For submission, registration and additional information, contact the
+CARS Conference Office at
+office@cars-int.org
+
+Further information about the International Journal of CARS is available at
+www.springer.com/11548
+Manuscript Submissions: www.editorialmanager.com/cars
+
+Check our website for frequent updates:
+https://www.cars-int.org
+
+Congress venue and travel information are available at
+https://www.cars2019.org
+------------------------------
+
+
+*Recipients of this email have registered for previous CARS congresses,
+authored or co-authored previous CARS Congress papers, or expressed
+explicitly to be informed about CARS congress activities.In line with data
+privacy directives, we will remove your personal information from the CARS
+congress database upon your request.*
+
+*If you want to unsubscribe from the CARS Newsletter, please click here.
+<http://nl.zwo-null.de/nlu.php?key=3DD92-1C-01-BB2249DBAE8C23C1B092C00DB165=
+B1B6-0B70B8E40BDE97CF01FD&rid=3D01_08_04_18>*
+[image: Bottom-Image]
+Please visit the CARS-website: www.cars-int.org
+<http://nl.zwo-null.de/link.php?link=3D01_08_04_18_1_D92-1C-01-BB2249DBAE8C=
+23C1B092C00DB165B1B6-0B70B8E40BDE97CF01FD>
+--=20
+Dr Germain Forestier
+Professeur des Universit=C3=A9s (Full Professor)
+IRIMAS, Universit=C3=A9 de Haute-Alsace, France
+
+Senior Lecturer (Adjunct)
+Faculty of IT
+Monash University, Melbourne, Australia
+
+Tel : 03 89 33 69 63
+Twitter : @gforestier <http://twitter.com/gforestier>
+https://germain-forestier.info/
+
+--000000000000e65a6d057b2e7bd0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div style=3D"word-wrap:break-w=
+ord;line-break:after-white-space"><div><div><br><table align=3D"center" bgc=
+olor=3D"#E6E6E6" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+659" style=3D"font-family:Arial,Helvetica,sans-serif;letter-spacing:normal;=
+text-indent:0px;text-transform:none;word-spacing:0px;text-decoration:none">=
+<tbody><tr><td align=3D"center" valign=3D"top" width=3D"653" style=3D"font-=
+family:Arial,Helvetica,sans-serif;font-size:12px;color:rgb(51,51,51)"><tabl=
+e align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"650"><tbody><tr><td align=3D"right" class=3D"m_4648039659335771137upper=
+_text" width=3D"650" style=3D"font-family:Verdana,Arial,Helvetica,sans-seri=
+f;font-size:10px;color:rgb(51,51,51);padding:7px 25px 7px 0px;text-align:ri=
+ght">If this newsletter is not shown correctly you may try the online versi=
+on<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span><=
+a href=3D"http://nl.zwo-null.de/browser.php?key=3DD92-1C-01-BB2249DBAE8C23C=
+1B092C00DB165B1B6-0B70B8E40BDE97CF01FD&amp;rid=3D01_08_04_18" style=3D"colo=
+r:rgb(50,142,69);padding:0px;margin:0px" target=3D"_blank">here</a>.</td></=
+tr><tr><td align=3D"left" bgcolor=3D"#E6E6E6" height=3D"207" width=3D"650" =
+style=3D"font-family:Arial,Helvetica,sans-serif;font-size:0px;color:rgb(51,=
+51,51);line-height:0px"><img alt=3D"Newsletter-Head" border=3D"0" id=3D"m_4=
+6480396593357711372EBB5C8C-169A-4D71-97E8-D677CCC5C1B4" src=3D"cid:16736e59=
+a52bd6d56b61"></td></tr><tr><td align=3D"center" bgcolor=3D"#E6E6E6" width=
+=3D"650" style=3D"font-family:Arial,Helvetica,sans-serif;font-size:12px;col=
+or:rgb(51,51,51)"><table align=3D"center" bgcolor=3D"#FFFFFF" border=3D"0" =
+cellpadding=3D"25" cellspacing=3D"0" width=3D"600"><tbody><tr><td align=3D"=
+left" class=3D"m_4648039659335771137inhalt" style=3D"font-family:Arial,Helv=
+etica,sans-serif;font-size:12px;color:rgb(51,51,51);background-color:rgb(25=
+5,255,255);text-align:left;padding-left:20px;padding-right:20px"><div><div>=
+<div><div><div><p class=3D"m_4648039659335771137bodytext" style=3D"margin-r=
+ight:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span style=3D"lin=
+e-height:12.75pt"><span><b><span lang=3D"EN-GB" style=3D"font-size:10pt"><s=
+pan><span style=3D"color:rgb(51,51,51)">CALL FOR PAPERS</span></span></span=
+></b></span></span></span></p><p class=3D"m_4648039659335771137bodytext" st=
+yle=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><sp=
+an style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" style=3D"fon=
+t-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Deadline for abstrac=
+t / paper submissions: 10th January 2019</span></span></span></b></span></s=
+pan></span></p><p class=3D"m_4648039659335771137bodytext" style=3D"margin-r=
+ight:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span style=3D"lin=
+e-height:12.75pt"><span><span style=3D"font-size:10pt"><span><span style=3D=
+"color:rgb(51,51,51)"><a href=3D"http://nl.zwo-null.de/link.php?link=3D01_0=
+8_04_18_1_D92-1C-01-BB2249DBAE8C23C1B092C00DB165B1B6-0B70B8E40BDE97CF01FD" =
+style=3D"color:blue;text-decoration:underline" target=3D"_blank"><span lang=
+=3D"EN-GB" style=3D"color:rgb(51,51,51)">http://www.cars-int.org/</span></a=
+></span></span></span></span></span></span></p><p class=3D"m_46480396593357=
+71137bodytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"fo=
+nt-size:12pt"><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><sp=
+an style=3D"color:rgb(51,51,51)">Dear Colleague,</span></span></span></span=
+></span></p><p class=3D"m_4648039659335771137bodytext" style=3D"margin-righ=
+t:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span><span lang=3D"E=
+N-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Th=
+e CARS congress is the annual event for a distinguished international commu=
+nity of scientists, engineers and physicians to present and discuss the key=
+ innovations that shape modern medicine on a worldwide basis.</span></span>=
+</span></span></span></p><p class=3D"m_4648039659335771137bodytext" style=
+=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rg=
+b(51,51,51)">Founded in 1983, CARS has played a leading role in medical and=
+ imaging informatics for more than 30 years by focusing on research and dev=
+elopment on novel algorithms and systems and their applications in radiolog=
+y and surgery. Its growth and impact is due to CARS=E2=80=99s close collabo=
+ration with the IFCARS, ISCAS, CAR, CAD, CMI and IPCAI organizations.<span =
+class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span></span></=
+span></span></span></span></p><p class=3D"m_4648039659335771137bodytext" st=
+yle=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><sp=
+an><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color=
+:rgb(51,51,51)">Recent successful CARS congresses have taken place in Barce=
+lona, Berlin, Paris, Tokyo, San Francisco, London, Chicago, Osaka, Geneva, =
+Pisa, Fukuoka, and Heidelberg. We would be delighted to welcome you at CARS=
+ 2019, which will take place in Rennes, one of the leading cities for medic=
+al research and development in France, where the congress will take place i=
+n a very special historic setting.</span></span></span></span></span></p><p=
+ class=3D"m_4648039659335771137bodytext" style=3D"margin-right:0cm;margin-l=
+eft:0cm"><span style=3D"font-size:12pt"><span><span lang=3D"EN-GB" style=3D=
+"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Following the lo=
+ng term successful cooperation with CARS congresses in many parts of the wo=
+rld, in 2019 these prestigious scientific communities will jointly hold the=
+ir annual meetings as part of the 33rd CARS Congress in Rennes, France.</sp=
+an></span></span></span></span></p><p class=3D"m_4648039659335771137bodytex=
+t" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt=
+"><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"=
+color:rgb(51,51,51)">At the CARS congress you will have the opportunity to =
+meet scholars and practising experts in the fields of radiology, surgery, c=
+linical medicine, engineering, informatics and healthcare management who ha=
+ve an interest in topics, such as<span class=3D"m_4648039659335771137Apple-=
+converted-space">=C2=A0</span></span></span></span></span></span></p><ul><l=
+i style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span st=
+yle=3D"color:rgb(51,51,51)"><span><span><span lang=3D"EN-GB" style=3D"font-=
+size:10pt"><span>artificial intelligence in radiology and surgery</span></s=
+pan></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt">=
+<span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span><s=
+pan><span style=3D"font-size:10pt"><span>advanced medical imaging</span></s=
+pan></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt">=
+<span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span><s=
+pan><span style=3D"font-size:10pt"><span>image- and model-guided interventi=
+ons</span></span></span></span></span></span></li><li style=3D"margin:0cm 0=
+cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,=
+51)"><span><span><span style=3D"font-size:10pt"><span>image processing and =
+visualization</span></span></span></span></span></span></li><li style=3D"ma=
+rgin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:=
+rgb(51,51,51)"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><s=
+pan>intelligent operating room of the future</span></span></span></span></s=
+pan></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-s=
+ize:12pt"><span style=3D"color:rgb(51,51,51)"><span><span><span lang=3D"EN-=
+GB" style=3D"font-size:10pt"><span>decision and action support in surgical =
+management</span></span></span></span></span></span></li><li style=3D"margi=
+n:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb=
+(51,51,51)"><span><span><span style=3D"font-size:10pt"><span>computer aided=
+ diagnosis</span></span></span></span></span></span></li><li style=3D"margi=
+n:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb=
+(51,51,51)"><span><span><span style=3D"font-size:10pt"><span>medical simula=
+tion and evaluation</span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span><span><span style=3D"font-size:10pt"><span>surgi=
+cal navigation and robotics</span></span></span></span></span></span></li><=
+li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span s=
+tyle=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-size:10pt"><sp=
+an>model-guided and personalised medicine</span></span></span></span></span=
+></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size=
+:12pt"><span style=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-=
+size:10pt"><span>machine learning</span></span></span></span></span></span>=
+</li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><=
+span style=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-size:10p=
+t"><span>multidisciplinary computational anatomy</span></span></span></span=
+></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"fo=
+nt-size:12pt"><span style=3D"color:rgb(51,51,51)"><span><span><span style=
+=3D"font-size:10pt"><span>integrated patient care</span></span></span></spa=
+n></span></span></li></ul><p class=3D"m_4648039659335771137bodytext" style=
+=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rg=
+b(51,51,51)">New IT-systems adapted to clinical environments, such as the o=
+perating room, but in particular, new methods and IT-tools for modelling th=
+e patient and medical processes as well as artificial intelligence (AI) sys=
+tems are increasingly shaping the scope of CARS. Clinical specialties repre=
+sented at CARS include:</span></span></span></span></span></p><ul><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span><span><span lang=3D"EN-GB" style=3D"font-size:10=
+pt"><span>computer assisted neuro-, ENT-, orthopaedic and spinal surgery, c=
+ardiovascular- and thoracic surgery, gastroenterological-, gynaecological- =
+and urological surgery</span></span></span></span></span></span></li><li st=
+yle=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=
+=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-size:10pt"><span>i=
+maging and interventional radiology</span></span></span></span></span></spa=
+n></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"=
+><span style=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-size:1=
+0pt"><span>computed maxillofacial imaging</span></span></span></span></span=
+></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size=
+:12pt"><span style=3D"color:rgb(51,51,51)"><span><span><span style=3D"font-=
+size:10pt"><span>computer assisted radiation therapy</span></span></span></=
+span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span><span><span s=
+tyle=3D"font-size:10pt"><span>image guided navigation surgery</span></span>=
+</span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><spa=
+n style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span><span>=
+<span style=3D"font-size:10pt"><span>minimally invasive and robotic surgery=
+</span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm =
+0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)=
+"><span><span><span style=3D"font-size:10pt"><span>pathology informatics</s=
+pan></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0=
+001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><=
+span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>computer ass=
+isted radiology and minimally invasive therapies</span></span></span></span=
+></span></span></li></ul><p class=3D"m_4648039659335771137bodytext" style=
+=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rg=
+b(51,51,51)">In close cooperation with institutions which presented clinica=
+l results of novel IT methods and tools in IJCARS, special emphasis will be=
+ given to innovative clinical investigations which show significant advance=
+s in clinical workflows and patient outcomes.</span></span></span></span></=
+span></p><p class=3D"m_4648039659335771137bodytext" style=3D"margin-right:0=
+cm;margin-left:0cm"><span style=3D"font-size:12pt"><span><span lang=3D"EN-G=
+B" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Pleas=
+e note that the deadline for paper and abstract submissions for CARS 2019 i=
+n Rennes is January=C2=A010, 2019. In addition to the abstract/paper submis=
+sion, you are invited to submit short and informal proposals on tutorials, =
+workshops and other special events which potentially can enhance the missio=
+n of CARS which is innovation, interdisciplinarity and internationality.</s=
+pan></span></span></span></span></p><p class=3D"m_4648039659335771137bodyte=
+xt" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12p=
+t"><span style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Congress form=
+at</span></span></span></b><br><span lang=3D"EN-GB" style=3D"font-size:10pt=
+"><span><span style=3D"color:rgb(51,51,51)">The four-day congress consists =
+of invited talks by internationally recognized experts, approx. 200 paper p=
+resentations, as well as exhibits and posters. Special focus sessions as we=
+ll as product exhibits in the industrial exhibition are planned to give par=
+ticipants access to hot topics and new CARS-related products.<br>Tutorials,=
+ workshops and special events related to the above topics complement the re=
+gular sessions of CARS and are organized under the auspices of the Internat=
+ional Foundation of CARS.<span class=3D"m_4648039659335771137Apple-converte=
+d-space">=C2=A0</span></span></span></span></span></span></span></p><p clas=
+s=3D"m_4648039659335771137bodytext" style=3D"margin-right:0cm;margin-left:0=
+cm"><span style=3D"font-size:12pt"><span style=3D"line-height:12.75pt"><spa=
+n><b><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"col=
+or:rgb(51,51,51)">Congress Topics</span></span></span></b><br><span lang=3D=
+"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">=
+Relevant research and developments in Radiology, Surgery, Dentistry, Comput=
+er Science, and Biomedical Engineering and Modelling including but not limi=
+ted to:<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</s=
+pan></span></span></span></span></span></span></p><p class=3D"m_46480396593=
+35771137bodytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D=
+"font-size:12pt"><span style=3D"line-height:12.75pt"><span><b><span lang=3D=
+"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">=
+33<sup>rd</sup><span class=3D"m_4648039659335771137Apple-converted-space">=
+=C2=A0</span>International Congress and Exhibition on Computer Assisted Rad=
+iology (CAR)</span></span></span></b><br><span lang=3D"EN-GB" style=3D"font=
+-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Chair: Ulrich Bick, M=
+D (D)</span></span></span></span></span></span></p><ul><li style=3D"margin:=
+0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(5=
+1,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-=
+GB" style=3D"font-size:10pt"><span>Medical Imaging, e.g.<span class=3D"m_46=
+48039659335771137Apple-converted-space">=C2=A0</span></span></span></span><=
+/span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span=
+ style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=
+=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt"><span>DR, CT, MR, Virtual Endoscopy, US, SPECT, PET and Molecular I=
+maging</span></span></span></span></span></span></span></li><li style=3D"ma=
+rgin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:=
+rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Computer Assisted Cardiovascular =
+Imaging</span></span></span></span></span></span></span></li><li style=3D"m=
+argin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color=
+:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Image Processing and Display</spa=
+n></span></span></span></span></span></span></li><li style=3D"margin:0cm 0c=
+m 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,5=
+1)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt"><span>Quantitative Imaging Biomarkers</span></span><=
+/span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt=
+"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span =
+style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fon=
+t-size:10pt"><span>Medical Workstations</span></span></span></span></span><=
+/span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font=
+-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:=
+12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>In=
+terventional Radiology</span></span></span></span></span></span></span></li=
+><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span=
+ style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><s=
+pan><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Minimally Invasive =
+Spinal Therapy</span></span></span></span></span></span></span></li><li sty=
+le=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=
+=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><s=
+pan lang=3D"EN-GB" style=3D"font-size:10pt"><span>Image Guided Diagnosis an=
+d Therapy of the Prostate</span></span></span></span></span></span></span><=
+/li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><s=
+pan style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span=
+><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Ablation Therapi=
+es</span></span></span></span></span></span></span></li><li style=3D"margin=
+:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(=
+51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN=
+-GB" style=3D"font-size:10pt"><span>Image Guided Radiation Therapy</span></=
+span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.=
+0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)">=
+<span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span>Nanotechnology for Imaging and Therapy</span></sp=
+an></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.00=
+01pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><s=
+pan style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D=
+"font-size:10pt"><span>Telemedicine, E-health and Multimedia EPR</span></sp=
+an></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.00=
+01pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><s=
+pan style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D=
+"font-size:10pt"><span>Expert Systems and Computer Assisted Education</span=
+></span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm=
+ 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51=
+)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt"><span>Economic and Management Issues</span></span></s=
+pan></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt">=
+<span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span st=
+yle=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-=
+size:10pt"><span>Security, Legal and Ethical Aspects</span></span></span></=
+span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span =
+style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D=
+"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt"><span>PACS Architecture, Workstation Design and Workflow</span></span>=
+</span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001p=
+t"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span=
+ style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fo=
+nt-size:10pt"><span>Image Distribution, Storage and Archiving Strategies</s=
+pan></span></span></span></span></span></span></li><li style=3D"margin:0cm =
+0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51=
+,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" =
+style=3D"font-size:10pt"><span>Interoperability and Standardization</span><=
+/span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0=
+.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"=
+><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span>Managing Radiation Dose and Contrast Media</span>=
+</span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm =
+0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)=
+"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" styl=
+e=3D"font-size:10pt"><span>Clinical Decision Support Systems</span></span><=
+/span></span></span></span></span></li></ul><hr><span style=3D"font-size:12=
+pt"><span style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">23<sup>rd</su=
+p><span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span>A=
+nnual Conference of the International Society for Computer Aided Surgery</s=
+pan></span></span></b></span></span></span><br><span style=3D"font-size:12p=
+t"><span style=3D"line-height:12.75pt"><span><span lang=3D"EN-GB" style=3D"=
+font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">President: Kensak=
+u Mori, PhD (J)</span></span></span></span></span></span><ul><li style=3D"m=
+argin:0cm 0cm 0.0001pt"><span style=3D"font-size:11pt"><span style=3D"color=
+:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Artificial Intelligence Assisted =
+Surgery</span></span></span></span></span></span></span></li><li style=3D"m=
+argin:0cm 0cm 0.0001pt"><span style=3D"font-size:11pt"><span style=3D"color=
+:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Machine Learning in Surgery</span=
+></span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm=
+ 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51=
+)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt"><span>Augmented Reality, Virtual Reality for Surgery =
+and Interventions</span></span></span></span></span></span></span></li><li =
+style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span styl=
+e=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><=
+span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Image Processing and Vis=
+ualization</span></span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Intraoperative Devices and Se=
+nsors</span></span></span></span></span></span></span></li><li style=3D"mar=
+gin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:r=
+gb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D=
+"EN-GB" style=3D"font-size:10pt"><span>Intraoperative Imaging</span></span>=
+</span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001p=
+t"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span=
+ style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fo=
+nt-size:10pt"><span>Computer-assisted Planning</span></span></span></span><=
+/span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Surgical Navigation</span></span></span></span></span></span></span><=
+/li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><s=
+pan style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span=
+><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Navigated Contro=
+l</span></span></span></span></span></span></span></li><li style=3D"margin:=
+0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(5=
+1,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-=
+GB" style=3D"font-size:10pt"><span>Surgical Robotics and Instrumentation</s=
+pan></span></span></span></span></span></span></li><li style=3D"margin:0cm =
+0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51=
+,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" =
+style=3D"font-size:10pt"><span>3D Modelling and Rapid Prototyping</span></s=
+pan></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0=
+001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><=
+span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span>Methods of Validation and Verification<span class=
+=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span></span></span>=
+</span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001p=
+t"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span=
+ style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fo=
+nt-size:10pt"><span>Evaluation of CAS Systems</span></span></span></span></=
+span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Postoperative Result Assessment</span></span></span></span></span></s=
+pan></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-s=
+ize:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12=
+.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Surg=
+ical Knowledge and Decision Management</span></span></span></span></span></=
+span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-=
+size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:1=
+2.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Dec=
+ision and Action Support in Surgical Management</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Situation Awareness in the OR</span></span></span></span></span></spa=
+n></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-siz=
+e:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.7=
+5pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Surgic=
+al Skill Assessment</span></span></span></span></span></span></span></li><l=
+i style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span st=
+yle=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span=
+><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Surgical Workflow Anal=
+ysis</span></span></span></span></span></span></span></li><li style=3D"marg=
+in:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rg=
+b(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"=
+EN-GB" style=3D"font-size:10pt"><span>Surgical Simulation, Education and Tr=
+aining</span></span></span></span></span></span></span></li><li style=3D"ma=
+rgin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:=
+rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Ergonomics, User Interfaces, Hapt=
+ics and Multimodal Devices in Surgical Applications</span></span></span></s=
+pan></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span s=
+tyle=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"=
+line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10=
+pt"><span>Brain-Computer Interface, Neurostimulation</span></span></span></=
+span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span =
+style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D=
+"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt"><span>Clinical specialties:<br>Computer aided surgery in neurosurgery,=
+ ENT surgery, orthopaedic and spinal surgery, cardiovascular surgery, thora=
+cic surgery, gastroenterological surgery, gynaecological surgery, urologica=
+l surgery</span></span></span></span></span></span></span></li><li style=3D=
+"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"col=
+or:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lan=
+g=3D"EN-GB" style=3D"font-size:10pt"><span>Image Guided Navigation Surgery<=
+/span></span></span></span></span></span></span></li><li style=3D"margin:0c=
+m 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,=
+51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB=
+" style=3D"font-size:10pt"><span>Minimally Invasive Robotic Surgery</span><=
+/span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0=
+.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"=
+><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span>Image Guided Therapy</span></span></span></span><=
+/span></span></span></li></ul><hr><div style=3D"margin:0cm 0cm 0.0001pt"><s=
+pan style=3D"font-size:12pt"><span><b><span lang=3D"EN-GB" style=3D"font-si=
+ze:10pt"><span><span style=3D"color:rgb(51,51,51)">21<sup>st</sup><span cla=
+ss=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span>Internationa=
+l Workshop on Computer-Aided Diagnosis and Artificial Intelligence</span></=
+span></span></b><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><sp=
+an style=3D"color:rgb(51,51,51)">Chair: Hiroyuki Yoshida, PhD (USA)</span><=
+/span></span></span></span></div><ul><li style=3D"margin:0cm 0cm 0.0001pt">=
+<span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span st=
+yle=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-=
+size:10pt"><span>Deep Learning / Machine Learning</span></span></span></spa=
+n></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span sty=
+le=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"li=
+ne-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt=
+"><span>Radiomics</span></span></span></span></span></span></span></li><li =
+style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span styl=
+e=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><=
+span lang=3D"EN-GB" style=3D"font-size:10pt"><span>CAD for Precision Medici=
+ne</span></span></span></span></span></span></span></li><li style=3D"margin=
+:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(=
+51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN=
+-GB" style=3D"font-size:10pt"><span>3D Printing</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Grand Challenges in CAD</span></span></span></span></span></span></sp=
+an></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt=
+"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><=
+span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Quantitative=
+ Imaging</span></span></span></span></span></span></span></li><li style=3D"=
+margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"colo=
+r:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Risk Assessment</span></span></sp=
+an></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><=
+span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span sty=
+le=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-s=
+ize:10pt"><span>Decision Support Systems</span></span></span></span></span>=
+</span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"fon=
+t-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height=
+:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>C=
+omparative Evaluation and Fusing CAD systems</span></span></span></span></s=
+pan></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D=
+"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-he=
+ight:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><sp=
+an>Content-based Image Retrieval</span></span></span></span></span></span><=
+/span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:1=
+2pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt=
+"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Observer =
+Performance Studies</span></span></span></span></span></span></span></li><l=
+i style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span st=
+yle=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span=
+><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Clinical Evaluation</s=
+pan></span></span></span></span></span></span></li><li style=3D"margin:0cm =
+0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51=
+,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" =
+style=3D"font-size:10pt"><span>Cloud CAD</span></span></span></span></span>=
+</span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"fon=
+t-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height=
+:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>C=
+AD for Breast, Lung, Colon and Gastrointestinal Tract, Eye/Retina, Head and=
+ Neck, Liver, Prostate, Musculoskeletal, (Cardio-)Vascular, Multiple Organ =
+Systems, and Dentistry</span></span></span></span></span></span></span></li=
+><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span=
+ style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><s=
+pan><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>CAD for Oncology</s=
+pan></span></span></span></span></span></span></li><li style=3D"margin:0cm =
+0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51=
+,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" =
+style=3D"font-size:10pt"><span>CAD for Histopathology and Microscopy</span>=
+</span></span></span></span></span></span></li></ul><hr><div style=3D"margi=
+n:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span><b><span lang=3D"E=
+N-US" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">25=
+<sup>th</sup><span class=3D"m_4648039659335771137Apple-converted-space">=C2=
+=A0</span>Computed Maxillofacial Imaging Congress</span></span></span></b><=
+br><span lang=3D"EN-US" style=3D"font-size:10pt"><span><span style=3D"color=
+:rgb(51,51,51)">Chair:<span class=3D"m_4648039659335771137Apple-converted-s=
+pace">=C2=A0</span></span></span></span><span lang=3D"EN-US" style=3D"font-=
+size:10pt"><span><span style=3D"color:rgb(51,51,51)">Christos Angelopoulos,=
+ PhD (USA)</span></span></span></span></span></div><div style=3D"margin:0cm=
+ 0cm 0.0001pt"><span style=3D"font-size:12pt"><span><span lang=3D"EN-US" st=
+yle=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Co-chair: =
+Yoshihiko Hayakawa, PhD (J)</span></span></span></span></span></div><ul><li=
+ style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span sty=
+le=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span>New Imaging Devices and=
+ Novel Applications</span></span></span></span></span></span></span></li><l=
+i style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span st=
+yle=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span=
+><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Evidence-based Selecti=
+on Criteria in Digital Maxillofacial Imaging</span></span></span></span></s=
+pan></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D=
+"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-he=
+ight:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><sp=
+an>Craniomaxillofacial Computer-Aided Diagnosis</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Maxillofacial Image Processing</span></span></span></span></span></sp=
+an></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-si=
+ze:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.=
+75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Crani=
+al and Maxillofacial Image Guided Surgery</span></span></span></span></span=
+></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"fo=
+nt-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-heigh=
+t:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>=
+Image Navigated Dental Implantology</span></span></span></span></span></spa=
+n></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-siz=
+e:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.7=
+5pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Orthod=
+ontic and Endodontic Applications of Computed Imaging</span></span></span><=
+/span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span=
+ style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=
+=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt"><span>Imaging and Modelling for Maxillofacial Prosthodontics</span>=
+</span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm =
+0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)=
+"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" styl=
+e=3D"font-size:10pt"><span>Cone Beam and Multislice CT</span></span></span>=
+</span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><spa=
+n style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=
+=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt"><span>Maxillofacial MRI and Ultrasound Imaging</span></span></span>=
+</span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><spa=
+n style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=
+=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt"><span>Image Fusion and Subtraction</span></span></span></span></spa=
+n></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"f=
+ont-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-heig=
+ht:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span=
+>3D and 4D Imaging</span></span></span></span></span></span></span></li><li=
+ style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span sty=
+le=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Multi-dimensional Maxil=
+lofacial Modelling</span></span></span></span></span></span></span></li><li=
+ style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span sty=
+le=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span>=
+<span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Virtual Reality and Den=
+tal Robotics</span></span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Interoperability and Maxillof=
+acial Applications in IHE</span></span></span></span></span></span></span><=
+/li></ul><hr><div style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-siz=
+e:12pt"><span><b><span lang=3D"EN-US" style=3D"font-size:10pt"><span><span =
+style=3D"color:rgb(51,51,51)">10<sup>th</sup><span class=3D"m_4648039659335=
+771137Apple-converted-space">=C2=A0</span>Conference on Information Process=
+ing in Computer-Assisted Intervention (IPCAI)</span></span></span></b><br><=
+span lang=3D"EN-US" style=3D"font-size:10pt"><span><span style=3D"color:rgb=
+(51,51,51)">Chairs: Kensaku Mori, PhD (J), Parvin Mousavi, PhD (CDN), Danai=
+l Stoyanov, PhD (UK)</span></span></span></span></span></div><ul><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Surgical Data Science</span><=
+/span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0=
+.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"=
+><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=
+=3D"font-size:10pt"><span>Interventional Imaging</span></span></span></span=
+></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span styl=
+e=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"lin=
+e-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"=
+><span>Systems and Software</span></span></span></span></span></span></span=
+></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt">=
+<span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><sp=
+an><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Evaluation and=
+ Validation</span></span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Tracking and Navigation</span=
+></span></span></span></span></span></span></li><li style=3D"margin:0cm 0cm=
+ 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51=
+)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt"><span>Interventional Robotics</span></span></span></s=
+pan></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span s=
+tyle=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"=
+line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10=
+pt"><span>Surgical Planning and Simulation</span></span></span></span></spa=
+n></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"f=
+ont-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-heig=
+ht:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span=
+>Advanced Intra-operative Visualization and User Interfaces</span></span></=
+span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"=
+><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span s=
+tyle=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font=
+-size:10pt"><span>Augmented Reality for Medical Applications</span></span><=
+/span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt=
+"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span =
+style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fon=
+t-size:10pt"><span>Surgical Skill Analysis and Workflow</span></span></span=
+></span></span></span></span></li></ul><hr><div style=3D"margin:0cm 0cm 0.0=
+001pt"><span style=3D"font-size:12pt"><span><b><span lang=3D"EN-US" style=
+=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">21<sup>st</su=
+p><span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span>I=
+FCARS / SPIE / ISCAS Joint Workshop on the Digital Operating Room</span></s=
+pan></span></b><br><span lang=3D"EN-US" style=3D"font-size:10pt"><span><spa=
+n style=3D"color:rgb(51,51,51)">Chairs: Yoshihiro Muragaki, MD (J), Heinz U=
+. Lemke, PhD (D)</span></span></span></span></span></div><ul><li style=3D"m=
+argin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color=
+:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span>Surgical Workflow</span></span></=
+span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"=
+><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span s=
+tyle=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font=
+-size:10pt"><span>Intelligent Operating Room</span></span></span></span></s=
+pan></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D=
+"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-he=
+ight:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><sp=
+an>Therapy Imaging and Model Management Systems</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Surgical PACS</span></span></span></span></span></span></span></li><l=
+i style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span st=
+yle=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span=
+><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>DICOM and IHE in Surge=
+ry</span></span></span></span></span></span></span></li><li style=3D"margin=
+:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(=
+51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN=
+-GB" style=3D"font-size:10pt"><span>Management and Assessment of OR Systems=
+ Integration</span></span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Architectures of ORs and Imag=
+ing Suites</span></span></span></span></span></span></span></li></ul><hr><d=
+iv style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span><=
+b><span lang=3D"EN-US" style=3D"font-size:10pt"><span><span style=3D"color:=
+rgb(51,51,51)">4<sup>th</sup><span class=3D"m_4648039659335771137Apple-conv=
+erted-space">=C2=A0</span>ISCAS / CAD / IFCARS Joint Symposium on Multidisc=
+iplinary Computational Anatomy</span></span></span></b><br><span lang=3D"EN=
+-US" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Cha=
+irs: Makoto Hashizume, MD (J), Hiroyuki Yoshida, PhD (USA)</span></span></s=
+pan></span></span></div><ul><li style=3D"margin:0cm 0cm 0.0001pt"><span sty=
+le=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"li=
+ne-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt=
+"><span>Micro-computational Anatomy</span></span></span></span></span></spa=
+n></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-siz=
+e:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.7=
+5pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Physio=
+logical Modeling in Multi-computational Anatomy</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Surgery Using Multi-computational Anatomy</span></span></span></span>=
+</span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span style=
+=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line=
+-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt">=
+<span>Mathematical Foundation of Multi-disciplinary Computational Anatomy</=
+span></span></span></span></span></span></span></li><li style=3D"margin:0cm=
+ 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,5=
+1,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB"=
+ style=3D"font-size:10pt"><span>Robotics and Multi-disciplinary Computation=
+al Anatomy</span></span></span></span></span></span></span></li><li style=
+=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"=
+color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span =
+lang=3D"EN-GB" style=3D"font-size:10pt"><span>Multi-disciplinary Computatio=
+nal Anatomy Assisting Radiology</span></span></span></span></span></span></=
+span></li></ul><hr><div style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"fo=
+nt-size:12pt"><span><b><span lang=3D"EN-US" style=3D"font-size:10pt"><span>=
+<span style=3D"color:rgb(51,51,51)">12<sup>th</sup><span class=3D"m_4648039=
+659335771137Apple-converted-space">=C2=A0</span>CARS Clinical Day</span></s=
+pan></span></b><br><span lang=3D"EN-US" style=3D"font-size:10pt"><span><spa=
+n style=3D"color:rgb(51,51,51)">Chairs: Leonard Berliner, MD (USA), Eric va=
+nSonnenberg, MD (USA),<br>Hubertus Feussner, MD (D)</span></span></span></s=
+pan></span></div><ul><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"f=
+ont-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"line-heig=
+ht:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span=
+>Clinical Innovations in Imaging and Interventional Radiology</span></span>=
+</span></span></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001p=
+t"><span style=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span=
+ style=3D"line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"fo=
+nt-size:10pt"><span>Clinical Innovations in Surgery</span></span></span></s=
+pan></span></span></span></li><li style=3D"margin:0cm 0cm 0.0001pt"><span s=
+tyle=3D"font-size:12pt"><span style=3D"color:rgb(51,51,51)"><span style=3D"=
+line-height:12.75pt"><span><span><span lang=3D"EN-GB" style=3D"font-size:10=
+pt"><span>The Future: Impact of Engineering/Informatics in Radiology and Su=
+rgery</span></span></span></span></span></span></span></li><li style=3D"mar=
+gin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span style=3D"color:r=
+gb(51,51,51)"><span style=3D"line-height:12.75pt"><span><span><span lang=3D=
+"EN-GB" style=3D"font-size:10pt"><span>Computer Assisted Radiology and Mini=
+mally Invasive Therapy</span></span></span></span></span></span></span></li=
+><li style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:12pt"><span=
+ style=3D"color:rgb(51,51,51)"><span style=3D"line-height:12.75pt"><span><s=
+pan><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Results of Innovati=
+ve Clinical Investigations</span></span></span></span></span></span></span>=
+</li></ul><hr><span style=3D"font-size:12pt"><span style=3D"line-height:12.=
+75pt"><span><b><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span st=
+yle=3D"color:rgb(51,51,51)">Submissions</span></span></span></b></span></sp=
+an></span><br><span style=3D"font-size:12pt"><span style=3D"line-height:12.=
+75pt"><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=
+=3D"color:rgb(51,51,51)">Extended abstracts or full papers including new me=
+thods, devices, systems and applications, clinical studies, position papers=
+, and poster topics for presentation at the congress are solicited. Submiss=
+ions will be peer-reviewed by members of the CARS international program com=
+mittee.<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</s=
+pan></span></span></span></span></span></span><p class=3D"m_464803965933577=
+1137bodytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"fon=
+t-size:12pt"><span style=3D"line-height:12.75pt"><span><span lang=3D"EN-GB"=
+ style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">CARS fo=
+llows a two-tier system:<br>1) Extended abstracts of accepted lecture and p=
+oster presentations (typically containing novel work-in-progress results) w=
+ill be published in the CARS 2019 Proceedings, Supplement of IJCARS, which =
+will be distributed to all congress participants.<br>2) Peer-reviewed and a=
+fter thorough revision accepted full paper contributions (typically contain=
+ing validated results of original R&amp;D work) will be included in regular=
+ issues of the International Journal of CARS.<span class=3D"m_4648039659335=
+771137Apple-converted-space">=C2=A0</span></span></span></span></span></spa=
+n></span></p><p class=3D"m_4648039659335771137bodytext" style=3D"margin-rig=
+ht:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span style=3D"line-=
+height:12.75pt"><span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><=
+span style=3D"color:rgb(51,51,51)">Authors should send their submissions th=
+rough the CARS website, see further information and guidelines at<span clas=
+s=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span><a href=3D"ht=
+tp://www.cars-int.org/" style=3D"color:rgb(50,142,69)" target=3D"_blank">ww=
+w.cars-int.org</a>.<span class=3D"m_4648039659335771137Apple-converted-spac=
+e">=C2=A0</span></span></span></span></span></span></span></p><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51=
+)">Timetable</span></span></span></b><br><span lang=3D"EN-GB" style=3D"font=
+-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Submission of abstrac=
+ts=C2=A0/=C2=A0papers:<span class=3D"m_4648039659335771137Apple-converted-s=
+pace">=C2=A0</span><strong>January 10, 2019</strong><br>Notification of acc=
+eptance:<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</=
+span><strong>February 8, 2019</strong><br>Registration of presenting author=
+s:<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span><=
+strong>March 4, 2019</strong><br>Submission of final abstracts:<span class=
+=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span><strong>March =
+8, 2019</strong><br>Publication of final papers:<span class=3D"m_4648039659=
+335771137Apple-converted-space">=C2=A0</span><strong>after the peer-review =
+process</strong></span></span></span><hr><span style=3D"font-size:12pt"><sp=
+an style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" style=3D"fon=
+t-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Special Events</span=
+></span></span></b></span></span></span><p class=3D"m_4648039659335771137bo=
+dytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size=
+:12pt"><span style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">6</span></=
+span></span></b><b><sup><span lang=3D"EN-US" style=3D"font-size:10pt"><span=
+><span style=3D"color:rgb(51,51,51)">th</span></span></span></sup></b><b><s=
+pan lang=3D"EN-US" style=3D"font-size:10pt"><span><span style=3D"color:rgb(=
+51,51,51)"><span class=3D"m_4648039659335771137Apple-converted-space">=C2=
+=A0</span>SURGETICA Conference p</span></span></span></b><b><span lang=3D"E=
+N-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">re=
+-located to CARS</span></span></span></b><br><span lang=3D"EN-US" style=3D"=
+font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Chairs:<span clas=
+s=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span></span></span=
+></span><span lang=3D"EN-GB" style=3D"font-size:10pt"><span>Pascal Haigron =
+(F), Antoine Simon (F), Pierre Jannin (F)</span></span></span></span></span=
+></p><hr><span style=3D"font-size:12pt"><span style=3D"line-height:12.75pt"=
+><span><b><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=
+=3D"color:rgb(51,51,51)">Tutorials</span></span></span></b></span></span></=
+span><p class=3D"m_4648039659335771137bodytext" style=3D"margin-right:0cm;m=
+argin-left:0cm"><span style=3D"font-size:12pt"><span style=3D"line-height:1=
+2.75pt"><span><b><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span =
+style=3D"color:rgb(51,51,51)">Tutorial AR/VR: Perceptual Capacities and Con=
+straints in AR/VR for the visualization of 3D biomedical image data</span><=
+/span></span></b><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><s=
+pan style=3D"color:rgb(51,51,51)">Roy Eagleson (CDN), Georges Hattab (D)</s=
+pan></span></span></span></span></span></p><p class=3D"m_464803965933577113=
+7bodytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-s=
+ize:12pt"><span style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB"=
+ style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51)">Tutoria=
+l SlicerIGT: Deep learning and computer vision for real-time procedure anno=
+tation</span></span></span></b><br><span lang=3D"EN-GB" style=3D"font-size:=
+10pt"><span><span style=3D"color:rgb(51,51,51)">Tamas Ungi (CDN), Sonia M. =
+Pujol (USA), Javier Pascau (E), Gabor Fichtinger (CDN)</span></span></span>=
+</span></span></span></p><p class=3D"m_4648039659335771137bodytext" style=
+=3D"margin-right:0cm;margin-left:0cm"><span style=3D"font-size:12pt"><span =
+style=3D"line-height:12.75pt"><span><b><span lang=3D"EN-GB" style=3D"font-s=
+ize:10pt"><span><span style=3D"color:rgb(51,51,51)">Tutorial=C2=A0 on Appli=
+ed Deep Learning for Medical Scientists working with Image Data</span></spa=
+n></span></b><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span =
+style=3D"color:rgb(51,51,51)">Daniel L=C3=BCckehe (D),=C2=A0Gabriele von Vo=
+igt (D)</span></span></span></span></span></span></p><p class=3D"m_46480396=
+59335771137bodytext" style=3D"margin-right:0cm;margin-left:0cm"><span style=
+=3D"font-size:12pt"><span style=3D"line-height:12.75pt"><span><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,51,51=
+)">Tutorial on Advanced Deep Learning for Medical Imaging Data</span></span=
+></span></b><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span s=
+tyle=3D"color:rgb(51,51,51)">John D.H. Baxter (F)</span></span></span></spa=
+n></span></span></p><hr><span lang=3D"EN-GB" style=3D"font-size:10pt"><span=
+><span style=3D"color:rgb(51,51,51)"><b>Congress Venue</b><br>The Congress =
+will be held at the Le Couvent des Jacobins Convention Center, Rennes, Fran=
+ce<br><br><b>CARS 2019 President</b><br>Pierre Jannin, PhD (F)<br><br><b>Co=
+ngress Organizer</b><br>Heinz Lemke, PhD (D)<br><br>International Foundatio=
+n for CARS, Germany</span></span></span><br><span style=3D"font-size:10pt">=
+<span><span style=3D"color:rgb(51,51,51)"><a href=3D"mailto:hulemke@cars-in=
+t.org" style=3D"color:blue;text-decoration:underline" target=3D"_blank"><sp=
+an lang=3D"EN-GB" style=3D"color:rgb(51,51,51)">hulemke@cars-int.org</span>=
+</a></span></span></span><br><br><span lang=3D"EN-GB" style=3D"font-size:10=
+pt"><span><span style=3D"color:rgb(51,51,51)"><b>Congress Committees</b><br=
+>see<span class=3D"m_4648039659335771137Apple-converted-space">=C2=A0</span=
+></span></span></span><span style=3D"font-size:10pt"><span><span style=3D"c=
+olor:rgb(51,51,51)"><a href=3D"http://www.cars-int.org/committees.html" sty=
+le=3D"color:blue;text-decoration:underline" target=3D"_blank"><span lang=3D=
+"EN-GB" style=3D"color:rgb(51,51,51)">www.cars-int.org/committees.html</spa=
+n></a></span></span></span><br><br><span lang=3D"EN-GB" style=3D"font-size:=
+10pt"><span><span style=3D"color:rgb(51,51,51)">For submission, registratio=
+n and additional information, contact the<br>CARS Conference Office at</spa=
+n></span></span><br><span style=3D"font-size:10pt"><span><span style=3D"col=
+or:rgb(51,51,51)"><a href=3D"mailto:office@cars-int.org" style=3D"color:blu=
+e;text-decoration:underline" target=3D"_blank"><span lang=3D"EN-GB" style=
+=3D"color:rgb(51,51,51)">office@cars-int.org</span></a></span></span></span=
+><br><br><span style=3D"font-size:10pt"><span><span style=3D"color:rgb(51,5=
+1,51)">Further information about the International Journal of CARS is avail=
+able at</span></span></span><br><a href=3D"http://www.springer.com/11548" s=
+tyle=3D"color:rgb(50,142,69)" target=3D"_blank"><span style=3D"font-size:10=
+pt"><span><span style=3D"color:rgb(51,51,51)">www.springer.com/11548</span>=
+</span></span></a><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><=
+span style=3D"color:rgb(51,51,51)">Manuscript Submissions:<span class=3D"m_=
+4648039659335771137Apple-converted-space">=C2=A0</span></span></span></span=
+><a href=3D"http://www.editorialmanager.com/cars" style=3D"color:rgb(50,142=
+,69)" target=3D"_blank"><span style=3D"font-size:10pt"><span><span style=3D=
+"color:rgb(51,51,51)">www.editorialmanager.com/cars</span></span></span></a=
+><br><br><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><span style=3D=
+"color:rgb(51,51,51)">Check our website for frequent updates:<br><a href=3D=
+"https://www.cars-int.org/" style=3D"color:rgb(50,142,69)" target=3D"_blank=
+">https://www.cars-int.org</a><br><br>Congress venue and travel information=
+ are available at<br><a href=3D"https://www.cars2019.org/" style=3D"color:r=
+gb(50,142,69)" target=3D"_blank">https://www.cars2019.org</a></span></span>=
+</span><hr><div><i><span lang=3D"EN-GB" style=3D"font-size:10pt"><span><spa=
+n style=3D"color:rgb(51,51,51)">Recipients of this email have registered fo=
+r previous CARS congresses, authored or co-authored previous CARS Congress =
+papers, or expressed explicitly to be informed about CARS congress activiti=
+es.<br><br>In line with data privacy directives, we will remove your person=
+al information from the CARS congress database upon your request.</span></s=
+pan></span></i><br><br><em><span lang=3D"EN-GB" style=3D"font-size:10pt"><s=
+pan><span style=3D"color:rgb(51,51,51)">If you want to unsubscribe from the=
+ CARS Newsletter, please click<span class=3D"m_4648039659335771137Apple-con=
+verted-space">=C2=A0</span></span></span></span><a href=3D"http://nl.zwo-nu=
+ll.de/nlu.php?key=3DD92-1C-01-BB2249DBAE8C23C1B092C00DB165B1B6-0B70B8E40BDE=
+97CF01FD&amp;rid=3D01_08_04_18" style=3D"color:rgb(50,142,69)" target=3D"_b=
+lank">here.</a></em></div></div></div></div></div></div></td></tr></tbody><=
+/table></td></tr><tr><td align=3D"left" bgcolor=3D"#E6E6E6" style=3D"font-f=
+amily:Arial,Helvetica,sans-serif;font-size:0px;color:rgb(51,51,51);line-hei=
+ght:0px"><img alt=3D"Bottom-Image" border=3D"0" id=3D"m_4648039659335771137=
+E2322E91-3C59-4AAC-BC33-C754ECCDBCB8" src=3D"cid:16736e59a52549ae8f12"></td=
+></tr><tr><td align=3D"right" class=3D"m_4648039659335771137upper_text" sty=
+le=3D"font-family:Verdana,Arial,Helvetica,sans-serif;font-size:10px;color:r=
+gb(51,51,51);padding:7px 25px 7px 0px;text-align:right">Please visit the CA=
+RS-website:<span class=3D"m_4648039659335771137Apple-converted-space">=C2=
+=A0</span><a href=3D"http://nl.zwo-null.de/link.php?link=3D01_08_04_18_1_D9=
+2-1C-01-BB2249DBAE8C23C1B092C00DB165B1B6-0B70B8E40BDE97CF01FD" style=3D"col=
+or:rgb(50,142,69);padding:0px;margin:0px" target=3D"_blank">www.cars-int.or=
+g</a></td></tr></tbody></table></td></tr></tbody></table><img src=3D"http:/=
+/nl.zwo-null.de/ostat.php?link=3D01_08_04_18_D92-1C-01-BB2249DBAE8C23C1B092=
+C00DB165B1B6-0B70B8E40BDE97CF01FD" border=3D"0" alt=3D"" style=3D"color:rgb=
+(51,51,51);font-family:Arial,Helvetica,sans-serif;font-size:12px;font-style=
+:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;t=
+ext-align:center;text-indent:0px;text-transform:none;white-space:normal;wor=
+d-spacing:0px;background-color:rgb(255,255,255);text-decoration:none;width:=
+1px;height:1px"></div></div></div></div>-- <br><div dir=3D"ltr" class=3D"gm=
+ail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><span style=3D"font-family:courier new,monos=
+pace"></span><font size=3D"2"><span style=3D"font-family:arial,helvetica,sa=
+ns-serif">Dr Germain Forestier</span></font></div><div dir=3D"ltr"><font si=
+ze=3D"2"><span style=3D"font-family:arial,helvetica,sans-serif">Professeur =
+des Universit=C3=A9s (Full Professor)<br>IRIMAS, Universit=C3=A9 de Haute-A=
+lsace, France</span></font></div><div dir=3D"ltr"><font size=3D"2"><span st=
+yle=3D"font-family:arial,helvetica,sans-serif"><br></span></font></div><div=
+ dir=3D"ltr"><font size=3D"2"><font face=3D"arial, helvetica, sans-serif">S=
+enior Lecturer (Adjunct)</font><br></font></div><div dir=3D"ltr"><font size=
+=3D"2"><font face=3D"arial, helvetica, sans-serif">Faculty of IT<br></font>=
+</font></div><div dir=3D"ltr"><font size=3D"2"><font face=3D"arial, helveti=
+ca, sans-serif">Monash University, Melbourne, Australia</font><br></font></=
+div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><font size=3D"2"><span styl=
+e=3D"font-family:arial,helvetica,sans-serif">Tel : 03 89 33 69 63<br></span=
+></font><div><font size=3D"2">Twitter :=C2=A0<a href=3D"http://twitter.com/=
+gforestier" target=3D"_blank">@gforestier</a></font></div><div><a href=3D"h=
+ttps://germain-forestier.info/" style=3D"font-family:arial,helvetica,sans-s=
+erif" target=3D"_blank"><font size=3D"2">https://germain-forestier.info/</f=
+ont></a><br></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div>
+
+--000000000000e65a6d057b2e7bd0--
+--000000000000e65a6f057b2e7bd1
+Content-Type: image/gif; name="head.gif"
+Content-Disposition: inline; filename="head.gif"
+Content-Transfer-Encoding: base64
+Content-ID: <16736e59a52bd6d56b61>
+X-Attachment-Id: 16736e59a52bd6d56b61
+
+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
+--000000000000e65a6f057b2e7bd1
+Content-Type: image/gif; name="footer.gif"
+Content-Disposition: inline; filename="footer.gif"
+Content-Transfer-Encoding: base64
+Content-ID: <16736e59a52549ae8f12>
+X-Attachment-Id: 16736e59a52549ae8f12
+
+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
+--000000000000e65a6f057b2e7bd1--
+

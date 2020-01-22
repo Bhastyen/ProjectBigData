@@ -1,0 +1,494 @@
+Return-Path: <maxime.lefrancois.86@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 6FACA1904841
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 23 Jun 2016 14:38:09 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6D65465DACA
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 23 Jun 2016 14:38:09 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 5E7782F2C46
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 23 Jun 2016 14:38:09 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 6.761
+X-Spam-Level: ******
+X-Spam-Status: Yes, score=6.761 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01,
+	FREEMAIL_ENVFROM_END_DIGIT=0.25, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, J_CHICKENPOX_52=0.6, MANGLED_FREE=2.3,
+	MR_STRANGE_QUESTION=1.5, SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.7610 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 92oVF_nu3IHT for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 23 Jun 2016 14:38:07 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x22b.google.com (mail-wm0-x22b.google.com [IPv6:2a00:1450:400c:c09::22b])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id DC5432B2348
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 23 Jun 2016 14:38:06 +0200 (CEST)
+Received: by mail-wm0-x22b.google.com with SMTP id f126so125278894wma.1
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 23 Jun 2016 05:38:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=mLRRwkAwADgV6EqUruxfIHwM2LTFVOSgq6d4iIjVyLE=;
+        b=zpmhGIz3sSg98Z8JMv1u5xx0K9knc6qEPCkQZhAaFT+0Zn0V045faS6bxaIrUO41Lt
+         EVqiwBtyUsw1YNYl/AgE/RGbWq4wBgCGFOwD0/uCRGjcRScjjn0vP+JHnWKZLzbdguk8
+         Y+nV+K0RlT/+rRzwB3TUVphagcffdz9vAq64Zy5lUZ6NAH4O9n/PcFs1tM9SE9NAJ0Iy
+         slp90GETJ6afls21fnxRbijhBsHKcm8aIh5tlZ5LOLl85d+lrp4GY12Q2+HgpmqRRas9
+         Cw395qwfr8sQEflHfcUW5sfgI8/F+5z45hr2gwfnNuc3IuQCl74bL9N8JTBWLefYpqIy
+         ZIlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=mLRRwkAwADgV6EqUruxfIHwM2LTFVOSgq6d4iIjVyLE=;
+        b=SZplOr1yGxiAX4q2yfOhFaz7poGlIdU0wTReXHpea0Flae1+eUQKI1CSprKDxSinZH
+         sfr9XX3xxoTz4cqhK656t8NZOmn+Y+3VlR/krRfmIlF5J0WEz1tzAAiNwIWmP/PqjHlg
+         VCzLCLcxXIqDpJvA3R1PC4u64BPaXYFa0A7cnpM0uVA8H3GUPnfdjl6r/7yxbuzSgEUN
+         ieM5i4/WO+1rnk9a89b+CaK6nD7nh1Vrl4/XngGsT+XfbRaPGfSO0cSvb8uWNq3e2jQD
+         spwYCFwQOHRPBggp0kPh/gGD+GT6ck0sjVwR4ABg3RZc4OfSyPaZZVbvMRZumtsxElOz
+         /ppg==
+X-Gm-Message-State: ALyK8tIncOHmU4UxXKGIGYUNerCGwYYXWfafL0ooCK6u1/2PEcelYXJndrBL+Y7vqKePjMWt/tSAoeiWR1g1uw==
+X-Received: by 10.28.212.198 with SMTP id l189mr13750056wmg.100.1466685486280;
+ Thu, 23 Jun 2016 05:38:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <CALsPASXYKcErLtta2Se0A1SrK0nKK-gSEOQjmXaFNy8uRtqgkw@mail.gmail.com>
+In-Reply-To: <CALsPASXYKcErLtta2Se0A1SrK0nKK-gSEOQjmXaFNy8uRtqgkw@mail.gmail.com>
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois.86@gmail.com>
+Date: Thu, 23 Jun 2016 12:37:56 +0000
+Message-ID: <CALsPASVkWDhmzngpBk-G8jnPWci6p0Ux7CDmo68umdV8HO8vhA@mail.gmail.com>
+To: bull-i3@irit.fr, info-ic@listes.irisa.fr, 
+	liste-egc@polytech.univ-nantes.fr, web.semantique@lists-sop.inria.fr
+Content-Type: multipart/alternative; boundary=001a11468bd868426c0535f153f3
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] [SPAM] Poste CDD =?UTF-8?Q?Ing=C3=A9nieur?= de
+ Recherche un an - =?UTF-8?Q?D=C3=A9veloppeur?= Web - RESTful Web Services,
+ Web =?UTF-8?Q?S=C3=A9mantique=2C?= Web des Objets - (Java, JavaScript)
+
+--001a11468bd868426c0535f153f3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Version anglaise: https://connected-intelligence.univ-st-etienne.fr/?p=3D57=
+5
+
+Dans le contexte d'une collaboration avec l'un des leaders fran=C3=A7ais du
+domaine de l'=C3=A9nergie, ARMINES <http://www.armines.net/> recrute un
+ing=C3=A9nieur de recherche pour un CDD d'un an dans la th=C3=A9matique Con=
+nected
+Intelligence <http://connected-intelligence.univ-st-etienne.fr> du
+Laboratoire Hubert Curien, =C3=A0 Saint-=C3=89tienne, France
+<https://goo.gl/maps/J5b8PWzWMwn>.
+
+*Contexte*
+
+Aujourd'hui, l'internet et le web ne connectent non seulement les humains,
+non seulement les machines, mais une vari=C3=A9t=C3=A9 de choses communican=
+tes ayant
+des ressources et des r=C3=B4les variables. Il est complexe de rendre les
+syst=C3=A8mes interop=C3=A9rables sur un web constitu=C3=A9 de diff=C3=A9re=
+nts protocoles
+(HTTP, CoAP, MQTT), formats de donn=C3=A9es (XML, JSON, CBOR, Protocol Buff=
+er,
+Turtle), mod=C3=A8les de donn=C3=A9es (sch=C3=A9mas, ontologies), et servic=
+es (mesure,
+contr=C3=B4le, pr=C3=A9vision, offre/demande). Pour un exemple concret, sup=
+posons que
+les choses suivantes sont interconnect=C3=A9es sur le web:
+
+
+   - un dispositif intelligent de mesure de l'=C3=A9nergie, qui publie
+   r=C3=A9guli=C3=A8rement des donn=C3=A9es au format CBOR via MQTT;
+   - une cl=C3=A9 intelligente de v=C3=A9hicule =C3=A9lectrique, accessible=
+ par
+   intermittence via CoAP, capable de mesurer la temp=C3=A9rature et le niv=
+eau de CO
+   2, capable de biper et de clignoter;
+   - un serveur domestique capable d'agr=C3=A9ger les donn=C3=A9es de ces d=
+iff=C3=A9rents
+   capteurs, de les contr=C3=B4ler, de traiter et de r=C3=A9agir =C3=A0 cer=
+tains =C3=A9v=C3=A9nements,
+   de raisonner avec des r=C3=A8gles simples, et d'=C3=AAtre accessible de =
+n'importe o=C3=B9
+   via HTTP;
+   - le smartphone du propri=C3=A9taire de la maison ou du v=C3=A9hicule =
+=C3=A9lectrique;
+   - un serveur puissent sur le cloud qui expose des pr=C3=A9visions du pri=
+x de
+   l'=C3=A9lectricit=C3=A9, ou de la m=C3=A9t=C3=A9o.
+
+Au sein de l'=C3=A9quipe *Connected Intelligence*, nous nous int=C3=A9resso=
+ns =C3=A0
+rendre interoperables ces diff=C3=A9rents choses interconnect=C3=A9es. Plus
+pr=C3=A9cis=C3=A9ment, nous concevons des solutions bas=C3=A9es sur le web =
+des donn=C3=A9es et
+les standards et formalismes du web s=C3=A9mantique. Originellement, ces
+formalisms sont adapt=C3=A9s aux choses (i) avec des ressources
+computationnelles raisonnables, et (ii) connect=C3=A9es via HTTP. Nous cher=
+chons
+donc comment rendre les formalismes du web s=C3=A9mantique applicables aux
+choses ayant des ressources contraintes, qui utilisent d'autres protocoles
+(CoAP, MQTT), et des formats de donn=C3=A9es plus l=C3=A9gers (CBOR, Protoc=
+ol
+Buffers).
+
+*Mots cl=C3=A9s*
+
+
+   - *Domaines d'application* - Smart-Grids, Gestion intelligente de
+   l'=C3=A9nergie, Syst=C3=A8mes de gestion domestiques
+   - *Domaines scientifique* - Web, web s=C3=A9mantique, web des objets.
+   - *Environnement de production* - Java EE/Web, serveur web Glassfish.
+
+*Missions*
+
+L'ing=C3=A9nieur de recherche embauch=C3=A9 sur ce projet pour ARMINES d=C3=
+=A9veloppera
+des d=C3=A9monstrateurs pour les travaux de l'=C3=A9quipe. Entre autre, il =
+lui sera
+demand=C3=A9 de:
+
+
+   1. Maintenir et am=C3=A9liorer une extension de Apache Jena (Java) qui p=
+ermet
+   de supporter =C3=A0 la vol=C3=A9e les types de donn=C3=A9es RDF personna=
+lis=C3=A9s [1,2], et de
+   d=C3=A9velopper et d'exposer des d=C3=A9monstrateurs web pour cette exte=
+nsion.
+   2. Maintenir et am=C3=A9liorer SPARQL-Generate [3], et d=C3=A9velopper e=
+t exposer
+   des d=C3=A9monstrateurs web .
+   3. Impl=C3=A9menter SPARQL-Template au dessus de Jena [4].
+   4. Am=C3=A9liorer le site web de documentation des ontologies d=C3=A9vel=
+opp=C3=A9es au
+   sein de l'=C3=A9quipe (par exemple, [5]).
+
+[1] - Maxime Lefran=C3=A7ois, Antoine Zimmermann, Supporting Arbitrary Cust=
+om
+Datatypes in RDF and SPARQL
+<http://w3id.org/lindt/LefrancoisZimmermann-ESWC2016-Supporting.pdf>, In
+Proc. Extended Semantic Web Conference, ESWC, May 2016, Heraklion, Crete,
+Greece
+[2] - LINDT - Linked Datatypes - http://w3id.org/lindt ; implementation of
+the on-the-fly support of custom datatypes in Apache Jena -
+https://github.com/thesmartenergy/jena
+[3] - SPARQL-Generate, extensino de SPARQL pour g=C3=A9n=C3=A9rer du RDF =
+=C3=A0 partir de
+documents web aux formats arbitraires - https://w3id.org/sparql-generate/
+[4] - SPARQL-Template, inverse de SPARQL-Generate: g=C3=A9n=C3=A8re du text=
+e =C3=A0 partir
+de graphes RDF - https://ns.inria.fr/sparql-template/
+[5] - site web de l'ontologies des quantit=C3=A9s multidimensionnelles -
+http://w3id.org/multidimensional-quantity/
+
+*Profile*
+
+Nous sommes =C3=A0 la recherche d'un ing=C3=A9nieur Java EE/Web ayant:
+
+
+   - de bonnes connaissances de l'internet et du web, de leurs standards et
+   de leurs formalismes:
+   - de l'exp=C3=A9rience avec HTTP, REST, HTML, JavaScript, les formalisme=
+s du
+      web s=C3=A9mantique (RDF/S, SPARQL) ;
+      - est un plus: les standards et formalismes du web des objets (CoAP,
+      CoRE, MQTT)
+      - un exp=C3=A9rience dans le d=C3=A9veloppement de services web RESTf=
+ul en Java;
+   - une exp=C3=A9rience dans les projets Maven et les projets open-sources=
+, qui
+   peut =C3=AAtre d=C3=A9montr=C3=A9e par un lien vers un profile public de=
+ d=C3=A9veloppeur sur
+   un service d'h=C3=A9bergement de code source.
+
+*Informations compl=C3=A9mentaires:*
+
+Secteur public (http://armines.net/)
+
+30-34 k=E2=82=AC brut par ann=C3=A9e - d=C3=A9pendant de l'exp=C3=A9rience =
+de l'ing=C3=A9nieur embauch=C3=A9.
+
+Nous acceptons les candidatures jusqu'au *1er juillet 2016*.
+
+Envoyer CV, lettre de motivation, et le cas =C3=A9ch=C3=A9ant lien vers pro=
+fil public
+de d=C3=A9veloppeur =C3=A0:
+
+Olivier Boissier <http://www.emse.fr/%7Eboissier/>, MINES Saint-Etienne,
+olivier.boissier@emse.fr, +33 4 77 42 66 14
+
+Antoine Zimmermann <http://www.emse.fr/%7Ezimmermann/>, MINES
+Saint-Etienne, antoine.zimmermann@emse.fr
+
+Maxime Lefran=C3=A7ois <http://www.maxime-lefrancois.info/>, MINES
+Saint-Etienne, maxime.lefrancois@emse.fr
+
+--001a11468bd868426c0535f153f3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><p><span style=
+=3D"font-size:10pt;font-family:times,serif">Version anglaise:=C2=A0</span><=
+font face=3D"times, serif"><span style=3D"font-size:13.3333px;line-height:2=
+0px"><a href=3D"https://connected-intelligence.univ-st-etienne.fr/?p=3D575"=
+ target=3D"_blank">https://connected-intelligence.univ-st-etienne.fr/?p=3D5=
+75</a></span></font>=C2=A0=C2=A0<br></p><p><span style=3D"font-size:10pt;fo=
+nt-family:times,serif">Dans le contexte d&#39;une
+collaboration avec l&#39;un des leaders fran=C3=A7ais du domaine de l&#39;=
+=C3=A9nergie, </span><span lang=3D"EN-US"><a href=3D"http://www.armines.net=
+/" target=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:=
+times,serif;color:blue">ARMINES</span></a></span><span style=3D"font-size:1=
+0pt;font-family:times,serif"> recrute un ing=C3=A9nieur de
+recherche pour un CDD d&#39;un an dans la th=C3=A9matique </span><span lang=
+=3D"EN-US"><a href=3D"http://connected-intelligence.univ-st-etienne.fr" tar=
+get=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,=
+serif;color:blue">Connected Intelligence</span></a></span><span style=3D"fo=
+nt-size:10pt;font-family:times,serif"> du Laboratoire Hubert Curien, =C3=A0=
+ </span><span lang=3D"EN-US"><a href=3D"https://goo.gl/maps/J5b8PWzWMwn" ta=
+rget=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times=
+,serif;color:blue">Saint-=C3=89tienne, France</span></a></span><span style=
+=3D"font-size:10pt;font-family:times,serif">.</span></p><div></div><p></p>
+
+<p><b><span style=3D"font-size:18pt;font-family:times,serif">Contexte</span=
+></b></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">Aujourd&#39;hui, =
+l&#39;internet et le web
+ne connectent non seulement les humains, non seulement les machines, mais u=
+ne
+vari=C3=A9t=C3=A9 de choses communicantes ayant des ressources et des r=C3=
+=B4les variables. Il
+est complexe de rendre les syst=C3=A8mes interop=C3=A9rables sur un web con=
+stitu=C3=A9 de
+diff=C3=A9rents protocoles (HTTP, CoAP, MQTT), formats de donn=C3=A9es (XML=
+, JSON, CBOR,
+Protocol Buffer, Turtle), mod=C3=A8les de donn=C3=A9es (sch=C3=A9mas, ontol=
+ogies), et services
+(mesure, contr=C3=B4le, pr=C3=A9vision, offre/demande). Pour un exemple con=
+cret,
+supposons que les choses suivantes sont interconnect=C3=A9es sur le web:</s=
+pan></p><div></div><p></p>
+
+<ul type=3D"disc">
+ <li><span style=3D"font-size:10pt;font-family:times,serif">un dispositif i=
+ntelligent de mesure de l&#39;=C3=A9nergie, qui publie
+     r=C3=A9guli=C3=A8rement des donn=C3=A9es au format CBOR via MQTT;<div>=
+</div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">une cl=C3=A9 in=
+telligente de v=C3=A9hicule =C3=A9lectrique, accessible par
+     intermittence via CoAP, capable de mesurer la temp=C3=A9rature et le n=
+iveau de
+     CO<sub>2</sub>, capable de biper et de clignoter;<div></div></span></l=
+i>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">un serveur dome=
+stique capable d&#39;agr=C3=A9ger les donn=C3=A9es de ces diff=C3=A9rents
+     capteurs, de les contr=C3=B4ler, de traiter et de r=C3=A9agir =C3=A0 c=
+ertains =C3=A9v=C3=A9nements,
+     de raisonner avec des r=C3=A8gles simples, et d&#39;=C3=AAtre accessib=
+le de n&#39;importe o=C3=B9
+     via HTTP;<div></div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">le smartphone d=
+u propri=C3=A9taire de la maison ou du v=C3=A9hicule =C3=A9lectrique;<div><=
+/div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">un serveur puis=
+sent sur le cloud qui expose des pr=C3=A9visions du prix de
+     l&#39;=C3=A9lectricit=C3=A9, ou de la m=C3=A9t=C3=A9o.<div></div></spa=
+n></li>
+</ul>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">Au sein de l&#39;=
+=C3=A9quipe <i>Connected
+Intelligence</i>, nous nous int=C3=A9ressons =C3=A0 rendre interoperables c=
+es diff=C3=A9rents
+choses interconnect=C3=A9es. Plus pr=C3=A9cis=C3=A9ment, nous concevons des=
+ solutions bas=C3=A9es
+sur le web des donn=C3=A9es et les standards et formalismes du web s=C3=A9m=
+antique.
+Originellement, ces formalisms sont adapt=C3=A9s aux choses (i) avec des re=
+ssources
+computationnelles raisonnables, et (ii) connect=C3=A9es via HTTP. Nous cher=
+chons
+donc comment rendre les formalismes du web s=C3=A9mantique applicables aux =
+choses
+ayant des ressources contraintes, qui utilisent d&#39;autres protocoles (Co=
+AP,
+MQTT), et des formats de donn=C3=A9es plus l=C3=A9gers (CBOR, Protocol Buff=
+ers).</span></p><div></div><p></p>
+
+<p><b><span style=3D"font-size:18pt;font-family:times,serif">Mots cl=C3=A9s=
+</span></b></p><div></div><p></p>
+
+<ul type=3D"disc">
+ <li><b><span style=3D"font-size:10pt;font-family:times,serif">Domaines d&#=
+39;application</span></b><span style=3D"font-size:10pt;font-family:times,se=
+rif"> - Smart-Grids, Gestion intelligente de l&#39;=C3=A9nergie, Syst=C3=A8=
+mes de gestion
+     domestiques<div></div></span></li>
+ <li><b><span style=3D"font-size:10pt;font-family:times,serif">Domaines sci=
+entifique</span></b><span style=3D"font-size:10pt;font-family:times,serif">=
+ - Web, web s=C3=A9mantique, web des objets.<div></div></span></li>
+ <li><b><span style=3D"font-size:10pt;font-family:times,serif">Environnemen=
+t de production</span></b><span style=3D"font-size:10pt;font-family:times,s=
+erif"> - Java EE/Web, serveur web Glassfish.<div></div></span></li>
+</ul>
+
+<p><b><span style=3D"font-size:18pt;font-family:times,serif">Missions</span=
+></b></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">L&#39;ing=C3=A9ni=
+eur de recherche embauch=C3=A9
+sur ce projet pour ARMINES d=C3=A9veloppera des d=C3=A9monstrateurs pour le=
+s travaux de
+l&#39;=C3=A9quipe. Entre autre, il lui sera demand=C3=A9 de: </span></p><di=
+v></div><p></p>
+
+<ol start=3D"1" type=3D"1">
+ <li><span style=3D"font-size:10pt;font-family:times,serif">Maintenir et am=
+=C3=A9liorer une extension de Apache Jena (Java) qui permet
+     de supporter =C3=A0 la vol=C3=A9e les types de donn=C3=A9es RDF person=
+nalis=C3=A9s [1,2], et
+     de d=C3=A9velopper et d&#39;exposer des d=C3=A9monstrateurs web pour c=
+ette extension.<div></div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">Maintenir et am=
+=C3=A9liorer SPARQL-Generate [3], et d=C3=A9velopper et exposer
+     des d=C3=A9monstrateurs web .<div></div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">Impl=C3=A9mente=
+r SPARQL-Template au dessus de Jena [4].<div></div></span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">Am=C3=A9liorer =
+le site web de documentation des ontologies d=C3=A9velopp=C3=A9es au
+     sein de l&#39;=C3=A9quipe (par exemple, [5]).<div></div></span></li>
+</ol>
+
+<p><span lang=3D"EN-US" style=3D"font-size:10pt;font-family:times,serif">[1=
+] - Maxime Lefran=C3=A7ois, Antoine
+Zimmermann, </span><span lang=3D"EN-US"><a href=3D"http://w3id.org/lindt/Le=
+francoisZimmermann-ESWC2016-Supporting.pdf" target=3D"_blank"><span style=
+=3D"font-size:10pt;font-family:times,serif;color:blue">Supporting Arbitrary=
+ Custom Datatypes in
+RDF and SPARQL</span></a></span><span lang=3D"EN-US" style=3D"font-size:10p=
+t;font-family:times,serif">, In Proc. </span><span style=3D"font-size:10pt;=
+font-family:times,serif">Extended Semantic Web Conference, ESWC, May 2016, =
+Heraklion, Crete, Greece<br>
+[2] - LINDT - Linked Datatypes - </span><span lang=3D"EN-US"><a href=3D"htt=
+p://w3id.org/lindt" target=3D"_blank"><span lang=3D"FR" style=3D"font-size:=
+10pt;font-family:times,serif;color:blue">http://w3id.org/lindt</span></a></=
+span><span style=3D"font-size:10pt;font-family:times,serif"> ; implementati=
+on of the
+on-the-fly support of custom datatypes in Apache Jena - </span><span lang=
+=3D"EN-US"><a href=3D"https://github.com/thesmartenergy/jena" target=3D"_bl=
+ank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,serif;colo=
+r:blue">https://github.com/thesmartenergy/jena</span></a></span><span style=
+=3D"font-size:10pt;font-family:times,serif"><br>
+[3] - SPARQL-Generate, extensino de SPARQL pour g=C3=A9n=C3=A9rer du RDF =
+=C3=A0 partir de
+documents web aux formats arbitraires - </span><span lang=3D"EN-US"><a href=
+=3D"https://w3id.org/sparql-generate/" target=3D"_blank"><span lang=3D"FR" =
+style=3D"font-size:10pt;font-family:times,serif;color:blue">https://w3id.or=
+g/sparql-generate/</span></a></span><span style=3D"font-size:10pt;font-fami=
+ly:times,serif"><br>
+[4] - SPARQL-Template, inverse de SPARQL-Generate: g=C3=A9n=C3=A8re du text=
+e =C3=A0 partir de
+graphes RDF - </span><span lang=3D"EN-US"><a href=3D"https://ns.inria.fr/sp=
+arql-template/" target=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt=
+;font-family:times,serif;color:blue">https://ns.inria.fr/sparql-template/</=
+span></a></span><span style=3D"font-size:10pt;font-family:times,serif"><br>
+[5] - site web de l&#39;ontologies des quantit=C3=A9s multidimensionnelles =
+- </span><span lang=3D"EN-US"><a href=3D"http://w3id.org/multidimensional-q=
+uantity/" target=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-=
+family:times,serif;color:blue">http://w3id.org/multidimensional-quantity/</=
+span></a></span><span style=3D"font-size:10pt;font-family:times,serif"></sp=
+an></p><div></div><p></p>
+
+<p><b><span style=3D"font-size:18pt;font-family:times,serif">Profile</span>=
+</b></p><div></div><p></p>
+
+<p style=3D"margin-bottom:0.0001pt"><span style=3D"font-size:10pt;font-fami=
+ly:times,serif">Nous sommes =C3=A0 la recherche d&#39;un ing=C3=A9nieur Jav=
+a
+EE/Web ayant: </span></p><div></div><p></p>
+
+<ul type=3D"disc">
+ <li><span style=3D"font-size:10pt;font-family:times,serif">de bonnes conna=
+issances de l&#39;internet et du web, de leurs standards et
+     de leurs formalismes:<div></div></span></li>
+ <ul type=3D"circle">
+  <li><span style=3D"font-size:10pt;font-family:times,serif">de l&#39;exp=
+=C3=A9rience avec HTTP, REST, HTML,
+      JavaScript, les formalismes du web s=C3=A9mantique (RDF/S, SPARQL) ;<=
+div></div></span></li>
+  <li><span style=3D"font-size:10pt;font-family:times,serif">est un plus: l=
+es standards et formalismes du
+      web des objets (CoAP, CoRE, MQTT)<div></div></span></li>
+ </ul>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">un exp=C3=A9rie=
+nce dans le d=C3=A9veloppement de services web RESTful en Java;<div></div><=
+/span></li>
+ <li><span style=3D"font-size:10pt;font-family:times,serif">une exp=C3=A9ri=
+ence dans les projets Maven et les projets open-sources, qui
+     peut =C3=AAtre d=C3=A9montr=C3=A9e par un lien vers un profile public =
+de d=C3=A9veloppeur sur
+     un service d&#39;h=C3=A9bergement de code source.<div></div></span></l=
+i>
+</ul>
+
+<p><b><span style=3D"font-size:18pt;font-family:times,serif">Informations c=
+ompl=C3=A9mentaires:</span></b></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">Secteur public (<=
+/span><span lang=3D"EN-US"><a href=3D"http://armines.net/" target=3D"_blank=
+"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,serif;color:b=
+lue">http://armines.net/</span></a></span><span style=3D"font-size:10pt;fon=
+t-family:times,serif">)</span></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">30-34 k=E2=82=AC =
+brut par ann=C3=A9e -
+d=C3=A9pendant de l&#39;exp=C3=A9rience de l&#39;ing=C3=A9nieur embauch=C3=
+=A9.</span></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">Nous acceptons le=
+s candidatures
+jusqu&#39;au <b>1er juillet 2016</b>.</span></p><div></div><p></p>
+
+<p><span style=3D"font-size:10pt;font-family:times,serif">Envoyer CV, lettr=
+e de motivation,
+et le cas =C3=A9ch=C3=A9ant lien vers profil public de d=C3=A9veloppeur =C3=
+=A0:</span></p><div></div><p></p>
+
+<p><span lang=3D"EN-US"><a href=3D"http://www.emse.fr/%7Eboissier/" target=
+=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,ser=
+if;color:blue">Olivier Boissier</span></a></span><span style=3D"font-size:1=
+0pt;font-family:times,serif">, MINES Saint-Etienne, </span><span lang=3D"EN=
+-US"><a href=3D"mailto:olivier.boissier@emse.fr" target=3D"_blank"><span la=
+ng=3D"FR" style=3D"font-size:10pt;font-family:times,serif;color:blue">olivi=
+er.boissier@emse.fr</span></a></span><span style=3D"font-size:10pt;font-fam=
+ily:times,serif">, </span><span lang=3D"EN-US"><a><span lang=3D"FR" style=
+=3D"font-size:10pt;font-family:times,serif;color:blue">+33 4 77 42 66 14</s=
+pan></a></span><span style=3D"font-size:10pt;font-family:times,serif"></spa=
+n></p><div></div><p></p>
+
+<p><span lang=3D"EN-US"><a href=3D"http://www.emse.fr/%7Ezimmermann/" targe=
+t=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,se=
+rif;color:blue">Antoine Zimmermann</span></a></span><span style=3D"font-siz=
+e:10pt;font-family:times,serif">, MINES Saint-Etienne, </span><span lang=3D=
+"EN-US"><a href=3D"mailto:antoine.zimmermann@emse.fr" target=3D"_blank"><sp=
+an lang=3D"FR" style=3D"font-size:10pt;font-family:times,serif;color:blue">=
+antoine.zimmermann@emse.fr</span></a></span><span style=3D"font-size:10pt;f=
+ont-family:times,serif"></span></p><div></div><p></p>
+
+<p><span lang=3D"EN-US"><a href=3D"http://www.maxime-lefrancois.info/" targ=
+et=3D"_blank"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,s=
+erif;color:blue">Maxime Lefran=C3=A7ois</span></a></span><span style=3D"fon=
+t-size:10pt;font-family:times,serif">, MINES Saint-Etienne, </span><span la=
+ng=3D"EN-US"><span lang=3D"FR" style=3D"font-size:10pt;font-family:times,se=
+rif;color:blue"><a href=3D"mailto:maxime.lefrancois@emse.fr" target=3D"_bla=
+nk">maxime.lefrancois@emse.fr</a></span></span></p></div></div></div>
+
+--001a11468bd868426c0535f153f3--

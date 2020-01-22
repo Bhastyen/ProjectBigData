@@ -1,0 +1,322 @@
+Return-Path: <yann.girard@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 74A681903BAB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 12 Jan 2016 23:30:33 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6719365DA41
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 12 Jan 2016 23:30:33 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 2BF3DB4B130
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 12 Jan 2016 23:30:33 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.111
+X-Spam-Level:
+X-Spam-Status: No, score=0.111 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.7879 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ukRq20tiU404 for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 12 Jan 2016 23:30:32 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x235.google.com (mail-wm0-x235.google.com [IPv6:2a00:1450:400c:c09::235])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 5D12B627AAF
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 12 Jan 2016 23:30:32 +0100 (CET)
+Received: by mail-wm0-x235.google.com with SMTP id b14so343876221wmb.1
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 12 Jan 2016 14:30:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:date:message-id:subject:from:to:content-type;
+        bh=KDyqIriFOiwxhaJyNSEW+LVzUJCJ0zMrTWQOw2l35Kw=;
+        b=fQ87COV5gsIE0W0GCZWFSc0Leg/Hx8/s+5lKbMvAm5EJ7EeHZSdYj+0KCZolrqTZTL
+         mrrH8EOyo/Y/e/xtBE+v+8qLwWiI8na5XdtWRrJPECMthWpdvZxFievfHC8ieXltkx3n
+         qwk7WG3YJhsUwcAuCoWD32PtUXecxkvGG2rHpoeqbXTZS2kf6/S/vydHeB2sM/kkjuHc
+         GergQfONfowrgzU8lFtKBDx3VILhGcpDyxndm3qhMImFO7MxUduItFgCv1t+807R7fJF
+         kJbGOZCbfo9OrEljChLB2E06YcvE6cbkHWhLcbbXQ/6zJ/g4mmPETwWDpRktCHi0Ugcm
+         gsvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+         :content-type;
+        bh=KDyqIriFOiwxhaJyNSEW+LVzUJCJ0zMrTWQOw2l35Kw=;
+        b=Cn8PcFogLW7bULg5m8yZ6Yqw5rCewhUG/n01M4deGRcb9nasDsGB71WxQPt++ncNmf
+         zkq71f5gs0yTU5VKj/25tHCXOjq1ftnatmM13gh+tnHtx8VxxeiUVRotKP7X/LF2ZgTc
+         Szmk067TMnnat2hVMoBRVw2CFB7gdYH75HPpShXVuBP32aRZMf9E4glZs/KlHifEgsfk
+         shqHbrrlwFO5twvK4mCaG2saE4L33NkFdlImEi+Y85fLRoS9AYV67SgTwTCAgOGabNIx
+         1XGet4Eg8u+AtNjPlzwvYD+92M+wzQqmLATGklLSzlJQAW07fjph5BJcuzuLQ1aPdn4W
+         zMag==
+X-Gm-Message-State: ALoCoQmyNG4Xbf9CV9gA/088yNO2W0NMYKRcusFpZPOmUy7uRECzeiVWwLAPIVgmLp8xhrRtmSn7pixSC1WCvQ7Qj4KgRl/leQ==
+MIME-Version: 1.0
+X-Received: by 10.194.234.41 with SMTP id ub9mr23346402wjc.9.1452637831896;
+ Tue, 12 Jan 2016 14:30:31 -0800 (PST)
+Received: by 10.27.125.66 with HTTP; Tue, 12 Jan 2016 14:30:31 -0800 (PST)
+Date: Tue, 12 Jan 2016 23:30:31 +0100
+Message-ID: <CALO7kvudbe8Z=qxBAHeaM888e7Q=Vi8fotk=ZFUiZnF45HnqcA@mail.gmail.com>
+From: Yann Girard <yann.girard@gmail.com>
+To: corpora@uib.no, annonces@madics.fr, liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=089e01493e52f5277205292a9938
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] *Ext Deadline* Call for papers : CODIT 2016 special
+ session "Participative technologies as new territories of information"
+
+--089e01493e52f5277205292a9938
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+DEADLINE EXTENDED : 1st of February 2016*
+
+
+*CALL FOR PAPERS *
+
+**Extended deadline: February 1st**
+
+*SPECIAL SESSION ON*
+
+*=E2=80=9CParticipative technologies as new territories of information=E2=
+=80=9D*
+
+*for CODIT=E2=80=9916*
+
+*April 6-8, 2016 =E2=80=93 Malta*
+
+
+
+*Session Chair:*
+
+Prof. Pierre Saurel, SND, University* of La Sorbonne, France*
+
+
+
+*Session description*
+
+This special session deals with the problem of the exploitation of data
+extracted from collaborative digital networks. Participative technologies
+record digital traces and make possible Social Media creating new layouts
+of information whose structure and content can be extracted and
+restructured thus creating new sources of information for analysis purposes
+and visualization.
+
+The goal is to explore the latest technical advancement in social media
+studies using data mining, semantic web, social data structure and adaptive
+procedure.
+
+
+The topics of interest include, but are not limited to:
+
+=C2=B7         Organization and structure of information extracted from soc=
+ial
+networks.
+
+=C2=B7         Collaborative digital networks and the visualization of thei=
+r
+territory and layout.
+
+=C2=B7         Social networks and data mining
+
+=C2=B7         Social media and social data structure
+
+=C2=B7         Visualization and reporting
+
+=C2=B7         Visualization of territorial intelligence
+
+=C2=B7         Interoperability
+
+
+
+*SUBMISSION*
+
+Please submit your full paper choosing the right track on the Conference
+Management Toolkit (Microsoft=E2=80=99s CMT) site:
+https://cmt.research.microsoft.com/CODIT2016/
+
+All papers must be written in English and should describe original work.
+The length of the paper is limited to a maximum of 6 pages (in the standard
+IEEE conference double column format). Click on the icon to download the
+Call For Papers.
+
+February 1st, 2015: deadline for paper submission
+
+February 7, 2016: notification of acceptance/reject
+February 20, 2016: deadline for final paper and registration.
+
+--=20
+*Entropy isn't what it used to be*
+
+--089e01493e52f5277205292a9938
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">DEADLINE EXTENDED : 1st of February 2016*<br><br><br>
+
+<p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal" align=
+=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-size:12=
+pt" lang=3D"EN-US">CALL FOR PAPERS </span></b></span></p><span style=3D"col=
+or:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal=
+" align=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-=
+size:12pt" lang=3D"EN-US">*Extended deadline: February 1<sup>st</sup>*</spa=
+n></b></span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal=
+" align=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-=
+size:12pt" lang=3D"EN-US">SPECIAL SESSION ON</span></b></span></p><span sty=
+le=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal=
+" align=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-=
+size:12pt" lang=3D"EN-US">=E2=80=9CParticipative technologies as new territ=
+ories of
+information=E2=80=9D</span></b></span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal=
+" align=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-=
+size:12pt" lang=3D"EN-US">for CODIT=E2=80=9916</span></b></span></p><span s=
+tyle=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"text-align:center;line-height:normal=
+" align=3D"center"><span style=3D"color:rgb(0,0,0)"><b><span style=3D"font-=
+size:12pt" lang=3D"EN-US">April
+6-8, 2016 =E2=80=93 Malta</span></b></span></p><span style=3D"color:rgb(0,0=
+,0)">
+
+</span><p class=3D"MsoNormal"><span style=3D"color:rgb(0,0,0)"><span lang=
+=3D"EN-US">=C2=A0</span></span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=
+=3D"color:rgb(0,0,0)"><b>Session Chair:</b></span></p><span style=3D"color:=
+rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=
+=3D"color:rgb(0,0,0)">Prof. Pierre Saurel,
+SND,=C2=A0University<i> of La Sorbonne, France</i></span></p><span style=3D=
+"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=
+=3D"color:rgb(0,0,0)"><b>=C2=A0</b></span></p><span style=3D"color:rgb(0,0,=
+0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=
+=3D"color:rgb(0,0,0)"><b>Session description</b></span></p><span style=3D"c=
+olor:rgb(0,0,0)">
+
+</span><p style=3D"text-align:left" class=3D"MsoNormal"><span style=3D"colo=
+r:rgb(0,0,0)">This special session deals with the problem of the
+exploitation of data extracted from collaborative digital networks. Partici=
+pative
+technologies record digital traces and make possible Social Media creating =
+new
+layouts of information whose structure and content can be extracted and
+restructured thus creating new sources of information for analysis purposes=
+ and
+visualization. </span></p><div style=3D"text-align:left"><span style=3D"col=
+or:rgb(0,0,0)">
+
+</span></div><p style=3D"text-align:left" class=3D"MsoNormal"><span style=
+=3D"color:rgb(0,0,0)">The goal is to explore the latest technical
+advancement in social media studies using data mining, semantic web, social
+data structure and adaptive procedure. </span></p><div style=3D"text-align:=
+left"><span style=3D"color:rgb(0,0,0)">
+
+</span></div><p style=3D"text-align:left" class=3D"MsoNormal"><span style=
+=3D"color:rgb(0,0,0)"><br></span></p><p style=3D"text-align:left" class=3D"=
+MsoNormal"><span style=3D"color:rgb(0,0,0)">The topics of interest include,=
+ but are not limited
+to:=C2=A0 </span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Organization
+and structure of information extracted from social networks.</span></p><spa=
+n style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Collaborative
+digital networks and the visualization of their territory and layout.</span=
+></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Social
+networks and data mining</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Social media
+and social data structure</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Visualization
+and reporting</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Visualization
+of territorial intelligence</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p><span style=3D"color:rgb(0,0,0)"><span style=3D"font-family:Symbo=
+l" lang=3D"EN-US"><span>=C2=B7<span style=3D"font:7pt &quot;Times New Roman=
+&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span>Interoperability</span></p><span style=3D"color:rgb(0,=
+0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style=3D"c=
+olor:rgb(0,0,0)"><b>=C2=A0</b></span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><div style=3D"border-width:1pt medium medium;border-style:solid none=
+ none;border-color:windowtext -moz-use-text-color -moz-use-text-color;paddi=
+ng:1pt 0cm 0cm">
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;border:medium none;p=
+adding:0cm"><span style=3D"color:rgb(0,0,0)"><b>SUBMISSION</b></span></p>
+
+</div><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:ju=
+stify"><span style=3D"color:rgb(0,0,0)">Please submit your full paper choos=
+ing the right track on the Conference
+Management Toolkit (Microsoft=E2=80=99s CMT) site: <a href=3D"https://cmt.r=
+esearch.microsoft.com/CODIT2016/" target=3D"_blank">https://cmt.research.mi=
+crosoft.com/CODIT2016/</a></span> </p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:ju=
+stify"><span style=3D"color:rgb(0,0,0)">All papers must be written in Engli=
+sh and should describe original work.
+The length of the paper is limited to a maximum of 6 pages (in the standard
+IEEE conference double column format). Click on the icon to download the Ca=
+ll
+For Papers.=C2=A0</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:ju=
+stify"><span style=3D"color:rgb(0,0,0)">February 1st, 2015: deadline
+for paper submission</span></p><span style=3D"color:rgb(0,0,0)">
+
+</span><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=
+=3D"color:rgb(0,0,0)">February 7,
+2016: notification of acceptance/reject</span></p><span style=3D"color:rgb(=
+0,0,0)">
+
+</span><span style=3D"color:rgb(0,0,0)">February 20, 2016: deadline
+for final paper and registration.</span><br clear=3D"all"><br>-- <br><div c=
+lass=3D"gmail_signature"><div dir=3D"ltr"><i>Entropy isn&#39;t what it used=
+ to be</i><br></div></div>
+</div>
+
+--089e01493e52f5277205292a9938--

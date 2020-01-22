@@ -1,0 +1,209 @@
+Return-Path: <antoine.cornuejols@agroparistech.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id C2F012292958
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 12:48:34 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id C14B96005DA
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 12:48:34 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id BB0D8B4A240
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:48:34 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.329
+X-Spam-Level:
+X-Spam-Status: No, score=-0.329 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.3026 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=agroparistech.fr header.b=ZhxQkzfN; dkim=pass (1024-bit key)
+	header.d=agroparistech.fr header.b=ZhxQkzfN
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id IAKQfx6ZMzX9 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 12:48:34 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.agroparistech.fr (smtp.agroparistech.fr [193.54.111.4])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 54568661924
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:48:34 +0200 (CEST)
+Received: from smtp.agroparistech.fr (smtp [127.0.0.1])
+	by smtp.agroparistech.fr (Postfix) with ESMTP id 6B9B11DE0
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:47:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=agroparistech.fr;
+	s=mail; t=1529923635;
+	bh=Ut++GCSk8juhVFBL/M7DoJ51q7a2xeo36FhHW0P9ZJw=;
+	h=From:Subject:Date:To;
+	b=ZhxQkzfNNdomqUr4Rk5bMdMmKWJNrBX/Nk3brR5y4bDfefb3FOqEzoXNTvL0bqAUg
+	 5nO+GY/kcL3tglOQQj14kbeswGJ8pEUzfjGLlaoPSrf+EHok6ydzJLKjCuKwGJ+SOC
+	 L0j435YTLhTayHlORVEVbTlq70yJtbW1698GR6uE=
+Received: from zmbp1.agroparistech.fr (zmbp1.agroparistech.fr [193.54.111.137])
+	by smtp.agroparistech.fr (Postfix) with ESMTP id 53BF71D44
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:47:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=agroparistech.fr;
+	s=mail; t=1529923635;
+	bh=Ut++GCSk8juhVFBL/M7DoJ51q7a2xeo36FhHW0P9ZJw=;
+	h=From:Subject:Date:To;
+	b=ZhxQkzfNNdomqUr4Rk5bMdMmKWJNrBX/Nk3brR5y4bDfefb3FOqEzoXNTvL0bqAUg
+	 5nO+GY/kcL3tglOQQj14kbeswGJ8pEUzfjGLlaoPSrf+EHok6ydzJLKjCuKwGJ+SOC
+	 L0j435YTLhTayHlORVEVbTlq70yJtbW1698GR6uE=
+Received: from zmbp1.agroparistech.fr (localhost.localdomain [127.0.0.1])
+	by zmbp1.agroparistech.fr (Postfix) with ESMTPS id 9D51CA2BD2
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:48:14 +0200 (CEST)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by zmbp1.agroparistech.fr (Postfix) with ESMTP id 8CDF1A339A
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:48:14 +0200 (CEST)
+Received: from zmbp1.agroparistech.fr ([127.0.0.1])
+	by localhost (zmbp1.agroparistech.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id CMP-DkhacYiT for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 12:48:14 +0200 (CEST)
+Received: from mac-cornuejols.agroparistech.fr (mac-cornuejols.agroparistech.fr [172.16.207.200])
+	by zmbp1.agroparistech.fr (Postfix) with ESMTPSA id 7580EA2BD2
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 12:48:14 +0200 (CEST)
+From: =?utf-8?Q?Antoine_Cornu=C3=A9jols?= <antoine.cornuejols@agroparistech.fr>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_EAB5C3AD-C122-42B5-A4F3-B4058BBDADA6"
+Message-Id: <1451DF57-883D-4EF6-9C8F-07141DCDAB93@agroparistech.fr>
+Date: Mon, 25 Jun 2018 12:48:33 +0200
+To: liste-egc@polytech.univ-nantes.fr
+Mime-Version: 1.0 (Mac OS X Mail 9.0 \(3094\))
+X-Mailer: Apple Mail (2.3094)
+X-AV-Checked: ClamAV MX AgroParisTech
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Recrutement MC contractuel en informatique
+ =?UTF-8?Q?=C3=A0?= AgroParisTech
+
+
+--Apple-Mail=_EAB5C3AD-C122-42B5-A4F3-B4058BBDADA6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Bonjour,
+
+AgroParisTech, Grande Ecole d=E2=80=99ing=C3=A9nieurs, recrute un =
+Ma=C3=AEtre de Conf=C3=A9rences Contractuel pour 6 mois  durant =
+l=E2=80=99ann=C3=A9e acad=C3=A9mique 2018-2019.
+
+Le Ma=C3=AEtre de Conf=C3=A9rences Contractuel recrut=C3=A9 aura un =
+service de 96 HeTD =C3=A0 assurer principalement en derni=C3=A8re ann=C3=A9=
+e du cursus ing=C3=A9nieur avec des cours possibles en intelligence =
+artificielle, optimisation, programmation Python, scikit Learn.=20
+
+L=E2=80=99activit=C3=A9 de recherche s=E2=80=99exercera en Apprentissage =
+Artificiel et Fouille de Donn=C3=A9es, ou, secondairement, en =
+Ing=C3=A9nierie des Connaissances.
+
+Le poste sera bas=C3=A9 =C3=A0 Paris, rue Claude Bernard dans le 5=C3=A8me=
+ arrondissement.
+
+
+Les candidats doivent envoyer un CV d=C3=A9taill=C3=A9, ainsi que tout =
+document qu=E2=80=99ils jugeront utile =C3=A0 :=20
+
+   Antoine Cornu=C3=A9jols
+   AgroParisTech - Dept. MMIP
+   16, rue Claude Bernard
+   75005 Paris Cedex
+
+pour r=C3=A9ception au plus tard le jeudi 5 juillet 2018. Une s=C3=A9lecti=
+on sera faite sur la base de ces documents par un jury de l=E2=80=99UFR =
+d'informatique.
+
+Je vous remercie de diffuser largement cette proposition autour de vous.
+
+Tr=C3=A8s cordialement,
+
+- Antoine Cornu=C3=A9jols
+=
+--------------------------------------------------------------------------=
+----------
+Antoine CORNUEJOLS
+=20
+Professeur d'informatique
+AgroParisTech
+D=C3=A9partement MMIP
+16, rue Claude Bernard,  F-75 231 PARIS Cedex 05=20
+T=C3=A9l. (+33) 1 44 08 72 29 -  Fax (+33) 1 44 08 16 66
+=20
+Email : antoine.cornuejols@agroparistech.fr =
+<mailto:antoine.cornuejols@agroparistech.fr>
+Web : http://www.agroparistech.fr/ufr-info/membres/cornuejols/ =
+<http://www.lri.fr/~antoine/>
+
+--Apple-Mail=_EAB5C3AD-C122-42B5-A4F3-B4058BBDADA6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">Bonjour,<br class=3D""><br class=3D"">AgroParisTech, Grande =
+Ecole d=E2=80=99ing=C3=A9nieurs, recrute un&nbsp;<b class=3D"">Ma=C3=AEtre=
+ de Conf=C3=A9rences Contractuel</b>&nbsp;pour&nbsp;<b class=3D"">6 =
+mois</b>&nbsp; durant l=E2=80=99ann=C3=A9e acad=C3=A9mique =
+2018-2019.<div class=3D""><br class=3D""></div><div class=3D"">Le =
+Ma=C3=AEtre de Conf=C3=A9rences Contractuel recrut=C3=A9 aura un service =
+de 96 HeTD =C3=A0 assurer principalement en derni=C3=A8re ann=C3=A9e du =
+cursus ing=C3=A9nieur avec des cours possibles en intelligence =
+artificielle, optimisation, programmation Python, scikit Learn.&nbsp;<br =
+class=3D""><div class=3D""><br class=3D""></div><div =
+class=3D"">L=E2=80=99activit=C3=A9 de recherche s=E2=80=99exercera en =
+Apprentissage Artificiel et Fouille de Donn=C3=A9es, ou, secondairement, =
+en Ing=C3=A9nierie des Connaissances.</div><div class=3D""><br =
+class=3D""></div><div class=3D"">Le poste sera bas=C3=A9 =C3=A0 Paris, =
+rue Claude Bernard dans le 5=C3=A8me arrondissement.<br class=3D""><br =
+class=3D""><br class=3D"">Les&nbsp;candidats doivent envoyer un&nbsp;<b =
+class=3D"">CV d=C3=A9taill=C3=A9</b>,&nbsp;ainsi que tout document =
+qu=E2=80=99ils jugeront utile =C3=A0 :&nbsp;<div class=3D""><br =
+class=3D"">&nbsp; &nbsp;Antoine Cornu=C3=A9jols<div class=3D"">&nbsp; =
+&nbsp;AgroParisTech - Dept. MMIP</div><div class=3D"">&nbsp; &nbsp;16, =
+rue Claude Bernard</div><div class=3D"">&nbsp; &nbsp;75005 Paris =
+Cedex</div><div class=3D""><br class=3D"">pour&nbsp;r=C3=A9ception au =
+plus tard le&nbsp;<b class=3D"">jeudi 5&nbsp;juillet 2018</b>. Une =
+s=C3=A9lection sera faite sur la base de ces documents par&nbsp;un jury =
+de l=E2=80=99UFR d'informatique.<br class=3D""><br class=3D"">Je vous =
+remercie de diffuser largement cette proposition autour de vous.<br =
+class=3D""><br class=3D"">Tr=C3=A8s cordialement,<br class=3D""><br =
+class=3D"">- Antoine Cornu=C3=A9jols<br class=3D""></div></div><div =
+class=3D""><div style=3D"word-wrap: break-word; -webkit-nbsp-mode: =
+space; -webkit-line-break: after-white-space;" class=3D""><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space;" class=3D""><div =
+class=3D""></div></div></div></div></div></div><div class=3D"">
+<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
+auto; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D""><div class=3D"" style=3D"orphans: 2; widows: =
+2;">----------------------------------------------------------------------=
+--------------</div><div class=3D"" style=3D"orphans: 2; widows: =
+2;">Antoine CORNUEJOLS</div><div class=3D"" style=3D"orphans: 2; widows: =
+2;">&nbsp;</div><div class=3D"" style=3D"orphans: 2; widows: =
+2;">Professeur d'informatique</div><div class=3D"" style=3D"orphans: 2; =
+widows: 2;"><div class=3D"">AgroParisTech</div><div =
+class=3D"">D=C3=A9partement MMIP</div><div class=3D"">16, rue Claude =
+Bernard, &nbsp;F-75 231 PARIS Cedex 05&nbsp;</div><div class=3D"">T=C3=A9l=
+. (+33) 1 44 08 72 29 - &nbsp;Fax (+33) 1 44 08 16 66</div><div =
+class=3D"">&nbsp;</div><div class=3D"">Email :&nbsp;<a =
+href=3D"mailto:antoine.cornuejols@agroparistech.fr" =
+class=3D"">antoine.cornuejols@agroparistech.fr</a></div><div =
+class=3D"">Web :&nbsp;<a href=3D"http://www.lri.fr/~antoine/" =
+class=3D"">http://www.agroparistech.fr/ufr-info/membres/cornuejols/</a></d=
+iv></div></div></div></div>
+</div>
+<br class=3D""></body></html>=
+
+--Apple-Mail=_EAB5C3AD-C122-42B5-A4F3-B4058BBDADA6--
