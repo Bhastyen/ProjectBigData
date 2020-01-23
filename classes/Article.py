@@ -1,6 +1,7 @@
 import re
 
 import requests
+from translate import Translator
 
 class Article:
 
@@ -36,27 +37,31 @@ class Article:
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
             # traduction en anglais
-            # title_en = []
+            title_en = []
+            for s in self.title:
+                title_en.append(Translator('en', 'fr', 'mymemory').translate(s))
+            self.title = title_en
+            abstract_en = []
+            for s in self.abstract:
+                abstract_en.append(Translator('en', 'fr', 'mymemory').translate(s))
+            self.abstract = abstract_en
+
+            # string = " "
             # url = 'http://translate.google.com/translate_a/t'
-            # for s in self.title:
-            #     params = {
-            #             "text": s,
-            #             "sl": "fr",
-            #             "tl": "en",
-            #             "client": "p"
-            #     }
-            #     title_en.append(requests.get(url, params=params).content)
-            # self.title = title_en
-            # abstract_en = []
-            # for s in self.abstract:
-            #     params = {
-            #             "text": s,
-            #             "sl": "fr",
-            #             "tl": "en",
-            #             "client": "p"
-            #     }
-            #     abstract_en.append(requests.get(url, params=params).content)
-            # self.abstract = abstract_en
+            # params = {
+            #         "text": string.join(self.title),
+            #         "sl": "fr",
+            #         "tl": "en",
+            #         "client": "p"
+            # }
+            # self.title = requests.get(url, params=params).content
+            # params = {
+            #         "text": string.join(self.abstract),
+            #         "sl": "fr",
+            #         "tl": "en",
+            #         "client": "p"
+            # }
+            # self.abstract = requests.get(url, params=params).content
 
 
 
