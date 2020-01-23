@@ -1,14 +1,16 @@
 import re
 
+
 class Article:
 
-    def __init__(self, title, year, abstract, author, linkPdf, dico_en, dico_fr, stop_word_en, stop_word_fr):
+    def __init__(self, id, title, year, abstract, author, contentPdf, dico_en, dico_fr, stop_word_en, stop_word_fr):
         # get data
+        self.id = id
         self.title = re.sub(r'[^\w\s]', "", str(title)).lower().split(" ")
         self.year = year
         self.abstract = re.sub(r'[^\w\s]', " ", str(abstract)).lower().split(" ")  # remove punctuations in abstract
         self.authors = author.split(",")
-        self.linkPdf = linkPdf
+        self.references = contentPdf
         self.dico_en = dico_en
         self.dico_fr = dico_fr
         self.stop_en = stop_word_en
@@ -20,6 +22,12 @@ class Article:
             if self.authors[i][0] == " ":
                 self.authors[i] = self.authors[i][1:]
             self.authors[i] = self.authors[i].replace(" ", "_")
+
+        # process references to remove spaces
+        for r in self.references:
+            for i in range(len(r)):
+                r[i] = r[i].replace(" ", "_")
+                r[i] = re.sub(r'_+', '_', r[i])
 
         # detect if this article is in english or french language
         self.english_text = self.isEnglish()
@@ -105,4 +113,4 @@ class Article:
 
         return "Article " + english + " with \n\tTitle " + str(self.title) + "\n\tYear " + str(self.year) + "\n\tAuthors " + str(self.authors) + \
                "\n\tAbstract Length " + str(len(self.abstract)) + " Content " + str(self.abstract) + \
-               "\n\tFrom " + str(self.linkPdf)
+               "\n\tRef " + str(self.references)
