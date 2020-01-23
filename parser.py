@@ -1,3 +1,5 @@
+from difflib import SequenceMatcher
+
 import pandas as pd
 import time, random
 from classes.Article import Article
@@ -55,7 +57,7 @@ def parse_article_from_csv(path_articles):
     return articles
 
 articles = parse_article_from_csv("data/export_articles_EGC_2004_2018.csv")
-print(articles[random.randrange(0, len(articles))])
+# print(articles[random.randrange(0, len(articles))])
 
 def create_author_cluster(articles):
     authors = {}
@@ -80,4 +82,32 @@ def create_author_cluster(articles):
 
     output.close()
 
-create_author_cluster(articles)
+#create_author_cluster(articles)
+
+
+def create_topic_cluster(articles):
+    results = {}
+    titles = []
+    output = open("edge_similarity_title_abstract.txt", "w", encoding="utf8")
+    string = " "
+
+    # create list of title
+    for art in articles:
+        titles.append(string.join(art.title))
+        results[string.join(art.title)] = {}
+
+    # create similarity table
+    for art in articles:
+        for title in titles:
+            if title != string.join(art.title):
+                results[title][string.join(art.title)] = SequenceMatcher(None, title, string.join(art.abstract)).ratio()
+
+    # create matrix adjency in txt format for R programs
+    for (title1, similarity) in results.items():
+        for (title2, weight) in similarity.items():
+            if weight > 0.001:
+                output.write(title1.replace(" ", "_") + " " + title2.replace(" ", "_") + " " + str(weight) + "\n")
+    output.close()
+
+
+create_topic_cluster(articles)
