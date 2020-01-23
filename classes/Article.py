@@ -37,14 +37,11 @@ class Article:
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
             # traduction en anglais
-            title_en = []
-            for s in self.title:
-                title_en.append(Translator('en', 'fr', 'mymemory').translate(s))
-            self.title = title_en
-            abstract_en = []
-            for s in self.abstract:
-                abstract_en.append(Translator('en', 'fr', 'mymemory').translate(s))
-            self.abstract = abstract_en
+            string = " "
+            title_en = Translator('en', 'fr', 'mymemory').translate(string.join(self.title))
+            self.title = title_en.split(" ")
+            abstract_en = Translator('en', 'fr', 'mymemory').translate(string.join(self.abstract))
+            self.abstract = abstract_en.split(" ")
 
             # string = " "
             # url = 'http://translate.google.com/translate_a/t'
