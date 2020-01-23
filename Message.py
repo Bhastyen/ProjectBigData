@@ -5,7 +5,7 @@ class Message:
         # get data
         self.subject = re.sub(r'[^\w\s]', "", str(subject)).lower().split(" ")
         self.year = year
-        self.message = re.sub(r'[^\w\s]', " ", str(message)).lower().split(" ")  # remove punctuations in abstract
+        self.message = re.sub(r'[^\w\s]', " ", str(message)).lower().split(" ")  # remove punctuations in message
         self.authors = author
         self.dico_en = dico_en
         self.dico_fr = dico_fr
@@ -23,10 +23,12 @@ class Message:
         self.message = self.removeStopWord(self.message)
 
         # correct wrong words in abstract
+        '''
         if self.english_text:
             self.preprocess(self.stop_en, self.dico_en)
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
+        '''
 
 
     def removeStopWord(self, data):

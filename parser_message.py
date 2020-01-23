@@ -2,10 +2,13 @@
 import os
 import zipfile
 import re
+
+import pandas as pd
+
 from Message import Message
 import fnmatch
 import unidecode
-zfile = zipfile.ZipFile('data/liste2016_2018.zip','r')
+
 zfile = os.listdir("data/messages")
 #with zipfile.ZipFile('data/liste2016_2018.zip', 'r') as zipObj:
    # Extract all the contents of zip file in current directory
@@ -18,6 +21,32 @@ path_to_dic_en = "dictionnary/words.txt"
 path_to_dic_fr = "dictionnary/lexique-collecte.txt"
 path_to_stop_fr = "dictionnary/stop-word-french.txt"
 path_to_stop_en = "dictionnary/stop-word-en.txt"
+
+fichier_mot_dico = pd.read_csv(path_to_dic_fr, sep="\t", encoding="utf8")
+file_word_dico = open(path_to_dic_en, "r", encoding="utf8")
+file_stop_word_fr = open(path_to_stop_fr, "r", encoding="utf8")
+file_stop_word_en = open(path_to_stop_en, "r", encoding="utf8")
+
+articles = []
+stop_word_en = file_stop_word_en.readlines()
+stop_word_fr = file_stop_word_fr.readlines()
+word_dico = file_word_dico.readlines()
+mot_dico = fichier_mot_dico[["Flexion"]]
+mot_d = []
+
+# process the dictionnaries
+for i in range(len(word_dico)):
+    word_dico[i] = word_dico[i].replace('\n', '').lower()
+
+for w in mot_dico["Flexion"]:
+    mot_d.append(w.lower())
+
+# process lists of stop words
+for i in range(len(stop_word_en)):
+    stop_word_en[i] = stop_word_en[i].replace('\n', '').lower()
+
+for i in range(len(stop_word_fr)):
+    stop_word_fr[i] = stop_word_fr[i].replace('\n', '').lower()
 
 def searchMessage(nameFile,year):
     #filetest = open("data/messages/polytech_liste-egc_2016-07/1", "r", encoding="utf8")
@@ -59,8 +88,9 @@ def searchMessage(nameFile,year):
     # correction in file with hex code
     sujet = preprocessEncoding(sujet)
     content = preprocessEncoding(content)
+    print("Content APRES processing",content)
     fileMessage.close()
-    return Message(sujet,year,author,content,path_to_dic_en,path_to_dic_fr,path_to_stop_en,path_to_stop_fr)
+    return Message(sujet,year,author,content,word_dico,mot_d,stop_word_en,stop_word_fr)
 
 
 def getNameFile(dirName):
@@ -80,6 +110,41 @@ def getNameFile(dirName):
     return listFile
 
 
+def creationAuteurNbMessage(year,messages) :
+    auteurAnnee = {}
+    for m in messages:
+        # Creation du graphe auteurs/ annee nombre d'envoie
+        if m.authors not in auteurAnnee:
+            auteurAnnee[m.authors] = 0
+        auteurAnnee[m.authors] += 1
+    auteurAnnee = sorted(auteurAnnee.items(), key=lambda t: t[1], reverse=True)
+
+    print(len(auteurAnnee))
+
+    print(auteurAnnee)
+    # Creation annee - sujet des messages
+    graph = open("data/graph_messages_auteurs_" + year + ".txt", 'w', encoding="utf8")
+    for key, value in auteurAnnee[:10]:
+        name = unidecode.unidecode(key)
+        weight = str(value)
+        stra = name + " " + year + " " + weight + "\n"
+        print(stra)
+        graph.write(stra)
+
+    print(len(auteurAnnee))
+    print(len(messages))
+    graph.close()
+
+def creationDocumentFromMessage(messages):
+    i=0
+    chaine = " "
+    for m in messages :
+        year = m.year
+        doc = open("data/documents_messages/"+year+"/"+str(i),"w")
+        i+=1
+        doc.writelines(chaine.join(m.subject)+" ")
+        doc.writelines(chaine.join(m.message))
+
 def creationMessages(year):
 
     messages = [] #liste des messages disponible
@@ -90,30 +155,8 @@ def creationMessages(year):
         if fnmatch.fnmatch(filename, "*"+year+"*") and not fnmatch.fnmatch(filename, "*/"):
             print(filename)
             messages.append(searchMessage(filename,year))
+    return messages
 
-    auteurAnnee = {}
-    for m in messages :
-        #Creation du graphe auteurs/ annee nombre d'envoie
-        if m.authors not in auteurAnnee:
-            auteurAnnee[m.authors] = 0
-        auteurAnnee[m.authors] += 1
-    auteurAnnee = sorted(auteurAnnee.items(), key=lambda t: t[1], reverse=True)
-
-
-    print(len(auteurAnnee))
-
-    print(auteurAnnee)
-        #Creation annee - sujet des messages
-    graph = open("data/graph_messages_auteurs_"+year+".txt", 'w', encoding="utf8")
-    for key ,value in auteurAnnee[:10]:
-        name = unidecode.unidecode(key)
-        weight = str(value)
-        stra =  name + " "+ year+ " "+ weight + "\n"
-        print(stra)
-        graph.write(stra)
-    graph.close()
-    print(len(auteurAnnee))
-    print(len(messages))
 
 def preprocessEncoding(s):
     s = s.replace("\n", "")
@@ -130,7 +173,9 @@ def preprocessEncoding(s):
     s = s.replace("=", "")
     return  s
 
-creationMessages("2018")
+messages = creationMessages("2016")
+#creationAuteurNbMessage("2017",messages)
+creationDocumentFromMessage(messages)
 '''
    if fnmatch.fnmatch(filename, "*2016*") and not fnmatch.fnmatch(filename, "*/"):
             print(filename)

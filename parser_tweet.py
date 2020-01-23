@@ -4,12 +4,12 @@ import csv
 import unidecode
 
 
-def hashtagYear():
+def hashtagYear(yearChoose):
   with open('data/EGC_tweets.json', "rb") as t:
     tweets = json.load(t)
 
   dict_year_rt = {}
-  graph = open('data/graph_tweet_hashtag.txt', 'w', encoding="utf8")
+  graph = open("data/graph_tweet_hashtag_"+yearChoose+".txt", 'w', encoding="utf8")
   for f in tweets :
     author = f['user']['name'].replace(" ", '_')
     year = f['created_at']
@@ -20,15 +20,12 @@ def hashtagYear():
         dict_year_rt[(year,hashtag)] = 0
       dict_year_rt[(year,hashtag)] += 1
   sorted_dict = sorted(dict_year_rt.items(), key=lambda t: t[1], reverse=True)
-  year16=0
-  year17=0
-  year18=0
-  year19=0
+
   for key,value in sorted_dict:
     hashtag = unidecode.unidecode(key[1])
     s = key[0] + " " + hashtag + " " + str(value)+ "\n"
     print(s)
-    if(value>1 and key[0] =="2016"):
+    if(value>1 and key[0] ==yearChoose):
       graph.write(s)
 
   graph.close()
@@ -103,4 +100,4 @@ def occurence_origin_tweet():
   graph.close()
 
 #nbr_tweets_par_an()
-hashtagYear()
+hashtagYear("2019")
