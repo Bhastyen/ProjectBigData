@@ -10,29 +10,29 @@ Ce fichier contient quelques explications pour toutes personnes souhaitant utili
  
 ## Instruction pour lancer les programmes
  - Pour les fichiers R, il faut changer le chemin vers les données et installer les packages suivants :
-  - igraph
-  - igraphdata
-  - network
-  - sna
-  - ndtv
-  - visNetwork
-  - extrafont
-  - tm
-  - XML
-  - SnowballC
-  - NLP
-  - slam
-  - ggplot2
-  - wordcloud
-  - cluster
-  - fpc
+ 	- igraph
+ 	- igraphdata
+ 	- network
+  	- sna
+ 	- ndtv
+ 	- visNetwork
+ 	- extrafont
+  	- tm
+ 	- XML
+ 	- SnowballC
+ 	- NLP
+ 	- slam
+ 	- ggplot2
+ 	- wordcloud
+ 	- cluster
+ 	- fpc
   
  - Pour python il faut charger le projet dans Pycharm (version utilisée 2019) et éxecuter les fichiers "parser" pour obtenir les données necessaires aux scripts R.
  
  - Pour python on utilise plusieurs librairies externes :
-  - pandas
-  - unidecode
-  - wget
-  - pdfx
-  - difflib
+ 	- pandas
+ 	- unidecode
+ 	- wget
+ 	- pdfx
+ 	- difflib
  
