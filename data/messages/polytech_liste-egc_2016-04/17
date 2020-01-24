@@ -1,0 +1,489 @@
+Return-Path: <mathieu.daquin@open.ac.uk>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A997C190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  8 Apr 2016 10:42:08 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id A403969DD08
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  8 Apr 2016 10:42:08 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 898FE2C2FB0
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  8 Apr 2016 10:42:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.881
+X-Spam-Level:
+X-Spam-Status: No, score=-4.881 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_HELO_PASS=-0.001,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 12.0330 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=openuniv.onmicrosoft.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 40lfQ_fEUnfb for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  8 Apr 2016 10:42:04 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from emea01-am1-obe.outbound.protection.outlook.com (mail-am1on0093.outbound.protection.outlook.com [157.56.112.93])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 4A5C92C2FAF
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  8 Apr 2016 10:42:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=openuniv.onmicrosoft.com; s=selector1-open-ac-uk;
+ h=From:To:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=Y4G0o7Zglo5epLWxerSmp/6mtjZu+VBW7BGfMUcbaXQ=;
+ b=N4KmNqa2/Qt160nlTiWANmgTSYqGq9KvL21cjSFd6Ho4jBn9yue5/74z+OUpTJlhFGHk4LHoyy6VTn/b75qrhuuVQ+frWt9ieS0wGb/Ow/pRrebjYqTvIF8d9uD4jTxgZffZgI3w6geL0EwnSzNms/hjEFqsRjloNLY4BW4Z+8w=
+Received: from HE1PR0401CA0009.eurprd04.prod.outlook.com (10.166.116.147) by
+ DB4PR04MB0751.eurprd04.prod.outlook.com (10.141.44.25) with Microsoft SMTP
+ Server (TLS) id 15.1.447.15; Fri, 8 Apr 2016 08:42:01 +0000
+Received: from DB3FFO11FD046.protection.gbl (2a01:111:f400:7e04::172) by
+ HE1PR0401CA0009.outlook.office365.com (2a01:111:e400:c512::19) with Microsoft
+ SMTP Server (TLS) id 15.1.453.26 via Frontend Transport; Fri, 8 Apr 2016
+ 08:42:01 +0000
+Authentication-Results: spf=pass (sender IP is 137.108.170.149)
+ smtp.mailfrom=open.ac.uk; polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=bestguesspass
+ action=none header.from=open.ac.uk;
+Received-SPF: Pass (protection.outlook.com: domain of open.ac.uk designates
+ 137.108.170.149 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.108.170.149; helo=ariel.open.ac.uk;
+Received: from ariel.open.ac.uk (137.108.170.149) by
+ DB3FFO11FD046.mail.protection.outlook.com (10.47.217.77) with Microsoft SMTP
+ Server (TLS) id 15.1.453.6 via Frontend Transport; Fri, 8 Apr 2016 08:42:01
+ +0000
+Received: from netscaler-s238.open.ac.uk ([137.108.238.2] helo=mail-oi0-f49.google.com)
+	by ariel.open.ac.uk with esmtpsa (TLSv1:RC4-SHA:128)
+	(Exim 4.80.1)
+	(envelope-from <m.daquin@open.ac.uk>)
+	id 1aoRzM-000175-U5
+	for liste-egc@polytech.univ-nantes.fr; Fri, 08 Apr 2016 09:42:01 +0100
+Received: by mail-oi0-f49.google.com with SMTP id y204so129082229oie.3
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 08 Apr 2016 01:42:00 -0700 (PDT)
+X-Gm-Message-State: AD7BkJJiERsu1px604xo5+UtKDqwsi+8EBceJAzzpZRcAgnNaZ+NQRDA/3IIkm1V0XOX4wBbY1Jw4964suv/yQ==
+MIME-Version: 1.0
+X-Received: by 10.202.224.70 with SMTP id x67mr3700475oig.124.1460104918663;
+ Fri, 08 Apr 2016 01:41:58 -0700 (PDT)
+Received: by 10.157.3.13 with HTTP; Fri, 8 Apr 2016 01:41:58 -0700 (PDT)
+Date: Fri, 8 Apr 2016 09:41:58 +0100
+X-Gmail-Original-Message-ID: <CAB_H__eRAGFLFZYMLgYKfrw9eYH1Jd_DkQ63rke5UggEbzvN8Q@mail.gmail.com>
+Message-ID: <CAB_H__eRAGFLFZYMLgYKfrw9eYH1Jd_DkQ63rke5UggEbzvN8Q@mail.gmail.com>
+From: Mathieu d'Aquin <m.daquin@open.ac.uk>
+To: <info-ic@listes.irisa.fr>, <bull-i3@irit.fr>,
+	<liste-egc@polytech.univ-nantes.fr>, <web.semantique@inria.fr>
+Content-Type: multipart/alternative; boundary="001a113d38a0031192052ff52b54"
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report:
+	CIP:137.108.170.149;IPV:NLI;CTRY:GB;EFV:NLI;SFV:NSPM;SFS:(10009020)(2980300002)(438002)(199003)(189002)(1096002)(93516999)(63696999)(54356999)(9896002)(1220700001)(50986999)(11100500001)(42186005)(74482002)(9686002)(15975445007)(5001770100001)(5001970100001)(107886002)(2906002)(189998001)(15843345004)(512874002)(61726006)(16297215004)(92566002)(450100001)(19617315012)(61266001)(15395725005)(16236675004)(229853001)(55446002)(84326002)(4001450100002)(2201001)(6806005)(5008740100001)(80366005)(19580395003)(19580405001)(106466001)(87936001)(586003)(55456009)(16193025007);DIR:OUT;SFP:1101;SCL:1;SRVR:DB4PR04MB0751;H:ariel.open.ac.uk;FPR:;SPF:Pass;MLV:sfv;A:1;MX:1;LANG:en;
+X-Microsoft-Exchange-Diagnostics: 1;DB3FFO11FD046;1:wM+hTPPxu37WZsp7DxHwQXMrea6N++CZ7ksH1bxT+JCd+JOzw9Qo68XvAoulcqZ4wli4SVZillrWuG4mEDBUUxSFLbCOTn6QWAieUVMa7DiDIBSvnp8TWKS+MGcvK4sZCz4ogpjGOR0ZzdxJy2C5we51a5pU9VPt9hhJ6o5UkMGjwcQ/aJESQ/L1pkDdcF1MJdkJnnoBuhwxTUadIATJ59I/DmKQxZKRu0sV+MmGYLqfY+52ufCNRYS5NJce2p+fHQvrAxbY5vo4ESeec1Sj0l6M8u5wgCuVPOgfe2SrKX11up04c7invgt1iXSaLpLOuWjnNmhTdKTdTwyyJbw1IhOWh+bIMUNZ9brM5VDB1V5k8eXib+zQHPKvSU5xYMONmwEKkp+CUor6qvCVjzME1O+jfXXvkwDL9Na/VepTzgj4WrABTGjXJUFUjn3w5ZpPZZ2uSTpvbWQUPlO+fVr2yNjzF7WeqsnsGSCJd/Uis1xsh71wKeb5rAjsVt1OuiS/2UJNQTH5LKVkICoXqIDehLvoGLmpn6YkL4GPSrDC8tjnulU2LEkP4bUMiBPZl8iy
+X-MS-Office365-Filtering-Correlation-Id: 3fdb87cb-739a-4cda-5e3b-08d35f89a77c
+X-Microsoft-Exchange-Diagnostics:
+	1;DB4PR04MB0751;2:tbOEhAkhPZaFzq07IFW1toOcxCdtY9EEZsDxsrAxP+YMumKeEHHsqiFkfi7spFU76Y3V+O7wn6VL+AAFY5MhGJOX1FHZSSWunba30INwfmd4axV1mSVN5qZnZ9B7HY5T7ibFzid6y3Q30I8D/8ZtVq4qYpKUIo9uO7SFPn017zFhND/WBJGrjocKUcI3D581;3:fHC89urxVFtXFDgclXVjmjr3NC7FN4EF6LilJgN3brLhy38BUMSEfB0U+1YOCOA/b+KLLB79PebE9lljktUpv9sMCr84hRBNWvX35aMV2vHgiv0WnS8QFp3Dp+mVV3LX0XUUfZCd0saduCBYx+v+rRLr0KOko3tzL8utgdBc2aLfv9KmBLLz3QBKTxP2y8BA9WJf2C8imXIYdmjm6K3JkjgAspXaPSr6lHfLIh2GIhATsl4aswyBkCQJgQQ8TCw2NcTP52ntz+vfBaxoJi/U6A==;25:aqgslDUpUM3pwoEkU/khMpRMxXxgYjAI/qtAO0XiiEmblCf4ZVEyk8AB7EDj9SzWBp3MIGJ4M0kGZVboJZIO9Zs5HgoD2bnEk0Z9FO69q1Hdb6y1x3jOM5BxFRju9TFW5zw5FmeI9F/pWiCAJvKZmDixKRGVRo7NErKb7MaCLwcJ0cERFVDg+vFc0+4NlKnE7r1zvtMP9LQIdFsEdjG+9rOUM4vvKhW7zo64y92hSgxgSJ2Fb7hSVRGRyeDHDkPMykmmgCbl4G1i8zSMOu2GFiY7VLjOFIp4EtqbwYb+jV9qqEn+3CoUy2KmshbQxWEjI1Twg0XJor7vnQ7XmGWLBQ==
+X-Microsoft-Antispam:
+	UriScan:;BCL:0;PCL:0;RULEID:(8251501002);SRVR:DB4PR04MB0751;
+X-Microsoft-Exchange-Diagnostics:
+	1;DB4PR04MB0751;20:xfSVSChZvaMzzJfuy2alXNdXXBTvq7GAxR1cMmiesNbhgscJ4qyqSgbH6+xKOuvujROTIj1UGaBLTbfa6DPAE6M7t4H5I83xfu68TUvtCmhI5mGW3cXMFBwIPhGO9tW2eAoTJnp0J8sfGLUjxgatv5Y1FOgHigIS/I2ZJfSBShUmjIAQRXCs/VAyoliHjNzi5thSGxrGURzFhP1fl4IqxJXLu8EKKlzit7uT+qk+L2RThCcaOcg1kOLTDyHgNE5u3DVO3iUN/EivIuslIVseMQVYpdwps4oTSHVn+3ivWB1GBbu3dtC08lXzI/ptFVuLSHl0zCIL6DgrfQrstG04DFrco/BVLONdnAsFffhElIPJD8pzUkfdd2Rk2+Yuv4rjL2FDBYVsWDS5XOTj0KXsB/B0sByv6B5cJxSVzLL6QB8OpHpKnJR5PJ1rq8dImmdnAvfZRjGYeBYN1dQgiy+3p+ZNCjnZr1wcAQ8keyVA7LW6VD0kNd4j2nYRhKTdyJaw
+X-Microsoft-Antispam-PRVS:
+	<DB4PR04MB07512B526891D364305BB800B3910@DB4PR04MB0751.eurprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test:
+	BCL:0;PCL:0;RULEID:(601004)(2401047)(13015025)(13018025)(8121501046)(13023025)(13024025)(13017025)(5005006)(10201501046)(3002001);SRVR:DB4PR04MB0751;BCL:0;PCL:0;RULEID:;SRVR:DB4PR04MB0751;
+X-Microsoft-Exchange-Diagnostics:
+	1;DB4PR04MB0751;4:ajcTz6nkPCfzvCjmIJqJ5Kv1ThSjINtcMy9XlfHs7EvCGMSlx98bgIvKgNPRzZJphi33QBRq4qTsFR31hm33Ogosdr9rFqSBrIEKhjhOe2SHwWZ+fwAgtmCty7Nwuof4N0TZIjjaKQ+owi1yCh0GxTo4rQe8XRKDkTbBOSz8FcJN0RXxKj4gPaSPW50h778vBqj0cqqeAavdmoInU4IWpomJnNBeojaWAnltEPn8T+hjBZ8vyVaFOEOBxceSbF9+1V7r1aEZpPavg0Sq6mATjMU0cYV6OhTv+///NGX3lWJttQZesJZ6MO+uc5u/S9Qhh5kIaE5cdxmrOrsh0TVCzxLny7YDAYjCbN+S+BaLXdElA+F806cYTFhQIPntgRc3FsRscA15jq4HGuKr/AZI49wLSvjf4dYT1YCHz1cP9rKmygqtKGiNyQNLBTU984lFDC1SGtxwSd1ZR1xWmffZZg==
+X-Forefront-PRVS: 0906E83A25
+X-Microsoft-Exchange-Diagnostics:
+	=?us-ascii?Q?1;DB4PR04MB0751;23:Oo7QGNxtQ8mTNmG0rPgMnFPPD+5SxdeyhjvwFqOKJ?=
+ =?us-ascii?Q?LluQRbmatZ6Xb0+8dM+iRSvsedBes4xGW/tj8f8pZPb2EnCRD13K2AwnKyY8?=
+ =?us-ascii?Q?1HfuB0h3fqV+A21cVjqjgHD0Ba6MIOy1Br17DtwJgrn3RcSFN0mPOyr9WML6?=
+ =?us-ascii?Q?yjRYRnCLRtHjDZqbYbK0Mt16OGwiZmimA1wjsUJcPBxPhjkuDr3/v/8aq3sr?=
+ =?us-ascii?Q?/MPMzRzfq0jYYyJPFLHNM3C9a9hSjhdnUhAd1fBLOqoiTkIeZ2AcspcSKGMt?=
+ =?us-ascii?Q?+WAWT1q3AKd+0OcArSSa98F76Hsz5OsfP3vNUdCv15+b+JrQa6yPEPWVItKK?=
+ =?us-ascii?Q?xDMJF3jOBUoUwhslI2MAuasYNiiYd6DpF7k57h8+927g7EgG33BwsQWcPIJ2?=
+ =?us-ascii?Q?WhllR6wIkFZr6eH6OPqIuLqm987MXy32cRdNzy2zIN1GPHlgv5yqCthuI4+O?=
+ =?us-ascii?Q?Javeb0TniSsa+F6Uz1YCYWmTMc9qblfg0V27WR3AZsUkCumSiTZLC0RbZzsO?=
+ =?us-ascii?Q?vzjU4f00Xdn/pQ7RC91/CYHs13/civIKcA/DvGWp2lJhRcTBBEq6u9p48S38?=
+ =?us-ascii?Q?INplG6cvBn9ZSI8eIV6+c25N28TAdzdYwrIqps7Nce93htUXA5+KN6qzQS+O?=
+ =?us-ascii?Q?IF+Xsjf2BE4TX9AUEMmWTZzAq+0mFUN36QTYbXB0dc3tCMVkpi2JxWsd6ZSO?=
+ =?us-ascii?Q?i6fSCUGpFqcN+7yClU0hwTQRLu2SDfIdA7dQfK53QjkeAYC9S7qc956x2Ker?=
+ =?us-ascii?Q?DAUR7Kq3ezoySTsNSwZxEl4xxOOx6Qucv6nyTeAaI6/0K+Pm2zhZFkWGmtey?=
+ =?us-ascii?Q?cXFMLBLLSGkmR30jqNx2dReJIeMuPswDPOsYLagwTkIHxusCZf7Pz7LksvyZ?=
+ =?us-ascii?Q?8e25SEOGK2CN4mvDo9E7IXctTVxix8Bq/mByhdMCLMVfliPNtTYh+Sz/A9nZ?=
+ =?us-ascii?Q?kA3I49GecMcISxBwtdTqALYdKYF81s/AT9YIIVkSsmO1yBvjUvIcUfwzTxzL?=
+ =?us-ascii?Q?514aBVb4N8rEUGupVh34iE1hXGvdyLIti8UvrwF1KLjcC8m+ZgpGGgRLD0s5?=
+ =?us-ascii?Q?XJB2pVhEkbgNqgOXwlaMUoPEl9iJTaKBYMu3wVyS+AX7pqQqYot9GlSDBQKM?=
+ =?us-ascii?Q?4q+WjJSE4/xjwqPVKOoHtolE86CJe+RNu+CARMku+JEZOQ+RGtiiQQpNoQAF?=
+ =?us-ascii?Q?WdDa1zFdSVlFD2A0kHQaQaiuqZDX7WqEJxzHcPviiozrhZ31MbVjzQbsw=3D?=
+ =?us-ascii?Q?=3D?=
+X-Microsoft-Exchange-Diagnostics:
+	1;DB4PR04MB0751;5:Im+sn6SSf5yAQhRS9QAlXGmUKajv8aT4lDo8D5iTk+pnHPvwnaW9ZlgQVxMX1OjUFEFzeeqOEkLWKBryQ2oihfK67mSQzFL1Bn9i2nJzbOQKZg+jHD2ODqKF1eXThL7zcsb2DjMa3zaH6CUKQ/jmdw==;24:mKZ72KWD+Zs5JiqR72QPLrNBh6blO71fKG9DoQp6f2NgTTzs/UJB43KMHPuRC5MgxqYs+eq+AdYgvlX5kE2eMf6IkuXCfXZ/yYTJb/dmWeA=
+SpamDiagnosticOutput: 1:23
+SpamDiagnosticMetadata: NSPM
+X-OriginatorOrg: open.ac.uk
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2016 08:42:01.3383
+ (UTC)
+X-MS-Exchange-CrossTenant-Id: 0e2ed455-96af-4100-bed3-a8e5fd981685
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0e2ed455-96af-4100-bed3-a8e5fd981685;Ip=[137.108.170.149];Helo=[ariel.open.ac.uk]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB4PR04MB0751
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Last chance to apply! SSSW 2016 - The 12th Semantic Web
+ Summer School
+
+--001a113d38a0031192052ff52b54
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+The deadline for applications to attend the 12th Semantic Web Summer School=
+, SSSW, has been extended to the 11th of April 2016.
+
+THE 12TH SEMANTIC WEB SUMMER SCHOOL - SSSW 2016
+Bertinoro, near Bologna, Italy.
+17th - 23rd July, 2016
+http://sssw.org/2016, info@sssw16.org<mailto:info@sssw16.org>, Twitter: @ss=
+sw2016
+
+To ensure a high ratio between tutors and students the school will be limit=
+ed to 60 participants. Applications to attend SSSW 2016 will now close on t=
+he 11th of April. To apply, please follow the process described at http://s=
+ssw.org/2016/?page_id=3D16
+
+Preliminary programme is available at http://sssw.org/2016/?page_id=3D232
+
+The groundbreaking SSSW series of summer schools started in 2003. It is now=
+ a well-established event within the research community and a role model fo=
+r several other initiatives. Taking place in the beautiful village of Berti=
+noro, Italy the programme of the summer school is centred on research and t=
+he open challenges facing the semantic web and the related technologies. It=
+ includes lectures, invited talks, practical research work and projects, le=
+d by a set of tutors comprising leading researchers in the community and pr=
+estigious invited speakers. SSSW also represents a unique opportunity for n=
+etworking with research and industry leaders (including former students of =
+the school), including of course, an exciting social programme in one of th=
+e most beautiful locations in Italy.
+
+SSSW is located in the beautiful location of Bertinoro, a small village nea=
+r Bologna in Italy, and relies on an extended organising committee, with Va=
+lentina Presutti from CNR, Mathieu d=E2=80=99Aquin from the Open University=
+ and Oscar Corcho from UPM. Since Semantic Web technologies and practices a=
+re now well established, the focus of the school is on research,  and on th=
+e open challenges that are being faced by the scientific community related =
+to the Semantic Web. Keeping the =E2=80=9Cmixed=E2=80=9D approach pioneered=
+ in the previous editions of SSSW, invited speeches and lectures by some of=
+ the greatest researchers in the area are complemented with =E2=80=9CResear=
+ch in Practice=E2=80=9D sessions where key research questions are being inv=
+estigated and collectively discussed.
+
+Work on developing and presenting a project in cooperation with other parti=
+cipants serves as a means of consolidating the knowledge and skills gained =
+from lectures and practice sessions. It also introduces an element of compe=
+tition among teams, as prizes are awarded to the best projects at the end o=
+f the week. As a wide range of skills are required when working in this are=
+a, a =E2=80=9Chackday=E2=80=9D will also be organised during the week, as a=
+ break from the research focus where participants will be able to apply and=
+ show off their technical skills too.
+
+SSSW 2016 will provide a stimulating and enjoyable environment in which par=
+ticipants will benefit not only from the formal and practical sessions but =
+also from informal and social interactions with established researchers and=
+ the other participants to the school. To further facilitate interaction an=
+d exchange of ideas, a poster session will also take place, which will prov=
+ide an opportunity for attendees to present and obtain feedback on their re=
+search.
+
+TOPICS
+
+(Linked) Data Workflows
+Web Data Management
+Knowledge Discovery
+Knowledge Extraction
+Sense-Making
+Cognitive/Human Computing
+Semantic Web Applications
+Semantic Web Technologies
+Semantic Web Research Methods
+
+ORGANIZING COMMITTEE
+
+Mathieu d'Aquin (Director), m.daquin@open.ac.uk<mailto:m.daquin@open.ac.uk>
+Oscar Corcho (Co-Director), ocorcho@fi.upm.es<mailto:ocorcho@fi.upm.es>
+Valentina Presutti (Co-Director), valentina.presutti@cnr.it<mailto:valentin=
+a.presutti@cnr.it>
+
+INVITED SPEAKERS AND TUTORS (more to be announced soon)
+
+Claudia d=E2=80=99Amato, University of Bari
+Mathieu d=E2=80=99Aquin, The Open University
+Irene Celino, CEFRIEL
+Oscar Corcho, Universidad Polit=C3=A9cnica de Madrid
+Aldo Gangemi, LIPN University Paris 13 and ISTC-CNR Rome
+Frank van Harmelen, VU University Amsterdam
+Tomi Kauppinen, Aalto University
+Axel Polleres, Vienna University of Economics and Business
+Valentina Presutti, Semantic Technology Laboratory, CNR Rome
+Marta Sabou, Vienna University of Technology
+Mar=C4=B1a-Esther Vidal, Universidad Sim=C3=B3n Bol=C3=ADvar, Caracas
+
+HOW TO APPLY
+
+We welcome applicants from anywhere in the world. Normally, but not exclusi=
+vely, applicants will be postgraduate students in relevant disciplines with=
+ some knowledge of semantic and web technologies. Some basic acquaintance w=
+ith knowledge representation languages for the Semantic Web (RDF, OWL, etc.=
+) is required.
+
+The deadline for applications is the 11 April 2016. Please follow the instr=
+uctions at http://sssw.org/2016/?page_id=3D16 to apply.
+
+Accepted candidates are expected to arrive on Sunday, July 17th, between 3p=
+m and 6pm and to participate fully in the activities of the school until it=
+s conclusion, at 2pm on Saturday, July 23rd. Applicants should keep in mind=
+ that we will not consider applications from students who cannot commit the=
+mselves to a full participation for the whole duration of the school. Stude=
+nts are also required to bring and present a  poster at the summer school, =
+describing their own research.
+
+Apart from activities directly related to lectures, the summer school sched=
+ule is rightly famous for its unrivalled social programme, which enables in=
+formal interaction between all participants to the school - i.e., students,=
+ tutors, invited speakers, school staff, etc. These events include a gala d=
+inner, picnic at the swimming pool, a disco, and sport activities.
+
+STUDENT GRANTS
+
+We expect to provide a number of grants for students who would not otherwis=
+e be able to attend the school. More details about student grants will be p=
+ublished at a later date.
+
+VENUE AND ACCOMMODATION
+
+SSSW 2016 will be located at the University Residential Center located in t=
+he small medieval hilltop town of Bertinoro. This town is in Emilia Romagna=
+, about 50km east of Bologna at an elevation of 230m above sea level. It ca=
+n easily be reached by train and taxi from Bologna.
+
+Bertinoro is picturesque, with many narrow streets and walkways winding aro=
+und the central peak. Sessions of the summer school will be held in an arch=
+iepiscopal castle that has been converted by the University of Bologna into=
+ a modern conference centre with computing facilities and Internet access. =
+ From the castle you can enjoy a beautiful vista that stretches from the Tu=
+scan Apennines to the Adriatic coast and the Alps over the Po Valley.
+
+More information about the location is available at http://sssw.org/2016/?p=
+age_id=3D44
+
+The cost of the summer school, including accommodation, meals and excursion=
+ will be 950=E2=82=AC.
+
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England & Wales and a charity registered in Scotland (SC 038=
+302). The Open University is authorised and regulated by the Financial Cond=
+uct Authority.
+
+--001a113d38a0031192052ff52b54
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+</head>
+<body>
+<div dir=3D"ltr">
+<div>The deadline for applications to attend the 12th Semantic Web Summer S=
+chool, SSSW, has been extended to the 11th of April 2016.<br>
+</div>
+<div><br>
+</div>
+<div>THE 12TH SEMANTIC WEB SUMMER SCHOOL - SSSW 2016</div>
+<div>Bertinoro, near Bologna, Italy.</div>
+<div>17th - 23rd July, 2016</div>
+<div><a href=3D"http://sssw.org/2016">http://sssw.org/2016</a>, <a href=3D"=
+mailto:info@sssw16.org">
+info@sssw16.org</a>, Twitter: @sssw2016</div>
+<div><br>
+</div>
+<div>To ensure a high ratio between tutors and students the school will be =
+limited to 60 participants. Applications to attend SSSW 2016 will now close=
+ on the 11th of April. To apply, please follow the process described at
+<a href=3D"http://sssw.org/2016/?page_id=3D16">http://sssw.org/2016/?page_i=
+d=3D16</a>&nbsp;</div>
+<div><br>
+</div>
+<div>Preliminary programme is available at <a href=3D"http://sssw.org/2016/=
+?page_id=3D232">
+http://sssw.org/2016/?page_id=3D232</a>&nbsp;</div>
+<div><br>
+</div>
+<div>The groundbreaking SSSW series of summer schools started in 2003. It i=
+s now a well-established event within the research community and a role mod=
+el for several other initiatives. Taking place in the beautiful village of =
+Bertinoro, Italy the programme of
+ the summer school is centred on research and the open challenges facing th=
+e semantic web and the related technologies. It includes lectures, invited =
+talks, practical research work and projects, led by a set of tutors compris=
+ing leading researchers in the community
+ and prestigious invited speakers. SSSW also represents a unique opportunit=
+y for networking with research and industry leaders (including former stude=
+nts of the school), including of course, an exciting social programme in on=
+e of the most beautiful locations
+ in Italy.</div>
+<div><br>
+</div>
+<div>SSSW is located in the beautiful location of Bertinoro, a small villag=
+e near Bologna in Italy, and relies on an extended organising committee, wi=
+th Valentina Presutti from CNR, Mathieu d=E2=80=99Aquin from the Open Unive=
+rsity and Oscar Corcho from UPM. Since Semantic
+ Web technologies and practices are now well established, the focus of the =
+school is on research, &nbsp;and on the open challenges that are being face=
+d by the scientific community related to the Semantic Web. Keeping the =E2=
+=80=9Cmixed=E2=80=9D approach pioneered in the previous
+ editions of SSSW, invited speeches and lectures by some of the greatest re=
+searchers in the area are complemented with =E2=80=9CResearch in Practice=
+=E2=80=9D sessions where key research questions are being investigated and =
+collectively discussed.</div>
+<div><br>
+</div>
+<div>Work on developing and presenting a project in cooperation with other =
+participants serves as a means of consolidating the knowledge and skills ga=
+ined from lectures and practice sessions. It also introduces an element of =
+competition among teams, as prizes
+ are awarded to the best projects at the end of the week. As a wide range o=
+f skills are required when working in this area, a =E2=80=9Chackday=E2=80=
+=9D will also be organised during the week, as a break from the research fo=
+cus where participants will be able to apply and show
+ off their technical skills too.</div>
+<div><br>
+</div>
+<div>SSSW 2016 will provide a stimulating and enjoyable environment in whic=
+h participants will benefit not only from the formal and practical sessions=
+ but also from informal and social interactions with established researcher=
+s and the other participants to
+ the school. To further facilitate interaction and exchange of ideas, a pos=
+ter session will also take place, which will provide an opportunity for att=
+endees to present and obtain feedback on their research.</div>
+<div><br>
+</div>
+<div>TOPICS</div>
+<div><br>
+</div>
+<div>(Linked) Data Workflows</div>
+<div>Web Data Management</div>
+<div>Knowledge Discovery</div>
+<div>Knowledge Extraction</div>
+<div>Sense-Making</div>
+<div>Cognitive/Human Computing</div>
+<div>Semantic Web Applications</div>
+<div>Semantic Web Technologies</div>
+<div>Semantic Web Research Methods</div>
+<div><br>
+</div>
+<div>ORGANIZING COMMITTEE</div>
+<div><br>
+</div>
+<div>Mathieu d'Aquin (Director), <a href=3D"mailto:m.daquin@open.ac.uk">m.d=
+aquin@open.ac.uk</a></div>
+<div>Oscar Corcho (Co-Director), <a href=3D"mailto:ocorcho@fi.upm.es">ocorc=
+ho@fi.upm.es</a></div>
+<div>Valentina Presutti (Co-Director), <a href=3D"mailto:valentina.presutti=
+@cnr.it">
+valentina.presutti@cnr.it</a></div>
+<div><br>
+</div>
+<div>INVITED SPEAKERS AND TUTORS (more to be announced soon)</div>
+<div><br>
+</div>
+<div>Claudia d=E2=80=99Amato, University of Bari</div>
+<div>Mathieu d=E2=80=99Aquin, The Open University</div>
+<div>Irene Celino, CEFRIEL</div>
+<div>Oscar Corcho, Universidad Polit=C3=A9cnica de Madrid</div>
+<div>Aldo Gangemi, LIPN University Paris 13 and ISTC-CNR Rome&nbsp;</div>
+<div>Frank van Harmelen, VU University Amsterdam</div>
+<div>Tomi Kauppinen, Aalto University</div>
+<div>Axel Polleres, Vienna University of Economics and Business</div>
+<div>Valentina Presutti, Semantic Technology Laboratory, CNR Rome</div>
+<div>Marta Sabou, Vienna University of Technology</div>
+<div>Mar=C4=B1a-Esther Vidal, Universidad Sim=C3=B3n Bol=C3=ADvar, Caracas<=
+/div>
+<div><br>
+</div>
+<div>HOW TO APPLY</div>
+<div><br>
+</div>
+<div>We welcome applicants from anywhere in the world. Normally, but not ex=
+clusively, applicants will be postgraduate students in relevant disciplines=
+ with some knowledge of semantic and web technologies. Some basic acquainta=
+nce with knowledge representation
+ languages for the Semantic Web (RDF, OWL, etc.) is required.</div>
+<div><br>
+</div>
+<div>The deadline for applications is the 11 April 2016. Please follow the =
+instructions at
+<a href=3D"http://sssw.org/2016/?page_id=3D16">http://sssw.org/2016/?page_i=
+d=3D16</a> to apply.</div>
+<div><br>
+</div>
+<div>Accepted candidates are expected to arrive on Sunday, July 17th, betwe=
+en 3pm and 6pm and to participate fully in the activities of the school unt=
+il its conclusion, at 2pm on Saturday, July 23rd. Applicants should keep in=
+ mind that we will not consider
+ applications from students who cannot commit themselves to a full particip=
+ation for the whole duration of the school. Students are also required to b=
+ring and present a &nbsp;poster at the summer school, describing their own =
+research.</div>
+<div><br>
+</div>
+<div>Apart from activities directly related to lectures, the summer school =
+schedule is rightly famous for its unrivalled social programme, which enabl=
+es informal interaction between all participants to the school - i.e., stud=
+ents, tutors, invited speakers,
+ school staff, etc. These events include a gala dinner, picnic at the swimm=
+ing pool, a disco, and sport activities.</div>
+<div><br>
+</div>
+<div>STUDENT GRANTS</div>
+<div><br>
+</div>
+<div>We expect to provide a number of grants for students who would not oth=
+erwise be able to attend the school. More details about student grants will=
+ be published at a later date.</div>
+<div><br>
+</div>
+<div>VENUE AND ACCOMMODATION</div>
+<div><br>
+</div>
+<div>SSSW 2016 will be located at the University Residential Center located=
+ in the small medieval hilltop town of Bertinoro. This town is in Emilia Ro=
+magna, about 50km east of Bologna at an elevation of 230m above sea level. =
+It can easily be reached by train
+ and taxi from Bologna.</div>
+<div><br>
+</div>
+<div>Bertinoro is picturesque, with many narrow streets and walkways windin=
+g around the central peak. Sessions of the summer school will be held in an=
+ archiepiscopal castle that has been converted by the University of Bologna=
+ into a modern conference centre
+ with computing facilities and Internet access.&nbsp; From the castle you c=
+an enjoy a beautiful vista that stretches from the Tuscan Apennines to the =
+Adriatic coast and the Alps over the Po Valley.</div>
+<div><br>
+</div>
+<div>More information about the location is available at <a href=3D"http://=
+sssw.org/2016/?page_id=3D44">
+http://sssw.org/2016/?page_id=3D44</a>&nbsp;</div>
+<div><br>
+</div>
+<div>The cost of the summer school, including accommodation, meals and excu=
+rsion will be 950=E2=82=AC.</div>
+<div><br>
+</div>
+</div>
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England &amp; Wales and a charity registered in Scotland (SC=
+ 038302). The Open University is authorised and regulated by the Financial =
+Conduct Authority.
+</body>
+</html>
+
+--001a113d38a0031192052ff52b54--

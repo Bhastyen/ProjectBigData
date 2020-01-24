@@ -1,0 +1,1594 @@
+Return-Path: <jm.gilliot@imt-atlantique.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D7241229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 14 Jun 2017 15:44:16 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id D55856D2218
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 14 Jun 2017 15:44:16 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id C33B5B4A243
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 14 Jun 2017 15:44:16 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -6.979
+X-Spam-Level:
+X-Spam-Status: No, score=-6.979 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MANGLED_FREE=2.3, NO_RDNS=0.5,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.7792 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=imt-atlantique.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id zUjX4SMv2aR8 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 14 Jun 2017 15:44:15 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy210.enst-bretagne.fr (zproxy210.enst-bretagne.fr [192.108.117.8])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id BF1AE69C3E6
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 14 Jun 2017 15:44:15 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id B1709232009
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 14 Jun 2017 15:44:15 +0200 (CEST)
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id i2dE3-xnnur4 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 14 Jun 2017 15:44:14 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id 28D1223202B
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 14 Jun 2017 15:44:14 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy210.enst-bretagne.fr 28D1223202B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imt-atlantique.fr;
+	s=50EA75E8-DE22-11E6-A6DE-0662BA474D24; t=1497447854;
+	bh=z7MtF+/qAzkL4Fk4eSesNkQD/XZ3v3bM50HOidUvG2o=;
+	h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type;
+	b=A9d2BTPlDvK1pOGCmQr4uL9PsuNzeM9HyuOe0y2umQUp3IvBln7jw1ePzZkaveBHN
+	 uhhax51bqS2JFlR4bz19LA84KC+XH3kZ32Qrl0codo/T4uAvGnZY0b/4/wNd8U8DUc
+	 i1mNkOSHL9YTG90ggM1J8TI8jtgCKVhqfbAyXOgc=
+X-Virus-Scanned: amavisd-new at zproxy210.enst-bretagne.fr
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id HbYaDTdSEMuB for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 14 Jun 2017 15:44:13 +0200 (CEST)
+Received: from [10.9.50.162] (unknown [193.49.216.158])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTPSA id AF0CA232009
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 14 Jun 2017 15:44:13 +0200 (CEST)
+From: Jean-Marie Gilliot <jm.gilliot@imt-atlantique.fr>
+To: liste-egc@polytech.univ-nantes.fr
+Message-ID: <5c7b1ad9-31b8-8827-2c4d-8bab54f6b5f6@imt-atlantique.fr>
+Date: Wed, 14 Jun 2017 15:44:08 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.8.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------3B1BDF98E8BE8652C3D8B52F"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Offre d'emploi =?UTF-8?Q?ing=C3=A9nieur?= CDD
+ =?UTF-8?Q?d=C3=A9veloppement?= Web
+
+This is a multi-part message in MIME format.
+--------------3B1BDF98E8BE8652C3D8B52F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+d=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples .
+
+nous proposons un CDD ing=C3=A9nieur de recherche ou de d=C3=A9veloppemen=
+t pour=20
+d=C3=A9velopper une plateforme logicielle et des mod=C3=A8les de connaiss=
+ances=20
+pour l'autodirection des apprentissages bas=C3=A9e sur un cloud personnel=
+. Le=20
+poste se situe sur Brest.
+
+*Dur=C3=A9e :* 24 mois
+
+*Date de d=C3=A9marrage :* au plus t=C3=B4t
+
+*Lieu :* IMT Atlantique, Brest, France
+
+IMT Atlantique <http://www.imt-atlantique.fr/> est une =C3=A9cole=20
+d=E2=80=99ing=C3=A9nieurs issue de la fusion de Telecom Bretagne=20
+<http://www.telecom-bretagne.eu/about/brest-campus/> et de l=E2=80=99=C3=A9=
+cole des=20
+Mines de Nantes. Elle est un =C3=A9tablissement public, sous l'=C3=A9gide=
+ du=20
+Minist=C3=A8re de l'Industrie et est membre de l=E2=80=99Institut Mines-T=
+elecom=20
+<http://www.mines-telecom.fr/en_accueil.html> et de l'Universit=C3=A9=20
+Bretagne Loire.
+
+*Description du laboratoire *
+
+Le candidat sera recrut=C3=A9 dans l=E2=80=99=C3=A9quipe de recherche IHS=
+EV (Interactions=20
+Humains Syst=C3=A8mes et Environnements Virtuels), =C3=A9quipe du Lab-STI=
+CC (CNRS=20
+UMR 6285). Le Lab-STICC regroupe plus de 500 chercheurs et f=C3=A9d=C3=A8=
+re=20
+l=E2=80=99ensemble des activit=C3=A9s en STIC en Bretagne Oc=C3=A9ane. Il=
+ r=C3=A9unit trois=20
+p=C3=B4les de recherche au sein d'un th=C3=A8me central: "Des capteurs =C3=
+=A0 la=20
+connaissance". Les trois p=C3=B4les sont les suivants: i) MOM: micro-onde=
+s et=20
+des mat=C3=A9riaux; ii) CAC: les communications, l'architecture et les=20
+circuits; iii) CID: la connaissance, l'information, la d=C3=A9cision.=20
+L=E2=80=99=C3=A9quipe IHSEV se consacre aux interactions, coop=C3=A9ratio=
+ns et=20
+collaborations entre l=E2=80=99homme et les syst=C3=A8mes complexes, robo=
+tiques,=20
+domotiques, s=E2=80=99appuyant sur une approche pluridisciplinaire centr=C3=
+=A9e sur=20
+l=E2=80=99utilisateur.
+
+*A propos du projet Sedela *
+
+Le projet Sedela (SElf Data for Enhancing lifelong Learning Autonomy)=20
+est financ=C3=A9 par le labex Cominlabs <http://www.cominlabs.ueb.eu/>.=20
+L=E2=80=99objectif du projet Sedela est de d=C3=A9velopper l=E2=80=99auto=
+nomie des apprenants=20
+tout au long de la vie. Sedela est un projet interdisciplinaire qui=20
+permettra =C3=A0 la fois de travailler sur l=E2=80=99accompagnement =C3=A0=
+=20
+l=E2=80=99autor=C3=A9gulation des apprentissages et =C3=A0 une infrastruc=
+ture facilitant=20
+l=E2=80=99autonomie. Les utilisateurs pourront g=C3=A9rer leurs apprentis=
+sages,=20
+conserver leurs parcours tout au long de leur vie et partager leurs=20
+exp=C3=A9riences selon leurs pr=C3=A9f=C3=A9rences personnelles.
+
+SEDELA prendra appui sur une plateforme de cloud personnel existante,=20
+pour proposer des mod=C3=A8les et des services permettant une gestion des=
+=20
+apprentissages tout au long de la vie, qui sera test=C3=A9e et =C3=A9valu=
+=C3=A9e de=20
+mani=C3=A8re it=C3=A9rative avec des =C3=A9tudiants en cycle professionna=
+lisant.
+
+Les partenaires de ce projet sont les =C3=A9quipes du LS2N (Nantes), du C=
+READ=20
+(Rennes) et LabSTICC (Brest).
+
+*Missions*
+
+Dans le cadre du projet Sedela, le candidat sera en charge de :
+
+-La conception, la mise en =C5=93uvre et le test de l=E2=80=99application=
+ de gestion=20
+des apprentissages ;
+
+-Le d=C3=A9veloppement de mod=C3=A8les de gestion de donn=C3=A9es d=E2=80=
+=99apprentissage bas=C3=A9s=20
+sur les technologies du web s=C3=A9mantique ;
+
+-La gestion des outils de gestion de projet.
+
+=C3=80 cette fin, le candidat fera partie d'une =C3=A9quipe de huit perso=
+nnes,=20
+sous la supervision du chef de projet =C3=A0 IMT Atlantique.
+
+*Profil du poste *
+
+Comp=C3=A9tences solides de niveau ing=C3=A9nieur en informatique. Id=C3=A9=
+alement, le=20
+candidat a une exp=C3=A9rience dans les outils modernes de d=C3=A9veloppe=
+ment web,=20
+une expertise dans le domaine du web s=C3=A9mantique. Il maitrise la gest=
+ion=20
+de projet, les outils de g=C3=A9nie logiciel et d=C3=A9veloppement Web. U=
+n bon=20
+niveau en anglais (=C3=A9crit et oral) est exig=C3=A9. Un candidat int=C3=
+=A9ress=C3=A9 par=20
+la recherche pourra =C3=A9galement contribuer au projet sur les aspects d=
+e=20
+mod=C3=A9lisation de l=E2=80=99apprenant.
+
+Ses qualit=C3=A9s : autonome, curieux, avec le sens de la responsabilit=C3=
+=A9 et=20
+le respect des engagements, appr=C3=A9cie le travail en =C3=A9quipe.
+
+Dipl=C3=B4me en informatique de niveau Master. Doctorat en informatique,=20
+sp=C3=A9cialit=C3=A9 EIAH appr=C3=A9ci=C3=A9e
+
+
+Pour toute information compl=C3=A9mentaire, vous pouvez contacter :
+
+Jean-Marie Gilliot, jm.gilliot@imt-atlantique.fr=20
+<mailto:jm.gilliot@imt-atlantique.fr>, +33 (0) 229 00 15 39 (responsable=20
+du projet)
+
+Serge Garlatti, serge.garlatti@imt-atlantique=20
+<mailto:serge.garlatti@imt-atlantique>, +33 (0) 229 00 14 53=20
+(responsable du d=C3=A9partement)
+
+*Pour d=C3=A9poser votre candidature: *
+
+Merci d=E2=80=99adresser par mail =C3=A0 l=E2=80=99adresse suivante :
+
+recrut17-ing-info@mlistes.telecom-bretagne.eu=20
+<mailto:recrut17-ing-info@mlistes.telecom-bretagne.eu>
+
+*-* Un CV d=C3=A9taill=C3=A9
+
+- Une lettre de motivation
+
+_______________________________________________________
+
+Jean-Marie GILLIOT
+Ma=C3=AEtre de conf=C3=A9rences
++33 2 29 00 15 39
+
+IMT Atlantique =E2=80=93 Lab-STICC (UMR CNRS 6285)
+Technop=C3=B4le Brest-Iroise CS 83818, 29238 Brest Cedex 3
+_______________________________________________________
+
+IMT Atlantique :http://www.imt-atlantique.fr  =E2=80=93 Lab-STICChttp://w=
+ww.lab-sticc.fr/ =20
+Twitter :https://twitter.com/jmgilliot  - LinkedIn :https://www.linkedin.=
+com/in/jeanmariegilliot   - Blog :https://tipes.wordpress.com/ =20
+
+
+--------------3B1BDF98E8BE8652C3D8B52F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <p>Bonjour, <br>
+    </p>
+    <p>d=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples .<br>
+    </p>
+    <p> nous proposons un CDD ing=C3=A9nieur de recherche ou de d=C3=A9ve=
+loppement
+      pour d=C3=A9velopper une plateforme logicielle et des mod=C3=A8les =
+de
+      connaissances pour l'autodirection des apprentissages bas=C3=A9e su=
+r un
+      cloud personnel. Le poste se situe sur Brest. <br>
+    </p>
+    <p> </p>
+    <p> </p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Dur=C3=A9e=C2=A0:</b> 24 =
+mois</p>
+    <p> </p>
+    <p> </p>
+    <b style=3D"mso-bidi-font-weight:normal">Date de d=C3=A9marrage=C2=A0=
+:</b> au
+    plus t=C3=B4t <br>
+    <o:p></o:p>
+    <p> </p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Lieu :</b> IMT Atlantique=
+,
+      Brest, France<o:p></o:p></p>
+    <p><a href=3D"http://www.imt-atlantique.fr/"><span
+          class=3D"LienInternet">IMT Atlantique</span></a> est une =C3=A9=
+cole
+      d=E2=80=99ing=C3=A9nieurs issue de la fusion de <a
+        href=3D"http://www.telecom-bretagne.eu/about/brest-campus/"><span
+          class=3D"LienInternet"><span
+            style=3D"background:white;mso-highlight:white">Telecom
+            Bretagne</span></span></a> et de l=E2=80=99=C3=A9cole des Min=
+es de
+      Nantes. Elle est un =C3=A9tablissement public, sous l'=C3=A9gide du
+      Minist=C3=A8re de l'Industrie et est membre de l=E2=80=99<a
+        href=3D"http://www.mines-telecom.fr/en_accueil.html"><span
+          class=3D"LienInternet"><span
+            style=3D"color:#0070C0;background:white;mso-highlight:
+            white;mso-bidi-font-weight:bold">Institut Mines-Telecom</span=
+></span></a>
+      et de l'Universit=C3=A9 Bretagne Loire. <o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Description du laboratoir=
+e
+        <o:p></o:p></b></p>
+    <p>Le candidat sera recrut=C3=A9 dans l=E2=80=99=C3=A9quipe de recher=
+che IHSEV
+      (Interactions Humains Syst=C3=A8mes et Environnements Virtuels), =C3=
+=A9quipe
+      du Lab-STICC (CNRS UMR 6285). Le Lab-STICC regroupe plus de 500
+      chercheurs et f=C3=A9d=C3=A8re l=E2=80=99ensemble des activit=C3=A9=
+s en STIC en Bretagne
+      Oc=C3=A9ane. Il r=C3=A9unit trois p=C3=B4les de recherche au sein d=
+'un th=C3=A8me
+      central: "Des capteurs =C3=A0 la connaissance". Les trois p=C3=B4le=
+s sont
+      les suivants: i) MOM: micro-ondes et des mat=C3=A9riaux; ii) CAC: l=
+es
+      communications, l'architecture et les circuits; iii) CID: la
+      connaissance, l'information, la d=C3=A9cision. L=E2=80=99=C3=A9quip=
+e IHSEV se
+      consacre aux interactions, coop=C3=A9rations et collaborations entr=
+e
+      l=E2=80=99homme et les syst=C3=A8mes complexes, robotiques, domotiq=
+ues,
+      s=E2=80=99appuyant sur une approche pluridisciplinaire centr=C3=A9e=
+ sur
+      l=E2=80=99utilisateur.<o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">A propos du projet Sedela
+        <o:p></o:p></b></p>
+    <p>Le projet Sedela (SElf Data for Enhancing lifelong Learning
+      Autonomy) est financ=C3=A9 par le labex <a
+        href=3D"http://www.cominlabs.ueb.eu/"><span class=3D"LienInternet=
+">Cominlabs</span></a>.
+      L=E2=80=99objectif du projet Sedela est de d=C3=A9velopper l=E2=80=99=
+autonomie des
+      apprenants tout au long de la vie. Sedela est un projet
+      interdisciplinaire qui permettra =C3=A0 la fois de travailler sur
+      l=E2=80=99accompagnement =C3=A0 l=E2=80=99autor=C3=A9gulation des a=
+pprentissages et =C3=A0 une
+      infrastructure facilitant l=E2=80=99autonomie. Les utilisateurs pou=
+rront
+      g=C3=A9rer leurs apprentissages, conserver leurs parcours tout au l=
+ong
+      de leur vie et partager leurs exp=C3=A9riences selon leurs pr=C3=A9=
+f=C3=A9rences
+      personnelles. <o:p></o:p></p>
+    <p>SEDELA prendra appui sur une plateforme de cloud personnel
+      existante, pour proposer des mod=C3=A8les et des services permettan=
+t
+      une gestion des apprentissages tout au long de la vie, qui sera
+      test=C3=A9e et =C3=A9valu=C3=A9e de mani=C3=A8re it=C3=A9rative ave=
+c des =C3=A9tudiants en cycle
+      professionnalisant. <o:p></o:p></p>
+    <p>Les partenaires de ce projet sont les =C3=A9quipes du LS2N (Nantes=
+),
+      du CREAD (Rennes) et LabSTICC (Brest). <o:p></o:p></p>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+    <p><b style=3D"mso-bidi-font-weight:normal">Missions<o:p></o:p></b></=
+p>
+    <p>Dans le cadre du projet Sedela, le candidat sera en charge de :<o:=
+p></o:p></p>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><!--[if !supportLists]--><span style=3D"mso-list:Ignore">-<sp=
+an
+          style=3D"font:7.0pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+        </span></span><!--[endif]-->La conception, la mise en =C5=93uvre =
+et
+      le test de
+      l=E2=80=99application de gestion des apprentissages ;<o:p></o:p></p=
+>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><!--[if !supportLists]--><span style=3D"mso-list:Ignore">-<sp=
+an
+          style=3D"font:7.0pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+        </span></span><!--[endif]-->Le d=C3=A9veloppement de mod=C3=A8les=
+ de
+      gestion de donn=C3=A9es
+      d=E2=80=99apprentissage bas=C3=A9s sur les technologies du web s=C3=
+=A9mantique=C2=A0;<o:p></o:p></p>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><!--[if !supportLists]--><span style=3D"mso-list:Ignore">-<sp=
+an
+          style=3D"font:7.0pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+        </span></span><!--[endif]-->La gestion des outils de gestion de
+      projet.<o:p></o:p></p>
+    <p>=C3=80 cette fin, le candidat fera partie d'une =C3=A9quipe de hui=
+t
+      personnes, sous la
+      supervision du chef de projet =C3=A0 IMT Atlantique. <o:p></o:p></p=
+>
+    <p><b style=3D"mso-bidi-font-weight:normal">Profil du poste <o:p></o:=
+p></b></p>
+    <p>Comp=C3=A9tences solides de niveau ing=C3=A9nieur en informatique.
+      Id=C3=A9alement, le
+      candidat=C2=A0a une exp=C3=A9rience dans les outils modernes de
+      d=C3=A9veloppement web,
+      une expertise dans le domaine du web s=C3=A9mantique. Il maitrise l=
+a
+      gestion de
+      projet, les outils de g=C3=A9nie logiciel et d=C3=A9veloppement Web=
+. Un bon
+      niveau en
+      anglais (=C3=A9crit et oral) est exig=C3=A9. Un candidat int=C3=A9r=
+ess=C3=A9 par la
+      recherche
+      pourra =C3=A9galement contribuer au projet sur les aspects de
+      mod=C3=A9lisation de
+      l=E2=80=99apprenant. <span style=3D"mso-spacerun:yes">=C2=A0</span>=
+<o:p></o:p></p>
+    <p>Ses qualit=C3=A9s=C2=A0: autonome, curieux, avec le sens de la
+      responsabilit=C3=A9 et
+      le respect des engagements, appr=C3=A9cie le travail en =C3=A9quipe=
+.<o:p></o:p></p>
+    <span
+style=3D"font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:&quot;Tim=
+es
+      New Roman&quot;,serif;
+mso-fareast-font-family:Calibri;mso-fareast-theme-font:minor-latin;mso-bi=
+di-font-family:
+Calibri;mso-bidi-theme-font:minor-bidi;mso-ansi-language:FR;mso-fareast-l=
+anguage:
+      EN-US;mso-bidi-language:AR-SA">Dipl=C3=B4me en informatique de nive=
+au
+      Master.
+      Doctorat en informatique, sp=C3=A9cialit=C3=A9 EIAH appr=C3=A9ci=C3=
+=A9e<br
+        style=3D"mso-special-character:
+        line-break">
+      <!--[if !supportLineBreakNewLine]--><br
+        style=3D"mso-special-character:line-break">
+      <!--[endif]--></span>
+    <meta name=3D"ProgId" content=3D"Word.Document">
+    <meta name=3D"Generator" content=3D"Microsoft Word 15">
+    <meta name=3D"Originator" content=3D"Microsoft Word 15">
+    <link rel=3D"File-List"
+href=3D"file:///C:/Users/jgilliot/AppData/Local/Temp/msohtmlclip1/01/clip=
+_filelist.xml">
+    <link rel=3D"themeData"
+href=3D"file:///C:/Users/jgilliot/AppData/Local/Temp/msohtmlclip1/01/clip=
+_themedata.thmx">
+    <link rel=3D"colorSchemeMapping"
+href=3D"file:///C:/Users/jgilliot/AppData/Local/Temp/msohtmlclip1/01/clip=
+_colorschememapping.xml">
+    <!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>FR</w:LidThemeOther>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:EnableOpenTypeKerning/>
+   <w:DontFlipMirrorIndents/>
+   <w:OverrideTableStyleHps/>
+  </w:Compatibility>
+  <w:DoNotOptimizeForBrowser/>
+  <m:mathPr>
+   <m:mathFont m:val=3D"Cambria Math"/>
+   <m:brkBin m:val=3D"before"/>
+   <m:brkBinSub m:val=3D"&#45;-"/>
+   <m:smallFrac m:val=3D"off"/>
+   <m:dispDef/>
+   <m:lMargin m:val=3D"0"/>
+   <m:rMargin m:val=3D"0"/>
+   <m:defJc m:val=3D"centerGroup"/>
+   <m:wrapIndent m:val=3D"1440"/>
+   <m:intLim m:val=3D"subSup"/>
+   <m:naryLim m:val=3D"undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState=3D"false" DefUnhideWhenUsed=3D"false"
+  DefSemiHidden=3D"false" DefQFormat=3D"false" DefPriority=3D"99"
+  LatentStyleCount=3D"371">
+  <w:LsdException Locked=3D"false" Priority=3D"0" QFormat=3D"true" Name=3D=
+"Normal"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D=
+"heading 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 7"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 8"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"heading 9"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 6"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 7"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 8"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index 9"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 7"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 8"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"toc 9"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Normal Indent"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"footnote text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"annotation text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"header"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"footer"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"index heading"/>
+  <w:LsdException Locked=3D"false" Priority=3D"35" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"caption"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"table of figures"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"envelope address"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"envelope return"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"footnote reference"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"annotation reference"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"line number"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"page number"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"endnote reference"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"endnote text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"table of authorities"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"macro"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"toa heading"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Bullet"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Number"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Bullet 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Bullet 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Bullet 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Bullet 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Number 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Number 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Number 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Number 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"10" QFormat=3D"true" Name=3D=
+"Title"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Closing"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Signature"/>
+  <w:LsdException Locked=3D"false" Priority=3D"1" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"Default Paragraph Font"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text Indent"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Continue"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Continue 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Continue 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Continue 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"List Continue 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Message Header"/>
+  <w:LsdException Locked=3D"false" Priority=3D"11" QFormat=3D"true" Name=3D=
+"Subtitle"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Salutation"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Date"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text First Indent"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text First Indent 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Note Heading"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text Indent 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Body Text Indent 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Block Text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Hyperlink"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"FollowedHyperlink"/>
+  <w:LsdException Locked=3D"false" Priority=3D"22" QFormat=3D"true" Name=3D=
+"Strong"/>
+  <w:LsdException Locked=3D"false" Priority=3D"20" QFormat=3D"true" Name=3D=
+"Emphasis"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Document Map"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Plain Text"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"E-mail Signature"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Top of Form"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Bottom of Form"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   QFormat=3D"true" Name=3D"Normal (Web)"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Acronym"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Address"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Cite"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Code"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Definition"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Keyboard"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Preformatted"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Sample"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Typewriter"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"HTML Variable"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Normal Table"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"annotation subject"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"No List"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Outline List 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Outline List 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Outline List 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Simple 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Simple 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Simple 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Classic 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Classic 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Classic 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Classic 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Colorful 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Colorful 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Colorful 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Columns 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Columns 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Columns 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Columns 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Columns 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 6"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 7"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Grid 8"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 4"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 5"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 6"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 7"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table List 8"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table 3D effects 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table 3D effects 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table 3D effects 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Contemporary"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Elegant"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Professional"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Subtle 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Subtle 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Web 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Web 2"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Web 3"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Balloon Text"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"Table Grid"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" UnhideWhenUsed=3D"=
+true"
+   Name=3D"Table Theme"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" Name=3D"Placeholde=
+r Text"/>
+  <w:LsdException Locked=3D"false" Priority=3D"1" QFormat=3D"true" Name=3D=
+"No Spacing"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" SemiHidden=3D"true" Name=3D"Revision"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"34" QFormat=3D"true"
+   Name=3D"List Paragraph"/>
+  <w:LsdException Locked=3D"false" Priority=3D"29" QFormat=3D"true" Name=3D=
+"Quote"/>
+  <w:LsdException Locked=3D"false" Priority=3D"30" QFormat=3D"true"
+   Name=3D"Intense Quote"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" Name=3D"Light Shading =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" Name=3D"Light List Acc=
+ent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" Name=3D"Light Grid Acc=
+ent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" Name=3D"Medium Shading=
+ 1 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" Name=3D"Medium Shading=
+ 2 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" Name=3D"Medium List 1 =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" Name=3D"Medium List 2 =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" Name=3D"Medium Grid 1 =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" Name=3D"Medium Grid 2 =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" Name=3D"Medium Grid 3 =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" Name=3D"Dark List Acce=
+nt 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" Name=3D"Colorful Shadi=
+ng Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" Name=3D"Colorful List =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" Name=3D"Colorful Grid =
+Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"19" QFormat=3D"true"
+   Name=3D"Subtle Emphasis"/>
+  <w:LsdException Locked=3D"false" Priority=3D"21" QFormat=3D"true"
+   Name=3D"Intense Emphasis"/>
+  <w:LsdException Locked=3D"false" Priority=3D"31" QFormat=3D"true"
+   Name=3D"Subtle Reference"/>
+  <w:LsdException Locked=3D"false" Priority=3D"32" QFormat=3D"true"
+   Name=3D"Intense Reference"/>
+  <w:LsdException Locked=3D"false" Priority=3D"33" QFormat=3D"true" Name=3D=
+"Book Title"/>
+  <w:LsdException Locked=3D"false" Priority=3D"37" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" Name=3D"Bibliography"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" SemiHidden=3D"true"
+   UnhideWhenUsed=3D"true" QFormat=3D"true" Name=3D"TOC Heading"/>
+  <w:LsdException Locked=3D"false" Priority=3D"41" Name=3D"Plain Table 1"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"42" Name=3D"Plain Table 2"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"43" Name=3D"Plain Table 3"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"44" Name=3D"Plain Table 4"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"45" Name=3D"Plain Table 5"=
+/>
+  <w:LsdException Locked=3D"false" Priority=3D"40" Name=3D"Grid Table Lig=
+ht"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46" Name=3D"Grid Table 1 L=
+ight"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51" Name=3D"Grid Table 6 C=
+olorful"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52" Name=3D"Grid Table 7 C=
+olorful"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"Grid Table 1 Light Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"Grid Table 2 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"Grid Table 3 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"Grid Table 4 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"Grid Table 5 D=
+ark Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"Grid Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"Grid Table 7 Colorful Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46" Name=3D"List Table 1 L=
+ight"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4"/=
+>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51" Name=3D"List Table 6 C=
+olorful"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52" Name=3D"List Table 7 C=
+olorful"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"46"
+   Name=3D"List Table 1 Light Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"47" Name=3D"List Table 2 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"48" Name=3D"List Table 3 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"49" Name=3D"List Table 4 A=
+ccent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"50" Name=3D"List Table 5 D=
+ark Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"51"
+   Name=3D"List Table 6 Colorful Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"52"
+   Name=3D"List Table 7 Colorful Accent 6"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+    <style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073732485 9 0 511 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	mso-bidi-font-size:11.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-bidi-font-family:Calibri;
+	mso-bidi-theme-font:minor-bidi;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-font-family:"Times New Roman";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:Calibri;
+	mso-fareast-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Calibri;
+	mso-bidi-theme-font:minor-bidi;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:957444187;
+	mso-list-template-ids:719486868;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:53.4pt;
+	text-indent:-18.0pt;
+	font-family:"Times New Roman",serif;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:89.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:125.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;
+	mso-bidi-font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:161.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-bidi-font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:197.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:233.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;
+	mso-bidi-font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:269.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	mso-bidi-font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:305.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:341.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;
+	mso-bidi-font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Tableau Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	mso-bidi-font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:Calibri;
+	mso-bidi-theme-font:minor-bidi;
+	mso-fareast-language:EN-US;}
+</style>
+<![endif]--><br style=3D"mso-special-character:line-break">
+    <o:p></o:p>
+    <p class=3D"MsoNormal">Pour toute information compl=C3=A9mentaire, vo=
+us
+      pouvez contacter=C2=A0: <o:p></o:p></p>
+    <p class=3D"MsoNormal">Jean-Marie Gilliot, <a
+        href=3D"mailto:jm.gilliot@imt-atlantique.fr"><span
+          class=3D"LienInternet">jm.gilliot@imt-atlantique.fr</span></a>,
+      +33 (0) 229 00 15 39 (responsable du projet)<o:p></o:p></p>
+    <p class=3D"MsoNormal">Serge Garlatti, <a
+        href=3D"mailto:serge.garlatti@imt-atlantique"><span
+          class=3D"LienInternet">serge.garlatti@imt-atlantique</span></a>=
+,
+      +33 (0) 229 00 14 53 (responsable du d=C3=A9partement)<br
+        style=3D"mso-special-character: line-break">
+      <br style=3D"mso-special-character:line-break">
+      <o:p></o:p></p>
+    <p class=3D"MsoNormal"><b style=3D"mso-bidi-font-weight:normal">Pour
+        d=C3=A9poser votre candidature: <o:p></o:p></b></p>
+    <p>Merci d=E2=80=99adresser par mail =C3=A0 l=E2=80=99adresse suivant=
+e : <o:p></o:p></p>
+    <p><a href=3D"mailto:recrut17-ing-info@mlistes.telecom-bretagne.eu"><=
+span
+          class=3D"LienInternet">recrut17-ing-info@mlistes.telecom-bretag=
+ne.eu</span></a>
+      <o:p></o:p></p>
+    <p style=3D"margin-left:35.4pt"><b>-</b> Un CV d=C3=A9taill=C3=A9 <o:=
+p></o:p></p>
+    <p style=3D"margin-left:35.4pt">- Une lettre de motivation<o:p></o:p>=
+</p>
+    <pre class=3D"moz-signature" cols=3D"72">____________________________=
+___________________________
+
+Jean-Marie GILLIOT
+Ma=C3=AEtre de conf=C3=A9rences=20
++33 2 29 00 15 39
+
+IMT Atlantique =E2=80=93 Lab-STICC (UMR CNRS 6285)
+Technop=C3=B4le Brest-Iroise CS 83818, 29238 Brest Cedex 3
+_______________________________________________________
+
+IMT Atlantique : <a class=3D"moz-txt-link-freetext" href=3D"http://www.im=
+t-atlantique.fr">http://www.imt-atlantique.fr</a> =E2=80=93 Lab-STICC <a =
+class=3D"moz-txt-link-freetext" href=3D"http://www.lab-sticc.fr/">http://=
+www.lab-sticc.fr/</a>=20
+Twitter : <a class=3D"moz-txt-link-freetext" href=3D"https://twitter.com/=
+jmgilliot">https://twitter.com/jmgilliot</a> - LinkedIn : <a class=3D"moz=
+-txt-link-freetext" href=3D"https://www.linkedin.com/in/jeanmariegilliot"=
+>https://www.linkedin.com/in/jeanmariegilliot</a>  - Blog : <a class=3D"m=
+oz-txt-link-freetext" href=3D"https://tipes.wordpress.com/">https://tipes=
+.wordpress.com/</a> </pre>
+  </body>
+</html>
+
+--------------3B1BDF98E8BE8652C3D8B52F--

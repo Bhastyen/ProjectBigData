@@ -1,0 +1,1144 @@
+Return-Path: <rmae.jaziri@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 4B6482292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 19 Jun 2018 23:52:30 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 491AF6D2198
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 19 Jun 2018 23:52:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 363AB416E390
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Jun 2018 23:52:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.144
+X-Spam-Level:
+X-Spam-Status: No, score=-4.144 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001,
+	URIBL_SBL=0.644, URIBL_SBL_A=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.6912 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id wDMsbZS6XCGy for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 19 Jun 2018 23:52:28 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-it0-x22c.google.com (mail-it0-x22c.google.com [IPv6:2607:f8b0:4001:c0b::22c])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 4F332401C104
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Jun 2018 23:52:28 +0200 (CEST)
+Received: by mail-it0-x22c.google.com with SMTP id u4-v6so2645016itg.0
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 19 Jun 2018 14:52:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=Vbc82nwUWan2Dat02V7pGkfuHYYjxTMVbUp0dFL8kO8=;
+        b=mXvfLEqy7DsswWV6rePVRKms0jxOe8wx38IybG1156CzVlIfPkQJVM/xq/VkoUpBdY
+         KkdK+gyECNFHE5vOB7LLOHyjpNpEucWDKxxFqKPJjbwBEvPnsj/sjpK8alqJWRBvyDbX
+         DWHmxxaLWzeGoplAacHkkTiDrXL7F06Tg8QJUyl7FxWuqhx/tqOqSHGLN3CCo61b/z0b
+         t+qSAYFI+faM4mOSKeNn9nAEQdQHsnnSzCozfo7YEp+Bwb0CtXAzGMPxcMhf9bZsH8CQ
+         0XS8yHP+edp+/+APDGuOczN6r6ydp/8/vx7SabO36xoJnOyLzEVO1ZT6SG+E6yKXEunt
+         j1Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=Vbc82nwUWan2Dat02V7pGkfuHYYjxTMVbUp0dFL8kO8=;
+        b=iGvm2asaMZUSA1EzimlXgOF53+07buDotegWBmn9T59ztSuengGphj8azG8UVrgZdl
+         5hkYESbb0xjH6nhn+rHWVlMU+oCwbFrM32VXWDOAWo4GEOLRWkmLEhFXCToRtiBStjTh
+         s34a3n2sFg2IsYss5DgcvdArQiNFs9Y1pFg8q66LULj4sOqlSs/GD7xioGZEQ77POgME
+         QQXEW3/iLRelWYfIAUVXfB+HYiVKE0vssUSMWp8Joovonlsf1JR0Vbp0S46W8BoukRMk
+         pB1kMblfp6MuVarfSHF7q/hGNbrP4n+9Gk2ov+P4fSBXIgfypVa3OK1F/XjW5mRjMHBk
+         CrMw==
+X-Gm-Message-State: APt69E0IGzZyVv2/qvKkYOUUngci+3TQ2TPysiZc1YlBbdKJkpMi+zqk
+	yDih+zyP3igWmFdmJId63Gsn2vwbqhO2Y4Q5xL4=
+X-Google-Smtp-Source: ADUXVKIMFExyz+NSC50WDf4E7Aepx0cRKDcHklxhJFOvLYDFifbRLWGR/3148eAWzXy/fvhLaGXDK/z1hiTSkqc4RGY=
+X-Received: by 2002:a02:780a:: with SMTP id p10-v6mr14962440jac.102.1529445146700;
+ Tue, 19 Jun 2018 14:52:26 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4f:9f08:0:0:0:0:0 with HTTP; Tue, 19 Jun 2018 14:52:26
+ -0700 (PDT)
+In-Reply-To: <CAGcbuxrE3x_x7CYLicVry788FgPKSZ51D9kDGqQuh2Wnzy11Gg@mail.gmail.com>
+References: <CAGcbuxrE3x_x7CYLicVry788FgPKSZ51D9kDGqQuh2Wnzy11Gg@mail.gmail.com>
+From: Rakia JAZIRI <rmae.jaziri@gmail.com>
+Date: Tue, 19 Jun 2018 23:52:26 +0200
+Message-ID: <CAGcbuxp5LQyeY2=BLVWAO4yF=nmS6p1S_6DOhrJOSBydXjhP7w@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="000000000000ac2ed1056f05b211"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Fwd: Appel =?UTF-8?Q?=C3=A0?= participation
+ =?UTF-8?Q?7=C3=A8me_=C3=A9dition?= Big data and Visualisation
+
+--000000000000ac2ed1056f05b211
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+____________________________________________________________
+
+Appel =C3=A0 communications/Participation
+
+Journ=C3=A9es Big Data Mining and Visualization
+
+Paris, 28 et 29 juin
+
+Date d'inscription : 23 juin 2018
+
+_____________________________________________________________
+
+Appel =C3=A0 participation
+
+Big Data Mining and Visualization
+
+Journ=C3=A9es des groupes de travail EGC
+
+
+
+Le jeudi 28 et le vendredi 29 juin 2018 =C3=A0 la MSH de Saint Denis
+
+Universit=C3=A9 Paris 8 - LIASD
+
+ http://eric.univ-lyon2.fr/~gt-fdc/journees/
+
+
+
+
+
+La date limite de soumission pour les r=C3=A9sum=C3=A9s *est =C3=A9tendue d=
+'une semaine.*
+
+
+
+Les groupes de travail de l=E2=80=99association EGC =E2=80=93 =C2=AB Fouill=
+e de Donn=C3=A9es
+Complexes =C2=BB (GT-FDC), =C2=AB Fouille de Grands Graphes =C2=BB (GT-FGG)=
+, =C2=AB
+Visualisation d=E2=80=99informations, interaction et fouille de donn=C3=A9e=
+s =C2=BB (GT-VIF,
+commun avec l=E2=80=99AFIHM) et =C2=AB Gestion et Analyse de donn=C3=A9es S=
+patiales et
+Temporelles =C2=BB (GT-GAST, commun avec l=E2=80=99action prospective EXCES=
+, GDR MAGIS)
+=E2=80=93 organisent la 7=C3=A8me =C3=A9dition des journ=C3=A9esth=C3=A9mat=
+iques visant d=E2=80=99une
+part =C3=A0 poursuivre les activit=C3=A9s des groupes et d=E2=80=99autre pa=
+rt =C3=A0 d=C3=A9velopper
+des axes communs autour de la prise en compte, la gestion, l=E2=80=99analys=
+e, le
+traitement et la visualisation des donn=C3=A9es massives (Big Data).
+
+Pour cette nouvelle =C3=A9dition, un focus est fait *sur les usages du Big =
+Data
+dans le monde industriel* afin de r=C3=A9pondre =C3=A0 des probl=C3=A9matiq=
+ues r=C3=A9elles
+(Maintenance pr=C3=A9dictives, D=C3=A9tection des tendances, Cyber s=C3=A9c=
+urit=C3=A9, Analyse
+des sentiments, Syst=C3=A8mes de recommandation, etc.) =C3=A0 travers des a=
+pproches
+pluridisciplinaires (Informatique, Sciences de l=E2=80=99Information,
+Math=C3=A9matiques, Sciences du langage, Analyse d=E2=80=99images, etc.) da=
+ns diff=C3=A9rents
+domaines d=E2=80=99application.
+
+Si vous =C3=AAtes int=C3=A9ress=C3=A9 par faire une pr=C3=A9sentation nous =
+vous prions de
+suivre les instructions ci-dessous. Les pr=C3=A9sentations pourront durer 3=
+0 min
+(questions comprises) et concerner : vos travaux r=C3=A9cents, les r=C3=A9s=
+ultats
+d=E2=80=99une th=C3=A8se en cours, des donn=C3=A9es sur lesquelles vous tra=
+vaillez, des
+pr=C3=A9sentations de projets en cours, etc. Un int=C3=A9r=C3=AAt particuli=
+er est port=C3=A9
+aux travaux men=C3=A9s par les doctorants.
+
+
+
+____________________________
+
+
+
+*L=E2=80=99inscription est gratuite *mais obligatoire avant *samedi 23 juin=
+ 2018* sur
+le site suivant :
+
+https://docs.google.com/forms/d/e/1FAIpQLSd_3fFNw_jMa2WkOm6pa1i0aqxd929n-
+LvXI0t5uFy3HmbU3w/viewform?c=3D0&w=3D1
+
+
+
+*Conf=C3=A9renciers invit=C3=A9s*
+
+______________________________
+
+
+
+*Alexandre AUSSEM (Professeur LIRIS)* http://perso.univ-
+lyon1.fr/alexandre.aussem/teaching.html)
+
+
+
+*David DOUKHAN (Ing=C3=A9nieur-Chercheur, Institut National de l'Audiovisue=
+l)*
+https://www.researchgate.net/profile/David_Doukhan,
+
+
+
+*jeudi 28 juin 2018*
+
+
+*9h30 : Accueil et caf=C3=A9 *
+
+
+
+*10h00 : Ouverture des journ=C3=A9es *
+
+
+
+*10h30 : Conf=C3=A9rencier invit=C3=A9: Alexandre AUSSEM*
+
+ Tutoriel sur les agents conversationnels neuronaux
+
+ *LIRIS-Lyon  *
+
+
+
+*11H30 : Fouille de donn=C3=A9es textuelles massives*
+
+
+
+Mod=C3=A9lisation d=E2=80=99un syst=C3=A8me =C2=ABintelligent=C2=BB d=E2=80=
+=99aide =C3=A0 la d=C3=A9cision et conseil
+pour de donn=C3=A9es textuelles massives
+
+Maroua BOUDABOUS, Anna PAPPA
+
+*Novagen Conseil =E2=80=93 LIASD/Universit=C3=A9 Paris 8*
+
+
+
+BigText, compr=C3=A9hension et inf=C3=A9rence avanc=C3=A9es sur les textes
+
+Patrick LAFFITTE, Raja HADDAD et Yassin CHABEB
+
+*Palo IT Labs*
+
+
+
+*12h30 : Repas*
+
+
+
+*14h00 : *D=C3=A9monstration 1 : =C2=ABIoT pour la transformation des m=C3=
+=A9tiers =C2=BB
+
+Nadia EL HAKIM, Simont COULET
+
+* Jems Group*
+
+
+
+*14h00 : *D=C3=A9monstration 2 : =C2=AB Capico : Innover, transformer et
+personnaliser la formation=C2=BB
+
+Fabrice REBY
+
+* Excilys*
+
+
+
+*15h00 : R=C3=A9seaux profonds *
+
+
+
+Les for=C3=AAts al=C3=A9atoires profondes pour la d=C3=A9tection des anomal=
+ies
+
+Abdelkader BERROUACHEDI, Rakia JAZIRI et Gilles BERNARD
+
+*LIASD-Universit=C3=A9 Paris 8*
+
+
+
+*How to improve research engines with deep learning?*
+
+Nabil FEGAIERE
+
+*Banque de France*
+
+
+
+*16h00 : Pause Caf=C3=A9*
+
+
+
+*16h15 : Interactivit=C3=A9 et visualisation*
+
+
+
+Cas pratique d=E2=80=99=C3=A9laboration d=E2=80=99une solution de visualisa=
+tion de donn=C3=A9es
+massives pour le sport professionnel de haut niveau
+
+Simon CHALUMEAU, Amine A=C3=8FT-YOUNES, Fr=C3=A9d=C3=A9ric BLANCHARD
+
+*CReSTIC - Universit=C3=A9 de Reims Champagne-Ardenne*
+
+
+
+"Happiness Management" : l=E2=80=99IoT au service de la RH
+
+Fourat MASTOURI, Nadia EL HAKIM, Simon COULET et Nouha OMRANE
+
+*Jems Group*
+
+
+
+*17h15 : Fin de journ=C3=A9e*
+
+
+
+*vendredi 29 juin 2018*
+
+
+
+*9h30 : **Accueil et caf=C3=A9*
+
+
+
+*10h00 : **Conf=C3=A9rencier invit=C3=A9: David DOUKHAN*
+
+Description automatique du taux d'expression des femmes dans les flux
+audiovisuels: Analyse de 8 ans de flux TV et 17 ans de flux radios
+
+ *Ina - Bry sur Marne *
+
+
+
+*11h00 : Analyse et d=C3=A9tection de motifs*
+
+
+
+Affectation de support minimum multiple guid=C3=A9e par les donn=C3=A9es po=
+ur
+l=E2=80=99extraction de r=C3=A8gles d=E2=80=99association : application =C3=
+=A0 la pr=C3=A9diction de
+l=E2=80=99=C3=A9volution territoriale
+
+Asma GHARBI, Cyril DE RUNZ, Herman AKDAG et Sami FAIZ
+
+*CReSTIC-SIC/IUT de Reims =E2=80=93 LIASD/Universit=C3=A9 Paris 8 =E2=80=93=
+ ISAMM/ Tunis *
+
+
+
+Qualit=C3=A9 de la fouille des donn=C3=A9es de journalisation Web
+
+Amine GANIBARDI,  Arab ALI CHERIF
+
+*LIASD - Universit=C3=A9 Paris 8*
+
+
+
+*12h15 : Repas*
+
+
+
+*14h00 : *D=C3=A9monstration 3 : =C2=AB Big Data : quel rapport dans l=E2=
+=80=99analyse des
+comportements humains ? =C2=BB
+
+Si une chose semble encore r=C3=A9sister =C3=A0 la mod=C3=A9lisation statis=
+tique, c=E2=80=99est
+bien le comportement humain. Nos =C3=A9motions par exemple, qu=E2=80=99on l=
+es montre sur
+notre visage ou dans notre voix. Ou encore, la sinc=C3=A9rit=C3=A9 de nos p=
+aroles.
+Pourtant, avec les derni=C3=A8res avanc=C3=A9es en statistiques, ces dernie=
+rs verrous
+=C3=A9galement semblent sauter. Dans cette conf=C3=A9rence, nous pr=C3=A9se=
+nterons nos
+derni=C3=A8res technologies de d=C3=A9tection des =C3=A9motions humaines, e=
+t ce qu=E2=80=99elles
+permettent de pr=C3=A9dire, du mensonge =C3=A0 la d=C3=A9claration d=E2=80=
+=99assurance =C3=A0 celui en
+interrogatoire policier.
+
+ Valentin BECMEUR
+
+ *Othello*
+
+
+
+*15h00 : Syst=C3=A8me de recommandation et d=E2=80=99appariement*
+
+
+
+Processus de matching du meilleur talent =C3=A0 une offre d=E2=80=99emploi
+
+Maroua LAABIDI, Sond=C3=A8s FAYECH et Rim FAIZ
+
+*IHEC Carthage, Tunisie*
+
+
+
+TeamBuilder, Vers un Moteur de Recommandation de CV Scor=C3=A9s et Rank=C3=
+=A9s
+
+Patrice DARMON, Rabah MAZOUZI, Otman MANAD, Mehdi BENTOUNSI et Salem
+BERKANI
+
+*Umanis*
+
+
+
+*16h : Cl=C3=B4ture des journ=C3=A9es*
+------------------------------
+
+*Comit=C3=A9 d=E2=80=99organisation*
+
+=C2=B7       Rakia JAZIRI (LIASD, Universit=C3=A9 Paris 8)
+
+=C2=B7       Anna PAPPA (LIASD, Universit=C3=A9 Paris 8)
+
+=C2=B7       Larbi BOUBCHIR (LIASD, Universit=C3=A9 Paris 8)
+
+=C2=B7       Nedra NAUWYCNK (LIASD, Universit=C3=A9 Paris 8)
+
+=C2=B7       Fares BELHADJ (LIASD, Universit=C3=A9 Paris 8)
+
+=C2=B7       Sylvia CHALENCON (LIASD, Universit=C3=A9 Paris 8)
+
+*Comit=C3=A9 de coordination*
+
+Correspondant EGC avec les groupes de travail :
+
+=C2=B7       Mustapha Lebbah (LIPN, Universit=C3=A9 Paris 13)
+
+GT-FDC :
+
+=C2=B7       Camille Kurtz (LIPADE, Universit=C3=A9 Paris Descartes)
+
+=C2=B7       Jonathan Weber (IRIMAS, Universit=C3=A9 de Haute Alsace)
+
+=C2=B7       Germain Forestier (IRIMAS, Universit=C3=A9 de Haute Alsace)
+
+=C2=B7       C=C3=A9dric Wemmert (iCube, Universit=C3=A9 de Strasbourg)
+
+GT-GAST :
+
+=C2=B7       Thomas Guyet (IRISA, Agrocampus Ouest)
+
+=C2=B7       Eric Kergosien (GERIICO, Universit=C3=A9 Lille 3)
+
+=C2=B7       Cyril de Runz (CReSTIC, Universit=C3=A9 de Reims Champagne-Ard=
+enne)
+
+GT-VIF :
+
+=C2=B7       Hanene Azzag (LIPN, Universit=C3=A9 Paris 13)
+
+=C2=B7       David Bihanic (CALHISTE, Universit=C3=A9 de Valenciennes et du
+Hainaut-Cambr=C3=A9sis)
+
+=C2=B7       Monique Noirhomme (FUNDP, Namur, Belgique)
+
+=C2=B7       Fabien Picarougne (LINA, Universit=C3=A9 de Nantes)
+
+=C2=B7       Pierrick Bruneau (LIST, Luxembourg)
+
+
+
+
+
+--=20
+Rakia JAZIRI
+Ma=C3=AEtre de conf=C3=A9rences
+LIASD - Paris 8
++33149406787 / +33672735594
+
+--000000000000ac2ed1056f05b211
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr"><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-famil=
+y:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Couri=
+er;color:rgb(34,34,34)">______________________________<wbr>________________=
+______________<span></span></span></p><p class=3D"MsoNormal" style=3D"margi=
+n:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)"><=
+span style=3D"font-size:10pt;font-family:Times;color:rgb(34,34,34)">Appel</=
+span><span style=3D"font-size:10pt;font-family:Courier;color:rgb(34,34,34)"=
+>=C2=A0=C3=A0=C2=A0communications/<wbr>Participation=C2=A0</span><span styl=
+e=3D"font-size:13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0)"><span style=3D"font-size:10pt;font-family:Courier;color:rgb(34,34,3=
+4)">Journ=C3=A9es=C2=A0Big Data Mining and Visualization=C2=A0=C2=A0</span>=
+<span style=3D"font-size:13.5pt"><span></span></span></p><p class=3D"MsoNor=
+mal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;=
+color:rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Courier;color:r=
+gb(34,34,34)">Paris, 28 et 29 juin=C2=A0</span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:=
+rgb(0,0,0)"><span style=3D"font-size:10pt;font-family:Courier;color:rgb(34,=
+34,34)">Date d&#39;inscription :=C2=A023 juin 2018</span><span style=3D"fon=
+t-size:13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"marg=
+in:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)">=
+<span style=3D"font-size:10pt;font-family:Courier;color:rgb(34,34,34)">____=
+__________________________<wbr>______________________________<wbr>_<span></=
+span></span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm=
+ 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-al=
+ign:center"><span style=3D"font-size:24pt;font-family:Arial">Appel=C2=A0=C3=
+=A0=C2=A0participation</span><span style=3D"font-size:13.5pt"><span></span>=
+</span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm 0cm =
+0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:c=
+enter"><span lang=3D"EN-US" style=3D"font-size:30pt;font-family:Arial">Big =
+Data Mining and Visualization</span><span style=3D"font-size:13.5pt"><span>=
+</span></span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0=
+cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-=
+align:center"><span style=3D"font-size:20.5pt;font-family:Arial">Journ=C3=
+=A9es=C2=A0des groupes de travail EGC=C2=A0</span><span style=3D"font-size:=
+13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm =
+0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)"><span s=
+tyle=3D"font-size:9.5pt;font-family:Arial;color:rgb(34,34,34)">=C2=A0</span=
+><span style=3D"font-size:9.5pt"><span></span></span></p><p class=3D"MsoNor=
+mal" align=3D"center" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;fon=
+t-family:Cambria;color:rgb(0,0,0);text-align:center"><span style=3D"font-si=
+ze:9.5pt;font-family:Arial">Le jeudi 28 et le vendredi 29 juin 2018=C2=A0=
+=C3=A0=C2=A0la MSH de Saint Denis</span><span style=3D"font-size:9.5pt"><sp=
+an></span></span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margi=
+n:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);te=
+xt-align:center"><span style=3D"font-size:9.5pt;font-family:Arial">Universi=
+t=C3=A9 Paris 8 - LIASD<span></span></span></p><p class=3D"MsoNormal" align=
+=3D"center" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:C=
+ambria;color:rgb(0,0,0);text-align:center"><span style=3D"font-size:9.5pt;f=
+ont-family:Arial;color:rgb(34,34,34)">=C2=A0</span><span style=3D"font-size=
+:9.5pt;font-family:Arial;color:blue"><a href=3D"http://eric.univ-lyon2.fr/~=
+gt-fdc/journees/" style=3D"color:purple" target=3D"_blank">http://eric.univ=
+-lyon2.fr/~<wbr>gt-fdc/journees/</a></span><span style=3D"font-size:13.5pt"=
+><span></span></span></p><p class=3D"MsoNormal" align=3D"center" style=3D"m=
+argin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0=
+);text-align:center"><span style=3D"font-size:13.5pt"><span>=C2=A0</span></=
+span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm 0cm 0.=
+0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:cen=
+ter"><span style=3D"font-size:13.5pt"><span>=C2=A0</span></span></p><p clas=
+s=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-fami=
+ly:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:13.5pt;font-family:Ar=
+ial;color:rgb(34,34,34)">La date limite de=C2=A0soumission=C2=A0pour les r=
+=C3=A9sum=C3=A9s=C2=A0<b>est =C3=A9tendue d&#39;une semaine.</b></span><spa=
+n style=3D"font-size:10pt;font-family:Times"><span></span></span></p><p cla=
+ss=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-fam=
+ily:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:9.5pt;font-family:Ar=
+ial;color:rgb(34,34,34)"><span>=C2=A0</span></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;co=
+lor:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"f=
+ont-size:9.5pt;font-family:&quot;Times New Roman&quot;">Les groupes de trav=
+ail de l=E2=80=99association EGC =E2=80=93 =C2=AB Fouille de Donn=C3=A9es C=
+omplexes =C2=BB (GT-FDC), =C2=AB Fouille de Grands Graphes =C2=BB (GT-FGG),=
+ =C2=AB Visualisation d=E2=80=99informations, interaction et fouille de don=
+n=C3=A9es =C2=BB (GT-VIF, commun avec l=E2=80=99AFIHM) et =C2=AB Gestion et=
+ Analyse de donn=C3=A9es Spatiales et Temporelles =C2=BB (GT-GAST, commun a=
+vec l=E2=80=99action prospective EXCES, GDR MAGIS) =E2=80=93 organisent la =
+7=C3=A8me =C3=A9dition des=C2=A0journ=C3=A9esth=C3=A9matiques=C2=A0visant d=
+=E2=80=99une part=C2=A0=C3=A0=C2=A0poursuivre les activit=C3=A9s des groupe=
+s et d=E2=80=99autre part=C2=A0=C3=A0=C2=A0d=C3=A9velopper des axes communs=
+ autour de la prise en compte, la gestion, l=E2=80=99analyse, le traitement=
+ et la visualisation des donn=C3=A9es massives (Big Data).</span><span styl=
+e=3D"font-size:9.5pt;font-family:Times"><span></span></span></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:C=
+ambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span s=
+tyle=3D"font-size:9.5pt;font-family:&quot;Times New Roman&quot;">Pour cette=
+ nouvelle =C3=A9dition, un focus est fait=C2=A0<b>sur les usages du Big Dat=
+a dans le monde industriel</b>=C2=A0afin de r=C3=A9pondre=C2=A0=C3=A0=C2=A0=
+des probl=C3=A9matiques r=C3=A9elles (Maintenance pr=C3=A9dictives, D=C3=A9=
+tection des tendances, Cyber s=C3=A9curit=C3=A9, Analyse des sentiments, Sy=
+st=C3=A8mes de recommandation, etc.)=C2=A0=C3=A0=C2=A0travers des approches=
+ pluridisciplinaires (Informatique, Sciences de l=E2=80=99Information, Math=
+=C3=A9matiques, Sciences du langage, Analyse d=E2=80=99images, etc.) dans d=
+iff=C3=A9rents domaines d=E2=80=99application.</span><span style=3D"font-si=
+ze:9.5pt;font-family:Times"><span></span></span></p><p class=3D"MsoNormal" =
+style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color=
+:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font=
+-size:9.5pt;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,34)">Si=
+ vous =C3=AAtes int=C3=A9ress=C3=A9 par faire une pr=C3=A9sentation nous vo=
+us prions de suivre les instructions ci-dessous. Les pr=C3=A9sentations pou=
+rront durer 30 min (questions comprises) et concerner : vos travaux r=C3=A9=
+cents, les r=C3=A9sultats d=E2=80=99une th=C3=A8se en cours, des donn=C3=A9=
+es sur lesquelles vous travaillez, des pr=C3=A9sentations de projets en cou=
+rs, etc. Un int=C3=A9r=C3=AAt particulier est port=C3=A9 aux travaux men=C3=
+=A9s par les doctorants.</span><span style=3D"font-size:9.5pt;font-family:T=
+imes"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align=
+:justify;vertical-align:baseline"><span style=3D"font-size:9.5pt;font-famil=
+y:Times"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"marg=
+in:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)">=
+<span style=3D"font-size:9.5pt;font-family:Times;color:rgb(34,34,34)">_____=
+_______________________<span></span></span></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-size=
+:9pt;font-family:Helvetica">=C2=A0</span><span style=3D"font-size:13.5pt"><=
+span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.000=
+1pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:ba=
+seline"><b><span style=3D"font-size:9pt;font-family:Helvetica">L=E2=80=99in=
+scription est gratuite=C2=A0</span></b><span style=3D"font-size:9pt;font-fa=
+mily:Helvetica">mais obligatoire avant=C2=A0</span><b><span style=3D"font-s=
+ize:9pt;font-family:Helvetica;color:red">samedi 23 juin 2018</span></b><spa=
+n style=3D"font-size:9pt;font-family:Helvetica;color:red">=C2=A0</span><spa=
+n style=3D"font-size:9pt;font-family:Helvetica">sur le site suivant :</span=
+><span style=3D"font-size:13.5pt"><span></span></span></p><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria=
+;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=
+=3D"font-size:9pt;font-family:Helvetica;color:purple;border:1pt none window=
+text;padding:0cm"><a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSd_3f=
+FNw_jMa2WkOm6pa1i0aqxd929n-LvXI0t5uFy3HmbU3w/viewform?c=3D0&amp;w=3D1" styl=
+e=3D"color:purple" target=3D"_blank"><span style=3D"color:rgb(17,85,204)">h=
+ttps://docs.google.com/forms/<wbr>d/e/1FAIpQLSd_3fFNw_<wbr>jMa2WkOm6pa1i0aq=
+xd929n-<wbr>LvXI0t5uFy3HmbU3w/viewform?c=3D<wbr>0&amp;w=3D1</span></a></spa=
+n><span style=3D"font-size:13.5pt"><span></span></span></p><p class=3D"MsoN=
+ormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambri=
+a;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=
+=3D"font-size:13.5pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" =
+style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color=
+:rgb(0,0,0)"><b><span style=3D"font-size:9.5pt;font-family:Times;color:rgb(=
+34,34,34)">Conf=C3=A9renciers invit=C3=A9s</span></b><span style=3D"font-si=
+ze:9.5pt;font-family:Times;color:rgb(34,34,34)"><span></span></span></p><p =
+class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-=
+family:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:9.5pt;font-family=
+:Times;color:rgb(34,34,34)">______________________________<span></span></sp=
+an></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:me=
+dium;font-family:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:9.5pt;f=
+ont-family:Times;color:rgb(34,34,34)"><span>=C2=A0</span></span></p><p clas=
+s=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-fami=
+ly:Cambria;color:rgb(0,0,0)"><b><span style=3D"font-size:9.5pt;font-family:=
+Times;color:rgb(34,34,34)">Alexandre AUSSEM (Professeur LIRIS)</span></b><s=
+pan style=3D"font-size:9.5pt;font-family:Times;color:rgb(34,34,34)">=C2=A0<=
+a href=3D"http://perso.univ-lyon1.fr/alexandre.aussem/teaching.html" style=
+=3D"color:purple" target=3D"_blank"><span style=3D"color:rgb(17,85,204)">ht=
+tp://perso.univ-<wbr>lyon1.fr/alexandre.aussem/<wbr>teaching.html</span></a=
+>)<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.=
+0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)"><span style=
+=3D"font-size:9.5pt;font-family:Times;color:rgb(34,34,34)"><span>=C2=A0</sp=
+an></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-=
+size:medium;font-family:Cambria;color:rgb(0,0,0)"><b><span style=3D"font-si=
+ze:9.5pt;font-family:Times;color:rgb(34,34,34)">David DOUKHAN (Ing=C3=A9nie=
+ur-Chercheur, Institut National de l&#39;Audiovisuel)</span></b><span style=
+=3D"font-size:9.5pt;font-family:Times;color:rgb(34,34,34)">=C2=A0<a href=3D=
+"https://www.researchgate.net/profile/David_Doukhan" style=3D"color:purple"=
+ target=3D"_blank"><span style=3D"color:rgb(17,85,204)">https://www.<wbr>re=
+searchgate.net/profile/<wbr>David_Doukhan</span></a>,=C2=A0</span><span sty=
+le=3D"font-size:9pt;font-family:Helvetica">=C2=A0<span></span></span></p><p=
+ class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font=
+-family:Cambria;color:rgb(0,0,0)"><span style=3D"font-size:9pt;font-family:=
+Helvetica"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"ma=
+rgin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)=
+;line-height:22.5pt;vertical-align:baseline"><span style=3D"font-size:15pt"=
+><b>jeudi 28 juin 2018</b></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);lin=
+e-height:22.5pt;vertical-align:baseline"><span style=3D"font-size:15pt"><b>=
+<br></b></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;=
+font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseli=
+ne"><b><span style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"=
+>9h30 : Accueil et caf=C3=A9=C2=A0<span></span></span></b></p><p class=3D"M=
+soNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cam=
+bria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:9pt=
+"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm =
+0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical=
+-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none windowtext=
+;padding:0cm">10h00 : Ouverture des journ=C3=A9es=C2=A0<span></span></span>=
+</b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:m=
+edium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><b><spa=
+n style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"><span>=C2=
+=A0</span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0=
+001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:=
+baseline"><b><span style=3D"font-size:9pt;border:1pt none windowtext;paddin=
+g:0cm">10h30 : Conf=C3=A9rencier=C2=A0invit=C3=A9: Alexandre AUSSEM<span></=
+span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt=
+ 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:ju=
+stify;vertical-align:baseline">=C2=A0<span style=3D"font-size:9pt;color:blu=
+e">Tutoriel sur les agents conversationnels neuronaux</span><b><span style=
+=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"><span></span></sp=
+an></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;f=
+ont-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;ver=
+tical-align:baseline"><span style=3D"font-size:9pt">=C2=A0<b>LIRIS-Lyon=C2=
+=A0=C2=A0<span></span></b></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);ver=
+tical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none windo=
+wtext;padding:0cm"><span>=C2=A0</span></span></b></p><p class=3D"MsoNormal"=
+ style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;colo=
+r:rgb(0,0,0);vertical-align:baseline"><b><span style=3D"font-size:9pt;borde=
+r:1pt none windowtext;padding:0cm">11H30=C2=A0: Fouille de donn=C3=A9es tex=
+tuelles massives<span></span></span></b></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:=
+rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-=
+size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-size=
+:9pt;color:blue">Mod=C3=A9lisation d=E2=80=99un syst=C3=A8me =C2=ABintellig=
+ent=C2=BB d=E2=80=99aide =C3=A0 la d=C3=A9cision et conseil pour de donn=C3=
+=A9es textuelles massives=C2=A0<span></span></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cam=
+bria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span sty=
+le=3D"font-size:9pt">Maroua BOUDABOUS, Anna PAPPA=C2=A0<span></span></span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-siz=
+e:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-a=
+lign:baseline"><b><span style=3D"font-size:9pt">Novagen Conseil =E2=80=93 L=
+IASD/Universit=C3=A9 Paris 8<span></span></span></b></p><p class=3D"MsoNorm=
+al" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Ca=
+mbria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span st=
+yle=3D"font-size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" =
+style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambri=
+a;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=
+=3D"font-size:9pt;color:blue">BigText, compr=C3=A9hension et inf=C3=A9rence=
+ avanc=C3=A9es sur les textes=C2=A0<span></span></span></p><p class=3D"MsoN=
+ormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family=
+:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span=
+ style=3D"font-size:9pt">Patrick LAFFITTE, Raja HADDAD et Yassin CHABEB=C2=
+=A0<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0=
+.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-a=
+lign:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt">Palo=
+ IT Labs<span></span></span></b></p><p class=3D"MsoNormal" style=3D"margin:=
+0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,=
+0);text-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt=
+"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm =
+0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical=
+-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none windowtext=
+;padding:0cm">12h30 : Repas<span></span></span></b></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;co=
+lor:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:9pt"><span=
+>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0=
+001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:just=
+ify;vertical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt non=
+e windowtext;padding:0cm">14h00 :=C2=A0</span></b><span style=3D"font-size:=
+9pt;color:blue">D=C3=A9monstration 1=C2=A0: =C2=ABIoT pour la transformatio=
+n des m=C3=A9tiers=C2=A0=C2=BB=C2=A0<span></span></span></p><p class=3D"Mso=
+Normal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-famil=
+y:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><spa=
+n style=3D"font-size:9pt">Nadia EL HAKIM, Simont COULET<span></span></span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-siz=
+e:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-a=
+lign:baseline"><b><span style=3D"font-size:9pt">=C2=A0Jems Group<span></spa=
+n></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35=
+.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justi=
+fy;vertical-align:baseline"><b><span style=3D"font-size:9pt"><span>=C2=A0</=
+span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt=
+;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;v=
+ertical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none win=
+dowtext;padding:0cm">14h00 :=C2=A0</span></b><span style=3D"font-size:9pt;c=
+olor:blue">D=C3=A9monstration 2=C2=A0: =C2=AB=C2=A0Capico=C2=A0: Innover, t=
+ransformer et personnaliser la formation=C2=BB=C2=A0<span></span></span></p=
+><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:m=
+edium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-alig=
+n:baseline"><span style=3D"font-size:9pt">Fabrice REBY<span></span></span><=
+/p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size=
+:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-al=
+ign:baseline"><b><span style=3D"font-size:9pt">=C2=A0Excilys<span></span></=
+span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-s=
+ize:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><s=
+pan class=3D"m_-1542893473584267904gmail-MsoHyperlink" style=3D"color:blue;=
+text-decoration:underline"><span>=C2=A0</span></span></p><p class=3D"MsoNor=
+mal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;=
+color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><b><span style=
+=3D"font-size:9pt;border:1pt none windowtext;padding:0cm">15h00 : R=C3=A9se=
+aux profonds=C2=A0<span></span></span></b></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;col=
+or:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"fo=
+nt-size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"=
+margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:r=
+gb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-s=
+ize:9pt;color:blue">Les for=C3=AAts al=C3=A9atoires profondes pour la d=C3=
+=A9tection des anomalies<span></span></span></p><p class=3D"MsoNormal" styl=
+e=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;co=
+lor:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"f=
+ont-size:9pt">Abdelkader BERROUACHEDI, Rakia JAZIRI et Gilles BERNARD<span>=
+</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 3=
+5.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:just=
+ify;vertical-align:baseline"><b><span style=3D"font-size:9pt">LIASD-Univers=
+it=C3=A9 Paris 8<span></span></span></b></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0=
+,0);text-align:justify;vertical-align:baseline"><b><span style=3D"font-size=
+:9pt"><span>=C2=A0</span></span></b></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0);text-align:justify;vertical-align:baseline"><i><span style=3D"font-s=
+ize:9pt;color:blue">How to improve research engines with deep learning?<spa=
+n></span></span></i></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.00=
+01pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-alig=
+n:justify;vertical-align:baseline"><span style=3D"font-size:9pt">Nabil FEGA=
+IERE<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm =
+0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-=
+align:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt">Ban=
+que de France<span></span></span></b></p><p class=3D"MsoNormal" style=3D"ma=
+rgin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)=
+;text-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt">=
+<span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align=
+:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt;border:1p=
+t none windowtext;padding:0cm">16h00 : Pause Caf=C3=A9<span></span></span><=
+/b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:me=
+dium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align=
+:baseline"><span style=3D"font-size:9pt"><span>=C2=A0</span></span></p><p c=
+lass=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-f=
+amily:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline">=
+<b><span style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm">16h=
+15 : Interactivit=C3=A9 et visualisation</span></b><span style=3D"font-size=
+:9pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);tex=
+t-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt"><spa=
+n>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.=
+0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-al=
+ign:justify;vertical-align:baseline"><span style=3D"font-size:9pt;color:blu=
+e">Cas pratique d=E2=80=99=C3=A9laboration d=E2=80=99une solution de visual=
+isation de donn=C3=A9es massives pour le sport professionnel de haut niveau=
+=C2=A0<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);tex=
+t-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt">Simo=
+n CHALUMEAU, Amine A=C3=8FT-YOUNES, Fr=C3=A9d=C3=A9ric BLANCHARD<span></spa=
+n></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt=
+;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;v=
+ertical-align:baseline"><b><span style=3D"font-size:9pt">CReSTIC - Universi=
+t=C3=A9 de Reims Champagne-Ardenne<span></span></span></b></p><p class=3D"M=
+soNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cam=
+bria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span sty=
+le=3D"font-size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria=
+;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=
+=3D"font-size:9pt;color:blue">&quot;Happiness Management&quot; : l=E2=80=99=
+IoT au service de la RH=C2=A0<span></span></span></p><p class=3D"MsoNormal"=
+ style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambr=
+ia;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span style=
+=3D"font-size:9pt">Fourat MASTOURI, Nadia EL HAKIM, Simon COULET et Nouha O=
+MRANE=C2=A0<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0=
+);text-align:justify;vertical-align:baseline"><b><span style=3D"font-size:9=
+pt">Jems Group<span></span></span></b></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rg=
+b(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-si=
+ze:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margi=
+n:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);te=
+xt-align:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt;b=
+order:1pt none windowtext;padding:0cm">17h15 : Fin de journ=C3=A9e</span></=
+b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:med=
+ium;font-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:=
+baseline"><span style=3D"font-size:9pt"><span>=C2=A0</span></span></p><p cl=
+ass=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-fa=
+mily:Cambria;color:rgb(0,0,0);text-align:justify;line-height:22.5pt;vertica=
+l-align:baseline"><span style=3D"font-size:15pt"><b>vendredi 29 juin 2018</=
+b><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.=
+0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:jus=
+tify;line-height:22.5pt;vertical-align:baseline"><span style=3D"font-size:1=
+5pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-=
+align:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt;bord=
+er:1pt none windowtext;padding:0cm">9h30 :=C2=A0</span></b><b><span style=
+=3D"font-size:9pt;border:1pt none windowtext;padding:0cm">Accueil et caf=C3=
+=A9</span></b><b><span style=3D"font-size:9pt;border:1pt none windowtext;pa=
+dding:0cm"><span></span></span></b></p><p class=3D"MsoNormal" style=3D"marg=
+in:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);t=
+ext-align:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt;=
+border:1pt none windowtext;padding:0cm"><span>=C2=A0</span></span></b></p><=
+p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;fon=
+t-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baselin=
+e"><b><span style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm">=
+10h00 :=C2=A0</span></b><b><span style=3D"font-size:9pt;border:1pt none win=
+dowtext;padding:0cm">Conf=C3=A9rencier=C2=A0invit=C3=A9: David DOUKHAN<span=
+></span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.000=
+1pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align=
+:justify;vertical-align:baseline"><span style=3D"font-size:9pt;color:blue">=
+Description automatique du taux d&#39;expression des femmes dans les flux a=
+udiovisuels: Analyse de 8 ans de flux TV et 17 ans de flux radios</span><sp=
+an style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"><span></s=
+pan></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4=
+pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:bas=
+eline"><span style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"=
+>=C2=A0<b>Ina - Bry sur Marne=C2=A0<span></span></b></span></p><p class=3D"=
+MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Ca=
+mbria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:9p=
+t"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm=
+ 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertica=
+l-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none windowtex=
+t;padding:0cm">11h00 : Analyse et d=C3=A9tection de motifs<span></span></sp=
+an></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-siz=
+e:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><spa=
+n style=3D"font-size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNorm=
+al" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Ca=
+mbria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><a name=
+=3D"m_-1542893473584267904_8"><span style=3D"font-size:9pt;color:blue">Affe=
+ctation de support minimum multiple guid=C3=A9e par les donn=C3=A9es pour l=
+=E2=80=99extraction de r=C3=A8gles d=E2=80=99association : application =C3=
+=A0 la pr=C3=A9diction de l=E2=80=99=C3=A9volution territoriale</span></a><=
+span style=3D"font-size:9pt;color:blue"><span></span></span></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-f=
+amily:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline">=
+<span style=3D"font-size:9pt">Asma GHARBI, Cyril DE RUNZ, Herman AKDAG et S=
+ami FAIZ<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm =
+0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);t=
+ext-align:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt"=
+>CReSTIC-SIC/IUT de Reims =E2=80=93 LIASD/Universit=C3=A9 Paris 8 =E2=80=93=
+ ISAMM/ Tunis=C2=A0<span></span></span></b></p><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-size=
+:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:=
+0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,=
+0);text-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt=
+;color:blue">Qualit=C3=A9 de la fouille des donn=C3=A9es de journalisation =
+Web=C2=A0<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm=
+ 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);=
+text-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt">A=
+mine GANIBARDI,=C2=A0=C2=A0Arab ALI CHERIF<span></span></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;fon=
+t-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baselin=
+e"><b><span style=3D"font-size:9pt">LIASD - Universit=C3=A9 Paris 8<span></=
+span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt=
+;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:basel=
+ine"><span style=3D"font-size:9pt"><span>=C2=A0</span></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-famil=
+y:Cambria;color:rgb(0,0,0);vertical-align:baseline"><b><span style=3D"font-=
+size:9pt;border:1pt none windowtext;padding:0cm">12h15 : Repas<span></span>=
+</span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font=
+-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline">=
+<b><span style=3D"font-size:9pt;border:1pt none windowtext;padding:0cm"><sp=
+an>=C2=A0</span></span></b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0=
+cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-alig=
+n:justify;vertical-align:baseline"><b><span style=3D"font-size:9pt;border:1=
+pt none windowtext;padding:0cm">14h00 :=C2=A0</span></b><span style=3D"font=
+-size:9pt;color:blue">D=C3=A9monstration 3=C2=A0: =C2=AB=C2=A0Big Data=C2=
+=A0: quel rapport dans l=E2=80=99analyse des comportements humains=C2=A0?=
+=C2=A0=C2=BB=C2=A0<span></span></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rg=
+b(0,0,0);text-align:justify;vertical-align:baseline"><span style=3D"font-si=
+ze:9pt">Si une chose semble encore r=C3=A9sister =C3=A0 la mod=C3=A9lisatio=
+n statistique, c=E2=80=99est bien le comportement humain. Nos =C3=A9motions=
+ par exemple, qu=E2=80=99on les montre sur notre visage ou dans notre voix.=
+ Ou encore, la sinc=C3=A9rit=C3=A9 de nos paroles. Pourtant, avec les derni=
+=C3=A8res avanc=C3=A9es en statistiques, ces derniers verrous =C3=A9galemen=
+t semblent sauter. Dans cette conf=C3=A9rence, nous pr=C3=A9senterons nos d=
+erni=C3=A8res technologies de d=C3=A9tection des =C3=A9motions humaines, et=
+ ce qu=E2=80=99elles permettent de pr=C3=A9dire, du mensonge =C3=A0 la d=C3=
+=A9claration d=E2=80=99assurance =C3=A0 celui en interrogatoire policier.<s=
+pan></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001=
+pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:=
+justify;vertical-align:baseline"><span style=3D"font-size:9pt">=C2=A0Valent=
+in BECMEUR<span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0c=
+m 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0)=
+;text-align:justify;vertical-align:baseline"><span style=3D"font-size:9pt">=
+=C2=A0<b>Othello<span></span></b></span></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0=
+,0);vertical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt non=
+e windowtext;padding:0cm"><span>=C2=A0</span></span></b></p><p class=3D"Mso=
+Normal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambr=
+ia;color:rgb(0,0,0);vertical-align:baseline"><b><span style=3D"font-size:9p=
+t;border:1pt none windowtext;padding:0cm">15h00 : Syst=C3=A8me de recommand=
+ation et d=E2=80=99appariement<span></span></span></b></p><p class=3D"MsoNo=
+rmal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:=
+Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span =
+style=3D"font-size:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal=
+" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Camb=
+ria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span styl=
+e=3D"font-size:9pt;color:blue">Processus de matching du meilleur talent =C3=
+=A0 une offre d=E2=80=99emploi=C2=A0<span></span></span></p><p class=3D"Mso=
+Normal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-famil=
+y:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><spa=
+n style=3D"font-size:9pt">Maroua LAABIDI, Sond=C3=A8s FAYECH et Rim FAIZ<sp=
+an></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001p=
+t 35.4pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);text-align:j=
+ustify;vertical-align:baseline"><b><span style=3D"font-size:9pt">IHEC Carth=
+age, Tunisie<span></span></span></b></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);=
+vertical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none wi=
+ndowtext;padding:0cm"><span>=C2=A0</span></span></b></p><p class=3D"MsoNorm=
+al" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-family:Ca=
+mbria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline"><span st=
+yle=3D"font-size:9pt;color:blue">TeamBuilder, Vers un Moteur de Recommandat=
+ion de CV Scor=C3=A9s et Rank=C3=A9s=C2=A0<span></span></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;fon=
+t-family:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baselin=
+e"><span style=3D"font-size:9pt">Patrice DARMON, Rabah MAZOUZI, Otman MANAD=
+, Mehdi BENTOUNSI et Salem BERKANI=C2=A0<span></span></span></p><p class=3D=
+"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 35.4pt;font-size:medium;font-f=
+amily:Cambria;color:rgb(0,0,0);text-align:justify;vertical-align:baseline">=
+<b><span style=3D"font-size:9pt">Umanis<span></span></span></b></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-famil=
+y:Cambria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-siz=
+e:9pt"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);ver=
+tical-align:baseline"><b><span style=3D"font-size:9pt;border:1pt none windo=
+wtext;padding:0cm">16h : Cl=C3=B4ture des journ=C3=A9es</span></b><span sty=
+le=3D"font-size:9pt"><span></span></span></p><div class=3D"MsoNormal" align=
+=3D"center" style=3D"margin:0cm 0cm 18pt;font-size:medium;font-family:Cambr=
+ia;color:rgb(0,0,0);text-align:center;vertical-align:baseline"><span style=
+=3D"font-size:9pt"><hr size=3D"1" width=3D"100%" noshade align=3D"center" s=
+tyle=3D"color:rgb(204,204,204)"></span></div><p class=3D"MsoNormal" style=
+=3D"margin:0cm 0cm 18pt;font-size:medium;font-family:Cambria;color:rgb(0,0,=
+0);vertical-align:baseline"><b><span style=3D"font-size:9pt;font-family:Hel=
+vetica;border:1pt none windowtext;padding:0cm">Comit=C3=A9 d=E2=80=99organi=
+sation</span></b><br></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0=
+001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-a=
+lign:baseline"><span style=3D"font-size:10pt;font-family:Symbol;color:rgb(3=
+4,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-family:&quot;Times=
+ New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvetica;color:rgb(3=
+4,34,34)">Rakia JAZIRI (LIASD, Universit=C3=A9 Paris 8)</span><span style=
+=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" sty=
+le=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;col=
+or:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:10pt;font-f=
+amily:Symbol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt=
+;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-fami=
+ly:Helvetica;color:rgb(34,34,34)">Anna PAPPA (LIASD, Universit=C3=A9 Paris =
+8)</span><span style=3D"color:rgb(34,34,34)"><span></span></span></p><p cla=
+ss=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;fon=
+t-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"f=
+ont-size:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7</span><span st=
+yle=3D"font-size:7pt;font-family:&quot;Times New Roman&quot;;color:rgb(34,3=
+4,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font=
+-size:9pt;font-family:Helvetica;color:rgb(34,34,34)">Larbi BOUBCHIR (LIASD,=
+ Universit=C3=A9 Paris 8)</span><span style=3D"color:rgb(34,34,34)"><span><=
+/span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30=
+pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:bas=
+eline"><span style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,34)=
+">=C2=B7</span><span style=3D"font-size:7pt;font-family:&quot;Times New Rom=
+an&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</s=
+pan><span style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34)"=
+>Nedra NAUWYCNK (LIASD, Universit=C3=A9 Paris 8)</span><span style=3D"color=
+:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"mar=
+gin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,=
+0,0);vertical-align:baseline"><span style=3D"font-size:10pt;font-family:Sym=
+bol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-fam=
+ily:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvet=
+ica;color:rgb(34,34,34)">Fares BELHADJ (LIASD, Universit=C3=A9 Paris 8)</sp=
+an><span style=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"=
+MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-fami=
+ly:Cambria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-si=
+ze:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7</span><span style=3D=
+"font-size:7pt;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,34)"=
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:=
+9pt;font-family:Helvetica;color:rgb(34,34,34)">Sylvia CHALENCON (LIASD, Uni=
+versit=C3=A9 Paris 8)</span><span style=3D"color:rgb(34,34,34)"><span></spa=
+n></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-s=
+ize:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><b=
+><span style=3D"font-size:9pt;font-family:Helvetica;border:1pt none windowt=
+ext;padding:0cm">Comit=C3=A9 de coordination</span></b><span style=3D"font-=
+size:13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);ver=
+tical-align:baseline"><span style=3D"font-size:9pt;font-family:Helvetica">C=
+orrespondant EGC avec les groupes de travail :</span><span style=3D"font-si=
+ze:13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);=
+vertical-align:baseline"><span style=3D"font-size:10pt;font-family:Symbol;c=
+olor:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-family:&=
+quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvetica;co=
+lor:rgb(34,34,34)">Mustapha Lebbah (LIPN, Universit=C3=A9 Paris 13)</span><=
+span style=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoN=
+ormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambri=
+a;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:9pt;fo=
+nt-family:Helvetica">GT-FDC :</span><span style=3D"font-size:13.5pt"><span>=
+</span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 3=
+0pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:ba=
+seline"><span style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,34=
+)">=C2=B7</span><span style=3D"font-size:7pt;font-family:&quot;Times New Ro=
+man&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</=
+span><span style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34)=
+">Camille Kurtz (LIPADE, Universit=C3=A9 Paris Descartes)</span><span style=
+=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" sty=
+le=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;col=
+or:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:10pt;font-f=
+amily:Symbol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt=
+;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-fami=
+ly:Helvetica;color:rgb(34,34,34)">Jonathan Weber (IRIMAS, Universit=C3=A9 d=
+e Haute Alsace)</span><span style=3D"color:rgb(34,34,34)"><span></span></sp=
+an></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-si=
+ze:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><sp=
+an style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7</=
+span><span style=3D"font-size:7pt;font-family:&quot;Times New Roman&quot;;c=
+olor:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span =
+style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34)">Germain F=
+orestier (IRIMAS, Universit=C3=A9 de Haute Alsace)</span><span style=3D"col=
+or:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(=
+0,0,0);vertical-align:baseline"><span style=3D"font-size:10pt;font-family:S=
+ymbol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-f=
+amily:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Hel=
+vetica;color:rgb(34,34,34)">C=C3=A9dric Wemmert (iCube, Universit=C3=A9 de =
+Strasbourg)</span><span style=3D"color:rgb(34,34,34)"><span></span></span><=
+/p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium=
+;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><span style=
+=3D"font-size:9pt;font-family:Helvetica">GT-GAST :</span><span style=3D"fon=
+t-size:13.5pt"><span></span></span></p><p class=3D"MsoNormal" style=3D"marg=
+in:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,0=
+,0);vertical-align:baseline"><span style=3D"font-size:10pt;font-family:Symb=
+ol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-fami=
+ly:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvet=
+ica;color:rgb(34,34,34)">Thomas Guyet (IRISA, Agrocampus Ouest)</span><span=
+ style=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNorma=
+l" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambr=
+ia;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"font-size:10pt;=
+font-family:Symbol;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-si=
+ze:7pt;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;fon=
+t-family:Helvetica;color:rgb(34,34,34)">Eric Kergosien (GERIICO, Universit=
+=C3=A9 Lille 3)</span><span style=3D"color:rgb(34,34,34)"><span></span></sp=
+an></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-si=
+ze:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><sp=
+an style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7</=
+span><span style=3D"font-size:7pt;font-family:&quot;Times New Roman&quot;;c=
+olor:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span =
+style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34)">Cyril de =
+Runz (CReSTIC, Universit=C3=A9 de Reims Champagne-Ardenne)</span><span styl=
+e=3D"color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" st=
+yle=3D"margin:0cm 0cm 0.0001pt;font-size:medium;font-family:Cambria;color:r=
+gb(0,0,0);vertical-align:baseline"><span style=3D"font-size:9pt;font-family=
+:Helvetica">GT-VIF :</span><span style=3D"font-size:13.5pt"><span></span></=
+span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-=
+size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><=
+span style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7=
+</span><span style=3D"font-size:7pt;font-family:&quot;Times New Roman&quot;=
+;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><spa=
+n style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34)">Hanene =
+Azzag (LIPN, Universit=C3=A9 Paris 13)</span><span style=3D"color:rgb(34,34=
+,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);verti=
+cal-align:baseline"><span style=3D"font-size:10pt;font-family:Symbol;color:=
+rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-family:&quot;=
+Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvetica;color=
+:rgb(34,34,34)">David Bihanic (CALHISTE, Universit=C3=A9 de Valenciennes et=
+ du Hainaut-Cambr=C3=A9sis)</span><span style=3D"color:rgb(34,34,34)"><span=
+></span></span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt =
+30pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0);vertical-align:b=
+aseline"><span style=3D"font-size:10pt;font-family:Symbol;color:rgb(34,34,3=
+4)">=C2=B7</span><span style=3D"font-size:7pt;font-family:&quot;Times New R=
+oman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<=
+/span><span style=3D"font-size:9pt;font-family:Helvetica;color:rgb(34,34,34=
+)">Monique Noirhomme (FUNDP, Namur, Belgique)</span><span style=3D"color:rg=
+b(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 0.0001pt 30pt;font-size:medium;font-family:Cambria;color:rgb(0,0,0=
+);vertical-align:baseline"><span style=3D"font-size:10pt;font-family:Symbol=
+;color:rgb(34,34,34)">=C2=B7</span><span style=3D"font-size:7pt;font-family=
+:&quot;Times New Roman&quot;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0</span><span style=3D"font-size:9pt;font-family:Helvetica=
+;color:rgb(34,34,34)">Fabien Picarougne (LINA, Universit=C3=A9 de Nantes)</=
+span><span style=3D"color:rgb(34,34,34)"><span></span></span></p><p class=
+=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt 30pt;font-size:medium;font-=
+family:Cambria;color:rgb(0,0,0);vertical-align:baseline"><span style=3D"fon=
+t-size:10pt;font-family:Symbol;color:rgb(34,34,34)">=C2=B7</span><span styl=
+e=3D"font-size:7pt;font-family:&quot;Times New Roman&quot;;color:rgb(34,34,=
+34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span style=3D"font-s=
+ize:9pt;font-family:Helvetica;color:rgb(34,34,34)">Pierrick Bruneau (LIST, =
+Luxembourg)</span><span style=3D"color:rgb(34,34,34)"><span></span></span><=
+/p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:medium=
+;font-family:Cambria;color:rgb(0,0,0)"><span>=C2=A0</span></p></div>
+</div><br><br clear=3D"all"><div><br></div>-- <br><div class=3D"gmail_signa=
+ture" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+>Rakia JAZIRI</div><div>Ma=C3=AEtre de conf=C3=A9rences</div><div>LIASD - P=
+aris 8</div><div>+33149406787 / +33672735594</div></div></div></div></div><=
+/div></div></div></div></div></div></div>
+
+--000000000000ac2ed1056f05b211--

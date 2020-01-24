@@ -1,0 +1,454 @@
+Return-Path: <julien.velcin@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 65FDC190398D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 21 Dec 2016 11:09:18 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 5BDA437DC2
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 21 Dec 2016 11:09:18 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 51575411478C
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Dec 2016 11:09:18 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -15.54
+X-Spam-Level:
+X-Spam-Status: No, score=-15.54 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_MED=-10, RP_MATCHES_RCVD=-0.55, SPF_HELO_PASS=-0.001,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 13.6782 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2PT21Us3mco4 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 21 Dec 2016 11:09:17 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id F223540A64CB
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Dec 2016 11:09:16 +0100 (CET)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id 6F99E13991F
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Dec 2016 11:09:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1482314956;
+	bh=bDsXLu7eLvUSZfbPlcrMt1WUhJ6ODv7I3PqVG5fBsJw=;
+	h=Date:From:To:Subject;
+	b=R5hU1a+zsp3PwmiPi+tKZC5ZGzi7aOwEcQ339nZVE5Q8CoNnphjMH16aD5Ugnneoc
+	 hqXSuiVkJs8VoREE61ve4eHwZA4JtdNxE+TUmDbgqp6/uT/b7PfWPur6bI2LlbHtQX
+	 z/yGk1leYITewq2ZIyQX0stcsd1OSdiv9xk6GDK2kvqrp8bhRW9PVFSxMQNHDrAx4K
+	 t7OGKWhZKcxhko8JGBbAccri7NqVSzGNFR3BWHNPXUqqMlSM2oc6zVue3RzRgylebI
+	 sO5DlkQF+cYyOv4awKg0bYQc+kGErGCDwlL6W+fF4kqWIW8gHUzqbaTSmXDWCOcM+Q
+	 pjdEQ+jEW2UUg==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id mFWDuUHSGVf6 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 21 Dec 2016 11:09:15 +0100 (CET)
+Received: from MacBook-Pro-de-Julien-6.local (vai69-1-82-67-44-169.fbx.proxad.net [82.67.44.169])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 21 Dec 2016 11:09:15 +0100 (CET)
+Message-ID: <585A54CA.5030307@univ-lyon2.fr>
+Date: Wed, 21 Dec 2016 11:09:14 +0100
+From: Julien Velcin <julien.velcin@univ-lyon2.fr>
+User-Agent: Postbox 4.0.8 (Macintosh/20151105)
+MIME-Version: 1.0
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative;
+ boundary="------------000708090409020804070408"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] 6-months post-doc position at the ERIC lab (Lyon) on
+ automatic metaphor detection (starting as soon as possible)
+
+This is a multi-part message in MIME format.
+--------------000708090409020804070408
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Cher(e)s collègues,
+
+Veuillez trouver ci-dessous une proposition pour un post-doc de 6 mois 
+au laboratoire ERIC (Lyon) dans le cadre d'un projet de collaboration 
+avec des géographes du laboratoire EVS. Nous cherchons un docteur 
+francophone et/ou anglophone avec des compétences en TAL / fouille de 
+textes, si possible capable de programmer en Python.
+
+Cordialement,
+
+Julien Velcin
+Laboratoire ERIC
+Université de Lyon
+
+-----
+
+Post-doctoral position in NLP / text mining
+
+Title: detecting metaphors in scientific discourse
+Place: ERIC Lab (Lyon, France)
+Supervisors: Sabine Loudcher, Julien Velcin (ERIC Lab), Isabelle Lefort 
+(EVS Lab).
+Duration: 6 months
+Salary: about 2000EUR per month (gross salary)
+
+Context
+Metaphor is a figure of speech that is broadly used in common language. 
+It is grounded in the analogical process; it lets a word gets the 
+meaning generally attributed to another word in a sentence. Metaphor is 
+very much employed in scientific discourse, in particular in Social 
+Sciences in which it is at the core of intellectual reasoning. People 
+think first with those images. This explains why metaphor is a crucial 
+issue to study, not only in language sciences and cognitive sciences, 
+but also in geography in which it is employed by many researchers.
+The automatic detection and interpretation of metaphors is a critical 
+task in Natural Language Processing (NLP) and Information Extraction 
+(IE) as well.
+In the fields of artificial intelligence and NLP, works on metaphor 
+processing started in the 80s and they give us much information on the 
+structure and the mechanisms of such phenomena. In the last decade, we 
+witnessed a technological leap forward with an ever-increasing number of 
+statistical-oriented techniques. In comparison with more traditional 
+approaches based on manually-encoded knowledge, these recent techniques 
+tend to have a greater coverage; they are less precise but gaining in 
+efficiency and robustness. In this line, several approaches for metaphor 
+detection have been proposed (Gedigian et al., 2006; Krishnakumaran and 
+Zhu, 2007; Shutova et al., 2010). They rely on the use of a lexical 
+resource such as WordNet, TreeBank, etc. Unfortunately, those lexical 
+resources are mainly available in English, French and Spanish. For the 
+other languages, either they are of low quality or they don't exist at 
+all. Yulia Tsvetkov et al. (2013) propose a metaphor detection method 
+that does not use such a lexical resource.
+This proposal lies precisely in the recent trend of using machine 
+learning for detecting and interpreting metaphors. In this post-doc, we 
+focus on a specific social science that is Geography.
+
+OBJECTIVE
+The post-doctoral researcher will rely on a previous work done in the 
+ERIC lab and the EVS lab. In particular, a manual encoding has been done 
+on a small sample of articles and a first implementation based on a 
+state-of-the-art method based on topic modeling has led to preliminary, 
+highly promising results. S/he will work on the following tasks:
+-        complete the implementation of the method of Heintz et al. 
+(2013) by adding some post-processes and testing them on the available 
+corpus (code in Python),
+-        propose new ways to improve the approach, for instance by 
+relying on word embedding techniques (several researchers in the ERIC 
+lab are currently using those techniques),
+-        co-supervise the acquisition of a huge corpus composed of 
+articles in Geography and the (partial) manual annotation,
+-        write a collaborative paper to be submitted to an international 
+conference
+-        perform a first temporal analysis of the metaphors (if time 
+allows)
+
+
+REQUESTED SKILLS
+We expect candidates with a PhD in computer science / applied 
+mathematics, specialized in natural language processing or text mining 
+with strong programming skills (Python is the preferred language). Some 
+knowledge in topic modeling would be a plus.
+
+Please send your application including a CV, a cover letter along with 
+recommendation letters (at least one) to Isabelle Lefort 
+(isabelle.lefort@univ-lyon2.fr <mailto:isabelle.lefort@univ-lyon2.fr>), 
+Sabine Loudcher (sabine.loudcher@univ-lyon2.fr 
+<mailto:sabine.loudcher@univ-lyon2.fr>) and Julien Velcin 
+(julien.velcin@univ-lyon2.fr <mailto:julien.velcin@univ-lyon2.fr>).
+
+REFERENCES
+Gedigian Matt, John Bryant, Srini Narayanan, and Branimir Ciric. 
+Catching metaphors. Proceedings of the 3rd Workshop on Scalable Natural 
+Language Understanding, pages 41--48. 2006.
+Heintz Ilana, Ryan Gabbard, Mahesh Srinivasan, David Barner, Donald S 
+Black, Marjorie Freedman, and Ralph Weischedel. Automatic extraction of 
+linguistic metaphor with lda topic modeling. In Proceedings of the First 
+Workshop on Metaphor in NLP, pages 58--66, 2013. ?
+Krishnakumaran Saisuresh and Xiaojin Zhu. Hunting elusive metaphors 
+using lexical resources. Proceedings of the Workshop on Computational 
+approaches to Figurative Language, pages 13--20. 2007
+Sun Shutova Lin and Anna Korhonen. Metaphor identification using verb 
+and noun clustering. Proceedings of the 23rd International Conference on 
+Computational Linguistics, pages 1002--1010. 2010.
+Tsvetkov Yulia, Elena Mukomel, Anatole Gershman. Cross-Lingual Metaphor 
+Detection Using Common Semantic Features. First workshop on Metaphor in 
+NLP (Meta4NLP). 2013.
+
+--------------000708090409020804070408
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body
+ bgcolor="#FFFFFF" text="#000000">
+
+
+
+Cher(e)s coll&egrave;gues,<br>
+
+  <br>
+
+Veuillez trouver ci-dessous une proposition pour un post-doc de 6 mois 
+au laboratoire ERIC (Lyon) dans le cadre d'un projet de collaboration 
+avec des g&eacute;ographes du laboratoire EVS. Nous cherchons un docteur 
+francophone et/ou anglophone avec des comp&eacute;tences en TAL / fouille de 
+textes, si possible capable de programmer en Python.<br>
+
+  <br>
+
+Cordialement,<br>
+
+  <br>
+
+Julien Velcin<br>
+
+Laboratoire ERIC<br>
+
+Universit&eacute; de Lyon<br>
+
+  <br>
+
+-----<br>
+
+  <br>
+
+Post-doctoral
+position in NLP / text mining
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+Title: detecting metaphors in scientific discourse
+
+  <br>
+
+Place: ERIC Lab (Lyon, France)
+
+  <br>
+
+Supervisors: Sabine Loudcher, Julien Velcin (ERIC Lab), Isabelle Lefort 
+(EVS Lab).
+
+  <br>
+
+Duration: 6 months
+
+  <br>
+
+Salary: about 2000&#8364; per month (gross salary)
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+Context
+
+  <br>
+
+Metaphor is a figure of speech that is broadly used in common language.
+It is grounded in the analogical process; it lets a word gets the 
+meaning
+generally attributed to another word in a sentence. Metaphor is very 
+much employed
+in scientific discourse, in particular in Social Sciences in which it is
+ at the
+core of intellectual reasoning. People think first with those images. 
+This
+explains why metaphor is a crucial issue to study, not only in language
+sciences and cognitive sciences, but also in geography in which it is 
+employed
+by many researchers.
+
+  <br>
+
+The automatic detection and interpretation of metaphors is a critical
+task in Natural Language Processing (NLP) and Information Extraction 
+(IE) as
+well.
+
+  <br>
+
+In the fields of artificial intelligence and NLP, works on metaphor
+processing started in the 80s and they give us much information on the
+structure and the mechanisms of such phenomena. In the last decade, we
+witnessed a technological leap forward with an ever-increasing number of
+statistical-oriented techniques. In comparison with more traditional 
+approaches
+based on manually-encoded knowledge, these recent techniques tend to 
+have a
+greater coverage; they are less precise but gaining in efficiency and
+robustness. In this line, several approaches for metaphor detection have
+ been
+proposed (Gedigian et al., 2006; Krishnakumaran and Zhu, 2007; Shutova 
+et al.,
+2010). They rely on the use of a lexical resource such as WordNet, 
+TreeBank,
+etc. Unfortunately, those lexical resources are mainly available in 
+English,
+French and Spanish. For the other languages, either they are of low 
+quality or
+they don&#8217;t exist at all. Yulia Tsvetkov et al. (2013) propose a metaphor
+detection method that does not use such a lexical resource.
+
+  <br>
+
+This proposal lies precisely in the recent trend of using machine
+learning for detecting and interpreting metaphors. In this post-doc, we 
+focus
+on a specific social science that is Geography. 
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+OBJECTIVE
+
+  <br>
+
+The
+post-doctoral researcher will rely on a previous work done in the ERIC 
+lab and the
+EVS lab. In particular, a manual encoding has been done on a small 
+sample of
+articles and a first implementation based on a state-of-the-art method 
+based on
+topic modeling has led to preliminary, highly promising results. S/he 
+will work
+on the following tasks:
+
+  <br>
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+complete
+the implementation of the method of Heintz et al. (2013) by adding some
+post-processes and testing them on the available corpus (code in 
+Python),
+
+  <br>
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+propose
+new ways to improve the approach, for instance by relying on word 
+embedding
+techniques (several researchers in the ERIC lab are currently using 
+those
+techniques),
+
+  <br>
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+co-supervise
+the acquisition of a huge corpus composed of articles in Geography and 
+the (partial)
+manual annotation,
+
+  <br>
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+write a
+collaborative paper to be submitted to an international conference
+
+  <br>
+
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+perform a
+first temporal analysis of the metaphors (if time allows)
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+REQUESTED
+SKILLS
+
+  <br>
+
+We expect candidates
+with a PhD in computer science / applied mathematics, specialized in 
+natural
+language processing or text mining with strong programming skills 
+(Python is
+the preferred language). Some knowledge in topic modeling would be a 
+plus.
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+Please send your application including a CV, a cover letter along with 
+recommendation
+letters (at least one) to Isabelle Lefort (<a 
+href="mailto:isabelle.lefort@univ-lyon2.fr">isabelle.lefort@univ-lyon2.fr</a>),
+ Sabine Loudcher (<a href="mailto:sabine.loudcher@univ-lyon2.fr">sabine.loudcher@univ-lyon2.fr</a>)
+ and Julien Velcin (<a href="mailto:julien.velcin@univ-lyon2.fr">julien.velcin@univ-lyon2.fr</a>).
+
+  <br>
+
+&nbsp;
+
+  <br>
+
+REFERENCES
+
+  <br>
+
+Gedigian Matt, John
+Bryant, Srini Narayanan, and Branimir Ciric. Catching metaphors. 
+Proceedings of the 3rd Workshop on Scalable
+Natural Language Understanding, pages 41&#8211;48. 2006.
+
+  <br>
+
+Heintz Ilana, Ryan
+Gabbard, Mahesh Srinivasan, David Barner, Donald S Black, Marjorie 
+Freedman,
+and Ralph Weischedel. Automatic extraction of linguistic metaphor with 
+lda
+topic modeling. In Proceedings of the
+First Workshop on Metaphor in NLP, pages 58&#8211;66, 2013. &#8232;
+
+  <br>
+
+Krishnakumaran Saisuresh
+and Xiaojin Zhu. Hunting elusive metaphors using lexical resources. 
+Proceedings of the Workshop on Computational
+approaches to Figurative Language, pages 13&#8211;20. 2007
+
+  <br>
+
+Sun Shutova Lin and
+Anna Korhonen. Metaphor identification using verb and noun clustering. 
+Proceedings of the 23rd International
+Conference on Computational Linguistics, pages 1002&#8211;1010. 2010.
+
+  <br>
+
+Tsvetkov Yulia, Elena
+Mukomel, Anatole Gershman. Cross-Lingual Metaphor Detection Using Common
+Semantic Features. First workshop on Metaphor in NLP (Meta4NLP). 2013.
+
+
+</body>
+</html>
+
+--------------000708090409020804070408--

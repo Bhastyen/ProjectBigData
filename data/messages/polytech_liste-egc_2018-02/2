@@ -1,0 +1,289 @@
+Return-Path: <alammehw@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3EF3E229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  1 Feb 2018 13:17:03 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 3D19C62884F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  1 Feb 2018 13:17:03 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 2EBA04821B68
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  1 Feb 2018 13:17:03 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 5.162
+X-Spam-Level: *****
+X-Spam-Status: Yes, score=5.162 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	J_BACKHAIR_34=1, J_BACKHAIR_46=1, MR_NOT_ATTRIBUTED_IP=0.2,
+	MY_DSL=0.85, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.8382 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eGkbnOc6ne5R for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  1 Feb 2018 13:17:01 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wr0-x22b.google.com (mail-wr0-x22b.google.com [IPv6:2a00:1450:400c:c0c::22b])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 41ADF450D440
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  1 Feb 2018 13:17:01 +0100 (CET)
+Received: by mail-wr0-x22b.google.com with SMTP id g21so18704992wrb.13
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 01 Feb 2018 04:17:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:date:message-id:cc:to:mime-version;
+        bh=sNzuFLUI3dxSIK8Jyy1RNiyO1hLy7O0R8WisgYvD6TM=;
+        b=HUdj1ipKzoZ2j3pIEcPtqqO5dJi1YEpMe2sB8tTMsZ4gQRWSKMBcRh2Siji89IzyQe
+         kTaDNfD7GEMSGPJ/A0oy4MqoC8UNwCBKx5BbUdodtQqAMVGz15kFTF374UulJ7FJv7Ab
+         dKQ0+5W/SzrH2HRdAKefSknlbEYeBIhOLqrD4m9w/dHxVcW9gveMZFuuAYHoHd/kpZjj
+         vSqlrtaUwxTgF/eoauxAGbRdxXEhst9O9YKXNvHPpQFZKFOIzL1VFxZyxUZDgv/0Jv8O
+         6YWuDtosRreT6ph14OHBNMPs9fHo2ZU0mZk9b73IOV4PmN+t/ycx655h3LgiLbCsKCu2
+         mytg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:date:message-id:cc:to:mime-version;
+        bh=sNzuFLUI3dxSIK8Jyy1RNiyO1hLy7O0R8WisgYvD6TM=;
+        b=l7wGF5+g0om3286rS+yd/N8COuz185hfTu0ca8s11qcnTP9bx406j58piYs9sn+HPH
+         +G5iPDFvSgqh1We76Zbqfphx8PgtSDReh2kr/6wFxODueCjYG1feqSuuvz3mAHCZPAa3
+         +ZGICiC7GcXHT5OCkKhfwo+1hSMmL3Znsx6hRQJt8Tu9jnZPwiUwDiC8B6btSZjvB7Nn
+         YWioDfUTi+B7haV7qxDTaVcb9GMnexb7mMgKJ1r9HDIZ1U/jZwI5fO/3HBMIYnf6Qa9O
+         Vf+Nk9iGf9qZdqHw4cNt7Age7pl2iiC5PBZ+qenK2sou28xKd7WdaSW+KuSVLdduCIVu
+         t/YQ==
+X-Gm-Message-State: AKwxyteWMQ7KtCzwigz0eod61SI4rfBjLkTE6pwWHOwwQP3EGuxzSBFr
+	WFf/R67JDrcHqP493Pm8Rvw=
+X-Google-Smtp-Source: AH8x226qc1m9470H2k6aiaNXrk33iWJC533Cq8RevXm7FVKUO64Yt+uldRSz6uAnyuidvmMMl3F3Qg==
+X-Received: by 10.223.179.193 with SMTP id x1mr28334693wrd.171.1517487420647;
+        Thu, 01 Feb 2018 04:17:00 -0800 (PST)
+Received: from mehwishs-air.station (net-93-66-142-177.cust.vodafonedsl.it. [93.66.142.177])
+        by smtp.gmail.com with ESMTPSA id p12sm4652700wre.83.2018.02.01.04.16.57
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Thu, 01 Feb 2018 04:16:59 -0800 (PST)
+From: Mehwish Alam <alammehw@gmail.com>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_42C70D86-DECD-4B03-BBD6-D4B1C43E1C57"
+Date: Thu, 1 Feb 2018 13:17:00 +0100
+Message-Id: <04CE0FF6-7909-418B-A6A9-E8951D348A7F@gmail.com>
+Cc: Mehwish Alam <alammehw@gmail.com>
+To: corpora@uib.no,
+ semantic-web@w3.org,
+ dl@dl.kr.org,
+ dbpedia-discussion@lists.sourceforge.net,
+ info-ic@listes.irisa.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ ln@cines.fr,
+ bull-i3@irit.fr,
+ web.semantique@inria.fr
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [SPAM] CFP: 4th Workshop on Sentic Computing, Sentiment
+ Analysis, Opinion Mining, and Emotion @ ESWC 2018
+
+
+--Apple-Mail=_42C70D86-DECD-4B03-BBD6-D4B1C43E1C57
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+CFP: 4th Workshop on Sentic Computing, Sentiment Analysis, Opinion =
+Mining, and Emotion Detection
+at ESWC, Heraklion, Crete, Greece, 2018
+Workshop URL: http://www.maurodragoni.com/research/opinionmining/events/ =
+<http://www.maurodragoni.com/research/opinionmining/events/>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+With the rapid growth of Web a plethora of information is being =
+published on-line by users on social networks, online communities, =
+blogs, wikis, etc. This collective intelligence has spread to many =
+different areas, with particular focus on fields related to everyday =
+life such as commerce, tourism, education, and health, causing the size =
+of the social Web to expand exponentially.
+
+To identify the emotions (e.g. sentiment polarity, sadness, happiness, =
+anger, irony, sarcasm, etc.) and the modality (e.g. doubt, certainty, =
+obligation, liability, desire, etc.) expressed in this continuously =
+growing content is critical to enable the correct interpretation of the =
+opinions expressed or reported about social events, political movements, =
+company strategies, marketing campaigns, product preferences, etc. by =
+the masses. This has attracted the attention of scientific community, by =
+providing it with new research challenges, as well as in the business =
+world, as applications such as marketing and financial prediction would =
+gain remarkable benefits.
+
+Based on the lessons learned from the three previous editions, this year =
+the scope of the workshop is a bit broader (although still focusing on a =
+very specific domain) and accepted submissions will include abstracts =
+and position papers in addition to full papers. The workshop's main =
+focus will be discussion rather than presentations, which are seen as =
+seeds for boosting discussion topics, and an expected result will be a =
+joint manifesto and a research roadmap that will provide the Semantic =
+Web community with inspiring research challenges.
+
+=3D=3D TOPICS =3D=3D
+
+The main topics include but are not limited to:
+
+* Ontologies and knowledge bases for emotion recognition
+* Topic and entity based emotion recognition
+* Semantics in the evolution of emotions within and across social media =
+systems and topics
+* Semantic processing of social media for emotion recognition
+* Contextualised emotion recognition
+* Comparison of semantic approaches for emotion recognition
+* Personalised semantic emotion recognition and monitoring
+* Using semantics for prediction of emotions towards events, people, =
+organisations, etc.
+* Baselines and datasets for semantic emotion recognition
+* Semantics in stream-based emotion recognition
+* Comparison between semantic and non-semantic approaches for emotion =
+recognition
+* Multimodal emotion recognition
+* Multilingual sentiment analysis
+* Challenges in using semantics for emotion recognition
+* Retrieval of emotion-based documents from repositories
+* Deep learning and knowledge-enabled approaches for sentiment analysis
+* Big Data tools and techniques for sentiment analysis
+* Applications of sentiment analysis within specific domains (e.g. =
+health, robotics)
+
+=3D=3D IMPORTANT DATES =3D=3D
+
+March 3, 2018, 23:59 CET: Full, Short, and Position papers submission =
+deadline
+March 31, 2018, 23:59 CET: Notification of acceptance
+April 13, 2018, 23:59 CET: Camera-ready paper due
+ESWC 2018 Workshop day: June 3th, 2018, the whole day
+
+=3D=3D SUBMISSION GUIDELINES =3D=3D
+
+* Papers must comply with the LNCS style.
+* Papers are submitted in PDF format via the workshop=C3=A2=C2=80=C2=99s =
+EasyChair submission pages =
+https://easychair.org/conferences/?conf=3Demsasw2018 =
+<https://easychair.org/conferences/?conf=3Demsasw2018>  (remember to =
+select the Workshop topic)
+
+Submissions can fall in one of the following categories:
+- Full research papers (up to 8-10 pages)
+- Short research papers (up to 4-6 pages)
+- Position papers (2 pages)
+
+Accepted papers will be published by CEUR=C3=A2=C2=80=C2=93WS. The best =
+paper (according to the reviewers=C3=A2=C2=80=C2=99 rate) will be =
+published within the main conference proceedings. At least one of the =
+authors of the accepted papers must register for the workshop =
+(pre-conference only option) to be included into the workshop =
+proceedings.
+
+=3D=3D WORKSHOP ORGANIZERS =3D=3D
+
+Mauro Dragoni
+Diego Reforgiato Recupero
+Mehwish Alam
+Davide Buscaldi
+Erik Cambria=
+
+--Apple-Mail=_42C70D86-DECD-4B03-BBD6-D4B1C43E1C57
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D""><br class=3D""></div><div class=3D""><br =
+class=3D""></div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D"">CFP: 4th =
+Workshop on Sentic Computing, Sentiment Analysis, Opinion Mining, and =
+Emotion Detection<br class=3D"">at ESWC, Heraklion, Crete, Greece, =
+2018<br class=3D"">Workshop URL:&nbsp;<a =
+href=3D"http://www.maurodragoni.com/research/opinionmining/events/" =
+class=3D"">http://www.maurodragoni.com/research/opinionmining/events/</a><=
+br class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D""><br =
+class=3D""><br class=3D""><br class=3D"">With the rapid growth of Web a =
+plethora of information is being published on-line by users on social =
+networks,&nbsp;online communities, blogs, wikis, etc. This collective =
+intelligence has spread to many different areas, with =
+particular&nbsp;focus on fields related to everyday life such as =
+commerce, tourism, education, and health, causing the size of the social =
+Web to expand exponentially.<br class=3D""><br class=3D"">To identify =
+the emotions (e.g. sentiment polarity, sadness, happiness, anger, irony, =
+sarcasm, etc.) and the modality (e.g. doubt, certainty, obligation, =
+liability, desire, etc.)&nbsp;expressed in this continuously growing =
+content is critical to enable the correct interpretation of the opinions =
+expressed&nbsp;or reported about social events, political movements, =
+company strategies, marketing campaigns, product preferences, etc. by =
+the masses.&nbsp;This has attracted the attention of scientific =
+community, by providing it with new research challenges, as well as in =
+the business world,&nbsp;as applications such as marketing and financial =
+prediction would gain remarkable benefits.<br class=3D""><br =
+class=3D"">Based on the lessons learned from the three previous =
+editions, this year the scope of the workshop is a bit broader (although =
+still&nbsp;focusing on a very specific domain) and accepted submissions =
+will include abstracts and position papers in addition to full =
+papers.&nbsp;The workshop's main focus will be discussion rather than =
+presentations, which are seen as seeds for boosting discussion topics, =
+and an expected&nbsp;result will be a joint manifesto and a research =
+roadmap that will provide the Semantic Web community with inspiring =
+research challenges.<br class=3D""><br class=3D"">=3D=3D TOPICS =3D=3D<br =
+class=3D""><br class=3D"">The main topics include but are not limited =
+to:<br class=3D""><br class=3D"">* Ontologies and knowledge bases for =
+emotion recognition<br class=3D"">* Topic and entity based emotion =
+recognition<br class=3D"">* Semantics in the evolution of emotions =
+within and across social media systems and topics<br class=3D"">* =
+Semantic processing of social media for emotion recognition<br =
+class=3D"">* Contextualised emotion recognition<br class=3D"">* =
+Comparison of semantic approaches for emotion recognition<br class=3D"">* =
+Personalised semantic emotion recognition and monitoring<br class=3D"">* =
+Using semantics for prediction of emotions towards events, people, =
+organisations, etc.<br class=3D"">* Baselines and datasets for semantic =
+emotion recognition<br class=3D"">* Semantics in stream-based emotion =
+recognition<br class=3D"">* Comparison between semantic and non-semantic =
+approaches for emotion recognition<br class=3D"">* Multimodal emotion =
+recognition<br class=3D"">* Multilingual sentiment analysis<br =
+class=3D"">* Challenges in using semantics for emotion recognition<br =
+class=3D"">* Retrieval of emotion-based documents from repositories<br =
+class=3D"">* Deep learning and knowledge-enabled approaches for =
+sentiment analysis<br class=3D"">* Big Data tools and techniques for =
+sentiment analysis<br class=3D"">* Applications of sentiment analysis =
+within specific domains (e.g. health, robotics)<br class=3D""><br =
+class=3D"">=3D=3D IMPORTANT DATES =3D=3D<br class=3D""><br =
+class=3D"">March 3, 2018, 23:59 CET: Full, Short, and Position papers =
+submission deadline<br class=3D"">March 31, 2018, 23:59 CET: =
+Notification of acceptance<br class=3D"">April 13, 2018, 23:59 CET: =
+Camera-ready paper due<br class=3D"">ESWC 2018 Workshop day: June 3th, =
+2018, the whole day<br class=3D""><br class=3D"">=3D=3D SUBMISSION =
+GUIDELINES =3D=3D<br class=3D""><br class=3D"">* Papers must comply with =
+the LNCS style.<br class=3D"">* Papers are submitted in PDF format via =
+the workshop=C3=A2=C2=80=C2=99s EasyChair submission pages&nbsp;<a =
+href=3D"https://easychair.org/conferences/?conf=3Demsasw2018" =
+class=3D"">https://easychair.org/conferences/?conf=3Demsasw2018</a>&nbsp;&=
+nbsp;(remember to select the Workshop topic)<br class=3D""><br =
+class=3D"">Submissions can fall in one of the following categories:<br =
+class=3D"">- Full research papers (up to 8-10 pages)<br class=3D"">- =
+Short research papers (up to 4-6 pages)<br class=3D"">- Position papers =
+(2 pages)<br class=3D""><br class=3D"">Accepted papers will be published =
+by CEUR=C3=A2=C2=80=C2=93WS. The best paper (according to the =
+reviewers=C3=A2=C2=80=C2=99 rate) will be published within the main =
+conference proceedings.&nbsp;At least one of the authors of the accepted =
+papers must register for the workshop (pre-conference only option) to be =
+included into the workshop proceedings.<br class=3D""><br class=3D"">=3D=3D=
+ WORKSHOP ORGANIZERS =3D=3D<br class=3D""><br class=3D"">Mauro =
+Dragoni<br class=3D"">Diego Reforgiato Recupero<br class=3D"">Mehwish =
+Alam<br class=3D"">Davide Buscaldi<br class=3D"">Erik =
+Cambria</body></html>=
+
+--Apple-Mail=_42C70D86-DECD-4B03-BBD6-D4B1C43E1C57--

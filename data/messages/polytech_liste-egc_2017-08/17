@@ -1,0 +1,393 @@
+Return-Path: <prvs=399b86688=sam@univ-tours.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 5267A229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 21 Aug 2017 11:05:10 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 4D37D6D21C8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 21 Aug 2017 11:05:10 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 3FA5C44E2C1E
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 21 Aug 2017 11:05:10 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.571
+X-Spam-Level: **
+X-Spam-Status: No, score=2.571 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.9486 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new);
+	domainkeys=pass (1024-bit key) header.from=yacine.sam@univ-tours.fr
+	header.d=univ-tours.fr; dkim=pass (1024-bit key)
+	header.d=univ-tours.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id YBIbUWkTN8Uo for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 21 Aug 2017 11:05:09 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from angelia.univ-tours.fr (angelia.univ-tours.fr [193.52.209.20])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 2679F4821B96
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 21 Aug 2017 11:05:07 +0200 (CEST)
+DomainKey-Signature: s=main; d=univ-tours.fr; c=nofws; q=dns;
+  h=IronPort-PHdr:X-IronPort-Anti-Spam-Filtered:
+   X-IronPort-Anti-Spam-Result:X-IPAS-Result:Received:
+   Received:Received:X-Virus-Scanned:Received:Received:Date:
+   From:To:Message-ID:Subject:MIME-Version:Content-Type:
+   X-Originating-IP:X-Mailer:Thread-Topic:Thread-Index;
+  b=JaQvhRydSbvUMPbd6KMN6vRf3OU0DDsgBznkLzhpqj/GcPgOhPznalfN
+   xBrBkW6D5Eyl9c6rHp1iAADeBhu09XL6UUiiPXtiNZReevx48dW8mzfpm
+   H1scAnVlzzT07wcSF49O2K2djepNidsQmo0kDb7rNv85WjvGrTVNeTrEX
+   U=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=univ-tours.fr; i=@univ-tours.fr; q=dns/txt; s=main;
+  t=1503306309; x=1534842309;
+  h=date:from:to:message-id:subject:mime-version;
+  bh=o4PcdsHRaFs9Fdbg9TrQ8dY5LFwDGCBvP652bpnKel0=;
+  b=dORpI6gT5vc23WpmGfcbznzlGs7NwABOdnOHKgBFlVawYDxWfM7T+fYp
+   feniZ3I6EwNiqaUfH9hHkjxQDIU6pt51mRnKbdQICW+gNvOpwFfMF4Vxa
+   7aRXJjPt9m8fQSGBoaKJK35+/ha6s3GsCNqJUklFoY9BDde7U3ru/0xVj
+   g=;
+IronPort-PHdr: =?us-ascii?q?9a23=3A03Zq/xUrY/ar4CJ3ciefQ9oJVZvV8LGtZVwlr6E/?=
+ =?us-ascii?q?grcLSJyIuqrYZRWBuadThVPEFb/W9+hDw7KP9fuxCSpZucfK6C9KWacPfidNsd?=
+ =?us-ascii?q?8RkQ0kDZzNImzAB9muURYHGt9fXkRu5XCxPBsdMs//Y1rPvi/6tmZKSV3wOgVv?=
+ =?us-ascii?q?O+v6BJPZgdip2OCu4Z3TZBhDiCagbb9oIhi7qQbcutMLjYd+Lqs9xQfFr3lVcO?=
+ =?us-ascii?q?lK2G1kIk6ekQzh7cmq5p5j9CpQu/Ml98FeVKjxYro1Q79FAjk4Km45/MLkuwXN?=
+ =?us-ascii?q?QguJ/XscT34ZkgFUDAjf7RH1RYn+vy3nvedgwiaaPMn2TbcpWTS+6qpgVRHlhD?=
+ =?us-ascii?q?sbOzM/7WrajNF7gqBGrxK7vxFxzY7abp+WOvRjcazSYdIaS21dXstKTSNNHp+z?=
+ =?us-ascii?q?YJAVAuYdP+tVqZT2qVsUrRu5AAmhHOHgxSVUiX/32601zfkqHxzc0wwlAtkDt3?=
+ =?us-ascii?q?TVo8/pO6cTV+C60rPEzS7ZYPNTwjr99Y7IchE/of2VQbJwdtfRyVM0Fw/fgFWQ?=
+ =?us-ascii?q?s5XoMjWI3eoDtGib6vBvVeOpi2M/sAFxuiKvxsYqionGmI0V0ErI+jl+wIYwPd?=
+ =?us-ascii?q?G3VEl7YdiqEJtMsCGaMI92Ttk+TGFvvSY20qAGuZi6fCgU0Zgn2xnfa+Gdc4iT?=
+ =?us-ascii?q?+B7jWvyRLDFlj3xmYLKynwu+/VS6xuHhUsS53kxGoypfntXSrnwBygDf5tKaRv?=
+ =?us-ascii?q?Z58EqtwzaC2xrT5+xCPEs6j7DUK4Q7zb41jpcTtEPDETLol0jul6+Wc1kk+vCv?=
+ =?us-ascii?q?6+T6frXqvp+cOJFwigH5Kqkugta/AeM3MwkOQWSX5f6w1bzi/U38W7pKlOc5nr?=
+ =?us-ascii?q?PEsJDcJMQbuLe1AxNS0oY+8Ra/FC2q0NAfnXYbNl1FfAqLj4nvO17QPPD1Feqz?=
+ =?us-ascii?q?j0i2nDt2w/3LMKftD5XXInTdiLvheKxy609YyAo919Bf4JdUB6kaIP3pX0/8r8?=
+ =?us-ascii?q?HYDhk4Mwyq2urnFNJ91p4EWWKUGKOZPrnSvUeS5u0zO+mMeJMVuDHlJvg+/fHu?=
+ =?us-ascii?q?iH45lUUGcqmp3JsXcnG4E+9pI0Wce3Xsg9MBHX0WsQo5SezgkEeCXiJLZ3auQ6?=
+ =?us-ascii?q?I84Sk2CI28AobCWI+tnKCB0zmgEZJLaG1LEVGMEXLyeIWLQfsMZjiSKNd7kjMY?=
+ =?us-ascii?q?TbihV5Mh1Ra2uQDh1rpnKu7U9jQZtZ/tz9V15vfTlRAu9TBuAcSdyXmHT3tokW?=
+ =?us-ascii?q?MQWz82wKd/rFR5yleCyqh4n+JXGcVN6PNGTgg3Lobcz+t+C9HyRgLOYMuGSFa8?=
+ =?us-ascii?q?TtW7BzExT8wxz8YIY0lnHdWikg7M3zGwD78bjbyBHIY0/b7E33jtO8Z9zG7L1a?=
+ =?us-ascii?q?c7gFkiQ8tAKHeqhqFl+AfJA47JlFiZl6KxeKQAwiHN8HmMwnaJvEFdSQJwSrjF?=
+ =?us-ascii?q?Um0HZkTMt9T551jCQ6WwBrQ6YUN9zpuIN69OL9yypVRcReulNs6aK2awgHu9QB?=
+ =?us-ascii?q?uHzZuUa477Z2gW3GPADkka1gYa+2qLLk4wHGPprGvMASByGFjjOGvt9OBx7n2h?=
+ =?us-ascii?q?HWEuyATfXkRq1ry4siUcgLTIWvoY37QJ/jworh1pGlejms7RFsCb4QR7KvYPKe?=
+ =?us-ascii?q?gh6UtKgDqK/zd2OYatevhv?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FvCAD1oZpZ/wIFwQpdHAEBBAEBCgEBF?=
+ =?us-ascii?q?wEBBAEBCgEBgkQ+gRGBFQeDcJt7kQeFR4FcVIlaFAEBAQEBAQEBAQEBAoEQgjM?=
+ =?us-ascii?q?iEEYsAQEBAQEBAQEBIwEBAQEBASMCCAUGPQFDaAExGQJbBYpTrxaCJowGgyiDT?=
+ =?us-ascii?q?oFjNoFAgm2BaoEUEoM6gmEFoE95gS+JAY54jH0CiVaCZIZWgw4CNoEsMiEohSF?=
+ =?us-ascii?q?QDBCBaXWIHoEygQ8BAQE?=
+X-IPAS-Result: =?us-ascii?q?A2FvCAD1oZpZ/wIFwQpdHAEBBAEBCgEBFwEBBAEBCgEBgkQ?=
+ =?us-ascii?q?+gRGBFQeDcJt7kQeFR4FcVIlaFAEBAQEBAQEBAQEBAoEQgjMiEEYsAQEBAQEBA?=
+ =?us-ascii?q?QEBIwEBAQEBASMCCAUGPQFDaAExGQJbBYpTrxaCJowGgyiDToFjNoFAgm2BaoE?=
+ =?us-ascii?q?UEoM6gmEFoE95gS+JAY54jH0CiVaCZIZWgw4CNoEsMiEohSFQDBCBaXWIHoEyg?=
+ =?us-ascii?q?Q8BAQE?=
+Received: from proxy20.zimbra.univ-tours.local ([10.193.5.2])
+  by angelia2.univ-tours.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Aug 2017 11:04:22 +0200
+Received: from proxy20.zimbra.univ-tours.local (localhost [127.0.0.1])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTPS id 1321F20423;
+	Mon, 21 Aug 2017 11:04:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTP id 0011220422;
+	Mon, 21 Aug 2017 11:04:21 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at proxy20.zimbra.univ-tours.local
+Received: from proxy20.zimbra.univ-tours.local ([127.0.0.1])
+	by localhost (proxy20.zimbra.univ-tours.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id ym6T_vqOk_AU; Mon, 21 Aug 2017 11:04:21 +0200 (CEST)
+Received: from mail21.zimbra.univ-tours.local (mail21.zimbra.univ-tours.local [10.193.5.57])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTP id AC0D620418;
+	Mon, 21 Aug 2017 11:04:21 +0200 (CEST)
+Date: Mon, 21 Aug 2017 11:04:21 +0200 (CEST)
+From: Yacine Sam <yacine.sam@univ-tours.fr>
+To: bull-i3@irit.fr, liste-egc@polytech.univ-nantes.fr, gazettebd3@imag.fr
+Message-ID: <1795860666.46724158.1503306261449.JavaMail.zimbra@univ-tours.fr>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_46724157_491024266.1503306261448"
+X-Originating-IP: [10.193.5.5]
+X-Mailer: Zimbra 8.6.0_GA_1200 (ZimbraWebClient - GC60 (Win)/8.6.0_GA_1200)
+Thread-Topic: CFP [Deadline Extended] : KASA@ICSOC 2017, Malaga Spain, November 13-16, 2017
+Thread-Index: Tu4lGE0tFsfSrJ2HUlLEYnHJSeJiow==
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP [Deadline Extended] : KASA@ICSOC 2017, Malaga
+ Spain, November 13-16, 2017
+
+------=_Part_46724157_491024266.1503306261448
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+KASA@ICSOC 2017: Second International Workshop on Knowledge Aware Service O=
+riented Applications, KASA 2017,=20
+In conjunction with ICSOC 2017=20
+Link: http://www.info.univ-tours.fr/kasa2017/=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=20
+Extended deadline=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=20
+Papers submission : August 28 , 2017=20
+
+
+Service oriented computing is widely accepted for building interoperable, d=
+ynamic and adaptive systems. However, in spite of the tremendous advances a=
+nd adoption, a considerable manual work is still required to align the impl=
+ementation of service-based systems with business and end-users requirement=
+s.=20
+
+Several efforts have been interested in bridging the gap between business a=
+nd end-users level on one hand and the implementation and technical layer o=
+n the other hand. Initially driven by semantic Web technologies, the propos=
+ed and emergent approaches adopt new techniques such as formal concept anal=
+ysis, information retrieval, social based recommendation, natural language =
+processing, and statistical analysis and mining. Typically, these approache=
+s abstract from/complement technical details and focus on services and BP f=
+rom a semantic and knowledge perspective. The ultimate goal is managing ser=
+vice-oriented applications from a business and semantic level.=20
+
+The efforts made by both Semantic Web and SOA research communities have led=
+ to the present SOA standards where ontologies and other formal frameworks =
+can be considered in several ways to improve SOA frameworks efficiency. How=
+ever, reaching the level of natively and fully semantic-aware SOA framework=
+s is still a challenging task.=20
+
+Moreover, the recent advances in Internet of Thing (IoT), which is leading =
+to a linked Web of resources, data, and services, a more global integration=
+ of Linked Open Data (LOD) principles in SOA frameworks should be thought f=
+or a high efficiency use and reuse of IoT data and resources.=20
+
+The workshop aims at bringing together researchers and practitioners workin=
+g in semantically enabled and knowledge aware service oriented systems in o=
+rder to present, discuss and share original research works and practical ex=
+perience.=20
+
+Topics include but are not limited to:=20
+
+Knowledge aware service oriented engineering=20
+Service and BP representation and description: formal specification, ontolo=
+gy based description=20
+Services and BP indexation, discovery and composition: reasoning, formal co=
+ncept analysis, ontology based matchmaking information retrieval, recommend=
+ation and social-based techniques=20
+Service and BP variability management: configurable and reference models, f=
+eature oriented development=20
+Service and BP knowledge extraction: natural language processing, mining an=
+d crowd sourcing techniques=20
+Service and BP versioning and adaptation=20
+Service and BP mining=20
+Collections of services and BPs: organisation, visualisation and business i=
+ntelligence=20
+Techniques for knowledge aware service oriented engineering: ontology based=
+, statistical analysis and mining techniques, natural language processing, =
+social and Human centric techniques, cloud computing=20
+Knowledge aware service oriented engineering applied to related domains: gr=
+een IT, disaster management, e-health, e-government, smart home/cities, sen=
+sor-based applications=20
+Knowledge aware service oriented engineering in practice =E2=80=A2Ontologie=
+s and vocabularies for domain-specific services and BP=20
+Surveys and empirical studies=20
+Industrial and real use-cases=20
+Semantic web Semantic web technologies for SOA IoT applications development=
+=20
+LOD principles for IoT services composition and linking=20
+
+The workshop is soliciting both academic and industrial research contributi=
+ons, which have not been published elsewhere. Two types of papers are accep=
+ted for submission:=20
+
+Regular papers: should have a length of 14 pages and present mature work.=
+=20
+Short and position papers: should have a length of 6 pages and present work=
+ in progress having an original idea behind.=20
+
+Submitted papers must be written in English and formatted according to Spri=
+nger LNCS format (http://www.springer.com/computer/lncs?SGWID=3D0-164-6-793=
+341-0). Papers must be in PDF format and should be submitted electronically=
+ via the ConfTool submission system following the url below.=20
+
+http://www.conftool.com/icsoc2017=20
+
+Authors must use this link and then, during the submission procedure, selec=
+t the Workshop on Knowledge Aware Service Oriented Applications.=20
+
+Each paper will be reviewed by 3 distinct reviewers.=20
+
+At least one author of each accepted paper should register for the workshop=
+ program and attend to present the paper. This is a prerequisite for the pu=
+blication of the paper in the workshop proceedings.=20
+
+Important Dates=20
+
+Workshop Papers Submission Deadline: August 28, 2017=20
+Authors Notification Deadline: September 14, 2017=20
+Early Registration Deadline: September 24, 2017=20
+Camera Ready Paper & Copyright: October 1, 2017=20
+Workshops: November 13, 2017=20
+
+Workshop Chairs:=20
+
+Sami Bhiri University of Monastir, Tunisia=20
+Walid Gaaloul CNRS Samovar Lab, Telecom SudParis, France=20
+Nizar Messai University Computer Science Lab, University of Tours, France=
+=20
+Yacine Sam Computer Science Lab, University of Tours, France=20
+
+Program committee=20
+
+Nour Assy, Technische Universiteit Eindhoven, Netherlands=20
+Salima Benbernou, Paris Descartes University, France=20
+Boualem Benatallah, University of New South Wales, Australia=20
+Omar Boucelma, Aix-Marseille University, France=20
+Jorge Cardoso, University of Coimbra, Portugal=20
+Christine Collet, Grenoble Informatics laboratory (LIG), France=20
+Edward Curry, DERI, University of Ireland, Galway, Ireland=20
+Wassim Derguech, DERI, University of Ireland, Galway, Ireland=20
+Khaled Gaaloul, Public Research Centre Henri Tudor, Luxembourg=20
+Feng Gao, DERI, University of Ireland, Galway, Ireland=20
+Claude Godart, LORIA, Nancy, France=20
+Mohamed Graiet, ISIMA, University of Monastir, Tunisia=20
+Imen Grida Ben Yahia, Orange, France=20
+Mohand-Said Hacid, University of Lyon, France=20
+Marianne Huchard, LIRMM, CNRS, University Montpellier 2, France=20
+Kais Klai, University Paris 13, France=20
+Mourad Kmimech, ISIMA, University of Monastir, Tunisia=20
+Massimo Mecella, SAPIENZA, University of Rome, Italy=20
+Amedeo Napoli, LORIA, Nancy, France=20
+George A. Papadopoulos University of Cyprus=20
+Olivier Perrin, LORIA, Nancy, France=20
+Pierluigi Plebani, Politecnico di Milano, Italy=20
+Mohamed Quafafou, Aix-Marseille University, France=20
+Seung Hwan Ryu, University of New South Wales, Australia=20
+Brahmananda Sapkota, University of Twente, Netherlands=20
+Mohamed Sellami, RDI Group, LISITE LAB, ISEP Paris, France=20
+Sana Sellami, Aix-Marseille University, France=20
+Samir Tata, Institut Mines-Telecom, Telecom SudParis, France=20
+Yehia Taher, David Lab., Versailles University, France=20
+Tomas Vitvar, Czech Technical University, Czech Republic=20
+Zhangbing Zhou, CUG Beijing, China=20
+
+--=20
+Ma=C3=AEtre de conf=C3=A9rences=20
+Universit=C3=A9 Fran=C3=A7ois Rabelais Tours=20
+Laboratoire d'Informatique - IUT de Blois=20
+3 place Jean Jaur=C3=A8s - 41000 Blois=20
+02 54 55 21 53=20
+
+
+------=_Part_46724157_491024266.1503306261448
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: times new roman,new york,times,serif=
+; font-size: 12pt; color: #000000"><div data-marker=3D"__QUOTED_TEXT__"><di=
+v style=3D"font-family: times new roman,new york,times,serif; font-size: 12=
+pt; color: #000000;" data-mce-style=3D"font-family: times new roman,new yor=
+k,times,serif; font-size: 12pt; color: #000000;"><div>KASA@ICSOC 2017: Seco=
+nd International Workshop on Knowledge Aware Service Oriented Applications,=
+ KASA 2017,<br></div><div>In conjunction with ICSOC 2017<br>Link: http://ww=
+w.info.univ-tours.fr/kasa2017/<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D<br>Extended deadline <br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>Papers submission : <strong><span style=
+=3D"color: #ff0000;" data-mce-style=3D"color: #ff0000;">August 28</span></s=
+trong>, 2017<br><br><br>Service oriented computing is widely accepted for b=
+uilding interoperable, dynamic and adaptive systems. However, in spite of t=
+he tremendous advances and adoption, a considerable manual work is still re=
+quired to align the implementation of service-based systems with business a=
+nd end-users requirements.<br><br>Several efforts have been interested in b=
+ridging the gap between business and end-users level on one hand and the im=
+plementation and technical layer on the other hand. Initially driven by sem=
+antic Web technologies, the proposed and emergent approaches adopt new tech=
+niques such as formal concept analysis, information retrieval, social based=
+ recommendation, natural language processing, and statistical analysis and =
+mining. Typically, these approaches abstract from/complement technical deta=
+ils and focus on services and BP from a semantic and knowledge perspective.=
+ The ultimate goal is managing service-oriented applications from a busines=
+s and semantic level.<br><br>The efforts made by both Semantic Web and SOA =
+research communities have led to the present SOA standards where ontologies=
+ and other formal frameworks can be considered in several ways to improve S=
+OA frameworks efficiency. However, reaching the level of natively and fully=
+ semantic-aware SOA frameworks is still a challenging task.<br><br>Moreover=
+, the recent advances in Internet of Thing (IoT), which is leading to a lin=
+ked Web of resources, data, and services, a more global integration of Link=
+ed Open Data (LOD) principles in SOA frameworks should be thought for a hig=
+h efficiency use and reuse of IoT data and resources.<br><br>The workshop a=
+ims at bringing together researchers and practitioners working in semantica=
+lly enabled and knowledge aware service oriented systems in order to presen=
+t, discuss and share original research works and practical experience.<br><=
+br>Topics include but are not limited to:<br><br>Knowledge aware service or=
+iented engineering<br>Service and BP representation and description: formal=
+ specification, ontology based description<br>Services and BP indexation, d=
+iscovery and composition: reasoning, formal concept analysis, ontology base=
+d matchmaking information retrieval, recommendation and social-based techni=
+ques<br>Service and BP variability management: configurable and reference m=
+odels, feature oriented development<br>Service and BP knowledge extraction:=
+ natural language processing, mining and crowd sourcing techniques<br>Servi=
+ce and BP versioning and adaptation<br>Service and BP mining<br>Collections=
+ of services and BPs: organisation, visualisation and business intelligence=
+<br>Techniques for knowledge aware service oriented engineering: ontology b=
+ased, statistical analysis and mining techniques, natural language processi=
+ng, social and Human centric techniques, cloud computing<br>Knowledge aware=
+ service oriented engineering applied to related domains: green IT, disaste=
+r management, e-health, e-government, smart home/cities, sensor-based appli=
+cations<br>Knowledge aware service oriented engineering in practice =E2=80=
+=A2Ontologies and vocabularies for domain-specific services and BP<br>Surve=
+ys and empirical studies<br>Industrial and real use-cases<br>Semantic web S=
+emantic web technologies for SOA IoT applications development<br>LOD princi=
+ples for IoT services composition and linking<br><br>The workshop is solici=
+ting both academic and industrial research contributions, which have not be=
+en published elsewhere. Two types of papers are accepted for submission:<br=
+><br>Regular papers: should have a length of 14 pages and present mature wo=
+rk.<br>Short and position papers: should have a length of 6 pages and prese=
+nt work in progress having an original idea behind.<br><br>Submitted papers=
+ must be written in English and formatted according to Springer LNCS format=
+ (http://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0). Papers m=
+ust be in PDF format and should be submitted electronically via the ConfToo=
+l submission system following the url below.<br><br>http://www.conftool.com=
+/icsoc2017<br><br>Authors must use this link and then, during the submissio=
+n procedure, select the Workshop on Knowledge Aware Service Oriented Applic=
+ations.<br><br>Each paper will be reviewed by 3 distinct reviewers.<br><br>=
+At least one author of each accepted paper should register for the workshop=
+ program and attend to present the paper. This is a prerequisite for the pu=
+blication of the paper in the workshop proceedings.<br><br>Important Dates<=
+br><br>Workshop Papers Submission Deadline: August 28, 2017<br>Authors Noti=
+fication Deadline: September 14, 2017<br>Early Registration Deadline: Septe=
+mber 24, 2017<br>Camera Ready Paper &amp; Copyright: October 1, 2017<br>Wor=
+kshops: November 13, 2017<br><br>Workshop Chairs:<br><br>Sami Bhiri Univers=
+ity of Monastir, Tunisia<br>Walid Gaaloul CNRS Samovar Lab, Telecom SudPari=
+s, France<br>Nizar Messai University Computer Science Lab, University of To=
+urs, France<br>Yacine Sam Computer Science Lab, University of Tours, France=
+<br><br>Program committee<br><br>Nour Assy, Technische Universiteit Eindhov=
+en, Netherlands<br>Salima Benbernou, Paris Descartes University, France<br>=
+Boualem Benatallah, University of New South Wales, Australia<br>Omar Boucel=
+ma, Aix-Marseille University, France<br>Jorge Cardoso, University of Coimbr=
+a, Portugal<br>Christine Collet, Grenoble Informatics laboratory (LIG), Fra=
+nce<br>Edward Curry, DERI, University of Ireland, Galway, Ireland<br>Wassim=
+ Derguech, DERI, University of Ireland, Galway, Ireland<br>Khaled Gaaloul, =
+Public Research Centre Henri Tudor, Luxembourg<br>Feng Gao, DERI, Universit=
+y of Ireland, Galway, Ireland<br>Claude Godart, LORIA, Nancy, France<br>Moh=
+amed Graiet, ISIMA, University of Monastir, Tunisia<br>Imen Grida Ben Yahia=
+, Orange, France<br>Mohand-Said Hacid, University of Lyon, France<br>Marian=
+ne Huchard, LIRMM, CNRS, University Montpellier 2, France<br>Kais Klai, Uni=
+versity Paris 13, France<br>Mourad Kmimech, ISIMA, University of Monastir, =
+Tunisia<br>Massimo Mecella, SAPIENZA, University of Rome, Italy<br>Amedeo N=
+apoli, LORIA, Nancy, France<br>George A. Papadopoulos University of Cyprus<=
+br>Olivier Perrin, LORIA, Nancy, France<br>Pierluigi Plebani, Politecnico d=
+i Milano, Italy<br>Mohamed Quafafou, Aix-Marseille University, France<br>Se=
+ung Hwan Ryu, University of New South Wales, Australia<br>Brahmananda Sapko=
+ta, University of Twente, Netherlands<br>Mohamed Sellami, RDI Group, LISITE=
+ LAB, ISEP Paris, France<br>Sana Sellami, Aix-Marseille University, France<=
+br>Samir Tata, Institut Mines-Telecom, Telecom SudParis, France<br>Yehia Ta=
+her, David Lab., Versailles University, France<br>Tomas Vitvar, Czech Techn=
+ical University, Czech Republic<br>Zhangbing Zhou, CUG Beijing, China</div>=
+<br><div>-- <br></div><div>Ma=C3=AEtre de conf=C3=A9rences <br>Universit=C3=
+=A9 Fran=C3=A7ois Rabelais Tours<br>Laboratoire d'Informatique - IUT de Blo=
+is<br>3 place Jean Jaur=C3=A8s - 41000 Blois<br>02 54 55 21 53</div></div><=
+br></div></div></body></html>
+------=_Part_46724157_491024266.1503306261448--

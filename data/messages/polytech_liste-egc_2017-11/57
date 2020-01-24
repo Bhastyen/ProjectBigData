@@ -1,0 +1,635 @@
+Return-Path: <kbenabde@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id DDF5A2292951
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 28 Nov 2017 08:41:24 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id DBA5C6D2226
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 28 Nov 2017 08:41:24 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id D215E4821B3E
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 28 Nov 2017 08:41:24 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.212
+X-Spam-Level:
+X-Spam-Status: No, score=0.212 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, FREEMAIL_REPLY=1,
+	HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING=4, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 12.5072 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5T14xsF7UQqQ for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 28 Nov 2017 08:41:23 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qt0-x235.google.com (mail-qt0-x235.google.com [IPv6:2607:f8b0:400d:c0d::235])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 7A13347EC0A8
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 28 Nov 2017 08:41:23 +0100 (CET)
+Received: by mail-qt0-x235.google.com with SMTP id a19so42527861qtb.3
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 23:41:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=1vdGWr8gT+zdJocwUjWxjBRrpP308uK7uAcV32pKi3A=;
+        b=PfB+9t/UHZydGgOIdeyJsXPI0+Vn7Wgt8ljuzBQEqbbTIyOf1Wbfe/jmthNUylp0CN
+         OVfpLir9pkvedpzSe3Vegtv1G8QUHD2xFsKwn849XDhLc4gf0dGk0H/QDS18S9zKIfgi
+         9Chj24UX3txFfjTPR5MFh7F9urxczuBNg9BOg0GFGnmHUJfyAaa9RpOvcB4DZQ/aLwkD
+         tfRR17/mdWKUzRBzl7wU0QYaf2AFjzfSRKJ8llN4NsyHOq5kg+zLWEdLrwHSj6TUC7xx
+         zmt0Itu4YXz7YO0Hty5IzDFHWS8sPg5QTLGIqKtuQhF5HN7WIzZ36pqQTHhpZ9//UxQy
+         z8Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=1vdGWr8gT+zdJocwUjWxjBRrpP308uK7uAcV32pKi3A=;
+        b=MbUZW7sOLpcpjvP8TyMcqjQSaEQwYUGuRNFsMS0P5a+9+9uv717LZpbxMm3GE/xak5
+         pkcvyX8FxdIE5WXCBPecpR7NzKtIwMYVTtitKlioGBKw39C+xpMsHOtCK3j99h2fGc5i
+         84z41Bo4jTLaKtU3ldCGpIdqBtjQghV6SmrFuOUeu4R921pCJPqLKmsWEOmOVcYr5glF
+         wpgJzeuVsegsrf0+AE3/PrpoppVeb6bFtULaLInIsbxUjme4miDJOMp3mIJx7CSWeKS2
+         HLQwdBbI+GviCl7feI8rlNBllD4hkdrAtBF0n4rHeYNo4mS8lw4jNVJIXlghqkJbS1aM
+         0Xqg==
+X-Gm-Message-State: AJaThX4Cckns7uQgeJLZF9sG3qghKSCbJwqbgvXpJOyW/vjZLMUML9nT
+	NVOoPtx6PMzjFHQMO5V6h25oVndNjS+oqNqltVf5TQ==
+X-Google-Smtp-Source: AGs4zMb7TCj4YXqPvlFwk10u6t6upvwZIZFIz5N6P5WR0fOCZfWTxWsWpLgo+b7icGBKaF1cbcTvDziyyxdyrFfFWzY=
+X-Received: by 10.237.34.151 with SMTP id p23mr61929003qtc.194.1511854882067;
+ Mon, 27 Nov 2017 23:41:22 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.12.190.143 with HTTP; Mon, 27 Nov 2017 23:41:21 -0800 (PST)
+From: khalid Benabdeslem <kbenabde@gmail.com>
+Date: Tue, 28 Nov 2017 08:41:21 +0100
+Message-ID: <CAHcwv3faeWJtopoPjoNtkMcrxY584afrTM2cMR-SSGM_fp5Csw@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Cc: Frederic Cherqui <fcherqui@gmail.com>, 
+	Khalid Benabdeslem <khalid.benabdeslem@univ-lyon1.fr>
+Content-Type: multipart/alternative; boundary="001a113c721c329804055f062544"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Recrutement d'un(e) post-doctorant(e) - Informatique
+ (machine learning), =?UTF-8?Q?g=C3=A9nie-civil?= (urbanisme) - Laboratoire
+ LIRIS, Lyon.
+
+--001a113c721c329804055f062544
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+***************************************************************************=
+***************************************************************************
+*
+
+
+
+*Recrutement d'un(e) Post-Doctorant(e) Informatique (Machine Learning) -
+G=C3=A9nie civil (Urbanisme)*
+
+
+*dans le cadre du projet HIREAU (Labex IMU) *
+
+************************************************************
+************************************************************
+*********************************
+
+L=E2=80=99Universit=C3=A9 de Lyon (UdL), communaut=C3=A9 d=E2=80=99Universi=
+t=C3=A9s et d=E2=80=99=C3=A9tablissements,
+regroupant 12 =C3=A9tablissements d=E2=80=99enseignement sup=C3=A9rieur de =
+Lyon Saint Etienne
+recherche un(e) post-doctorant(e) (H/F).
+Description du poste
+
+Le candidat (H / F) exercera ses missions au sein de l=E2=80=99UMR 5205 sou=
+s la
+responsabilit=C3=A9 hi=C3=A9rarchique de *Khalid Benabdeslem et Fr=C3=A9d=
+=C3=A9ric Cherqui*.
+
+Organisation du travail : 37h
+
+Temps complet
+
+Lieu de travail : LIRIS =E2=80=93 CNRS UMR 5205, UCBL, 43 Bd du 11 Novembre=
+ 1918,
+69622 Villeurbanne.
+
+*Missions principales :*
+
+*Sujet*
+
+*Apprentissage semi-supervis=C3=A9 pour la reconstitution des dates de pose=
+ de
+r=C3=A9seaux d=E2=80=99assainissement et d=E2=80=99eau potable*
+Contexte et objectifs La date de pose est l=E2=80=99un des facteurs princip=
+aux
+d=E2=80=99explication de la d=C3=A9gradation des conduites d=E2=80=99assain=
+issement et d=E2=80=99eau
+potable. Pour les gestionnaires de ces r=C3=A9seaux, conna=C3=AEtre cette i=
+nformation
+permettra ainsi (gr=C3=A2ce =C3=A0 l=E2=80=99utilisation de mod=C3=A8les de=
+ d=C3=A9t=C3=A9rioration) de
+pr=C3=A9dire l=E2=80=99=C3=A9tat de sant=C3=A9 actuel des conduites non enc=
+ore inspect=C3=A9es. Cette
+connaissance est primordiale pour prendre des d=C3=A9cisions d=E2=80=99insp=
+ection des
+conduites, dans un contexte de forte contrainte budg=C3=A9taire. Dans le ca=
+dre du
+projet HIREAU, une approche dite historique est envisag=C3=A9e pour r=C3=A9=
+pondre =C3=A0
+cette probl=C3=A9matique, en se basant sur la fouille d=E2=80=99archives. C=
+ependant,
+l=E2=80=99approche =C3=A9tant =C2=AB humaine =C2=BB, elle ne pourra pas d=
+=C3=A9terminer la totalit=C3=A9 des
+dates de pose de conduites mise en question, =C3=A0 cause du co=C3=BBt d=E2=
+=80=99une telle
+d=C3=A9marche et de non exhaustivit=C3=A9 de l=E2=80=99information. Une app=
+roche informatique
+est donc indispensable pour compl=C3=A9ter l=E2=80=99approche historique. L=
+=E2=80=99approche
+informatique que nous pr=C3=A9conisons s=E2=80=99inscrit dans le cadre de
+l=E2=80=99apprentissage semi-supervis=C3=A9, un champ disciplinaire qui con=
+siste =C3=A0
+mod=C3=A9liser des fonctions de d=C3=A9cision =C3=A0 partir de base de donn=
+=C3=A9es
+statistiques partiellement =C3=A9tiquet=C3=A9es. Dans notre cas, ces bases =
+seront
+construites =C3=A0 partir de diff=C3=A9rentes sources h=C3=A9t=C3=A9rog=C3=
+=A8nes et apr=C3=A8s
+l=E2=80=99expertise qui ne pourra d=C3=A9terminer qu=E2=80=99une partie de =
+la cible : les dates
+de poses =C3=A0 caract=C3=A8re continu. Cette approche devra =C3=A9galement=
+ prendre en
+compte les hypoth=C3=A8ses formul=C3=A9es sur le d=C3=A9veloppement de ces =
+r=C3=A9seaux, et
+plus particuli=C3=A8rement les logiques liant urbanisation, b=C3=A2timents =
+et
+r=C3=A9seaux. Programme
+scientifique
+
+Depuis la prolif=C3=A9ration des bases de donn=C3=A9es partiellement =C3=A9=
+tiquet=C3=A9es,
+l=E2=80=99apprentissage automatique a connu un d=C3=A9veloppement important=
+ dans le mode
+semi-supervis=C3=A9. La plupart des travaux de recherche ont =C3=A9t=C3=A9 =
+investis pour
+apprendre =C3=A0 partir de bases d=E2=80=99apprentissage avec une variable =
+cible =C3=A0
+caract=C3=A8re discret. Cependant, dans certaines applications, cette varia=
+ble
+peut =C3=AAtre continue et partiellement inform=C3=A9e ; et situerait donc =
+le
+probl=C3=A8me dans le cadre de la r=C3=A9gression semi-supervis=C3=A9.
+
+Dans ce sujet, nous nous int=C3=A9ressons donc =C3=A0 cette probl=C3=A9mati=
+que avec
+diff=C3=A9rentes t=C3=A2ches =C3=A0 d=C3=A9velopper :
+
+
+
+*R=C3=A9gression semi-supervis=C3=A9e pour la pr=C3=A9diction de dates de p=
+ose*
+
+L=E2=80=99apprentissage semi-supervis=C3=A9 consiste en g=C3=A9n=C3=A9ral =
+=C3=A0 mod=C3=A9liser une fonction
+statistique =C3=A0 partir de base de donn=C3=A9es regroupant =C3=A0 la fois=
+ des exemples
+=C3=A9tiquet=C3=A9s et d=E2=80=99autres non-=C3=A9tiquet=C3=A9s. Pour abord=
+er une telle probl=C3=A9matique,
+deux familles d=E2=80=99approches existent : celle bas=C3=A9e sur la propag=
+ation de la
+supervision en vue de la classification supervis=C3=A9e et celle bas=C3=A9e=
+ sur les
+contraintes en vue du clustering (non-supervis=C3=A9). Nous nous int=C3=A9r=
+essons ici
+=C3=A0 la premi=C3=A8re famille avec deux particularit=C3=A9s li=C3=A9es la=
+ variable cible.
+D=E2=80=99une part, il s=E2=80=99agit d=E2=80=99apprendre avec une partie s=
+upervis=C3=A9e relativement
+tr=C3=A8s r=C3=A9duite par rapport =C3=A0 la partie non-supervis=C3=A9e et =
+ d=E2=80=99autre part, cette
+partie supervis=C3=A9e contient des valeurs continues au lieu de valeurs
+discr=C3=A8tes qui repr=C3=A9sentent habituellement des =C3=A9tiquettes de =
+classes. Pour
+ce faire, nous pr=C3=A9conisons des mod=C3=A8les de r=C3=A9gression r=C3=A9=
+gularis=C3=A9e de type
+manifold.
+
+*S=C3=A9lection de variables explicatives pour la r=C3=A9gression*
+
+La s=C3=A9lection de variables est une t=C3=A2che primordiale en fouille de=
+ donn=C3=A9es
+et apprentissage automatique. Il s=E2=80=99agit d=E2=80=99une probl=C3=A9ma=
+tique tr=C3=A8s bien
+connue par les deux communaut=C3=A9s dans les contextes, supervis=C3=A9 et
+non-supervis=C3=A9. Le contexte semi-supervis=C3=A9 est en cours de d=C3=A9=
+veloppement et
+les travaux sont embryonnaires et particuli=C3=A8rement peu nombreux pour l=
+es
+probl=C3=A8mes de r=C3=A9gression. Il est donc tr=C3=A8s opportun de s=E2=
+=80=99attaquer =C3=A0 cette
+probl=C3=A9matique que nous envisageons d=E2=80=99aborder par des approches=
+ =C3=A0 base de la
+th=C3=A9orie spectrale de graphe en adoptant nos mod=C3=A8les d=C3=A9j=C3=
+=A0 d=C3=A9velopp=C3=A9s dans le
+cadre de la classification semi-supervis=C3=A9e. L=E2=80=99objectif final =
+=C3=A9tant de
+s=C3=A9lectionner les variables les plus pertinentes et caract=C3=A9ristiqu=
+es aux
+dates de poses, =C3=A9liminer la redondance et am=C3=A9liorer ainsi les mod=
+=C3=A8les
+d=E2=80=99apprentissages semi-supervis=C3=A9 sous-jacents.
+
+Outre les probl=C3=A8mes intrins=C3=A8ques de ce type de t=C3=A2ches, la ma=
+sse de donn=C3=A9es
+dans le cadre de ce projet pose des probl=C3=A8mes de passage =C3=A0 l=E2=
+=80=99=C3=A9chelle. Cela
+pose =C3=A9galement des probl=C3=A8mes de mise en =C5=93uvre des techniques=
+, de complexit=C3=A9
+temporelle des algorithmes, et de validit=C3=A9 des m=C3=A9thodes pr=C3=A9v=
+ues pour
+fonctionner dans des contextes plus limit=C3=A9s. L'analyse technique qui s=
+e
+base essentiellement sur l'analyse des donn=C3=A9es doit pouvoir supporter =
+non
+seulement ce passage =C3=A0 l=E2=80=99=C3=A9chelle mais aussi envisager des=
+ outils nouveaux
+pour l=E2=80=99analyse multiple de ces donn=C3=A9es complexes.
+
+
+
+*Evaluation des performances du mod=C3=A8le d=C3=A9velopp=C3=A9*
+La faisabilit=C3=A9 de l=E2=80=99approche informatique sera =C3=A9galement =
+consid=C3=A9r=C3=A9e du
+point de vue op=C3=A9rationnel. Les r=C3=A9sultats de la mod=C3=A9lisation =
+seront =C3=A9valu=C3=A9s
+pour renseigner sur la qualit=C3=A9 de la pr=C3=A9diction en fonction notam=
+ment des
+donn=C3=A9es disponibles et des p=C3=A9riodes de pose. Des recommandations =
+seront =C3=A0
+d=C3=A9finir concernant la base de donn=C3=A9es. L=E2=80=99identification d=
+es limites de
+l=E2=80=99approche et des perspectives de recherche seront =C3=A9galement n=
+=C3=A9cessaires.
+
+*Consortium*
+
+Ce post-doc s=E2=80=99inscrit dans le cadre du projet de recherche *HIREAU*=
+ (
+http://hireau.wordpress.com) qui regroupe trois laboratoires de
+recherche (*DEEP,
+LIRIS UMR 5205 et EVS UMR 5600*), deux industriels (Veolia et Eau du Grand
+Lyon) et la M=C3=A9tropole de Lyon. Il s=E2=80=99inscrira dans une interact=
+ion forte
+avec les partenaires du projet et plus particuli=C3=A8rement Eau du Grand L=
+yon
+et la M=C3=A9tropole de Lyon.
+Profil recherch=C3=A9
+
+Comp=C3=A9tences n=C3=A9cessaires: Informatique, Machine Learning, Data Min=
+ing,
+Statistique. Ma=C3=AEtrise des langages de programmation tels que : Matlab,
+Python, R, C/C++, Java, Scala-Spark.  Si possible des connaissances en
+mati=C3=A8re de r=C3=A9seaux urbains et ma=C3=AEtrise des SIG.
+Candidatures
+Renseignements sur le poste : http://hireau.wordpress.com/
+
+*Khalid Benabdeslem*, LIRIS CNRS UMR 5205 - https://liris.cnrs.fr/ -
+kbenabde@univ-lyon1.fr
+
+*Fr=C3=A9d=C3=A9ric Cherqui*, INSA DEEP =E2=80=93 http://deep.insa-lyon.fr/=
+  =E2=80=93
+fcherqui@gmail.com
+
+
+Envoi des candidatures : lettre de motivation + CV exclusivement par e-mail
+avant le *15/12/2017 minuit* =C3=A0 isabelle.lefort@univ-lyon2.fr *et *
+isabelle.diraimondo@universite-lyon.fr
+
+--001a113c721c329804055f062544
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p><font size=3D"+1"><b><span lang=3D"FR"><b>*************=
+*****************<wbr>******************************<wbr>******************=
+************<wbr>******************************<wbr>***********************=
+******<br>
+            </b></span></b></font></p>
+    <p><font size=3D"+1"><b><span lang=3D"FR"><b>Recrutement d&#39;un(e) Po=
+st-Doctorant(e)</b><b><br>
+            </b><b>Informatique (Machine Learning) - G=C3=A9nie civil (Urba=
+nisme</b>)<br></span></b></font></p><p><font size=3D"+1"><b><span lang=3D"F=
+R">dans le cadre du projet HIREAU (Labex IMU)<br>
+          </span></b></font></p>
+    <p><font size=3D"+1"><span lang=3D"FR">******************************<w=
+br>******************************<wbr>******************************<wbr>**=
+****************************<wbr>******************************<wbr>***<br>
+        </span></font></p>
+    <p><font size=3D"+1"><span lang=3D"FR">L=E2=80=99Universit=C3=A9 de Lyo=
+n (UdL), communaut=C3=A9 d=E2=80=99Universit=C3=A9s
+          et d=E2=80=99=C3=A9tablissements, regroupant 12 =C3=A9tablissemen=
+ts
+          d=E2=80=99enseignement sup=C3=A9rieur de Lyon Saint Etienne reche=
+rche </span><span lang=3D"FR">un(e) post-doctorant(e)</span><span lang=3D"F=
+R"> (H/F).</span></font></p><div style=3D"border-width:medium medium 1pt;bo=
+rder-style:none none solid;border-color:currentcolor currentcolor windowtex=
+t;padding:0cm 0cm 1pt">
+
+<h2>Description du poste</h2>
+
+</div>
+
+<p class=3D"MsoNormal"><span>Le candidat (H / F)
+exercera ses missions au sein de l=E2=80=99UMR 5205</span> <span>sous la re=
+sponsabilit=C3=A9 hi=C3=A9rarchique de <b>Khalid
+Benabdeslem et Fr=C3=A9d=C3=A9ric Cherqui</b>.</span></p>
+
+<p class=3D"gmail-m_-1894100517477229664gmail-puce" style=3D"margin-left:0c=
+m;text-indent:0cm"><span>Organisation du travail=C2=A0: 37h</span></p>
+
+<p class=3D"gmail-m_-1894100517477229664gmail-puce" style=3D"margin-left:0c=
+m;text-indent:0cm"><span>Temps complet </span></p>
+
+<p class=3D"gmail-m_-1894100517477229664gmail-puce" style=3D"margin-left:0c=
+m;text-indent:0cm"><span>Lieu de travail=C2=A0: LIRIS =E2=80=93 CNRS UMR 52=
+05, UCBL,
+43 Bd du 11 Novembre 1918, 69622 Villeurbanne.</span></p>
+
+
+
+<p class=3D"gmail-m_-1894100517477229664gmail-puce" style=3D"margin-left:0c=
+m;text-indent:0cm"><b><span lang=3D"EN-US">Missions principales=C2=A0:</spa=
+n></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:center" align=3D"center"><b><spa=
+n style=3D"font-size:12pt;line-height:115%;color:red">Sujet</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:center" align=3D"center"><b><spa=
+n style=3D"font-size:12pt;line-height:115%">Apprentissage semi-supervis=C3=
+=A9 pour la reconstitution des dates de pose de
+r=C3=A9seaux d=E2=80=99assainissement et d=E2=80=99eau potable</span></b></=
+p>
+
+<h2 style=3D"border-width:medium;border-style:none;border-color:currentcolo=
+r"><span style=3D"line-height:115%;font-family:Calibri;color:rgb(225,18,121=
+)">Contexte et objectifs</span></h2>
+
+<font size=3D"2"><span style=3D"line-height:115%;font-family:Verdana">La
+date de pose est l=E2=80=99un des facteurs principaux d=E2=80=99explication=
+ de la d=C3=A9gradation
+des conduites d=E2=80=99assainissement et d=E2=80=99eau potable. Pour les g=
+estionnaires de ces
+r=C3=A9seaux, conna=C3=AEtre cette information permettra ainsi (gr=C3=A2ce =
+=C3=A0 l=E2=80=99utilisation de
+mod=C3=A8les de d=C3=A9t=C3=A9rioration) de pr=C3=A9dire l=E2=80=99=C3=A9ta=
+t de sant=C3=A9 actuel des conduites non
+encore inspect=C3=A9es. Cette connaissance est primordiale pour prendre des
+d=C3=A9cisions d=E2=80=99inspection des conduites, dans un contexte de fort=
+e contrainte
+budg=C3=A9taire. Dans le cadre du<span>=C2=A0 </span>projet HIREAU,
+une approche dite historique est envisag=C3=A9e pour r=C3=A9pondre =C3=A0 c=
+ette probl=C3=A9matique,
+en se basant sur la fouille d=E2=80=99archives. Cependant, l=E2=80=99approc=
+he =C3=A9tant =C2=AB humaine
+=C2=BB, elle ne pourra pas d=C3=A9terminer la totalit=C3=A9 des dates de po=
+se de conduites
+mise en question, =C3=A0 cause du co=C3=BBt d=E2=80=99une telle d=C3=A9marc=
+he et de non exhaustivit=C3=A9
+de l=E2=80=99information. Une approche informatique est donc indispensable =
+pour
+compl=C3=A9ter l=E2=80=99approche historique. L=E2=80=99approche informatiq=
+ue que nous pr=C3=A9conisons
+s=E2=80=99inscrit dans le cadre de l=E2=80=99apprentissage semi-supervis=C3=
+=A9, un champ
+disciplinaire qui consiste =C3=A0 mod=C3=A9liser des fonctions de d=C3=A9ci=
+sion =C3=A0 partir de
+base de donn=C3=A9es statistiques partiellement =C3=A9tiquet=C3=A9es. Dans =
+notre cas, ces
+bases seront construites =C3=A0 partir de diff=C3=A9rentes sources h=C3=A9t=
+=C3=A9rog=C3=A8nes et apr=C3=A8s l=E2=80=99expertise
+qui ne pourra d=C3=A9terminer qu=E2=80=99une partie de la cible : les dates=
+ de poses =C3=A0
+caract=C3=A8re continu. Cette approche devra</span> =C3=A9galement prendre =
+en compte les hypoth=C3=A8ses formul=C3=A9es sur le
+d=C3=A9veloppement de ces r=C3=A9seaux, et plus particuli=C3=A8rement les l=
+ogiques liant
+urbanisation, b=C3=A2timents et r=C3=A9seaux.</font>
+
+<h2 style=3D"border-width:medium;border-style:none;border-color:currentcolo=
+r"><span style=3D"line-height:115%;font-family:Calibri;color:rgb(225,18,121=
+)">Programme scientifique</span></h2>
+
+<p class=3D"MsoNormal"><font size=3D"2">Depuis la prolif=C3=A9ration des ba=
+ses de donn=C3=A9es partiellement
+=C3=A9tiquet=C3=A9es, l=E2=80=99apprentissage automatique a connu un d=C3=
+=A9veloppement important dans
+le mode semi-supervis=C3=A9. La plupart des travaux de recherche ont =C3=A9=
+t=C3=A9 investis
+pour apprendre =C3=A0 partir de bases d=E2=80=99apprentissage avec une vari=
+able cible =C3=A0
+caract=C3=A8re discret. Cependant, dans certaines applications, cette varia=
+ble peut
+=C3=AAtre continue et partiellement inform=C3=A9e ; et situerait donc le pr=
+obl=C3=A8me dans le
+cadre de la r=C3=A9gression semi-supervis=C3=A9.</font></p><font size=3D"2"=
+>
+
+</font><p class=3D"MsoNormal"><font size=3D"2">Dans ce sujet, nous nous int=
+=C3=A9ressons donc =C3=A0 cette
+probl=C3=A9matique avec diff=C3=A9rentes t=C3=A2ches =C3=A0 d=C3=A9velopper=
+ :</font></p>
+
+<p class=3D"MsoNormal">=C2=A0</p>
+
+<p class=3D"MsoNormal"><b><u><span style=3D"line-height:115%;font-family:Ar=
+ial">R=C3=A9gression semi-supervis=C3=A9e pour la pr=C3=A9diction de dates =
+de pose</span></u></b></p>
+
+<p class=3D"MsoNormal"><font size=3D"2">L=E2=80=99apprentissage semi-superv=
+is=C3=A9 consiste en g=C3=A9n=C3=A9ral =C3=A0
+mod=C3=A9liser une fonction statistique =C3=A0 partir de base de donn=C3=A9=
+es regroupant =C3=A0 la
+fois des exemples =C3=A9tiquet=C3=A9s et d=E2=80=99autres non-=C3=A9tiquet=
+=C3=A9s. Pour aborder une telle
+probl=C3=A9matique, deux familles d=E2=80=99approches existent : celle bas=
+=C3=A9e sur la
+propagation de la supervision en vue de la classification supervis=C3=A9e e=
+t celle
+bas=C3=A9e sur les contraintes en vue du clustering (non-supervis=C3=A9). N=
+ous nous
+int=C3=A9ressons ici =C3=A0 la premi=C3=A8re famille avec deux particularit=
+=C3=A9s li=C3=A9es la
+variable cible. D=E2=80=99une part, il s=E2=80=99agit d=E2=80=99apprendre a=
+vec une partie supervis=C3=A9e
+relativement tr=C3=A8s r=C3=A9duite par rapport =C3=A0 la partie non-superv=
+is=C3=A9e et<span>=C2=A0 </span>d=E2=80=99autre part, cette partie supervis=
+=C3=A9e
+contient des valeurs continues au lieu de valeurs discr=C3=A8tes qui repr=
+=C3=A9sentent
+habituellement des =C3=A9tiquettes de classes. Pour ce faire, nous pr=C3=A9=
+conisons des
+mod=C3=A8les de r=C3=A9gression r=C3=A9gularis=C3=A9e de type manifold. </f=
+ont></p>
+
+<p class=3D"MsoNormal" style=3D"margin-top:12pt"><b><u><span style=3D"line-=
+height:115%;font-family:Arial">S=C3=A9lection de variables explicatives pou=
+r la
+r=C3=A9gression</span></u></b></p>
+
+<p class=3D"MsoNormal">La s=C3=A9lection de variables est une t=C3=A2che pr=
+imordiale en
+fouille de donn=C3=A9es et apprentissage automatique. Il s=E2=80=99agit d=
+=E2=80=99une probl=C3=A9matique
+tr=C3=A8s bien connue par les deux communaut=C3=A9s dans les contextes, sup=
+ervis=C3=A9 et
+non-supervis=C3=A9. Le contexte semi-supervis=C3=A9 est en cours de d=C3=A9=
+veloppement et les
+travaux sont embryonnaires et particuli=C3=A8rement peu nombreux pour les p=
+robl=C3=A8mes
+de r=C3=A9gression. Il est donc tr=C3=A8s opportun de s=E2=80=99attaquer =
+=C3=A0 cette probl=C3=A9matique
+que nous envisageons d=E2=80=99aborder par des approches =C3=A0 base de la =
+th=C3=A9orie spectrale
+de graphe en adoptant nos mod=C3=A8les d=C3=A9j=C3=A0 d=C3=A9velopp=C3=A9s =
+dans le cadre de la
+classification semi-supervis=C3=A9e. L=E2=80=99objectif final =C3=A9tant de=
+ s=C3=A9lectionner les
+variables les plus pertinentes et caract=C3=A9ristiques aux dates de poses,=
+ =C3=A9liminer
+la redondance et am=C3=A9liorer ainsi les mod=C3=A8les d=E2=80=99apprentiss=
+ages semi-supervis=C3=A9
+sous-jacents.<font size=3D"2"> <br></font></p><p class=3D"MsoNormal"><font =
+size=3D"2">Outre les probl=C3=A8mes intrins=C3=A8ques de ce type de t=C3=A2=
+ches, la
+masse de donn=C3=A9es dans le cadre de ce projet pose des probl=C3=A8mes de=
+ passage =C3=A0
+l=E2=80=99=C3=A9chelle. Cela pose =C3=A9galement des probl=C3=A8mes de mise=
+ en =C5=93uvre des techniques,
+de complexit=C3=A9 temporelle des algorithmes, et de validit=C3=A9 des m=C3=
+=A9thodes pr=C3=A9vues
+pour fonctionner dans des contextes plus limit=C3=A9s. L&#39;analyse techni=
+que qui se
+base essentiellement sur l&#39;analyse des donn=C3=A9es doit pouvoir suppor=
+ter non
+seulement ce passage =C3=A0 l=E2=80=99=C3=A9chelle mais aussi envisager des=
+ outils nouveaux pour
+l=E2=80=99analyse multiple de ces donn=C3=A9es complexes.</font>
+
+</p><p class=3D"MsoNormal">=C2=A0</p>
+
+<p class=3D"MsoNormal"><b><u><span style=3D"line-height:115%;font-family:Ar=
+ial">Evaluation des performances du mod=C3=A8le d=C3=A9velopp=C3=A9</span><=
+/u></b></p><font size=3D"2">
+
+</font><span style=3D"font-size:10pt;line-height:115%;font-family:Verdana">=
+<font size=3D"2">La
+faisabilit=C3=A9 de l=E2=80=99approche informatique sera =C3=A9galement con=
+sid=C3=A9r=C3=A9e du point de
+vue op=C3=A9rationnel. Les r=C3=A9sultats de la mod=C3=A9lisation seront =
+=C3=A9valu=C3=A9s pour
+renseigner sur la qualit=C3=A9 de la pr=C3=A9diction en fonction notamment =
+des donn=C3=A9es
+disponibles et des p=C3=A9riodes de pose. Des recommandations seront =C3=A0=
+ d=C3=A9finir
+concernant la base de donn=C3=A9es. L=E2=80=99identification des limites de=
+ l=E2=80=99approche et
+des perspectives de recherche seront =C3=A9galement n=C3=A9cessaires.</font=
+><br><br></span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class=3D"MsoNormal" style=3D"line-height:normal"><b><span style=3D"font-=
+size:12pt;color:rgb(225,18,121)">Consortium</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"line-height:normal"><font size=3D"2">Ce pos=
+t-doc s=E2=80=99inscrit dans le
+cadre du projet de recherche <b>HIREAU</b>
+(<a href=3D"http://hireau.wordpress.com" target=3D"_blank">http://hireau.wo=
+rdpress.com</a>) qui
+regroupe trois laboratoires de recherche (<b>DEEP,
+LIRIS UMR 5205 et EVS UMR 5600</b>), deux industriels (Veolia et Eau du Gra=
+nd Lyon)
+et la M=C3=A9tropole de Lyon. Il s=E2=80=99inscrira dans une interaction fo=
+rte avec les
+partenaires du projet et plus particuli=C3=A8rement Eau du Grand Lyon et la
+M=C3=A9tropole de Lyon.</font><span style=3D"font-size:11pt"></span></p>
+
+<div style=3D"border-width:medium medium 1pt;border-style:none none solid;b=
+order-color:currentcolor currentcolor windowtext;padding:0cm 0cm 1pt">
+
+<h2>Profil recherch=C3=A9 </h2>
+
+</div>
+
+<p class=3D"MsoNormal">Comp=C3=A9tences n=C3=A9cessaires: Informatique, Mac=
+hine Learning,
+Data Mining, Statistique<span>. Ma=C3=AEtrise
+des langages de programmation tels que=C2=A0: Matlab, Python, R, C/C++, Jav=
+a,
+Scala-Spark. </span><span>=C2=A0</span>Si possible
+des connaissances en mati=C3=A8re de r=C3=A9seaux urbains et ma=C3=AEtrise =
+des SIG.</p>
+
+<div style=3D"border-width:medium medium 1pt;border-style:none none solid;b=
+order-color:currentcolor currentcolor windowtext;padding:0cm 0cm 1pt">
+
+<h2>Candidatures</h2>
+
+</div>
+
+<h3 style=3D"margin-top:0cm"><span style=3D"font-size:11pt;line-height:115%=
+">Renseignements
+sur le poste : </span><span style=3D"font-size:11pt;line-height:115%" lang=
+=3D"EN-US"><a href=3D"http://hireau.wordpress.com/" target=3D"_blank">http:=
+//hireau.wordpress.com/</a>
+</span></h3>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;line-height:115%" l=
+ang=3D"EN-US">Khalid
+Benabdeslem</span></b><span style=3D"font-size:11pt;line-height:115%" lang=
+=3D"EN-US">, LIRIS CNRS UMR 5205 - <a href=3D"https://liris.cnrs.fr/" targe=
+t=3D"_blank">https://liris.cnrs.fr/</a> - <a href=3D"mailto:kbenabde@univ-l=
+yon1.fr" target=3D"_blank">kbenabde@univ-lyon1.fr</a> </span></p>
+
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;line-height:115%" l=
+ang=3D"EN-US">Fr=C3=A9d=C3=A9ric
+Cherqui</span></b><span style=3D"font-size:11pt;line-height:115%" lang=3D"E=
+N-US">, INSA DEEP =E2=80=93 <a href=3D"http://deep.insa-lyon.fr/" target=3D=
+"_blank">http://deep.insa-lyon.fr/</a><span>=C2=A0 </span>=E2=80=93<span>=
+=C2=A0 </span><a href=3D"mailto:fcherqui@gmail.com" target=3D"_blank">fcher=
+qui@gmail.com</a> </span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;line-height:115%">=C2=
+=A0</span></p>
+
+<span style=3D"font-size:11pt;line-height:115%;font-family:Verdana;color:bl=
+ack">Envoi des candidatures :
+lettre de motivation + CV exclusivement par e-mail avant le </span><span st=
+yle=3D"font-size:11pt;line-height:115%;font-family:Verdana;color:red"><b>15=
+/12/2017 minuit</b> </span><span style=3D"font-size:11pt;line-height:115%;f=
+ont-family:Verdana;color:black">=C3=A0 </span><span style=3D"font-size:11pt=
+;line-height:115%;font-family:Verdana"><a href=3D"mailto:isabelle.lefort@un=
+iv-lyon2.fr" target=3D"_blank">isabelle.lefort@univ-lyon2.fr</a>
+<span class=3D"gmail-m_-1894100517477229664gmail-MsoHyperlink"><b><span sty=
+le=3D"color:black">et </span></b></span><span class=3D"gmail-m_-18941005174=
+77229664gmail-MsoHyperlink"><span style=3D"color:black"><a href=3D"mailto:i=
+sabelle.diraimondo@universite-lyon.fr" target=3D"_blank">isabelle.diraimond=
+o@<wbr>universite-lyon.fr</a></span></span></span></div>
+
+--001a113c721c329804055f062544--

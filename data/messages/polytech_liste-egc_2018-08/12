@@ -1,0 +1,242 @@
+Return-Path: <francois.petitjean@monash.edu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id B2D1C2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 15 Aug 2018 04:06:22 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id B2551662F72
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 15 Aug 2018 04:06:19 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 005D0B4B135
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 15 Aug 2018 04:06:25 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.125
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.125 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SINGLE_HEADER_3K=3.015, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.0151 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=monash.edu
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hUXxrQ1WIkLv for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 15 Aug 2018 04:06:23 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-pl0-x230.google.com (mail-pl0-x230.google.com [IPv6:2607:f8b0:400e:c01::230])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 3945CB190A4
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 15 Aug 2018 04:06:23 +0200 (CEST)
+Received: by mail-pl0-x230.google.com with SMTP id j8-v6so9068616pll.12
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 14 Aug 2018 19:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monash.edu; s=google;
+        h=from:subject:to:openpgp:autocrypt:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=W+1g6hKeQe5dKmDEIYXjghdKGsfbqrbsomxLDaM66W4=;
+        b=LgPy0wrDgwIA92KmwtgQNH1z/tYhd4rU8LY70XfiJsEwqAIzSYC+qLSqzZN/TApeJY
+         C/yCmYwNViUFz4wtiiZyBgt3EE8KfXJpnTTRHM/fHQMtjl3WHZtHMuXONp0Rll87b/Wx
+         ewMP2eCKACZoCc/OC1ROqgTdX8xxdH50Ycr9hbbB+rgKINuVcQAWntkaMJIj00tuJvrk
+         gwng+rmbxjJ4Qg2eG/L1d2QLAq6brO9zlmX8DjNy5OVKVBFwDTSWEPblkF0D7G/TKP4a
+         bXZ3xNWW+AOCp5lJzWi5HLagnQaoTjpcCynLc9P1/iS+0PwYO8bOgeVCr3gGcdd/6xAc
+         Ov7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:openpgp:autocrypt:message-id
+         :date:user-agent:mime-version:content-language
+         :content-transfer-encoding;
+        bh=W+1g6hKeQe5dKmDEIYXjghdKGsfbqrbsomxLDaM66W4=;
+        b=AOKcut/eoqxn2bLD5WHYDNDubJoBIfvRaCTmJtFD8swUpFyHXDCGZlBjrv8FoSne6q
+         mSUAVT8Q+tdeksBLoI6iBpM8a0vIUii77pMC0Jqax43/vxFQFUEoSKbRpBw62By6+PuM
+         I80Jp/X3ti6E0QtRlKvI+0q/8Y4GLSqwdl38vsPTIlcfHB3QTt5VKyVjE9ss5iIrX7n7
+         O0aAiZ+83xY3ZjAVj/7j1gTJgiajVBmQAZ4soDTyS2qp2Ei89sY2wtG8OjCwhPWTgegn
+         49fYwmC/ScvtSScw/vV5D/KjI0Dv3zp8a0zynWU9jfQHXvEltBp3e/ySneuvZOm/CEyR
+         fEGQ==
+X-Gm-Message-State: AOUpUlG7hnSWE4HkI5m2AM64TJ1xQNN/O+csZIzKpVP3nsHwzPL/zVOL
+	F7rjEdWJzZeZD2fIONabsXqgTVS+zFlk08q9SefMKHeQ3c+YpZOThAE6PiCCE9iormaUv/xKJfE
+	n1sInCNhn/ELV35+GiJ4e+9JTQa4aIOhCYR+EPKHWXSGZ4Mr6/6RbVfxCA6J988Y77WCXD59UnW
+	zQAHBCaS6Ba/OUruEFEA==
+X-Google-Smtp-Source: AA+uWPxgNBQ6SVsW/vVPTnt1b7JMig6atUfhO3pY7wxt4mbKwd0zPPzyUQya02oA3V/pQalpNvXWZA==
+X-Received: by 2002:a17:902:8d8c:: with SMTP id v12-v6mr22346237plo.94.1534298783829;
+        Tue, 14 Aug 2018 19:06:23 -0700 (PDT)
+Received: from ?IPv6:2001:388:608c:4c52:c9ab:a9cb:9645:f5c9? ([2001:388:608c:4c52:c9ab:a9cb:9645:f5c9])
+        by smtp.gmail.com with ESMTPSA id p64-v6sm39898932pfa.47.2018.08.14.19.06.22
+        for <liste-egc@polytech.univ-nantes.fr>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Aug 2018 19:06:23 -0700 (PDT)
+From: Francois Petitjean <francois.petitjean@monash.edu>
+To: liste-egc@polytech.univ-nantes.fr
+Openpgp: preference=signencrypt
+Autocrypt: addr=francois.petitjean@monash.edu; prefer-encrypt=mutual; keydata=
+ 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
+ xHxFONOKYCbEzU0=
+Message-ID: <12c44d8e-3c5c-57c7-211a-31838f55cb73@monash.edu>
+Date: Wed, 15 Aug 2018 12:06:20 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.9.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call for Tutorials - 2019 SIAM International Conference
+ on Data Mining (SDM'19)
+
+Apologies for cross-postings
+
+===
+
+SDM'19: THE NINETEENTH SIAM INTERNATIONAL CONFERENCE ON DATA MINING
+
+May 2 - May 4, 2019
+Calgary, Canada
+https://www.siam.org/conferences/CM/Main/sdm19
+
+------------ CALL FOR TUTORIALS ------------
+
+The SDM19 Organizing Committee invites proposals for tutorials to be
+held in conjunction with the conference. Tutorials are an effective way
+to educate and/or provide the necessary background to the intended
+audience enabling them to understand technical advances. They will
+typically cover state-of-the-art research, development and tools in a
+specific data mining related area, and stimulate and facilitate future
+work.
+
+For SDM19, we are seeking proposals for tutorials on all topics related
+to data mining. A tutorial may be a theme-oriented comprehensive survey,
+discuss novel data mining techniques or may center around a successful
+and timely application of data mining in important areas (e.g., public
+health, medicine, security, urban computing, the web, scientific data
+analysis). Tutorials on interdisciplinary research topics, novel and
+fast growing directions, and innovative applications are highly
+encouraged. We also encourage tutorials in areas that are somewhat
+different from the usual SDM mainstream, but still related to the
+objectives of discovering valuable knowledge from data. As examples of
+typical SIAM tutorials, see the set of accepted tutorials at previous
+SIAM conferences SDM14, SDM15, SDM16, SDM17, and SDM18.
+
+Tutorials are open to all conference attendees without any extra fees.
+The typical tutorial will be 2 hours long (longer tutorials will be
+considered). Previous SDM conferences attracted up to 100 attendees in a
+tutorial.
+
+Proposals should be submitted electronically with the subject header:
+“SDM 2019 Tutorial Proposal Submission” by October 5, 2018 11:59PM (US
+Pacific Time) to: B. Aditya Prakash, Virginia Tech., USA
+(badityap@cs.vt.edu)
+
+Proposals should be submitted in PDF format (for other formats please
+contact the tutorial chair first).
+
+Proposals should include the following:
+Basic information: Title, brief description, name and contact
+information for each tutor, length of the proposed tutorial. If the
+intended tutorial is expected to take longer than 2 hours a rationale is
+expected.
+Identify any other venues in which the tutorial, or a similar/highly
+related tutorial by the same authors, has been or will be presented, and
+highlight the similarity/difference between those and the one proposed
+for SDM19 (up to 100 words for each entry).
+Audience: Proposals must clearly identify the intended audience for the
+tutorial (e.g., novice, intermediate, expert).
+What background will be required of the audience?
+Why is this topic important/interesting to the SIAM data mining community?
+What is the benefit to participants?
+Provide some informal evidence that people would attend (e.g., related
+workshops).
+Coverage: Enough material should be included to provide a sense of both
+the scope of material to be covered and the depth to which they will be
+covered. The more details that can be provided, the better (up to and
+including links to the actual slides or viewgraphs). Note that the
+tutors should not focus mainly on their own research results. If, for
+certain parts of the tutorial, the material comes directly from the
+tutors' own research or product, please indicate this clearly in the
+proposal.
+Biographies: Provide brief biographical information on each tutor
+(including qualifications with respect to the tutorial's topic).
+Optional: Video snippet of you teaching a tutorial or giving a talk.
+
+Please note that all organizers of accepted tutorials are required to be
+present and deliver the lectures in the conference.
+Timeline
+Submission : October 5, 2018 11:59PM (US Pacific Time)
+Decision Notification : November 5, 2018
+Tutorial notes (2-pager) due : January 15, 2019
+Complete Set of Tutorial Viewgraphs (Slides): February 20, 2019
+
+
+
+FOLLOW SDM
+------------------------------------------------------------
+https://twitter.com/SIAMDataMining
+Twitter hashtag:
+#SIAMSDM19
+
+
+
+
+
+
+
+________________________________________
+
+Dr François PETITJEAN
+
+ARC DECRA Fellow
+Machine Learning Academic
+
+Monash University, Melbourne, Australia
+
+W: http://www.francois-petitjean.com
+T: @LeDataMiner
+
+Read about my most recent articles:
+- Best paper at SDM'18: Scalable learning of the warping window for DTW
+- http://bit.ly/SDM18BestPaperDTW
+- Machine Leaning 2018: BN parameter learning using HDPs -
+https://arxiv.org/pdf/1708.07581.pdf
+

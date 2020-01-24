@@ -1,0 +1,360 @@
+Return-Path: <halatrista@pucp.pe>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D7A3E2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 27 Sep 2018 16:39:18 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id D42ED6287F9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 27 Sep 2018 16:39:18 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id CAA834821B6D
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 27 Sep 2018 16:39:18 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.422
+X-Spam-Level: **
+X-Spam-Status: No, score=2.422 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, J_BACKHAIR_44=1, J_BACKHAIR_45=1,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.4466 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=pucp-pe.20150623.gappssmtp.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Y1ElU8apD0XS for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 27 Sep 2018 16:39:11 +0200 (CEST)
+X-Greylist: delayed 00:05:23 by SQLgrey-1.6.7
+Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 059E247EC07E
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 27 Sep 2018 16:39:11 +0200 (CEST)
+Received: by mail-vs1-xe2f.google.com with SMTP id z19-v6so1651831vso.3
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 27 Sep 2018 07:39:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pucp-pe.20150623.gappssmtp.com; s=20150623;
+        h=from:mime-version:subject:message-id:date:to;
+        bh=B3fnURhldf6cZjRRFdA3QdmAiRS8rsrB82tGjOTZkvY=;
+        b=f9ehE6V+bKo8ayZgOOBmb621o+8JhH2w7R61MtqzBmSt0QaNrZ3FbB7KQO/cv1YeWp
+         FqEqR4gmPHar7q8nTqySh8DB7XJ8Wl0vN9W67LAcxkC/Pev1JIsIuCU8srjaZE05uhUM
+         vo3yY0SZcQwzXP2BXvScpllCY2OtKuDFHtdL3qG8ARuUjDBZkGFTmhnjyMTSzmlOMHlH
+         blmLpVGBg6DWEUE+k/ODAsN7SlqbvmSiaR8kl+WZCWASfhErJgSZQs5n/LGSS4t9TChP
+         NabtpmK/QFgULuVk5+5YfrjUE8VnR2WoubqEVaLX8muQqKqlKxv5+hToCo2wvfYtP3De
+         vU4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
+        bh=B3fnURhldf6cZjRRFdA3QdmAiRS8rsrB82tGjOTZkvY=;
+        b=UrzDFY2SULn8IpCdbEMYCkGppaJh5BfRfuky+qJDOXNT6U7eVauwxjQJW13tbZb4Qx
+         WDCFk1UiA4mTxwpVXu06ANCCqBFTnT9a7U66dJbdAAw23wRYgVIAb/10tddKOSK6aOk5
+         CiVRW21loKsrwa3rLEvWpCqQ11k8iYB7c4+LShG1VFuqB7JN1Npc1FjxDoKWKI4uF0nn
+         Bf+xx7RvSzutWreQJnXBV28ORqceuUEcFuMefm4K96L5vCOEG+Dt0kHMLXJ+Xuk3m4i8
+         vJ5TCunBb2beuoqoyskhZkWZIocR+NvRq6L93/xBeDPS2uh1l9QAPmrfM6ZHbJGhuXqb
+         5j1g==
+X-Gm-Message-State: ABuFfohhOo7rsFjJuvs7+PZ0xcs6+WXU++u3OyoNNU/ARTKn4nzrLoJt
+	6IEHQrbYnIo1llFEahjWNajdW18Jfvg=
+X-Google-Smtp-Source: ACcGV61DnHQx3cg+Bt+KauGC35BnoOM9jBvt7JYVHyvIoUnXyhCqwKfSltNZAJxs4PISIjG9UZIPCw==
+X-Received: by 2002:a67:89ca:: with SMTP id l193-v6mr3429272vsd.183.1538058824203;
+        Thu, 27 Sep 2018 07:33:44 -0700 (PDT)
+Received: from desktop-m5q1306.up.local ([190.119.238.17])
+        by smtp.gmail.com with ESMTPSA id p196-v6sm315278vkf.38.2018.09.27.07.33.43
+        for <liste-egc@polytech.univ-nantes.fr>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 27 Sep 2018 07:33:43 -0700 (PDT)
+From: HUGO ALATRISTA SALAS <halatrista@pucp.pe>
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_AD7BA7B3-A074-4D41-9A46-8F9E7EA0FB4D"
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Message-Id: <594045EE-6293-4901-85DB-416B416E872A@pucp.pe>
+Date: Thu, 27 Sep 2018 09:33:41 -0500
+To: "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>
+X-Mailer: Apple Mail (2.3273)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [EDUNINE 2019] Last call for contributions - EDUNINE
+ 2019, Lima, PERU
+
+
+--Apple-Mail=_AD7BA7B3-A074-4D41-9A46-8F9E7EA0FB4D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+***** Apologies for cross-posting *****
+
+***** Last deadline extension for Abstract submission until October 13, =
+2018 *****
+
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+Last Call for Papers - EDUNINE 2019
+http://edunine.eu/edunine2019/ <http://edunine.eu/edunine2019/>
+Contact: edunine2019Lima@gmail.com <mailto:edunine2019Lima@gmail.com>
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+EDUNINE 2019 (III IEEE World Engineering Education Conference) will be =
+held in Lima, Peru,=20
+the City of Kings that is located on the central coast of the Pacific =
+Ocean in South America,=20
+from March 17 to 20, 2019, at the headquarters of the Universidad del =
+Pac=C3=ADfico,=20
+located in the Jes=C3=BAs Mar=C3=ADa District of Lima, Peru.
+
+The theme of this edition is Modern Educational Paradigms for Computer =
+and Engineering Careers.=20
+The main objective is to provide innovative solutions to the challenges =
+currently facing Engineering=20
+and Computer Education in order to contribute to the improvement of the =
+educational quality.
+
+EDUNINE will be held every year in a different Latin American city. It =
+is an annual conference of=20
+the IEEE Education Society organized jointly with COPEC for Region 9 =
+(Latin America). This conference=20
+is part of the renowned list of regional conferences of this Society =
+that are: FIE (Region 1-7),=20
+EDUCON (Region 8), EDUNINE (Region 9) and TALE (Region 10).
+
+Prospective authors are invited to submit original papers in one of the =
+Submission types: Full Paper (6 pages)=20
+or Work-in-Progress Paper (4 pages). We are especially interested in =
+papers that explore=20
+the following areas: classroom experiences, teaching techniques, =
+curricular initiatives, pedagogical tools=20
+or educational research projects. Papers should address one or more of =
+the Thematic Streams.=20
+Note that an Abstract Submission (maximum 150 words) is required for all =
+papers. All papers and abstracts=20
+must be written in English which is the official language of the =
+Conference in order to address a wider audience.=20
+The papers will be evaluated by peers based on originality, technical =
+and/or research content/depth, correctness,=20
+relevance to conference, contributions, and readability. Papers that are =
+accepted will be submitted for=20
+publishing in IEEE Xplore=C2=AE digital library providing at least one =
+author completes registration and presents the=20
+work at the Conference. The languages for the oral presentations are =
+English and also Portuguese and Spanish,=20
+corresponding to the most spoken languages in the Latin American region. =
+There will be no poster sessions.
+For more information, please see the conference website, opening August, =
+2018:
+
+Important Dates
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+Abstract Submission: October 13, 2018
+Notification Pre-acceptance: October 15, 2018
+Full/WIP paper Submission: October 22, 2018
+Notification of acceptance: November 30, 2018
+Final Paper Submission & Registration: January 7, 2019
+Conference: March 17-20, 2019
+
+Thematic Streams
+=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+** Innovation, Teaching and Learning:
+=E2=9C=93         Methods, Teaching and Learning Exp.
+=E2=9C=93         21st. Century Skills Development.
+=E2=9C=93         Laboratory Experiences.
+=E2=9C=93         Education and Difference: Special Educ.,
+=E2=9C=93         Learning Difficulties & Disability.
+=E2=9C=93         Adult & Lifelong Learning.
+=E2=9C=93         Interdisciplinary, Multidisciplinary &
+=E2=9C=93         Transdisciplinary Educ..
+=E2=9C=93         Other Topics
+
+** Technology-Enhanced Learning in the digital era & 4.0 revolution:
+=E2=9C=93         Innovation, Challenges & Strategies.
+=E2=9C=93         Infrastructure & Digital Technologies /ICT =
+Applications
+=E2=9C=93         Online/E-Learning & Distance Learning
+=E2=9C=93         Mobile Learning /MOOC
+=E2=9C=93         Smart Classroom
+=E2=9C=93         Social Media Technics
+=E2=9C=93         Serious Games, Game-Based Learning & Gamification
+=E2=9C=93         Virtual & Remote Labs.
+=E2=9C=93         X-Reality & Immersive Learning Env.
+=E2=9C=93         Other Topics
+
+** Education Management:
+=E2=9C=93         Curriculum Design & Development.
+=E2=9C=93         Accreditation Issues
+=E2=9C=93         Assessment & Evaluation
+=E2=9C=93         Retention & Learner-Support Strategies
+=E2=9C=93         Educational Innovation, Internationalization Exp.
+=E2=9C=93         Other Topics
+
+** Basic Sciences & General Educ.: Integration & Teaching/Learning Exp.:
+=E2=9C=93         Basic Sciences.
+=E2=9C=93         Foreign Languages & Applied Linguistics (including =
+ESL/TESL/TEFL)
+=E2=9C=93         Culture, Inter/Multiculturalism
+=E2=9C=93         Economic, Social & Human sciences
+=E2=9C=93         Ethical issues
+=E2=9C=93         Other Topics
+
+--
+EDUNINE 2019=
+
+--Apple-Mail=_AD7BA7B3-A074-4D41-9A46-8F9E7EA0FB4D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D"">***** Apologies for cross-posting *****<br class=3D""><br =
+class=3D"">***** Last deadline extension for Abstract submission until =
+October 13, 2018 *****<br class=3D""><br =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D"">Last Call for Papers - =
+EDUNINE 2019<br class=3D""><a href=3D"http://edunine.eu/edunine2019/" =
+class=3D"">http://edunine.eu/edunine2019/</a><br =
+class=3D"">Contact:&nbsp;<a href=3D"mailto:edunine2019Lima@gmail.com" =
+class=3D"">edunine2019Lima@gmail.com</a><br =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D""><br class=3D"">EDUNINE =
+2019 (III IEEE World Engineering Education Conference) will be held in =
+Lima, Peru,&nbsp;<br class=3D"">the City of Kings that is located on the =
+central coast of the Pacific Ocean in South America,&nbsp;<br =
+class=3D"">from March 17 to 20, 2019, at the headquarters of the =
+Universidad del Pac=C3=ADfico,&nbsp;<br class=3D"">located in the Jes=C3=BA=
+s Mar=C3=ADa District of Lima, Peru.<br class=3D""><br class=3D"">The =
+theme of this edition is Modern Educational Paradigms for Computer and =
+Engineering Careers.&nbsp;<br class=3D"">The main objective is to =
+provide innovative solutions to the challenges currently facing =
+Engineering&nbsp;<br class=3D"">and Computer Education in order to =
+contribute to the improvement of the educational quality.<br =
+class=3D""><br class=3D"">EDUNINE will be held every year in a different =
+Latin American city. It is an annual conference of&nbsp;<br class=3D"">the=
+ IEEE Education Society organized jointly with COPEC for Region 9 (Latin =
+America). This conference&nbsp;<br class=3D"">is part of the renowned =
+list of regional conferences of this Society that are: FIE (Region =
+1-7),&nbsp;<br class=3D"">EDUCON (Region 8), EDUNINE (Region 9) and TALE =
+(Region 10).<br class=3D""><br class=3D"">Prospective authors are =
+invited to submit original papers in one of the Submission types: Full =
+Paper (6 pages)&nbsp;<br class=3D"">or Work-in-Progress Paper (4 pages). =
+We are especially interested in papers that explore&nbsp;<br =
+class=3D"">the following areas: classroom experiences, teaching =
+techniques, curricular initiatives, pedagogical tools&nbsp;<br =
+class=3D"">or educational research projects. Papers should address one =
+or more of the Thematic Streams.&nbsp;<br class=3D"">Note that an =
+Abstract Submission (maximum 150 words) is required for all papers. All =
+papers and abstracts&nbsp;<br class=3D"">must be written in English =
+which is the official language of the Conference in order to address a =
+wider audience.&nbsp;<br class=3D"">The papers will be evaluated by =
+peers based on originality, technical and/or research content/depth, =
+correctness,&nbsp;<br class=3D"">relevance to conference, contributions, =
+and readability. Papers that are accepted will be submitted for&nbsp;<br =
+class=3D"">publishing in IEEE Xplore=C2=AE digital library providing at =
+least one author completes registration and presents the&nbsp;<br =
+class=3D"">work at the Conference. The languages for the oral =
+presentations are English and also Portuguese and Spanish,&nbsp;<br =
+class=3D"">corresponding to the most spoken languages in the Latin =
+American region. There will be no poster sessions.<br class=3D"">For =
+more information, please see the conference website, opening August, =
+2018:<br class=3D""><br class=3D"">Important Dates<br =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D""><br class=3D"">Abstract =
+Submission: October 13, 2018<br class=3D"">Notification Pre-acceptance: =
+October 15, 2018<br class=3D"">Full/WIP paper Submission: October 22, =
+2018<br class=3D"">Notification of acceptance: November 30, 2018<br =
+class=3D"">Final Paper Submission &amp; Registration: January 7, 2019<br =
+class=3D"">Conference: March 17-20, 2019<br class=3D""><br =
+class=3D"">Thematic Streams<br =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D""><br class=3D"">** =
+Innovation, Teaching and Learning:<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Methods, Teaching and =
+Learning Exp.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21st. Century Skills =
+Development.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Laboratory =
+Experiences.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Education and =
+Difference: Special Educ.,<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Learning Difficulties =
+&amp; Disability.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adult &amp; Lifelong =
+Learning.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interdisciplinary, =
+Multidisciplinary &amp;<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transdisciplinary =
+Educ..<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Topics<br =
+class=3D""><br class=3D"">** Technology-Enhanced Learning in the digital =
+era &amp; 4.0 revolution:<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Innovation, Challenges =
+&amp; Strategies.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Infrastructure &amp; =
+Digital Technologies /ICT Applications<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Online/E-Learning &amp; =
+Distance Learning<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mobile Learning /MOOC<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Smart Classroom<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Social Media Technics<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Serious Games, =
+Game-Based Learning &amp; Gamification<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Virtual &amp; Remote =
+Labs.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X-Reality &amp; =
+Immersive Learning Env.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Topics<br =
+class=3D""><br class=3D"">** Education Management:<br class=3D"">=E2=9C=93=
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Curriculum Design &amp; =
+Development.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accreditation Issues<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Assessment &amp; =
+Evaluation<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Retention &amp; =
+Learner-Support Strategies<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Educational Innovation, =
+Internationalization Exp.<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Topics<br =
+class=3D""><br class=3D"">** Basic Sciences &amp; General Educ.: =
+Integration &amp; Teaching/Learning Exp.:<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic Sciences.<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Foreign Languages &amp; =
+Applied Linguistics (including ESL/TESL/TEFL)<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Culture, =
+Inter/Multiculturalism<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economic, Social &amp; =
+Human sciences<br class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ethical issues<br =
+class=3D"">=E2=9C=93 =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Topics<br =
+class=3D""><br class=3D"">--<br class=3D"">EDUNINE 2019</body></html>=
+
+--Apple-Mail=_AD7BA7B3-A074-4D41-9A46-8F9E7EA0FB4D--

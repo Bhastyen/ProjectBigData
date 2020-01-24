@@ -1,0 +1,382 @@
+Return-Path: <chardon@adoc-tm.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id CA43F2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 20 Jun 2018 11:29:16 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id C85CD6287DA
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 20 Jun 2018 11:29:16 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id C4AEC48569EB
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 20 Jun 2018 11:29:16 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.822
+X-Spam-Level: *
+X-Spam-Status: No, score=1.822 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, IMPRONONCABLE_2=1.5, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, T_FRT_PROFILE1=0.01, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.0071 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=adoc-tm-com.20150623.gappssmtp.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GZaBnYcs8mDc for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 20 Jun 2018 11:29:15 +0200 (CEST)
+X-Greylist: delayed 00:06:21 by SQLgrey-1.6.7
+Received: from mail-ot0-x241.google.com (mail-ot0-x241.google.com [IPv6:2607:f8b0:4003:c0f::241])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 2CAB7441020C
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 20 Jun 2018 11:29:15 +0200 (CEST)
+Received: by mail-ot0-x241.google.com with SMTP id q17-v6so2980327otg.2
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 20 Jun 2018 02:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=adoc-tm-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=WKS8qmyUlcapRxOlqp50KCbRdWmRqqxjuMqt/QfHe1E=;
+        b=erT+l+bdtRM2I5QPoV+2nsNdCgTDkpUV+YRJai68WEBKGwrosZ/Crd7v3U06pXNLkC
+         4l8/3qT9pkhUw9yPZS0zIxqAqmu/2mr5Gke9xTi1Isah2vvKyjQx8oiHdKFGbK9m5S+M
+         yrOUKWSEUMtaAqRHjNlrvqhpF0wFW5ijSYuW/84JysX/Ull26dvqaevFcZSdee7GbUDa
+         Pegvfy+7vMEhezRegy7DyYb+XlDdWXLfmxuVgwmHxTcPw0/ay1iSun9BnwurRQiaM+yl
+         DUgENAJGQ1tJdAaXmIMf6pmboe6ZYxfC25UosW01nEDFvhmC3nBeWTX1QtnLXTb/i4Aq
+         TmzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=WKS8qmyUlcapRxOlqp50KCbRdWmRqqxjuMqt/QfHe1E=;
+        b=fAxF5rIy0W5TmH0fSt325qEpd07VUOKGEEuy12VsVCBfVrv70bVwRJHHub2R9EbTBc
+         ENhZT1GtiOVkuBjgu8J55tvMkzi/G5LIFl1iplVlJkvM9Nzv815jcEqFuenHzixtrxFm
+         N9WrEtuc7na+pYImd6FhO1Ai7TtWnNga9qsJcALkunGnDRQ7d89D+fofYY07895FeRLS
+         ygc8V0VIHgJNWUzoxWVVrfh4YukZ3CHboWszZRz39UZqjWU1N4N99d7tKFU9D6rZ8VTH
+         HiZ7YKEdWsK74scfI8FMH+mjfFM2yU0MKW7eO/CplVBmcRp/Ox3m66NvyypCK6lDnyP0
+         8Cug==
+X-Gm-Message-State: APt69E1l3pceIlDaFwzchmGb2ADlPv6k11w2vx6xqyRgXRoWQXG0cF7m
+	MRiS7NsxCYS/bwyPZESSTfavn5KAySwlttuKxznPNJT5
+X-Google-Smtp-Source: ADUXVKKIf1GAVseQSFXOZvWeKnlIsy5B7m4gbuyQq1JRCQMFpjKnVWYDi5XJTg0ZtxKf/EBqJtY+n5ZyKvOidHWPaTE=
+X-Received: by 2002:a9d:331b:: with SMTP id f27-v6mr13580400otc.373.1529486572543;
+ Wed, 20 Jun 2018 02:22:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a4a:83c5:0:0:0:0:0 with HTTP; Wed, 20 Jun 2018 02:22:22
+ -0700 (PDT)
+From: =?UTF-8?Q?Cl=C3=A9mence_Chardon?= <chardon@adoc-tm.com>
+Date: Wed, 20 Jun 2018 11:22:22 +0200
+Message-ID: <CABZ5pZGAU2w9mZaoLx8X=VGORjP7OTwboJf86xiScZwhN1+N4g@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="000000000000d87320056f0f5701"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] annonce =?UTF-8?Q?=C3=A0?= diffuser =?UTF-8?Q?aupr?=
+ =?UTF-8?Q?=C3=A8s?= de votre =?UTF-8?Q?r=C3=A9seau?=
+
+--000000000000d87320056f0f5701
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour Pierrick,
+
+Suite =C3=A0 notre =C3=A9change via linkedin, veuillez trouver ci dessous l=
+'annonce
+dans son int=C3=A9gralit=C3=A9.
+
+En vous remerciant pour la diffusion,
+Cordialement,
+
+*Entreprise*
+
+Adoc Talent Management recherche un=E2=88=99e Chercheur en Machine Learning=
+, pour
+une start=E2=80=99up d=E2=80=99ambition internationale d=C3=A9veloppant des=
+ objets connect=C3=A9s
+innovants tant d=E2=80=99un point de vue technologique que de l=E2=80=99exp=
+=C3=A9rience
+utilisateur. Afin d=E2=80=99optimiser encore ses produits, la soci=C3=A9t=
+=C3=A9 investit dans
+de nouveaux champs scientifiques, dont le machine learning, le traitement
+d=E2=80=99image, l=E2=80=99optronique et les syst=C3=A8mes embarqu=C3=A9s.
+
+
+
+*Poste*
+
+En collaboration directe avec le CEO et l=E2=80=99=C3=A9quipe technique, vo=
+tre mission
+sera de mettre =C3=A0 profit les approches issues du machine learning dans =
+des
+programmes de R&D.
+
+Plus pr=C3=A9cis=C3=A9ment, dans un premier temps, vous interviendrez dans =
+la
+conception d=E2=80=99algorithmes de traitement d=E2=80=99image et d=E2=80=
+=99apprentissage
+automatique, visant une meilleure reconnaissance des formes et caract=C3=A8=
+res.
+Vous interagirez au quotidien avec les d=C3=A9veloppeurs en charge de
+l=E2=80=99int=C3=A9gration.
+
+Aucun interdit : amusez-vous =C3=A0 toujours proposer des fonctionnalit=C3=
+=A9s plus
+originales pour les utilisateurs ! Gr=C3=A2ce =C3=A0 des cycles tr=C3=A8s c=
+ourts entre
+recherche et production, vous verrez les fruits de votre travail int=C3=A9g=
+r=C3=A9s
+tr=C3=A8s rapidement dans les foyers des utilisateurs de par le monde.
+
+Vous serez amen=C3=A9=C2=B7e =C3=A0 mettre en =C5=93uvre de nouvelles techn=
+iques et vous
+maintenir =C3=A0 la pointe de l=E2=80=99=C3=A9tat de l=E2=80=99art par une =
+veille active et des
+collaborations avec des laboratoires acad=C3=A9miques. Vous identifierez et
+interagirez =C3=A9galement avec des fournisseurs de briques technologiques =
+=C3=A0
+int=C3=A9grer.
+
+
+
+Le poste est bas=C3=A9 =C3=A0 Paris. Il est un tremplin vers de belles pers=
+pectives
+d=E2=80=99=C3=A9volutions au sein de l=E2=80=99entreprise : gestion de prog=
+rammes collaboratifs,
+encadrement de doctorants CIFRE notamment.
+
+
+
+*Profil*
+
+Vous =C3=AAtes docteur=C2=B7issu=C2=B7e des math=C3=A9matiques appliqu=C3=
+=A9es, de l=E2=80=99informatique ou
+de la physique, avec une sp=C3=A9cialisation dans le Machine Learning. Un
+post-doc =C3=A0 l=E2=80=99international serait appr=C3=A9ci=C3=A9. Vous t=
+=C3=A9moignez id=C3=A9alement d=E2=80=99une
+premi=C3=A8re exp=C3=A9rience r=C3=A9ussie de traitement et d=E2=80=99analy=
+se d=E2=80=99images. Vous avez
+con=C3=A7u des mod=C3=A8les pr=C3=A9dictifs et ma=C3=AEtriser les r=C3=A9se=
+aux de neurones et bien
+d=E2=80=99autres techniques de machine learning.  Vous codez en C/C++, Pyth=
+on et
+apprendre de nouveaux langages ne vous fait pas peur.
+
+Vous savez organiser votre travail et chercher l=E2=80=99information en aut=
+onomie.
+Vous aimez exp=C3=A9rimenter vos id=C3=A9es : identification des technologi=
+es;
+prototypage, caract=C3=A9risation. Lever des verrous scientifiques vous
+enthousiasme.
+
+Vous recherchez un environnement dynamique et aimez travailler en =C3=A9qui=
+pe en
+fran=C3=A7ais ou en anglais.
+
+Merci d=E2=80=99envoyer au plus vite votre candidature (CV, publications et
+brevets, motivations, pr=C3=A9tentions salariales) =C3=A0 *db31d6ba76dd01@a=
+pply.breezy.hr
+<db31d6ba76dd01@apply.breezy.hr>*
+
+Adoc Talent Management (www.adoc-tm.com)
+
+
+
+--=20
+*Cl=C3=A9mence Chardon*
+*Recruitement division manager*
+chardon@adoc-tm.com
+
+*Adoc Talent Management*
+21 rue du Faubourg Saint-Antoine, 75011 Paris, France
++33 (0)6 62 86 71 18
++33 (0)1 44 88 57 79
+www.adoc-tm.com
+www.facebook.com/AdocTalentManagement
+www.twitter.com/#!/AdocTM
+
+--000000000000d87320056f0f5701
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Bonjour Pierrick,=C2=A0<div><br></div><div>Suite =C3=A0 no=
+tre =C3=A9change via linkedin, veuillez trouver ci dessous l&#39;annonce da=
+ns son int=C3=A9gralit=C3=A9.=C2=A0</div><div><br></div><div>En vous remerc=
+iant pour la diffusion,=C2=A0</div><div>Cordialement,=C2=A0</div><div><br><=
+/div><div>
+
+<p style=3D"box-sizing:border-box;margin:0px 0px 10px;padding:0px;border:0p=
+x;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-weight:=
+200;font-stretch:inherit;font-size:14px;line-height:1.5;font-family:nimbus-=
+sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;vertical-align:b=
+aseline;color:rgb(68,68,68);letter-spacing:0.3px;text-align:left;text-decor=
+ation-style:initial;text-decoration-color:initial"><strong style=3D"box-siz=
+ing:border-box;font-weight:bold;margin:0px;padding:0px;border:0px;font-styl=
+e:inherit;font-variant:inherit;font-stretch:inherit;font-size:inherit;line-=
+height:inherit;font-family:inherit;vertical-align:baseline">Entreprise</str=
+ong></p><p style=3D"box-sizing:border-box;margin:0px 0px 10px;padding:0px;b=
+order:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font=
+-weight:200;font-stretch:inherit;font-size:14px;line-height:1.5;font-family=
+:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;vertical=
+-align:baseline;color:rgb(68,68,68);letter-spacing:0.3px;text-align:left;te=
+xt-decoration-style:initial;text-decoration-color:initial">Adoc Talent Mana=
+gement recherche un=E2=88=99e Chercheur en Machine Learning, pour une start=
+=E2=80=99up d=E2=80=99ambition internationale d=C3=A9veloppant des objets c=
+onnect=C3=A9s innovants tant d=E2=80=99un point de vue technologique que de=
+ l=E2=80=99exp=C3=A9rience utilisateur. Afin d=E2=80=99optimiser encore ses=
+ produits, la soci=C3=A9t=C3=A9 investit dans de nouveaux champs scientifiq=
+ues, dont le machine learning, le traitement d=E2=80=99image, l=E2=80=99opt=
+ronique et les syst=C3=A8mes embarqu=C3=A9s.</p><p style=3D"box-sizing:bord=
+er-box;margin:0px 0px 10px;padding:0px;border:0px;font-variant-numeric:inhe=
+rit;font-variant-east-asian:inherit;font-weight:200;font-stretch:inherit;fo=
+nt-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&q=
+uot;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,68)=
+;letter-spacing:0.3px;text-align:left;text-decoration-style:initial;text-de=
+coration-color:initial">=C2=A0</p><p style=3D"box-sizing:border-box;margin:=
+0px 0px 10px;padding:0px;border:0px;font-variant-numeric:inherit;font-varia=
+nt-east-asian:inherit;font-weight:200;font-stretch:inherit;font-size:14px;l=
+ine-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica=
+,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,68);letter-spacin=
+g:0.3px;text-align:left;text-decoration-style:initial;text-decoration-color=
+:initial"><strong style=3D"box-sizing:border-box;font-weight:bold;margin:0p=
+x;padding:0px;border:0px;font-style:inherit;font-variant:inherit;font-stret=
+ch:inherit;font-size:inherit;line-height:inherit;font-family:inherit;vertic=
+al-align:baseline">Poste</strong></p><p style=3D"box-sizing:border-box;marg=
+in:0px 0px 10px;padding:0px;border:0px;font-variant-numeric:inherit;font-va=
+riant-east-asian:inherit;font-weight:200;font-stretch:inherit;font-size:14p=
+x;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvet=
+ica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,68);letter-spa=
+cing:0.3px;text-align:left;text-decoration-style:initial;text-decoration-co=
+lor:initial">En collaboration directe avec le CEO et l=E2=80=99=C3=A9quipe =
+technique, votre mission sera de mettre =C3=A0 profit les approches issues =
+du machine learning dans des programmes de R&amp;D.</p><p style=3D"box-sizi=
+ng:border-box;margin:0px 0px 10px;padding:0px;border:0px;font-variant-numer=
+ic:inherit;font-variant-east-asian:inherit;font-weight:200;font-stretch:inh=
+erit;font-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica=
+ Neue&quot;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68=
+,68,68);letter-spacing:0.3px;text-align:left;text-decoration-style:initial;=
+text-decoration-color:initial">Plus pr=C3=A9cis=C3=A9ment, dans un premier =
+temps, vous interviendrez dans la conception d=E2=80=99algorithmes de trait=
+ement d=E2=80=99image et d=E2=80=99apprentissage automatique, visant une me=
+illeure reconnaissance des formes et caract=C3=A8res. Vous interagirez au q=
+uotidien avec les d=C3=A9veloppeurs en charge de l=E2=80=99int=C3=A9gration=
+.</p><p style=3D"box-sizing:border-box;margin:0px 0px 10px;padding:0px;bord=
+er:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;font-we=
+ight:200;font-stretch:inherit;font-size:14px;line-height:1.5;font-family:ni=
+mbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;vertical-al=
+ign:baseline;color:rgb(68,68,68);letter-spacing:0.3px;text-align:left;text-=
+decoration-style:initial;text-decoration-color:initial">Aucun interdit=C2=
+=A0: amusez-vous =C3=A0 toujours proposer des fonctionnalit=C3=A9s plus ori=
+ginales pour les utilisateurs=C2=A0! Gr=C3=A2ce =C3=A0 des cycles tr=C3=A8s=
+ courts entre recherche et production, vous verrez les fruits de votre trav=
+ail int=C3=A9gr=C3=A9s tr=C3=A8s rapidement dans les foyers des utilisateur=
+s de par le monde.</p><p style=3D"box-sizing:border-box;margin:0px 0px 10px=
+;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asia=
+n:inherit;font-weight:200;font-stretch:inherit;font-size:14px;line-height:1=
+.5;font-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-=
+serif;vertical-align:baseline;color:rgb(68,68,68);letter-spacing:0.3px;text=
+-align:left;text-decoration-style:initial;text-decoration-color:initial">Vo=
+us serez amen=C3=A9=C2=B7e =C3=A0 mettre en =C5=93uvre de nouvelles techniq=
+ues et vous maintenir =C3=A0 la pointe de l=E2=80=99=C3=A9tat de l=E2=80=99=
+art par une veille active et des collaborations avec des laboratoires acad=
+=C3=A9miques. Vous identifierez et interagirez =C3=A9galement avec des four=
+nisseurs de briques technologiques =C3=A0 int=C3=A9grer.</p><p style=3D"box=
+-sizing:border-box;margin:0px 0px 10px;padding:0px;border:0px;font-variant-=
+numeric:inherit;font-variant-east-asian:inherit;font-weight:200;font-stretc=
+h:inherit;font-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helv=
+etica Neue&quot;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:r=
+gb(68,68,68);letter-spacing:0.3px;text-align:left;text-decoration-style:ini=
+tial;text-decoration-color:initial">=C2=A0</p><p style=3D"box-sizing:border=
+-box;margin:0px 0px 10px;padding:0px;border:0px;font-variant-numeric:inheri=
+t;font-variant-east-asian:inherit;font-weight:200;font-stretch:inherit;font=
+-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&quo=
+t;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,68);l=
+etter-spacing:0.3px;text-align:left;text-decoration-style:initial;text-deco=
+ration-color:initial">Le poste est bas=C3=A9 =C3=A0 Paris. Il est un trempl=
+in vers de belles perspectives d=E2=80=99=C3=A9volutions au sein de l=E2=80=
+=99entreprise=C2=A0: gestion de programmes collaboratifs, encadrement de do=
+ctorants CIFRE notamment.</p><p style=3D"box-sizing:border-box;margin:0px 0=
+px 10px;padding:0px;border:0px;font-variant-numeric:inherit;font-variant-ea=
+st-asian:inherit;font-weight:200;font-stretch:inherit;font-size:14px;line-h=
+eight:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Aria=
+l,sans-serif;vertical-align:baseline;color:rgb(68,68,68);letter-spacing:0.3=
+px;text-align:left;text-decoration-style:initial;text-decoration-color:init=
+ial">=C2=A0</p><p style=3D"box-sizing:border-box;margin:0px 0px 10px;paddin=
+g:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inher=
+it;font-weight:200;font-stretch:inherit;font-size:14px;line-height:1.5;font=
+-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;v=
+ertical-align:baseline;color:rgb(68,68,68);letter-spacing:0.3px;text-align:=
+left;text-decoration-style:initial;text-decoration-color:initial"><strong s=
+tyle=3D"box-sizing:border-box;font-weight:bold;margin:0px;padding:0px;borde=
+r:0px;font-style:inherit;font-variant:inherit;font-stretch:inherit;font-siz=
+e:inherit;line-height:inherit;font-family:inherit;vertical-align:baseline">=
+Profil</strong></p><p style=3D"box-sizing:border-box;margin:0px 0px 10px;pa=
+dding:0px;border:0px;font-variant-numeric:inherit;font-variant-east-asian:i=
+nherit;font-weight:200;font-stretch:inherit;font-size:14px;line-height:1.5;=
+font-family:nimbus-sans,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-ser=
+if;vertical-align:baseline;color:rgb(68,68,68);letter-spacing:0.3px;text-al=
+ign:left;text-decoration-style:initial;text-decoration-color:initial">Vous =
+=C3=AAtes docteur=C2=B7issu=C2=B7e des math=C3=A9matiques appliqu=C3=A9es, =
+de l=E2=80=99informatique ou de la physique, avec une sp=C3=A9cialisation d=
+ans le Machine Learning. Un post-doc =C3=A0 l=E2=80=99international serait =
+appr=C3=A9ci=C3=A9. Vous t=C3=A9moignez id=C3=A9alement d=E2=80=99une premi=
+=C3=A8re exp=C3=A9rience r=C3=A9ussie de traitement et d=E2=80=99analyse d=
+=E2=80=99images. Vous avez con=C3=A7u des mod=C3=A8les pr=C3=A9dictifs et m=
+a=C3=AEtriser les r=C3=A9seaux de neurones et bien d=E2=80=99autres techniq=
+ues de machine learning.=C2=A0 Vous codez en C/C++, Python et apprendre de =
+nouveaux langages ne vous fait pas peur.</p><p style=3D"box-sizing:border-b=
+ox;margin:0px 0px 10px;padding:0px;border:0px;font-variant-numeric:inherit;=
+font-variant-east-asian:inherit;font-weight:200;font-stretch:inherit;font-s=
+ize:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neue&quot;=
+,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,68);let=
+ter-spacing:0.3px;text-align:left;text-decoration-style:initial;text-decora=
+tion-color:initial">Vous savez organiser votre travail et chercher l=E2=80=
+=99information en autonomie. Vous aimez exp=C3=A9rimenter vos id=C3=A9es=C2=
+=A0: identification des technologies; prototypage, caract=C3=A9risation. Le=
+ver des verrous scientifiques vous enthousiasme.</p><p style=3D"box-sizing:=
+border-box;margin:0px 0px 10px;padding:0px;border:0px;font-variant-numeric:=
+inherit;font-variant-east-asian:inherit;font-weight:200;font-stretch:inheri=
+t;font-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Ne=
+ue&quot;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68=
+,68);letter-spacing:0.3px;text-align:left;text-decoration-style:initial;tex=
+t-decoration-color:initial">Vous recherchez un environnement dynamique et a=
+imez travailler en =C3=A9quipe en fran=C3=A7ais ou en anglais.</p><p style=
+=3D"box-sizing:border-box;margin:0px 0px 10px;padding:0px;border:0px;font-v=
+ariant-numeric:inherit;font-variant-east-asian:inherit;font-stretch:inherit=
+;font-size:14px;line-height:1.5;font-family:nimbus-sans,&quot;Helvetica Neu=
+e&quot;,Helvetica,Arial,sans-serif;vertical-align:baseline;color:rgb(68,68,=
+68);letter-spacing:0.3px;text-align:left;text-decoration-style:initial;text=
+-decoration-color:initial">Merci d=E2=80=99envoyer au plus vite votre candi=
+dature (CV, publications et brevets, motivations, pr=C3=A9tentions salarial=
+es) =C3=A0=C2=A0<span style=3D"letter-spacing:0.3px"><b><a href=3D"mailto:d=
+b31d6ba76dd01@apply.breezy.hr">db31d6ba76dd01@apply.breezy.hr</a></b>=C2=A0=
+</span></p><p style=3D"box-sizing:border-box;margin:0px 0px 10px;padding:0p=
+x;border:0px;font-variant-numeric:inherit;font-variant-east-asian:inherit;f=
+ont-stretch:inherit;font-size:14px;line-height:1.5;font-family:nimbus-sans,=
+&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;vertical-align:baseli=
+ne;color:rgb(68,68,68);letter-spacing:0.3px;text-align:left;text-decoration=
+-style:initial;text-decoration-color:initial"><span style=3D"font-weight:20=
+0;letter-spacing:0.3px">Adoc Talent Management (</span><a style=3D"font-wei=
+ght:inherit;font-size:inherit;letter-spacing:0.3px;background-color:transpa=
+rent;font-style:inherit;font-variant:inherit;box-sizing:border-box;color:rg=
+b(90,192,229);margin:0px;padding:0px;border:0px;font-stretch:inherit;line-h=
+eight:inherit;vertical-align:baseline;outline:none">www.adoc-tm.com</a><spa=
+n style=3D"font-weight:200;letter-spacing:0.3px">)</span></p><br class=3D"g=
+mail-Apple-interchange-newline">
+
+<br clear=3D"all"><div><br></div>-- <br><div class=3D"gmail_signature"><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-size=
+:12.8px"><b style=3D"font-size:12.8px">Cl=C3=A9mence Chardon</b><br></div><=
+div style=3D"font-size:12.8px"><i>Recruitement division manager</i><br></di=
+v><div style=3D"font-size:12.8px"><a href=3D"mailto:chardon@adoc-tm.com" st=
+yle=3D"color:rgb(17,85,204)" target=3D"_blank">chardon@adoc-tm.com</a></div=
+><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">=
+<b>Adoc Talent Management</b></div><div style=3D"font-size:12.8px">21 rue d=
+u Faubourg Saint-Antoine, 75011 Paris, France</div><div style=3D"font-size:=
+12.8px">+33 (0)6 62 86 71 18</div><div style=3D"font-size:12.8px">+33 (0)1 =
+44 88 57 79</div><div style=3D"font-size:12.8px"><a href=3D"http://www.adoc=
+-tm.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank">www.adoc-tm.com<=
+/a></div><div style=3D"font-size:12.8px"><a href=3D"http://www.facebook.com=
+/AdocTalentManagement" style=3D"color:rgb(17,85,204)" target=3D"_blank">www=
+.facebook.com/AdocTalentManagement</a></div><div style=3D"font-size:12.8px"=
+><a href=3D"http://www.twitter.com/#!/AdocTM" style=3D"color:rgb(17,85,204)=
+" target=3D"_blank">www.twitter.com/#!/AdocTM</a></div><div><br></div></div=
+><div dir=3D"ltr"></div></div></div></div></div>
+</div></div>
+
+--000000000000d87320056f0f5701--

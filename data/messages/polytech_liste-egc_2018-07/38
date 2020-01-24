@@ -1,0 +1,143 @@
+Return-Path: <roche.university@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 954CC2292958
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 23 Jul 2018 09:29:30 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 9604A6D21C8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 23 Jul 2018 09:29:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 8F70E4821B1C
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 23 Jul 2018 09:29:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.431
+X-Spam-Level:
+X-Spam-Status: No, score=0.431 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_MSPIKE_H2=-0.001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.0950 )
+X-CRM114-CacheID: 
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id i2ULZbbtIUSp for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 23 Jul 2018 09:29:29 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id A82E743EC3AF
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 23 Jul 2018 09:29:29 +0200 (CEST)
+Received: by mail-wr1-f54.google.com with SMTP id q10-v6so16816555wrd.4
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 23 Jul 2018 00:29:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:reply-to:subject:to:cc:references:from
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language;
+        bh=+xfWC3hgiqK8U6o9n7A+WQthNv08Yi22mmF1qA+qtWM=;
+        b=PGZjGUYi8C8oXdDJvZygGRwnFlc178BOdUIYRyGnXB+3H0eFYq6n+GkBATOvHhmOzs
+         80xeEyWmMlOd5/TVXMRQPzMXLajOr1pX+x94yTpZh8bzdH73Vh+4C3ss9QI9tg4J6V94
+         hokYlwnSNw3NSFy7ycKOwAHYl8xdOF4KLdfav1Z1GUJ9PA6CMlQV+/EzBXe2yarp7Js9
+         7wshsmmQF/9G6fIYa0Jm8dJPcXnQzDF0a3kamzcH0TmcJ3H27BISRPG9ZHQWT5fbE7pP
+         W0VZo3t38CzTWw7vtS8FNsM8l7tSu7l/pYYE/MwGZMnTC95mGSyJuwh27ML3YZpitw44
+         VF8g==
+X-Gm-Message-State: AOUpUlHGlr55xfEM4R5g+O9iVvJMTINFn9hP+m3oS5thLsVx+ySA3rnc
+	NmkA2N/2r1WJQAsNKHrND6M=
+X-Google-Smtp-Source: AAOMgpeF59OvMf1I0yhBcdfYbHalHWLe0QAl9vHZcrpsN5uI1H4xLUfslNsPNGd8M7C/XbOquGfong==
+X-Received: by 2002:a5d:438d:: with SMTP id i13-v6mr7942401wrq.156.1532330969355;
+        Mon, 23 Jul 2018 00:29:29 -0700 (PDT)
+Received: from [193.48.123.34] (condillac-d34.univ-savoie.fr. [193.48.123.34])
+        by smtp.gmail.com with ESMTPSA id q188-v6sm3473969wmd.36.2018.07.23.00.29.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 23 Jul 2018 00:29:28 -0700 (PDT)
+Reply-To: roche@univ-savoie.fr
+To: info-ic@listes.irisa.fr, liste-egc@polytech.univ-nantes.fr, ln@cines.fr,
+ bull-i3@irit.fr, liste-proml@lri.fr, annonces@madics.fr,
+ Membreseffectifs@reseau-ltt.net
+Cc: workshop2018@toth.condillac.org,
+ Christophe Roche <christophe.roche@univ-savoie.fr>
+References: <78ccbcc6-3886-308e-f3fb-13e952930563@univ-savoie.fr>
+ <d3d5a2ef-ba56-ec70-a5d8-caa3a1bf22ec@univ-savoie.fr>
+From: Christophe Roche <roche@univ-savoie.fr>
+Message-ID: <9fa98a3c-94bf-8c06-5eef-a6dedbdf3585@univ-savoie.fr>
+Date: Mon, 23 Jul 2018 09:30:02 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.9.1
+MIME-Version: 1.0
+In-Reply-To: <d3d5a2ef-ba56-ec70-a5d8-caa3a1bf22ec@univ-savoie.fr>
+Content-Type: multipart/alternative;
+ boundary="------------AC6930F8F4B834D87A36BFE6"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Appel =?UTF-8?Q?=C3=A0?= communications : =?UTF-8?Q?J?=
+ =?UTF-8?Q?ourn=C3=A9e_d=27=C3=A9tude?= TOTh 2018 - Organisations et
+ entreprises. Perspectives terminologiques - Marseille 6 =?UTF-8?Q?d?=
+ =?UTF-8?Q?=C3=A9cembre?= 2018
+
+This is a multi-part message in MIME format.
+--------------AC6930F8F4B834D87A36BFE6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+*Appel à Communications*
+
+*Journée d'étude TOTh 2018 - Organisations et entreprises : perspectives 
+terminologiques*
+Marseille - Kedge Business School - 6 décembre 2018
+
+Site web: http://toth.condillac.org/workshop-2018
+
+Les résumés de deux à trois pages, bibliographie incluse, doivent être 
+envoyés à : workshop2018@toth.condillac.org 
+<mailto:workshop2018@toth.condillac.org>
+
+
+-- 
+-----------------------------------------------------------------------
+Prof Christophe ROCHE		        tel: +33 (0) 479 758 779
+Condillac Group - Listic lab.		cell:+33 (0) 686 250 705
+Université Savoie Mont-Blanc		
+Campus Scientifique	      		christophe.roche@univ-savoie.fr
+73 376 Le Bourget du Lac cedex		www.condillac.org
+France					www.christophe-roche.fr
+-----------------------------------------------------------------------
+
+
+--------------AC6930F8F4B834D87A36BFE6
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><b>Appel à Communications</b></p>
+    <p><font size="+1"><b><font color="#330099">Journée d'étude TOTh
+            2018 - Organisations et entreprises : perspectives
+            terminologiques</font></b></font><br>
+      Marseille - Kedge Business School - 6 décembre 2018<br>
+    </p>
+    <p>Site web: <a class="moz-txt-link-freetext" href="http://toth.condillac.org/workshop-2018">http://toth.condillac.org/workshop-2018</a><br>
+    </p>
+    <p> Les résumés de deux à trois pages, bibliographie incluse,
+      doivent être envoyés à : <a
+        href="mailto:workshop2018@toth.condillac.org">workshop2018@toth.condillac.org</a></p>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+-----------------------------------------------------------------------
+Prof Christophe ROCHE		        tel: +33 (0) 479 758 779
+Condillac Group - Listic lab.		cell:+33 (0) 686 250 705
+Université Savoie Mont-Blanc		
+Campus Scientifique	      		<a class="moz-txt-link-abbreviated" href="mailto:christophe.roche@univ-savoie.fr">christophe.roche@univ-savoie.fr</a>
+73 376 Le Bourget du Lac cedex		<a class="moz-txt-link-abbreviated" href="http://www.condillac.org">www.condillac.org</a>
+France					<a class="moz-txt-link-abbreviated" href="http://www.christophe-roche.fr">www.christophe-roche.fr</a>
+-----------------------------------------------------------------------</pre>
+  </body>
+</html>
+
+--------------AC6930F8F4B834D87A36BFE6--

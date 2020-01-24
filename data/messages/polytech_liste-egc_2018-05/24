@@ -1,0 +1,283 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 29EB12292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 14 May 2018 11:43:01 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 28CBA72C382
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 14 May 2018 11:43:01 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 2219143C2A51
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 14 May 2018 11:43:01 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.471
+X-Spam-Level:
+X-Spam-Status: No, score=0.471 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_STOCK3=4, URIBL_BLOCKED=0.001, VOWEL_URI_5=1] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.1559 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TQ6kCJHIRPsm for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 14 May 2018 11:43:00 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 2F9C3414A82B
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 14 May 2018 11:43:00 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id 0EA013FA0E
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 14 May 2018 11:43:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:mime-version:received:received:received; s=default;
+	 t=1526290979; x=1528105380; bh=Kh+VRahO2pt7RsZkENjduUM7lNuyv09N
+	2zYIbrzPjqc=; b=CzmUq2EIAndeFeD3KJuaLSCMQlXASu2KbTWdr9U7m7iCZ/1k
+	GtuTow5lVXvBsNI2KwzlnrJRiRLOCzxFzp9mLMdSFjn7Qe06O0xSyDdxi5JX8tiE
+	HZKRhhedBYff/hpVjOmQKR2wIHXroCpUOa+YsWDBXlbvD6zcWD6G2Sv05q0=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id x8DPee6qqYgO for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 14 May 2018 11:42:59 +0200 (CEST)
+Received: from mail-lf0-f54.google.com (mail-lf0-f54.google.com [209.85.215.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id B0F6E3FA0F
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 14 May 2018 11:42:59 +0200 (CEST)
+Received: by mail-lf0-f54.google.com with SMTP id b18-v6so16245166lfa.9
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 14 May 2018 02:42:59 -0700 (PDT)
+X-Gm-Message-State: ALKqPwczaQy8ftUqK5iLzE7vJkaIOD4ml1tm9TiXCLJdlZE0ssLabhsw
+	5amVXfKDSQVw577hYzs9C1iRl16hUqk0h6e5wqI=
+X-Google-Smtp-Source: AB8JxZpHhRsDyBWVS/PPR2PQUjm698w9QVVNSc1PE3TzIPMSOphj20xU40ikz9gbDneiNbJeYdbFnAx44HJtaRqSv/0=
+X-Received: by 2002:a2e:91d5:: with SMTP id u21-v6mr4280220ljg.0.1526290979065;
+ Mon, 14 May 2018 02:42:59 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Mon, 14 May 2018 11:42:48 +0200
+X-Gmail-Original-Message-ID: <CALsPASVYLTNu5BHZo2VbNLqY3OuZ6Pewbgmf6rXvWFtT4LrVCg@mail.gmail.com>
+Message-ID: <CALsPASVYLTNu5BHZo2VbNLqY3OuZ6Pewbgmf6rXvWFtT4LrVCg@mail.gmail.com>
+To: "bull-i3@irit.fr" <bull-i3@irit.fr>, 
+	"web.semantique@lists-sop.inria.fr" <web.semantique@lists-sop.inria.fr>, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>
+Cc: Antoine Zimmermann <antoine.zimmermann@emse.fr>, Alessandro CERIONI <acerioni@grandlyon.com>
+Content-Type: multipart/alternative; boundary="000000000000a19710056c274f2a"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] PhD position (French Cifre fellowship): From Open Data
+ to Linked Open Data for geospatial and spatio-temporal data: semanticising
+ metropolitan open data platforms
+
+--000000000000a19710056c274f2a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Type*
+French Cifre fellowship -
+http://www.anrt.asso.fr/sites/default/files/plaquette_cifre_en.pdf
+
+*Title*
+From Open Data to Linked Open Data for geospatial and spatio-temporal data:
+semanticising metropolitan open data platforms
+
+*Company *
+Lyon Metropole
+Alessandro Cerioni <acerioni@grandlyon.com>
+
+*Academic laboratory*
+Laboratoire Hubert Curien - Connected Intelligence team -
+https://laboratoirehubertcurien.univ-st-etienne.fr
+Flavien Balbo <flavien.balbo@emse.fr>,
+Antoine Zimmermann <antoine.zimmermann@emse.fr>,
+Maxime Lefran=C3=A7ois, <maxime.lefrancois@emse.fr>
+
+*Context*
+
+The open data platform of Lyon Metropole (https://data.grandlyon.com/)
+publishes a large amount of open data, allowing data re-users to develop
+applications and innovative services. However, reusing data sets can be
+sometimes difficult: each data set uses its own business-specific
+"vocabulary", particular to the context in which it was generated, which
+limits its understanding. This heterogeneity becomes even more problematic
+when multiple data sets must be integrated or when a foreign audience wants
+to grasp the information heritage of a metropolitan area.
+
+Technologies and standards from the Web of data specifically aim at solving
+this type of issues. They especially offer a resource description framework
+(RDF), allowing interconnecting said resources, to make more explicit their
+semantics by the use of ontologies.
+
+Models and technologies also exist to semanticise data sets by
+automatically transforming the data. Nonetheless, writing adapted
+transformations, finding or reusing pieces of transformations, utilising
+transformations at the scale of open data platforms, are still very
+difficult scientific tasks that must be addressed. In particular,
+geospatial and spatio-temporal data constitute the majority of data
+available on Lyon's open data platform, and more generally urban open data
+platforms. This type of data contains patterns and similarities that could
+be exploited to simplifly semanticization.
+
+Researchers at =C3=89cole des Mines de Saint-=C3=89tienne develop a service=
+-based
+platform for solving problems related to spatio-temporal data, called
+Territoire (http://territoire.emse.fr), that also suffers from the same
+issues regarding the heterogeneity of data sets. The platform is composed
+of heteregenous services consuming data sets to perform tasks, and could
+therefore benefit from the semanticization of data. A host of models and
+tools were proposed to tackle these problems: SPARQL-Generate allowing to
+generate RDF from documents in heretogeneous formats (
+http://ci.emse.fr/sparql-generate); UCUM Datatypes allowing to represent
+dimensionful values using custom datatypes (http://ci.emse.fr/lindt/); the
+ETSI standard SAREF-SEAS ontology meant to represent engineering-related
+knowledge.
+
+*Objectives*
+
+At the IT department of Lyon Metropole, the main goal is to make the open
+data platform evolve towards a linked data and semantic web system in order
+to facilitate their reusing, make the data more understandable and
+processable, and such that data from other sources in standardised semantic
+web formats can be interlinked.
+
+The hired student at Lyon Metropole will have to: (1) Choose or develop
+target knowledge models towards which data from the open data plateform
+should be semanticised; (2) Contribute to evolving the workflow for
+collecting, curating, processing, annotating, and deploying data, taking
+into account semantic interoperability and data linkage; (3) Apply his/her
+research results to improve the way open data are currently provided on the
+platform.
+
+*Working environment*
+The PhD candidate will work part time at Lyon Metropole, and part time at
+=C3=89cole des Mines de Saint-=C3=89tienne and the Laboratoire Hubert Curie=
+n
+(University of Saint-=C3=89tienne,
+https://laboratoirehubertcurien.univ-st-etienne.fr) in the Connected
+Intelligence team.
+
+*Funding*
+The CIFRE fellow signs a 3 years full time work contract with Lyon
+Metropole, the gross annual salary will depend on the candidate: gross
+annual salary of =E2=82=AC 23,484.
+
+*Profile of the candidate*
+The candidate should have a master degree or equivalent in computer
+science, with strong background in Semantic Web and Web of data. The
+candidate should also be a good developer, have a very good level (written
+and oral) in English, good communication skills (oral and written), be
+autonomous, and show motivation for research.
+
+*Application instructions*
+Applications must be composed of a Resume, Cover Letter in English, last
+grade certificate, Recommendation Letters, and any other relevant document,
+and must be sent in a compressed archive to:
+
+Alessandro Cerioni <acerioni@grandlyon.com>, Antoine Zimmermann <
+antoine.zimmermann@emse.fr>, Maxime Lefran=C3=A7ois, <maxime.lefrancois@ems=
+e.fr>
+
+- The application is opened until filled.
+- Once the candidate is selected, the final decision will be made by the
+French Cifre fellowship program two month later
+- The PhD thesis is expected to start Q4 2018.
+
+--000000000000a19710056c274f2a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><b>Type</b><br></div><div>French Cifre fellowship - <=
+a href=3D"http://www.anrt.asso.fr/sites/default/files/plaquette_cifre_en.pd=
+f">http://www.anrt.asso.fr/sites/default/files/plaquette_cifre_en.pdf</a></=
+div><div><br></div><div><b>Title</b></div><div>From Open Data to Linked Ope=
+n Data for geospatial and spatio-temporal data: semanticising metropolitan =
+open data platforms</div><div><br></div><div><b>Company=C2=A0</b></div><div=
+>Lyon Metropole</div><div>Alessandro Cerioni &lt;<a href=3D"mailto:acerioni=
+@grandlyon.com">acerioni@grandlyon.com</a>&gt;</div><div><br></div><div><b>=
+Academic laboratory</b></div><div>Laboratoire Hubert Curien - Connected Int=
+elligence team - <a href=3D"https://laboratoirehubertcurien.univ-st-etienne=
+.fr">https://laboratoirehubertcurien.univ-st-etienne.fr</a></div><div>Flavi=
+en Balbo &lt;<a href=3D"mailto:flavien.balbo@emse.fr">flavien.balbo@emse.fr=
+</a>&gt;,</div><div>Antoine Zimmermann &lt;<a href=3D"mailto:antoine.zimmer=
+mann@emse.fr">antoine.zimmermann@emse.fr</a>&gt;,=C2=A0</div><div>Maxime Le=
+fran=C3=A7ois, &lt;<a href=3D"mailto:maxime.lefrancois@emse.fr">maxime.lefr=
+ancois@emse.fr</a>&gt;</div><div><br></div><div><b>Context</b></div><div><b=
+r></div><div>The open data platform of Lyon Metropole (<a href=3D"https://d=
+ata.grandlyon.com/">https://data.grandlyon.com/</a>) publishes a large amou=
+nt of open data, allowing data re-users to develop applications and innovat=
+ive services. However, reusing data sets can be sometimes difficult: each d=
+ata set uses its own business-specific &quot;vocabulary&quot;, particular t=
+o the context in which it was generated, which limits its understanding. Th=
+is heterogeneity becomes even more problematic when multiple data sets must=
+ be integrated or when a foreign audience wants to grasp the information he=
+ritage of a metropolitan area.</div><div><br></div><div>Technologies and st=
+andards from the Web of data specifically aim at solving this type of issue=
+s. They especially offer a resource description framework (RDF), allowing i=
+nterconnecting said resources, to make more explicit their semantics by the=
+ use of ontologies.</div><div><br></div><div>Models and technologies also e=
+xist to semanticise data sets by automatically transforming the data. Nonet=
+heless, writing adapted transformations, finding or reusing pieces of trans=
+formations, utilising transformations at the scale of open data platforms, =
+are still very difficult scientific tasks that must be addressed. In partic=
+ular, geospatial and spatio-temporal data constitute the majority of data a=
+vailable on Lyon&#39;s open data platform, and more generally urban open da=
+ta platforms. This type of data contains patterns and similarities that cou=
+ld be exploited to simplifly semanticization.</div><div><br></div><div>Rese=
+archers at =C3=89cole des Mines de Saint-=C3=89tienne develop a service-bas=
+ed platform for solving problems related to spatio-temporal data, called Te=
+rritoire (<a href=3D"http://territoire.emse.fr">http://territoire.emse.fr</=
+a>), that also suffers from the same issues regarding the heterogeneity of =
+data sets. The platform is composed of heteregenous services consuming data=
+ sets to perform tasks, and could therefore benefit from the semanticizatio=
+n of data. A host of models and tools were proposed to tackle these problem=
+s: SPARQL-Generate allowing to generate RDF from documents in heretogeneous=
+ formats (<a href=3D"http://ci.emse.fr/sparql-generate">http://ci.emse.fr/s=
+parql-generate</a>); UCUM Datatypes allowing to represent dimensionful valu=
+es using custom datatypes (<a href=3D"http://ci.emse.fr/lindt/">http://ci.e=
+mse.fr/lindt/</a>); the ETSI standard SAREF-SEAS ontology meant to represen=
+t engineering-related knowledge.</div><div><br></div><div><b>Objectives</b>=
+</div><div><br></div><div>At the IT department of Lyon Metropole, the main =
+goal is to make the open data platform evolve towards a linked data and sem=
+antic web system in order to facilitate their reusing, make the data more u=
+nderstandable and processable, and such that data from other sources in sta=
+ndardised semantic web formats can be interlinked.</div><div><br></div><div=
+>The hired student at Lyon Metropole will have to: (1) Choose or develop ta=
+rget knowledge models towards which data from the open data plateform shoul=
+d be semanticised; (2) Contribute to evolving the workflow for collecting, =
+curating, processing, annotating, and deploying data, taking into account s=
+emantic interoperability and data linkage; (3) Apply his/her research resul=
+ts to improve the way open data are currently provided on the platform.</di=
+v><div><br></div><div><b>Working environment</b></div><div>The PhD candidat=
+e will work part time at Lyon Metropole, and part time at =C3=89cole des Mi=
+nes de Saint-=C3=89tienne and the Laboratoire Hubert Curien (University of =
+Saint-=C3=89tienne, <a href=3D"https://laboratoirehubertcurien.univ-st-etie=
+nne.fr">https://laboratoirehubertcurien.univ-st-etienne.fr</a>) in the Conn=
+ected Intelligence team.=C2=A0</div><div><br></div><div><b>Funding</b></div=
+><div>The CIFRE fellow signs a 3 years full time work contract with Lyon Me=
+tropole, the gross annual salary will depend on the candidate: gross annual=
+ salary of =E2=82=AC 23,484.</div><div><br></div><div><b>Profile of the can=
+didate</b></div><div>The candidate should have a master degree or equivalen=
+t in computer science, with strong background in Semantic Web and Web of da=
+ta. The candidate should also be a good developer, have a very good level (=
+written and oral) in English, good communication skills (oral and written),=
+ be autonomous, and show motivation for research.</div><div><br></div><div>=
+<b>Application instructions</b></div><div>Applications must be composed of =
+a Resume, Cover Letter in English, last grade certificate, Recommendation L=
+etters, and any other relevant document, and must be sent in a compressed a=
+rchive to:=C2=A0</div><div><br></div><div>Alessandro Cerioni &lt;<a href=3D=
+"mailto:acerioni@grandlyon.com">acerioni@grandlyon.com</a>&gt;, Antoine Zim=
+mermann &lt;<a href=3D"mailto:antoine.zimmermann@emse.fr">antoine.zimmerman=
+n@emse.fr</a>&gt;, Maxime Lefran=C3=A7ois, &lt;<a href=3D"mailto:maxime.lef=
+rancois@emse.fr">maxime.lefrancois@emse.fr</a>&gt;</div><div><br></div><div=
+>- The application is opened until filled.</div><div>- Once the candidate i=
+s selected, the final decision will be made by the French Cifre fellowship =
+program two month later</div><div>- The PhD thesis is expected to start Q4 =
+2018.</div></div>
+
+--000000000000a19710056c274f2a--

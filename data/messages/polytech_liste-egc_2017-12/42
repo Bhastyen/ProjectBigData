@@ -1,0 +1,395 @@
+Return-Path: <abdelmalek.amine@univ-saida.dz>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3EDBA229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 15 Dec 2017 18:16:14 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 38C9762882C
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 15 Dec 2017 18:16:14 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 2C3354821B3D
+	for <polytech_liste-egc@univ-nantes.fr>; Fri, 15 Dec 2017 18:16:14 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 6.526
+X-Spam-Level: ******
+X-Spam-Status: Yes, score=6.526 tagged_above=-1000 required=5
+	tests=[CRM114_SPAM=5, DKIM_SIGNED=0.1, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_BRBL_LASTEXT=1.644,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, T_DKIM_INVALID=0.01,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: SPAM ( -8.3644 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=neutral
+	reason="invalid (public key: not available)" header.d=univ-saida.dz
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7fa-bJ57OQ03 for <polytech_liste-egc@univ-nantes.fr>;
+	Fri, 15 Dec 2017 18:16:09 +0100 (CET)
+X-Greylist: from auto-whitelisted by SQLgrey-1.6.7
+Received: from mail.univ-saida.dz (mail.univ-saida.dz [41.110.190.118])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id C47E947EC074
+	for <polytech_liste-egc@univ-nantes.fr>; Fri, 15 Dec 2017 18:16:09 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id 8DC1A2413881D;
+	Fri, 15 Dec 2017 18:16:08 +0100 (CET)
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id kbdIyeSgc9aW; Fri, 15 Dec 2017 18:16:05 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id D63DE2413883C;
+	Fri, 15 Dec 2017 18:16:05 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.univ-saida.dz D63DE2413883C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-saida.dz; s=-u;
+	t=1513358165; bh=IH95SMBjLQE5jlp5gxgYQqTB1v7wC5FGDTK9S979Dv0=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=GJ1m4srAhTreOnm+0tMIuzu590AIJarhSpXqQMK3Na9gYlGjzM+eQHAuK10gRWd44
+	 22tlRmiyNnYBVb3P812z8pAjvbMFWvwTcZIt+QM9uUScNlCY/z/9j92EglV1qHYrZ9
+	 bEJqJthxQDgolc+Rwth+K1NuJofefn2XY5ZSs0llA11SOW2go7kUhSUMfVlT0TqicO
+	 YDOvnuXZEsnoGf5amjgEYlMKq27CkUciuzUiP88I6vwbfmuYtbCfNBbYcFEnWxg13D
+	 4gADggIlWIA13seGZ1/9u5bbqjn7I31XR+bS9Ij+3S7sE1aFOdO4QqbL1ghxPR4vuI
+	 YukXkaDIjHBbQ==
+X-Virus-Scanned: amavisd-new at mail.univ-saida.dz
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id pC9Pr4tKOHTL; Fri, 15 Dec 2017 18:16:05 +0100 (CET)
+Received: from mail.univ-saida.dz (mail.univ-saida.dz [10.168.100.119])
+	by mail.univ-saida.dz (Postfix) with ESMTP id AABE72413881D;
+	Fri, 15 Dec 2017 18:16:05 +0100 (CET)
+Date: Fri, 15 Dec 2017 18:16:05 +0100 (CET)
+From:  abdelmalek amine <abdelmalek.amine@univ-saida.dz>
+To: polytech liste-egc <polytech_liste-egc@univ-nantes.fr>
+Message-ID: <1694868716.713.1513358165385.JavaMail.zimbra@univ-saida.dz>
+In-Reply-To: <343621412.1764.1513022196880.JavaMail.zimbra@univ-saida.dz>
+References: <343621412.1764.1513022196880.JavaMail.zimbra@univ-saida.dz>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_0f6e04de-f46f-4327-8520-7f7190e978eb"
+X-Originating-IP: [10.168.100.119]
+X-Mailer: Zimbra 8.7.11_GA_1854 (ZimbraWebClient - FF57 (Win)/8.7.11_GA_1854)
+Thread-Topic: Special Track IEA-AIE 2018_The 31st International Conference on Industrial, Engineering & Other Applications of Applied Intelligent Systems
+Thread-Index: 8lPdPzbYqbRtQ6Q/gphgLeIWtsSJ/2sZFz/S
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [SPAM] CFP: Special Track IEA-AIE 2018_The 31st
+ International Conference on Industrial, Engineering & Other Applications
+ of Applied Intelligent Systems
+
+--=_0f6e04de-f46f-4327-8520-7f7190e978eb
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[We apologize for multiple reception] 
+
+
+
+Special Track : Internet of Things (IoT), Ubiquitous Computing and Big Data 
+
+The 31st International Conference on Industrial, Engineering & Other Applications of Applied Intelligent Systems (IEA-AIE 2018) 
+
+June 25-28, 2018 Montreal 
+
+[ http://ieaaie2018.encs.concordia.ca/tracks.html | http://ieaaie2018.encs.concordia.ca/tracks.html ] 
+
+
+
+
+The main scope of this special track is the convergence of IoT and big data technologies, and aims at bringing together researchers and practitioners working in IoT in order to present, discuss and share original research works and practical experiences, and provide the latest and most innovative contributions. 
+
+The Track welcomes submissions related to the practical and theoretical issues related to developing and deploying such systems. The main topics include but are not limited to: 
+
+    * IoT and big data platform architecture 
+    * IoT and big data analytics 
+    * IoT Applications, Services, and Implementations 
+    * Real-time and stream processing techniques 
+    * Predictive and advanced machine learning model 
+    * Ubiquitous machine learning 
+    * Security, Privacy, and Trust for IoT 
+
+
+
+The conference proceedings will be published by Springer in the [ http://www.springer.com/gp/computer-science/lncs | Lecture Notes in Artificial Intelligence (LNCS/LNAI)  ] series . A paper will be accepted either as a long or as a short paper. Long papers will be allocated 12 pages while short papers will be allocated 6 pages in the proceedings. Authors of accepted papers will be allocated time for an oral presentation at the conference and will have the opportunity to present their work in a poster session. At least one author of each accepted paper is required to attend the conference to present the work. Authors must agree to this requirement prior to submitting their paper for review. 
+
+
+
+Important Dates: 
+
+    * Paper Submission deadline: January 9, 2018 
+    * Notification of Acceptance/Rejection: February 16, 2018 
+    * Camera Ready Paper Submission: February 26, 2018 
+
+
+
+
+
+--=_0f6e04de-f46f-4327-8520-7f7190e978eb
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
+ize: 12pt; color: #000000"><div><style>
+<!--
+=20
+ @font-face
+=09{font-family:Wingdings;
+=09panose-1:5 0 0 0 0 0 0 0 0 0;
+=09mso-font-charset:2;
+=09mso-generic-font-family:auto;
+=09mso-font-pitch:variable;
+=09mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;
+=09mso-font-charset:0;
+=09mso-generic-font-family:roman;
+=09mso-font-pitch:variable;
+=09mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;
+=09mso-font-charset:0;
+=09mso-generic-font-family:swiss;
+=09mso-font-pitch:variable;
+=09mso-font-signature:-536859905 -1073732485 9 0 511 0;}
+=20
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{mso-style-unhide:no;
+=09mso-style-qformat:yes;
+=09mso-style-parent:"";
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09line-height:115%;
+=09mso-pagination:widow-orphan;
+=09font-size:11.0pt;
+=09font-family:"Calibri","sans-serif";
+=09mso-ascii-font-family:Calibri;
+=09mso-ascii-theme-font:minor-latin;
+=09mso-fareast-font-family:Calibri;
+=09mso-fareast-theme-font:minor-latin;
+=09mso-hansi-font-family:Calibri;
+=09mso-hansi-theme-font:minor-latin;
+=09mso-bidi-font-family:Arial;
+=09mso-bidi-theme-font:minor-bidi;
+=09mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:blue;
+=09text-decoration:underline;
+=09text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+=09{mso-style-noshow:yes;
+=09mso-style-priority:99;
+=09color:purple;
+=09mso-themecolor:followedhyperlink;
+=09text-decoration:underline;
+=09text-underline:single;}
+.zimbra1
+=09{mso-style-type:export-only;
+=09mso-default-props:yes;
+=09mso-ascii-font-family:Calibri;
+=09mso-ascii-theme-font:minor-latin;
+=09mso-fareast-font-family:Calibri;
+=09mso-fareast-theme-font:minor-latin;
+=09mso-hansi-font-family:Calibri;
+=09mso-hansi-theme-font:minor-latin;
+=09mso-bidi-font-family:Arial;
+=09mso-bidi-theme-font:minor-bidi;
+=09mso-fareast-language:EN-US;}
+.zimbra2
+=09{mso-style-type:export-only;
+=09margin-bottom:10.0pt;
+=09line-height:115%;}
+@page Section1
+=09{size:595.3pt 841.9pt;
+=09margin:70.85pt 70.85pt 70.85pt 70.85pt;
+=09mso-header-margin:35.4pt;
+=09mso-footer-margin:35.4pt;
+=09mso-paper-source:0;}
+div.Section1
+=09{page:Section1;}
+=20
+ @list l0
+=09{mso-list-id:852452361;
+=09mso-list-template-ids:-606339020;}
+@list l0:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:=EF=82=B7;
+=09mso-level-tab-stop:36.0pt;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09mso-ansi-font-size:10.0pt;
+=09font-family:Symbol;}
+@list l1
+=09{mso-list-id:1728645517;
+=09mso-list-template-ids:1194515442;}
+@list l1:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:=EF=82=B7;
+=09mso-level-tab-stop:36.0pt;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09mso-ansi-font-size:10.0pt;
+=09font-family:Symbol;}
+ol
+=09{margin-bottom:0cm;}
+ul
+=09{margin-bottom:0cm;}
+-->
+</style></div><div data-marker=3D"__QUOTED_TEXT__"><div id=3D"zimbraEditorC=
+ontainer" style=3D"font-family: arial, helvetica, sans-serif; font-size: 12=
+pt; color: #000000" class=3D"2"><div style=3D"text-align: center;"> [We apo=
+logize for multiple reception] </div><br><div>    <p class=3D"MsoNormal" st=
+yle=3D"text-align: center; margin: 0px;" align=3D"center"><span style=3D"fo=
+nt-size: 14.0pt; line-height: 115%; font-family: 'Times New Roman','serif';=
+ mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roma=
+n'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; colo=
+r: red; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB"=
+>Special Track&nbsp;: Internet of Things (IoT), Ubiquitous Computing and Bi=
+g Data</span></p><p class=3D"MsoNormal" style=3D"text-align: center; margin=
+: 0px;" align=3D"center"><span style=3D"font-size: 14.0pt; line-height: 115=
+%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi=
+; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-b=
+idi; mso-bidi-theme-font: major-bidi; color: red; mso-ansi-language: EN-GB;=
+ mso-fareast-language: FR;" lang=3D"EN-GB">The 31st International Conferenc=
+e on Industrial, Engineering &amp; Other Applications of Applied Intelligen=
+t Systems (IEA-AIE 2018)</span></p><p class=3D"MsoNormal" style=3D"text-ali=
+gn: center; margin: 0px;" align=3D"center"><b><span style=3D"font-size: 12.=
+0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso-ascii-t=
+heme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hans=
+i-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-languag=
+e: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">June 25-28, 2018 Montre=
+al</span></b></p><p class=3D"MsoNormal" style=3D"text-align: center; margin=
+: 0px;" align=3D"center"><span style=3D"font-size: 12.0pt; line-height: 115=
+%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi=
+; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-b=
+idi; mso-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast=
+-language: FR;" lang=3D"EN-GB"><a href=3D"http://ieaaie2018.encs.concordia.=
+ca/tracks.html" target=3D"_blank">http://ieaaie2018.encs.concordia.ca/track=
+s.html</a></span><br data-mce-bogus=3D"1"></p><p class=3D"MsoNormal" style=
+=3D"text-align: justify; margin: 0px;"><span style=3D"font-size: 12.0pt; li=
+ne-height: 115%; font-family: 'Times New Roman','serif'; mso-ascii-theme-fo=
+nt: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: majo=
+r-bidi; mso-ansi-language: EN-GB;" lang=3D"EN-GB">&nbsp;</span></p><p class=
+=3D"MsoNormal" style=3D"text-align: justify; line-height: normal; margin: 0=
+px;"><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman','seri=
+f'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New R=
+oman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; m=
+so-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">The main=
+ scope of this special track is the convergence of IoT and big data technol=
+ogies, and aims at bringing together researchers and practitioners working =
+in IoT in order to present, discuss and share original research works and p=
+ractical experiences, and provide the latest and most innovative contributi=
+ons. </span></p><p class=3D"MsoNormal" style=3D"text-align: justify; line-h=
+eight: normal; margin: 0px;"><span style=3D"font-size: 12.0pt; font-family:=
+ 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-f=
+ont-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-t=
+heme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;"=
+ lang=3D"EN-GB">The Track welcomes submissions related to the practical and=
+ theoretical issues related to developing and deploying such systems. The m=
+ain topics include but are not limited to: </span></p><ul type=3D"disc"><li=
+ class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-a=
+lt: auto; text-align: justify; line-height: normal; mso-list: l1 level1 lfo=
+1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: =
+'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-fo=
+nt-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-th=
+eme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" =
+lang=3D"EN-GB">IoT and big data platform architecture</span></li><li class=
+=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: au=
+to; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab=
+-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Times=
+ New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-fam=
+ily: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-fo=
+nt: major-bidi; mso-fareast-language: FR;">IoT and big data analytics</span=
+></li><li class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin=
+-bottom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 l=
+evel1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-f=
+areast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; ms=
+o-bidi-theme-font: major-bidi; mso-fareast-language: FR;">IoT Applications,=
+ Services, and Implementations</span></li><li class=3D"MsoNormal" style=3D"=
+mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify;=
+ line-height: normal; mso-list: l1 level1 lfo1; tab-stops: list 36.0pt;"><s=
+pan style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso=
+-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; =
+mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi=
+-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Real-time and s=
+tream processing techniques</span></li><li class=3D"MsoNormal" style=3D"mso=
+-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify; li=
+ne-height: normal; mso-list: l1 level1 lfo1; tab-stops: list 36.0pt;"><span=
+ style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-as=
+cii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso=
+-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-la=
+nguage: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Predictive and adv=
+anced machine learning model</span></li><li class=3D"MsoNormal" style=3D"ms=
+o-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify; l=
+ine-height: normal; mso-list: l1 level1 lfo1; tab-stops: list 36.0pt;"><spa=
+n style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-a=
+scii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; ms=
+o-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareas=
+t-language: FR;">Ubiquitous machine learning</span></li><li class=3D"MsoNor=
+mal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-a=
+lign: justify; line-height: normal; mso-list: l1 level1 lfo1; tab-stops: li=
+st 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman=
+','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Time=
+s New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-=
+bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">S=
+ecurity, Privacy, and Trust for IoT</span></li></ul><p class=3D"MsoNormal" =
+style=3D"text-align: justify; margin: 0px;"><span style=3D"font-size: 12.0p=
+t; line-height: 115%; font-family: 'Times New Roman','serif'; mso-ascii-the=
+me-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font:=
+ major-bidi; mso-ansi-language: EN-GB;" lang=3D"EN-GB">The conference proce=
+edings will be published by Springer in the </span><span style=3D"font-size=
+: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso-as=
+cii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-them=
+e-font: major-bidi;"><a href=3D"http://www.springer.com/gp/computer-science=
+/lncs" target=3D"_blank"><span style=3D"mso-ansi-language: EN-GB;" lang=3D"=
+EN-GB">Lecture Notes in Artificial Intelligence (LNCS/LNAI) </span></a></sp=
+an><span style=3D"font-size: 12.0pt; line-height: 115%; font-family: 'Times=
+ New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-hansi-theme-font=
+: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB;" l=
+ang=3D"EN-GB">series . A paper will be accepted either as a long or as a sh=
+ort paper. Long papers will be allocated 12 pages while short papers will b=
+e allocated 6 pages in the proceedings. Authors of accepted papers will be =
+allocated time for an oral presentation at the conference and will have the=
+ opportunity to present their work in a poster session. At least one author=
+ of each accepted paper is required to attend the conference to present the=
+ work. Authors must agree to this requirement prior to submitting their pap=
+er for review.</span></p><p class=3D"MsoNormal" style=3D"text-align: justif=
+y; margin: 0px;"><span style=3D"font-size: 12.0pt; line-height: 115%; font-=
+family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-ha=
+nsi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-langu=
+age: EN-GB;" lang=3D"EN-GB">&nbsp;</span></p><p class=3D"MsoNormal" style=
+=3D"text-align: justify; line-height: normal; margin: 0px;"><b><span style=
+=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-ascii-th=
+eme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi=
+-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-langu=
+age: FR;">Important Dates:</span></b><span style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-f=
+areast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; ms=
+o-bidi-theme-font: major-bidi; mso-fareast-language: FR;"></span></p><ul ty=
+pe=3D"disc"><li class=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-=
+margin-bottom-alt: auto; text-align: justify; line-height: normal; mso-list=
+: l0 level1 lfo2; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt=
+; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi;=
+ mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bi=
+di; mso-bidi-theme-font: major-bidi; mso-fareast-language: FR;">Paper Submi=
+ssion deadline: January 9, 2018</span></li><li class=3D"MsoNormal" style=3D=
+"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify=
+; line-height: normal; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt;"><=
+span style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; ms=
+o-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman';=
+ mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ans=
+i-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Notification o=
+f Acceptance/Rejection: February 16, 2018</span></li><li class=3D"MsoNormal=
+" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-alig=
+n: justify; line-height: normal; mso-list: l0 level1 lfo2; tab-stops: list =
+36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman','=
+serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times N=
+ew Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bid=
+i; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Came=
+ra Ready Paper Submission: February 26, 2018</span></li></ul><p class=3D"Ms=
+oNormal" style=3D"margin: 0px;"><span style=3D"mso-ansi-language: EN-GB;" l=
+ang=3D"EN-GB">&nbsp;</span></p> </div></div><br></div></div></body></html>
+--=_0f6e04de-f46f-4327-8520-7f7190e978eb--

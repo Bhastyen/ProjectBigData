@@ -1,0 +1,404 @@
+Return-Path: <philippe.fv@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id DD0642292948
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 17 Apr 2018 17:35:17 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id DB6F1628823
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 17 Apr 2018 17:35:17 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id D48304821A80
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 17:35:17 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.154
+X-Spam-Level:
+X-Spam-Status: No, score=-0.154 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_LOW=-1, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001, URIBL_SBL=0.644, URIBL_SBL_A=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.1369 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hSWWbCnTtklp for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 17 Apr 2018 17:35:16 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qk0-x22a.google.com (mail-qk0-x22a.google.com [IPv6:2607:f8b0:400d:c09::22a])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 67C25448F4DD
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 17:35:16 +0200 (CEST)
+Received: by mail-qk0-x22a.google.com with SMTP id i73so1545490qke.6
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 08:35:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=0kGtAd4odSMP7758f0k1OS2dDDSSVn2hWBQVZwwmuPo=;
+        b=QIaeRjLi0BoRK7VICMp6yLB7fuSjlbuVx5qD5uicL6gqWI0j72K8/KJFwxkONV40b7
+         o1cApdRdryPKdD/1RPoTVQzsQ52XM2+x062fq7F6uGlHCoGD8bDMN5l/XKcSXSWUKA3i
+         eOljMmAQ/irDoNGOPNcSVH1RhY8UW6bcXSDLY0GM0T4KPMbcAGjCKOzu5jxQNruxprzq
+         whYR9SdKHQv+EfDTYADPM31+DQuM8NYMLaEbYENU8MkTjUGt9vxpcMJwQ8iVFxNGgU7Z
+         WJGWCH0PRfJCCNTs9CUETWbjlVP9typZfZ3IDieXFG/8WFbAfFAc6sivwRD6DOfSNB/d
+         8Jzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=0kGtAd4odSMP7758f0k1OS2dDDSSVn2hWBQVZwwmuPo=;
+        b=swRBOoV8Frq1wRZfR3iAlmF9MxWX1RJeaTtxiiL0mehU6VxoX1f5KESAP6eYmr4Zbn
+         5FKlrlOLkEuiEWZZPXu1VwSZ6zzDXYIrNnQ1Nkwy36PpV5bjFH/lI7y1oEsp/BEryCdE
+         Agr7A/8fN2hYpaiFJJgqHN5HmkSgnoBqgvNY0sdlM0o6itECDoZYvSEEkDwnrwl38NHV
+         6H7vs9+wloEE052zxSM+vCJDslVjK4TVNA4DwfpC40uINomik75yXvOHpuRObH0e9mL+
+         igIgZXDFhAqHSdEyzUFCC7x6hmAas7ddq+YsWDzGalWcx4bM+cQxJYiEq1wQ1lFydTbm
+         HuQg==
+X-Gm-Message-State: ALQs6tD3s0jk72QRmxBBwPc39HJQW2oitnUPBR4bh9DHoIFgpDAk2bCJ
+	G7zlciK52NCOnXXgKO7wF54+/AsINhpyp4KGaa3w+w==
+X-Google-Smtp-Source: AIpwx48+4vYTwakUHMQ3m9HjeZgfVGGvoeGqSevwAGNzSHDvCe0Ti+uvQuqDfomKJiOde0YNj7bo0O3W8OcV5pkQs1s=
+X-Received: by 10.55.58.204 with SMTP id h195mr2693448qka.207.1523979315007;
+ Tue, 17 Apr 2018 08:35:15 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.12.246.210 with HTTP; Tue, 17 Apr 2018 08:35:14 -0700 (PDT)
+From: Philippe Fournier-Viger <philippe.fv@gmail.com>
+Date: Tue, 17 Apr 2018 23:35:14 +0800
+Message-ID: <CAFkUv0sHyiaKt=7D=w6226fPDKpz5kDtOHJpTgLYa0mWyxH2Gw@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="001a114a2080b7587d056a0d1502"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP: Utility Driven Mining Workshop (at KDD 2018)
+
+--001a114a2080b7587d056a0d1502
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ SVP, faire circuler le CFP aux personnes int=C3=A9ress=C3=A9es. Avec nos e=
+xcuses en
+cas de r=C3=A9ceptions multiples.
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Call for papers =3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+UDM 2018: 1st International Workshop on Utility-Driven Mining
+Held in conjunction with the 24th ACM SIGKDD Conference (KDD 2018)
+August 20, 2018, London, United Kingdom
+
+=3D=3D=3D=3D=3D=3D Scope of the workshop =3D=3D=3D=3D=3D
+
+Utility-driven mining and learning from data has received emerging
+attentions from KDD communities due to its high potential in wide
+applications, covering finance, biomedicine, manufacturing, e-commerce,
+social media, etc. Current research topics in utility-driven mining focused
+primarily on discovering patterns of high value (eg, high profit) in large
+databases, or analyzing/learning the important factors (eg, economic
+factors) in the data mining process. One of the popular applications of
+utility mining is the analysis of large transactional databases to discover
+high-utility itemsets, which consist of sets of items that generate a high
+profit when purchased together.
+
+The workshop aims at bringing together academic and industrial researchers
+and practitioners from data mining, machine learning and other
+interdisciplinary communities, in the collaborative effort of identifying
+and discussing major technical challenges, recent results and potential
+topics on the emerging fields of Utility-Driven Mining. This workshop will
+focus on real world experiences, inherent challenges, as well as new
+research methods/applications desired.
+The Utility-Driven Mining (UDM) workshop will discuss a broad variety of
+topics related to utility-driven mining, including:
+
+- Theory and core methods for utility mining and learning
+- Utility patterns mining in large datasets, e.g., high-utility itemset
+mining, high-utility sequential patterns/rules mining, high-utility episode
+mining, and other novel patterns
+-  Analysis and learning of novel utility factors in mining and learning
+process
+-  Predictive modeling/learning, clustering and link analysis that
+incorporate utility factors
+-  Incremental utility mining and learning
+-  Utility mining and learning in streams
+-  Utility mining and learning in uncertain systems
+-  Utility mining and learning in big data
+-  Knowledge representations for utility patterns
+-  Privacy preserving utility mining/learning
+-  Visualization techniques for utility mining/learning
+-  Open-source software/libraries/platform
+-  Innovative applications in interdisciplinary domains, like finance,
+biomedicine, healthcare, manufacturing, e-commerce, social media,
+education, etc.
+-  New, open, or unsolved problems in utility-driven mining
+
+=3D=3D=3D=3D Organizing Committee =3D=3D=3D=3D
+
+Organizing committee
+
+-   Vincent S. Tseng (National Chiao Tung University, Taiwan)
+-   Philip S. Yu (University of Illinois at Chicago, USA)
+-   Jerry Chun-Wei Lin (Harbin Institute of Technology Shenzhen, China)
+-   Philippe Fournier-Viger (Harbin Institute of Technology Shenzhen, China=
+)
+
+=3D=3D=3D=3D Important dates =3D=3D=3D=3D=3D
+
+Paper submissions due:    May 8, 2018
+Paper notifications:           June 8, 2018
+Workshop date:                 August 20, 2018
+
+For any questions, please contact the organizing committee.
+
+=3D=3D=3D=3D Submission information =3D=3D=3D=3D=3D
+
+Submissions are limited to 9 pages, and must be formatted according to the
+Standard ACM Conference Proceedings Template.
+
+=3D=3D Website of the workshop =3D=3D=3D=3D
+
+http://philippe-fournier-viger.com/utility_mining_workshop_2018/index.html
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+
+--001a114a2080b7587d056a0d1502
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>
+
+<span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif;font-size:12.8=
+px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal=
+;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;tex=
+t-transform:none;white-space:normal;word-spacing:0px;background-color:rgb(2=
+55,255,255);text-decoration-style:initial;text-decoration-color:initial;flo=
+at:none;display:inline">SVP, faire circuler le CFP aux personnes int=C3=A9r=
+ess=C3=A9es. Avec nos excuses en cas de r=C3=A9ceptions multiples.</span></=
+div><div><br></div><div><font color=3D"#000000"><span style=3D"font-size:12=
+.8px">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Call for papers =3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></font></div><div><span=
+ style=3D"color:rgb(0,0,0);font-family:arial,sans-serif;font-size:12.8px;fo=
+nt-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font=
+-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tra=
+nsform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,25=
+5,255);text-decoration-style:initial;text-decoration-color:initial;float:no=
+ne;display:inline"><br></span></div><div><font color=3D"#000000"><span styl=
+e=3D"font-size:12.8px">UDM 2018: 1st International Workshop on Utility-Driv=
+en Mining=C2=A0</span></font></div><div><font color=3D"#000000"><span style=
+=3D"font-size:12.8px">Held in conjunction with the 24th ACM SIGKDD Conferen=
+ce (KDD 2018)=C2=A0</span></font></div><div><font color=3D"#000000"><span s=
+tyle=3D"font-size:12.8px">August 20, 2018, London, United Kingdom</span></f=
+ont><br></div><div><font color=3D"#000000"><span style=3D"font-size:12.8px"=
+><br></span></font></div><div>=3D=3D=3D=3D=3D=3D Scope of the workshop =3D=
+=3D=3D=3D=3D<br></div><div><br></div><div><div>Utility-driven mining and le=
+arning from data has received emerging attentions from KDD communities due =
+to its high potential in wide applications, covering finance, biomedicine, =
+manufacturing, e-commerce, social media, etc. Current research topics in ut=
+ility-driven mining focused primarily on discovering patterns of high value=
+ (eg, high profit) in large databases, or analyzing/learning the important =
+factors (eg, economic factors) in the data mining process. One of the popul=
+ar applications of utility mining is the analysis of large transactional da=
+tabases to discover high-utility itemsets, which consist of sets of items t=
+hat generate a high profit when purchased together.</div><div><br></div><di=
+v>The workshop aims at bringing together academic and industrial researcher=
+s and practitioners from data mining, machine learning and other interdisci=
+plinary communities, in the collaborative effort of identifying and discuss=
+ing major technical challenges, recent results and potential topics on the =
+emerging fields of Utility-Driven Mining. This workshop will focus on real =
+world experiences, inherent challenges, as well as new research methods/app=
+lications desired.</div><div>The Utility-Driven Mining (UDM) workshop will =
+discuss a broad variety of topics related to utility-driven mining, includi=
+ng:</div><div><br></div><div>- Theory and core methods for utility mining a=
+nd learning</div><div>- Utility patterns mining in large datasets, e.g., hi=
+gh-utility itemset mining, high-utility sequential patterns/rules mining, h=
+igh-utility episode mining, and other novel patterns</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Analysis and learning of novel utility factors in mining and learning proce=
+ss</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Predictive modeling/learning, clustering and link analysis that incorporate=
+ utility factors</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Incremental utility mining and learning</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Utility mining and learning in streams</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Utility mining and learning in uncertain systems</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Utility mining and learning in big data</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Knowledge representations for utility patterns</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Privacy preserving utility mining/learning</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Visualization techniques for utility mining/learning</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Open-source software/libraries/platform</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+Innovative applications in interdisciplinary domains, like finance, biomedi=
+cine, healthcare, manufacturing, e-commerce, social media, education, etc.<=
+/div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;background-color:rgb=
+(255,255,255);text-decoration-style:initial;text-decoration-color:initial;f=
+loat:none;display:inline">-<span>=C2=A0</span></span>
+
+New, open, or unsolved problems in utility-driven mining</div><div><br></di=
+v><div>=3D=3D=3D=3D Organizing Committee =3D=3D=3D=3D</div><div><br></div><=
+div><div>Organizing committee</div><div><br></div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;text-decoration-styl=
+e:initial;text-decoration-color:initial;background-color:rgb(255,255,255);f=
+loat:none;display:inline">-<span>=C2=A0</span></span><span style=3D"color:r=
+gb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne"><span>=C2=A0</span></span>
+
+Vincent S. Tseng (National Chiao Tung University, Taiwan)</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;text-decoration-styl=
+e:initial;text-decoration-color:initial;background-color:rgb(255,255,255);f=
+loat:none;display:inline">-<span>=C2=A0</span></span><span style=3D"color:r=
+gb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne"><span>=C2=A0</span></span>
+
+Philip S. Yu (University of Illinois at Chicago, USA)</div><div>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;text-decoration-styl=
+e:initial;text-decoration-color:initial;background-color:rgb(255,255,255);f=
+loat:none;display:inline">-<span>=C2=A0</span></span><span style=3D"color:r=
+gb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne"><span>=C2=A0</span></span>
+
+Jerry Chun-Wei Lin (Harbin Institute of Technology Shenzhen, China)</div><d=
+iv>
+
+<span style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:s=
+mall;font-style:normal;font-variant-ligatures:normal;font-variant-caps:norm=
+al;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;t=
+ext-transform:none;white-space:normal;word-spacing:0px;text-decoration-styl=
+e:initial;text-decoration-color:initial;background-color:rgb(255,255,255);f=
+loat:none;display:inline">-<span>=C2=A0</span></span><span style=3D"color:r=
+gb(34,34,34);font-family:arial,sans-serif;font-size:small;font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne"><span>=C2=A0</span></span>
+
+Philippe Fournier-Viger (Harbin Institute of Technology Shenzhen, China)</d=
+iv></div><div><br></div><div><div>=3D=3D=3D=3D Important dates =3D=3D=3D=3D=
+=3D</div><div><br></div><div>Paper submissions due:=C2=A0 =C2=A0 May 8, 201=
+8</div><div>Paper notifications:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Ju=
+ne 8, 2018</div><div>Workshop date:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0August 20, 2018</div></div><div><br></div><div>For =
+any questions, please contact the organizing committee.</div></div><div><br=
+></div><div>=3D=3D=3D=3D Submission information =3D=3D=3D=3D=3D</div><div><=
+br></div><div>Submissions are limited to 9 pages, and must be formatted acc=
+ording to the Standard ACM Conference Proceedings Template.<br></div><div><=
+br></div><div>=3D=3D Website of the workshop =3D=3D=3D=3D</div><div><br></d=
+iv><div><a href=3D"http://philippe-fournier-viger.com/utility_mining_worksh=
+op_2018/index.html">http://philippe-fournier-viger.com/utility_mining_works=
+hop_2018/index.html</a></div><div><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><di=
+v><br></div>
+</div>
+
+--001a114a2080b7587d056a0d1502--

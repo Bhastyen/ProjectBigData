@@ -1,0 +1,415 @@
+Return-Path: <philippe.lenca@imt-atlantique.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 7CE6A1903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 Jan 2017 13:24:32 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6CB6A24254C
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 Jan 2017 13:24:32 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 656AA46AE51D
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jan 2017 13:24:32 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -9.789
+X-Spam-Level:
+X-Spam-Status: No, score=-9.789 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_MED=-10, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.7466 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=imt-atlantique.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Y5N50mOW_4_q for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 25 Jan 2017 13:24:30 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy210.enst-bretagne.fr (zproxy210.enst-bretagne.fr [192.108.117.8])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 6EF304516368
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jan 2017 13:24:30 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id 41154232015
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jan 2017 13:24:30 +0100 (CET)
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id BpEzIX8Ge574 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 25 Jan 2017 13:24:28 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id A4D72232019
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jan 2017 13:24:28 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy210.enst-bretagne.fr A4D72232019
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imt-atlantique.fr;
+	s=50EA75E8-DE22-11E6-A6DE-0662BA474D24; t=1485347068;
+	bh=NAyYl0eaKrRA16GghOQ0WuZBdYOQm+vcc55AE/MpZUM=;
+	h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type;
+	b=D+jtEPCQyFsFIQzcrcHG8aWyOVtLA9uRnt4zSYtakvuihybaGQxeX2TqfX4qU4Hn7
+	 gRCWvCDEgF5UeeGxNkZO1qtbl+JmN5RRAVK2M12S6K5vu/hGyA3p6AuNeb5nE06P9n
+	 tUwHTQq4HRBC7Bj3XyCFtuOwpx/Mk9M6jO1aTxHg=
+X-Virus-Scanned: amavisd-new at zproxy210.enst-bretagne.fr
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 0XXw0xUt8n6R for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 25 Jan 2017 13:24:28 +0100 (CET)
+Received: from [IPv6:2001:660:7302:5:d6be:d9ff:fe70:ce3b] (passerelle-interne.enst-bretagne.fr [192.108.117.210])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTPSA id 780D0232015
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 Jan 2017 13:24:28 +0100 (CET)
+From: Philippe Lenca <philippe.lenca@imt-atlantique.fr>
+To: liste-egc@polytech.univ-nantes.fr
+Organization: IMT Atlantique
+Message-ID: <1d78b9a8-8e35-8e2e-e562-9b6b1d5e3743@imt-atlantique.fr>
+Date: Wed, 25 Jan 2017 13:24:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+ Thunderbird/45.5.1
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------73195B1AE5C94C746F529B9B"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] 2nd CFP: Knowledge Discovery and Business Intelligence
+ (KDBI)
+
+This is a multi-part message in MIME format.
+--------------73195B1AE5C94C746F529B9B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Dear  Colleague,
+
+We would be very grateful if you could disseminate this call among your=20
+research peers and colleagues.
+Please excuse us if you receive this email more than once.
+
+Knowledge Discovery and Business Intelligence (KDBI - EPIA2017)
+-------------------------------------------------------------------------=
+--------------------------------
+thematic track of the of the 18th Conference on Artificial Intelligence=20
+(EPIA 2017)
+Porto, Portugal, September 5-8, 2017
+Web-page: https://web.fe.up.pt/~epia2017/thematic-tracks/kdbi/=20
+<https://web.fe.up.pt/%7Eepia2017/thematic-tracks/kdbi/>
+
+Important Dates
+------------------------
+Paper submission: Apr 15, 2017
+Paper acceptance: May 31, 2017
+Camera-ready: Jun 15, 2017
+
+Nowadays, business organizations moving towards decision-making=20
+processes that are based on data. In parallel, advances in Information=20
+Technology has given rise to the age of big data. Thus, the pressure to=20
+extract as much useful knowledge from these data is very strong.=20
+Knowledge Discovery (KD) is a branch of Artificial Intelligence (AI)=20
+that aims to extract useful (and understandable) knowledge from complex=20
+and/or large volumes of data. Business Intelligence (BI) is an umbrella=20
+term that represents computer architectures, technologies and methods to=20
+enhance managerial decision-making. Both KD and BI are faced with new=20
+challenges, such as: Internet expansion, real-world with increasing=20
+dynamic and unstable environments, integration of expert knowledge into=20
+the data-driven learning, and better support of informed decisions. In=20
+effect, several AI techniques can be used to address these problems,=20
+such as Machine Learning/Data Mining/Data Science, Evolutionary=20
+Computation and Modern Optimization, Forecasting, Neural Computing and=20
+Deep Learning.
+
+The aim of this workshop is to gather the latest research in KD and BI.=20
+In particular, papers that describe experience and lessons learned from=20
+KD/BI projects and/or present business and organizational impacts using=20
+AI technologies, are welcome. Finally, we encourage papers that deal=20
+with the interaction with the end users, taking into its impact on real=20
+organizations.
+
+Topics of interest
+-------------------------
+A non-exhaustive list of topics of interest is defined as follows:
+
+**   Knowledge Discovery (KD):
+*       Data Pre-Processing;
+*       Intelligent Data Analysis;
+*       Temporal and Spatial KD;
+*       Data and Knowledge Visualization;
+*       Machine Learning (e.g. Decision Trees, Neural Networks and Deep=20
+Learning, Bayesian Learning, Inductive and Fuzzy Logic) and Statistical=20
+Methods;
+*       Hybrid Learning Models and Methods: Using KD methods and=20
+Cognitive Models, Learning in Ontologies, inductive logic, etc.
+*       Domain KD: Learning from Heterogeneous, Unstructured (e.g. text)=20
+and Multimedia data, Networks, Graphs and Link Analysis);
+*       Data Mining and Machine Learning: Classification, Regression,=20
+Clustering and Association Rules;
+*       Ubiquitous Data Mining: Distributed Data Mining, Incremental=20
+Learning,  Change Detection, Learning from Ubiquitous Data Streams;
+
+**  Business Intelligence (BI)/Business Analytics/Data Science:
+*       Methodologies, Architectures or Computational Tools;
+*       Artificial Intelligence (e.g. KD, Evolutionary Computation,=20
+Intelligent Agents, Logic) applied to BI: Data Warehouse, OLAP, Data=20
+Mining, Decision Support Systems, Adaptive BI, Web Intelligence and=20
+Competitive Intelligence.
+
+**  Real-word Applications:
+*       Prediction/Optimization in Finance, Marketing, Medicine, Sales,=20
+Production.
+*       Mining Big Data and Cloud computing.
+*       Social Network Analysis; Community detection, Influential nodes.
+
+
+Paper submission
+-------------------------
+All papers should be submitted in PDF format through EPIA 2017=20
+submission Website (select =E2=80=9CKnowledge Discovery and Business=20
+Intelligence=E2=80=9D track):
+https://www.easychair.org/conferences/*conf=3Depia2017=20
+<https://www.easychair.org/conferences/*conf=3Depia2017>
+
+Submissions must be original and can be of two types: regular=20
+(full-length) papers should not exceed twelve (12) pages in length,=20
+whereas short papers should not exceed six (6) pages.
+
+Each submission will be peer reviewed by at least three members of the=20
+Programme Committee. The reviewing process is double blind, so authors=20
+should remove names and affiliations from the submitted papers, and must=20
+take reasonable care to assure anonymity during the review process.=20
+References to own work may be included in the paper, as long as referred=20
+to in the third person.
+
+All accepted papers will appear in the proceedings published by Springer=20
+in the LNAI series (EPIA 2011 proceedings were indexed by the Thomson=20
+ISI Web of Knowledge, Scopus, DBLP and ACM digital library).
+
+
+Special Issue of the Journal Expert Systems
+-------------------------------------------------------------------
+Authors of the best papers presented at the KDBI 2017 track of EPIA will=20
+be invited to submit extended versions of their manuscripts for a=20
+special issue KDBI of the =E2=80=98The Wiley- Blackwell Journal Expert Sy=
+stems:=20
+The Journal of Knowledge Engineering=E2=80=99, indexed at ISI Web of Know=
+ledge=20
+(ISI impact factor JCR2015 of 0.947).
+
+This special issue corresponds to the 4th KDBI special issue on Expert=20
+Systems (ES) journal (e.g., the 2nd issue is available at:=20
+http://onlinelibrary.wiley.com/doi/10.1111/exsy.12087/abstract=20
+<http://onlinelibrary.wiley.com/doi/10.1111/exsy.12087/abstract> ).
+
+
+Organizing Committee
+----------------------------------
+*       Paulo Cortez, University of Minho, Portugal (contact person,=20
+http://www3.dsi.uminho.pt/pcortez <http://www3.dsi.uminho.pt/pcortez>)
+*       Albert Bifet, Universit=C3=A9 Paris-Saclay, France
+*       Lu=C3=ADs Cavique, Universidade Aberta, Portugal
+*       Jo=C3=A3o Gama, University of Porto, Portugal
+*       Nuno Marques, New University of Lisbon, Portugal
+*       Manuel Filipe Santos, University of Minho, Portugal
+
+
+
+--------------73195B1AE5C94C746F529B9B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div dir=3D"ltr">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr">
+          <div class=3D"gmail_quote">Dear =C2=A0Colleague,<br>
+            <br>
+            We would be very grateful if you could disseminate this call
+            among your research peers and colleagues.<br>
+            Please excuse us if you receive this email more than once.<br=
+>
+            <br>
+            Knowledge Discovery and Business Intelligence (KDBI -
+            EPIA2017)<br>
+            ------------------------------<wbr>--------------------------=
+----<wbr>------------------------------<wbr>---------------<br>
+            thematic track of the of the 18th Conference on Artificial
+            Intelligence (EPIA 2017)<br>
+            Porto, Portugal, September 5-8, 2017<br>
+            Web-page: <a
+              href=3D"https://web.fe.up.pt/%7Eepia2017/thematic-tracks/kd=
+bi/"
+              rel=3D"noreferrer" target=3D"_blank"><a class=3D"moz-txt-li=
+nk-freetext" href=3D"https://web.fe.up.pt/~epia2017">https://web.fe.up.pt=
+/~epia2017</a><wbr>/thematic-tracks/kdbi/</a><br>
+            <br>
+            Important Dates<br>
+            ------------------------<br>
+            Paper submission: Apr 15, 2017<br>
+            Paper acceptance: May 31, 2017<br>
+            Camera-ready: Jun 15, 2017<br>
+            <br>
+            Nowadays, business organizations moving towards
+            decision-making processes that are based on data. In
+            parallel, advances in Information Technology has given rise
+            to the age of big data. Thus, the pressure to extract as
+            much useful knowledge from these data is very strong.
+            Knowledge Discovery (KD) is a branch of Artificial
+            Intelligence (AI) that aims to extract useful (and
+            understandable) knowledge from complex and/or large volumes
+            of data. Business Intelligence (BI) is an umbrella term that
+            represents computer architectures, technologies and methods
+            to enhance managerial decision-making. Both KD and BI are
+            faced with new challenges, such as: Internet expansion,
+            real-world with increasing dynamic and unstable
+            environments, integration of expert knowledge into the
+            data-driven learning, and better support of informed
+            decisions. In effect, several AI techniques can be used to
+            address these problems, such as Machine Learning/Data
+            Mining/Data Science, Evolutionary Computation and Modern
+            Optimization, Forecasting, Neural Computing and Deep
+            Learning.<br>
+            <br>
+            The aim of this workshop is to gather the latest research in
+            KD and BI. In particular, papers that describe experience
+            and lessons learned from KD/BI projects and/or present
+            business and organizational impacts using AI technologies,
+            are welcome. Finally, we encourage papers that deal with the
+            interaction with the end users, taking into its impact on
+            real organizations.<br>
+            <br>
+            Topics of interest<br>
+            -------------------------<br>
+            A non-exhaustive list of topics of interest is defined as
+            follows:<br>
+            <br>
+            **=C2=A0 =C2=A0Knowledge Discovery (KD):<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Data Pre-Processing;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Intelligent Data Analysis;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Temporal and Spatial KD;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Data and Knowledge Visualization;=
+<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Machine Learning (e.g. Decision T=
+rees, Neural
+            Networks and Deep Learning, Bayesian Learning, Inductive and
+            Fuzzy Logic) and Statistical Methods;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Hybrid Learning Models and Method=
+s: Using KD methods
+            and Cognitive Models, Learning in Ontologies, inductive
+            logic, etc.<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Domain KD: Learning from Heteroge=
+neous, Unstructured
+            (e.g. text) and Multimedia data, Networks, Graphs and Link
+            Analysis);<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Data Mining and Machine Learning:=
+ Classification,
+            Regression, Clustering and Association Rules;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Ubiquitous Data Mining: Distribut=
+ed Data Mining,
+            Incremental Learning,=C2=A0 Change Detection, Learning from
+            Ubiquitous Data Streams;<br>
+            <br>
+            **=C2=A0 Business Intelligence (BI)/Business Analytics/Data
+            Science:<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Methodologies, Architectures or C=
+omputational Tools;<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Artificial Intelligence (e.g. KD,=
+ Evolutionary
+            Computation, Intelligent Agents, Logic) applied to BI: Data
+            Warehouse, OLAP, Data Mining, Decision Support Systems,
+            Adaptive BI, Web Intelligence and Competitive Intelligence.<b=
+r>
+            <br>
+            **=C2=A0 Real-word Applications:<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Prediction/Optimization in Financ=
+e, Marketing,
+            Medicine, Sales, Production.<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Mining Big Data and Cloud computi=
+ng.<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Social Network Analysis; Communit=
+y detection,
+            Influential nodes.<br>
+            <br>
+            <br>
+            Paper submission<br>
+            -------------------------<br>
+            All papers should be submitted in PDF format through EPIA
+            2017 submission Website (select =E2=80=9CKnowledge Discovery =
+and
+            Business Intelligence=E2=80=9D track):<br>
+            <a
+              href=3D"https://www.easychair.org/conferences/*conf=3Depia2=
+017"
+              rel=3D"noreferrer" target=3D"_blank"><a class=3D"moz-txt-li=
+nk-freetext" href=3D"https://www.easychair.org/conf">https://www.easychai=
+r.org/conf</a><wbr>erences/*conf=3Depia2017</a><br>
+            <br>
+            Submissions must be original and can be of two types:
+            regular (full-length) papers should not exceed twelve (12)
+            pages in length, whereas short papers should not exceed six
+            (6) pages.<br>
+            <br>
+            Each submission will be peer reviewed by at least three
+            members of the Programme Committee. The reviewing process is
+            double blind, so authors should remove names and
+            affiliations from the submitted papers, and must take
+            reasonable care to assure anonymity during the review
+            process. References to own work may be included in the
+            paper, as long as referred to in the third person.<br>
+            <br>
+            All accepted papers will appear in the proceedings published
+            by Springer in the LNAI series (EPIA 2011 proceedings were
+            indexed by the Thomson ISI Web of Knowledge, Scopus, DBLP
+            and ACM digital library).<br>
+            <br>
+            <br>
+            Special Issue of the Journal Expert Systems<br>
+            ------------------------------<wbr>--------------------------=
+----<wbr>-------<br>
+            Authors of the best papers presented at the KDBI 2017 track
+            of EPIA will be invited to submit extended versions of their
+            manuscripts for a special issue KDBI of the =E2=80=98The Wile=
+y-
+            Blackwell Journal Expert Systems: The Journal of Knowledge
+            Engineering=E2=80=99, indexed at ISI Web of Knowledge (ISI im=
+pact
+            factor JCR2015 of 0.947).<br>
+            <br>
+            This special issue corresponds to the 4th KDBI special issue
+            on Expert Systems (ES) journal (e.g., the 2nd issue is
+            available at: <a
+              href=3D"http://onlinelibrary.wiley.com/doi/10.1111/exsy.120=
+87/abstract"
+              rel=3D"noreferrer" target=3D"_blank"><a class=3D"moz-txt-li=
+nk-freetext" href=3D"http://onlinelibrary.wiley.com">http://onlinelibrary=
+.wiley.com</a><wbr>/doi/10.1111/exsy.12087/abstra<wbr>ct</a>
+            ).<br>
+            <br>
+            <br>
+            Organizing Committee<br>
+            ------------------------------<wbr>----<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Paulo Cortez, University of Minho=
+, Portugal (contact
+            person, <a href=3D"http://www3.dsi.uminho.pt/pcortez"
+              rel=3D"noreferrer" target=3D"_blank">http://www3.dsi.uminho=
+.pt/pcor<wbr>tez</a>)<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Albert Bifet, Universit=C3=A9 Par=
+is-Saclay, France<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Lu=C3=ADs Cavique, Universidade A=
+berta, Portugal<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Jo=C3=A3o Gama, University of Por=
+to, Portugal<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Nuno Marques, New University of L=
+isbon, Portugal<br>
+            *=C2=A0 =C2=A0 =C2=A0 =C2=A0Manuel Filipe Santos, University =
+of Minho, Portugal<br>
+          </div>
+          <br>
+        </div>
+      </div>
+      <br>
+    </div>
+  </body>
+</html>
+
+--------------73195B1AE5C94C746F529B9B--

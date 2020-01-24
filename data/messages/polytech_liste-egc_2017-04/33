@@ -1,0 +1,252 @@
+Return-Path: <maxime.lefrancois.86@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8CD3B229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 20 Apr 2017 11:57:22 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6BF01242550
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 20 Apr 2017 11:57:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 6445B414A845
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 20 Apr 2017 11:57:22 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.648
+X-Spam-Level:
+X-Spam-Status: No, score=-4.648 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_ENVFROM_END_DIGIT=0.25,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-1,
+	SPF_PASS=-0.001, UN_LINK_IN_SUBJ=1, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.4924 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id HUj34IsfwCyj for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 20 Apr 2017 11:57:21 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x22e.google.com (mail-lf0-x22e.google.com [IPv6:2a00:1450:4010:c07::22e])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 438BD4114790
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 20 Apr 2017 11:57:21 +0200 (CEST)
+Received: by mail-lf0-x22e.google.com with SMTP id c80so25876561lfh.3
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 20 Apr 2017 02:57:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=9FsMgWYcIDHlHhhKUq4dC9etqfwyawbsDt8sYSfPmhk=;
+        b=ceNSO+mVV3ezlCmKIIRrXvTokPI6M3MdO3vpuNJnZr115vOESvw6EQxIZ30mftoy9j
+         uBssNfXg5ZUHFqK16rsf+VyOsKRaehtkMPEWOzIcZ8D5jvr2ku7usfo2ayfXkLbt1QVm
+         PGXKDQXlhHrfVt7yxtVAYcn4xqwWFn/YbmbR+MtvTE+lX2IoyjnfyFhS/Dkp8noJG6Lq
+         1nRiAYMR7g3aPPZA+MUCnahgeJFfpW9Ps4Ltao6mynlDe19wpsi+gN4z4lGcgOg0z7Od
+         +Oy9HTFl2+IqyYa5XNgJqs4YYDvkVwu/C7SF19aa0z9UixWd0yuX4sjVG7KFXuNsyFMw
+         R2RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=9FsMgWYcIDHlHhhKUq4dC9etqfwyawbsDt8sYSfPmhk=;
+        b=n33v0aUfpz/f7tS4v4c9UbFIIXSNigB40BFPP78jybsSVI7fqTdYIuo30uMLVpWjGe
+         TGkgwZD+b+eiVuUjVU/fo7MXGhoRmXWZbza3R2cMdh5cBT7Y9r7LVO1oD9UJIyFXTGHK
+         px6edVKRvzf0bbM0ndq7ssCpFl/QBp2qMiujDXSH4QsVvGqTLupgtrip7juDtIouzkbe
+         apWwO9fiVEj/RVhgxw39ZNstnZqHjYK9TydOJL+J5XSieK/oHsRkFLrWhbcZGsSYYh6h
+         kLSL91GNt+SnN/ejzfjKGvt5EpJwOBrKIsl8VDoU8WsyELNRdWZlFr8te5ZgWgxEEvix
+         kODg==
+X-Gm-Message-State: AN3rC/7dvuI9g9NaGBqzdh/Xa4tXVaSXcSsJOofw74VeMxpyGMxVus1i
+	cszjzgiJtmKVN5n6jUtbhB+RiD61fg==
+X-Received: by 10.25.199.145 with SMTP id x139mr2755318lff.102.1492682240226;
+ Thu, 20 Apr 2017 02:57:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <CALsPASX367s43NgnjZF0X=+gyAMKc_ojPMOHwtfpjwFcsdhf5A@mail.gmail.com>
+In-Reply-To: <CALsPASX367s43NgnjZF0X=+gyAMKc_ojPMOHwtfpjwFcsdhf5A@mail.gmail.com>
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois.86@gmail.com>
+Date: Thu, 20 Apr 2017 09:57:09 +0000
+Message-ID: <CALsPASWZ2hFnXPSrFrty0_J-n=6CH2j3HVZhRdk_1OGEuW-Qhg@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=94eb2c1a1732b0fc9a054d962a6d
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Appel =?UTF-8?Q?=C3=A0?= commentaires sur l'ontologie
+ Semantic Sensor Network (SSN) - http://w3c.github.io/sdw/ssn/
+
+--94eb2c1a1732b0fc9a054d962a6d
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour =C3=A0 tous,
+
+Le groupe de travail W3C/OGC Spatial Data on the Web entame une courte
+phase de large appel =C3=A0 commentaires sur le document Semantic Sensor Ne=
+twork
+(SSN) [1] afin de lui faire franchir les derni=C3=A8res =C3=A9tapes qui le =
+s=C3=A9pare du
+statut de Recommandation.
+
+
+L'objectif principal du groupe =C3=A9tait de r=C3=A9duire la complexit=C3=
+=A9 de
+l'ontologie SSN originellement publi=C3=A9e en 2011 et de sa documentation.
+Cette complexit=C3=A9 tenait notamment =C3=A0 l'import par d=C3=A9faut de l=
+'ontologie
+Dolce-UltraLite upper level. En r=C3=A9ponse =C3=A0 ces attentes, la nouvel=
+le
+ontologie Semantic Sensor Network est modularis=C3=A9e:
+
+ - Le module noyau, nomm=C3=A9  Sensor, Observation, Sample, and Actuator (=
+SOSA)
+[2] est une ontologie ultra-l=C3=A9g=C3=A8re con=C3=A7ue pour pouvoir =C3=
+=AAtre  utilis=C3=A9e de
+mani=C3=A8re ind=C3=A9pendante pour annoter des concepts sans engagement on=
+tologique
+important, =C3=A0 l'instar de Schema.org;
+ - Le module SSN [3] importe SOSA, introduit d'avantage de termes, et
+ajoute des axiomes logiques =C3=A0 l'ensemble. Le r=C3=A9sultat est une ont=
+ologie OWL
+2 DL ALRIN(D);
+ - un module s=C3=A9par=C3=A9 SSN-DUL importe SSN et DUL, et d=C3=A9finit d=
+es alignements
+entre leurs termes;
+ - d'autres modules d'alignement avec O&M, PROV, et OBOE sont propos=C3=A9s=
+.
+
+SSN est maintenant plus couvrante. Comme le nom de SOSA le sugg=C3=A8re, SS=
+N
+permet de d=C3=A9crire:
+ - les Actionneurs/Actions, concepts d'importance pour le Web des Objets;
+ - les Echantilloneurs/Echantionnage, qui permettent de d=C3=A9crire plus
+finement la partie de l'objet d'int=C3=A9r=C3=AAt pour laquelle l'action
+d'observation ou l'action est conduite.
+
+SSN est maintenant plus simple. Notons par exemple que la longueur du
+chemin entre l'observation/action et le r=C3=A9sultat est r=C3=A9duite =C3=
+=A0 1:
+
+<Observation-18> sosa:hasResult <r=C3=A9sultat-18> .
+
+o=C3=B9 <r=C3=A9sultat-18> peut par exemple =C3=AAtre d=C3=A9crit avec l'on=
+tologie QUDT:
+
+<r=C3=A9sultat-18> a qudt:QuantityValue ;
+  qudt:unit qudt-unit:Volt ;
+  qudt:numericValue "230"^^xsd:double .
+
+
+Le r=C3=A9sultat peut =C3=A9galement =C3=AAtre un litt=C3=A9ral:
+
+<Observation-18> sosa:hasSimpleResult true .
+<Observation-18> sosa:hasSimpleResult "yes" .
+<Observation-18> sosa:hasSimpleResult 230 .
+
+
+Si vous =C3=AAtes utilisateur de l'ontologie SSN originelle [4] et/ou =C3=
+=AAtes
+int=C3=A9ress=C3=A9 pour utiliser ces nouvelles ontologies et souhaitez nou=
+s aider =C3=A0
+am=C3=A9liorer ces documents avant qu'ils soient fig=C3=A9s, nous vous seri=
+ons
+reconnaissant de bien vouloir envoyer vos commentaires =C3=A0 l'adresse
+public-sdw-comments@w3.org (en anglais).
+
+Le vote pour passer Candidate Recommendation (et figer le document) devrait
+avoir lieu le 3 mai, nous vous encourageons donc =C3=A0 transmettre vos
+commentaires rapidement pour que l'on puisse les prendre en compte.
+
+
+Bien cordialement,
+Maxime Lefran=C3=A7ois,
+=C3=89cole Nationale Sup=C3=A9rieure des Mines de Saint-=C3=89tienne
+http://maxime-lefrancois.info/
+
+[1] - le document de sp=C3=A9cification est accessible =C3=A0 l'URL -
+http://w3c.github.io/sdw/ssn/
+[2] - l'ontologie SOSA est actuellement disponible =C3=A0 l'URL
+http://w3c.github.io/sdw/ssn/integrated/sosa.ttl  , elle sera d'ici peu en
+ligne =C3=A0 l'adresse http://www.w3.org/ns/sosa/
+[3] - l'ontologie SSN est actuellement disponible =C3=A0 l'URL
+http://w3c.github.io/sdw/ssn/integrated/ssn.ttl , elle sera d'ici peu en
+ligne =C3=A0 l'adresse http://www.w3.org/ns/ssn/
+[4] - l'ancienne ontologie SSN est encore disponible =C3=A0 l'URL
+http://purl.oclc.org/NET/ssnx/ssn, et sera probablement remplac=C3=A9e par
+l'ontologie http://w3c.github.io/sdw/ssn/integrated/ssnx.ttl
+
+--94eb2c1a1732b0fc9a054d962a6d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">Bonjour =C3=A0=
+ tous,=C2=A0<br></div><div dir=3D"ltr"><div><br></div><div>Le groupe de tra=
+vail W3C/OGC Spatial Data on the Web entame une courte phase de large appel=
+ =C3=A0 commentaires sur le document Semantic Sensor Network (SSN) [1] afin=
+ de lui faire franchir les derni=C3=A8res =C3=A9tapes qui le s=C3=A9pare du=
+ statut de Recommandation.=C2=A0</div><div><br></div><div><br></div><div>L&=
+#39;objectif principal du groupe =C3=A9tait de r=C3=A9duire la complexit=C3=
+=A9 de l&#39;ontologie SSN originellement publi=C3=A9e en 2011 et de sa doc=
+umentation. Cette complexit=C3=A9 tenait notamment =C3=A0 l&#39;import par =
+d=C3=A9faut de l&#39;ontologie Dolce-UltraLite upper level. En r=C3=A9ponse=
+ =C3=A0 ces attentes, la nouvelle ontologie Semantic Sensor Network est mod=
+ularis=C3=A9e:</div><div><br></div><div>=C2=A0- Le module noyau, nomm=C3=A9=
+ =C2=A0Sensor, Observation, Sample, and Actuator (SOSA) [2] est une ontolog=
+ie ultra-l=C3=A9g=C3=A8re con=C3=A7ue pour pouvoir =C3=AAtre =C2=A0utilis=
+=C3=A9e de mani=C3=A8re ind=C3=A9pendante pour annoter des concepts sans en=
+gagement ontologique important, =C3=A0 l&#39;instar de Schema.org;</div><di=
+v>=C2=A0- Le module SSN=C2=A0[3] importe SOSA, introduit d&#39;avantage de =
+termes, et ajoute des axiomes logiques =C3=A0 l&#39;ensemble. Le r=C3=A9sul=
+tat est une ontologie OWL 2 DL ALRIN(D);</div><div>=C2=A0- un module s=C3=
+=A9par=C3=A9 SSN-DUL importe SSN et DUL, et d=C3=A9finit des alignements en=
+tre leurs termes;</div><div>=C2=A0- d&#39;autres modules d&#39;alignement a=
+vec O&amp;M, PROV, et OBOE sont propos=C3=A9s.=C2=A0</div><div><br></div><d=
+iv>SSN est maintenant plus couvrante. Comme le nom de SOSA le sugg=C3=A8re,=
+ SSN permet de d=C3=A9crire:</div><div>=C2=A0- les Actionneurs/Actions, con=
+cepts d&#39;importance pour le Web des Objets;</div><div>=C2=A0- les Echant=
+illoneurs/Echantionnage, qui permettent de d=C3=A9crire plus finement la pa=
+rtie de l&#39;objet d&#39;int=C3=A9r=C3=AAt pour laquelle l&#39;action d&#3=
+9;observation ou l&#39;action est conduite.=C2=A0</div><div><br></div><div>=
+SSN est maintenant plus simple. Notons par exemple que la longueur du chemi=
+n entre l&#39;observation/action et le r=C3=A9sultat est r=C3=A9duite =C3=
+=A0 1:</div><div><br></div><div>&lt;Observation-18&gt; sosa:hasResult &lt;r=
+=C3=A9sultat-18&gt; .</div><div><br></div><div>o=C3=B9 &lt;r=C3=A9sultat-18=
+&gt; peut par exemple =C3=AAtre d=C3=A9crit avec l&#39;ontologie QUDT:</div=
+><div><br></div><div>&lt;r=C3=A9sultat-18&gt; a qudt:QuantityValue ;=C2=A0<=
+/div><div>=C2=A0 qudt:unit qudt-unit:Volt ;=C2=A0</div><div>=C2=A0 qudt:num=
+ericValue &quot;230&quot;^^xsd:double .</div><div><br></div><div><br></div>=
+<div>Le r=C3=A9sultat peut =C3=A9galement =C3=AAtre un litt=C3=A9ral:</div>=
+<div><br></div><div>&lt;Observation-18&gt; sosa:hasSimpleResult true .</div=
+><div>&lt;Observation-18&gt; sosa:hasSimpleResult &quot;yes&quot; .</div><d=
+iv>&lt;Observation-18&gt; sosa:hasSimpleResult 230 .</div><div><br></div><d=
+iv><br></div><div>Si vous =C3=AAtes utilisateur de l&#39;ontologie SSN orig=
+inelle [4] et/ou =C3=AAtes int=C3=A9ress=C3=A9 pour utiliser ces nouvelles =
+ontologies et souhaitez nous aider =C3=A0 am=C3=A9liorer ces documents avan=
+t qu&#39;ils soient fig=C3=A9s, nous vous serions reconnaissant de bien vou=
+loir envoyer vos commentaires =C3=A0 l&#39;adresse <a href=3D"mailto:public=
+-sdw-comments@w3.org" target=3D"_blank">public-sdw-comments@w3.org</a> (en =
+anglais).</div><div><br></div><div>Le vote pour passer Candidate Recommenda=
+tion (et figer le document) devrait avoir lieu le 3 mai, nous vous encourag=
+eons donc =C3=A0 transmettre vos commentaires rapidement pour que l&#39;on =
+puisse les prendre en compte.</div><div><br></div><div><br></div><div>Bien =
+cordialement,</div><div>Maxime Lefran=C3=A7ois,=C2=A0</div><div>=C3=89cole =
+Nationale Sup=C3=A9rieure des Mines de Saint-=C3=89tienne</div><div><a href=
+=3D"http://maxime-lefrancois.info/" target=3D"_blank">http://maxime-lefranc=
+ois.info/</a>=C2=A0</div><div><br></div><div>[1] - le document de sp=C3=A9c=
+ification est accessible =C3=A0 l&#39;URL - <a href=3D"http://w3c.github.io=
+/sdw/ssn/" target=3D"_blank">http://w3c.github.io/sdw/ssn/</a>=C2=A0</div><=
+div>[2] - l&#39;ontologie SOSA est actuellement disponible =C3=A0 l&#39;URL=
+ <a href=3D"http://w3c.github.io/sdw/ssn/integrated/sosa.ttl" target=3D"_bl=
+ank">http://w3c.github.io/sdw/ssn/integrated/sosa.ttl</a>=C2=A0 , elle sera=
+ d&#39;ici peu en ligne =C3=A0 l&#39;adresse<span class=3D"m_65261426944644=
+05881inbox-inbox-Apple-converted-space">=C2=A0</span><a href=3D"http://www.=
+w3.org/ns/sosa/" target=3D"_blank">http://www.w3.org/ns/sosa/</a> =C2=A0<br=
+></div><div>[3] - l&#39;ontologie SSN est actuellement disponible =C3=A0 l&=
+#39;URL <a href=3D"http://w3c.github.io/sdw/ssn/integrated/ssn.ttl" target=
+=3D"_blank">http://w3c.github.io/sdw/ssn/integrated/ssn.ttl</a>=C2=A0, elle=
+ sera d&#39;ici peu en ligne =C3=A0 l&#39;adresse <a href=3D"http://www.w3.=
+org/ns/ssn/" target=3D"_blank">http://www.w3.org/ns/ssn/</a>=C2=A0</div><di=
+v>[4] - l&#39;ancienne ontologie SSN est encore disponible =C3=A0 l&#39;URL=
+ <a href=3D"http://purl.oclc.org/NET/ssnx/ssn" target=3D"_blank">http://pur=
+l.oclc.org/NET/ssnx/ssn</a>, et sera probablement remplac=C3=A9e par l&#39;=
+ontologie <a href=3D"http://w3c.github.io/sdw/ssn/integrated/ssnx.ttl" targ=
+et=3D"_blank">http://w3c.github.io/sdw/ssn/integrated/ssnx.ttl</a>=C2=A0</d=
+iv></div></div></div>
+
+--94eb2c1a1732b0fc9a054d962a6d--

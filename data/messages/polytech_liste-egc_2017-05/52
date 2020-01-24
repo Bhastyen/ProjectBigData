@@ -1,0 +1,442 @@
+Return-Path: <mathieu.daquin@open.ac.uk>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A836B229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 16 May 2017 11:20:40 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id A7F326D21FD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 16 May 2017 11:20:40 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 9D9C24821B66
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 16 May 2017 11:20:40 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.4
+X-Spam-Level: *
+X-Spam-Status: No, score=1.4 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H4=-0.01,
+	RCVD_IN_MSPIKE_WL=-0.01, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	SPF_HELO_PASS=-0.001, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.9840 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=openuniv.onmicrosoft.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XxKfCVporXT9 for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 16 May 2017 11:20:39 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on0067.outbound.protection.outlook.com [104.47.2.67])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 37971451E0CE
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 16 May 2017 11:20:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=openuniv.onmicrosoft.com; s=selector1-open-ac-uk;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=01SBEx2FaCHbae6OsAui6PyN3p1qB0apyn2lYf+2K0g=;
+ b=vBMn22u4Y7M/hPzt3HIPF0q3UJFhyhA9apYUEVN5BlnPGnFYfkypKYIAGrayvakdDEaSgRBxxcyNp9xpfEh+oGRnhH4IObNb2bRMdaI45AkdPtGxco5wl79EzMuxbrL6321bvnwzkk30g9Xs1nFSPLsa9JcdMVjq0csmfYYEsJI=
+Received: from HE1PR0401CA0050.eurprd04.prod.outlook.com (2603:10a6:3:19::18)
+ by AM3PR04MB386.eurprd04.prod.outlook.com (2a01:111:e400:8823::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1084.16; Tue, 16
+ May 2017 09:05:59 +0000
+Received: from DB5EUR01FT048.eop-EUR01.prod.protection.outlook.com
+ (2a01:111:f400:7e02::206) by HE1PR0401CA0050.outlook.office365.com
+ (2603:10a6:3:19::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1101.14 via
+ Frontend Transport; Tue, 16 May 2017 09:05:58 +0000
+Authentication-Results: spf=pass (sender IP is 137.108.170.40)
+ smtp.mailfrom=open.ac.uk; polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=bestguesspass
+ action=none header.from=open.ac.uk;
+Received-SPF: Pass (protection.outlook.com: domain of open.ac.uk designates
+ 137.108.170.40 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.108.170.40; helo=mta-live-c.open.ac.uk;
+Received: from mta-live-c.open.ac.uk (137.108.170.40) by
+ DB5EUR01FT048.mail.protection.outlook.com (10.152.5.166) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.1075.5 via Frontend Transport; Tue, 16 May 2017 09:05:58 +0000
+Received: from mail-oi0-f50.google.com ([209.85.218.50])
+	by mta-live-c.open.ac.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+	(Exim 4.88)
+	(envelope-from <m.daquin@open.ac.uk>)
+	id 1dAYQX-0005OD-HL
+	for liste-egc@polytech.univ-nantes.fr; Tue, 16 May 2017 10:05:57 +0100
+Received: by mail-oi0-f50.google.com with SMTP id w10so17429820oif.0
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 16 May 2017 02:05:57 -0700 (PDT)
+X-Gm-Message-State: AODbwcD+zUxyDZaAeNIzlUpRHWcUX7YyNfUXamgiEvYyDYtvG+tE8l9Q
+	PXuqk7jUi4/YKXzZTniTEoIBpyGyPg==
+X-Received: by 10.202.239.135 with SMTP id n129mr1142821oih.73.1494925556528;
+ Tue, 16 May 2017 02:05:56 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.157.68.212 with HTTP; Tue, 16 May 2017 02:05:56 -0700 (PDT)
+From: Mathieu d'Aquin <m.daquin@open.ac.uk>
+Date: Tue, 16 May 2017 10:05:56 +0100
+X-Gmail-Original-Message-ID: <CAB_H__e5dybDxf61D85iMHE_e3jjvqEMi+cVLWS3LTL5s-tN8A@mail.gmail.com>
+Message-ID: <CAB_H__e5dybDxf61D85iMHE_e3jjvqEMi+cVLWS3LTL5s-tN8A@mail.gmail.com>
+To: <web.semantique@inria.fr>, <info-ic@listes.irisa.fr>, <bull-i3@irit.fr>,
+	<liste-egc@polytech.univ-nantes.fr>
+Content-Type: multipart/alternative; boundary="94eb2c0949c8c33f18054fa07a13"
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:137.108.170.40;IPV:NLI;CTRY:GB;EFV:NLI;SFV:NSPM;SFS:(10009020)(39450400003)(39850400002)(39400400002)(39410400002)(2980300002)(438002)(199003)(28244002)(189002)(236005)(512874002)(38730400002)(7906003)(42186005)(9686003)(7636002)(6306002)(5660300001)(189998001)(54356999)(93516999)(50986999)(7596002)(63696999)(54896002)(106466001)(966005)(1250700005)(606005)(9896002)(42882006)(74482002)(356003)(80366005)(2906002)(61266001)(59536001)(8676002)(478600001)(8936002)(61726006)(84326002)(2201001)(55446002)(8576002)(498394004)(55456009);DIR:OUT;SFP:1101;SCL:1;SRVR:AM3PR04MB386;H:mta-live-c.open.ac.uk;FPR:;SPF:Pass;MLV:sfv;A:1;MX:1;LANG:en;
+X-Microsoft-Exchange-Diagnostics: 1;DB5EUR01FT048;1:c+WZt3rxbZXFKjgim2IUTuXKTF6O/F2hN71tSijzB1CJ4gWCZu0GvJ1BUkx3oY9EoQal63kEUUGsGJPb3W6mLyi7hWW2GvqvujqCbYqIcLk2wIAZlw3joS74uCXm8Ig2gwYWXl3+IbifeouEtOLBq113+wByOAiXdcVNMWPaUalTSrH5MOhrcCgTWHykPN9HT0c/Gz4yjQkCmE2KJXiZdpjl2eaBnNJzLGZOhxGnBfXyQhZdtb9F/aqy4Zm0fO9eZWuqYljxiAlAvC+m2tkCQkl/MYVsn1DTIyys+YVw/9G5ef+vXiiBRa4rIC6EB8Hg70Yw8oysLt/qVQc8n+liu59jhAgXyQFImmzZxQ+0baWZiWaQ+M5/wEYTENAYPl9I87ecBMbAvcb71YpUaYe81F/6bYvzteuSvZnoK9jKj+U7tZqd9b6440rccQMDMb5dbl/u08XEKzMCwIGvkAV/HgZNmXqwmtX+kBIsYQVy8pFAT+gvUGRSenyd+4zSd/e1cNUqhyepLMDyooh/5BsDmQh4LemHcQcejPbD3sNtS14=
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: da0ec736-70b9-4c43-be18-08d49c3ac478
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(8251501002)(2017030254075)(201703131423075)(201703031133081)(201702281549075);SRVR:AM3PR04MB386;
+X-Microsoft-Exchange-Diagnostics: 1;AM3PR04MB386;3:s+sywE54YK2qw2WTjnrsvGfcjvq2nKMN7oCQSJLB9WIhuXqCBqVCSXdpg51+hLoV7KXbLPrM+mnOSWVQZEpVcfkweo1g3ktcdmkRZbrIiwMg93Wj2JjSAiw0keaO9xGsJt/5e2T7plcFRTfmbv9CZvJ8kcOkoWyMUldT6CkQmAcPqM5SX1s0N7lzsf/6vadk6EFbN8H1vA7WCKo4gLeIz2b29CQW35y434Z/BCbb8UlBG1FaJSeLTcztToQlNQlQffy01SqAIoHQJ0v+VUl+TTJq8TcMe5qc6faZAKsaFbdrw/946PfuQAnFydBvh8/eT4lZFUE50xs04eFrn0CptpPzuhn5eq1oa0YuCwzy7gAPdv9OhyhGgr/cxYeViQjk0P+Pr4iV1B1yZi/C0E0BhFrdYv3Hwo0KIQiJMUeEOKbbqoidt1f3zDvvkB5EnN+3qGYku6Vy0ijm3nGupyqVqwf+Dw40g/MBuu/NIRvkoxwWKA9IW5/wwsIALJxXsJklCj/4+EkgU843tQKLz4UWfg==
+X-Microsoft-Exchange-Diagnostics: 1;AM3PR04MB386;25:oHQ86kshiOIgwgmTcU2o+FKfZouDsXGbSnK7jd5A97saiAUVrLV8afGzMub2OzZzmcMMAaCfyg/NPMSCOoNUa5JQO6dp2HER9U9c/wIReIveER4wtdspiJXsYaKssiayNhXdDyMYSE6hSOdGwLLaWYDGqVSBjfFWa6qOAS6+KQGn8/Qvtn9H79HFxodMwXe7LdKvchzea7B0ziAerJNNqpRL8UoCE7fFbIniLJAgCrDEDhbY4/v3HuCm3TfhHYynuvy7INLC0TDrbv/MlstWTsG6R58GjCK+LZ+wK/+IR2lEoCTuS1Pfg5zcmHHkGHalPv3c5yP2oZpaFnJ/JbGGiS7U/XYcKbx7KACRvcZ/7rTJFJkcwhtAFO6QAYzHldujz+iBmEg+ko5BCcxy7+9TGDyzkP7M9NHtwXI9qAHEWyMLAV01KW4wQZc/JR36e3Rd6xf6KPVMq/QJeqxMIcrfSyCvXczHjakl5Huy5inelLY=;31:IYOVqUfXvOa2eZ2gk8IT+Lea7QzvfuICPw+OX/6gqr9ssiTWgHzrSur3Opy3xmL3Q4CCU8uXodLC4cnMlqfsdi3WHkb5K2SsXOu5+ko/E3yO+K7S/s/MFQTjH0DohjWTdxv/b1xEyf3JRI6OoBTYd72Vc3hP9evP31I3WjdArAWWHfxupgwqqcY7O4wxtjjwJIGUbdJ2mx+M+QXQH6DEzj8C+F3a6PyeF+SGp3QVIjon0sFIuTSBudUUL8lRkMJJ/pqpszUslMikL/CCiUv5AA==
+X-Microsoft-Exchange-Diagnostics: 1;AM3PR04MB386;20:cirazCfVdncDMpcMLmk0L4nvLRmassimZUf0D3/E+thDM1akXpweEqoh43JSFC2+Us4F+HK+57XHdJxqJLzRB5nWWptRJdQ8w7u+uIEJ0YGuOWCWEsgUC9MAiNecXLpziRMzZ1hbG/oZyxDgwuN6l/nYdLyUp3Da6l8my05NVsxuqcbXIfid/9xiECniqydY20ztrKWW8ykiFVa39o44N6X9COA+WGLsRUhoyx7t7yLbwhnH8AH3S83N+sAseuTmEbmcyEQtJ4ozjFi2RWcpUilovDU1Nhu2tPFXYKDzTRUT15VYo7DKTVT635QOeg7UNwwftVh4obyxtw3T3akwYzaWPVtYnLxzXALrybXj4ksBiTUIHP1Ca+AZuvKLhyXJXpBG+3yzkvVN2UjIcvfY81MpInaQYvonhB8KNGyroOK05fO5jb+gyOhCGlcvmOz7RATfQpRqHkyi9gTHPO0wGiEWVshWraU1PgNRe+MWyYG8xpBP4F5rp4ZtYqt1knkT
+X-Microsoft-Antispam-PRVS: <AM3PR04MB38633864C3D54EF317D482EB3E60@AM3PR04MB386.eurprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:(135901495187858)(209352067349851)(192374486261705)(155532106045638);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:(6040450)(601004)(2401047)(5005006)(13018025)(8121501046)(13016025)(93006095)(93004095)(3002001)(10201501046)(6041248)(20161123564025)(20161123560025)(201703131423075)(201702281529075)(201702281528075)(201703061421075)(201703061406153)(20161123562025)(20161123558100)(20161123555025)(6072148);SRVR:AM3PR04MB386;BCL:0;PCL:0;RULEID:;SRVR:AM3PR04MB386;
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1;AM3PR04MB386;4:KOBGDXLjjtei843tIFNqOz9WzMyHSUw4nfObp8KaTI1?=
+ =?us-ascii?Q?R6TKtuAv/4vY1ymknVf8MyBangNzCtX7fdKlemeyaZBWhd87aPnUtinjvIbk?=
+ =?us-ascii?Q?0ofur/IRzGgAmBzU8McFHQZcJmzj9xa/lNTmETSVYQh05yINYz2DwURi5ol/?=
+ =?us-ascii?Q?7sHyvtyxRUUOyocdqJwvsIJxgML4ds1V1L6jBoqAOmK6m3wHmUwAqaZMQ4IV?=
+ =?us-ascii?Q?TeZVQ+HJiJudkTgfwKykIQo2muTINcHIS9/u3rc57LeEfUZh5UISW0NDC0Iu?=
+ =?us-ascii?Q?+F4jGxzQ7Pwcxp6LwODPEX8zQdfgF8/LTsNVopGF36snTm/uQ83Z7RqtL2De?=
+ =?us-ascii?Q?KyjnbqvMlFe9CkNRalPa7tLvB7PfqLm69AelYV0ZOIEbOLXz8BKcKOEeSq8a?=
+ =?us-ascii?Q?SOzM9DffeANeI0u26cHAvf4HZGdgFHelZrToS+3nzgiXaMmLbutAGJK/gjwj?=
+ =?us-ascii?Q?YFI6/ei1F3sY7698G9dEwO+uaNyiwkwIIm1oJHJ8Uq5k7O165GRkaewWTryT?=
+ =?us-ascii?Q?hZj8J86hJPGoTQcyFZvXNXnZoieRbbByYwPuxyrfEyl4FN/hE8wmYMNkMVHM?=
+ =?us-ascii?Q?JAF49+oKAxuOpuhheHzT3ahKNzVsMMZU1NkSPC7X9nKrWXkVsuZnZlSTDSjF?=
+ =?us-ascii?Q?AuZ6OntWlY9hST2sEhDscqyOrqmRgymb8vOLIaJFTjKkxo5YIrNnlzhWMaau?=
+ =?us-ascii?Q?NVyKWksm3NPm0IQvJ1gcXVlAmtCmJMVPnhST80RaVZzs3XsCwgGJ+7188oum?=
+ =?us-ascii?Q?eqtvJvJlc1QT9bkskRl+0zKtoIczNa2//iVGThj61lYkzKvDkpX3Gm2qrKeX?=
+ =?us-ascii?Q?9GrEOty37IIgUOmpqigOEk/ZMZYnPQy67uINfO38amLOAsqT0vUQV3XXj/pl?=
+ =?us-ascii?Q?C0uehiBltvU89xGpic1SjzuROhu82w55/HNNbjekPzc2R8iWBIatExQkB/Yc?=
+ =?us-ascii?Q?cYVjI9OLlM+yKIs6b0a9/Q02xuv9fCv9K8V4d1PyoYAyn+3KLfq7E7Xzz3RP?=
+ =?us-ascii?Q?s48ZMNeTDHlSkIDZrofBx?=
+X-Forefront-PRVS: 03094A4065
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1;AM3PR04MB386;23:VOg/MO6P+L5Nyh/OLBbAF1OCVluQwrGSd2WgRGSigq?=
+ =?us-ascii?Q?yWrV7pDhtiPUHflw/Blw7jtOtNjU6jFh+BbzkplHdIJIOBbFM7tdcYhrHYfv?=
+ =?us-ascii?Q?etWYIdNRMKHztfB+3AK13B517O4svA1lfcA4mlU/nJrVKx/LLylqnUSjmQSy?=
+ =?us-ascii?Q?AxJ/vMhQBjNKFInLGm4MAyRKxksyCuWxRkZCyFnjaU3JUT6dDxa1oPJZ/Znh?=
+ =?us-ascii?Q?vMY4vy9ObgWQvk9PU0lcbKuxjONLqcIEDK+wjZ9k2yXO2h6VUjEogBiQvJX6?=
+ =?us-ascii?Q?/tRUMB2O41qwMi9EZkH53yhD/TJxTL5l8/qerUPRwAHL8+g/XUgzKaEI6E4h?=
+ =?us-ascii?Q?inuZs2DikurXbovf2xT4oWxLgtJXKV0LdQFd54FOnZ88PWxmENKVzbOKufHZ?=
+ =?us-ascii?Q?u/u8cTMnUh9WrU4CfM10wHGE7gf7qUWXpJmJJ7QtbD1oM2m2UOBjRZst0tU0?=
+ =?us-ascii?Q?8IdktE6IFaM+POcLRlvjlkCeq8J7AEX3bZ02PJDUk4kZag1MeErjSLp8IsZU?=
+ =?us-ascii?Q?qEDu4N2zmsiXqwVwVzgkSlmuMDQ5N5OWGHi4zbA7P2BNuaWKteg2pQ5vKxOV?=
+ =?us-ascii?Q?fYSpC4Afpf3f37Gh0CT87qUBiqDAacMPKcaN4I9HdfDSt6+eeigp15Ri9qdM?=
+ =?us-ascii?Q?Bkk0FviK3h1ubqnc3G17z3OV5TtkFQv3hK+xbEqzFfGKUG6hECahDDP5smvE?=
+ =?us-ascii?Q?v+tdVnbcpYrQm9HEFZ8bumCcc8NkpWIl1JR2D8F8BtMr5PRf1OVVvNoPs7/3?=
+ =?us-ascii?Q?Zj4DRvWGmsVGmpS454sUhfZJmWOficu2Lg2RPUL4Pz0ULEsGqS+q0zYG7Uht?=
+ =?us-ascii?Q?5Lxm8hGGlhSBY+xDBZUHBgvufqrBLwq7ECZEUd+4IBwfZfaHbadpqg31gHH2?=
+ =?us-ascii?Q?PVJAWI5obflI472qJojZx5i3QsBG2Z8ul0jfF/DaSuqCKU7vSOhbTpDItrF7?=
+ =?us-ascii?Q?42ExP1gYO7dZ7n9zC2NlxvzUbJdU2o7aVbK5vTJBPaLB7KoHI6eEQxjCx2W/?=
+ =?us-ascii?Q?cejmGnN+mRLWIgytqGPoLZZf6WE6X2e0NrfNpAFoYTEVRP2JfmnHODH0hD7f?=
+ =?us-ascii?Q?uGtbM24e3n1fQM5hhqw2c2GhsAkaED87iw9TAuHP6nbzfe1XpEQwcAQ+NfvT?=
+ =?us-ascii?Q?RB7ltvCb0=3D?=
+X-Microsoft-Exchange-Diagnostics: 1;AM3PR04MB386;6:UPWfyF+MxW7iiGWTP25KpbnDDTaop9KI0HKxtR4n66ti/9WyXxzOZ/6isRqWeYx9H40MOGD4Kce1p4AYOz7sI9hvm+3zxSVCp2f5/dMw4YCrFUEZWN/lOZvRhRKPa2QltWZHZzcUFaiwdXHA3PqiAjdglTd75ppntgQgjS4xgqj3aslVK+usxY22kZpvnG1O69QQO7EPS26lmPTqeYMVMkWjaEZfwlHmh3CFIPy1OchRjaPfsewnR/wtuEbNoxa0+A6RxXlmYMohPmu9HiwphRZqp4VF9R7296d26lB5SYrr6jiGhzUVVgPkzfmC7zBQ/GHqkNuBKE8aEA3Pu3MjXSRwrA25mfdObkZZ2R9+6fwTVoWxcEMtuFb3/yPCNuU2uCRpLbX88CZzHzz1FfE105Dbzr3xGFN0my6QL58wcxjHmmiM7cBLcxiczrMlFOYPa6jo3CvVx8MwUgYbFfKANK8gVOHo2qGpqnrDX/MLH20EAiCeFK4oNxg40LwwhkS0yJ563ul6qITF+rPYZDH1OQ==;5:4hXESnZX6mc+WhLUU8ohVg8yt5yJmthqpa0nxaSzLtNiEDZS0fYPSspswSHQ/0ye2Pu+Y77J7KrFgyQeTFpnH02yruxI8A35ToJXfdfRdGYuSar3HgQOWqXkiBHI0FG4GIdtwu07XAV5cIoQRk1rQg==;24:ITn3kBWhue5Ed94fFjYOzvPGrUXqMjfcE2ee38YIYuINvgoToH9XU0LUyvn/FPRtzmrDtTyz6zJvb+xAQOOjL3QKDwK4xahkM7JHMr28VNY=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1;AM3PR04MB386;7:HfOSp4kfCnU0bokRJEskOWJ3rg124E6dm1YS4TxVoRF1DUR7tocb30Pe8UvOdTLSt+MAc57cHlQI2t472i7jKBg9TAbCqZ9dEwYqFmd1SDeI+j9TZBaUNkujNwmApylFjocdB7B7THBN3m4GJced51RuDjAAtqwPSL/9l9aLKCyL7NGFwerW89U7QJibEoRyW5a/F8tahFcKQJrND4czk3wF1pYigJjaCIXyyYK2GGyR4u6oaORcB87jkfzG49AgQFyRO8pD9YN0BDcBDwntkv1xyNqgA/Qkb9863nfbYERtjg3r7vSBqxsdr+Wsc7/uYlE1YIvYOBvRD3MMQUebBQ==
+X-OriginatorOrg: open.ac.uk
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 May 2017 09:05:58.3584
+ (UTC)
+X-MS-Exchange-CrossTenant-Id: 0e2ed455-96af-4100-bed3-a8e5fd981685
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0e2ed455-96af-4100-bed3-a8e5fd981685;Ip=[137.108.170.40];Helo=[mta-live-c.open.ac.uk]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM3PR04MB386
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP: Re-Coding Black Mirror Workshop at ISWC 2017
+
+--94eb2c0949c8c33f18054fa07a13
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Call for papers
+Re-coding Black Mirror- https://kmitd.github.io/recoding-black-mirror/
+Half day workshop at the 16th International Semantic Web Conference (ISWC 2=
+017)
+21 or 22 October 2017, Vienna
+
+Black Mirror is a British sci-fi series directed by Charlie Brooker portray=
+ing a dystopian future emanating from the wide use of digital advancements.=
+ Even though Black Mirror=E2=80=99s episodes do not entirely rely on the wi=
+despread availability of existing technology, some of the advancements pres=
+ented are not from such a distant future. The ethical and social implicatio=
+ns emerging from the increasing reliance on digital media -partly depicted =
+in the series- has been a longstanding debate in critical studies underlyin=
+g issues around privacy, social control, social and individual justice and =
+other key values around Democracy such as freedom of speech. Computer scien=
+ce has picked up on such kind of issues focusing mainly on privacy offering=
+ technical solutions such as privacy by design and encryption amongst other=
+ tools.
+Re-coding Black Mirror is a half-day workshop which aims at promoting a dia=
+logue between semantic web researchers and social scientists to address eme=
+rging social phenomena from different perspectives looking at case scenario=
+s similar to the ones depicted in Black Mirror and explore potential semant=
+ic solutions to societal and ethical challenges. It will also be a forum fo=
+r raising opportunities of networking with scholars from different fields t=
+o explore novel research problems that can be relevant to both communities.
+
+TOPICS
+
+Re-coding Black Mirror is essentially about creating connections between re=
+searchers building semantic web technologies and interested in their potent=
+ial future implication on society, and researchers studying such impact of =
+technology interested in the societal and ethical risks of such technologic=
+al advances. We therefore expect two different types of works to be present=
+ed at the workshop, as described below. We provide brief summaries of examp=
+les of what those kinds of work could be. Possible submissions are of cours=
+e not restricted to those examples, but works addressing those scenarios wo=
+uld be very much welcome too.
+
+  * Works showing how semantic web technologies can enable scenarios like t=
+he ones depicted in Black Mirror: Here we are looking at how ongoing resear=
+ch in the semantic web community could lead to technological advances simil=
+ar to what is presented in one specific episode (or a set of episodes if it=
+ is a recurring trend). For example:
+       - How could advances in semantically combining results in natural la=
+nguage processing and social media analysis lead to the ability to create a=
+ bot mimicking the personality of a dead person from their online contribut=
+ions? (S2E1)
+       - How could semantic technologies be used to integrate information a=
+bout another person from multiple online sources (digital footprinting), pr=
+oviding a mean for stalking or even blackmailing them? (S3E3)
+
+  * Works showing how semantic web technologies can be used to prevent or r=
+educe the risks depicted in Black Mirror: Many of the episodes in Black Mir=
+ror rely on a practice and use of technology which is either unexpected in =
+itself, or which consequences are unexpected. Here we are looking at how se=
+mantic web technologies could reduce those risks. For example:
+     - How could relying on semantic relations between people and informati=
+on about their network/context prevents the appearance of extreme cases in =
+user ratings? (S3E1)
+     - How could semantic content and network analysis be used to reduce or=
+ counter the spread of hate on social media? (S3E6)
+
+SUBMISSION
+
+Please submit your contribution to the workshop by July 21st 2017 (23:59 Ha=
+waii time) through the easychair system (see [1]). We accept three categori=
+es of submissions: full papers (max 12 pages) on research and applied techn=
+ologies, short papers (max 6 pages) about visions and positions on forthcom=
+ing challenges and two page abstracts on the societal and ethical risks of =
+the aforementioned technologies.
+All papers should be formatted using the Springer LNCS template and submitt=
+ed as PDF (see [2]).
+We expect each paper to take as a starting point one futuristic scenario, e=
+ither directly from Black Mirror or of a similar nature, as motivation for =
+the work presented.
+
+ORGANISERS
+
+- PINELOPI TROULLINOU, Knowledge Media Institute, The Open University, UK
+- MATHIEU D'AQUIN, Insight Centre for Data Analytics, NUI Galway, Ireland
+- ILARIA TIDDI, Knowledge Media Institute, The Open University, UK
+
+PROGAMME COMMITTEE
+
+Kirstie Ball, School of Management, University of St. Andrews, United Kingd=
+om
+Pompeu Casanovas, Institute of Law and Technology, Universidad Aut=C3=B2nom=
+a de Barcelona, Spain
+Lina Dencik, School of Journalism, Media and Cultural Studies, Cardiff Univ=
+ersity, United Kingdom
+Sara Degli Esposti, Internet Interdisciplinary Institute, Universdad Oberta=
+ de Catalunya, Spain
+Stefan Dietze, L3S Research Cente, University of Leipzig, Germany
+Seda Guerses, COSIC Research Group, K.U. Leuven, Belgium
+Pascal Hitzler, Data Semantics Laboratory, Wright State University, U.S.A.
+Sabrina Kirrane, Institute for Information Business, Vienna University of E=
+conomics and Business, Austria
+Matthias Leese, Center for Security Studies, ETH Zurich, Switzerland
+Liisa M=C3=A4kinen, Social and Public Policy, University of Helsinki, Finla=
+nd
+Andrea Mannocci, Knowledge Media Institute, The Open University, United Kin=
+gdom
+Angelo Antonio Salatino, Knowledge Media Institute, The Open University, Un=
+ited Kingdom
+Rapha=C3=ABl Troncy, Data Science Department, EURECOM, France
+Daniel Trottier, Department of Media and Communication, Erasmus University =
+of Rotterdam, The Netherlands
+Dimitris Tsapogas, Department of Computer Science, University of Oxford, Un=
+ited Kingdom
+Nikolas Thomopoulos, Systems Management and Strategy, University of Greenwi=
+ch, United Kingdom
+Lachlan Urquhart, Information Technology Law, Horizon Digital Economy Resea=
+rch Institute, United Kingdom
+Frank Van Harmelen, Network Institute, Vrije Universiteit Amsterdam, The Ne=
+therlands
+Pieter Verdegem, School of Media, Arts & Design, University of Westminster,=
+ United Kingdom
+Serena Villata, SPARKS-WIMMICS, INRIA, France
+
+[1] https://easychair.org/conferences/?conf=3Drbm2017
+[2] https://www.springer.com/gp/computer-science/lncs/conference-proceeding=
+s-guidelines
+
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England & Wales and a charity registered in Scotland (SC 038=
+302). The Open University is authorised and regulated by the Financial Cond=
+uct Authority.
+
+--94eb2c0949c8c33f18054fa07a13
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+</head>
+<body>
+<div dir=3D"ltr">
+<div>Call for papers</div>
+<div>Re-coding Black Mirror- <a href=3D"https://kmitd.github.io/recoding-bl=
+ack-mirror/">
+https://kmitd.github.io/recoding-black-mirror/</a></div>
+<div>Half day workshop at the 16th International Semantic Web Conference (I=
+SWC 2017)</div>
+<div>21 or 22 October 2017, Vienna&nbsp;</div>
+<div>&nbsp;</div>
+<div>Black Mirror is a British sci-fi series directed by Charlie Brooker po=
+rtraying a dystopian future emanating from the wide use of digital advancem=
+ents. Even though Black Mirror=E2=80=99s episodes do not entirely rely on t=
+he widespread availability of existing technology,
+ some of the advancements presented are not from such a distant future. The=
+ ethical and social implications emerging from the increasing reliance on d=
+igital media -partly depicted in the series- has been a longstanding debate=
+ in critical studies underlying
+ issues around privacy, social control, social and individual justice and o=
+ther key values around Democracy such as freedom of speech. Computer scienc=
+e has picked up on such kind of issues focusing mainly on privacy offering =
+technical solutions such as privacy
+ by design and encryption amongst other tools.</div>
+<div>Re-coding Black Mirror is a half-day workshop which aims at promoting =
+a dialogue between semantic web researchers and social scientists to addres=
+s emerging social phenomena from different perspectives looking at case sce=
+narios similar to the ones depicted
+ in Black Mirror and explore potential semantic solutions to societal and e=
+thical challenges. It will also be a forum for raising opportunities of net=
+working with scholars from different fields to explore novel research probl=
+ems that can be relevant to both
+ communities.&nbsp;</div>
+<div>&nbsp;</div>
+<div>TOPICS</div>
+<div>&nbsp;</div>
+<div>Re-coding Black Mirror is essentially about creating connections betwe=
+en researchers building semantic web technologies and interested in their p=
+otential future implication on society, and researchers studying such impac=
+t of technology interested in the
+ societal and ethical risks of such technological advances. We therefore ex=
+pect two different types of works to be presented at the workshop, as descr=
+ibed below. We provide brief summaries of examples of what those kinds of w=
+ork could be. Possible submissions
+ are of course not restricted to those examples, but works addressing those=
+ scenarios would be very much welcome too.</div>
+<div>&nbsp;</div>
+<div>&nbsp; * Works showing how semantic web technologies can enable scenar=
+ios like the ones depicted in Black Mirror: Here we are looking at how ongo=
+ing research in the semantic web community could lead to technological adva=
+nces similar to what is presented in
+ one specific episode (or a set of episodes if it is a recurring trend). Fo=
+r example:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;- How could advances in semantically combin=
+ing results in natural language processing and social media analysis lead t=
+o the ability to create a bot mimicking the personality of a dead person fr=
+om their online contributions? (S2E1)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp;- How could semantic technologies be used t=
+o integrate information about another person from multiple online sources (=
+digital footprinting), providing a mean for stalking or even blackmailing t=
+hem? (S3E3)</div>
+<div>&nbsp;</div>
+<div>&nbsp; * Works showing how semantic web technologies can be used to pr=
+event or reduce the risks depicted in Black Mirror: Many of the episodes in=
+ Black Mirror rely on a practice and use of technology which is either unex=
+pected in itself, or which consequences
+ are unexpected. Here we are looking at how semantic web technologies could=
+ reduce those risks. For example:</div>
+<div>&nbsp; &nbsp; &nbsp;- How could relying on semantic relations between =
+people and information about their network/context prevents the appearance =
+of extreme cases in user ratings? (S3E1)</div>
+<div>&nbsp; &nbsp; &nbsp;- How could semantic content and network analysis =
+be used to reduce or counter the spread of hate on social media? (S3E6)</di=
+v>
+<div>&nbsp;</div>
+<div>SUBMISSION</div>
+<div>&nbsp;</div>
+<div>Please submit your contribution to the workshop by July 21st 2017 (23:=
+59 Hawaii time) through the easychair system (see [1]). We accept three cat=
+egories of submissions: full papers (max 12 pages) on research and applied =
+technologies, short papers (max
+ 6 pages) about visions and positions on forthcoming challenges and two pag=
+e abstracts on the societal and ethical risks of the aforementioned technol=
+ogies.&nbsp;</div>
+<div>All papers should be formatted using the Springer LNCS template and su=
+bmitted as PDF (see [2]).</div>
+<div>We expect each paper to take as a starting point one futuristic scenar=
+io, either directly from Black Mirror or of a similar nature, as motivation=
+ for the work presented.</div>
+<div>&nbsp;</div>
+<div>ORGANISERS</div>
+<div>&nbsp;</div>
+<div>- PINELOPI TROULLINOU, Knowledge Media Institute, The Open University,=
+ UK</div>
+<div>- MATHIEU D'AQUIN, Insight Centre for Data Analytics, NUI Galway, Irel=
+and</div>
+<div>- ILARIA TIDDI, Knowledge Media Institute, The Open University, UK</di=
+v>
+<div>&nbsp;</div>
+<div>PROGAMME COMMITTEE</div>
+<div>&nbsp;</div>
+<div>Kirstie Ball, School of Management, University of St. Andrews, United =
+Kingdom</div>
+<div>Pompeu Casanovas, Institute of Law and Technology, Universidad Aut=C3=
+=B2noma de Barcelona, Spain</div>
+<div>Lina Dencik, School of Journalism, Media and Cultural Studies, Cardiff=
+ University, United Kingdom</div>
+<div>Sara Degli Esposti, Internet Interdisciplinary Institute, Universdad O=
+berta de Catalunya, Spain</div>
+<div>Stefan Dietze, L3S Research Cente, University of Leipzig, Germany</div=
+>
+<div>Seda Guerses, COSIC Research Group, K.U. Leuven, Belgium</div>
+<div>Pascal Hitzler, Data Semantics Laboratory, Wright State University, U.=
+S.A.</div>
+<div>Sabrina Kirrane, Institute for Information Business, Vienna University=
+ of Economics and Business, Austria</div>
+<div>Matthias Leese, Center for Security Studies, ETH Zurich, Switzerland</=
+div>
+<div>Liisa M=C3=A4kinen, Social and Public Policy, University of Helsinki, =
+Finland</div>
+<div>Andrea Mannocci, Knowledge Media Institute, The Open University, Unite=
+d Kingdom</div>
+<div>Angelo Antonio Salatino, Knowledge Media Institute, The Open Universit=
+y, United Kingdom</div>
+<div>Rapha=C3=ABl Troncy, Data Science Department, EURECOM, France</div>
+<div>Daniel Trottier, Department of Media and Communication, Erasmus Univer=
+sity of Rotterdam, The Netherlands</div>
+<div>Dimitris Tsapogas, Department of Computer Science, University of Oxfor=
+d, United Kingdom</div>
+<div>Nikolas Thomopoulos, Systems Management and Strategy, University of Gr=
+eenwich, United Kingdom</div>
+<div>Lachlan Urquhart, Information Technology Law, Horizon Digital Economy =
+Research Institute, United Kingdom</div>
+<div>Frank Van Harmelen, Network Institute, Vrije Universiteit Amsterdam, T=
+he Netherlands</div>
+<div>Pieter Verdegem, School of Media, Arts &amp; Design, University of Wes=
+tminster, United Kingdom</div>
+<div>Serena Villata, SPARKS-WIMMICS, INRIA, France</div>
+<div>&nbsp;</div>
+<div>[1] <a href=3D"https://easychair.org/conferences/?conf=3Drbm2017">http=
+s://easychair.org/conferences/?conf=3Drbm2017</a></div>
+<div>[2] <a href=3D"https://www.springer.com/gp/computer-science/lncs/confe=
+rence-proceedings-guidelines">
+https://www.springer.com/gp/computer-science/lncs/conference-proceedings-gu=
+idelines</a></div>
+<div><br>
+</div>
+</div>
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England &amp; Wales and a charity registered in Scotland (SC=
+ 038302). The Open University is authorised and regulated by the Financial =
+Conduct Authority.
+</body>
+</html>
+
+--94eb2c0949c8c33f18054fa07a13--

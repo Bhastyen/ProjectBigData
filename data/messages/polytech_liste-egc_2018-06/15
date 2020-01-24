@@ -1,0 +1,814 @@
+Return-Path: <r.interdonato@dimes.unical.it>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3E9AA2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  7 Jun 2018 12:06:38 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 3D13D666141
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  7 Jun 2018 12:06:38 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 2EACC414A824
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  7 Jun 2018 12:06:38 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.479
+X-Spam-Level:
+X-Spam-Status: No, score=-0.479 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, LONGWORD=0.3, RCVD_IN_DNSWL_LOW=-1,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, T_REMOTE_IMAGE=0.01,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.1919 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=dimes-unical-it.20150623.gappssmtp.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kLq2XVqlSqQC for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  7 Jun 2018 12:06:37 +0200 (CEST)
+X-Greylist: from auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x22b.google.com (mail-lf0-x22b.google.com [IPv6:2a00:1450:4010:c07::22b])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id D525B401C107
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  7 Jun 2018 12:06:36 +0200 (CEST)
+Received: by mail-lf0-x22b.google.com with SMTP id q11-v6so13748170lfc.7
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 07 Jun 2018 03:06:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dimes-unical-it.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=h2L5UKwwnh51HL/zb6JWqcUHipaxbm37k1Kq/9e8ryc=;
+        b=pBxNGJG7ixUXqfHx3hfWfE4FN9coB55ikMr2sfQQdtUj616ufN6JLUadnU9peQHorm
+         bm2eEVjgZlNo40lMvFWVhQTT/3Uelvg1bNINgNLZ5mkgUm06Y/bIPplMtgL8i75bFvkI
+         eI9MYKoQkheGkMbY/yfkgv/qu8a6fJr9COf49bJKOEQ0W/E0dDUR4XoI8Xgm2aTfcVH3
+         Gi16otbAkuKj6x+xwc1jDoYTvomEqLi3GbGkcvwAw3dQipLTzgiJj/1fXAJIfGbzCsZq
+         WnOY7Grtv6VxyqNvFYdq4Do81Ec4Oh5IXaJNcJPI3+BJBnJnjE2pod6oGmT1mEhRfLwq
+         iLww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=h2L5UKwwnh51HL/zb6JWqcUHipaxbm37k1Kq/9e8ryc=;
+        b=WJcU/xKWCy30iY961ExpBc0zae4N5Udk69OaeeTOCZwtE2Gw97UE2x/td8D1xXFPMA
+         PPUULCIHxNb3Qih6KOMyFH/0PlFTxBOUt2ckM+jDCtvGOlMmScxBJhFU/OyounYygzwY
+         EnWCbsn03OCZ+lF473CeuFe65X6tK45tbFE78BVmmBHJrNEH02Y9ja36q+xfrrQU7Oz/
+         0R+F1uTqL3XQMDppwedyj+IuS8d0LQSKE529egRWZTB/L66A++otS6S3y5QBfaifIBH+
+         hVg5q/FbvhxGVBxjujtROvKds2I+TlLC/JUYZw0aclxhsCHO2scNqZoq3w8P5xHovA5R
+         984w==
+X-Gm-Message-State: APt69E0+pnD7Paq7x4CHUoXmDyRMwEEKxspApT86sOkD9Uf3Wixe7qEG
+	+Vz7DYuobIGFOusaCCOBnONJ/EPGsV+bZTyqIvCEL0Agqx1E0d8ZTUfC7G0dVQvhe0Xhv4gHJdc
+	7dPP6v/iYfj6Z7hSgVeApT0qlJ1T/sN33v3QMR7xLRQ==
+X-Google-Smtp-Source: ADUXVKIz6BOEqf4FTn34giA+DV9uItysPYqU65/P2hDtgpZvCRhtGhVS5KjVDkNUDDwwLFwaj37sc+lFhw+1atHTu9c=
+X-Received: by 2002:a2e:9187:: with SMTP id f7-v6mr1095845ljg.98.1528365995734;
+ Thu, 07 Jun 2018 03:06:35 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ab3:c25:0:0:0:0:0 with HTTP; Thu, 7 Jun 2018 03:06:35 -0700 (PDT)
+From: Roberto Interdonato <rinterdonato@dimes.unical.it>
+Date: Thu, 7 Jun 2018 12:06:35 +0200
+Message-ID: <CAG4i7intiCF3NnQYJKxJcc3AN-9HXhzgD2cY-UfuEav6MJmtOg@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="00000000000043480d056e0a70f1"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CfP: "Modeling, Analyzing and Mining Feature-Rich
+ Networks", Special Issue of Applied Network Science Journal
+
+--00000000000043480d056e0a70f1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Modeling, Analyzing and Mining Feature-Rich Networks*
+
+*Special Issue for *Applied Network Science
+<https://appliednetsci.springeropen.com/>
+
+*Deadlines: *
+
+Expression of interest: September 21, 2018
+
+Full paper submission: October 28, 2018.
+
+The growing availability of multirelational data gives rise to an
+opportunity for novel characterization of complex real-world relations. The
+design of innovative complex approaches is the key to enable a deeper
+understanding of feature-rich networks, i.e., network models exposing
+specific features able to enhance their expressive power. Some examples of
+feature-rich networks are Multilayer Networks, Temporal and Heterogeneous
+Networks, Knowledge Graphs, Probabilistic Networks and generic Attributed
+Graphs. In this scenario, the need to expose and process domain-specific
+features when facing critical real-world tasks can prompt researchers to
+exploit the full potential of mining complex network structures. The aim of
+this Special Issue is to provide an insight into innovative methods to
+model, analyze and mine feature-rich networks inspired from different
+fields, incentivizing domain-driven approaches that can drive the design of
+novel network models.
+
+You are invited to submit a contribution (regular manuscripts or review
+article). Topics of interest for this special issue include (but are not
+limited to):
+
+=C2=B7        Centrality and Ranking in Feature-rich Networks
+
+=C2=B7        Community Detection in Feature-rich Networks
+
+=C2=B7        Cross domain problems in Feature-rich Networks
+
+=C2=B7        Link Prediction in Feature-rich Networks
+
+=C2=B7        Probabilistic and Uncertain Feature-rich Networks
+
+=C2=B7        Pattern mining in Feature-rich Networks
+
+=C2=B7        Personalization and Recommendation in Feature-rich Networks
+
+=C2=B7        Representation Learning in Feature-rich Networks
+
+=C2=B7        Reputation and Trust in Feature-rich Networks
+
+=C2=B7        Sampling/Pruning/Simplification of Feature-rich Networks
+
+=C2=B7        Social Influence and Information Diffusion in Feature-rich Ne=
+tworks
+
+=C2=B7        Time-evolving Feature-rich Networks
+
+=C2=B7        User Behavior Modeling in Feature-rich Networks
+
+=C2=B7        Visualization of Feature-rich Networks
+
+
+
+*Guest editors: *
+
+Martin Atzmueller  Tilburg University , Netherlands m.atzmuller@uvt.nl
+
+
+Sabrina Gaito University of Milano, Italy gaito@di.unimi.it
+
+Roberto Interdonato CIRAD, France roberto.interdonato@cirad.fr
+
+Rushed Kanawati Paris 13 University, France
+rushed.kanawati@lipn.univ-paris13.fr
+
+Christine Largeron University of Lyon, France
+christine.largeron@univ-st-etienne.fr
+
+Alessandra Sala, Nokia Bell Labs, Ireland
+alessandra.sala@nokia-bell-labs.com
+
+
+
+*Submission timeline *
+
+
+
+=C2=B7        *Expression of interest: September 21, 2018 *
+
+We invite authors to submit a brief expression of interest and a short
+outline or extended abstract (approx. 1000 words). The proposal should
+include:
+
+o   The topic,
+
+o   Key concepts,
+
+o   Methods (if the paper is based on empirical research),
+
+o   Expected results and conclusions.
+
+
+
+Please send it by e-mail to the Lead guest editor:
+
+ Roberto Interdonato, roberto.interdonato@cirad.fr
+
+
+
+=C2=B7        *Feedback on outline / extended abstract: September 28, 2018*
+
+=C2=B7        *Full paper submission deadline: October 28, 2018.*
+
+
+
+Full submission guidelines
+<https://www.ama.org/publications/JournalOfPublicPolicyAndMarketing/Pages/J=
+PPMGuidelines.aspx>
+can
+be found at the Applied Network science
+<https://appliednetsci.springeropen.com/> website.
+
+https://appliednetsci.springeropen.com/submission-guidelines
+
+All manuscripts should be submitted through the Applied Network Science
+submission system:
+
+https://www.editorialmanager.com/apns/default.aspx
+
+=C2=B7        *Target publication date: February 28, 2019*
+
+Papers will be subject to a fast track review procedure that will start as
+soon as they are submitted. They will be published as soon as they are
+accepted.
+
+For more information, please direct your questions to the Lead guest editor=
+:
+
+Roberto Interdonato roberto.interdonato@cirad.fr
+
+
+
+
+
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Roberto Interdonato, PhD
+Research Scientist
+CIRAD
+UMR TETIS
+Montpellier
+France
+email: roberto.interdonato@cirad.fr
+tel: +33 (0) 467558615
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--=20
+---------------------------------------------------------------------------=
+---------------------------------------
+
+Il banner =C3=A8 generato automaticamente dal servizio di posta elettronica=
+=20
+dell'Universit=C3=A0 della Calabria
+ <http://www.unical.it/5x1000>
+
+--00000000000043480d056e0a70f1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm 0cm 6pt;text-al=
+ign:center;line-height:18pt;background:white;font-size:12pt;font-family:Cam=
+bria,serif"><b><span lang=3D"EN-US" style=3D"font-size:16pt;font-family:Ari=
+al,sans-serif;color:black">Modeling, Analyzing and Mining Feature-Rich Netw=
+orks<span></span></span></b></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin:0cm 0cm 6pt;text-al=
+ign:center;line-height:18pt;background:white;font-size:12pt;font-family:Cam=
+bria,serif"><b><span lang=3D"EN-US" style=3D"font-size:14pt;font-family:Ari=
+al,sans-serif;color:black">Special Issue for </span></b><a href=3D"https://=
+appliednetsci.springeropen.com/" style=3D"color:blue;text-decoration:underl=
+ine"><span lang=3D"EN-US" style=3D"font-size:14pt;font-family:Arial,sans-se=
+rif">Applied
+Network Science=C2=A0 </span></a><span lang=3D"EN-US" style=3D"font-size:14=
+pt;font-family:Arial,sans-serif;color:black"><span>=C2=A0</span><span></spa=
+n></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt 35.4pt;text-align:justif=
+y;text-indent:35.4pt;line-height:18pt;background:white;font-size:12pt;font-=
+family:Cambria,serif"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-=
+family:Arial,sans-serif;color:black">Deadlines: <span></span></span></b></p=
+>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt 35.4pt;text-align:justif=
+y;text-indent:35.4pt;background:white;font-size:12pt;font-family:Cambria,se=
+rif"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-se=
+rif;color:black">Expression of interest: September 21, 2018<span></span></s=
+pan></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt 35.4pt;text-align:justif=
+y;text-indent:35.4pt;background:white;font-size:12pt;font-family:Cambria,se=
+rif"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-se=
+rif;color:black">Full paper submission: October 28, 2018.<span></span></spa=
+n></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">The growing availability of multirelational data gives rise to an
+opportunity for novel characterization of complex real-world relations. The
+design of innovative complex approaches is the key to enable a deeper
+understanding of feature-rich networks, i.e., network models exposing speci=
+fic
+features able to enhance their expressive power. Some examples of feature-r=
+ich
+networks are Multilayer Networks, Temporal and Heterogeneous Networks,
+Knowledge Graphs, Probabilistic Networks and generic Attributed Graphs. In =
+this
+scenario, the need to expose and process domain-specific features when faci=
+ng
+critical real-world tasks can prompt researchers to exploit the full potent=
+ial
+of mining complex network structures. The aim of this Special Issue is to
+provide an insight into innovative methods to model, analyze and mine
+feature-rich networks inspired from different fields, incentivizing
+domain-driven approaches that can drive the design of novel network models.=
+<span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">You are invited to submit a contribution (regular manuscripts or re=
+view
+article)</span><span lang=3D"EN-US" style=3D"font-size:14pt;font-family:Ari=
+al,sans-serif;color:black">. </span><span lang=3D"EN-US" style=3D"font-size=
+:11pt;font-family:Arial,sans-serif;color:black">Topics of interest for this=
+ special issue include (but are not limited
+to):</span><span lang=3D"EN-US" style=3D"font-size:14pt;font-family:Arial,s=
+ans-serif;color:black"><span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"text-align:justify;li=
+ne-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12pt=
+;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fo=
+nt-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal;=
+font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;li=
+ne-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Centrality
+and Ranking in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Community
+Detection in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Cross
+domain problems in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Link
+Prediction in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Probabilistic
+and Uncertain Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Pattern
+mining in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Personalization
+and Recommendation in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Representation
+Learning in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Reputation
+and Trust in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Sampling/Pruning/Simplification
+of Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Social
+Influence and Information Diffusion in Feature-rich Networks<span></span></=
+span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Time-evolving
+Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">User
+Behavior Modeling in Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"text-align:justify;l=
+ine-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal=
+;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;l=
+ine-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:black">Visualization
+of Feature-rich Networks<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"text-align:justify;lin=
+e-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12pt;=
+font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fon=
+t-family:Arial,sans-serif;color:black"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt 18pt;text-align:justify;=
+line-height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"=
+><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Guest editors: <span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Martin Atzmueller <span>=C2=A0</span>Tilburg University , N=
+etherlands </span><a href=3D"mailto:m.atzmuller@uvt.nl" style=3D"color:blue=
+;text-decoration:underline"><span lang=3D"EN-US" style=3D"font-size:11pt;fo=
+nt-family:Arial,sans-serif">m.atzmuller@uvt.nl</span></a><span lang=3D"EN-U=
+S" style=3D"font-size:11pt;font-family:Arial,sans-serif;color:black"> <span=
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span></span></spa=
+n></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Sabrina Gaito
+University of Milano, Italy </span><a href=3D"mailto:gaito@di.unimi.it" sty=
+le=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US" style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif">gaito@di.unimi.it</span></a><sp=
+an lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;colo=
+r:black"> <span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Roberto Interdonato CIRAD,
+France </span><a href=3D"mailto:roberto.interdonato@cirad.fr" style=3D"colo=
+r:blue;text-decoration:underline"><span lang=3D"EN-US" style=3D"font-size:1=
+1pt;font-family:Arial,sans-serif">roberto.interdonato@cirad.fr</span></a><s=
+pan lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;col=
+or:black"> <span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Rushed Kanawati Paris
+13 University, France </span><a href=3D"mailto:rushed.kanawati@lipn.univ-pa=
+ris13.fr" style=3D"color:blue;text-decoration:underline"><span lang=3D"EN-U=
+S" style=3D"font-size:11pt;font-family:Arial,sans-serif">rushed.kanawati@li=
+pn.univ-paris13.fr</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:Arial,sans-serif;color:black"> <span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 </span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Christine Largeron
+University of Lyon, France </span><a href=3D"mailto:christine.largeron@univ=
+-st-etienne.fr" style=3D"color:blue;text-decoration:underline"><span lang=
+=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif">christine.=
+largeron@univ-st-etienne.fr</span></a><span lang=3D"EN-US" style=3D"font-si=
+ze:11pt;font-family:Arial,sans-serif;color:black"> <span> </span><span></sp=
+an></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justi=
+fy;line-height:18pt;background:white;font-size:12pt;font-family:Cambria,ser=
+if"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Alessandra Sala, Nokia
+Bell Labs, Ireland </span><a href=3D"mailto:alessandra.sala@nokia-bell-labs=
+.com" style=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US" s=
+tyle=3D"font-size:11pt;font-family:Arial,sans-serif">alessandra.sala@nokia-=
+bell-labs.com</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:black"> <span>=C2=A0=C2=A0=C2=A0=C2=A0 </span>=
+<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-ser=
+if;color:black">Submission timeline <span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black"><span>=C2=A0</span></span></p>
+
+<p class=3D"gmail-MsoListParagraph" style=3D"text-align:justify;line-height=
+:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12pt;font-fam=
+ily:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family=
+:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal;font-vari=
+ant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;line-height=
+:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:black">Expression of interest: September 21, 2=
+018 <span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black">We invite
+authors to submit a brief expression of interest and a short outline or
+extended abstract (approx. 1000 words). The proposal should include: <span>=
+</span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"margin:0cm 0cm 0.0001=
+pt 72pt;text-align:justify;line-height:18pt;background:white;font-size:12pt=
+;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fo=
+nt-family:&quot;Courier New&quot;;color:black"><span>o<span style=3D"font-s=
+tyle:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font=
+-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
+=A0=C2=A0 </span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt=
+;font-family:Arial,sans-serif;color:black">The topic, <span></span></span><=
+/p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"margin:0cm 0cm 0.000=
+1pt 72pt;text-align:justify;line-height:18pt;background:white;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:&quot;Courier New&quot;;color:black"><span>o<span style=3D"font-=
+style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fon=
+t-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
+=A0=C2=A0 </span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt=
+;font-family:Arial,sans-serif;color:black">Key concepts, <span></span></spa=
+n></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"margin:0cm 0cm 0.000=
+1pt 72pt;text-align:justify;line-height:18pt;background:white;font-size:12p=
+t;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;f=
+ont-family:&quot;Courier New&quot;;color:black"><span>o<span style=3D"font-=
+style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fon=
+t-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
+=A0=C2=A0 </span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt=
+;font-family:Arial,sans-serif;color:black">Methods (if the paper is based o=
+n empirical research),
+<span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"margin:0cm 0cm 0.0001p=
+t 72pt;text-align:justify;line-height:18pt;background:white;font-size:12pt;=
+font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fon=
+t-family:&quot;Courier New&quot;;color:black"><span>o<span style=3D"font-st=
+yle:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-=
+size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=
+=C2=A0 </span></span></span><span lang=3D"EN-US" style=3D"font-size:11pt;fo=
+nt-family:Arial,sans-serif;color:black">Expected results and conclusions. <=
+span>=C2=A0</span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black">Please send
+it by e-mail to the Lead guest editor: <span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black">=C2=A0Roberto
+Interdonato, </span><a href=3D"mailto:roberto.interdonato@cirad.fr" style=
+=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US" style=3D"fon=
+t-size:11pt;font-family:Arial,sans-serif">roberto.interdonato@cirad.fr</spa=
+n></a><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-s=
+erif;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black"><span>=C2=A0</span></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"text-align:justify;li=
+ne-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12pt=
+;font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fo=
+nt-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal;=
+font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;li=
+ne-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:black">Feedback on outline / extended abstract=
+: September 28,
+2018<span></span></span></b></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"text-align:justify;lin=
+e-height:18pt;background:white;margin:0cm 0cm 0.0001pt 36pt;font-size:12pt;=
+font-family:Cambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;fon=
+t-family:Symbol;color:black"><span>=C2=B7<span style=3D"font-style:normal;f=
+ont-variant:normal;font-weight:normal;font-stretch:normal;font-size:7pt;lin=
+e-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:black">Full paper submission deadline: October=
+ 28, 2018.<span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:18pt;backgro=
+und:white;margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:Cambria,serif"=
+><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+color:black"><span>=C2=A0</span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">Full=C2=A0</span><a href=3D"https://www.ama.org/publications/Journa=
+lOfPublicPolicyAndMarketing/Pages/JPPMGuidelines.aspx" title=3D"JPPM Guidel=
+ines" style=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US" s=
+tyle=3D"font-size:11pt;font-family:Arial,sans-serif;color:black;text-decora=
+tion:none">submission guidelines</span></a><span lang=3D"EN-US" style=3D"fo=
+nt-size:11pt;font-family:Arial,sans-serif;color:black">=C2=A0can be found a=
+t the </span><a href=3D"https://appliednetsci.springeropen.com/" style=3D"c=
+olor:blue;text-decoration:underline"><span lang=3D"EN-US" style=3D"font-siz=
+e:11pt;font-family:Arial,sans-serif">Applied
+Network science</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;font=
+-family:Arial,sans-serif;color:black"> website.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><a h=
+ref=3D"https://appliednetsci.springeropen.com/submission-guidelines" style=
+=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US" style=3D"fon=
+t-size:11pt;font-family:Arial,sans-serif">https://appliednetsci.springerope=
+n.com/submission-guidelines</span></a><span lang=3D"EN-US" style=3D"font-si=
+ze:11pt;font-family:Arial,sans-serif;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">All manuscripts should be submitted through the Applied Network Sci=
+ence
+submission system:<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><a h=
+ref=3D"https://www.editorialmanager.com/apns/default.aspx" style=3D"color:b=
+lue;text-decoration:underline"><span lang=3D"EN-US" style=3D"font-size:11pt=
+;font-family:Arial,sans-serif">https://www.editorialmanager.com/apns/defaul=
+t.aspx</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:A=
+rial,sans-serif;color:black"><span></span></span></p>
+
+<p class=3D"gmail-MsoListParagraph" style=3D"margin:0cm 0cm 6pt 18pt;text-a=
+lign:justify;line-height:18pt;background:white;font-size:12pt;font-family:C=
+ambria,serif"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Symb=
+ol;color:black"><span>=C2=B7<span style=3D"font-style:normal;font-variant:n=
+ormal;font-weight:normal;font-stretch:normal;font-size:7pt;line-height:norm=
+al;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-US" style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:black">Target publication date: February 28, 2=
+019<span></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">Papers will be subject to a fast track review procedure that will s=
+tart
+as soon as they are submitted. They will be published as soon as they are
+accepted. <span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">For more information, please direct your questions to the Lead gues=
+t
+editor:<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black">Roberto Interdonato </span><a href=3D"mailto:roberto.interdonato@ci=
+rad.fr" style=3D"color:blue;text-decoration:underline"><span lang=3D"EN-US"=
+ style=3D"font-size:11pt;font-family:Arial,sans-serif">roberto.interdonato@=
+cirad.fr</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;font-family=
+:Arial,sans-serif;color:black"> <span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black"><span>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:18pt;background:white;font-size:12pt;font-family:Cambria,serif"><spa=
+n lang=3D"EN-US" style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:black"><span>=C2=A0</span></span></p>
+
+
+
+
+
+<br clear=3D"all"><div><br></div>-- <br><div class=3D"gmail_signature" data=
+-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"lt=
+r"><br><span><font color=3D"#999999">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Roberto Interdonato, PhD<br><div dir=3D"ltr">Research Scientist=C2=A0</div>=
+<div dir=3D"ltr">CIRAD=C2=A0</div><div dir=3D"ltr">UMR TETIS</div>Montpelli=
+er</font></span></div><div dir=3D"ltr"><span><font color=3D"#999999">France=
+<br></font><font color=3D"#999999">
+email:=C2=A0</font></span><span style=3D"color:rgb(85,85,85);white-space:no=
+wrap"><a href=3D"mailto:roberto.interdonato@cirad.fr" target=3D"_blank">rob=
+erto.interdonato@cirad.fr</a><br></span><span style=3D"color:rgb(153,153,15=
+3)">tel: +33 (0) 467558615</span></div><div><span><font color=3D"#999999">=
+=C2=A0=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</font><b=
+r></span></div></div></div></div></div></div></div></div></div></div></div>
+</div>
+
+<br>
+<div style=3D"font-family:Arial,Helvetica,sans-serif;font-size:1.3em">-----=
+-------------------------<wbr>------------------------------<wbr>----------=
+--------------------<wbr>------------------------</div><div><font face=3D"A=
+rial, Helvetica, sans-serif"><span style=3D"font-size:13px">Il banner =C3=
+=A8 generato automaticamente dal servizio di posta elettronica dell&#39;Uni=
+versit=C3=A0 della Calabria</span></font></div><a href=3D"http://www.unical=
+.it/5x1000" target=3D"_blank"><img src=3D"https://www.unical.it/portale/str=
+utture/centri/centroict/5x1000_35.jpg"></a>
+--00000000000043480d056e0a70f1--
+

@@ -1,0 +1,275 @@
+Return-Path: <slim.kallel@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id E178F229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  9 May 2017 10:12:32 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id E05166D21FD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  9 May 2017 10:12:32 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id D4D51414A836
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  9 May 2017 10:12:32 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.488
+X-Spam-Level:
+X-Spam-Status: No, score=-3.488 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001, VOWEL_TOCC_6=1.5]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 5.8666 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Yoky2yvk46ZV for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  9 May 2017 10:12:32 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-oi0-x244.google.com (mail-oi0-x244.google.com [IPv6:2607:f8b0:4003:c06::244])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id A35CE401A6E7
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  9 May 2017 10:12:31 +0200 (CEST)
+Received: by mail-oi0-x244.google.com with SMTP id w138so13383050oiw.3
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 09 May 2017 01:12:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=BUhhc1mo2tzejSjHTWoCv4gvi14gqdl9ZwCxk/n+K1k=;
+        b=GdQKetzmKepJSCvquL5TfmCmj0+B2vTLo4MfulLhwn4+jw1ZeGiKh0GixPkHkEZokB
+         ttowNANcP6XzdGpdMsquGsslS4O186xPm+nMm5hNcEYSmBUg7E6i2ezRa5yMWkrlwCff
+         O2Cd8xM4Q0AuRbLMFNAj33PEhrnmJSJH8FcJi3115RJcHC+VUQn8JAbZqouD5Nt5f91E
+         ORNu0R5qm+wPD8mVNksPNwbxTNNHN7RKB3V1+45lE16Kr2oTj8As9YdXCOid6/sptwZ6
+         i5vaMarZoywpJXL4lfCL6BkD5hox5cH6RdSwJ7Du+ludV5gd6QZblZmzfj0UW+7u9/6u
+         npdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=BUhhc1mo2tzejSjHTWoCv4gvi14gqdl9ZwCxk/n+K1k=;
+        b=CQ9RuoDqaPWb0xSlk8bcTGirrKN5Kb4VUjDZZ5Yj11qSI2b9SK3Svt0lT7dHBmmZbO
+         rFteibKrVS4mpndxUx4RzfGK3Ww+3FC5VUWPD0pYpcL8poR+VTDmsN1/NF652pqibTLA
+         p9XAD1NL40Ttaaq/52VZGAbRaKrP6u75rFwiUAYkDBigUIc02KIHTOg0ExYVdhwGiVOq
+         sxzCpTswtvh+qXN3cP+IrhXJNFt1OXjeKFgJ32vkoUYtxFYrnmebR9NBmKHbfoMGJZ0m
+         Aj99KSNTQrvZsUs1kJF8xRgic4HJ9/V/GyXb3c1bV0ECd6Pf6DggLZRJhNauBc9JRKoq
+         Otpw==
+X-Gm-Message-State: AN3rC/5+KMpI19LThRvcipPoV/Hx8AgH3F45jNZ75mxU9d0gfAY1MG38
+	BoHpTSc3JFSv6MyLWL+mifpVkkx7jA==
+X-Received: by 10.202.253.208 with SMTP id b199mr15602807oii.54.1494317550314;
+ Tue, 09 May 2017 01:12:30 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.157.9.66 with HTTP; Tue, 9 May 2017 01:12:29 -0700 (PDT)
+From: Slim Kallel <slim.kallel@gmail.com>
+Date: Tue, 9 May 2017 10:12:29 +0200
+Message-ID: <CAJq=jJuhu-Oeswf3hiM_ddaqmvuh_Mwt93Y9X3u9C-HPSyK2JQ@mail.gmail.com>
+To: strqds@laas.fr, "agents (" <agents@cs.umbc.edu>, ahsntc@l2ti.univ-paris13.fr, 
+	modularity-announce@googlegroups.com, 
+	"ecoop-info@ecoop.org" <ecoop-info@ecoop.org>, gdr gpl <gdr.gpl@imag.fr>, bull-i3@irit.fr, 
+	"seworld@sigsoft.org" <seworld@sigsoft.org>, concurrency@listserver.tue.nl, 
+	liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a113d1fd0c4acb3054f12eaab
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Special Issue : Privacy Issues in the Internet of
+ Things - Security and Communication Networks Journal
+
+--001a113d1fd0c4acb3054f12eaab
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Colleagues,
+
+Please consider to participate or forward the following call for paper in
+the special issue "Privacy Issues in the Internet of Things" of the
+Security and Communication Networks Journal (Impact Factor 0.806).
+
+For more information about the special issue, please visit:
+https://www.hindawi.com/journals/scn/si/765054/cfp/
+
+Important Dates:
+Manuscript Due: Friday, 25 August 2017
+First Round of Reviews: Friday, 17 November 2017
+Publication Date: Friday, 12 January 2018
+
+Call for Papers:
+Nowadays, the Internet of Things (IoT) became an advanced technology widely
+deployed in several fields including industry, transportation, energy, home
+and environment monitoring, and healthcare and wellbeing applications. IoT
+provides an added value service allowing users to easily supervise their
+environments and helping them make suitable decisions. IoT is likely to
+improve the quality of people's lives, create new markets and new
+opportunities, increase economic growth, and be a momentum for competition.
+
+Many research efforts focus on collecting and processing data coming from
+different connected things. Others proposed novel processing and
+communication architectures, technologies, and management strategies. IoT
+systems can leverage wireless sensor networks to collect and process data
+and use cloud technologies, peer-to-peer systems, and big data paradigms to
+provide computation and analysis capabilities.
+
+The other side of the coin is clearly the security and privacy issues
+raised by the widespread usage of IoT. Indeed, IoT is based on the large
+number of wireless sensors which involve accessibility, availability,
+accuracy, and confidentiality problems. Thus, the security problems start
+from the data collection phase and continue throughout the collected data
+life cycle going through the transmission, storage, and processing phases.
+On the other hand, the increasingly invisible, dense, and pervasive
+collection, processing, and dissemination of data in the midst of people's
+private lives give rise to serious privacy concerns. The tracking of
+personal details of lifestyle, activities, habits, and preferences would
+potentially be accessible for third or unauthorized persons to see. Through
+the power of machine learning, someone can then analyze and make
+predictions about future behaviors of people. The current personal data
+protection approaches are based mainly on security techniques like data
+encryption or access control mechanisms. However, the privacy threats in
+the IoT outstrip these solutions and provoke serious challenges like
+tracking and profiling leakage, accountability and responsibility, and
+privacy by design paradigm.
+
+This special issue on privacy in the Internet of Things aims to bring
+together state-of-the-art contributions on IoT privacy, discover the
+existing IoT privacy challenges, and introduce threat and attacker models
+that can be applied to IoT architectures and design methods for ensuring
+privacy of IoT applications and architectures. Original and unpublished
+contributions are solicited in all aspects of this discipline.
+
+Potential topics include but are not limited to the following:
+
+- Privacy by design in IoT
+- Tracking and profiling threats
+- Middleware for preserving privacy in the Internet of Things
+- Enhanced oil/gas recovery for unconventional resources
+- Big data and privacy issues in the IoT
+- Privacy-preserving data collection and mining in IoT
+- Accountability and responsibility in IoT
+- Privacy-preserving cloud of things
+- New cryptographic approaches for IoT
+- Anonymization techniques for IoT
+- Proactive privacy models for IoT
+- Data retention and disclosure issues in IoT
+- Privacy policies enforcement in IoT
+- Ethics and legal compliance in IoT Voluntary and controlled release of
+privacy
+
+Authors can submit their manuscripts through the Manuscript Tracking System
+at:
+https://mts.hindawi.com/submit/journals/scn/spii/.
+
+Lead Guest Editor:
+- Mohamed Jmaiel, Digital Research Centre of Sfax, Sfax, Tunisia
+
+Guest Editors:
+- Sophie Chabridon, T=C3=A9l=C3=A9com SudParis, =C3=89vry, France
+- Sumi Helal, University of Florida, Gainesville, USA
+- Mahmoud Ghorbel, Faculty of Sciences of Sfax, University of Sfax, Tunisia
+- Maryline Laurent, T=C3=A9l=C3=A9com SudParis, =C3=89vry, France
+- Li Yingjiu, Singapore Management University, Singapore
+
+About the journal:
+This journal is published by Hindawi as part of a publishing collaboration
+with John Wiley & Sons, Inc. It is a fully Open Access journal produced
+under the Hindawi and Wiley brands. For more information please visit :
+https://www.hindawi.com/journals/scn/
+
+--001a113d1fd0c4acb3054f12eaab
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style=3D"font-size:12.8px">Dear Colleagues,</div><div=
+ style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">Pleas=
+e consider to participate or forward the following call for paper in the sp=
+ecial issue &quot;Privacy Issues in the Internet of Things&quot; of the Sec=
+urity and Communication Networks Journal (Impact Factor 0.806).=C2=A0</div>=
+<div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">F=
+or more information about the special issue, please visit:=C2=A0</div><div =
+style=3D"font-size:12.8px"><a href=3D"https://www.hindawi.com/journals/scn/=
+si/765054/cfp/" target=3D"_blank">https://www.hindawi.com/<wbr>journals/scn=
+/si/765054/cfp/</a></div><div style=3D"font-size:12.8px"><br></div><div sty=
+le=3D"font-size:12.8px">Important Dates:</div><div style=3D"font-size:12.8p=
+x">Manuscript Due:<span class=3D"gmail-m_7805746103576173266gmail-Apple-tab=
+-span" style=3D"white-space:pre-wrap">	</span>Friday, 25 August 2017</div><=
+div style=3D"font-size:12.8px">First Round of Reviews:<span class=3D"gmail-=
+m_7805746103576173266gmail-Apple-tab-span" style=3D"white-space:pre-wrap">	=
+</span>Friday, 17 November 2017</div><div style=3D"font-size:12.8px">Public=
+ation Date: Friday, 12 January 2018</div><div style=3D"font-size:12.8px"><b=
+r></div><div style=3D"font-size:12.8px">Call for Papers:</div><div style=3D=
+"font-size:12.8px">Nowadays, the Internet of Things (IoT) became an advance=
+d technology widely deployed in several fields including industry, transpor=
+tation, energy, home and environment monitoring, and healthcare and wellbei=
+ng applications. IoT provides an added value service allowing users to easi=
+ly supervise their environments and helping them make suitable decisions. I=
+oT is likely to improve the quality of people&#39;s lives, create new marke=
+ts and new opportunities, increase economic growth, and be a momentum for c=
+ompetition.</div><div style=3D"font-size:12.8px"><br></div><div style=3D"fo=
+nt-size:12.8px">Many research efforts focus on collecting and processing da=
+ta coming from different connected things. Others proposed novel processing=
+ and communication architectures, technologies, and management strategies. =
+IoT systems can leverage wireless sensor networks to collect and process da=
+ta and use cloud technologies, peer-to-peer systems, and big data paradigms=
+ to provide computation and analysis capabilities.</div><div style=3D"font-=
+size:12.8px"><br></div><div style=3D"font-size:12.8px">The other side of th=
+e coin is clearly the security and privacy issues raised by the widespread =
+usage of IoT. Indeed, IoT is based on the large number of wireless sensors =
+which involve accessibility, availability, accuracy, and confidentiality pr=
+oblems. Thus, the security problems start from the data collection phase an=
+d continue throughout the collected data life cycle going through the trans=
+mission, storage, and processing phases. On the other hand, the increasingl=
+y invisible, dense, and pervasive collection, processing, and dissemination=
+ of data in the midst of people&#39;s private lives give rise to serious pr=
+ivacy concerns. The tracking of personal details of lifestyle, activities, =
+habits, and preferences would potentially be accessible for third or unauth=
+orized persons to see. Through the power of machine learning, someone can t=
+hen analyze and make predictions about future behaviors of people. The curr=
+ent personal data protection approaches are based mainly on security techni=
+ques like data encryption or access control mechanisms. However, the privac=
+y threats in the IoT outstrip these solutions and provoke serious challenge=
+s like tracking and profiling leakage, accountability and responsibility, a=
+nd privacy by design paradigm.</div><div style=3D"font-size:12.8px"><br></d=
+iv><div style=3D"font-size:12.8px">This special issue on privacy in the Int=
+ernet of Things aims to bring together state-of-the-art contributions on Io=
+T privacy, discover the existing IoT privacy challenges, and introduce thre=
+at and attacker models that can be applied to IoT architectures and design =
+methods for ensuring privacy of IoT applications and architectures. Origina=
+l and unpublished contributions are solicited in all aspects of this discip=
+line.</div><div style=3D"font-size:12.8px"><br></div><div style=3D"font-siz=
+e:12.8px">Potential topics include but are not limited to the following:</d=
+iv><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px=
+">- Privacy by design in IoT</div><div style=3D"font-size:12.8px">- Trackin=
+g and profiling threats</div><div style=3D"font-size:12.8px">- Middleware f=
+or preserving privacy in the Internet of Things</div><div style=3D"font-siz=
+e:12.8px">- Enhanced oil/gas recovery for unconventional resources</div><di=
+v style=3D"font-size:12.8px">- Big data and privacy issues in the IoT</div>=
+<div style=3D"font-size:12.8px">- Privacy-preserving data collection and mi=
+ning in IoT</div><div style=3D"font-size:12.8px">- Accountability and respo=
+nsibility in IoT</div><div style=3D"font-size:12.8px">- Privacy-preserving =
+cloud of things</div><div style=3D"font-size:12.8px">- New cryptographic ap=
+proaches for IoT</div><div style=3D"font-size:12.8px">- Anonymization techn=
+iques for IoT</div><div style=3D"font-size:12.8px">- Proactive privacy mode=
+ls for IoT</div><div style=3D"font-size:12.8px">- Data retention and disclo=
+sure issues in IoT</div><div style=3D"font-size:12.8px">- Privacy policies =
+enforcement in IoT</div><div style=3D"font-size:12.8px">- Ethics and legal =
+compliance in IoT Voluntary and controlled release of privacy</div><div sty=
+le=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">Authors c=
+an submit their manuscripts through the Manuscript Tracking System at:</div=
+><div style=3D"font-size:12.8px"><a href=3D"https://mts.hindawi.com/submit/=
+journals/scn/spii/" target=3D"_blank">https://mts.hindawi.com/<wbr>submit/j=
+ournals/scn/spii/</a>.</div><div style=3D"font-size:12.8px"><br></div><div =
+style=3D"font-size:12.8px">Lead Guest Editor:</div><div style=3D"font-size:=
+12.8px">- Mohamed Jmaiel, Digital Research Centre of Sfax, Sfax, Tunisia</d=
+iv><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px=
+">Guest Editors:</div><div style=3D"font-size:12.8px">- Sophie Chabridon, T=
+=C3=A9l=C3=A9com SudParis, =C3=89vry, France</div><div style=3D"font-size:1=
+2.8px">- Sumi Helal, University of Florida, Gainesville, USA</div><div styl=
+e=3D"font-size:12.8px">- Mahmoud Ghorbel, Faculty of Sciences of Sfax, Univ=
+ersity of Sfax, Tunisia</div><div style=3D"font-size:12.8px">- Maryline Lau=
+rent, T=C3=A9l=C3=A9com SudParis, =C3=89vry, France</div><div style=3D"font=
+-size:12.8px">- Li Yingjiu, Singapore Management University, Singapore</div=
+><div style=3D"font-size:12.8px"><br></div><div style=3D"font-size:12.8px">=
+About the journal:</div><div style=3D"font-size:12.8px">This journal is pub=
+lished by Hindawi as part of a publishing collaboration with John Wiley &am=
+p; Sons, Inc. It is a fully Open Access journal produced under the Hindawi =
+and Wiley brands. For more information please visit :</div><div style=3D"fo=
+nt-size:12.8px"><a href=3D"https://www.hindawi.com/journals/scn/" target=3D=
+"_blank">https://www.hindawi.com/<wbr>journals/scn/</a></div></div>
+
+--001a113d1fd0c4acb3054f12eaab--

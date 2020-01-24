@@ -1,0 +1,549 @@
+Return-Path: <sabine.loudcher@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 29683229294E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 16 Jun 2017 16:37:51 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 27C7462884C
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 16 Jun 2017 16:37:51 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 1825CB4A274
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Jun 2017 16:37:51 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -11.33
+X-Spam-Level:
+X-Spam-Status: No, score=-11.33 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, J_CHICKENPOX_21=0.6,
+	J_CHICKENPOX_81=0.6, J_CHICKENPOX_91=0.6, MANGLED_VIDEO=2.3,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 14.3110 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id q0lZ9dAi1O2l for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 16 Jun 2017 16:37:50 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 49AD769C3EA
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Jun 2017 16:37:50 +0200 (CEST)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id 931D6139A9B
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Jun 2017 16:37:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1497623869;
+	bh=X2+1vDvwOzbAZlJtAeFZxR0IVa+FcI6pj1SD34BGskU=;
+	h=From:To:Subject:Date;
+	b=0D4c+Qc7VbLERmn8qsRRED5BUvgAUixUVCsBhjDzlhIuVNQStwu2h8/ZtkePST0+5
+	 8NxroHmJyKDs9x/POH3AIQkjVrfMaZDqD0u+qS6kjLYJKKkqRzrtzVmOR/Qd7YufgU
+	 BoCeqVU2fh+VnUP3fA9tIbuSJE64QbixGn7lELS41u28GNttiXy1951Bhf6yePTS7J
+	 fs3yHpjros6YPPQ5thsjrRsoAfuUtaP/H0rKIjbyvp4PopRYJoi8xeiAFp8nsdsLzT
+	 Zsiy7cSOUHZt9VvmAKiJ00s+kZvNHKs3dyN3PRaWHJAci7VsSzAzUEJy1oVZ7wQ4Lu
+	 lpskuhHrS9RLw==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id kAEZCRZCf2is for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 16 Jun 2017 16:37:48 +0200 (CEST)
+Received: from Loudcher (Loudcher-dhcp-159-84-128-70.univ-lyon2.fr [159.84.128.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Jun 2017 16:37:48 +0200 (CEST)
+From: "Sabine Loudcher" <sabine.loudcher@univ-lyon2.fr>
+To: <liste-egc@polytech.univ-nantes.fr>
+Date: Fri, 16 Jun 2017 16:37:20 +0200
+Message-ID: <006f01d2e6ae$0f94e580$2ebeb080$@univ-lyon2.fr>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0070_01D2E6BE.D3230CB0"
+X-Mailer: Microsoft Outlook 14.0
+Thread-Index: AdLmrO20NwKK99fLTbePS2KEizgzHA==
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Offre de =?WINDOWS-1256?Q?th=E8se?= CIFRE
+ =?WINDOWS-1256?Q?=E0?= Lyon : Business Intelligence & Analytics
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0070_01D2E6BE.D3230CB0
+Content-Type: text/plain;
+	charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+Nous cherchons un.e candidat.e pour le sujet de th=E8se d=E9crit =
+ci-dessous. Il
+s'agit d'une th=E8se CIFRE entre le laboratoire ERIC et le cabinet =
+Bial-X,
+tous deux dans la m=E9tropole de Lyon, sur le th=E8me Business =
+Intelligence &
+Analytics.
+
+=20
+
+Avec toutes nos excuses pour les in=E9vitables r=E9ceptions multiples.
+
+Cordialement,
+Sabine Loudcher
+
+=20
+
+=20
+
+Lieu : cabinet Bial-X (Limonest, Rh=F4ne) et laboratoire ERIC de =
+l=92universit=E9
+de Lyon (Bron, Rh=F4ne).
+
+=20
+
+=20
+
+Directeurs de th=E8se : Sabine LOUDCHER (Professeure en Informatique,
+laboratoire ERIC) et Eric FEREY (Pr=E9sident du cabinet BIAL-X).=20
+
+=20
+
+Co-encadrant : C=E9cile FAVRE (Maitresse de Conf=E9rences en =
+Informatique,
+laboratoire ERIC).
+
+=20
+
+Langue de travail : fran=E7ais et anglais mais un bon niveau en anglais =
+est
+demand=E9 pour la r=E9daction et la pr=E9sentation d=92articles =
+scientifiques
+
+=20
+
+Contexte :=20
+
+Cette proposition de th=E8se se place dans le cadre d=92une =
+collaboration entre
+le laboratoire ERIC qui m=E8ne des recherches dans les domaines de la =
+science
+des donn=E9es et de l'Informatique D=E9cisionnelle (Business =
+Intelligence-BI) et
+l=92entreprise Bial-X, cabinet d'experts en informatique =
+d=E9cisionnelle. Apr=E8s
+plus de 10 ann=E9es d=92exp=E9rience, le positionnement de Data =
+Performer du
+cabinet Bial-X lui conf=E8re une l=E9gitimit=E9 reconnue sur les sujets =
+BI et Big
+Data.
+
+=20
+
+=20
+
+Sujet :
+
+A l'heure actuelle l=92Informatique D=E9cisionnelle avec les entrep=F4ts =
+de
+donn=E9es (Data Warehouses), les tableaux de bord (Reporting) et =
+l=92analyse en
+ligne (OLAP) sont des technologies largement utilis=E9es dans les =
+entreprises
+et elles sont bien ma=EEtris=E9es quand il s'agit de donn=E9es =
+"simples".
+Cependant, la communaut=E9 scientifique s'accorde pour dire que, avec
+l'av=E8nement du Web, la profusion des donn=E9es multim=E9dias (son, =
+image, vid=E9o,
+texte, ...), les r=E9seaux sociaux, etc. les donn=E9es sont =
+h=E9t=E9rog=E8nes, de
+vari=E9t=E9s diverses, v=E9loces et qu'elles sont devenues entre autres =
+devenues
+massives (Big Data). L'av=E8nement des donn=E9es massives a remis en =
+cause le
+processus d'entreposage et d'analyse des donn=E9es ; il a induit =
+l'=E9mergence
+de nouveaux probl=E8mes de recherche comme l'int=E9gration des donn=E9es =
+massives
+dans les entrep=F4ts, le stockage, la repr=E9sentation ou la =
+mod=E9lisation,
+l'analyse en ligne et la fouille de telles donn=E9es.
+
+=20
+
+De plus, m=EAme si d=92un point de vue th=E9orique l=92Informatique =
+D=E9cisionnelle
+inclut dans ses fondements la possibilit=E9 d=92analyser statistiquement =
+les
+donn=E9es par exemple en faisant de la pr=E9diction, la r=E9flexion sur
+l'int=E9gration de la pr=E9diction dans le Reporting ou dans l=92analyse =
+OLAP est
+relativement peu aboutie. Les propositions sont peu int=E9gr=E9es
+automatiquement dans les syst=E8mes d=92aide =E0 la d=E9cision alors =
+qu=92il y a une
+vraie demande de la part des entreprises d=92int=E9grer dans les =
+processus
+d=E9cisionnels une possibilit=E9 de faire de la pr=E9diction. Ce besoin =
+est relay=E9
+par les =E9diteurs de solutions d=E9cisionnelles qui parlent de Business
+Analytics.=20
+
+=20
+
+L=92objectif de la th=E8se est de travailler sur cette probl=E9matique =
+de
+pr=E9diction dans un processus d=92Informatique D=E9cisionnelle =
+(Business
+Intelligence & Analytics) tout en la pensant dans le contexte du Big =
+Data.
+Notre id=E9e est de proposer une m=E9thode de pr=E9diction ne supposant =
+pas
+d'hypoth=E8se sur les donn=E9es et capable de faire une pr=E9diction =AB =
+=E0 la vol=E9e
+=BB lors de l=92analyse d=92un tableau de bord ou d=92un cube OLAP. Par =
+exemple,
+dans l=92OLAP, l=92utilisateur doit pouvoir pr=E9dire la valeur de la =
+mesure de
+nouveaux faits et doit avoir des indicateurs de fiabilit=E9 de la =
+pr=E9diction.
+Une fois les valeurs estim=E9es, l'utilisateur doit pouvoir continuer sa
+navigation dans des niveaux prenant en compte les agr=E9gats calcul=E9s. =
+
+
+=20
+
+=20
+
+D=92un point de vue technique, les propositions faites par le ou la
+doctorant.e seront impl=E9ment=E9es et int=E9gr=E9es aux solutions =
+logicielles
+d=E9velopp=E9es par la soci=E9t=E9 Bial-X. Le ou la doctorant.e =
+int=E9grera une =E9quipe
+de sp=E9cialistes passionn=E9s, =E0 dimension humaine, o=F9 il/elle =
+pourra mettre en
+action ses propositions, sa cr=E9ativit=E9 et ses comp=E9tences sur des =
+cas
+concrets, r=E9els et passionnants.
+
+=20
+
+Ce projet de th=E8se comprendra trois grand niveaux de r=E9alisation : =
+un niveau
+conceptuel ou th=E9orique pour proposer une d=E9marche d=92int=E9gration =
+de la
+pr=E9diction dans un processus d=E9cisionnel ; un niveau technique pour
+l=92impl=E9mentation informatique des propositions et un niveau =
+applicatif avec
+la mise en =9Cuvre des propositions sur des donn=E9es r=E9elles.
+
+=20
+
+Mots-cl=E9s : Informatique D=E9cisionnelle, analyse statistique, =
+pr=E9diction,
+analyse en ligne (OLAP), fouille de donn=E9es, Big Data
+
+=20
+
+=20
+
+Pour candidater, merci d=92envoyer un mail
+
+-        avec un CV, une lettre de motivation, le relev=E9 de notes du =
+Master
+(1=E8re et 2=E8me ann=E9e) ou de tout dipl=F4me =E9quivalent
+
+-        =E0            sabine.loudcher@univ-lyon2.fr
+
+eric.ferey@bial-x.com
+
+cecile.favre@univ-lyon2.fr=20
+
+=20
+
+
+------=_NextPart_000_0070_01D2E6BE.D3230CB0
+Content-Type: text/html;
+	charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dwindows-1256"><meta name=3DGenerator content=3D"Microsoft Word =
+14 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Texte de bulles Car";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.TextedebullesCar
+	{mso-style-name:"Texte de bulles Car";
+	mso-style-priority:99;
+	mso-style-link:"Texte de bulles";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1928880133;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1559137532 101713354 67895299 67895301 67895297 =
+67895299 67895301 67895297 67895299 67895301;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFR link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal>Bonjour,<br><br>Nous cherchons un.e candidat.e pour le =
+sujet de th=E8se d=E9crit ci-dessous. Il s'agit d'une th=E8se CIFRE =
+entre le laboratoire ERIC et le cabinet Bial-X, tous deux dans la =
+m=E9tropole de Lyon, sur le th=E8me Business Intelligence &amp; =
+Analytics.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Avec toutes nos excuses pour les in=E9vitables =
+r=E9ceptions multiples.<br><br>Cordialement,<br>Sabine =
+Loudcher<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><b><o:p>&nbsp;</o:p></b></p><p =
+class=3DMsoNormal><b>Lieu</b>&nbsp;: cabinet Bial-X (Limonest, Rh=F4ne) =
+et laboratoire ERIC de l=92universit=E9 de Lyon (Bron, =
+Rh=F4ne).<o:p></o:p></p><p =
+class=3DMsoNormal><b><o:p>&nbsp;</o:p></b></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><b><o:p>&nbsp;</o:p></b></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><b>Directeurs de =
+th=E8se</b>&nbsp;: Sabine LOUDCHER (Professeure en Informatique, =
+laboratoire ERIC) et Eric FEREY (Pr=E9sident du cabinet BIAL-X). =
+<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><b><o:p>&nbsp;</o:p></b></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><b>Co-encadrant </b>: =
+C=E9cile FAVRE (Maitresse de Conf=E9rences en Informatique, laboratoire =
+ERIC).<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><b><o:p>&nbsp;</o:p></b></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><b>Langue de =
+travail</b>&nbsp;: fran=E7ais et anglais mais un bon niveau en anglais =
+est demand=E9 pour la r=E9daction et la pr=E9sentation d=92articles =
+scientifiques<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><span =
+style=3D'background:yellow;mso-highlight:yellow'><o:p>&nbsp;</o:p></span>=
+</p><p class=3DMsoNormal><b>Contexte&nbsp;: </b><o:p></o:p></p><p =
+class=3DMsoNormal>Cette proposition de th=E8se se place dans le cadre =
+d=92une collaboration entre le laboratoire ERIC qui m=E8ne des =
+recherches dans les domaines de la science des donn=E9es et de =
+l'Informatique D=E9cisionnelle (Business Intelligence-BI) et =
+l=92entreprise Bial-X, cabinet d'experts en informatique =
+d=E9cisionnelle. Apr=E8s plus de 10 ann=E9es d=92exp=E9rience, le =
+positionnement de Data Performer du cabinet Bial-X lui conf=E8re une =
+l=E9gitimit=E9 reconnue sur les sujets BI et Big Data.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><b><o:p>&nbsp;</o:p></b></p><p =
+class=3DMsoNormal><b>Sujet</b>&nbsp;:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>A l'heure actuelle l=92Informatique =
+D=E9cisionnelle avec les entrep=F4ts de donn=E9es (Data Warehouses), les =
+tableaux de bord (Reporting) et l=92analyse en ligne (OLAP) sont des =
+technologies largement utilis=E9es dans les entreprises et elles sont =
+bien ma=EEtris=E9es quand il s'agit de donn=E9es &quot;simples&quot;. =
+Cependant, la communaut=E9 scientifique s'accorde pour dire que, avec =
+l'av=E8nement du Web, la profusion des donn=E9es multim=E9dias (son, =
+image, vid=E9o, texte, ...), les r=E9seaux sociaux, etc. les donn=E9es =
+sont h=E9t=E9rog=E8nes, de vari=E9t=E9s diverses, v=E9loces et qu'elles =
+sont devenues entre autres devenues massives (Big Data). L'av=E8nement =
+des donn=E9es massives a remis en cause le processus d'entreposage et =
+d'analyse des donn=E9es ; il a induit l'=E9mergence de nouveaux =
+probl=E8mes de recherche comme l'int=E9gration des donn=E9es massives =
+dans les entrep=F4ts, le stockage, la repr=E9sentation ou la =
+mod=E9lisation, l'analyse en ligne et la fouille de telles =
+donn=E9es.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>De plus, m=EAme si d=92un point de vue =
+th=E9orique l=92Informatique D=E9cisionnelle inclut dans ses fondements =
+la possibilit=E9 d=92analyser statistiquement les donn=E9es par exemple =
+en faisant de la pr=E9diction, la r=E9flexion sur l'int=E9gration de la =
+pr=E9diction dans le Reporting ou dans l=92analyse OLAP est relativement =
+peu aboutie. Les propositions sont peu int=E9gr=E9es automatiquement =
+dans les syst=E8mes d=92aide =E0 la d=E9cision alors qu=92il y a une =
+vraie demande de la part des entreprises d=92int=E9grer dans les =
+processus d=E9cisionnels une possibilit=E9 de faire de la pr=E9diction. =
+Ce besoin est relay=E9 par les =E9diteurs de solutions d=E9cisionnelles =
+qui parlent de Business Analytics. <o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>L=92objectif de la th=E8se est de =
+travailler sur cette probl=E9matique de pr=E9diction dans un processus =
+d=92Informatique D=E9cisionnelle (Business Intelligence &amp; Analytics) =
+tout en la pensant dans le contexte du Big Data. Notre id=E9e est de =
+proposer une m=E9thode de pr=E9diction ne supposant pas d'hypoth=E8se =
+sur les donn=E9es et capable de faire une pr=E9diction =AB&nbsp;=E0 la =
+vol=E9e&nbsp;=BB lors de l=92analyse d=92un tableau de bord ou d=92un =
+cube OLAP. Par exemple, dans l=92OLAP, l=92utilisateur doit pouvoir =
+pr=E9dire la valeur de la mesure de nouveaux faits et doit avoir des =
+indicateurs de fiabilit=E9 de la pr=E9diction. Une fois les valeurs =
+estim=E9es, l'utilisateur doit pouvoir continuer sa navigation dans des =
+niveaux prenant en compte les agr=E9gats calcul=E9s. <o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>D=92un point de vue =
+technique, les propositions faites par le ou la doctorant.e seront =
+impl=E9ment=E9es et int=E9gr=E9es aux solutions logicielles =
+d=E9velopp=E9es par la soci=E9t=E9 Bial-X. Le ou la doctorant.e =
+int=E9grera une =E9quipe de sp=E9cialistes passionn=E9s, =E0 dimension =
+humaine, o=F9 il/elle pourra mettre en action ses propositions, sa =
+cr=E9ativit=E9 et ses comp=E9tences sur des cas concrets, r=E9els et =
+passionnants.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Ce projet de th=E8se =
+comprendra trois grand niveaux de r=E9alisation : un niveau conceptuel =
+ou th=E9orique pour proposer une d=E9marche d=92int=E9gration de la =
+pr=E9diction dans un processus d=E9cisionnel ; un niveau technique pour =
+l=92impl=E9mentation informatique des propositions&nbsp;et un niveau =
+applicatif avec la mise en =9Cuvre des propositions sur des donn=E9es =
+r=E9elles.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><b>Mots-cl=E9s&nbsp;:</b> Informatique =
+D=E9cisionnelle, analyse statistique, pr=E9diction, analyse en ligne =
+(OLAP), fouille de donn=E9es, Big Data<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><b>Pour =
+candidater, merci d=92envoyer un mail<o:p></o:p></b></p><p =
+class=3DMsoNormal =
+style=3D'margin-left:36.0pt;text-align:justify;text-indent:-18.0pt;mso-li=
+st:l0 level1 lfo1'><![if !supportLists]><span =
+style=3D'font-family:"Times New Roman","serif"'><span =
+style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]>avec un CV, une lettre de motivation, le =
+relev=E9 de notes du Master (1<sup>=E8re</sup> et 2<sup>=E8me</sup> =
+ann=E9e) ou de tout dipl=F4me =E9quivalent<o:p></o:p></p><p =
+class=3DMsoNormal =
+style=3D'margin-left:36.0pt;text-align:justify;text-indent:-18.0pt;mso-li=
+st:l0 level1 lfo1'><![if !supportLists]><span =
+style=3D'font-family:"Times New Roman","serif"'><span =
+style=3D'mso-list:Ignore'>-<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+</span></span></span><![endif]>=E0 =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <a =
+href=3D"mailto:sabine.loudcher@univ-lyon2.fr">sabine.loudcher@univ-lyon2.=
+fr</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'margin-left:54.0pt;text-indent:16.8pt'><a =
+href=3D"mailto:eric.ferey@bial-x.com">eric.ferey@bial-x.com</a><o:p></o:p=
+></p><p class=3DMsoNormal =
+style=3D'margin-left:54.0pt;text-indent:16.8pt'><a =
+href=3D"mailto:cecile.favre@univ-lyon2.fr">cecile.favre@univ-lyon2.fr</a>=
+ <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_000_0070_01D2E6BE.D3230CB0--
+

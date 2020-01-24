@@ -1,0 +1,259 @@
+Return-Path: <r.interdonato@dimes.unical.it>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 0AF85229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  2 Jan 2018 17:54:40 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 0AC35724F5A
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  2 Jan 2018 17:54:40 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 000DF4232308
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  2 Jan 2018 17:54:39 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.099
+X-Spam-Level:
+X-Spam-Status: No, score=0.099 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01,
+	SARE_HEAD_8BIT_SPAM=0.888, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.2580 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=dimes-unical-it.20150623.gappssmtp.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id SQTvgvcqgjy4 for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  2 Jan 2018 17:54:38 +0100 (CET)
+X-Greylist: from auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x230.google.com (mail-lf0-x230.google.com [IPv6:2a00:1450:4010:c07::230])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 9AD724160A44
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  2 Jan 2018 17:54:38 +0100 (CET)
+Received: by mail-lf0-x230.google.com with SMTP id c19so36400159lfg.3
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 02 Jan 2018 08:54:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dimes-unical-it.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=DH4mZ+BIsVKeAme7s0GFrMkwKezC2S+Iu1D+RTBhjbo=;
+        b=lKUy/a1Q9zCl2Xpj6yZYG//9FVbC5lr/xVG/lA358W/RIjcStigkU8q7qp0jajTJo1
+         tYsuD6/ShzE2bQJ56HQZEY6dBoeqHcMLm8cMSY/rKVloXGRHtjf5QhaPy3NbfLQ/PNeH
+         ngxKdJfgDqvq0StVy0fftgicEVzcJKKLRw4v0BjZKJkZtv4oOtMPuPmz1vzJXoxNmzRt
+         1L971VQmZqw+Bub7979EYsZjnXCQIItCxjLq88IkDslHoflaZRTlsYuMVoNffmR8Q5oz
+         KEnCtbBT1c6jmlC6syTq9+8qFjiX/Kx6UDLtBGo6qxs1H0qLpSQT8ssOwaumg3lRik5V
+         Xn2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=DH4mZ+BIsVKeAme7s0GFrMkwKezC2S+Iu1D+RTBhjbo=;
+        b=XdsViNLlO5gcKJ+bPWSROAo4jwAAOWWTfaLptxUDHrLCfBu9yUvlHx2lQ4TVU+r5xH
+         SMO+KIBvZ4QnQ6wlqY42oHEcbHfDDfIy7xGTdHKFgGB6jHDN3KnfoBlSc41je8G/UqWj
+         9Q9TZIfTrQnobgXPpEmMGGUmay1WpdE5bndDRlURJ6lYM0wA1jSQVPo+H55TeaSzps3x
+         0wwtGUoqHQiAtjQqIzPhF1strjJg8/yEuyxLY2Hqrg2Item8PpRqrMz9BIgTR64reXlO
+         mYjGpchKcYoD0Qak+WFuJR7TcTP5a/qxlpZoIVJCPvaN3xk6MeMT1akr+1UiZTnYWBaR
+         nOfA==
+X-Gm-Message-State: AKGB3mJMXm0Ko1OE+aojXCGA0Yeny776TJwOLOQStIrGTq9/sxBJO0UE
+	ViEzLa7xTag9mw2cJkZpKQMM7zCZHVhR4u3rR5DBJ3u8
+X-Google-Smtp-Source: ACJfBouyYZw0P9QGOcbaFhnY99mmvmshgaDVnPgPIzVOAUuHg4tanoAr8uNHGTr19fOfkQiamTUZFd4sOLh13HYqSIQ=
+X-Received: by 10.46.74.26 with SMTP id x26mr25887310lja.83.1514912077368;
+ Tue, 02 Jan 2018 08:54:37 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.179.3.165 with HTTP; Tue, 2 Jan 2018 08:54:36 -0800 (PST)
+From: Roberto Interdonato <rinterdonato@dimes.unical.it>
+Date: Tue, 2 Jan 2018 17:54:36 +0100
+Message-ID: <CAG4i7insR3AJoKgwowABC-8iy42NRXQw+FSQVDDtWfgtUJEv6w@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="f403045ec30e3cece60561cdf4d4"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CfP (Extended Deadlines) - =?UTF-8?Q?MATNet=E2=80=991?=
+ =?UTF-8?Q?8?= Workshop @ TheWebConf2018
+
+--f403045ec30e3cece60561cdf4d4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+MATNet=E2=80=9918: International workshop on Mining Attributed Networks @ W=
+WW=E2=80=992018
+(The Web Conf 2018)
+April 23, 2018, Lyon France
+http://www-lipn.univ-paris13.fr/man-www2018
+
+Asbtract Submission: Jan 21, 2018
+
+Paper Submission: Jan 28, 2018
+
+Acceptance Notification: Feb 20, 2018
+_________________________________________________________________________
+
+Context
+
+Attributed network models have seen an increasing success in recent years,
+thanks to their informative power and to their ability to model complex
+networked relations that characterize most real-world phenomena. Their use
+has been attractive to communities in different disciplines such as
+computer science, physics, social science, as well as in interdisciplinary
+research environments. The use of such models has been also supported by
+the increasing easiness in collecting multi-relational data from the Web,
+e.g., from online social media platforms, crowdsourced data, online
+knowledge base. Within this view, the World Wide Web is an inestimable
+source of information, which can be conveniently represented with
+feature-rich network models, e.g., enclosing temporal aspects of the data,
+quantitative and/or qualitative properties of nodes, different relations
+between a common set of entities, different existence probabilities, or
+modeling connection between different entity types.
+
+The aim of the MATNet workshop, that will be held in conjunction with The
+Web Conf 2018 in Lyon, is to get an insight in the current status of
+research in network analysis and mining, showing how modeling information
+coming from the World Wide Web in Attributed Network models can make it
+possible to focus on domains and research questions that have not been
+deeply investigated so far and to improve solutions to classic tasks. We
+will solicit contributions that aim to focus on the analysis of attributed
+networks, addressing important principles, methods, tools and future
+research directions in this emerging field, possibly being  transversal to
+different application domains. In particular, we cover the modeling of
+complex networks, multiplex networks, and any unsupervised, supervised, and
+semi-supervised mining approach in attributed network contexts.
+
+Topics
+
+- A list of non-exhaustive relevant topics include:
+- Models and measures for multiplex  & attributed networks.
+- Foundations of Learning and Mining in Attributed Networks
+- Centrality and Ranking in Attributed Networks
+- Community Detection in Attributed Networks
+- Link Prediction in Attributed Networks
+- Simplification/pruning/sampling of Attributed Networks
+- User Behavior Modeling in Attributed Networks
+- Social Influence and Information difusion in Attributed Networks
+- Reputation and Trust in Attributed Networks
+- Embedding and Deep Learning in Attributed Networks
+- Probabilistic and Uncertain Attributed Networks
+- Time-evolving Attributed Networks
+- Hypergraph-based modeling, analysis and learning problems
+- Cross-Domain problems in Attributed Networks
+- Visualization of Attributed Networks
+- Personalization and Recommendation in Attributed Networks
+- Mobility in Attributed Networks
+- Vertex similarity in multiplex and attributed networks
+- Multiplex and attributed networks evolution models
+- Multiplex network and dynamic network mining
+- Ensemble learning for multiplex and attributed network mining
+- Pattern mining in attributed networks
+
+
+Submission
+
+We welcome original contributions, either theoretical or empirical,
+describing ongoing projects or completed work.
+Paper length should not exceed  8 pages in ACM double column format. To
+submit your paper(s), please log into the submission website :
+https://easychair.org/conferences/?conf=3Dwww2018satellites
+
+
+Key dates
+
+Abstract Submission Jan 21, 2018
+Paper due   Jan 28, 2018
+Acceptance Notification  Feb 20, 2018
+Final manuscript due  Mar 04, 2018
+
+--=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Roberto Interdonato, PhD
+Post-Doc Research Fellow
+Laboratoire Informatique, Image et Interaction (L3i)
+Universit=C3=A9 de La Rochelle
+France
+email: rinterdonato@dimes.unical.it
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--f403045ec30e3cece60561cdf4d4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>MATNet=E2=80=9918: International workshop on Mining A=
+ttributed Networks @ WWW=E2=80=992018 (The Web Conf 2018)</div><div>April 2=
+3, 2018, Lyon France</div><div><a href=3D"http://www-lipn.univ-paris13.fr/m=
+an-www2018">http://www-lipn.univ-paris13.fr/man-www2018</a></div><div><br><=
+/div><div>Asbtract Submission: Jan 21, 2018</div><div><br></div><div>Paper =
+Submission: Jan 28, 2018</div><div><br></div><div>Acceptance Notification: =
+Feb 20, 2018</div><div>____________________________________________________=
+_____________________</div><div><br></div><div>Context</div><div><br></div>=
+<div>Attributed network models have seen an increasing success in recent ye=
+ars, thanks to their informative power and to their ability to model comple=
+x networked relations that characterize most real-world phenomena. Their us=
+e has been attractive to communities in different disciplines such as compu=
+ter science, physics, social science, as well as in interdisciplinary resea=
+rch environments. The use of such models has been also supported by the inc=
+reasing easiness in collecting multi-relational data from the Web, e.g., fr=
+om online social media platforms, crowdsourced data, online knowledge base.=
+ Within this view, the World Wide Web is an inestimable source of informati=
+on, which can be conveniently represented with feature-rich network models,=
+ e.g., enclosing temporal aspects of the data, quantitative and/or qualitat=
+ive properties of nodes, different relations between a common set of entiti=
+es, different existence probabilities, or modeling connection between diffe=
+rent entity types.</div><div><br></div><div>The aim of the MATNet workshop,=
+ that will be held in conjunction with The Web Conf 2018 in Lyon, is to get=
+ an insight in the current status of research in network analysis and minin=
+g, showing how modeling information coming from the World Wide Web in Attri=
+buted Network models can make it possible to focus on domains and research =
+questions that have not been deeply investigated so far and to improve solu=
+tions to classic tasks. We will solicit contributions that aim to focus on =
+the analysis of attributed networks, addressing important principles, metho=
+ds, tools and future research directions in this emerging field, possibly b=
+eing=C2=A0 transversal to different application domains. In particular, we =
+cover the modeling of complex networks, multiplex networks, and any unsuper=
+vised, supervised, and semi-supervised mining approach in attributed networ=
+k contexts.</div><div><br></div><div>Topics=C2=A0</div><div><br></div><div>=
+- A list of non-exhaustive relevant topics include:</div><div>- Models and =
+measures for multiplex=C2=A0 &amp; attributed networks.=C2=A0</div><div>- F=
+oundations of Learning and Mining in Attributed Networks</div><div>- Centra=
+lity and Ranking in Attributed Networks</div><div>- Community Detection in =
+Attributed Networks</div><div>- Link Prediction in Attributed Networks</div=
+><div>- Simplification/pruning/sampling of Attributed Networks</div><div>- =
+User Behavior Modeling in Attributed Networks</div><div>- Social Influence =
+and Information difusion in Attributed Networks</div><div>- Reputation and =
+Trust in Attributed Networks</div><div>- Embedding and Deep Learning in Att=
+ributed Networks</div><div>- Probabilistic and Uncertain Attributed Network=
+s</div><div>- Time-evolving Attributed Networks</div><div>- Hypergraph-base=
+d modeling, analysis and learning problems</div><div>- Cross-Domain problem=
+s in Attributed Networks</div><div>- Visualization of Attributed Networks</=
+div><div>- Personalization and Recommendation in Attributed Networks</div><=
+div>- Mobility in Attributed Networks</div><div>- Vertex similarity in mult=
+iplex and attributed networks</div><div>- Multiplex and attributed networks=
+ evolution models</div><div>- Multiplex network and dynamic network mining<=
+/div><div>- Ensemble learning for multiplex and attributed network mining</=
+div><div>- Pattern mining in attributed networks</div><div><br></div><div><=
+br></div><div>Submission</div><div><br></div><div>We welcome original contr=
+ibutions, either theoretical or empirical, describing ongoing projects or c=
+ompleted work.=C2=A0=C2=A0</div><div>Paper length should not exceed=C2=A0 8=
+ pages in ACM double column format. To submit your paper(s), please log int=
+o the submission website : <a href=3D"https://easychair.org/conferences/?co=
+nf=3Dwww2018satellites">https://easychair.org/conferences/?conf=3Dwww2018sa=
+tellites</a></div><div><br></div><div><br></div><div>Key dates<br><br></div=
+><div>Abstract Submission<span style=3D"white-space:pre">	</span>Jan 21, 20=
+18<br></div><div>Paper due=C2=A0=C2=A0<span style=3D"white-space:pre">			</=
+span>Jan 28, 2018</div><div>Acceptance Notification=C2=A0<span style=3D"whi=
+te-space:pre">	</span>Feb 20, 2018</div><div>Final manuscript due=C2=A0<spa=
+n style=3D"white-space:pre">	</span>Mar 04, 2018</div><div><br></div>-- <br=
+><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+ dir=3D"ltr"><br><span><font color=3D"#999999">=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+Roberto Interdonato, PhD<br>
+Post-Doc Research Fellow<br>Laboratoire Informatique, Image et Interaction =
+(L3i)<br>Universit=C3=A9 de La Rochelle</font></span></div><div dir=3D"ltr"=
+><span><font color=3D"#999999">France<br></font><font color=3D"#999999">
+email: <a href=3D"mailto:rinterdonato@dimes.unical.it" target=3D"_blank">ri=
+nterdonato@dimes.unical.it</a>=C2=A0=C2=A0<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</font><br></sp=
+an></div></div></div></div></div>
+</div>
+
+--f403045ec30e3cece60561cdf4d4--

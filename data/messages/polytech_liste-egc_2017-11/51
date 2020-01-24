@@ -1,0 +1,777 @@
+Return-Path: <prvs=4976b63f0=venturini@univ-tours.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 6E676229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 27 Nov 2017 09:16:31 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6C76C6287FD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 27 Nov 2017 09:16:31 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 0CD55B4B124
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 09:16:28 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.059
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.059 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, SARE_HEAD_8BIT_SPAM=0.888,
+	SPF_PASS=-0.001, UN_MANGLED_VIAGRA=2.5, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -3.8989 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new);
+	domainkeys=pass (1024-bit key)
+	header.from=gilles.venturini@univ-tours.fr header.d=univ-tours.fr;
+	dkim=pass (1024-bit key) header.d=univ-tours.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id QkuMG0iOW0RP for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 27 Nov 2017 09:16:27 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from angelia.univ-tours.fr (angelia.univ-tours.fr [193.52.209.20])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 5352F69C3EF
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 09:16:27 +0100 (CET)
+DomainKey-Signature: s=main; d=univ-tours.fr; c=nofws; q=dns;
+  h=IronPort-PHdr:X-IronPort-Anti-Spam-Filtered:
+   X-IronPort-Anti-Spam-Result:X-IPAS-Result:Received:
+   Received:Received:X-Virus-Scanned:Received:Received:Date:
+   From:To:Message-ID:In-Reply-To:References:Subject:
+   MIME-Version:Content-Type:X-Originating-IP:X-Mailer:
+   Thread-Topic:Thread-Index;
+  b=mZx4PKyVTYdlUrNpHmgZsntSWpr59wBZYGiTDUhGh7FPWwX7m0+fceKr
+   zh76bCuEdwZCMwyJ1fAVPxCy9hH86kf9D2aWSYbLRVq1WFwPH4tqPFv+V
+   OqU0Ohkr/woDelj4eMDA4RiENruqvUhlrUveVH2Y08tVTuBu3hz3WLkOZ
+   8=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=univ-tours.fr; i=@univ-tours.fr; q=dns/txt; s=main;
+  t=1511770587; x=1543306587;
+  h=date:from:to:message-id:in-reply-to:references:subject:
+   mime-version;
+  bh=oFTO8Xr5YFXu+PfasHFGdajIVWlZ6u8M+tDYg3pbKWI=;
+  b=NR1i5gRr7vXsvZugnO40bY6NF3vw6N4UJwq9XAScgrlD84968DCjyqR0
+   IRMG24wRl7Q1+i01In/+J7wiXu7lV8DRppAltNv3wUMWGkmFTUbGWre7V
+   WmyU1l5EgMqaZulHgJuil5WlwEH2LUyk8tuzPkP2ViB7PDPKzPkCh5A0R
+   I=;
+IronPort-PHdr: =?us-ascii?q?9a23=3A4mTdJRPbU2NwOhlDCQEl6mtUPXoX/o7sNwtQ0KIM?=
+ =?us-ascii?q?zox0I/7/rarrMEGX3/hxlliBBdydt6oczbuJ+P65EUU7or+5+EgYd5JNUxJXwe?=
+ =?us-ascii?q?43pCcHRPC/NEvgMfTxZDY7FskRHHVs/nW8LFQHUJ2mPw6arXK99yMdFQviPgRp?=
+ =?us-ascii?q?OOv1BpTSj8Oq3Oyu5pHfeQpFiCahbb9oKBi7rwrdu8gLjYB/Nqs/1xzFr2dSde?=
+ =?us-ascii?q?9L321oP1WTnxj95se04pFu9jlbtuwi+cBdT6j0Zrw0QrNEAjsoNWA1/9DrugLY?=
+ =?us-ascii?q?TQST/HscU34ZnQRODgPY8Rz1RJbxsi/9tupgxCmXOND9QL4oVTi+6apgVRnlgz?=
+ =?us-ascii?q?oFOTEk6mHaksJ+gqJFrhyipRN/zZPab46JO/p/ea3dYcgXSnBdUslNTCNMGJ+w?=
+ =?us-ascii?q?YokJAuEcPehYtY79p14WoBW/BAmsAOfvxSFThnTr0qI1zeIhER3b3Aw6HtIOtn?=
+ =?us-ascii?q?XUp8jyOacdUOC1yK3IwivYb/9Mxzfy9o7Icgw8ofGWXLJwd8vRxFIyFwPDj1WQ?=
+ =?us-ascii?q?t5XpPy+S1uQQqWib9PBsVey1i2M+rQx6vzahxsApiobTh4IVzEjJ9Th/wIYxP9?=
+ =?us-ascii?q?G4UFJ7bcarEJtKrS6aL4t2QsI+TGFzvCY6y7sGuZ2hcCcWz5Qr3QPfa/+BfoOV?=
+ =?us-ascii?q?4RzjTP6cLSpkiH5/Zb6ygxi//VKgx+HmSMW4yEtGojZfntXRsn0A2Qbf58idRv?=
+ =?us-ascii?q?Z9+EqqxCyB2BrJ6u5eJEA5ja/bK5k8zbEujpcTqkHDHjPumEXxka+Wal0o+ui2?=
+ =?us-ascii?q?5OTjZbXrvoecN5VzigDxMqUihNCzDf45MwgPWmiU4v6826f58U3kRrVKj+M2nr?=
+ =?us-ascii?q?DFsJDdOMQbvLW5DxVR0oYk9xmwFTOm3MwZnXkBMl1FZAqKg5X1N13UPfz1Cfmy?=
+ =?us-ascii?q?j06snTtx2fzKJrjhDY/MLnjHnrfhZ7F960tExQot099f4Y5UCqwbIPLyXE/xtc?=
+ =?us-ascii?q?fVDgI/Mwy13ebrEcl91oQDWWKVGa+VKq3SsUWQ6uI1P+aMfJMVuCr6K/U94/7u?=
+ =?us-ascii?q?jGQ5mUMDcqWww5QXZ2y3E+9+I0WeZXrtgssBHnkWsQo+VuDqlVuCUT9NZ3qrWa?=
+ =?us-ascii?q?Iz/Dc7CJ64AofYXIytjqaBj2+HGchSZ3taBxWBHnygI4GFQOsBLS+dKed5lTgV?=
+ =?us-ascii?q?SbWqS8k80xCw8QnzzaZqNaza4HtLm4jk0Y1a5unXmAp6yzFyE9mH0meMBzV7n2?=
+ =?us-ascii?q?cMSiRwwq15vVFny1GC+bV+guIdCdtO/egPXB1sZs2U9PBzF92nAlGJRdyOUlvz?=
+ =?us-ascii?q?Gtg=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2FKBwDhyBta/wIFwQpbHAECHAEGAYI4g?=
+ =?us-ascii?q?ViBFQEGg3ibC5cjggsjikAVAQEBAQEBAQEBAQKBEII4IhFIVwEBAQEBAQEjAgg?=
+ =?us-ascii?q?LPRsGHQZFBRwCATEPAQkCAlcCBBOKMqY8gieKeQEBAQcBAQEBJIM6g1yCHYFCh?=
+ =?us-ascii?q?h4BEgGDNIJjBYo3gQOXDIEFgTKFO6BojHaFU4NxgTgCDyaBBW9MJ4JzCYRNdgG?=
+ =?us-ascii?q?HM4EkgRQBAQE?=
+X-IPAS-Result: =?us-ascii?q?A2FKBwDhyBta/wIFwQpbHAECHAEGAYI4gViBFQEGg3ibC5c?=
+ =?us-ascii?q?jggsjikAVAQEBAQEBAQEBAQKBEII4IhFIVwEBAQEBAQEjAggLPRsGHQZFBRwCA?=
+ =?us-ascii?q?TEPAQkCAlcCBBOKMqY8gieKeQEBAQcBAQEBJIM6g1yCHYFChh4BEgGDNIJjBYo?=
+ =?us-ascii?q?3gQOXDIEFgTKFO6BojHaFU4NxgTgCDyaBBW9MJ4JzCYRNdgGHM4EkgRQBAQE?=
+Received: from proxy20.zimbra.univ-tours.local ([10.193.5.2])
+  by angelia2.univ-tours.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Nov 2017 09:16:26 +0100
+Received: from proxy20.zimbra.univ-tours.local (localhost [127.0.0.1])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTPS id 75F42201DE
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 09:16:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTP id 62C352020A
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 09:16:26 +0100 (CET)
+X-Virus-Scanned: amavisd-new at proxy20.zimbra.univ-tours.local
+Received: from proxy20.zimbra.univ-tours.local ([127.0.0.1])
+	by localhost (proxy20.zimbra.univ-tours.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id WlnYE9C3klDz for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 27 Nov 2017 09:16:26 +0100 (CET)
+Received: from mail21.zimbra.univ-tours.local (mail21.zimbra.univ-tours.local [10.193.5.57])
+	by proxy20.zimbra.univ-tours.local (Postfix) with ESMTP id 29FCC2020B
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Nov 2017 09:16:26 +0100 (CET)
+Date: Mon, 27 Nov 2017 09:16:26 +0100 (CET)
+From: Gilles Venturini <gilles.venturini@univ-tours.fr>
+To: liste-egc <liste-egc@polytech.univ-nantes.fr>
+Message-ID: <748611480.82847245.1511770586002.JavaMail.zimbra@univ-tours.fr>
+In-Reply-To: <94520087.82826682.1511769496993.JavaMail.zimbra@univ-tours.fr>
+References: <LOXP123MB0871ABFBA05F54D61A833B68A6200@LOXP123MB0871.GBRP123.PROD.OUTLOOK.COM> <486927135.82820759.1511769120481.JavaMail.zimbra@univ-tours.fr> <1163800380.82822117.1511769233423.JavaMail.zimbra@univ-tours.fr> <1226569365.82823346.1511769356284.JavaMail.zimbra@univ-tours.fr> <1172048471.82825188.1511769466287.JavaMail.zimbra@univ-tours.fr> <94520087.82826682.1511769496993.JavaMail.zimbra@univ-tours.fr>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_82847244_2033778604.1511770585999"
+X-Originating-IP: [10.193.5.5]
+X-Mailer: Zimbra 8.6.0_GA_1200 (ZimbraWebClient - GC62 (Win)/8.6.0_GA_1200)
+Thread-Topic: iV2018 =?utf-8?B?4oCTIENhbGw=?= for papers
+Thread-Index: AdNjzxVj8+iJ2hYwSmOiIsBy3BsJGyWMmr8pJ8v3HztmCRyai27Z1oHnbmuuV0oFTRjBTQ==
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] iV2018 =?UTF-8?Q?=E2=80=93?= Call for papers
+
+------=_Part_82847244_2033778604.1511770585999
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+----------------------- ^^^ iV2018_CFP ^^^ -----------------------=20
+
+
+
+iV2018 - 22 st International Conference=20
+
+Information Visualisation=20
+
+10 - 13 July 2018=20
+
+University of Salerno =E2=97=8F Salerno =E2=97=8F Italy =E2=97=8F=20
+
+http://www.graphicslink.co.uk/IV2018/=20
+
+---------------------------------------------------------------------------=
+----------------=20
+
+Call for Papers, Videos and Participation=20
+
+
+
+Theme and scope is planned as series of symposia with details and further i=
+nformation is available at: iV2018 - Symposium & Theme=20
+
+
+
+iV2018 - Information visualisation:=20
+
+o Information Visualisation Theory & Practice=20
+
+o Narrative=20
+
+o Visualization and Storytelling=20
+
+o Glyphs: Shapes, Icons, Text and Imagery in Visualization=20
+
+o Information Visualization Evaluation=20
+
+o Visual Analytics=20
+
+o Social media analytics=20
+
+o GeoVisual Analytics and Spatial-Temporal Analytics=20
+
+o Knowledge Visualization and Visual Thinking=20
+
+o Advances in Interactive and Visual Data Clustering=20
+
+o Visualisation in Business Intelligence and Open Data=20
+
+o Knowledge Domain Visualisation=20
+
+o Open Source Intelligence and Web Mining & Web Visualization=20
+
+o Co-operative Design Visualisation=20
+
+o Human-Computer Interaction for Information Visualization=20
+
+o Graph and Network Visualisation=20
+
+o Digital Humanities Knowledge Visualization=20
+
+
+
+Medivis2018 - BioMedical Visualization:=20
+
+o BioMedical Visualization=20
+
+
+
+vis2018 - Visualization:=20
+
+o Visualization=20
+
+o Visualization, Art, & Design=20
+
+o Symposium of Digital Art and Gallery=20
+
+o Augmented Reality Visualization and Art=20
+
+o Computer Animation, Information Visualisation, and Digital Effects=20
+
+o Computer Games and their applications (CGa)=20
+
+o Multimedia and E-learning=20
+
+o Digital Entertainment=20
+
+
+
+GMAI2018 - Geometric Modelling and Imaging=20
+
+BuiltViz2018 - Visualisation in Built and Rural Environments=20
+
+Preconference course: Doctoral Research Workshop=20
+
+
+
+---------------------------------------------------------------------------=
+----=20
+
+Important Dates :=20
+
+1 March 2018 =E2=80=93 Submission of papers & Submission of tutorials:=20
+
+18 May 2018 =E2=80=93 Submission of camera-ready & early registration close=
+s=20
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=20
+
+
+
+
+
+Conference Co-ordinator=20
+
+GraphicsLink=E2=80=A6=20
+
+Tel: +44 1707 - 652 224=20
+
+Email: iV_CGiV <iV_CGiV@graphicslink.co.uk>=20
+
+URL: http://www.graphicslink.co.uk/IV2018/=20
+
+
+
+
+
+
+
+----------------------- ^^^ iV2018_CFP ^^^ -----------------------=20
+
+
+------=_Part_82847244_2033778604.1511770585999
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: arial, helvetica, sans-serif; font-s=
+ize: 12pt; color: #000000"><div><br></div><div data-marker=3D"__QUOTED_TEXT=
+__"><div style=3D"font-family: arial, helvetica, sans-serif; font-size: 12p=
+t; color: #000000;" data-mce-style=3D"font-family: arial, helvetica, sans-s=
+erif; font-size: 12pt; color: #000000;"><div><div style=3D"font-family: ari=
+al, helvetica, sans-serif; font-size: 12pt; color: #000000;" data-mce-style=
+=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; color: #000=
+000;"><div><div style=3D"font-family: arial, helvetica, sans-serif; font-si=
+ze: 12pt; color: #000000;" data-mce-style=3D"font-family: arial, helvetica,=
+ sans-serif; font-size: 12pt; color: #000000;"><div><div style=3D"font-fami=
+ly: arial, helvetica, sans-serif; font-size: 12pt; color: #000000;" data-mc=
+e-style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; colo=
+r: #000000;"><div><div style=3D"font-family: arial, helvetica, sans-serif; =
+font-size: 12pt; color: #000000;" data-mce-style=3D"font-family: arial, hel=
+vetica, sans-serif; font-size: 12pt; color: #000000;"><div><div class=3D"Wo=
+rdSection1"><p class=3D"MsoNormal" align=3D"center" style=3D"text-align: ce=
+nter;" data-mce-style=3D"text-align: center;"><b><span style=3D"font-size: =
+10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10=
+.0pt; font-family: 'Verdana',sans-serif;">----------------------- ^^^ iV201=
+8_CFP ^^^ -----------------------</span></b></p><p class=3D"MsoNormal"><b><=
+span style=3D"font-size: 14.0pt; font-family: 'Arial',sans-serif; color: ma=
+roon;" data-mce-style=3D"font-size: 14.0pt; font-family: 'Arial',sans-serif=
+; color: maroon;">&nbsp;</span></b></p><p class=3D"MsoNormal"><a name=3D"_H=
+lk478330514"></a><span style=3D"font-size: 14.0pt; font-family: 'Verdana',s=
+ans-serif; color: #984806;" data-mce-style=3D"font-size: 14.0pt; font-famil=
+y: 'Verdana',sans-serif; color: #984806;">iV2018<span class=3D"apple-conver=
+ted-space">&nbsp;</span></span><span style=3D"mso-bookmark: _Hlk478330514;"=
+ data-mce-style=3D"mso-bookmark: _Hlk478330514;"><span style=3D"font-size: =
+13.5pt; font-family: 'Verdana',sans-serif; color: black;" data-mce-style=3D=
+"font-size: 13.5pt; font-family: 'Verdana',sans-serif; color: black;">- </s=
+pan></span><span style=3D"mso-bookmark: _Hlk478330514;" data-mce-style=3D"m=
+so-bookmark: _Hlk478330514;"></span><span style=3D"font-size: 13.5pt; font-=
+family: 'Verdana',sans-serif; color: black; mso-fareast-language: EN-GB;" d=
+ata-mce-style=3D"font-size: 13.5pt; font-family: 'Verdana',sans-serif; colo=
+r: black; mso-fareast-language: EN-GB;">22<sup>st</sup>&nbsp;International =
+Conference</span><span style=3D"font-size: 13.5pt; font-family: 'Arial',san=
+s-serif; color: black; mso-fareast-language: EN-GB;" data-mce-style=3D"font=
+-size: 13.5pt; font-family: 'Arial',sans-serif; color: black; mso-fareast-l=
+anguage: EN-GB;"></span></p><p class=3D"MsoNormal"><span style=3D"font-size=
+: 14.0pt; font-family: 'Verdana',sans-serif; color: black; mso-fareast-lang=
+uage: EN-GB;" data-mce-style=3D"font-size: 14.0pt; font-family: 'Verdana',s=
+ans-serif; color: black; mso-fareast-language: EN-GB;">Information Visualis=
+ation</span><span style=3D"font-size: 13.5pt; font-family: 'Arial',sans-ser=
+if; color: black; mso-fareast-language: EN-GB;" data-mce-style=3D"font-size=
+: 13.5pt; font-family: 'Arial',sans-serif; color: black; mso-fareast-langua=
+ge: EN-GB;"></span></p><p class=3D"MsoNormal"><a name=3D"_Hlk478330923"></a=
+><a name=3D"_Hlk478330531"></a><span style=3D"mso-bookmark: _Hlk478330923;"=
+ data-mce-style=3D"mso-bookmark: _Hlk478330923;"><span style=3D"font-size: =
+10.0pt; font-family: 'Verdana',sans-serif; color: #434342; mso-fareast-lang=
+uage: EN-GB;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',s=
+ans-serif; color: #434342; mso-fareast-language: EN-GB;">10 - 13 July 2018 =
+</span></span></p><p class=3D"MsoNormal"><span style=3D"mso-bookmark: _Hlk4=
+78330531;" data-mce-style=3D"mso-bookmark: _Hlk478330531;"><span style=3D"m=
+so-bookmark: _Hlk478330923;" data-mce-style=3D"mso-bookmark: _Hlk478330923;=
+"><span style=3D"font-family: 'Verdana',sans-serif; color: #434342; mso-far=
+east-language: EN-GB;" data-mce-style=3D"font-family: 'Verdana',sans-serif;=
+ color: #434342; mso-fareast-language: EN-GB;">University of Salerno =E2=97=
+=8F Salerno =E2=97=8F Italy =E2=97=8F </span></span></span><span style=3D"m=
+so-bookmark: _Hlk478330531;" data-mce-style=3D"mso-bookmark: _Hlk478330531;=
+"><span style=3D"mso-bookmark: _Hlk478330923;" data-mce-style=3D"mso-bookma=
+rk: _Hlk478330923;"><span style=3D"font-size: 13.5pt; font-family: 'Arial',=
+sans-serif; color: black; mso-fareast-language: EN-GB;" data-mce-style=3D"f=
+ont-size: 13.5pt; font-family: 'Arial',sans-serif; color: black; mso-fareas=
+t-language: EN-GB;"></span></span></span></p><span style=3D"mso-bookmark: _=
+Hlk478330531;" data-mce-style=3D"mso-bookmark: _Hlk478330531;"></span><p cl=
+ass=3D"MsoNormal"><span style=3D"mso-bookmark: _Hlk478330923;" data-mce-sty=
+le=3D"mso-bookmark: _Hlk478330923;"><a name=3D"_Hlk478330542"></a></span><a=
+ href=3D"http://www.graphicslink.co.uk/IV2018/" target=3D"_blank"><span sty=
+le=3D"mso-bookmark: _Hlk478330923;" data-mce-style=3D"mso-bookmark: _Hlk478=
+330923;"><span style=3D"mso-bookmark: _Hlk478330542;" data-mce-style=3D"mso=
+-bookmark: _Hlk478330542;"><span style=3D"font-size: 10.0pt; font-family: '=
+Courier New'; mso-fareast-language: EN-GB;" data-mce-style=3D"font-size: 10=
+.0pt; font-family: 'Courier New'; mso-fareast-language: EN-GB;">http://www.=
+graphicslink.co.uk/IV2018/</span></span></span><span style=3D"mso-bookmark:=
+ _Hlk478330923;" data-mce-style=3D"mso-bookmark: _Hlk478330923;"><span styl=
+e=3D"mso-bookmark: _Hlk478330542;" data-mce-style=3D"mso-bookmark: _Hlk4783=
+30542;"></span></span></a><span style=3D"mso-bookmark: _Hlk478330923;" data=
+-mce-style=3D"mso-bookmark: _Hlk478330923;"><span style=3D"mso-bookmark: _H=
+lk478330542;" data-mce-style=3D"mso-bookmark: _Hlk478330542;"><span style=
+=3D"font-size: 13.5pt; font-family: 'Arial',sans-serif; color: black; mso-f=
+areast-language: EN-GB;" data-mce-style=3D"font-size: 13.5pt; font-family: =
+'Arial',sans-serif; color: black; mso-fareast-language: EN-GB;"></span></sp=
+an></span></p><span style=3D"mso-bookmark: _Hlk478330542;" data-mce-style=
+=3D"mso-bookmark: _Hlk478330542;"></span><span style=3D"mso-bookmark: _Hlk4=
+78330923;" data-mce-style=3D"mso-bookmark: _Hlk478330923;"></span><p class=
+=3D"MsoNormal"><span style=3D"font-size: 10.0pt; font-family: 'Verdana',san=
+s-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-=
+serif;">-------------------------------------------------------------------=
+------------------------</span></p><p class=3D"MsoNormal"><span style=3D"fo=
+nt-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font=
+-size: 10.0pt; font-family: 'Verdana',sans-serif;">Call for Papers, Videos =
+and Participation</span></p><p class=3D"MsoNormal"><span style=3D"font-size=
+: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: =
+10.0pt; font-family: 'Verdana',sans-serif;">&nbsp;</span></p><p class=3D"Ms=
+oNormal"><a name=3D"_Hlk478374119"></a><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font=
+-family: 'Verdana',sans-serif;">Theme and scope is planned as series of sym=
+posia with details and further information is available at: </span><a href=
+=3D"http://iv.csites.fct.unl.pt/call-for-papers/important-dates/" target=3D=
+"_blank"><span style=3D"mso-bookmark: _Hlk478374119;" data-mce-style=3D"mso=
+-bookmark: _Hlk478374119;"><span style=3D"font-size: 10.0pt; font-family: '=
+Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Ve=
+rdana',sans-serif;">iV2018 - Symposium &amp; Theme</span></span><span style=
+=3D"mso-bookmark: _Hlk478374119;" data-mce-style=3D"mso-bookmark: _Hlk47837=
+4119;"></span></a><span style=3D"mso-bookmark: _Hlk478374119;" data-mce-sty=
+le=3D"mso-bookmark: _Hlk478374119;"><span style=3D"font-size: 10.0pt; font-=
+family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-fa=
+mily: 'Verdana',sans-serif;"> </span></span></p><span style=3D"mso-bookmark=
+: _Hlk478374119;" data-mce-style=3D"mso-bookmark: _Hlk478374119;"></span><p=
+ style=3D"background: white;" data-mce-style=3D"background: white;"><span s=
+tyle=3D"font-family: 'Courier New';" data-mce-style=3D"font-family: 'Courie=
+r New';">&nbsp;</span></p><p style=3D"background: white;" data-mce-style=3D=
+"background: white;"><b><span style=3D"font-size: 10.0pt; font-family: 'Ver=
+dana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verda=
+na',sans-serif;">iV2018 - Information visualisation:</span></b></p><p style=
+=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"=
+ data-mce-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30=
+ level2 lfo42;"><span style=3D"font-size: 10.0pt; font-family: 'Courier New=
+';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';"><span=
+ style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span st=
+yle=3D"font: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times=
+ New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-s=
+ize: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-siz=
+e: 10.0pt; font-family: 'Verdana',sans-serif;">Information Visualisation Th=
+eory &amp; Practice</span></p><p style=3D"margin-left: 72.0pt; text-indent:=
+ -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0p=
+t; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-s=
+ize: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0=
+pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce=
+-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';=
+" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </sp=
+an></span></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana',s=
+ans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',san=
+s-serif;">Narrative</span></p><p style=3D"margin-left: 72.0pt; text-indent:=
+ -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0p=
+t; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-s=
+ize: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0=
+pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce=
+-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';=
+" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </sp=
+an></span></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana',s=
+ans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',san=
+s-serif;">Visualization and Storytelling </span></p><p style=3D"margin-left=
+: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=
+=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"=
+><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-st=
+yle=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-l=
+ist: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.=
+0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&=
+nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font=
+-family: 'Verdana',sans-serif;">Glyphs: Shapes, Icons, Text and Imagery in =
+Visualization</span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0=
+pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; tex=
+t-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 1=
+0.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; fo=
+nt-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=
+=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data=
+-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></s=
+pan></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-se=
+rif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-seri=
+f;">Information Visualization Evaluation</span></p><p style=3D"margin-left:=
+ 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=
+=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"=
+><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-st=
+yle=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-l=
+ist: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.=
+0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&=
+nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font=
+-family: 'Verdana',sans-serif;">Visual Analytics</span></p><p style=3D"marg=
+in-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mc=
+e-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 =
+lfo42;"><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" data=
+-mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=
+=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D=
+"font: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New R=
+oman';">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 1=
+0.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.=
+0pt; font-family: 'Verdana',sans-serif;">Social media analytics</span></p><=
+p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 =
+lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-li=
+st: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; font-family: 'Cour=
+ier New';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';=
+"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<=
+span style=3D"font: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt=
+ 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D=
+"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"f=
+ont-size: 10.0pt; font-family: 'Verdana',sans-serif;">GeoVisual&nbsp;Analyt=
+ics and Spatial-Temporal Analytics</span></p><p style=3D"margin-left: 72.0p=
+t; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"mar=
+gin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span =
+style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"=
+font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list: Ig=
+nore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Ti=
+mes New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&n=
+bsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt; font-fami=
+ly: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family=
+: 'Verdana',sans-serif;">Knowledge Visualization and Visual Thinking </span=
+></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 l=
+evel2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; =
+mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; font-family:=
+ 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Courier=
+ New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignor=
+e;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-style=3D"font:=
+ 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span><span st=
+yle=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-styl=
+e=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Advances in Int=
+eractive and Visual Data Clustering</span></p><p style=3D"margin-left: 72.0=
+pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"ma=
+rgin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span=
+ style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D=
+"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list: I=
+gnore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'T=
+imes New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&=
+nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt; font-fam=
+ily: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-famil=
+y: 'Verdana',sans-serif;">Visualisation in Business Intelligence and Open D=
+ata </span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-l=
+ist: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent:=
+ -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family=
+: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-l=
+ist: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-styl=
+e=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></spa=
+n><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" dat=
+a-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Knowl=
+edge Domain Visualisation</span></p><p style=3D"margin-left: 72.0pt; text-i=
+ndent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left:=
+ 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"=
+font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size=
+: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;" da=
+ta-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New R=
+oman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp=
+; </span></span></span><span style=3D"font-size: 10.0pt; font-family: 'Verd=
+ana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdan=
+a',sans-serif;">Open Source Intelligence and Web Mining &amp; Web Visualiza=
+tion</span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-l=
+ist: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent:=
+ -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family=
+: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-l=
+ist: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-styl=
+e=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></spa=
+n><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" dat=
+a-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Co-op=
+erative Design Visualisation </span></p><p style=3D"margin-left: 72.0pt; te=
+xt-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-l=
+eft: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=
+=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-=
+size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;=
+" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times N=
+ew Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&=
+nbsp; </span></span></span><span style=3D"font-size: 10.0pt; font-family: '=
+Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Ve=
+rdana',sans-serif;">Human-Computer Interaction for Information Visualizatio=
+n</span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list=
+: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent: -1=
+8.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; font-=
+family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family: '=
+Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list=
+: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-style=
+=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span=
+><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data=
+-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Graph =
+and Network&nbsp;Visualisation&nbsp; </span></p><p style=3D"margin-left: 72=
+.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"=
+margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><sp=
+an style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=
+=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list=
+: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt=
+ 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbs=
+p;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt; font-=
+family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-fa=
+mily: 'Verdana',sans-serif;">Digital Humanities</span><span style=3D"font-s=
+ize: 10.0pt;" data-mce-style=3D"font-size: 10.0pt;">&nbsp;</span><span styl=
+e=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=
+=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Knowledge Visual=
+ization</span></p><p class=3D"MsoNormal" style=3D"margin-left: 72.0pt;" dat=
+a-mce-style=3D"margin-left: 72.0pt;"><span style=3D"font-size: 10.0pt; font=
+-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family: =
+'Courier New';">&nbsp;</span></p><p style=3D"background: white;" data-mce-s=
+tyle=3D"background: white;"><b><span style=3D"font-size: 10.0pt; font-famil=
+y: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family:=
+ 'Verdana',sans-serif;">Medivis2018 - BioMedical</span></b><span style=3D"f=
+ont-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"fon=
+t-size: 10.0pt; font-family: 'Verdana',sans-serif;">&nbsp;<b>Visualization:=
+</b></span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-l=
+ist: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent:=
+ -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; fo=
+nt-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family=
+: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-l=
+ist: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-styl=
+e=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></spa=
+n><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" dat=
+a-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">BioMe=
+dical&nbsp;Visualization</span></p><p style=3D"margin-left: 90.0pt; text-in=
+dent: -54.0pt; background: white;" data-mce-style=3D"margin-left: 90.0pt; t=
+ext-indent: -54.0pt; background: white;"><span style=3D"font-size: 10.0pt; =
+font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; fo=
+nt-family: 'Verdana',sans-serif;">&nbsp;</span></p><p style=3D"margin-left:=
+ 54.0pt; text-indent: -54.0pt; background: white;" data-mce-style=3D"margin=
+-left: 54.0pt; text-indent: -54.0pt; background: white;"><b><span style=3D"=
+font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"fo=
+nt-size: 10.0pt; font-family: 'Verdana',sans-serif;">vis2018</span></b><spa=
+n style=3D"font-size: 10.0pt;" data-mce-style=3D"font-size: 10.0pt;"> - </s=
+pan><b><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;=
+" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">=
+Visualization:</span></b></p><p style=3D"margin-left: 72.0pt; text-indent: =
+-18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt=
+; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-si=
+ze: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0p=
+t; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-=
+style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';"=
+ data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </spa=
+n></span></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sa=
+ns-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans=
+-serif;">Visualization</span></p><p style=3D"margin-left: 72.0pt; text-inde=
+nt: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72=
+.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"fon=
+t-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 1=
+0.0pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-=
+mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roma=
+n';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; <=
+/span></span></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana=
+',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',=
+sans-serif;">Visualization, Art, &amp; Design</span></p><p style=3D"margin-=
+left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-s=
+tyle=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo=
+42;"><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mc=
+e-style=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D"m=
+so-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font=
+: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman'=
+;">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0pt=
+; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; =
+font-family: 'Verdana',sans-serif;">Symposium of Digital Art and Gallery</s=
+pan></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l3=
+0 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent: -18.0p=
+t; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; font-fami=
+ly: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Cour=
+ier New';"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ig=
+nore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data-mce-style=3D"fo=
+nt: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span><span=
+ style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-s=
+tyle=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Augmented Re=
+ality Visualization and Art</span></p><p style=3D"margin-left: 72.0pt; text=
+-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-lef=
+t: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=
+=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-=
+size: 10.0pt; font-family: 'Courier New';"><span style=3D"mso-list: Ignore;=
+" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times N=
+ew Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&=
+nbsp; </span></span></span><span style=3D"font-size: 10.0pt; font-family: '=
+Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Ve=
+rdana',sans-serif;">Computer Animation, Information Visualisation, and Digi=
+tal Effects</span></p><p style=3D"margin-left: 72.0pt; text-indent: -18.0pt=
+; mso-list: l30 level2 lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-=
+indent: -18.0pt; mso-list: l30 level2 lfo42;"><span style=3D"font-size: 10.=
+0pt; font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font=
+-family: 'Courier New';"><span style=3D"mso-list: Ignore;" data-mce-style=
+=3D"mso-list: Ignore;">o<span style=3D"font: 7.0pt 'Times New Roman';" data=
+-mce-style=3D"font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></s=
+pan></span><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-se=
+rif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-seri=
+f;">Computer Games and their applications (CGa)</span></p><p style=3D"margi=
+n-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 lfo42;" data-mce=
+-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 l=
+fo42;"><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" data-=
+mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';"><span style=3D=
+"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<span style=3D"fo=
+nt: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt 'Times New Roma=
+n';">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D"font-size: 10.0=
+pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt=
+; font-family: 'Verdana',sans-serif;">Multimedia and E-learning</span></p><=
+p style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-list: l30 level2 =
+lfo42;" data-mce-style=3D"margin-left: 72.0pt; text-indent: -18.0pt; mso-li=
+st: l30 level2 lfo42;"><span style=3D"font-size: 10.0pt; font-family: 'Cour=
+ier New';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';=
+"><span style=3D"mso-list: Ignore;" data-mce-style=3D"mso-list: Ignore;">o<=
+span style=3D"font: 7.0pt 'Times New Roman';" data-mce-style=3D"font: 7.0pt=
+ 'Times New Roman';">&nbsp;&nbsp;&nbsp; </span></span></span><span style=3D=
+"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"f=
+ont-size: 10.0pt; font-family: 'Verdana',sans-serif;">Digital Entertainment=
+</span></p><p style=3D"margin-left: 54.0pt; text-indent: -54.0pt; backgroun=
+d: white;" data-mce-style=3D"margin-left: 54.0pt; text-indent: -54.0pt; bac=
+kground: white;"><b><span style=3D"font-size: 10.0pt; font-family: 'Verdana=
+',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',=
+sans-serif;">&nbsp;</span></b></p><p style=3D"margin-left: 54.0pt; text-ind=
+ent: -54.0pt; background: white;" data-mce-style=3D"margin-left: 54.0pt; te=
+xt-indent: -54.0pt; background: white;"><b><span style=3D"font-size: 10.0pt=
+; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; =
+font-family: 'Verdana',sans-serif;">GMAI2018 - Geometric Modelling and Imag=
+ing</span></b></p><p style=3D"margin-left: 54.0pt; text-indent: -54.0pt; ba=
+ckground: white;" data-mce-style=3D"margin-left: 54.0pt; text-indent: -54.0=
+pt; background: white;"><b><span style=3D"font-size: 10.0pt; font-family: '=
+Verdana',sans-serif; background: white;" data-mce-style=3D"font-size: 10.0p=
+t; font-family: 'Verdana',sans-serif; background: white;">BuiltViz2018 - Vi=
+sualisation in Built and Rural Environments</span></b></p><p style=3D"backg=
+round: white;" data-mce-style=3D"background: white;"><span style=3D"font-si=
+ze: 10.0pt; font-family: 'Verdana',sans-serif; color: #434342;" data-mce-st=
+yle=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif; color: #434342=
+;">Preconference course: Doctoral Research Workshop</span></p><p style=3D"m=
+argin-left: 54.0pt; text-indent: -54.0pt; background: white;" data-mce-styl=
+e=3D"margin-left: 54.0pt; text-indent: -54.0pt; background: white;"><b><spa=
+n style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-=
+style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">&nbsp;</spa=
+n></b></p><p class=3D"MsoNormal"><a name=3D"_Hlk478330486"></a><span lang=
+=3D"FR" style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" dat=
+a-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">-----=
+--------------------------------------------------------------------------<=
+/span></p><p class=3D"MsoNormal"><span style=3D"mso-bookmark: _Hlk478330486=
+;" data-mce-style=3D"mso-bookmark: _Hlk478330486;"><span lang=3D"FR" style=
+=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=
+=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">Important Dates =
+: </span></span></p><p class=3D"MsoNormal"><span style=3D"mso-bookmark: _Hl=
+k478330486;" data-mce-style=3D"mso-bookmark: _Hlk478330486;"><span style=3D=
+"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"f=
+ont-size: 10.0pt; font-family: 'Verdana',sans-serif;">1 March 2018 =E2=80=
+=93 Submission of papers &amp; Submission of tutorials:</span></span><span =
+style=3D"mso-bookmark: _Hlk478330486;" data-mce-style=3D"mso-bookmark: _Hlk=
+478330486;"><span style=3D"font-size: 10.0pt; font-family: 'Courier New';" =
+data-mce-style=3D"font-size: 10.0pt; font-family: 'Courier New';"> </span><=
+/span><span style=3D"mso-bookmark: _Hlk478330486;" data-mce-style=3D"mso-bo=
+okmark: _Hlk478330486;"><span style=3D"font-size: 10.0pt; font-family: 'Ver=
+dana',sans-serif;" data-mce-style=3D"font-size: 10.0pt; font-family: 'Verda=
+na',sans-serif;"></span></span></p><p class=3D"MsoNormal"><span style=3D"ms=
+o-bookmark: _Hlk478330486;" data-mce-style=3D"mso-bookmark: _Hlk478330486;"=
+><span style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data=
+-mce-style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">18 May=
+ 2018 =E2=80=93 Submission of camera-ready &amp; early registration closes<=
+/span></span></p><p class=3D"MsoNormal"><span style=3D"mso-bookmark: _Hlk47=
+8330486;" data-mce-style=3D"mso-bookmark: _Hlk478330486;"><span style=3D"fo=
+nt-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font=
+-size: 10.0pt; font-family: 'Verdana',sans-serif;">=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></span></p><span style=3D"mso-bookm=
+ark: _Hlk478330486;" data-mce-style=3D"mso-bookmark: _Hlk478330486;"></span=
+><p class=3D"MsoNormal"><a name=3D"_Hlk478374197"></a><span style=3D"font-s=
+ize: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-style=3D"font-siz=
+e: 10.0pt; font-family: 'Verdana',sans-serif;">&nbsp;</span></p><p class=3D=
+"MsoNormal" style=3D"background: white;" data-mce-style=3D"background: whit=
+e;"><span style=3D"mso-bookmark: _Hlk478374197;" data-mce-style=3D"mso-book=
+mark: _Hlk478374197;"><a name=3D"_Hlk478330462"></a><span style=3D"font-siz=
+e: 10.0pt; font-family: 'Courier New'; color: black;" data-mce-style=3D"fon=
+t-size: 10.0pt; font-family: 'Courier New'; color: black;">&nbsp;</span></s=
+pan></p><p class=3D"MsoNormal" style=3D"background: white;" data-mce-style=
+=3D"background: white;"><span style=3D"mso-bookmark: _Hlk478374197;" data-m=
+ce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookmark: _Hlk=
+478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"><span style=3D"=
+font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-size=
+: 10.0pt; font-family: 'Courier New';">Conference Co-ordinator</span></span=
+></span></p><p class=3D"MsoNormal" style=3D"background: white;" data-mce-st=
+yle=3D"background: white;"><span style=3D"mso-bookmark: _Hlk478374197;" dat=
+a-mce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookmark: _=
+Hlk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"><span style=
+=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-=
+size: 10.0pt; font-family: 'Courier New';">GraphicsLink=E2=80=A6</span></sp=
+an></span></p><p class=3D"MsoNormal" style=3D"background: white;" data-mce-=
+style=3D"background: white;"><span style=3D"mso-bookmark: _Hlk478374197;" d=
+ata-mce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookmark:=
+ _Hlk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"><span styl=
+e=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font=
+-size: 10.0pt; font-family: 'Courier New';">Tel: +44 1707 - 652 224</span><=
+/span></span></p><p class=3D"MsoNormal" style=3D"background: white;" data-m=
+ce-style=3D"background: white;"><span style=3D"mso-bookmark: _Hlk478374197;=
+" data-mce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookma=
+rk: _Hlk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"><span s=
+tyle=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"f=
+ont-size: 10.0pt; font-family: 'Courier New';">Email: iV_CGiV &lt;iV_CGiV@g=
+raphicslink.co.uk&gt;</span></span></span></p><p class=3D"MsoNormal"><span =
+style=3D"mso-bookmark: _Hlk478374197;" data-mce-style=3D"mso-bookmark: _Hlk=
+478374197;"><span style=3D"mso-bookmark: _Hlk478330462;" data-mce-style=3D"=
+mso-bookmark: _Hlk478330462;"><span style=3D"font-size: 10.0pt; font-family=
+: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-family: 'Courie=
+r New';">URL: </span></span></span><a href=3D"http://www.graphicslink.co.uk=
+/IV2018/" target=3D"_blank"><span style=3D"mso-bookmark: _Hlk478374197;" da=
+ta-mce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookmark: =
+_Hlk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"><span style=
+=3D"font-size: 10.0pt; font-family: 'Courier New';" data-mce-style=3D"font-=
+size: 10.0pt; font-family: 'Courier New';">http://www.graphicslink.co.uk/IV=
+2018/</span></span></span><span style=3D"mso-bookmark: _Hlk478374197;" data=
+-mce-style=3D"mso-bookmark: _Hlk478374197;"><span style=3D"mso-bookmark: _H=
+lk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"></span></span=
+></a><span style=3D"mso-bookmark: _Hlk478374197;" data-mce-style=3D"mso-boo=
+kmark: _Hlk478374197;"><span style=3D"mso-bookmark: _Hlk478330462;" data-mc=
+e-style=3D"mso-bookmark: _Hlk478330462;"><span style=3D"font-size: 10.0pt; =
+font-family: 'Courier New';" data-mce-style=3D"font-size: 10.0pt; font-fami=
+ly: 'Courier New';"></span></span></span></p><span style=3D"mso-bookmark: _=
+Hlk478330462;" data-mce-style=3D"mso-bookmark: _Hlk478330462;"></span><span=
+ style=3D"mso-bookmark: _Hlk478374197;" data-mce-style=3D"mso-bookmark: _Hl=
+k478374197;"></span><div style=3D"mso-element: para-border-div; border: non=
+e; border-bottom: solid windowtext 1.0pt; padding: 0cm 0cm 1.0pt 0cm;" data=
+-mce-style=3D"mso-element: para-border-div; border: none; border-bottom: so=
+lid windowtext 1.0pt; padding: 0cm 0cm 1.0pt 0cm;"><p class=3D"MsoNormal" s=
+tyle=3D"border: none; padding: 0cm;" data-mce-style=3D"border: none; paddin=
+g: 0cm;"><a name=3D"_Hlk478374214"></a><span style=3D"font-size: 10.0pt;" d=
+ata-mce-style=3D"font-size: 10.0pt;">&nbsp;</span></p></div><p class=3D"Mso=
+Normal"><span style=3D"mso-bookmark: _Hlk478374214;" data-mce-style=3D"mso-=
+bookmark: _Hlk478374214;"><span style=3D"font-size: 9.0pt; font-family: 'Be=
+rlin Sans FB',sans-serif;" data-mce-style=3D"font-size: 9.0pt; font-family:=
+ 'Berlin Sans FB',sans-serif;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp;</span></span></p><p class=3D"MsoNormal"><span=
+ style=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;" data-mce-s=
+tyle=3D"font-size: 10.0pt; font-family: 'Verdana',sans-serif;">------------=
+----------- ^^^ iV2018_CFP ^^^ -----------------------</span></p></div></di=
+v></div></div></div></div></div></div></div></div></div><br></div></div></b=
+ody></html>
+------=_Part_82847244_2033778604.1511770585999--
+

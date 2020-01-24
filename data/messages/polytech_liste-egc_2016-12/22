@@ -1,0 +1,621 @@
+Return-Path: <tsebtravail@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 01A731903874
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  9 Dec 2016 10:34:54 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id F2D4470130
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  9 Dec 2016 10:34:53 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id E09232DCA77
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  9 Dec 2016 10:34:53 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.687
+X-Spam-Level:
+X-Spam-Status: No, score=-0.687 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	HTML_OBFUSCATE_05_10=0.001, SPF_PASS=-0.001, UN_PHISHING=4,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 14.6185 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eoq0b8ySwZDD for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  9 Dec 2016 10:34:51 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-ua0-x242.google.com (mail-ua0-x242.google.com [IPv6:2607:f8b0:400c:c08::242])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id A8A162DCA70
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  9 Dec 2016 10:34:50 +0100 (CET)
+Received: by mail-ua0-x242.google.com with SMTP id 50so1174827uae.2
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 09 Dec 2016 01:34:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=f5TlsHW4kmkDg8Upkq67PsvdoAeii3s4hxsW2vRjYII=;
+        b=rUPo1BIIq6UM1DJCQsXIobHuIPuGboEFGzVi4KjvbEbjALbvTxGT+whCq7Go+2UZyV
+         LpHfM83JT9k67l2z18TmjWY7QlAW+nKZq/HGRVbiKYCGF+xA/V2XeleA36h3yENGOcuT
+         nFWiw32p5qbhq6m/K0HXBIOxeekoB3aGNONO3Quq3LgREgYGC54oQaM3ilWRqY9REiPK
+         k40hGkdbwfbGoHO8f4rSL1fZWGmNLL4iLrUTDeZLxOaGN/0VkXrM+HNHoPjrXRUB0AMt
+         B/JZY9ntdAXeEyniay8aFAQ8CJzAfk/YuHF1P9od+rQ0hq2c1AanWmP0I9Alik55+5J5
+         kQDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=f5TlsHW4kmkDg8Upkq67PsvdoAeii3s4hxsW2vRjYII=;
+        b=hR0uGA8nSlmLYLOubzF/ekN60uHhu6vq1UbRv8EnR02YAd8q6hhOmouKqRvCI1D9l3
+         jXR/xDW2drqSdiXbl2ncQ/bTIL+iJg0N8rD1SgeYESbFEfhLCogNt+ZFvFFsA948Nerq
+         z3w+UZJjpNK+ZfXJrUUEOiLhmOj3epO7jPFUPnLfxSeKJ3mj/58n8dTe3t4+hy2Iqci8
+         pVsgLeCBuQ+hkWzYJoosoLc9YypP6UHiTeYaRS8CQlnLst/kZJ3rzB78G9w0iWaS79Bc
+         b3w24wNBlaBXaMYEOaQKY/lw+oSkpNwn1I8A3ZtyAuBck9lKewIoNRRoZ4HSixFCQovf
+         c7bg==
+X-Gm-Message-State: AKaTC01OutqaGb0IX55OKCS25gfsrJwBXwPJq/lMl5XcrCBL75OETSMvC5I1iv59Ln00U2tnWBFbUgoZUT8izA==
+X-Received: by 10.159.40.101 with SMTP id c92mr61411708uac.111.1481276089430;
+ Fri, 09 Dec 2016 01:34:49 -0800 (PST)
+MIME-Version: 1.0
+Sender: tsebtravail@gmail.com
+Received: by 10.103.10.69 with HTTP; Fri, 9 Dec 2016 01:34:49 -0800 (PST)
+From: =?UTF-8?Q?S=C3=A9bastien_Fournier?= <sebastien.fournier@lsis.org>
+Date: Fri, 9 Dec 2016 10:34:49 +0100
+X-Google-Sender-Auth: gGdRnxjn1AcCRUuwGBW0kUH9pzk
+Message-ID: <CABscHFa5ac+AxeicswTbdDTYgrDMcYh7v4adBcnFB4R0+qSZzg@mail.gmail.com>
+To: bull-i3@irit.fr, liste-egc <liste-egc@polytech.univ-nantes.fr>, all@madics.fr
+Content-Type: multipart/alternative; boundary=94eb2c0480da1ffccb054336772c
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] [CORIA 2017] Dernier appel =?UTF-8?Q?=C3=A0?= soumision
+
+--94eb2c0480da1ffccb054336772c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Organis=C3=A9e avec le support de l'ARIA (Association francophone de Recher=
+che
+d'Information et Applications), la conf=C3=A9rence CORIA est la principale
+manifestation francophone dans le domaine de Recherche d=E2=80=99informatio=
+n (RI).
+CORIA2017 aura lieu du *29-31 Mars =C3=A0 Marseille*.
+
+
+*CORIA* a pour but de rassembler les =C3=A9quipes et les chercheurs menant =
+des
+travaux scientifiques dans le domaine de la recherche d'information :
+recherche d'information sur le web ou sur une autre collection, extraction
+d'information au sein de documents multim=C3=A9dia, analyse d'opinion ou de
+r=C3=A9seaux sociaux, contextes monolingue ou multilingue, recherche de
+documents num=C3=A9riques et d'images, apprentissage et classification
+automatiques, interfaces homme-machine pour l'acc=C3=A8s =C3=A0 l'informati=
+on, etc.
+
+
+CORIA se veut largement ouverte =C3=A0 l'ensemble de la communaut=C3=A9 sci=
+entifique
+concern=C3=A9e par la Recherche d'Information.
+
+
+L'activit=C3=A9 scientifique en recherche d'information conna=C3=AEt une =
+=C3=A9volution
+forte depuis la g=C3=A9n=C3=A9ralisation du web et, plus r=C3=A9cemment, le=
+ d=C3=A9veloppement
+de l'informatique nomade, la gestion et l'analyse des donn=C3=A9es massives
+(bigdata et apprentissage profond).
+
+
+Les limites du domaine sont elles-m=C3=AAmes en mutation et favorisent les
+synergies avec les travaux en apprentissage automatique, traitement
+automatique des langues, traitement de l'image, traitement de la parole,
+communication =C3=A9crite et documents, syst=C3=A8mes d'information et base=
+s de
+donn=C3=A9es, repr=C3=A9sentation et gestion des connaissances=E2=80=A6 Les=
+ domaines
+d'application sont vastes et peuvent =C3=AAtre appliqu=C3=A9s au web dans s=
+a
+globalit=C3=A9 ou restreints par exemple =C3=A0 des biblioth=C3=A8ques num=
+=C3=A9riques, des
+collections de documents sp=C3=A9cialis=C3=A9s ou des r=C3=A9seaux sociaux.
+
+Le public vis=C3=A9 par CORIA 2017 est celui des universitaires et chercheu=
+rs =E2=80=93
+confirm=C3=A9s ou non -, des industriels et des sp=C3=A9cialistes du domain=
+e, ainsi
+que des =C3=A9tudiants dans le domaine.
+
+Bien que CORIA soit une conf=C3=A9rence du milieu francophone, elle accepte=
+ des
+articles non seulement en fran=C3=A7ais mais aussi en anglais.
+
+
+
+*Dates importantes :*
+
+
+   - Soumission des r=C3=A9sum=C3=A9s : *9 D=C3=A9cembre*
+   - Soumission des articles : *16 D=C3=A9cembre*
+   - R=C3=A9ponses aux auteurs : *17 F=C3=A9vrier*
+   - D=C3=A9p=C3=B4t d=E2=80=99articles d=C3=A9finitifs : *3 Mars*
+   -  Dates de la conf=C3=A9rence :* 29 au 31 Mars*
+
+Pendant la conf=C3=A9rence CORIA 2017 seront =C3=A9galement organis=C3=A9es=
+ les RJC en
+recherche d'information. Elles ont pour objectif de permettre =C3=A0 tous l=
+es
+doctorants de pr=C3=A9senter leur probl=C3=A9matique de recherche, d'=C3=A9=
+tablir des
+contacts avec des =C3=A9quipes travaillant sur des domaines similaires ou
+connexes, et d'offrir =C3=A0 l'ensemble de la communaut=C3=A9 un aper=C3=A7=
+u des axes de
+recherche actuels. Les travaux s=C3=A9lectionn=C3=A9s pour les RJC en reche=
+rche
+d'information donneront lieu =C3=A0 une pr=C3=A9sentation orale et sous for=
+me de
+poster.
+
+
+
+*Th=C3=A9matiques*
+
+CORIA couvre les th=C3=A9matiques suivantes, ainsi que d=E2=80=99autres th=
+=C3=A9matiques
+reli=C3=A9es :
+
+
+
+   - Th=C3=A9orie et mod=C3=A8les formels pour la RI : mod=C3=A8le logique,=
+ mod=C3=A8les
+   probabilistes, repr=C3=A9sentation de document et de requ=C3=AAte, mod=
+=C3=A8les bas=C3=A9s sur
+   l=E2=80=99apprentissage, ...
+   - Compr=C3=A9hension de requ=C3=AAte : intention de recherche, suggestio=
+n de
+   requ=C3=AAtes, RI conversationnelle
+   - Traitement Automatique de la Langue Naturelle pour la recherche
+   d=E2=80=99information
+   - Syst=C3=A8mes de Questions R=C3=A9ponses
+   -  RI dans l=E2=80=99environnement mobile
+   -  Multilinguisme : recherche d=E2=80=99information multilingue, traduct=
+ion
+   automatique
+   -  Passage =C3=A0 l=E2=80=99=C3=A9chelle & big data:indexation, compress=
+ion, performances,
+   architectures
+   -  M=C3=A9thodes d=E2=80=99apprentissage : classification automatique, f=
+iltrage et
+   recommandation, clustering, learning-to-rank, apprentissage profond
+   (deep-learning)
+   -  Extraction d=E2=80=99informations : ontologies, ressources et recherc=
+he
+   d=E2=80=99informations, d=C3=A9tection d=E2=80=99entit=C3=A9s nomm=C3=A9=
+es et des relations
+   -  Analyses du Web : grands graphes, utilisation de la topologie du web,
+   lois de puissances, citations, analyse de liens,
+   -  RI s=C3=A9mantique : ontologie, web s=C3=A9mantique, web de donn=C3=
+=A9es
+   -  RI et documents structur=C3=A9s : RI et XML, RI pr=C3=A9cise et reche=
+rche de
+   passages
+   -  R=C3=A9seaux sociaux : analyse de r=C3=A9seaux, de rumeurs et d=E2=80=
+=99opinions,
+   diffusion d'information, pr=C3=A9diction d'activit=C3=A9s, d=C3=A9tectio=
+n d=E2=80=99=C3=A9v=C3=A9nements ...
+   -  Interaction utilisateur : interrogation flexible, interfaces,
+   visualisation, mod=C3=A9lisation de l=E2=80=99utilisateur et de contexte=
+, accessibilit=C3=A9,
+   indexation collaborative, RI personnalis=C3=A9e
+   -  Multim=C3=A9dia (images, audio, vid=C3=A9os, son, musique) : indexati=
+on,
+   navigation, acc=C3=A8s, ...
+   -  Biblioth=C3=A8ques num=C3=A9riques : RI sur des livres num=C3=A9ris=
+=C3=A9s, robustesse,
+   OCR et indexabilit=C3=A9
+   -  Syst=C3=A8mes de recherche d=E2=80=99information d=C3=A9di=C3=A9s : r=
+echerche d=E2=80=99information
+   g=C3=A9nomique, g=C3=A9ographique, m=C3=A9dicale, recherche de brevets, =
+recherche de
+   produits =E2=80=A6
+   -  Outils pour la recherche d=E2=80=99information : =C3=A9valuation, ban=
+cs d=E2=80=99essais,
+   m=C3=A9triques, exp=C3=A9rimentations qualitatives des syst=C3=A8mes, op=
+en source
+
+*Soumission des articles*
+
+Les articles peuvent =C3=AAtre r=C3=A9dig=C3=A9s en anglais ou en fran=C3=
+=A7ais. Ils doivent
+=C3=AAtre *anonymes* et ne comporter aucune mention qui pourrait permettre
+d'identifier les auteurs. De plus, les articles soumis ou r=C3=A9cemment
+accept=C3=A9s =C3=A0 des conf=C3=A9rences internationales sont recevables, =
+sous r=C3=A9serve
+que le copyright de la version accept=C3=A9e pr=C3=A9c=C3=A9demment l=E2=80=
+=99autorise et qu=E2=80=99ils
+soient traduits et adapt=C3=A9s pour CORIA.
+
+Les contributions peuvent concerner des travaux acad=C3=A9miques ou des
+applications industrielles. Les textes de communications doivent comporter
+16 pages maximum pour les soumissions =C3=A0 CORIA et 10 pages maximum pour=
+ les
+journ=C3=A9es RJC.
+
+Nous acceptons les soumissions conjointes RJC & CORIA. Ces soumissions
+doivent =C3=AAtre d=C3=A9pos=C3=A9es sur les deux sites de soumission. Dans=
+ le cas d'une
+double acceptation, l'article sera publi=C3=A9 au format 16 pages dans le c=
+adre
+de la conf=C3=A9rence CORIA. Dans le cas d'une acceptation seule aux RJC,
+l'article devra =C3=AAtre r=C3=A9duit =C3=A0 10 pages.
+
+Les articles doivent respecter le format revue Herm=C3=A8s, dont les feuill=
+es de
+style Word/Open Office et Latex peuvent =C3=AAtre t=C3=A9l=C3=A9charg=C3=A9=
+es depuis
+http://www.lsis.org/coria2017
+
+Les articles devront =C3=AAtre soumis au format PDF. La premi=C3=A8re page =
+devra =C3=AAtre
+une page de garde comportant le titre de l'article, un r=C3=A9sum=C3=A9 en =
+anglais et
+en fran=C3=A7ais, ainsi qu'une liste de mots-cl=C3=A9s, en fran=C3=A7ais et=
+ en anglais.
+
+*La mention =C2=AB article soumis =C3=A0 CORIA et RJC =C2=BB doit =C3=AAtre=
+ port=C3=A9e sur la page
+de garde le cas =C3=A9ch=C3=A9ant*.
+
+*Modalit=C3=A9s sp=C3=A9cifiques pour les soumissions RJC* : au moins un(e)
+doctorant(e) ou un(e) =C3=A9tudiant(e) en Master ou un(e) jeune docteur(e) =
+ayant
+soutenu sa th=C3=A8se depuis moins d'un an doit faire partie des auteurs.
+L'objectif de ces articles est de pr=C3=A9senter les orientations ainsi que=
+ les
+r=C3=A9sultats du travail de recherche du/des =C3=A9tudiants. Les soumissio=
+ns RJC
+doivent obligatoirement =C3=AAtre accompagn=C3=A9es d'une lettre du directe=
+ur de
+recherche (=C3=A0 envoyer par email aux pr=C3=A9sidents du comit=C3=A9 de p=
+rogramme RJC).
+Cette lettre devra, pour chaque =C3=A9tudiant faisant partie des auteurs,
+indiquer sa situation c'est-=C3=A0-dire indiquer s'il est en Master (indiqu=
+er le
+nom du Master), s'il est en 1=C3=A8re, 2=C3=A8me ou 3=C3=A8me ann=C3=A9e de=
+ th=C3=A8se ou le cas
+=C3=A9ch=C3=A9ant la date de la soutenance de th=C3=A8se.
+
+*Comit=C3=A9s*
+
+*Pr=C3=A9sident du comit=C3=A9 de programme : *Jian-Yun Nie ( Universit=C3=
+=A9 de Montr=C3=A9al)
+
+*Pr=C3=A9sident comit=C3=A9 de programme RJC : *Sylvain Lamprier (Universit=
+=C3=A9 Pierre
+et Marie Curie)
+
+*Pr=C3=A9sident comit=C3=A9 d'organisation : *S=C3=A9bastien Fournier (Univ=
+ersit=C3=A9
+Aix-Marseille)
+
+--94eb2c0480da1ffccb054336772c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-alig=
+n:justify">Organis=C3=A9e avec le support de l&#39;<span lang=3D"EN-CA"><sp=
+an lang=3D"FR">ARIA</span></span>=C2=A0(Association francophone de Recherch=
+e d&#39;Information et Applications), la conf=C3=A9rence=C2=A0<span class=
+=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_82746646=
+31980626030gmail-m_-2580888391191615637gmail-il">CORIA</span>=C2=A0est la p=
+rincipale manifestation francophone dans le domaine de Recherche d=E2=80=99=
+information (RI).=C2=A0<span class=3D"gmail-m_9057652149332883283gmail-m_-2=
+262082090770275395gmail-m_8274664631980626030gmail-m_-2580888391191615637gm=
+ail-il">CORIA</span><span class=3D"gmail-m_9057652149332883283gmail-m_-2262=
+082090770275395gmail-m_8274664631980626030gmail-m_-2580888391191615637gmail=
+-il">2017</span>=C2=A0aura lieu du=C2=A0<b>29-31 Mars =C3=A0 Marseille</b>.=
+</p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"><b=
+r></p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify">=
+<b>CORIA</b>=C2=A0a pour but de rassembler les =C3=A9quipes et les chercheu=
+rs menant des travaux scientifiques dans le domaine de la recherche d&#39;i=
+nformation : recherche d&#39;information sur le web ou sur une autre collec=
+tion, extraction d&#39;information au sein de documents multim=C3=A9dia, an=
+alyse d&#39;opinion ou de r=C3=A9seaux sociaux, contextes monolingue ou mul=
+tilingue, recherche de documents num=C3=A9riques et d&#39;images, apprentis=
+sage et classification automatiques, interfaces homme-machine pour l&#39;ac=
+c=C3=A8s =C3=A0 l&#39;information, etc.</p><p class=3D"MsoNormal" style=3D"=
+font-size:12.8px;text-align:justify"><br></p><p class=3D"MsoNormal" style=
+=3D"font-size:12.8px;text-align:justify"><span class=3D"gmail-m_90576521493=
+32883283gmail-m_-2262082090770275395gmail-m_8274664631980626030gmail-m_-258=
+0888391191615637gmail-il">CORIA</span>=C2=A0se veut largement ouverte =C3=
+=A0 l&#39;ensemble de la communaut=C3=A9 scientifique concern=C3=A9e par la=
+ Recherche d&#39;Information.</p><p class=3D"MsoNormal" style=3D"font-size:=
+12.8px;text-align:justify"><br></p><p class=3D"MsoNormal" style=3D"font-siz=
+e:12.8px;text-align:justify">L&#39;activit=C3=A9 scientifique en recherche =
+d&#39;information conna=C3=AEt une =C3=A9volution forte depuis la g=C3=A9n=
+=C3=A9ralisation du web et, plus r=C3=A9cemment, le d=C3=A9veloppement de l=
+&#39;informatique nomade, la gestion et l&#39;analyse des donn=C3=A9es mass=
+ives (bigdata et apprentissage profond).</p><p class=3D"MsoNormal" style=3D=
+"font-size:12.8px;text-align:justify"><br></p><p class=3D"MsoNormal" style=
+=3D"font-size:12.8px;text-align:justify">Les limites du domaine sont elles-=
+m=C3=AAmes en mutation et favorisent les synergies avec les travaux en appr=
+entissage automatique, traitement automatique des langues, traitement de l&=
+#39;image, traitement de la parole, communication =C3=A9crite et documents,=
+ syst=C3=A8mes d&#39;information et bases de donn=C3=A9es, repr=C3=A9sentat=
+ion et gestion des connaissances=E2=80=A6 Les domaines d&#39;application so=
+nt vastes et peuvent =C3=AAtre appliqu=C3=A9s au web dans sa globalit=C3=A9=
+ ou restreints par exemple =C3=A0 des biblioth=C3=A8ques num=C3=A9riques, d=
+es collections de documents sp=C3=A9cialis=C3=A9s ou des r=C3=A9seaux socia=
+ux.</p><p class=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify"=
+>Le public vis=C3=A9 par=C2=A0<span class=3D"gmail-m_9057652149332883283gma=
+il-m_-2262082090770275395gmail-m_8274664631980626030gmail-m_-25808883911916=
+15637gmail-il">CORIA</span>=C2=A0<span class=3D"gmail-m_9057652149332883283=
+gmail-m_-2262082090770275395gmail-m_8274664631980626030gmail-m_-25808883911=
+91615637gmail-il">2017</span>=C2=A0est celui des universitaires et chercheu=
+rs =E2=80=93 confirm=C3=A9s ou non -, des industriels et des sp=C3=A9cialis=
+tes du domaine, ainsi que des =C3=A9tudiants dans le domaine.</p><p class=
+=3D"MsoNormal" style=3D"font-size:12.8px;text-align:justify">Bien que=C2=A0=
+<span class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail=
+-m_8274664631980626030gmail-m_-2580888391191615637gmail-il">CORIA</span>=C2=
+=A0soit une conf=C3=A9rence du milieu francophone, elle accepte des article=
+s non seulement en fran=C3=A7ais mais aussi en anglais.</p><p class=3D"MsoN=
+ormal" style=3D"font-size:12.8px;text-align:justify"><br></p><p class=3D"Ms=
+oNormal" style=3D"font-size:12.8px;text-align:justify"><br></p><p class=3D"=
+MsoNormal" style=3D"font-size:12.8px"><b>Dates importantes=C2=A0:</b></p><p=
+ class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_82=
+74664631980626030gmail-m_-2580888391191615637gmail-m_3245007744374128151gma=
+il-m_-8162076473308159856gmail-m_6066121392581916228gmail-MsoListParagraphC=
+xSpFirst" style=3D"font-size:12.8px"></p><ul style=3D"font-size:12.8px"><li=
+ style=3D"margin-left:15px">Soumission des r=C3=A9sum=C3=A9s=C2=A0:=C2=A0<b=
+>9 D=C3=A9cembre</b><br></li><li style=3D"margin-left:15px">Soumission=C2=
+=A0des articles :=C2=A0<b>16 D=C3=A9cembre</b><br></li><li style=3D"margin-=
+left:15px">R=C3=A9ponses aux auteurs :=C2=A0<b>17 F=C3=A9vrier</b><br></li>=
+<li style=3D"margin-left:15px">D=C3=A9p=C3=B4t d=E2=80=99articles d=C3=A9fi=
+nitifs :=C2=A0<b>3 Mars</b><br></li><li style=3D"margin-left:15px"><span st=
+yle=3D"font-variant-numeric:normal;font-stretch:normal;font-size:7pt;line-h=
+eight:normal;font-family:&quot;times new roman&quot;">=C2=A0</span>Dates de=
+ la conf=C3=A9rence :<b>=C2=A029 au 31 Mars</b><br></li></ul><span style=3D=
+"font-size:12.8px"></span><p style=3D"font-size:12.8px"></p><p class=3D"gma=
+il-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_827466463198062=
+6030gmail-m_-2580888391191615637gmail-m_3245007744374128151gmail-m_-8162076=
+473308159856gmail-m_6066121392581916228gmail-MsoListParagraphCxSpMiddle" st=
+yle=3D"font-size:12.8px"></p><p class=3D"gmail-m_9057652149332883283gmail-m=
+_-2262082090770275395gmail-m_8274664631980626030gmail-m_-258088839119161563=
+7gmail-m_3245007744374128151gmail-m_-8162076473308159856gmail-m_60661213925=
+81916228gmail-MsoListParagraphCxSpMiddle" style=3D"font-size:12.8px"></p><p=
+ class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_82=
+74664631980626030gmail-m_-2580888391191615637gmail-m_3245007744374128151gma=
+il-m_-8162076473308159856gmail-m_6066121392581916228gmail-MsoListParagraphC=
+xSpLast" style=3D"font-size:12.8px"></p><p class=3D"MsoNormal" style=3D"fon=
+t-size:12.8px;text-align:justify"><font color=3D"#000000"><a style=3D"color=
+:rgb(34,34,34)"></a>Pendant la conf=C3=A9rence=C2=A0<span class=3D"gmail-m_=
+9057652149332883283gmail-m_-2262082090770275395gmail-m_8274664631980626030g=
+mail-m_-2580888391191615637gmail-il"><span class=3D"gmail-m_905765214933288=
+3283gmail-m_-2262082090770275395gmail-il"><span class=3D"gmail-m_9057652149=
+332883283gmail-il"><span class=3D"gmail-il">CORIA</span></span></span></spa=
+n>=C2=A0<span class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275=
+395gmail-m_8274664631980626030gmail-m_-2580888391191615637gmail-il"><span c=
+lass=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-il"><s=
+pan class=3D"gmail-il">2017</span></span></span>=C2=A0seront =C3=A9galement=
+ organis=C3=A9es les RJC en recherche d&#39;information. Elles ont pour obj=
+ectif de permettre =C3=A0 tous les doctorants de pr=C3=A9senter leur probl=
+=C3=A9matique de recherche, d&#39;=C3=A9tablir des contacts avec des =C3=A9=
+quipes travaillant sur des domaines similaires ou connexes, et d&#39;offrir=
+ =C3=A0 l&#39;ensemble de la communaut=C3=A9 un aper=C3=A7u des axes de rec=
+herche actuels. Les travaux s=C3=A9lectionn=C3=A9s pour les RJC en recherch=
+e d&#39;information donneront lieu =C3=A0 une pr=C3=A9sentation orale et so=
+us forme de poster.</font></p><p class=3D"MsoNormal" style=3D"font-size:12.=
+8px;text-align:justify"><font color=3D"#000000"><br></font></p><p class=3D"=
+MsoNormal" style=3D"font-size:12.8px;text-align:justify"><font color=3D"#00=
+0000"><br></font></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><b>T=
+h=C3=A9matiques</b></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"><s=
+pan class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m=
+_8274664631980626030gmail-m_-2580888391191615637gmail-il">CORIA</span>=C2=
+=A0couvre les th=C3=A9matiques suivantes, ainsi que d=E2=80=99autres th=C3=
+=A9matiques reli=C3=A9es=C2=A0:</p><p class=3D"MsoNormal" style=3D"margin:0=
+cm 0cm 3pt;font-size:12.8px;line-height:normal;background-image:initial;bac=
+kground-position:initial;background-size:initial;background-repeat:initial;=
+background-origin:initial;background-clip:initial"><br></p><p class=3D"MsoN=
+ormal" style=3D"margin:0cm 0cm 3pt;font-size:12.8px;line-height:normal;back=
+ground-image:initial;background-position:initial;background-size:initial;ba=
+ckground-repeat:initial;background-origin:initial;background-clip:initial">=
+</p><ul style=3D"font-size:12.8px"><li style=3D"margin-left:15px">Th=C3=A9o=
+rie et mod=C3=A8les formels pour la RI=C2=A0: mod=C3=A8le logique, mod=C3=
+=A8les probabilistes, repr=C3=A9sentation de document et de requ=C3=AAte, m=
+od=C3=A8les bas=C3=A9s sur l=E2=80=99apprentissage, ...<br></li><li style=
+=3D"margin-left:15px">Compr=C3=A9hension de requ=C3=AAte=C2=A0: intention d=
+e recherche, suggestion de requ=C3=AAtes, RI conversationnelle<br></li><li =
+style=3D"margin-left:15px">Traitement Automatique de la Langue Naturelle po=
+ur la recherche d=E2=80=99information<br></li><li style=3D"margin-left:15px=
+">Syst=C3=A8mes de Questions R=C3=A9ponses<br></li><li style=3D"margin-left=
+:15px"><span style=3D"font-variant-numeric:normal;font-stretch:normal;font-=
+size:7pt;line-height:normal;font-family:&quot;times new roman&quot;">=C2=A0=
+</span><span style=3D"font-size:12.8px">RI dans l=E2=80=99environnement mob=
+ile</span><br></li><li style=3D"margin-left:15px"><span style=3D"font-varia=
+nt-numeric:normal;font-stretch:normal;font-size:7pt;line-height:normal;font=
+-family:&quot;times new roman&quot;">=C2=A0</span><span style=3D"font-size:=
+12.8px">Multilinguisme : recherche d=E2=80=99information multilingue, tradu=
+ction automatique</span><br></li><li style=3D"margin-left:15px"><span style=
+=3D"font-variant-numeric:normal;font-stretch:normal;font-size:7pt;line-heig=
+ht:normal;font-family:&quot;times new roman&quot;">=C2=A0</span><span style=
+=3D"font-size:12.8px">Passage =C3=A0 l=E2=80=99=C3=A9c</span><font color=3D=
+"#000000" style=3D"font-size:12.8px">helle &amp; big data:indexation, compr=
+ession, performances, architectures</font><br></li><li style=3D"margin-left=
+:15px"><span style=3D"font-variant-numeric:normal;font-stretch:normal;font-=
+size:7pt;line-height:normal;font-family:&quot;times new roman&quot;">=C2=A0=
+</span><span style=3D"color:rgb(0,0,0);font-size:12.8px">M=C3=A9thodes d=E2=
+=80=99apprentissage=C2=A0: classification automatique, filtrage et recomman=
+dation, clustering, learning-to-rank, apprentissage profond (deep-learning)=
+</span><br></li><li style=3D"margin-left:15px"><font color=3D"#000000" styl=
+e=3D"font-size:12.8px"><span style=3D"font-size:10pt;font-family:wingdings"=
+><span style=3D"font-variant-numeric:normal;font-stretch:normal;font-size:7=
+pt;line-height:normal;font-family:&quot;times new roman&quot;">=C2=A0</span=
+></span>Extraction d=E2=80=99informations : ontologies, ressources et reche=
+r</font><span style=3D"font-size:12.8px">che d=E2=80=99informations, d=C3=
+=A9tection d=E2=80=99entit=C3=A9s nomm=C3=A9es et des relations</span><br><=
+/li><li style=3D"margin-left:15px"><span style=3D"font-variant-numeric:norm=
+al;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;t=
+imes new roman&quot;">=C2=A0</span><span style=3D"font-size:12.8px">Analyse=
+s du Web : grands graphes, utilisation de la topologie du web, lois de puis=
+sances, citations, analyse de liens,</span><br></li><li style=3D"margin-lef=
+t:15px"><span style=3D"font-variant-numeric:normal;font-stretch:normal;font=
+-size:7pt;line-height:normal;font-family:&quot;times new roman&quot;">=C2=
+=A0</span><span style=3D"font-size:12.8px">RI s=C3=A9mantique : ontologie, =
+web s=C3=A9mantique, web de donn=C3=A9es</span><br></li><li style=3D"margin=
+-left:15px"><span style=3D"font-variant-numeric:normal;font-stretch:normal;=
+font-size:7pt;line-height:normal;font-family:&quot;times new roman&quot;">=
+=C2=A0</span><span style=3D"font-size:12.8px">RI et documents structur=C3=
+=A9s : RI et XML, RI pr=C3=A9cise et recherche de passages</span><br></li><=
+li style=3D"margin-left:15px"><span style=3D"font-variant-numeric:normal;fo=
+nt-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;times =
+new roman&quot;">=C2=A0</span><span style=3D"font-size:12.8px">R=C3=A9seaux=
+ sociaux : analyse de r=C3=A9seaux, de rumeurs et d=E2=80=99opinions, diffu=
+sion d&#39;information, pr=C3=A9diction d&#39;activit=C3=A9s, d=C3=A9tectio=
+n d=E2=80=99=C3=A9v=C3=A9nements ...</span><br></li><li style=3D"margin-lef=
+t:15px"><span style=3D"font-variant-numeric:normal;font-stretch:normal;font=
+-size:7pt;line-height:normal;font-family:&quot;times new roman&quot;">=C2=
+=A0</span><span style=3D"font-size:12.8px">Interaction utilisateur : interr=
+ogation flexible, interfaces, visualisation, mod=C3=A9lisation de l=E2=80=
+=99utilisateur et de contexte, accessibilit=C3=A9, indexation collaborative=
+, RI personnalis=C3=A9e</span><br></li><li style=3D"margin-left:15px"><span=
+ style=3D"font-variant-numeric:normal;font-stretch:normal;font-size:7pt;lin=
+e-height:normal;font-family:&quot;times new roman&quot;">=C2=A0</span><span=
+ style=3D"font-size:12.8px">Multim=C3=A9dia (images, audio, vid=C3=A9os, so=
+n, musique) : indexation, navigation, acc=C3=A8s, ...</span><br></li><li st=
+yle=3D"margin-left:15px"><span style=3D"font-variant-numeric:normal;font-st=
+retch:normal;font-size:7pt;line-height:normal;font-family:&quot;times new r=
+oman&quot;">=C2=A0</span><span style=3D"font-size:12.8px">Biblioth=C3=A8que=
+s num=C3=A9riques : RI sur des livres num=C3=A9ris=C3=A9s, robustesse, OCR =
+et indexabilit=C3=A9</span><br></li><li style=3D"margin-left:15px"><span st=
+yle=3D"font-variant-numeric:normal;font-stretch:normal;font-size:7pt;line-h=
+eight:normal;font-family:&quot;times new roman&quot;">=C2=A0</span><span st=
+yle=3D"font-size:12.8px">Syst=C3=A8mes de recherche d=E2=80=99information d=
+=C3=A9di=C3=A9s : recherche d=E2=80=99information g=C3=A9nomique, g=C3=A9og=
+raphique, m=C3=A9dicale, recherche de brevets, recherche de produits =E2=80=
+=A6</span><br></li><li style=3D"margin-left:15px"><span style=3D"font-varia=
+nt-numeric:normal;font-stretch:normal;font-size:7pt;line-height:normal;font=
+-family:&quot;times new roman&quot;">=C2=A0</span><span style=3D"font-size:=
+12.8px">Outils pour la recherche d=E2=80=99information : =C3=A9valuation, b=
+ancs d=E2=80=99essais, m=C3=A9triques, exp=C3=A9rimentations qualitatives d=
+es syst=C3=A8mes, open source</span><br></li></ul><u style=3D"font-size:12.=
+8px;text-align:justify"><span style=3D"font-size:13pt;font-family:cambria,s=
+erif">Soumission des articles</span></u><br style=3D"font-size:12.8px"><p s=
+tyle=3D"font-size:12.8px"></p><p class=3D"MsoNormal" style=3D"margin:0cm 0c=
+m 3pt;font-size:12.8px;line-height:normal;background-image:initial;backgrou=
+nd-position:initial;background-size:initial;background-repeat:initial;backg=
+round-origin:initial;background-clip:initial"></p><p class=3D"MsoNormal" st=
+yle=3D"margin:0cm 0cm 3pt;font-size:12.8px;line-height:normal;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial"></p><p cl=
+ass=3D"MsoNormal" style=3D"margin-bottom:10pt;font-size:12.8px;text-align:j=
+ustify;line-height:12.65pt;background-image:initial;background-position:ini=
+tial;background-size:initial;background-repeat:initial;background-origin:in=
+itial;background-clip:initial">Les articles peuvent =C3=AAtre r=C3=A9dig=C3=
+=A9s en anglais ou en fran=C3=A7ais. Ils doivent =C3=AAtre=C2=A0<b>anonymes=
+</b>=C2=A0et ne comporter aucune mention qui pourrait permettre d&#39;ident=
+ifier les auteurs. De plus, les articles soumis ou r=C3=A9cemment accept=C3=
+=A9s =C3=A0 des conf=C3=A9rences internationales sont recevables, sous r=C3=
+=A9serve que le copyright de la version accept=C3=A9e pr=C3=A9c=C3=A9demmen=
+t l=E2=80=99autorise et qu=E2=80=99ils soient traduits et adapt=C3=A9s pour=
+<span class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail=
+-m_8274664631980626030gmail-m_-2580888391191615637gmail-m_32450077443741281=
+51gmail-m_-8162076473308159856gmail-m_6066121392581916228gmail-apple-conver=
+ted-space">=C2=A0</span><span class=3D"gmail-m_9057652149332883283gmail-m_-=
+2262082090770275395gmail-m_8274664631980626030gmail-m_-2580888391191615637g=
+mail-m_3245007744374128151gmail-m_-8162076473308159856gmail-m_6066121392581=
+916228gmail-il">CORIA</span>.=C2=A0</p><p class=3D"MsoNormal" style=3D"marg=
+in-bottom:10pt;font-size:12.8px;text-align:justify;line-height:12.65pt;back=
+ground-image:initial;background-position:initial;background-size:initial;ba=
+ckground-repeat:initial;background-origin:initial;background-clip:initial">=
+Les contributions peuvent concerner des travaux acad=C3=A9miques ou des app=
+lications industrielles. Les textes de communications doivent comporter 16 =
+pages maximum pour les soumissions =C3=A0<span class=3D"gmail-m_90576521493=
+32883283gmail-m_-2262082090770275395gmail-m_8274664631980626030gmail-m_-258=
+0888391191615637gmail-m_3245007744374128151gmail-m_-8162076473308159856gmai=
+l-m_6066121392581916228gmail-apple-converted-space">=C2=A0</span><span clas=
+s=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_8274664=
+631980626030gmail-m_-2580888391191615637gmail-m_3245007744374128151gmail-m_=
+-8162076473308159856gmail-m_6066121392581916228gmail-il">CORIA</span>=C2=A0=
+et 10 pages maximum pour les journ=C3=A9es RJC.</p><p class=3D"MsoNormal" s=
+tyle=3D"margin-bottom:10pt;font-size:12.8px;text-align:justify;line-height:=
+12.65pt;background-image:initial;background-position:initial;background-siz=
+e:initial;background-repeat:initial;background-origin:initial;background-cl=
+ip:initial">Nous acceptons les soumissions conjointes RJC &amp;=C2=A0<span =
+class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_827=
+4664631980626030gmail-m_-2580888391191615637gmail-m_3245007744374128151gmai=
+l-m_-8162076473308159856gmail-m_6066121392581916228gmail-il">CORIA</span>. =
+Ces soumissions doivent =C3=AAtre d=C3=A9pos=C3=A9es sur les deux sites de =
+soumission. Dans le cas d&#39;une double acceptation, l&#39;article sera pu=
+bli=C3=A9 au format 16 pages dans le cadre de la conf=C3=A9rence<span class=
+=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395gmail-m_82746646=
+31980626030gmail-m_-2580888391191615637gmail-m_3245007744374128151gmail-m_-=
+8162076473308159856gmail-m_6066121392581916228gmail-apple-converted-space">=
+=C2=A0</span><span class=3D"gmail-m_9057652149332883283gmail-m_-22620820907=
+70275395gmail-m_8274664631980626030gmail-m_-2580888391191615637gmail-m_3245=
+007744374128151gmail-m_-8162076473308159856gmail-m_6066121392581916228gmail=
+-il">CORIA</span>. Dans le cas d&#39;une acceptation seule aux RJC, l&#39;a=
+rticle devra =C3=AAtre r=C3=A9duit =C3=A0 10 pages.=C2=A0</p><p class=3D"Ms=
+oNormal" style=3D"margin-bottom:10pt;font-size:12.8px;text-align:justify;li=
+ne-height:12.65pt;background-image:initial;background-position:initial;back=
+ground-size:initial;background-repeat:initial;background-origin:initial;bac=
+kground-clip:initial">Les articles doivent respecter le format revue Herm=
+=C3=A8s, dont les feuilles de style Word/Open Office et Latex peuvent =C3=
+=AAtre t=C3=A9l=C3=A9charg=C3=A9es depuis=C2=A0<a href=3D"http://www.lsis.o=
+rg/coria2017" target=3D"_blank">http://www.lsis.org/cor<wbr>ia2017</a>=C2=
+=A0</p><p class=3D"MsoNormal" style=3D"margin-bottom:10pt;font-size:12.8px;=
+text-align:justify;line-height:12.65pt;background-image:initial;background-=
+position:initial;background-size:initial;background-repeat:initial;backgrou=
+nd-origin:initial;background-clip:initial">Les articles devront =C3=AAtre s=
+oumis au format PDF. La premi=C3=A8re page devra =C3=AAtre une page de gard=
+e comportant le titre de l&#39;article, un r=C3=A9sum=C3=A9 en anglais et e=
+n fran=C3=A7ais, ainsi qu&#39;une liste de mots-cl=C3=A9s, en fran=C3=A7ais=
+ et en anglais.</p><p class=3D"MsoNormal" style=3D"margin-bottom:10pt;font-=
+size:12.8px;text-align:justify;line-height:12.65pt;background-image:initial=
+;background-position:initial;background-size:initial;background-repeat:init=
+ial;background-origin:initial;background-clip:initial"><b>La mention =C2=AB=
+ article soumis =C3=A0=C2=A0<span class=3D"gmail-m_9057652149332883283gmail=
+-m_-2262082090770275395gmail-m_8274664631980626030gmail-m_-2580888391191615=
+637gmail-m_3245007744374128151gmail-m_-8162076473308159856gmail-m_606612139=
+2581916228gmail-il"><span class=3D"gmail-m_9057652149332883283gmail-m_-2262=
+082090770275395gmail-m_8274664631980626030gmail-m_-2580888391191615637gmail=
+-il"><span class=3D"gmail-m_9057652149332883283gmail-m_-2262082090770275395=
+gmail-il"><span class=3D"gmail-m_9057652149332883283gmail-il"><span class=
+=3D"gmail-il">CORIA</span></span></span></span></span>=C2=A0et RJC =C2=BB d=
+oit =C3=AAtre port=C3=A9e sur la page de garde le cas =C3=A9ch=C3=A9ant</b>=
+.</p><p class=3D"MsoNormal" style=3D"margin-bottom:10pt;font-size:12.8px;te=
+xt-align:justify;line-height:12.65pt;background-image:initial;background-po=
+sition:initial;background-size:initial;background-repeat:initial;background=
+-origin:initial;background-clip:initial"><b>Modalit=C3=A9s sp=C3=A9cifiques=
+ pour les soumissions RJC</b>=C2=A0: au moins un(e) doctorant(e) ou un(e) =
+=C3=A9tudiant(e) en Master ou un(e) jeune docteur(e) ayant soutenu sa th=C3=
+=A8se depuis moins d&#39;un an doit faire partie des auteurs. L&#39;objecti=
+f de ces articles est de pr=C3=A9senter les orientations ainsi que les r=C3=
+=A9sultats du travail de recherche du/des =C3=A9tudiants. Les soumissions R=
+JC doivent obligatoirement =C3=AAtre accompagn=C3=A9es d&#39;une lettre du =
+directeur de recherche (=C3=A0 envoyer par email aux pr=C3=A9sidents du com=
+it=C3=A9 de programme RJC). Cette lettre devra, pour chaque =C3=A9tudiant f=
+aisant partie des auteurs, indiquer sa situation c&#39;est-=C3=A0-dire indi=
+quer s&#39;il est en Master (indiquer le nom du Master), s&#39;il est en 1=
+=C3=A8re, 2=C3=A8me ou 3=C3=A8me ann=C3=A9e de th=C3=A8se ou le cas =C3=A9c=
+h=C3=A9ant la date de la soutenance de th=C3=A8se.</p><p class=3D"MsoNormal=
+" style=3D"margin-bottom:10pt;font-size:12.8px;text-align:justify;line-heig=
+ht:12.65pt;background-image:initial;background-position:initial;background-=
+size:initial;background-repeat:initial;background-origin:initial;background=
+-clip:initial"><b>Comit=C3=A9s</b></p><p class=3D"MsoNormal" style=3D"margi=
+n-bottom:10pt;font-size:12.8px;text-align:justify;line-height:12.65pt;backg=
+round-image:initial;background-position:initial;background-size:initial;bac=
+kground-repeat:initial;background-origin:initial;background-clip:initial"><=
+b>Pr=C3=A9sident du comit=C3=A9 de programme :=C2=A0</b>Jian-Yun Nie ( Univ=
+ersit=C3=A9 de Montr=C3=A9al)</p><p class=3D"MsoNormal" style=3D"margin-bot=
+tom:10pt;font-size:12.8px;text-align:justify;line-height:12.65pt;background=
+-image:initial;background-position:initial;background-size:initial;backgrou=
+nd-repeat:initial;background-origin:initial;background-clip:initial"><b>Pr=
+=C3=A9sident comit=C3=A9 de programme RJC :=C2=A0</b><span style=3D"font-si=
+ze:12.8px">Sylvain Lamprier (Universit=C3=A9 Pierre et Marie Curie)</span><=
+/p><p class=3D"MsoNormal" style=3D"margin-bottom:10pt;font-size:12.8px;text=
+-align:justify;line-height:12.65pt;background-image:initial;background-posi=
+tion:initial;background-size:initial;background-repeat:initial;background-o=
+rigin:initial;background-clip:initial"><b>Pr=C3=A9sident comit=C3=A9 d&#39;=
+organisation :=C2=A0</b>S=C3=A9bastien Fournier (Universit=C3=A9 Aix-Marsei=
+lle)</p></div>
+
+--94eb2c0480da1ffccb054336772c--

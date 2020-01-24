@@ -1,0 +1,508 @@
+Return-Path: <mounira.harzallah@univ-nantes.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9F3CC2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  2 May 2018 14:22:53 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 9F4086D21FC
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  2 May 2018 14:22:53 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 9836AB4A242
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 14:22:53 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=univ-nantes.fr header.b=q+JQFByp; dkim=pass (1024-bit key)
+	header.d=univ-nantes.fr header.b=q+JQFByp
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 0vT3LJuUDPef for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  2 May 2018 14:22:53 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp-tls.univ-nantes.fr (smtptls1-loi.cpub.univ-nantes.fr [IPv6:2001:660:7220:385:193:52:103:112])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 80C54661926
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 14:22:53 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp-tls.univ-nantes.fr (Postfix) with ESMTP id 68851617ECC;
+	Wed,  2 May 2018 14:22:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-nantes.fr;
+	s=mail; t=1525263773;
+	bh=9l9vnRC66zGUEYGxDBH20OXIHyZ91BgpRvsslDFOpnY=;
+	h=From:Subject:To:Cc:Date:From;
+	b=q+JQFByprg43vRLOLZBKtV7z7o4p3GQf/4VuI3zn4kFqlRTAFj1vBDtCpw0cMtdTY
+	 OQ12GiEUd9MjYYHDdJaubyPGrTkvvm65lza6rTYYtWZV+OLKQsImFaubpGHMQOO7qq
+	 lBSV5y2vzeFZGnAkkXI5rc2faF8BmMaJWypuGRrI=
+X-Virus-Scanned: Debian amavisd-new at smtptls1-lmb.cpub.univ-nantes.fr
+Received: from smtp-tls.univ-nantes.fr ([127.0.0.1])
+	by localhost (smtptls1-loi.cpub.univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id j6KToT5IMkWD; Wed,  2 May 2018 14:22:53 +0200 (CEST)
+Received: from [192.168.0.10] (suc44-1-88-184-16-9.fbx.proxad.net [88.184.16.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp-tls.univ-nantes.fr (Postfix) with ESMTPSA id C8FBE617EC9;
+	Wed,  2 May 2018 14:22:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-nantes.fr;
+	s=mail; t=1525263773;
+	bh=9l9vnRC66zGUEYGxDBH20OXIHyZ91BgpRvsslDFOpnY=;
+	h=From:Subject:To:Cc:Date:From;
+	b=q+JQFByprg43vRLOLZBKtV7z7o4p3GQf/4VuI3zn4kFqlRTAFj1vBDtCpw0cMtdTY
+	 OQ12GiEUd9MjYYHDdJaubyPGrTkvvm65lza6rTYYtWZV+OLKQsImFaubpGHMQOO7qq
+	 lBSV5y2vzeFZGnAkkXI5rc2faF8BmMaJWypuGRrI=
+From: HARZALLAH Mounira <mounira.harzallah@univ-nantes.fr>
+To: info-ic@listes.irisa.fr, liste-egc@polytech.univ-nantes.fr
+Cc: mustafajarrar@gmail.com,
+ Haifa Zargayouna <haifa.zargayouna@lipn.univ-paris13.fr>
+Message-ID: <c77b1b7e-7471-7d46-badd-bb4d8e3feaed@univ-nantes.fr>
+Date: Wed, 2 May 2018 14:22:50 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------22F640AD7AFDF891A59A3448"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Last Call. AICCSA 2018: Advances in Knowledge
+ Engineering Track
+
+This is a multi-part message in MIME format.
+--------------22F640AD7AFDF891A59A3448
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Apologies for cross-posting
+———————
+DEADLINE EXTENSION :  May 11th
+
+The ACS/IEEE International Conference on Computer Systems and 
+Applications (AICCSA) is the premier conference covering all 
+contemporary areas in computer systems and applications and hence it is 
+an international forum for leading researchers and practitioners in this 
+important and rapidly changing disciplines. AICCSA 2018, to be held in 
+the lovely and highly vibrant city of Aqaba in Jordan.
+We are pleased to invite you to submit original contributions to 
+AICCSA’18 via the official submission system for the conference 
+https://easychair.org/conferences/?conf=aiccsa2018. Submission may 
+include, technical and experimental study, theoretical study, conceptual 
+study, or a survey. All submissions will be peer-reviewed on the basis 
+of relevance, originality, importance and clarity.
+
+*Track 1: *Advances in Knowledge Engineering
+**
+*Scope
+*Knowledge management is a scientific discipline that focuses on 
+acquisition, representation, sharing and reuse of knowledge resources. 
+Overall, there are two main approaches of knowledge management: the 
+personalization approaches that focus on human resources and 
+communication, and the codification approaches that emphasize the 
+collection and organization of knowledge. In this context of knowledge 
+engineering ontologies are now widely used. Ontologies are adopted as 
+solution in applications related to knowledge management, e-services, 
+intelligent integration information, information retrieval, integration 
+of databases; as well as in new emerging fields such as the Semantic 
+Web. Due to the encouraging results of this adoption, an increasing 
+attention has been focused on ontologies and Ontological Engineering.
+**
+*Topics:*
+
+  * Semantic Technologies
+  * Ontology Engineering
+  * Application and linguistic ontologies
+  * Knowledge engineering
+  * Knowledge learning and acquisition
+  * Knowledge engineering applications
+  * Knowledge representation
+  * Knowledge based System
+  * Knowledge-based Decision Support
+  * Recommendation systems
+  * Semantic Web
+  * Data Web
+  * OWL, RDF, and SPARQL
+  * Semantic models
+  * Semantic interoperability
+  * Logic and Reasoning
+  * Web Intelligence
+
+
+**
+*Submissions Guidelines and PROCEEDINGS*
+Manuscripts should be prepared in 10-point font using the IEEE 8.5" x 
+11" two-column conference format. All papers should be in PDF format, 
+and submitted electronically on easychair at 
+https://easychair.org/conferences/?conf=aiccsa2018. A full paper must 
+not exceed 8 pages (including all figures, tables and references). 
+Submitted papers must present original unpublished research that is not 
+currently under review for any other conference or journal. Papers not 
+following these guidelines may be rejected without review. Also 
+submissions received after the due date, exceeding length limit, or not 
+appropriately structured may also not be considered. Authors may contact 
+the Program Chair for further information or clarification.
+All submissions are blind peer-reviewed by at least three reviewers. 
+Accepted papers will appear in the Conference Proceedings, and be 
+published by the IEEE Computer Society Conference Publishing Services 
+and be submitted to IEEE Xplore for inclusion.
+Submission of regular papers must not exceed 8 pages. Please include up 
+to 7 keywords, complete postal and e-mail address, and fax and phone 
+numbers of the corresponding author. Authors of accepted papers are 
+expected to present their work at the conference. Submitted papers that 
+are deemed of good quality but that could not be accepted as regular 
+papers will be accepted as short papers.
+
+**
+*Important Dates*
+Paper Submission Due Date (extended): May 11, 2018
+Notification to authors: June 30, 2018
+Camera Ready: August 1, 2018
+
+*Special Issues*
+Selected papers from the conference will be invited to submit an 
+extended version to some selected journal. Papers will be selected based 
+on their reviewers’ scores and appropriateness to the Journal’s theme. 
+All extended versions will undergo reviews and must represent original 
+unpublished research work. Further details will be made available at a 
+later stage.
+
+
+
+*For more information on the Conference, please visit *
+http://www.aiccsa.net/AICCSA2018/
+
+**
+
+*Please forward this email to anyone who might be interested in this call.*
+
+
+*Track Chairs*
+
+  * Haïfa Zargayouna, University of Paris 13, France
+  * Mounira Harzallah, LS2N, University of Nantes, France
+  * Mustafa Jarrar, Birzeit university, Palestine
+
+
+
+
+--------------22F640AD7AFDF891A59A3448
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body style="word-wrap: break-word; -webkit-nbsp-mode: space;
+    line-break: after-white-space;" class="" text="#000000"
+    bgcolor="#FFFFFF">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+      class="">
+    <div style="word-wrap: break-word; -webkit-nbsp-mode: space;
+      line-break: after-white-space;" class="">
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class="">Apologies for cross-posting</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class="">———————</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class="">DEADLINE EXTENSION :  May
+        11th</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">The ACS/IEEE
+        International Conference on Computer Systems and Applications
+        (AICCSA) is the premier conference covering all contemporary
+        areas in computer systems and applications and hence it is an
+        international forum for leading researchers and practitioners in
+        this important and rapidly changing disciplines. AICCSA 2018, to
+        be held in the lovely and highly vibrant city of Aqaba in
+        Jordan.</div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">We are pleased to
+        invite you to submit original contributions to AICCSA’18 via the
+        official submission system for the conference <a
+          href="https://easychair.org/conferences/?conf=aiccsa2018"
+          class=""><span style="color: #e4af0a" class="">https://easychair.org/conferences/?conf=aiccsa2018</span></a>.
+        Submission may include, technical and experimental study,
+        theoretical study, conceptual study, or a survey. All
+        submissions will be peer-reviewed on the basis of relevance,
+        originality, importance and clarity. </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 15px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Track 1: </b>Advances in
+        Knowledge Engineering</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 15px;" class=""><b class=""> </b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Scope<br class="">
+        </b>Knowledge management is a scientific discipline that focuses
+        on acquisition, representation, sharing and reuse of knowledge
+        resources. Overall, there are two main approaches of knowledge
+        management: the personalization approaches that focus on human
+        resources and communication, and the codification approaches
+        that emphasize the collection and organization of knowledge. In
+        this context of knowledge engineering ontologies are now widely
+        used. Ontologies are adopted as solution in applications related
+        to knowledge management, e-services, intelligent integration
+        information, information retrieval, integration of databases; as
+        well as in new emerging fields such as the Semantic Web. Due to
+        the encouraging results of this adoption, an increasing
+        attention has been focused on ontologies and Ontological
+        Engineering.</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 15px;" class=""><b class=""> </b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Topics:</b></div>
+      <ul class="">
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Semantic Technologies</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Ontology Engineering</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Application and linguistic ontologies</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge engineering</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge learning and acquisition</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge engineering applications</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge representation</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge based System</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Knowledge-based Decision Support</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Recommendation systems</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Semantic Web</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Data Web</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>OWL, RDF, and SPARQL</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Semantic models</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Semantic interoperability</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Logic and Reasoning</li>
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Web Intelligence</li>
+      </ul>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 15px;" class=""><b class=""> </b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Submissions Guidelines and
+          PROCEEDINGS</b></div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">Manuscripts should
+        be prepared in 10-point font using the IEEE 8.5" x 11"
+        two-column conference format. All papers should be in PDF
+        format, and submitted electronically on easychair at <a
+          href="https://easychair.org/conferences/?conf=aiccsa2018"
+          class=""><span style="color: #e4af0a" class="">https://easychair.org/conferences/?conf=aiccsa2018</span></a>.
+        A full paper must not exceed 8 pages (including all figures,
+        tables and references). Submitted papers must present original
+        unpublished research that is not currently under review for any
+        other conference or journal. Papers not following these
+        guidelines may be rejected without review. Also submissions
+        received after the due date, exceeding length limit, or not
+        appropriately structured may also not be considered. Authors may
+        contact the Program Chair for further information or
+        clarification.</div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">All submissions
+        are blind peer-reviewed by at least three reviewers. Accepted
+        papers will appear in the Conference Proceedings, and be
+        published by the IEEE Computer Society Conference Publishing
+        Services and be submitted to IEEE Xplore for inclusion.</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class="">Submission of regular papers must not exceed
+        8 pages. Please include up to 7 keywords, complete postal and
+        e-mail address, and fax and phone numbers of the corresponding
+        author. Authors of accepted papers are expected to present their
+        work at the conference. Submitted papers that are deemed of good
+        quality but that could not be accepted as regular papers will be
+        accepted as short papers.</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 15px;" class=""><b class=""> </b></div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class=""><b class="">Important
+          Dates</b></div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">Paper Submission
+        Due Date (extended): May 11, 2018</div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">Notification to
+        authors: June 30, 2018</div>
+      <div style="margin: 0px; text-align: justify; font-stretch:
+        normal; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69);" class="">Camera Ready:
+        August 1, 2018</div>
+      <p style="margin: 0px; font-stretch: normal; line-height: normal;
+        font-family: &quot;Helvetica Neue&quot;; color: rgb(69, 69,
+        69);" class=""> </p>
+      <p style="margin: 0px; font-stretch: normal; line-height: normal;
+        font-family: &quot;Helvetica Neue&quot;; color: rgb(69, 69,
+        69);" class=""> </p>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Special Issues</b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class="">Selected papers from the conference will be
+        invited to submit an extended version to some selected journal.
+        Papers will be selected based on their reviewers’ scores and
+        appropriateness to the Journal’s theme. All extended versions
+        will undergo reviews and must represent original unpublished
+        research work. Further details will be made available at a later
+        stage.</div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""> <br
+          class="webkit-block-placeholder">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">For more information on the
+          Conference, please visit </b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(228,
+        175, 10);" class=""><span style="text-decoration: underline"
+          class=""><a href="http://www.aiccsa.net/AICCSA2018/" class="">http://www.aiccsa.net/AICCSA2018/</a></span></div>
+      <p style="margin: 0px 0px 2px; font-stretch: normal; font-size:
+        14px; line-height: normal; font-family: &quot;Helvetica
+        Neue&quot;; color: rgb(69, 69, 69); min-height: 17px;" class=""><b
+          class=""> </b></p>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Please forward this email to
+          anyone who might be interested in this call.</b></div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><br class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69); min-height: 14px;" class=""><span
+          style="text-decoration: underline" class=""></span><br
+          class="">
+      </div>
+      <div style="margin: 0px; font-stretch: normal; line-height:
+        normal; font-family: &quot;Helvetica Neue&quot;; color: rgb(69,
+        69, 69);" class=""><b class="">Track Chairs</b></div>
+      <ul class="">
+        <li style="margin: 0px; font-stretch: normal; line-height:
+          normal; font-family: &quot;Helvetica Neue&quot;; color:
+          rgb(69, 69, 69);" class=""><span style="font-stretch: normal;
+            font-size: 10px; line-height: normal; font-family: Menlo;"
+            class=""></span>Haïfa Zargayouna, University of Paris 13,
+          France </li>
+        <li style="margin: 0px; font-stretch: normal; font-size: 12.8px;
+          line-height: normal; font-family: Arial; color: rgb(68, 68,
+          68);" class=""><span style="font-stretch: normal; font-size:
+            10px; line-height: normal; font-family: Menlo; color:
+            rgb(69, 69, 69);" class=""></span>Mounira Harzallah, LS2N,
+          University of Nantes, France</li>
+        <li style="margin: 0px; font-stretch: normal; font-size: 12.8px;
+          line-height: normal; font-family: Arial; color: rgb(68, 68,
+          68);" class=""><span style="font-stretch: normal; font-size:
+            10px; line-height: normal; font-family: Menlo; color:
+            rgb(69, 69, 69);" class=""></span>Mustafa Jarrar, Birzeit
+          university, Palestine</li>
+      </ul>
+      <br>
+      <div class=""><br class="">
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------22F640AD7AFDF891A59A3448--

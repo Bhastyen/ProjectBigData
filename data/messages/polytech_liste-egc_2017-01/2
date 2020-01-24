@@ -1,0 +1,395 @@
+Return-Path: <hajer_bz@yahoo.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9DF1A1903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  3 Jan 2017 08:00:20 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 8A9626D21D0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  3 Jan 2017 08:00:20 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 808FA628015
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  3 Jan 2017 08:00:20 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.582
+X-Spam-Level: *
+X-Spam-Status: No, score=1.582 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	IMPRONONCABLE_2=1.5, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_MSPIKE_H3=-0.01, RCVD_IN_MSPIKE_WL=-0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.9359 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=yahoo.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id UfhfTmP7DImF for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  3 Jan 2017 08:00:19 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from nm12-vm1.bullet.mail.ir2.yahoo.com (nm12-vm1.bullet.mail.ir2.yahoo.com [212.82.96.171])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 5B1F4A245FB
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  3 Jan 2017 08:00:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048; t=1483426819; bh=t88+MradZJFGIAURsyxpYamfq5f28Snmhl6+uEQcDKM=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject; b=HCezJCGkiNfXlybrodAPSXc9NYbt+SVYPsLZJZJWty4FJcl7TuwJOgHLRvFHiCL5Wex9tvhtEWJwixXscgp66ATxSq1GPS3B+33gyaMrshloAC5nH/nm3CMO4DWz41V4OYCYGwWVJv1MNnicQiFSXpYJzNHobAT9G4UGoyIvacytHC7Ecqxs9q+4WdSclI1jzKYWMWXkJZZZhWFYJqxFQcTOC/tSqkD52iEy8VafWAK10sdChFDNOTtAPIgq5Nl4tlNfIqSvfILFXBgKiO0etYgEtsvz8to8PFT71OXSzhLh3PZwHqUqkI06xROovxZJiJdlp9FCMKdsriMhIt0hzA==
+Received: from [212.82.98.63] by nm12.bullet.mail.ir2.yahoo.com with NNFMP; 03 Jan 2017 07:00:19 -0000
+Received: from [212.82.98.108] by tm16.bullet.mail.ir2.yahoo.com with NNFMP; 03 Jan 2017 07:00:15 -0000
+Received: from [127.0.0.1] by omp1045.mail.ir2.yahoo.com with NNFMP; 03 Jan 2017 06:59:53 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 773217.7096.bm@omp1045.mail.ir2.yahoo.com
+X-YMail-OSG: 515NAc0VM1mj5.hC_HjKdWCVhDAWrAqU36i.tOPE27l6J1uGtSUmFEh6DV3hUrk
+ QVP1cPuEFHUaZVBSdCYpXXfenBNCAhfgRNwT_pqnmm6..Qhp27EavRfBgmOGpmeJl1DuztGKwBzy
+ sEjwMLoqcDs1ZBy3i4gPbKg1vso1JRlSkRbsouEXQEhhgRJS58e0LhrXJS1P3n3gru9BfWQCbDFz
+ SH54cgQcH9CegQKqFOQ0BuJED2V7qpQe.xnyZp2lVD4zsD_1e8ZldbdG_YwKxeZy2FhBS6TLvulE
+ hfIBvryl3Kr4AZq4o2We2.mt3DKH0pD6fXrbYuwJx1AyQSOTkx4UG_wxkalhxoFzrwBYJ1VBkfae
+ QfVRWq09.bUBi5i.1QvIeHoYv.MN2GQlKwcZ3U2WMXqdTqemIURe52_tAnpVlMyYVWKStPatyDxB
+ Bhnsea9awgh_Spwq9WDfAi2Qa4opp9S71v2QFyyG8rFPXj_lm_nv2pfleDCLTob85OWs6t3YCktl
+ eTQt2fL9JAnS6dvz.6g--
+Received: from jws700012.mail.ir2.yahoo.com by sendmailws168.mail.ir2.yahoo.com; Tue, 03 Jan 2017 06:59:53 +0000; 1483426793.257
+Date: Tue, 3 Jan 2017 06:59:52 +0000 (UTC)
+From: "Hajer Baazaoui Ep. Zghal" <hajer_bz@yahoo.fr>
+Reply-To: "Hajer Baazaoui Ep. Zghal" <hajer_bz@yahoo.fr>
+To: Liste-egc <liste-egc@polytech.univ-nantes.fr>
+Message-ID: <1057514665.8826769.1483426792943@mail.yahoo.com>
+In-Reply-To: <1838193929.8846943.1483426715913@mail.yahoo.com>
+References: <201612071907.uB7J7olQ029847@igor.cs.wisc.edu> <166551604.200107.1482312176298@mail.yahoo.com> <1162682682.6209682.1483094193480@mail.yahoo.com> <1796672064.6354865.1483103486235@mail.yahoo.com> <274307458.7578504.1483290632248@mail.yahoo.com> <564632447.7702458.1483304432410@mail.yahoo.com> <835159251.7793880.1483347066463@mail.yahoo.com> <513463433.7933075.1483349079863@mail.yahoo.com> <742051386.8250233.1483370187654@mail.yahoo.com> <1520181621.8384143.1483377800865@mail.yahoo.com> <737191.8877847.1483426516718@mail.yahoo.com> <1838193929.8846943.1483426715913@mail.yahoo.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_8826768_184641541.1483426792938"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP Fuzz-IEEE 2017 Special Session: Fuzziness in
+ Knowledge-based Engineering Systems
+
+------=_Part_8826768_184641541.1483426792938
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+[Our apologies if you receive multiple copies of this CFP]
+
+
+
+CALL FOR PAPERS
+-------------------------------------------
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 Special Session: Fuzziness in Knowledge-based E=
+ngineering Systems =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0(https:/=
+/sites.google.com/view/ss25fke2017)
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A02017 IEEE International Con=
+ference on Fuzzy Systems =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 (http://www.fuzzieee2017.org)
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0July, 9-12, 2017, Naples . =
+Italy
+
+Description:
+------------
+Fuzzy set theory is the subject of deep investigation in fields such as eng=
+ineering systems and related applications. Typically, these fields are inte=
+rdisciplinary with a wide range of theory and methodologies that are being =
+investigated and developed. Ontologies have been started to be considered t=
+o represent the knowledge in many domains. Their fuzzy counterpart, i.e.,=
+=C2=A0 fuzzy ontologies,=C2=A0 are defined as an extension of crisp ontolog=
+ies by adding a set of membership degrees to each concept of the domain ont=
+ology and adding fuzzy relations among these fuzzy concepts.
+The main scope of this call is about fuzzy knowledge-based/ontology-based e=
+ngineering systems and their application.
+
+Scope and main topics:
+----------------------
+The aim of this session is to promote both theoretical and practical applic=
+ations of fuzzy and intelligent systems. The main topics of this special se=
+ssion include, but are not limited to:
+
+- Fuzziness in Semantic Web Languages and=C2=A0 Applications
+
+- Fuzziness and Knowledge-based approaches in Web Search and Information Re=
+trieval and Applications
+
+- Fuzziness=C2=A0 and Knowledge-based approaches in Decision Process, Decis=
+ion Making and Applications
+
+- Fuzziness=C2=A0 and Knowledge-based approaches in Smart Societies, Smart =
+Cities and Applications
+
+- Fuzziness=C2=A0 and Knowledge-based approaches in Data Mining, Machine Le=
+arning and Applications
+
+- Fuzzinness and Social Network Analysis
+
+- Fuzzinness and Personalized Interactive Systems
+
+
+Submission Guideline:
+---------------------
+Please follow the submission guideline from the 2017 IEEE International Con=
+ference on Fuzzy Systems Submission Web Site (http://www.fuzzieee2017.org/p=
+aperSubmission.html)
+
+
+Important Dates:
+----------------
+January 25, 2017 Deadline for paper submission=20
+March 10, 2017 Notification of acceptance for papers=20
+April 8, 2017 Deadline for camera-ready paper submission=20
+April 10, 2017 Deadline for early registration=20
+July 9-12, 2017 Conference
+
+Special Session Organizers:=20
+---------------------------
+Hajer Baazaoui Zghal, University of Manouba, Tunis (hajer.baazaouizghal@ria=
+di.rnu.tn)
+
+Umberto Straccia, ISTI - CNR, Italy (straccia@isti.cnr.it)
+
+
+Mourad Abed, University of Valenciennes, France (mourad.abed@univ-valencien=
+ne.fr)
+  =20
+
+  =20
+
+  =20
+
+  =20
+
+  =20
+
+  =20
+
+  =20
+
+  =20
+
+  =20
+------=_Part_8826768_184641541.1483426792938
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:times new roman, new york, times, serif;font-size:16px"><div>[Ou=
+r apologies if you receive multiple copies of this CFP]<br></div><div class=
+=3D"qtdSeparateBR"><br><br></div><div class=3D"yahoo_quoted" id=3D"yui_3_16=
+_0_ym19_1_1483426418508_13925" style=3D"display: block;"><div style=3D"font=
+-family: times new roman, new york, times, serif; font-size: 16px;" id=3D"y=
+ui_3_16_0_ym19_1_1483426418508_13924"><div style=3D"font-family: HelveticaN=
+eue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size=
+: 16px;" id=3D"yui_3_16_0_ym19_1_1483426418508_13923"><div class=3D"y_msg_c=
+ontainer" id=3D"yui_3_16_0_ym19_1_1483426418508_13922"><div id=3D"yiv697213=
+9076"><div class=3D"yiv6972139076yqt3214895198" id=3D"yiv6972139076yqtfd678=
+52"><div id=3D"yui_3_16_0_ym19_1_1483426418508_13921"><div style=3D"color:#=
+000;background-color:#fff;font-family:times new roman, new york, times, ser=
+if;font-size:16px;" id=3D"yui_3_16_0_ym19_1_1483426418508_13920"><div class=
+=3D"yiv6972139076qtdSeparateBR"><br></div><div class=3D"yiv6972139076yahoo_=
+quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_11037" style=3D"=
+display:block;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_110=
+36" style=3D"font-family:times new roman, new york, times, serif;font-size:=
+16px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_11035" style=
+=3D"font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Gra=
+nde, sans-serif;font-size:16px;"><div class=3D"yiv6972139076y_msg_container=
+" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_11034"><div id=3D"yiv6=
+972139076"><div class=3D"yiv6972139076yqt0185486976" id=3D"yiv6972139076yqt=
+fd94269"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_11033"><di=
+v id=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_11032" style=3D"color:=
+#000;background-color:#fff;font-family:times new roman, new york, times, se=
+rif;font-size:16px;"><div class=3D"yiv6972139076yahoo_quoted" id=3D"yiv6972=
+139076yui_3_16_0_ym19_1_1483426418508_4752" style=3D"display:block;"><div i=
+d=3D"yiv6972139076yui_3_16_0_ym19_1_1483426418508_4751" style=3D"font-famil=
+y:times new roman, new york, times, serif;font-size:16px;"><div id=3D"yiv69=
+72139076yui_3_16_0_ym19_1_1483426418508_4750" style=3D"font-family:Helvetic=
+aNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-siz=
+e:16px;"><div class=3D"yiv6972139076y_msg_container" id=3D"yiv6972139076yui=
+_3_16_0_ym19_1_1483426418508_4749"><div id=3D"yiv6972139076"><div class=3D"=
+yiv6972139076yqt9705953186" id=3D"yiv6972139076yqtfd96551"><div id=3D"yiv69=
+72139076yui_3_16_0_ym19_1_1483426418508_4748"><div id=3D"yiv6972139076yui_3=
+_16_0_ym19_1_1483426418508_4747" style=3D"color:#000;background-color:#fff;=
+font-family:times new roman, new york, times, serif;font-size:16px;"><div c=
+lass=3D"yiv6972139076yahoo_quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_148=
+3347441336_83386" style=3D"display:block;"><div id=3D"yiv6972139076yui_3_16=
+_0_ym19_1_1483347441336_83385" style=3D"font-family:times new roman, new yo=
+rk, times, serif;font-size:16px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1=
+_1483347441336_83384" style=3D"font-family:HelveticaNeue, Helvetica Neue, H=
+elvetica, Arial, Lucida Grande, sans-serif;font-size:16px;"><div class=3D"y=
+iv6972139076y_msg_container" id=3D"yiv6972139076yui_3_16_0_ym19_1_148334744=
+1336_83383"><div id=3D"yiv6972139076"><div class=3D"yiv6972139076yqt6965383=
+814" id=3D"yiv6972139076yqtfd45201"><div id=3D"yiv6972139076yui_3_16_0_ym19=
+_1_1483347441336_83382"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_148334744=
+1336_83381" style=3D"color:#000;background-color:#fff;font-family:times new=
+ roman, new york, times, serif;font-size:16px;"><div class=3D"yiv6972139076=
+yahoo_quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_66394" sty=
+le=3D"display:block;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_14833474413=
+36_66393" style=3D"font-family:times new roman, new york, times, serif;font=
+-size:16px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_66392"=
+ style=3D"font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Luci=
+da Grande, sans-serif;font-size:16px;"><div class=3D"yiv6972139076y_msg_con=
+tainer" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_66391"><div id=
+=3D"yiv6972139076"><div class=3D"yiv6972139076yqt9344110905" id=3D"yiv69721=
+39076yqt17034"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_6639=
+0"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_66389" style=3D"=
+color:#000;background-color:#fff;font-family:times new roman, new york, tim=
+es, serif;font-size:16px;"><div class=3D"yiv6972139076yahoo_quoted" id=3D"y=
+iv6972139076yui_3_16_0_ym19_1_1483347441336_33247" style=3D"display:block;"=
+><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_33246" style=3D"fo=
+nt-family:times new roman, new york, times, serif;font-size:16px;"><div id=
+=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_33245" style=3D"font-famil=
+y:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-seri=
+f;font-size:16px;"><div class=3D"yiv6972139076y_msg_container" id=3D"yiv697=
+2139076yui_3_16_0_ym19_1_1483347441336_33250"><div id=3D"yiv6972139076"><di=
+v class=3D"yiv6972139076yqt6086902333" id=3D"yiv6972139076yqtfd54507"><div =
+id=3D"yiv6972139076yui_3_16_0_ym19_1_1483347441336_33249"><div id=3D"yiv697=
+2139076yui_3_16_0_ym19_1_1483347441336_33248" style=3D"color:#000;backgroun=
+d-color:#fff;font-family:times new roman, new york, times, serif;font-size:=
+16px;"><div class=3D"yiv6972139076yahoo_quoted" id=3D"yiv6972139076yui_3_16=
+_0_ym19_1_1483342038444_20507" style=3D"display:block;"><div id=3D"yiv69721=
+39076yui_3_16_0_ym19_1_1483342038444_20506" style=3D"font-family:times new =
+roman, new york, times, serif;font-size:16px;"><div id=3D"yiv6972139076yui_=
+3_16_0_ym19_1_1483342038444_20505" style=3D"font-family:HelveticaNeue, Helv=
+etica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px;"><d=
+iv class=3D"yiv6972139076y_msg_container" id=3D"yiv6972139076yui_3_16_0_ym1=
+9_1_1483342038444_20504"><div id=3D"yiv6972139076"><div id=3D"yiv6972139076=
+yui_3_16_0_ym19_1_1483342038444_20503"><div id=3D"yiv6972139076yui_3_16_0_y=
+m19_1_1483342038444_20502" style=3D"color:#000;background-color:#fff;font-f=
+amily:times new roman, new york, times, serif;font-size:16px;"><div class=
+=3D"yiv6972139076yqt8255248642" id=3D"yiv6972139076yqt14274"><div class=3D"=
+yiv6972139076yahoo_quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_14832820662=
+13_29350" style=3D"display:block;"><div id=3D"yiv6972139076yui_3_16_0_ym19_=
+1_1483282066213_29349" style=3D"font-family:times new roman, new york, time=
+s, serif;font-size:16px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282=
+066213_29348" style=3D"font-family:HelveticaNeue, Helvetica Neue, Helvetica=
+, Arial, Lucida Grande, sans-serif;font-size:16px;"><div class=3D"yiv697213=
+9076y_msg_container" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_293=
+47"><div id=3D"yiv6972139076"><div class=3D"yiv6972139076yqt9490467110" id=
+=3D"yiv6972139076yqtfd95074"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483=
+282066213_29346"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29=
+345" style=3D"color:#000;background-color:#fff;font-family:times new roman,=
+ new york, times, serif;font-size:16px;"><div class=3D"yiv6972139076yahoo_q=
+uoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29344" style=3D"d=
+isplay:block;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_2934=
+3" style=3D"font-family:times new roman, new york, times, serif;font-size:1=
+6px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29342" style=
+=3D"font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Gra=
+nde, sans-serif;font-size:16px;"><div class=3D"yiv6972139076y_msg_container=
+" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29341"><div id=3D"yiv6=
+972139076"><div class=3D"yiv6972139076yqt9332454896" id=3D"yiv6972139076yqt=
+fd79563"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29340"><di=
+v id=3D"yiv6972139076yui_3_16_0_ym19_1_1483282066213_29339" style=3D"color:=
+#000;background-color:#fff;font-family:times new roman, new york, times, se=
+rif;font-size:16px;"><div class=3D"yiv6972139076yahoo_quoted" id=3D"yiv6972=
+139076yui_3_16_0_ym19_1_1483093140320_36607" style=3D"display:block;"><div =
+id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_36606" style=3D"font-fam=
+ily:times new roman, new york, times, serif;font-size:16px;"><div id=3D"yiv=
+6972139076yui_3_16_0_ym19_1_1483093140320_36605" style=3D"font-family:Helve=
+ticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-=
+size:16px;"><div class=3D"yiv6972139076y_msg_container" id=3D"yiv6972139076=
+yui_3_16_0_ym19_1_1483093140320_36604"><div id=3D"yiv6972139076"><div id=3D=
+"yiv6972139076yui_3_16_0_ym19_1_1483093140320_36603"><div id=3D"yiv69721390=
+76yui_3_16_0_ym19_1_1483093140320_36602" style=3D"color:#000;background-col=
+or:#fff;font-family:times new roman, new york, times, serif;font-size:16px;=
+"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_9821" style=3D"wi=
+dth:624px;background-color:rgb(255, 255, 255);outline:none 0px;padding:0px =
+30px;"><div dir=3D"ltr" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_=
+9822">CALL FOR PAPERS<br clear=3D"none" id=3D"yiv6972139076yui_3_16_0_ym19_=
+1_1483093140320_9823">-------------------------------------------<br clear=
+=3D"none" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_9824"></div></=
+div><div class=3D"yiv6972139076qtdSeparateBR" id=3D"yiv6972139076yui_3_16_0=
+_ym19_1_1483347441336_83396"><span id=3D"yiv6972139076yui_3_16_0_ym19_1_148=
+3093140320_9971">&nbsp; &nbsp; &nbsp; &nbsp; Special Session: Fuzziness in =
+Knowledge-based Engineering Systems &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;(</span><a rel=3D"nofollow" shape=3D"rect" id=3D"yiv6972139076yui_=
+3_16_0_ym19_1_1482311404828_7435" target=3D"_blank" href=3D"https://sites.g=
+oogle.com/view/ss25fke2017" style=3D"background-color:rgb(255, 255, 255);">=
+https://sites.google.com/view/ss25fke2017</a>)<br clear=3D"none"></div><div=
+ class=3D"yiv6972139076yqt8233648694" id=3D"yiv6972139076yqt41062"><div cla=
+ss=3D"yiv6972139076yahoo_quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_14830=
+93140320_9853" style=3D"display:block;"><div id=3D"yiv6972139076yui_3_16_0_=
+ym19_1_1483093140320_9852" style=3D"font-family:times new roman, new york, =
+times, serif;font-size:16px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_148=
+3093140320_9851" style=3D"font-family:HelveticaNeue, Helvetica Neue, Helvet=
+ica, Arial, Lucida Grande, sans-serif;font-size:16px;"><div class=3D"yiv697=
+2139076y_msg_container" id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_=
+9850"><div id=3D"yiv6972139076"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1=
+483093140320_9849"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1483093140320_=
+9848" style=3D"color:#000;background-color:#fff;font-family:times new roman=
+, new york, times, serif;font-size:16px;"><div class=3D"yiv6972139076yahoo_=
+quoted" id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7143" style=3D"d=
+isplay:block;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7142=
+" style=3D"font-family:times new roman, new york, times, serif;font-size:16=
+px;"><div id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7141" style=3D=
+"font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande=
+, sans-serif;font-size:16px;"><div class=3D"yiv6972139076y_msg_container" i=
+d=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7140">&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2017 IEEE International Conference on Fuzzy Sy=
+stems &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><div class=3D"yiv6972139076y_msg_contai=
+ner" id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7140">&nbsp; &nbsp;=
+ &nbsp; &nbsp; (<a rel=3D"nofollow" shape=3D"rect" id=3D"yiv6972139076yui_3=
+_16_0_ym19_1_1483426418508_11119" target=3D"_blank" href=3D"http://www.fuzz=
+ieee2017.org/">http://www.fuzzieee2017.org</a>)<br clear=3D"none">&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;July, 9-12, 2017, Naples . Italy<br =
+clear=3D"none"><br clear=3D"none">Description:<br clear=3D"none">----------=
+--<br clear=3D"none">Fuzzy set theory is the subject of deep investigation =
+in fields such as engineering systems and related applications. Typically, =
+these fields are interdisciplinary with a wide range of theory and methodol=
+ogies that are being investigated and developed. Ontologies have been start=
+ed to be considered to represent the knowledge in many domains. Their fuzzy=
+ counterpart, i.e.,&nbsp; fuzzy ontologies,&nbsp; are defined as an extensi=
+on of crisp ontologies by adding a set of membership degrees to each concep=
+t of the domain ontology and adding fuzzy relations among these fuzzy conce=
+pts.<br clear=3D"none">The main scope of this call is about fuzzy knowledge=
+-based/ontology-based engineering systems and their application.<br clear=
+=3D"none"><br clear=3D"none">Scope and main topics:<br clear=3D"none">-----=
+-----------------<br clear=3D"none">The aim of this session is to promote b=
+oth theoretical and practical applications of fuzzy and intelligent systems=
+. The main topics of this special session include, but are not limited to:<=
+br clear=3D"none"><br clear=3D"none">- Fuzziness in Semantic Web Languages =
+and&nbsp; Applications<br clear=3D"none"><br clear=3D"none">- Fuzziness and=
+ Knowledge-based approaches in Web Search and Information Retrieval and App=
+lications<br clear=3D"none"><br clear=3D"none">- Fuzziness&nbsp; and Knowle=
+dge-based approaches in Decision Process, Decision Making and Applications<=
+br clear=3D"none"><br clear=3D"none">- Fuzziness&nbsp; and Knowledge-based =
+approaches in Smart Societies, Smart Cities and Applications<br clear=3D"no=
+ne"><br clear=3D"none">- Fuzziness&nbsp; and Knowledge-based approaches in =
+Data Mining, Machine Learning and Applications<br clear=3D"none"><br clear=
+=3D"none">- Fuzzinness and Social Network Analysis<br clear=3D"none"><br cl=
+ear=3D"none">- Fuzzinness and Personalized Interactive Systems<br clear=3D"=
+none"><br clear=3D"none"><br clear=3D"none">Submission Guideline:<br clear=
+=3D"none">---------------------<br clear=3D"none">Please follow the submiss=
+ion guideline from the 2017 IEEE International Conference on Fuzzy Systems =
+Submission Web Site (<a rel=3D"nofollow" shape=3D"rect" target=3D"_blank" h=
+ref=3D"http://www.fuzzieee2017.org/paperSubmission.html">http://www.fuzziee=
+e2017.org/paperSubmission.html</a>)<br clear=3D"none"><br clear=3D"none"><b=
+r clear=3D"none">Important Dates:<br clear=3D"none">----------------<br cle=
+ar=3D"none">January 25, 2017 Deadline for paper submission <br clear=3D"non=
+e">March 10, 2017 Notification of acceptance for papers <br clear=3D"none">=
+April 8, 2017 Deadline for camera-ready paper submission <br clear=3D"none"=
+>April 10, 2017 Deadline for early registration <br clear=3D"none">July 9-1=
+2, 2017 Conference<br clear=3D"none"><br clear=3D"none">Special Session Org=
+anizers: <br clear=3D"none">---------------------------<br clear=3D"none">H=
+ajer Baazaoui Zghal, University of Manouba, Tunis (<a rel=3D"nofollow" shap=
+e=3D"rect" id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_7165" ymailto=
+=3D"mailto:hajer_bz@yahoo.fr" target=3D"_blank" href=3D"mailto:hajer_bz@yah=
+oo.fr">hajer</a>.baazaouizghal@riadi.rnu.tn)<div class=3D"yiv6972139076yqt8=
+088198412" id=3D"yiv6972139076yqtfd07994"><br></div><div class=3D"yiv697213=
+9076yqt8088198412" id=3D"yiv6972139076yqtfd07994"><br clear=3D"none">Umbert=
+o Straccia, ISTI - CNR, Italy (<a rel=3D"nofollow" shape=3D"rect" ymailto=
+=3D"mailto:straccia@isti.cnr.it" target=3D"_blank" href=3D"mailto:straccia@=
+isti.cnr.it">straccia@isti.cnr.it</a>)<br clear=3D"none"><br clear=3D"none"=
+></div><div class=3D"yiv6972139076yqt8088198412" id=3D"yiv6972139076yqtfd07=
+994"><br></div><div class=3D"yiv6972139076yqt8088198412" id=3D"yiv697213907=
+6yqtfd07994">Mourad Abed, University of Valenciennes, France (<a rel=3D"nof=
+ollow" shape=3D"rect" id=3D"yiv6972139076yui_3_16_0_ym19_1_1482311404828_71=
+64" ymailto=3D"mailto:mourad.abed@univ-valencienne.fr" target=3D"_blank" hr=
+ef=3D"mailto:mourad.abed@univ-valencienne.fr">mourad.abed@univ-valencienne.=
+fr</a>)</div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+><br clear=3D"none"></div> </div> </div>  </div></div></div></div></div><br=
+ clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div>=
+</div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </d=
+iv></div></div></div></div><br clear=3D"none"><br clear=3D"none"></div> </d=
+iv> </div>  </div></div></div></div></div><br clear=3D"none"><br clear=3D"n=
+one"></div> </div> </div>  </div></div></div></div></div><br clear=3D"none"=
+><br clear=3D"none"></div> </div> </div>  </div></div></div></div></div><br=
+ clear=3D"none"><br clear=3D"none"></div> </div> </div>  </div></div></div>=
+</div></div><br clear=3D"none"><br clear=3D"none"></div> </div> </div>  </d=
+iv></div></div></div></div><br><br></div> </div> </div>  </div></div></body=
+></html>
+------=_Part_8826768_184641541.1483426792938--

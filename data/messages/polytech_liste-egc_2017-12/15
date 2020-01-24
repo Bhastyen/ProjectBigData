@@ -1,0 +1,624 @@
+Return-Path: <yannis.haralambous@imt-atlantique.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 196C2229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  5 Dec 2017 23:09:43 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 144266005DA
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  5 Dec 2017 23:09:43 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 09DFC4821B28
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  5 Dec 2017 23:09:43 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.111
+X-Spam-Level: *
+X-Spam-Status: No, score=1.111 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, J_BACKHAIR_55=1,
+	SPF_PASS=-0.001, T_REMOTE_IMAGE=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.6606 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=imt-atlantique.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id rzMfRnNyF5NS for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  5 Dec 2017 23:09:41 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy130.enst.fr (zproxy130.enst.fr [137.194.2.194])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id C369E47EC07D
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  5 Dec 2017 23:09:39 +0100 (CET)
+Received: from localhost (localhost [IPv6:::1])
+	by zproxy130.enst.fr (Postfix) with ESMTP id 71F78121257;
+	Tue,  5 Dec 2017 23:09:39 +0100 (CET)
+Received: from zproxy130.enst.fr ([IPv6:::1])
+	by localhost (zproxy130.enst.fr [IPv6:::1]) (amavisd-new, port 10032)
+	with ESMTP id RwOH_NymmAIp; Tue,  5 Dec 2017 23:09:38 +0100 (CET)
+Received: from localhost (localhost [IPv6:::1])
+	by zproxy130.enst.fr (Postfix) with ESMTP id E9770121322;
+	Tue,  5 Dec 2017 23:09:37 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 zproxy130.enst.fr E9770121322
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imt-atlantique.fr;
+	s=50EA75E8-DE22-11E6-A6DE-0662BA474D24; t=1512511778;
+	bh=Y1E75DZYJVPemZIqud85ZacvF68vTNoMPbPTMc/lLo8=;
+	h=From:Mime-Version:Message-Id:Date:To;
+	b=Hoe3pbXAueqPH5oJoxba6gTj+acxnar1ySgeWYOcrPfgwTMunM7/YdZh5rr/pRpJY
+	 ipvr+ruicUQKQ/JPy5y9aV7hx7tqikmRccZpmf/QV18U5F6qpIETaFLWVZffCWchPs
+	 n4tOpIUmgiJkobHosIZVdNRlm5DtS1Qa0mS6SOcQ=
+X-Virus-Scanned: amavisd-new at zproxy130.enst.fr
+Received: from zproxy130.enst.fr ([IPv6:::1])
+	by localhost (zproxy130.enst.fr [IPv6:::1]) (amavisd-new, port 10026)
+	with ESMTP id Yjb7VmSlh2q2; Tue,  5 Dec 2017 23:09:37 +0100 (CET)
+Received: from phoebe-2.home (2a01cb08865ce600f1fa2eade40bd3c3.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:865c:e600:f1fa:2ead:e40b:d3c3])
+	by zproxy130.enst.fr (Postfix) with ESMTPSA id 35F0512131C;
+	Tue,  5 Dec 2017 23:09:37 +0100 (CET)
+From: Yannis Haralambous <yannis.haralambous@imt-atlantique.fr>
+Content-Type: multipart/alternative;
+ boundary="Apple-Mail=_CA3E3DCA-AAA0-4814-89C6-DA4C2AEDFEBA"
+X-Mao-Original-Outgoing-Id: 534204574.973374-cd76f750541aed0a26b4740b4ad0dc42
+Mime-Version: 1.0 (Mac OS X Mail 10.3 \(3273\))
+Message-Id: <D94FB96D-814C-4469-90C6-0FCEDE55E694@imt-atlantique.fr>
+Date: Tue, 5 Dec 2017 23:09:35 +0100
+To: "Les infos du Risc (via echos Mailing List)" <echos@lists.ens.fr>,
+ ln@cines.fr,
+ web.semantique@inria.fr,
+ info-ic@listes.irisa.fr,
+ liste-proml@lri.fr,
+ um@di.unito.it,
+ bull-i3@irit.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ gazettebd3@imag.fr
+X-Mailer: Apple Mail (2.3273)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Grafematik 2018, third CFP, new abstract submission
+ deadlines
+
+
+--Apple-Mail=_CA3E3DCA-AAA0-4814-89C6-DA4C2AEDFEBA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+[Apologies if you receive multiple copies of this message]
+************************************************
+Third CALL FOR PAPERS
+/grafematik/
+Graphemics in the 21st century---=46rom graphemes to knowledge
+<http://conferences.telecom-bretagne.eu/grafematik/ =
+<http://conferences.telecom-bretagne.eu/grafematik/>>
+June 14-15-16, 2018
+IMT Atlantique, Brest, France
+Contact: info-grafematik-2018@mlistes.telecom-bretagne.eu =
+<mailto:info-grafematik-2018@mlistes.telecom-bretagne.eu>
+************************************************
+
+IMPORTANT CONFERENCE INFORMATION AND NEW ABSTRACT SUBMISSION DEADLINES
+Please submit your extended abstract (up to 1,000 words) before February =
+1st, 2018. All submissions will be peer reviewed and the results will be =
+announced by early April. Complete papers (20-25 pages) [to be submitted =
+approx. six months after the conference] will go through a new review =
+process and those selected will be published in early 2019.
+=20
+/grafematik/ 2018 is the first conference bringing together disciplines =
+concerned with writing systems and their representation in written =
+communication. The conference aims to reflect on the current state of =
+research in the area, and on the role that writing and writing systems =
+play in neighboring disciplines like computer science and information =
+technology, communication, typography, psychology, and pedagogy. In =
+particular it aims to study the effect of the growing importance of =
+Unicode with regard to the future of reading and writing in human =
+societies. Reflecting the richness of perspectives on writing systems, =
+/grafematik/ is actively interdisciplinary, and welcomes proposals from =
+researchers from the fields of computer science and information =
+technology, linguistics, communication, pedagogy, psychology, history, =
+and the social sciences.=20
+=20
+/grafematik/ aims to create a space for the discussion of the range of =
+approaches to writing systems, and specifically to bridge approaches in =
+linguistics, informatics, and other fields. It will provide a forum for =
+explorations in terminology, methodology, and theoretical approaches =
+relating to the delineation of an emerging interdisciplinary area of =
+research that intersects with intense activity in practical =
+implementations of writing systems.
+=20
+***********************
+Main topics of interest
+***********************
+=20
+We welcome proposals from all disciplines concerned with the study of =
+written language, writing systems, and their implementation in =
+information systems. Examples of topics include, but are not limited to:
+=20
+Epistemology of graphemics: history, onomastics, topics, interaction =
+with other disciplines
+Foundations of graphemics
+History and typology of writing systems, comparative graphemics
+Semiotics of writing and of writing systems
+Computational/formal graphemics
+Graphemic theory of Unicode encoding
+Graphemics as part of linguistics, in particular: graphemics vs. =
+phonology
+Orthographic reforms, theory and practice
+Graphemics and multiliteracy
+Sinographemics
+Typographemics and interaction of typography and graphemics
+Texting, latinization, new forms of written language
+ASCII art, emoticons and other pictorial uses of graphemes
+The future of writing, of writing systems and styles
+Graphemics and font technologies
+Graphemics in steganography and computer security (phishing, =
+typosquatting, etc.)
+Graphemics in media and communication / Aesthetics of writing in the =
+digital era
+Graphemics in experimental psychology and cognitive sciences
+Teaching graphemics, the five Ws and one H
+Applications of graphemics in natural language processing and text =
+mining
+Applications of graphemics in optical character recognition and =
+information technologies
+=20
+************************
+Program committee
+************************
+=20
+Gabriel Altmann, formerly at Ruhr-Universit=C3=A4t Bochum, Germany
+Jannis Androutsopoulos, Universit=C3=A4t Hamburg, Germany
+Vlad Atanasiu, Universit=C3=A9 de Fribourg, Switzerland
+Kristian Berg, Universit=C3=A4t Oldenburg, Germany
+Florian Coulmas, Universit=C3=A4t Duisburg, Germany
+Jacques David, Universit=C3=A9 de Cergy-Pontoise, France
+Mark Davis, Unicode Consortium & Google Inc., Switzerland
+Joseph Dichy, Universit=C3=A9 Lumi=C3=A8re Lyon 2, France
+Christa D=C3=BCrscheid, Universit=C3=A4t Z=C3=BCrich, Switzerland
+Martin D=C3=BCrst, Aoyama Gakuin University & W3C, Sagamihara, Japan
+Caroline Fontaine, IMT Atlantique & CNRS Lab-STICC, Brest, France
+Claude Gruaz, formerly at CNRS, Rouen, France
+Yannis Haralambous, IMT Atlantique & CNRS Lab-STICC, Brest, France
+Shu-Kai Hsieh, National Taiwan University, Taipei, Taiwan
+Dejan Ivkovi=C4=87, York University, Toronto, Canada
+Jean-Pierre Jaffr=C3=A9, formerly at Universit=C3=A9 Paris 5, France
+George Kiraz, Rutgers University, Piscataway, New Jersey, USA
+Marc W. K=C3=BCster, Office de traduction de l'Union europ=C3=A9enne, =
+Luxembourg
+Gerry Leonidas, University of Reading, United Kingdom
+Kamal Mansour, Monotype Imaging, Los Altos, California, USA
+Klimis Mastoridis, University of Nicosia, Cyprus
+Tomi S. Melka, formerly at Parkland College, Champaign, Illinois, USA
+Panchanan Mohanty, University of Hyderabad, India
+Lisa Moore, Unicode Consortium, USA
+Shigeki Moro, Hanazono University, Kyoto, Japan
+Jean-Christophe Pellat, Universit=C3=A9 de Strasbourg, France
+Miquel Peyr=C3=B3, Universidad de Sevilla, Spain
+Claude Puech, Universit=C3=A9 de la Sorbonne nouvelle, Paris, France
+Fran=C3=A7ois Rastier, formerly at CNRS, Paris, France
+Cornelia Schindelin, Universit=C3=A4t Mainz, Allemagne
+Virach Sornlertlamvanich, SIIT, Thammasat University, Phatum Thani, =
+Thailand
+Richard Sproat, Google, New York, USA
+Susanne Wehde, MRC Managing Research GmbH, M=C3=BCnchen, Germany
+Kenneth Whistler, Unicode Consortium, Berkeley, California, USA
+=20
+*******************
+*Important dates*
+*******************
+=20
+* Submission deadline: February 1st, 2018
+* Notification of acceptation: April 2018
+* Conference: June 14-16, 2018
+=20
+Extended abstracts must be written in English.
+=20
+They are to be submitted using the EasyChair site:=20
+https://easychair.org/conferences/?conf=3Dg21c =
+<https://easychair.org/conferences/?conf=3Dg21c>
+=20
+Extended abstracts should not exceed 1,000 words. Complete papers (20-25 =
+pages) [to be submitted approx. six months after the conference] will go =
+through a new review process and those selected will be published in =
+early 2019.
+=20
+For more information on the conference please visit=20
+http://conferences.telecom-bretagne.eu/grafematik/ =
+<http://conferences.telecom-bretagne.eu/grafematik/>
+and follow
+https://twitter.com/grafematik2018e =
+<https://twitter.com/grafematik2018e>
+
+Join the =E2=80=9CGraphemics in the 21st century =
+<http://conferences.telecom-bretagne.eu/grafematik/>=E2=80=9D conference =
+in June 2018!
+ <http://www.imt-atlantique.fr/>	Yannis HARALAMBOUS
+Professor
+Computer Science Department
+UMR CNRS 6285 Lab-STICC
+ <http://perso.telecom-bretagne.eu/yannisharalambous/> =
+<https://twitter.com/y_haralambous> =
+<https://www.linkedin.com/in/yannis-haralambous-5529073?trk=3Dhp-identity-=
+name>Technop=C3=B4le Brest-Iroise CS 83818
+29238 Brest Cedex 3, France
+Une =C3=A9cole de l'IMT <http://www.imt.fr/>
+The ball I threw while playing in the park
+has not yet reached the ground     (Dylan Thomas)
+Es gab eine Zeit, wo ich nur ungern =C3=BCber Schubert sprechen,
+nur N=C3=A4chtens den B=C3=A4umen und Sternen von ihm vorerz=C3=A4hlen =
+m=C3=B6gen.     (Robert Schumann)
+
+
+
+--Apple-Mail=_CA3E3DCA-AAA0-4814-89C6-DA4C2AEDFEBA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">[Apologies if you =
+receive multiple copies of this message]</span></div><div style=3D"margin:=
+ 0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">************************************************</span></div><d=
+iv style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Third CALL FOR =
+PAPERS</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">/grafematik/</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Graphemics in the 21st century---=46rom graphemes to =
+knowledge</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&lt;<a =
+href=3D"http://conferences.telecom-bretagne.eu/grafematik/" =
+class=3D"">http://conferences.telecom-bretagne.eu/grafematik/</a>&gt;</spa=
+n></div><div style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">June 14-15-16, =
+2018</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">IMT Atlantique, =
+Brest, France</span></div><div style=3D"margin: 0px; line-height: =
+normal;" class=3D""><span style=3D"font-size: 11px;" class=3D"">Contact: =
+<a href=3D"mailto:info-grafematik-2018@mlistes.telecom-bretagne.eu" =
+class=3D"">info-grafematik-2018@mlistes.telecom-bretagne.eu</a></span></di=
+v><div style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" =
+class=3D"">************************************************</span></div><d=
+iv style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D""><br =
+class=3D""></span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"-webkit-font-kerning: none; font-size: 11px;" =
+class=3D""><b class=3D"">IMPORTANT CONFERENCE INFORMATION AND NEW =
+ABSTRACT SUBMISSION DEADLINES</b></span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"-webkit-font-kerning: =
+none; font-size: 11px;" class=3D""><b class=3D"">Please submit your =
+extended abstract (up to 1,000 words) before February 1st, 2018. All =
+submissions will be peer reviewed and the results will be announced by =
+early April. Complete papers (20-25 pages) [to be submitted approx. six =
+months after the conference] will go through a new review process and =
+those selected will be published in early 2019.</b></span></div><p =
+style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">/grafematik/ 2018 is the first conference bringing together =
+disciplines concerned with writing systems and their representation in =
+written communication. The conference aims to reflect on the current =
+state of research in the area, and on the role that writing and writing =
+systems play in neighboring disciplines like computer science and =
+information technology, communication, typography, psychology, and =
+pedagogy. In particular it aims to study the effect of the growing =
+importance of Unicode with regard to the future of reading and writing =
+in human societies. Reflecting the richness of perspectives on writing =
+systems, /grafematik/ is actively interdisciplinary, and welcomes =
+proposals from researchers from the fields of computer science and =
+information technology, linguistics, communication, pedagogy, =
+psychology, history, and the social sciences.&nbsp;</span></div><p =
+style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">/grafematik/ aims to create a space for the discussion of the =
+range of approaches to writing systems, and specifically to bridge =
+approaches in linguistics, informatics, and other fields. It will =
+provide a forum for explorations in terminology, methodology, and =
+theoretical approaches relating to the delineation of an emerging =
+interdisciplinary area of research that intersects with intense activity =
+in practical implementations of writing systems.</span></div><p =
+style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">***********************</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Main topics of interest</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">***********************</span></div><p style=3D"margin: 0px; =
+line-height: normal; min-height: 12px;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">We welcome proposals from all disciplines concerned with the =
+study of written language, writing systems, and their implementation in =
+information systems. Examples of topics include, but are not limited =
+to:</span></div><p style=3D"margin: 0px; line-height: normal; =
+min-height: 12px;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">&nbsp;<br class=3D"webkit-block-placeholder"></span></p><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Epistemology of graphemics: =
+history, onomastics, topics, interaction with other =
+disciplines</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Foundations of =
+graphemics</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">History and =
+typology of writing systems, comparative graphemics</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Semiotics of writing and of =
+writing systems</span></div><div style=3D"margin: 0px; line-height: =
+normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Computational/formal graphemics</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Graphemic theory of Unicode =
+encoding</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Graphemics as =
+part of linguistics, in particular: graphemics vs. =
+phonology</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Orthographic =
+reforms, theory and practice</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Graphemics and multiliteracy</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Sinographemics</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Typographemics and interaction of typography and =
+graphemics</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Texting, =
+latinization, new forms of written language</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">ASCII art, emoticons and other =
+pictorial uses of graphemes</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">The future of writing, of writing systems and =
+styles</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Graphemics and =
+font technologies</span></div><div style=3D"margin: 0px; line-height: =
+normal;" class=3D""><span style=3D"font-size: 11px;" class=3D"">Graphemics=
+ in steganography and computer security (phishing, typosquatting, =
+etc.)</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Graphemics in =
+media and communication / Aesthetics of writing in the digital =
+era</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Graphemics in =
+experimental psychology and cognitive sciences</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Teaching graphemics, the five Ws =
+and one H</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Applications of =
+graphemics in natural language processing and text =
+mining</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Applications of =
+graphemics in optical character recognition and information =
+technologies</span></div><p style=3D"margin: 0px; line-height: normal; =
+min-height: 12px;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">&nbsp;<br class=3D"webkit-block-placeholder"></span></p><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" =
+class=3D"">************************</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Program committee</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">************************</span></div><p style=3D"margin: 0px; =
+line-height: normal; min-height: 12px;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Gabriel Altmann, formerly at Ruhr-Universit=C3=A4t Bochum, =
+Germany</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Jannis =
+Androutsopoulos, Universit=C3=A4t Hamburg, Germany</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Vlad Atanasiu, Universit=C3=A9 de =
+Fribourg, Switzerland</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Kristian Berg, Universit=C3=A4t Oldenburg, =
+Germany</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Florian Coulmas, =
+Universit=C3=A4t Duisburg, Germany</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Jacques David, Universit=C3=A9 de Cergy-Pontoise, =
+France</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Mark Davis, =
+Unicode Consortium &amp; Google Inc., Switzerland</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Joseph Dichy, Universit=C3=A9 =
+Lumi=C3=A8re Lyon 2, France</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Christa D=C3=BCrscheid, Universit=C3=A4t Z=C3=BCrich, =
+Switzerland</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Martin D=C3=BCrst, =
+Aoyama Gakuin University &amp; W3C, Sagamihara, Japan</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Caroline Fontaine, IMT Atlantique =
+&amp; CNRS Lab-STICC, Brest, France</span></div><div style=3D"margin: =
+0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Claude Gruaz, formerly at CNRS, Rouen, =
+France</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Yannis =
+Haralambous, IMT Atlantique &amp; CNRS Lab-STICC, Brest, =
+France</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Shu-Kai Hsieh, =
+National Taiwan University, Taipei, Taiwan</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Dejan Ivkovi=C4=87, York =
+University, Toronto, Canada</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Jean-Pierre Jaffr=C3=A9, formerly at Universit=C3=A9 Paris 5, =
+France</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">George Kiraz, =
+Rutgers University, Piscataway, New Jersey, USA</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Marc W. K=C3=BCster, Office de =
+traduction de l'Union europ=C3=A9enne, Luxembourg</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Gerry Leonidas, University of =
+Reading, United Kingdom</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Kamal Mansour, Monotype Imaging, Los Altos, California, =
+USA</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Klimis =
+Mastoridis, University of Nicosia, Cyprus</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Tomi S. Melka, formerly at =
+Parkland College, Champaign, Illinois, USA</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Panchanan Mohanty, University of =
+Hyderabad, India</span></div><div style=3D"margin: 0px; line-height: =
+normal;" class=3D""><span style=3D"font-size: 11px;" class=3D"">Lisa =
+Moore, Unicode Consortium, USA</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Shigeki Moro, Hanazono University, Kyoto, =
+Japan</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Jean-Christophe =
+Pellat, Universit=C3=A9 de Strasbourg, France</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Miquel Peyr=C3=B3, Universidad de =
+Sevilla, Spain</span></div><div style=3D"margin: 0px; line-height: =
+normal;" class=3D""><span style=3D"font-size: 11px;" class=3D"">Claude =
+Puech, Universit=C3=A9 de la Sorbonne nouvelle, Paris, =
+France</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Fran=C3=A7ois =
+Rastier, formerly at CNRS, Paris, France</span></div><div style=3D"margin:=
+ 0px; line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Cornelia Schindelin, Universit=C3=A4t Mainz, =
+Allemagne</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Virach =
+Sornlertlamvanich, SIIT, Thammasat University, Phatum Thani, =
+Thailand</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Richard Sproat, =
+Google, New York, USA</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Susanne Wehde, MRC Managing Research GmbH, M=C3=BCnchen, =
+Germany</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">Kenneth Whistler, =
+Unicode Consortium, Berkeley, California, USA</span></div><p =
+style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">*******************</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">*Important dates*</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">*******************</span></div><p style=3D"margin: 0px; =
+line-height: normal; min-height: 12px;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">* Submission deadline: February 1st, 2018</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">* Notification of acceptation: =
+April 2018</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">* Conference: =
+June 14-16, 2018</span></div><p style=3D"margin: 0px; line-height: =
+normal; min-height: 12px;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">&nbsp;<br class=3D"webkit-block-placeholder"></span></p><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">Extended abstracts must be written =
+in English.</span></div><p style=3D"margin: 0px; line-height: normal; =
+min-height: 12px;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">&nbsp;<br class=3D"webkit-block-placeholder"></span></p><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">They are to be submitted using the =
+EasyChair site:&nbsp;</span></div><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D""><a href=3D"https://easychair.org/conferences/?conf=3Dg21c" =
+class=3D"">https://easychair.org/conferences/?conf=3Dg21c</a></span></div>=
+<p style=3D"margin: 0px; line-height: normal; min-height: 12px;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">Extended abstracts should not exceed 1,000 words. Complete =
+papers (20-25 pages) [to be submitted approx. six months after the =
+conference] will go through a new review process and those selected will =
+be published in early 2019.</span></div><p style=3D"margin: 0px; =
+line-height: normal; min-height: 12px;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">&nbsp;<br =
+class=3D"webkit-block-placeholder"></span></p><div style=3D"margin: 0px; =
+line-height: normal;" class=3D""><span style=3D"font-size: 11px;" =
+class=3D"">For more information on the conference please =
+visit&nbsp;</span></div><div style=3D"margin: 0px; line-height: normal;" =
+class=3D""><span style=3D"font-size: 11px;" class=3D""><a =
+href=3D"http://conferences.telecom-bretagne.eu/grafematik/" =
+class=3D"">http://conferences.telecom-bretagne.eu/grafematik/</a></span></=
+div><div style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D"">and follow</span></div><div =
+style=3D"margin: 0px; line-height: normal;" class=3D""><span =
+style=3D"font-size: 11px;" class=3D""><a =
+href=3D"https://twitter.com/grafematik2018e" =
+class=3D"">https://twitter.com/grafematik2018e</a></span></div><div =
+class=3D""><br class=3D""></div><div class=3D"">
+<table style=3D"background-color:#f1f1f1; border:1px #ddd solid;" =
+class=3D""> <tbody class=3D""><tr class=3D""><td colspan=3D"3" =
+class=3D""><div style=3D"float:left; font: 13px/1.5 sans-serif; =
+color:#555; padding:8px 15px;" class=3D"">Join the =E2=80=9C<a =
+href=3D"http://conferences.telecom-bretagne.eu/grafematik/" =
+class=3D"">Graphemics in the 21st century</a>=E2=80=9D conference in =
+June 2018!</div></td></tr><tr class=3D""> <td class=3D""> <a =
+href=3D"http://www.imt-atlantique.fr" target=3D"_blank" class=3D""><img =
+src=3D"http://img.mines-telecom.fr/signature-mail/logos/logo-imta.png" =
+title=3D"Site web IMT Atlantique" alt=3D"IMT Atlantique" =
+style=3D"padding:4px 0 4px 4px;" class=3D""></a> </td> <td class=3D""><div=
+ style=3D"float:left; font: 13px/1.5 sans-serif; color:#555; padding:8px =
+15px;" class=3D""> <strong class=3D"">Yannis HARALAMBOUS</strong><br =
+class=3D""> Professor<br class=3D"">Computer Science Department<br =
+class=3D"">UMR CNRS 6285 Lab-STICC<br class=3D""><a =
+href=3D"http://perso.telecom-bretagne.eu/yannisharalambous/" =
+target=3D"_blank" style=3D"text-decoration:none;" class=3D""><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/web.png" =
+title=3D"Site web IMT Atlantique" alt=3D"Site web IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" class=3D""></a><a =
+href=3D"https://twitter.com/y_haralambous" target=3D"_blank" =
+style=3D"text-decoration:none;" class=3D""><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/twitter.png" =
+title=3D"Twitter IMT Atlantique" alt=3D"Twitter IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" class=3D""></a><!--<a =
+href=3D"https://www.facebook.com/IMTAtlantique" target=3D"_blank" =
+style=3D"text-decoration:none;"><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/facebook.png" =
+title=3D"Facebook IMT Atlantique" alt=3D"Facebook IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" /></a><a =
+href=3D"https://plus.google.com/109356934816329928502" target=3D"_blank" =
+style=3D"text-decoration:none;"><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/googleplus.png" =
+title=3D"Google+ IMT Atlantique" alt=3D"Google+ IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" /></a>--><a =
+href=3D"https://www.linkedin.com/in/yannis-haralambous-5529073?trk=3Dhp-id=
+entity-name" target=3D"_blank" style=3D"text-decoration:none;" =
+class=3D""><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/linkedin.png" =
+title=3D"LinkedIn IMT Atlantique" alt=3D"LinkedIn IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" class=3D""></a><!--<a =
+href=3D"http://blogrecherche.wp.mines-telecom.fr" target=3D"_blank" =
+style=3D"text-decoration:none;"><img =
+src=3D"https://img.mines-telecom.fr/signature-mail/social/blog.png" =
+title=3D"Blog IMT Atlantique" alt=3D"Blog IMT Atlantique" =
+style=3D"padding:3px 10px 4px 0;" /></a>--></div> <div =
+style=3D"float:left; font: bold 11px/1.5 sans-serif; color:#888; =
+padding:8px 15px;" class=3D""> Technop=C3=B4le Brest-Iroise CS 83818<br =
+class=3D"">29238 Brest Cedex 3, France<br class=3D"">Une =C3=A9cole de =
+<a href=3D"http://www.imt.fr" target=3D"_blank" class=3D"">l'IMT</a></div>=
+ </td> </tr> <tr class=3D""><td colspan=3D"3" class=3D""> <div =
+style=3D"float:left; font: 11px/1.5 sans-serif; color:#555; padding:8px =
+15px;" class=3D"">
+</div></td> </tr> </tbody></table><p class=3D""><i class=3D"">The ball I =
+threw while playing in the park<br class=3D"">
+has not yet reached the ground</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Dylan =
+Thomas)<br class=3D"">
+<i class=3D"">Es gab eine Zeit, wo ich nur ungern =C3=BCber Schubert =
+sprechen,<br class=3D"">
+nur N=C3=A4chtens den B=C3=A4umen und Sternen von ihm vorerz=C3=A4hlen =
+m=C3=B6gen.</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Robert Schumann)</p>
+</div>
+<br class=3D""></body></html>=
+
+--Apple-Mail=_CA3E3DCA-AAA0-4814-89C6-DA4C2AEDFEBA--

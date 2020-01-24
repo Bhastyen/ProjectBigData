@@ -1,0 +1,430 @@
+Return-Path: <roche.university@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 77AB22292950
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 29 Nov 2018 08:33:03 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 760D66BCFF8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 29 Nov 2018 08:33:03 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 71B874821B8A
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 29 Nov 2018 08:33:03 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.442
+X-Spam-Level: *
+X-Spam-Status: No, score=1.442 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	KHOP_BIG_TO_CC=0.001, MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H2=-0.001, RCVD_IN_SORBS=1,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -3.8145 )
+X-CRM114-CacheID: 
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 6tWbRe47cQNc for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 29 Nov 2018 08:33:01 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 94E6243BF640
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 29 Nov 2018 08:33:01 +0100 (CET)
+Received: by mail-wm1-f49.google.com with SMTP id k198so1098254wmd.3
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 28 Nov 2018 23:33:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:reply-to:subject:to:cc:references:from
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language;
+        bh=lFZMWq6CbuIUcj5bjXKhvYxE/9vrKpWBFnHkkt+KHR4=;
+        b=ssdfHVNgt6rJbv+1R8cfiX4GUD031rEpqQGl5wVPigsLL9B4jLprt7qoTevNo9JyxD
+         u6/sgZKqOStQfHyuE5is4H6gfsFttYS3s/hQgjN/uaNRarVDeEfaj6bBWp8Cih3DMpCO
+         x6O6XyJ5SvWFnEZGJh1Dp7tcw1cMjbP7HqGHzLcDEdXos/4PxOVTU1OELz/KIha8Ongm
+         JSe5qs3Km3t7/xeP/xUvqlfVOU9AwA+TUKJRAnSFkURUMXQAGpf+IkWK2uhI6WwWAUAk
+         OgCdoQKKYqYjKm8OyvaABuEE9EFoh098UbTRMDGHQg1ixTtGniS43XII/8zUY4uID8ya
+         hC0w==
+X-Gm-Message-State: AA+aEWb7MjWUjMkD9yi8tcns6NDk+G1JZHDCNqtt5NsnN80CYcIocIcp
+	wee3QpO4s/RrjfbLnUeEc14=
+X-Google-Smtp-Source: AFSGD/UJsxfrstsQTkglalXXXF1D3AW+fVucRyYPkzO/GF01gOCFsjaS8nx0TGZST9qBm3ngGp51lw==
+X-Received: by 2002:a1c:b47:: with SMTP id 68mr629657wml.148.1543476781097;
+        Wed, 28 Nov 2018 23:33:01 -0800 (PST)
+Received: from [192.168.43.175] ([92.184.102.17])
+        by smtp.googlemail.com with ESMTPSA id v1sm1257602wrw.90.2018.11.28.23.32.58
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Nov 2018 23:33:00 -0800 (PST)
+Reply-To: roche@univ-savoie.fr
+To: info-ic@listes.irisa.fr, liste-egc@polytech.univ-nantes.fr, ln@cines.fr,
+ web.semantique@inria.fr, diglib@infoserv.inist.fr, bull-i3@irit.fr,
+ liste-proml@lri.fr, annonces@madics.fr
+Cc: Costa Rute <costamrv@gmail.com>, Damas Luc <luc.damas@univ-savoie.fr>,
+ Roche Christophe <roche@univ-savoie.fr>
+References: <78ccbcc6-3886-308e-f3fb-13e952930563@univ-savoie.fr>
+From: Christophe Roche <roche@univ-savoie.fr>
+Message-ID: <177b81a6-a4ba-dea0-095a-6bf7e345e162@univ-savoie.fr>
+Date: Thu, 29 Nov 2018 08:32:54 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.3.1
+MIME-Version: 1.0
+In-Reply-To: <78ccbcc6-3886-308e-f3fb-13e952930563@univ-savoie.fr>
+Content-Type: multipart/alternative;
+ boundary="------------4FCB0EA847AB9F56FCC5CE95"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: Re: [liste-egc] TOTh 2018 - Appel =?UTF-8?Q?=C3=A0?= Communications
+ - Call for Papers
+
+This is a multi-part message in MIME format.
+--------------4FCB0EA847AB9F56FCC5CE95
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+[Apologies for multiple postings]
+
+======================================================
+
+*APPEL A COMMUNICATIONS - CALL FOR PAPERS
+*
+
+The announcement in English comes after the French version
+
+======================================================
+
+*CONFERENCE TOTh 2019*
+
+**
+
+*Terminologie & Ontologie : Théories et applications*
+
+http://toth.fr.condillac.org/
+
+6 & 7 juin 2019
+
+Université Savoie Mont-Blanc (Chambéry, France)
+
+-----------------------------------------------------------------------------------------
+
+Date limite de soumission des résumés (3 pages) : 25 janvier 2019
+
+Notification aux auteurs : 22 février 2019
+
+-----------------------------------------------------------------------------------------
+
+*NOUVEAU* :
+
+- une *Session Spéciale* sera dédiée aux ressources lexicaleset à la 
+lexicographie en lien avec le projet européen *ELEXIS*.
+
+- en parallèle à la Conférence TOTh se déroulera une *Session Satellite 
+dédiée à la "Terminologie et Fouille de Textes"* :
+
+http://toth.fr.condillac.org/ttm-2019
+
+-----------------------------------------------------------------------------------------
+
+Les actes seront publiés dans la collection "Terminologica" 
+(http://toth.fr.condillac.org/terminologica) et distribués par "le 
+comptoir des presses d’universités" (http://www.lcdpu.fr/)
+
+-----------------------------------------------------------------------------------------
+
+*FORMATION TOTh 2019*
+
+**
+
+*"Apport de l’ontologie à la terminologie"*
+
+http://toth.fr.condillac.org/training-2019
+
+4 et 5 juin 2019
+
+Université Savoie Mont-Blanc (Chambéry, France).
+
+======================================================
+
+English version
+
+======================================================
+
+*TOTh 2019 CONFERENCE*
+
+**
+
+*Terminology & Ontology: Theories and applications*
+
+http://toth.condillac.org/
+
+6 & 7 June 2019
+
+University Savoie Mont-Blanc (Chambéry, France)
+
+-----------------------------------------------------------------------------------------
+
+Deadline for submission of abstracts (3 pages): 25 January 2019
+
+Notification to authors: 22 February 2019
+
+-----------------------------------------------------------------------------------------
+
+*NEW*:
+
+- a *Special Session* will be dedicated to lexical resources and 
+lexicography in connection with the *ELEXIS* European project.
+
+- a *Satellite Session dedicated to "Terminology and Text Mining"* will 
+be held in parallel with the TOTh Conference:
+
+http://toth.condillac.org/ttm-2019
+
+-----------------------------------------------------------------------------------------
+
+The proceeding will be published in the “Terminologica” 
+(http://toth.condillac.org/terminologica) Collection and distributed by 
+"le comptoir des presses d’universités" (http://www.lcdpu.fr/)
+
+-----------------------------------------------------------------------------------------
+
+*TOTh TRAINING 2019*
+
+**
+
+*“Ontology for Terminology”*
+
+http://toth.condillac.org/training-2019
+
+4 & 5 June 2019
+
+University Savoie Mont-Blanc (Chambéry, France).
+
+======================================================
+
+------------------------------------------------------------------
+Prof Christophe ROCHE			tel: +33 (0) 479 758 779
+Condillac Research Group - LISTIC	cell:+33 (0) 686 250 705
+Université Savoie Mont-Blanc		
+Campus Scientifique			roche@univ-savoie
+73376 Le Bourget du Lac cedex		www.christophe-roche.fr
+France					www.condillac.org		
+------------------------------------------------------------------
+
+
+--------------4FCB0EA847AB9F56FCC5CE95
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p class="MsoNormal">[Apologies for multiple postings]</p>
+    <p class="MsoNormal">======================================================</p>
+    <p class="MsoNormal"><b><font size="+1" color="#3333ff">APPEL A
+          COMMUNICATIONS - CALL FOR PAPERS</font><br>
+      </b></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">The
+        announcement in English comes after the French version</span></p>
+    <p class="MsoNormal">======================================================</p>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b>CONFERENCE
+          TOTh 2019</b></font></p>
+    <font size="+1" color="#990000"><b>
+      </b></font>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b>Terminologie
+          &amp; Ontologie : Théories et applications</b></font></p>
+    <p class="MsoNormal"><a href="http://toth.fr.condillac.org/">http://toth.fr.condillac.org/</a></p>
+    <p class="MsoNormal">6 &amp; 7 juin 2019</p>
+    <p class="MsoNormal">Université Savoie Mont-Blanc (Chambéry, France)</p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal">Date limite de soumission des résumés (3 pages)
+      : 25 janvier
+      2019</p>
+    <p class="MsoNormal">Notification aux auteurs : 22 février 2019</p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal"><b>NOUVEAU</b> : </p>
+    <p class="MsoNormal">- une <font color="#990000"><b>Session
+          Spéciale</b></font> sera dédiée aux ressources
+      lexicales<span style="mso-spacerun:yes">  </span>et à la
+      lexicographie en lien
+      avec le projet européen <b>ELEXIS</b>.</p>
+    <p class="MsoNormal">- en parallèle à la Conférence TOTh se
+      déroulera une <b><font size="+1" color="#990000">Session
+          Satellite dédiée à la "Terminologie et Fouille de Textes"</font></b> :</p>
+    <p class="MsoNormal"><a href="http://toth.fr.condillac.org/ttm-2019">http://toth.fr.condillac.org/ttm-2019</a>
+    </p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal">Les actes seront publiés dans la collection
+      "Terminologica"
+      (<a href="http://toth.fr.condillac.org/terminologica">http://toth.fr.condillac.org/terminologica</a>)
+      et distribués par "le comptoir des presses d’universités" (<a
+        href="http://www.lcdpu.fr/">http://www.lcdpu.fr/</a>)</p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b>FORMATION
+          TOTh 2019</b></font></p>
+    <font size="+1" color="#990000"><b>
+      </b></font>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b>"Apport de
+          l’ontologie à la terminologie"</b></font></p>
+    <p class="MsoNormal"><a
+        href="http://toth.fr.condillac.org/training-2019">http://toth.fr.condillac.org/training-2019</a>
+    </p>
+    <p class="MsoNormal">4 et 5 juin 2019</p>
+    <p class="MsoNormal">Université Savoie Mont-Blanc (Chambéry,
+      France).</p>
+    <p class="MsoNormal">======================================================</p>
+    <p class="MsoNormal">English version</p>
+    <p class="MsoNormal">======================================================</p>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b><span
+            style="mso-ansi-language:EN-GB" lang="EN-GB">TOTh 2019
+            CONFERENCE</span></b></font></p>
+    <font size="+1" color="#990000"><b>
+      </b></font>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b><span
+            style="mso-ansi-language:EN-GB" lang="EN-GB">Terminology
+            &amp; Ontology: Theories and applications</span></b></font></p>
+    <p class="MsoNormal"><a href="http://toth.condillac.org/">http://toth.condillac.org/</a></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">6 &amp; 7
+        June 2019</span></p>
+    <p class="MsoNormal">University Savoie Mont-Blanc (Chambéry, France)</p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">Deadline
+        for submission of abstracts (3 pages): 25 January 2019</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">Notification
+        to authors: 22 February 2019</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">-----------------------------------------------------------------------------------------</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB"><b>NEW</b>:</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">- a <b><font color="#990000">Special
+            Session</font></b> will be dedicated to lexical resources
+        and lexicography in connection
+        with the <b>ELEXIS</b> European project.</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">- a
+        <font color="#990000"><b>Satellite Session dedicated to
+            "Terminology and Text Mining"</b></font> will be
+        held in parallel with the TOTh Conference:</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB"><a class="moz-txt-link-freetext" href="http://toth.condillac.org/ttm-2019">http://toth.condillac.org/ttm-2019</a></span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">-----------------------------------------------------------------------------------------</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">The
+        proceeding will be published in the “Terminologica” </span>(<a
+        href="http://toth.condillac.org/terminologica">http://toth.condillac.org/terminologica</a>)
+      <span style="mso-ansi-language:EN-GB" lang="EN-GB">Collection and
+        distributed by </span>"le
+      comptoir des presses d’universités" (<a
+        href="http://www.lcdpu.fr/">http://www.lcdpu.fr/</a>)</p>
+    <p class="MsoNormal">-----------------------------------------------------------------------------------------</p>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b><span
+            style="mso-ansi-language:EN-GB" lang="EN-GB">TOTh TRAINING
+            2019</span></b></font></p>
+    <font size="+1" color="#990000"><b>
+      </b></font>
+    <p class="MsoNormal"><font size="+1" color="#990000"><b><span
+            style="mso-ansi-language:EN-GB" lang="EN-GB">“Ontology
+            for Terminology”</span></b></font></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB"><a href="http://toth.condillac.org/training-2019">http://toth.condillac.org/training-2019</a>
+      </span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB"><span style="mso-spacerun:yes"> </span>4 &amp; 5
+        June 2019</span></p>
+    <p class="MsoNormal"><span style="mso-ansi-language:EN-GB"
+        lang="EN-GB">University
+        Savoie Mont-Blanc (Chambéry, France). </span></p>
+    <p class="MsoNormal">======================================================</p>
+    <p class="MsoNormal"> </p>
+    <style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"ＭＳ 明朝";
+	mso-font-charset:78;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"ＭＳ 明朝";
+	mso-font-charset:78;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1073743103 0 0 415 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"ＭＳ 明朝";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	mso-themecolor:hyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	mso-themecolor:followedhyperlink;
+	text-decoration:underline;
+	text-underline:single;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-family:Cambria;
+	mso-ascii-font-family:Cambria;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"ＭＳ 明朝";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Cambria;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+@page WordSection1
+	{size:595.0pt 842.0pt;
+	margin:70.9pt 70.9pt 70.9pt 70.9pt;
+	mso-header-margin:35.45pt;
+	mso-footer-margin:6.25pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+    <pre class="moz-signature" cols="72">------------------------------------------------------------------
+Prof Christophe ROCHE			tel: +33 (0) 479 758 779
+Condillac Research Group - LISTIC	cell:+33 (0) 686 250 705
+Université Savoie Mont-Blanc		
+Campus Scientifique			roche@univ-savoie
+73376 Le Bourget du Lac cedex		<a class="moz-txt-link-abbreviated" href="http://www.christophe-roche.fr">www.christophe-roche.fr</a>
+France					<a class="moz-txt-link-abbreviated" href="http://www.condillac.org">www.condillac.org</a>		
+------------------------------------------------------------------</pre>
+  </body>
+</html>
+
+--------------4FCB0EA847AB9F56FCC5CE95--

@@ -1,0 +1,401 @@
+Return-Path: <sorin.moga@telecom-bretagne.eu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8F97619039C1
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 23 Feb 2016 23:28:31 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 867E3676D2B
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 23 Feb 2016 23:28:31 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 6DB61B4B130
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 23 Feb 2016 23:28:31 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -8.781
+X-Spam-Level:
+X-Spam-Status: No, score=-8.781 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01,
+	HTML_FONT_FACE_BAD=0.289, HTML_MESSAGE=0.001, J_CHICKENPOX_52=0.6,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.1700 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=telecom-bretagne.eu
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id nHuOK1CZw_6g for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 23 Feb 2016 23:28:30 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy210.enst-bretagne.fr (zproxy210.enst-bretagne.fr [192.108.117.8])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id D83716E1
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 23 Feb 2016 23:28:30 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id C4A01232025
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 23 Feb 2016 23:28:30 +0100 (CET)
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id qWcviUEEcFsM for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 23 Feb 2016 23:28:30 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id E59A7232016
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 23 Feb 2016 23:28:29 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy210.enst-bretagne.fr E59A7232016
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telecom-bretagne.eu;
+	s=CFDC2CFA-4654-11E5-AACD-7BCC68B6580D; t=1456266509;
+	bh=1Wo2Td/TzMoT7vaaKlllW9SP4eZGPYejRXVW+f5YmWo=;
+	h=To:From:Subject:Message-ID:Date:MIME-Version:Content-Type;
+	b=gwlHmrhICYrih/ebDb3Cf1rZiaE3Hua6lUC2+6r6SVfgGOoxD1QGSBF9VivFE6viR
+	 TFTFBZMG40hKbEzr6UdM5Fvz8+sjIzfveJyyk842P4FPaTTGZZfXUPgy1IqubdE4Md
+	 Al07gS+NYZCrsqd1KQUhHgUwUjTRiBF3PsbphvZs=
+X-Virus-Scanned: amavisd-new at zproxy210.enst-bretagne.fr
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id L2gHultS0b8Q for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 23 Feb 2016 23:28:29 +0100 (CET)
+Received: from [192.168.9.13] (gno29-1-78-224-14-71.fbx.proxad.net [78.224.14.71])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTPSA id 212DC23200D
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 23 Feb 2016 23:28:25 +0100 (CET)
+To: liste-egc@polytech.univ-nantes.fr
+From: Sorin MOGA <sorin.moga@telecom-bretagne.eu>
+Message-ID: <56CCDD02.7070704@telecom-bretagne.eu>
+Date: Tue, 23 Feb 2016 23:28:18 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+ Thunderbird/38.5.1
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------000302070203000404070500"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Offre d'emploi post-doctorant ou =?UTF-8?Q?ing=C3=A9n?=
+ =?UTF-8?Q?ieur?= recherche
+
+This is a multi-part message in MIME format.
+--------------000302070203000404070500
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+*Fouille de donn=C3=A9es pour la d=C3=A9tection d=E2=80=99intrusions*
+
+
+
+*Profil du candidat :*
+
+Docteur en informatique ou ing=C3=A9nieur en informatique ayant de bonnes
+connaissance en fouille de donn=C3=A9es et/ou s=C3=A9curit=C3=A9 informat=
+ique ;
+capacit=C3=A9s r=C3=A9dactionnelles en anglais/fran=C3=A7ais.
+
+*Position :*
+
+Post-doctorant ou ing=C3=A9nieur recherche
+
+
+*Contexte :*
+
+Les techniques de fouille de donn=C3=A9es prennent une part de plus en pl=
+us
+importante en s=C3=A9curit=C3=A9 informatique. Nous nous int=C3=A9ressons=
+ aux outils de
+d=C3=A9tection d'intrusions dans un syst=C3=A8me informatique et tout
+particuli=C3=A8rement =C3=A0 la d=C3=A9tection d'=C3=A9v=C3=A9nements rar=
+es dans des donn=C3=A9es
+massives.
+
+
+*Objectifs :*
+
+  *
+
+    Une cartographie des vuln=C3=A9rabilit=C3=A9s des SI, des types d'att=
+aques,
+    associ=C3=A9e =C3=A0 une analyse des risques et des impacts potentiel=
+s sur les SI.
+
+  *
+
+    Un =C3=A9tat de l'art sur les techniques de fouille de donn=C3=A9es p=
+our la
+    d=C3=A9tection d'intrusions et la d=C3=A9tection d'=C3=A9v=C3=A9nemen=
+ts rares.
+
+  *
+
+    Un protocole de g=C3=A9n=C3=A9ration de donn=C3=A9es synth=C3=A9tique=
+s (selon des
+    sc=C3=A9narios d'attaque, etc.).
+
+  *
+
+    Une m=C3=A9thodologie pour la mise en =C5=93uvre de syst=C3=A8mes de =
+d=C3=A9tection
+    d'intrusion.
+
+  *
+
+    Une analyse des performances des algorithmes de d=C3=A9tection (y com=
+pris
+    sur des architectures pour les donn=C3=A9es massives).
+
+
+*Dur=C3=A9e, d=C3=A9partement et lieu : *
+
+Le poste est bas=C3=A9 au sein du d=C3=A9partement LUSSI =C3=A0 T=C3=A9l=C3=
+=A9com Bretagne (site
+de Brest) dans l'=C3=A9quipe DECIDE de l'UMR 6285 Lab-STICC. Le projet se
+termine fin avril 2017 et le contrat peut durer une ann=C3=A9e si le post=
+e
+est pourvu au 1^er mai 2016 (les candidatures seront examin=C3=A9es au fi=
+l de
+l'eau jusqu'au recrutement d'un(e) candidat(e)).
+
+
+*Dossier =C3=A0 constituer :*
+
+*Exp=C3=A9dier CV, lettre de motivation, m=C3=A9moire de th=C3=A8se et ra=
+pports de
+th=C3=A8ses =C3=A0 *Philippe Lenca _philippe.lenca@telecom-bretagne.eu
+<mailto:philippe.lenca@telecom-bretagne.eu>_et Sorin Moga
+_sorin.moga@telecom-bretagne.eu <mailto:sorin.moga@telecom-bretagne.eu>_
+
+
+
+--------------000302070203000404070500
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0" align=3D"center">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><fo=
+nt
+            style=3D"font-size: 14pt" size=3D"4"><b>Fouille
+              de donn=C3=A9es pour la d=C3=A9tection d=E2=80=99intrusions=
+</b></font></font></font></p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%"><br>
+    </p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0" align=3D"justify">
+      <br>
+    </p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0" align=3D"justify">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><fo=
+nt
+            style=3D"font-size: 12pt" size=3D"3"><b>Profil
+              du candidat :</b></font></font></font></p>
+    <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%;
+      widows: 0; orphans: 0">
+      <font face=3D"Trebuchet MS, sans-serif">Docteur en informatique ou
+        ing=C3=A9nieur en informatique ayant de bonnes connaissance en
+        fouille de
+        donn=C3=A9es et/ou s=C3=A9curit=C3=A9 informatique=C2=A0; capacit=
+=C3=A9s
+        r=C3=A9dactionnelles en anglais/fran=C3=A7ais.<br>
+        <br>
+      </font></p>
+    <p class=3D"western" style=3D"margin-top: 0.42cm; margin-bottom: 0cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><b>=
+Position=C2=A0:</b></font></font></p>
+    <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%;
+      widows: 0; orphans: 0">
+      <font face=3D"Trebuchet MS, sans-serif">Post-doctorant ou ing=C3=A9=
+nieur
+        recherche</font></p>
+    <p class=3D"western" style=3D"margin-right: -0.05cm; margin-bottom: 0=
+cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <br>
+    </p>
+    <p class=3D"western" style=3D"margin-right: -0.05cm; margin-bottom: 0=
+cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><b>=
+Contexte
+            :</b></font></font></p>
+    <p class=3D"western" style=3D"margin-right: -0.05cm; margin-bottom: 0=
+cm;
+      font-weight: normal; line-height: 100%; widows: 0; orphans: 0">
+      <font face=3D"Trebuchet MS, sans-serif">Les techniques de fouille d=
+e
+        donn=C3=A9es prennent une part de plus en plus importante en s=C3=
+=A9curit=C3=A9
+        informatique. Nous nous int=C3=A9ressons aux outils de d=C3=A9tec=
+tion
+        d'intrusions dans un syst=C3=A8me informatique et tout
+        particuli=C3=A8rement
+        =C3=A0 la d=C3=A9tection d'=C3=A9v=C3=A9nements rares dans des do=
+nn=C3=A9es massives. </font>
+    </p>
+    <p class=3D"western" style=3D"margin-right: -0.05cm; margin-bottom: 0=
+cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <br>
+    </p>
+    <p class=3D"western" style=3D"margin-top: 0.42cm; margin-bottom: 0cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><b>=
+Objectifs
+            :</b></font></font></p>
+    <ul>
+      <li>
+        <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 10=
+0%">
+          <font face=3D"Trebuchet MS, sans-serif">Une cartographie des
+            vuln=C3=A9rabilit=C3=A9s des SI, des types d'attaques, associ=
+=C3=A9e =C3=A0 une
+            analyse des risques et des impacts potentiels sur les SI.</fo=
+nt></p>
+      </li>
+      <li>
+        <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 10=
+0%">
+          <font face=3D"Trebuchet MS, sans-serif">Un =C3=A9tat de l'art s=
+ur les
+            techniques de fouille de donn=C3=A9es pour la d=C3=A9tection
+            d'intrusions et la d=C3=A9tection d'=C3=A9v=C3=A9nements rare=
+s.</font></p>
+      </li>
+      <li>
+        <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 10=
+0%">
+          <font face=3D"Trebuchet MS, sans-serif">Un protocole de
+            g=C3=A9n=C3=A9ration de donn=C3=A9es synth=C3=A9tiques (selon=
+ des sc=C3=A9narios
+            d'attaque, etc.). </font> </p>
+      </li>
+      <li>
+        <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 10=
+0%">
+          <font face=3D"Trebuchet MS, sans-serif">Une m=C3=A9thodologie p=
+our la
+            mise en =C5=93uvre de syst=C3=A8mes de d=C3=A9tection d'intru=
+sion.</font></p>
+      </li>
+      <li>
+        <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 10=
+0%">
+          <font face=3D"Trebuchet MS, sans-serif">Une analyse des
+            performances des algorithmes de d=C3=A9tection (y compris sur=
+ des
+            architectures pour les donn=C3=A9es massives). </font> </p>
+      </li>
+    </ul>
+    <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%">=
+<br>
+    </p>
+    <p class=3D"western" style=3D"margin-top: 0.42cm; margin-bottom: 0cm;
+      line-height: 100%; widows: 0; orphans: 0">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><b>=
+Dur=C3=A9e,
+d=C3=A9partement
+            et lieu : </b></font></font>
+    </p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0">
+      <font color=3D"#c0c0c0"><font face=3D"FuturaA Bk BT, Segoe UI,
+          sans-serif"><font color=3D"#000000"><font face=3D"Trebuchet MS,
+              sans-serif"><span style=3D"font-weight: normal">Le
+                poste est bas=C3=A9 au sein du d=C3=A9partement LUSSI =C3=
+=A0 T=C3=A9l=C3=A9com
+                Bretagne
+                (site de Brest) dans l'=C3=A9quipe DECIDE de l'UMR 6285
+                Lab-STICC</span></font></font><font color=3D"#000000"><fo=
+nt
+              face=3D"Trebuchet MS, sans-serif"><span style=3D"font-weigh=
+t:
+                normal">.
+                Le projet se termine fin avril 2017 et le contrat peut
+                durer une
+                ann=C3=A9e si le poste est pourvu au 1</span></font></fon=
+t><font
+            color=3D"#000000"><sup><font face=3D"Trebuchet MS, sans-serif=
+"><span
+                  style=3D"font-weight: normal">er</span></font></sup></f=
+ont><font
+            color=3D"#000000"><font face=3D"Trebuchet MS, sans-serif"><sp=
+an
+                style=3D"font-weight: normal">
+                mai 2016 (les candidatures seront examin=C3=A9es au fil d=
+e
+                l'eau jusqu'au
+                recrutement d'un(e) candidat(e)).</span></font></font></f=
+ont></font></p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0">
+      <br>
+    </p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0">
+      <font color=3D"#666699"><font face=3D"Trebuchet MS, sans-serif"><b>=
+Dossier
+=C3=A0
+            constituer=C2=A0:</b></font></font></p>
+    <p style=3D"margin-bottom: 0cm; line-height: 100%; widows: 0; orphans=
+:
+      0">
+      <font color=3D"#c0c0c0"><font face=3D"FuturaA Bk BT, Segoe UI,
+          sans-serif"><font color=3D"#000000"><font face=3D"Trebuchet MS,
+              sans-serif"><b>Exp=C3=A9dier
+                CV, lettre de motivation, m=C3=A9moire de th=C3=A8se et r=
+apports
+                de th=C3=A8ses =C3=A0
+              </b></font></font><font color=3D"#000000"><font
+              face=3D"Trebuchet MS, sans-serif">Philippe
+              Lenca </font></font><font color=3D"#0000ff"><u><a
+                href=3D"mailto:philippe.lenca@telecom-bretagne.eu"><font
+                  face=3D"Trebuchet MS, sans-serif"><a class=3D"moz-txt-l=
+ink-abbreviated" href=3D"mailto:philippe.lenca@telecom-bretagne.eu">phili=
+ppe.lenca@telecom-bretagne.eu</a></font></a></u></font><font
+            color=3D"#0000ff"><font color=3D"#000000"><font face=3D"Trebu=
+chet
+                MS, sans-serif"><span style=3D"text-decoration: none">
+                  et </span></font></font></font><font color=3D"#000000">=
+<font
+              face=3D"Trebuchet MS, sans-serif">Sorin
+              Moga </font></font><font color=3D"#0000ff"><u><a
+                href=3D"mailto:sorin.moga@telecom-bretagne.eu"><font
+                  face=3D"Trebuchet MS, sans-serif"><a class=3D"moz-txt-l=
+ink-abbreviated" href=3D"mailto:sorin.moga@telecom-bretagne.eu">sorin.mog=
+a@telecom-bretagne.eu</a></font></a></u></font></font></font></p>
+    <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%"
+      lang=3D"it-IT">
+      <br>
+    </p>
+    <title></title>
+    <meta name=3D"generator" content=3D"LibreOffice 4.2.8.2 (Linux)">
+    <style type=3D"text/css">
+	<!--
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; direction: ltr; color: #000000; line-height:=
+ 120%; text-align: justify; widows: 2; orphans: 2 }
+		p.western { font-family: "Futura Book"; font-size: 12pt; so-language: f=
+r-FR }
+		p.cjk { font-family: "Times New Roman", serif; font-size: 12pt; so-lang=
+uage: zh-CN }
+		p.ctl { font-family: "Futura Book"; font-size: 10pt; so-language: ar-SA=
+ }
+		a:link { color: #0000ff }
+	-->
+	</style>
+  </body>
+</html>
+
+--------------000302070203000404070500--

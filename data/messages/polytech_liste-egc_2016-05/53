@@ -1,0 +1,466 @@
+Return-Path: <r.interdonato@dimes.unical.it>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id BD8E11903BAB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 May 2016 15:05:36 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id BBB9D676D26
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 25 May 2016 15:05:36 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id B42BEB4B131
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 May 2016 15:05:36 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: YES
+X-Spam-Score: 7.81
+X-Spam-Level: *******
+X-Spam-Status: Yes, score=7.81 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, HTML_MESSAGE=0.001, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, UN_STOCK3=4,
+	URI_NOVOWEL=0.5, VOWEL_URI_7=3] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.2254 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=dimes-unical-it.20150623.gappssmtp.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id wy65G0dBMPxa for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 25 May 2016 15:05:33 +0200 (CEST)
+X-Greylist: delayed 00:13:59 by SQLgrey-1.6.7
+Received: from mail-oi0-x241.google.com (mail-oi0-x241.google.com [IPv6:2607:f8b0:4003:c06::241])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 692AC76C882
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 May 2016 15:05:33 +0200 (CEST)
+Received: by mail-oi0-x241.google.com with SMTP id x130so11093370oia.3
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 25 May 2016 06:05:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dimes-unical-it.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=6y4ygPv3QBunywN3YtitMM5ZOt/wS3N5w/GXXHgEe/I=;
+        b=JcriCvhZZaYE61rkhoB2S74jbHGH6gt6OR8bK0VtI+qcjAKrKfoHYmT1Pz9RFcrocU
+         ODmZXAU0qi/2VqHnzGXnFpRG7pjH0PtL3SQO5giMEIBcxb8V4kzyBwxClwVoW6VjEPBY
+         L8bec6UJFIQjf8WfcvOllZXSYNHtJss5qCtvz4IzJpbaLPUogCK3oXpfbYJKkLGe8Nb7
+         ExO/mfIhspoTjfvYoj61BMDATONfTyNXGPMYMw6QOa51NJboaLBJ26rKTa4CosRMWpbQ
+         mqfdK6+gA8BUHzqhGmbi3VzBFM8L9/e/hsSPmBCOvsPiW2rgbT2z9yUJGTV4VeEk4OiH
+         NGwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=6y4ygPv3QBunywN3YtitMM5ZOt/wS3N5w/GXXHgEe/I=;
+        b=YmqaHB6/Fk5kdX4Ozd+WZC3l+UvGaHBDTDYivJTWbycm6akvxc+ebO4dKSkjqBAi0H
+         3q/CFO1CJRpF7StJEQq0OlVBKZLugDwe/XVCQynW5b/u2hpC55ekRQo94Pr+yh8tjV4N
+         Uq3THps6ipqdRmAiDF0z2u7xDWCtJnw+OYva0aATG+Mo/jkPt27WBCq9xlNvpPB4wb29
+         KJImsgGjQxCtjX808Oi+obUfxNKclfcZ/TfjVHVcjTtDeSTn4p8LTN0JetaNT1FjKYvU
+         XdP0YWV1oY9/kuavyrho+M7aTq/dwfGft/KVzOGKKW2pMuKGf4rGUWP+z1BE2RLhG8EL
+         1q5Q==
+X-Gm-Message-State: ALyK8tJ1Skid1DH7IYgrIof5xnBwqlvjsj9mrZmQ1M4WdRquwcUFfFO5VQrQ7v43omfpjRaVsy5/A3cDTUd0JYYH
+MIME-Version: 1.0
+X-Received: by 10.157.59.246 with SMTP id k109mr2213667otc.85.1464180691417;
+ Wed, 25 May 2016 05:51:31 -0700 (PDT)
+Received: by 10.157.29.202 with HTTP; Wed, 25 May 2016 05:51:31 -0700 (PDT)
+Date: Wed, 25 May 2016 14:51:31 +0200
+Message-ID: <CAG4i7i=JLT8Tej60cYXjXZPbcBJr0HmWU7z6CB3hti1FC3vYtA@mail.gmail.com>
+From: Roberto Interdonato <rinterdonato@dimes.unical.it>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a11493cbcffefbb0533aa2133
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] [SPAM] MIDAS Workshop @ECML-PKDD 2016
+
+--001a11493cbcffefbb0533aa2133
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+                MIDAS 2016
+        The First Workshop on MIning DAta for financial applicationS
+                      September 19, 2016 - Riva del Garda, Italy
+            http://networks.imtlucca.it/conferences/midas
+
+   in conjunction with
+
+ECML-PKDD 2016
+The European Conference on Machine Learning and Practice of Knowledge
+Discovery
+                        September 19-23, 2016 - Riva del Garda, Italy
+http://www.ecmlpkdd2016.org
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+We invite submissions to the MIDAS Workshop on MIning DAta for financial
+applicationS,
+to be held in conjunction with ECML-PKDD 2016 - European Conference on
+Machine Learning and
+Principles and Practice of Knowledge Discovery.
+
+Like the famous King Midas, popularly remembered in Greek mythology for his
+ability to turn
+everything he touched with his hand into gold, we believe that the wealth
+of data generated
+by modern technologies, with widespread presence of computers, users and
+media connected by
+Internet, is a goldmine for tackling a variety of problems in the financial
+domain.
+
+Nowadays, people's interactions with technological systems provide us with
+gargantuan amounts
+of data documenting collective behaviour in a previously unimaginable
+fashion.
+Recent research has shown that by properly modeling and analyzing these
+massive datasets, or
+instance representing them as network structures it is possible to gain
+useful insights into
+the evolution of the systems considered (i.e., trading, disease spreading,
+political elections).
+
+Investigating the impact of data arising from today's application domains
+on financial decisions
+may be of paramount importance. Knowledge extracted from data can help
+gather critical information
+for trading decisions, reveal early signs of impactful events (such as
+stock market moves), or
+anticipate catastrophic events (e.g., financial crises) that result from a
+combination of actions,
+and affect humans worldwide.
+
+The importance of data-mining tasks in the financial domain has been long
+recognized.
+Core application scenarios include correlating Web-search data with
+financial decisions,
+forecasting stock market, predicting bank bankruptcies, understanding and
+managing financial risk,
+trading futures, credit rating, loan management, bank customer profiling.
+
+The MIDAS workshop is aimed at discussing challenges, potentialities, and
+applications of
+leveraging data-mining tasks to tackle problems in the financial domain.
+The workshop provides a premier forum for sharing findings, knowledge,
+insights, experience
+and lessons learned from mining data generated in various application
+domains.
+The intrinsic interdisciplinary nature of the workshop constitutes an
+invaluable opportunity
+to promote interaction between computer scientists, physicists,
+mathematicians, economists and
+financial analysts, thus paving the way for an exciting and stimulating
+environment involving
+researchers and practitioners from different areas.
+
+
+TOPICS OF INTEREST
+------------------
+We encourage submission of papers on the area of data mining for financial
+applications.
+Topics of interest include, but are not limited to:
+
+- Forecasting the stock market
+- Trading models
+- Discovering market trends
+- Predictive analytics for financial services
+- Network analytics in finance
+- Planning investment strategies
+- Portfolio management
+- Understanding and managing financial risk
+- Customer/investor profiling
+- Identifying expert investors
+- Financial modeling
+- Measures of success in forecasting
+- Anomaly detection in financial data
+- Fraud detection
+- Discovering patterns and correlations in financial data
+- Text mining and NLP for financial applications
+- Financial network analysis
+- Time series analysis
+- Pitfalls identification
+
+
+SUBMISSION GUIDELINES
+---------------------
+We invite submissions of either regular papers (long or short), and
+extended abstracts.
+
+Regular papers may be up to 12 pages (long papers) or 6 pages (short
+papers) in the
+Springer LNCS style  (
+https://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0),
+and should report on novel, unpublished work that might not be mature
+enough for a conference
+or journal submission.
+Extended abstracts may be up to 2 pages long, and present work-in-progress,
+recently published
+work fitting the workshop topics, or position papers.
+
+Contributions should be submitted in PDF format, electronically,  using the
+workshop
+submission site at https://easychair.org/conferences/?conf=3Dmidas2016.
+Papers must be written in English and formatted according to the ECML-PKDD
+2016
+submission guidelines available at
+http://www.ecmlpkdd2016.org/submission.html.
+
+Submitted papers will be peer-reviewed and selected on the basis of these
+reviews.
+If accepted, at least one of the authors must attend the workshop to
+present the work.
+
+
+PROCEEDINGS
+-----------
+Accepted papers will be part of the workshop proceedings which will be made
+available online
+at both the workshop website and the CEUR workshop proceedings publication
+service
+(http://ceur-ws.org/).
+The CEUR service ensures that the published papers are permanently
+available and citable.
+Workshop proceedings will also be indexed by major digital libraries
+(e.g., DBLP, Scopus, GoogleScholar, CiteSeerX).
+
+Additionally, based on the success of the workshop, extended versions of
+selected papers
+will be published either as a post-proceeding volume of the Springer LNAI
+series or as a
+special issue of a premier journal in the fields of interest of the
+workshop.
+
+
+IMPORTANT DATES
+---------------
+Submission deadline: July 4, 2016
+Acceptance notification: July 25, 2016
+Camera-ready deadline: August 8, 2016
+Workshop date: September 19, 2016
+
+
+INVITED SPEAKERS
+----------------
+Prof. Fabrizio Lillo, Scuola Normale Superiore, Pisa, Italy
+
+
+PROGRAM COMMITTEE
+-----------------
+Aris Anagnostopoulos, Sapienza University of Rome
+Annalisa Appice, University of Bari
+Xiao Bai, Yahoo!
+Nicola Barbieri, Tumblr
+Paolo Barucca, Scuola Normale Superiore
+Michele Berlingerio, IBM Research
+Annalina Caputo, University of Bari
+Gianbiagio Curato, Scuola Normale Superiore
+Carlotta Domeniconi, George Mason University
+Debora Donato, StumbleUpon
+Andrea Ferretti, UniCredit
+Ruth Garcia Gavilanes, Oxford Internet Institute
+Sara Hajian, Eurecat
+Roberto Interdonato, University of Calabria
+Andreas Kaltenbrunner, Eurecat
+Dragi Kocev, Jozef Stefan Institute
+Nicolas Kourtellis, Telefonica Research
+Iordanis Koutsopoulos, Athens University of Economics and Business
+Donato Malerba, University of Bari
+Yelena Mejova, Qatar Computing Research Institute
+Davide Mottin, Hasso Plattner Institute
+Giuseppe Nicosia, University of Catania
+Marcello Paris, UniCredit
+Stefano Pascolutti, UniCredit
+Alvin Pastore, University of Sheffield
+Giovanni Ponti, ENEA
+Aleksandra Rashkovska, Jo=C5=BEef Stefan Institute
+Giovanni Stilo, Sapienza University of Rome
+Antti Ukkonen, Finnish Institute of Occupational Health
+Edoardo Vacchi, UniCredit
+Tim Weninger, University of Notre Dame
+Giovanni Zappella, UniCredit
+
+
+ORGANIZERS
+----------
+Ilaria Bordino, UniCredit, R&D Dept., Italy
+Guido Caldarelli, IMT Institute for Advanced Studies Lucca, Italy
+Fabio Fumarola, UniCredit, R&D Dept., Italy
+Francesco Gullo, UniCredit, R&D Dept., Italy
+Tiziano Squartini, IMT Institute for Advanced Studies Lucca, Italy
+
+
+--=20
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Roberto Interdonato, PhD
+Research Fellow
+DIMES, University of Calabria, Italy
+tel: +39 0984 494799
+fax: +39 0984 494713
+email: rinterdonato@dimes.unical.it
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+--001a11493cbcffefbb0533aa2133
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <span cl=
+ass=3D"" style=3D"white-space:pre">			</span>MIDAS 2016</div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 <span class=3D"" style=3D"white-space:pre">	</span>The=
+ First Workshop on MIning DAta for financial applicationS</div><div>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Septe=
+mber 19, 2016 - Riva del Garda, Italy</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 <span class=3D"" style=3D"white-space:pre">		</span><a href=
+=3D"http://networks.imtlucca.it/conferences/midas">http://networks.imtlucca=
+.it/conferences/midas</a></div><div><br></div><div><span class=3D"" style=
+=3D"white-space:pre">				</span> =C2=A0 =C2=A0in conjunction with=C2=A0</di=
+v><div><br></div><div><span class=3D"" style=3D"white-space:pre">					</spa=
+n>ECML-PKDD 2016</div><div><span class=3D"" style=3D"white-space:pre">	</sp=
+an>The European Conference on Machine Learning and Practice of Knowledge Di=
+scovery</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 September 19-23, 2016 - Riva del Garda, Italy</=
+div><div><span class=3D"" style=3D"white-space:pre">				</span><a href=3D"h=
+ttp://www.ecmlpkdd2016.org">http://www.ecmlpkdd2016.org</a></div><div>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div><br></div><div>W=
+e invite submissions to the MIDAS Workshop on MIning DAta for financial app=
+licationS,=C2=A0</div><div>to be held in conjunction with ECML-PKDD 2016 - =
+European Conference on Machine Learning and=C2=A0</div><div>Principles and =
+Practice of Knowledge Discovery.</div><div><br></div><div>Like the famous K=
+ing Midas, popularly remembered in Greek mythology for his ability to turn=
+=C2=A0</div><div>everything he touched with his hand into gold, we believe =
+that the wealth of data generated=C2=A0</div><div>by modern technologies, w=
+ith widespread presence of computers, users and media connected by=C2=A0</d=
+iv><div>Internet, is a goldmine for tackling a variety of problems in the f=
+inancial domain.=C2=A0</div><div><br></div><div>Nowadays, people&#39;s inte=
+ractions with technological systems provide us with gargantuan amounts=C2=
+=A0</div><div>of data documenting collective behaviour in a previously unim=
+aginable fashion.=C2=A0</div><div>Recent research has shown that by properl=
+y modeling and analyzing these massive datasets, or=C2=A0</div><div>instanc=
+e representing them as network structures it is possible to gain useful ins=
+ights into=C2=A0</div><div>the evolution of the systems considered (i.e., t=
+rading, disease spreading, political elections).</div><div><br></div><div>I=
+nvestigating the impact of data arising from today&#39;s application domain=
+s on financial decisions=C2=A0</div><div>may be of paramount importance. Kn=
+owledge extracted from data can help gather critical information=C2=A0</div=
+><div>for trading decisions, reveal early signs of impactful events (such a=
+s stock market moves), or=C2=A0</div><div>anticipate catastrophic events (e=
+.g., financial crises) that result from a combination of actions,=C2=A0</di=
+v><div>and affect humans worldwide.</div><div><br></div><div>The importance=
+ of data-mining tasks in the financial domain has been long recognized.=C2=
+=A0</div><div>Core application scenarios include correlating Web-search dat=
+a with financial decisions,=C2=A0</div><div>forecasting stock market, predi=
+cting bank bankruptcies, understanding and managing financial risk,=C2=A0</=
+div><div>trading futures, credit rating, loan management, bank customer pro=
+filing.</div><div><br></div><div>The MIDAS workshop is aimed at discussing =
+challenges, potentialities, and applications of=C2=A0</div><div>leveraging =
+data-mining tasks to tackle problems in the financial domain.=C2=A0</div><d=
+iv>The workshop provides a premier forum for sharing findings, knowledge, i=
+nsights, experience=C2=A0</div><div>and lessons learned from mining data ge=
+nerated in various application domains.=C2=A0</div><div>The intrinsic inter=
+disciplinary nature of the workshop constitutes an invaluable opportunity=
+=C2=A0</div><div>to promote interaction between computer scientists, physic=
+ists, mathematicians, economists and=C2=A0</div><div>financial analysts, th=
+us paving the way for an exciting and stimulating environment involving=C2=
+=A0</div><div>researchers and practitioners from different areas.</div><div=
+><br></div><div><br></div><div>TOPICS OF INTEREST</div><div>---------------=
+---</div><div>We encourage submission of papers on the area of data mining =
+for financial applications.=C2=A0</div><div>Topics of interest include, but=
+ are not limited to:</div><div>=C2=A0</div><div>- Forecasting the stock mar=
+ket</div><div>- Trading models</div><div>- Discovering market trends</div><=
+div>- Predictive analytics for financial services</div><div>- Network analy=
+tics in finance</div><div>- Planning investment strategies</div><div>- Port=
+folio management</div><div>- Understanding and managing financial risk</div=
+><div>- Customer/investor profiling</div><div>- Identifying expert investor=
+s</div><div>- Financial modeling</div><div>- Measures of success in forecas=
+ting</div><div>- Anomaly detection in financial data</div><div>- Fraud dete=
+ction</div><div>- Discovering patterns and correlations in financial data</=
+div><div>- Text mining and NLP for financial applications</div><div>- Finan=
+cial network analysis</div><div>- Time series analysis</div><div>- Pitfalls=
+ identification</div><div><br></div><div><br></div><div>SUBMISSION GUIDELIN=
+ES</div><div>---------------------</div><div>We invite submissions of eithe=
+r regular papers (long or short), and extended abstracts.</div><div><br></d=
+iv><div>Regular papers may be up to 12 pages (long papers) or 6 pages (shor=
+t papers) in the=C2=A0</div><div>Springer LNCS style =C2=A0(<a href=3D"http=
+s://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0">https://www.sp=
+ringer.com/computer/lncs?SGWID=3D0-164-6-793341-0</a>),=C2=A0</div><div>and=
+ should report on novel, unpublished work that might not be mature enough f=
+or a conference=C2=A0</div><div>or journal submission.</div><div>Extended a=
+bstracts may be up to 2 pages long, and present work-in-progress, recently =
+published=C2=A0</div><div>work fitting the workshop topics, or position pap=
+ers.</div><div><br></div><div>Contributions should be submitted in PDF form=
+at, electronically, =C2=A0using the workshop=C2=A0</div><div>submission sit=
+e at <a href=3D"https://easychair.org/conferences/?conf=3Dmidas2016">https:=
+//easychair.org/conferences/?conf=3Dmidas2016</a>.</div><div>Papers must be=
+ written in English and formatted according to the ECML-PKDD 2016=C2=A0</di=
+v><div>submission guidelines available at <a href=3D"http://www.ecmlpkdd201=
+6.org/submission.html">http://www.ecmlpkdd2016.org/submission.html</a>.</di=
+v><div><br></div><div>Submitted papers will be peer-reviewed and selected o=
+n the basis of these reviews.</div><div>If accepted, at least one of the au=
+thors must attend the workshop to present the work.</div><div><br></div><di=
+v>=C2=A0</div><div>PROCEEDINGS</div><div>-----------</div><div>Accepted pap=
+ers will be part of the workshop proceedings which will be made available o=
+nline=C2=A0</div><div>at both the workshop website and the CEUR workshop pr=
+oceedings publication service=C2=A0</div><div>(<a href=3D"http://ceur-ws.or=
+g/">http://ceur-ws.org/</a>).</div><div>The CEUR service ensures that the p=
+ublished papers are permanently available and citable.</div><div>Workshop p=
+roceedings will also be indexed by major digital libraries=C2=A0</div><div>=
+(e.g., DBLP, Scopus, GoogleScholar, CiteSeerX).</div><div><br></div><div>Ad=
+ditionally, based on the success of the workshop, extended versions of sele=
+cted papers=C2=A0</div><div>will be published either as a post-proceeding v=
+olume of the Springer LNAI series or as a=C2=A0</div><div>special issue of =
+a premier journal in the fields of interest of the workshop.</div><div>=C2=
+=A0</div><div><br></div><div>IMPORTANT DATES</div><div>---------------</div=
+><div>Submission deadline: July 4, 2016</div><div>Acceptance notification: =
+July 25, 2016</div><div>Camera-ready deadline: August 8, 2016</div><div>Wor=
+kshop date: September 19, 2016</div><div><br></div><div><br></div><div>INVI=
+TED SPEAKERS</div><div>----------------</div><div>Prof. Fabrizio Lillo, Scu=
+ola Normale Superiore, Pisa, Italy</div><div><br></div><div><br></div><div>=
+PROGRAM COMMITTEE</div><div>-----------------</div><div>Aris Anagnostopoulo=
+s, Sapienza University of Rome</div><div>Annalisa Appice, University of Bar=
+i</div><div>Xiao Bai, Yahoo!</div><div>Nicola Barbieri, Tumblr</div><div>Pa=
+olo Barucca, Scuola Normale Superiore</div><div>Michele Berlingerio, IBM Re=
+search</div><div>Annalina Caputo, University of Bari</div><div>Gianbiagio C=
+urato, Scuola Normale Superiore</div><div>Carlotta Domeniconi, George Mason=
+ University</div><div>Debora Donato, StumbleUpon</div><div>Andrea Ferretti,=
+ UniCredit</div><div>Ruth Garcia Gavilanes, Oxford Internet Institute</div>=
+<div>Sara Hajian, Eurecat</div><div>Roberto Interdonato, University of Cala=
+bria</div><div>Andreas Kaltenbrunner, Eurecat</div><div>Dragi Kocev, Jozef =
+Stefan Institute</div><div>Nicolas Kourtellis, Telefonica Research</div><di=
+v>Iordanis Koutsopoulos, Athens University of Economics and Business</div><=
+div>Donato Malerba, University of Bari</div><div>Yelena Mejova, Qatar Compu=
+ting Research Institute</div><div>Davide Mottin, Hasso Plattner Institute</=
+div><div>Giuseppe Nicosia, University of Catania</div><div>Marcello Paris, =
+UniCredit</div><div>Stefano Pascolutti, UniCredit</div><div>Alvin Pastore, =
+University of Sheffield</div><div>Giovanni Ponti, ENEA</div><div>Aleksandra=
+ Rashkovska, Jo=C5=BEef Stefan Institute</div><div>Giovanni Stilo, Sapienza=
+ University of Rome</div><div>Antti Ukkonen, Finnish Institute of Occupatio=
+nal Health</div><div>Edoardo Vacchi, UniCredit</div><div>Tim Weninger, Univ=
+ersity of Notre Dame</div><div>Giovanni Zappella, UniCredit</div><div><br><=
+/div><div><br></div><div>ORGANIZERS=C2=A0</div><div>----------</div><div>Il=
+aria Bordino, UniCredit, R&amp;D Dept., Italy</div><div>Guido Caldarelli, I=
+MT Institute for Advanced Studies Lucca, Italy</div><div>Fabio Fumarola, Un=
+iCredit, R&amp;D Dept., Italy</div><div>Francesco Gullo, UniCredit, R&amp;D=
+ Dept., Italy</div><div>Tiziano Squartini, IMT Institute for Advanced Studi=
+es Lucca, Italy</div><div><br></div><div><br></div>-- <br><div class=3D"gma=
+il_signature"><div dir=3D"ltr">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D<br>
+Roberto Interdonato, PhD<br>
+Research Fellow<br>
+DIMES, University of Calabria, Italy<br>
+tel: <a href=3D"tel:%2B39%200984%20494799" value=3D"+390984494799" target=
+=3D"_blank">+39 0984 494799</a><br>
+fax: <a href=3D"tel:%2B39%200984%20494713" value=3D"+390984494713" target=
+=3D"_blank">+39 0984 494713</a><br>
+email: <a href=3D"mailto:rinterdonato@dimes.unical.it" target=3D"_blank">ri=
+nterdonato@dimes.unical.it</a><br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></div>
+</div>
+
+--001a11493cbcffefbb0533aa2133--

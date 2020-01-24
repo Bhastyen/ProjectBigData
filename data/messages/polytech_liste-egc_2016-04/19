@@ -1,0 +1,552 @@
+Return-Path: <lhuuuq@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 69E191903AA0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  8 Apr 2016 18:01:32 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 5C06C700E0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  8 Apr 2016 18:01:32 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 455032C33A5
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  8 Apr 2016 18:01:32 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.901
+X-Spam-Level:
+X-Spam-Status: No, score=-3.901 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	SARE_HEAD_8BIT_SPAM=0.888, SPF_PASS=-0.001, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 12.3321 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id wAHWmvA7-q5l for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  8 Apr 2016 18:01:30 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x241.google.com (mail-wm0-x241.google.com [IPv6:2a00:1450:400c:c09::241])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id ED9DF2C293E
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  8 Apr 2016 18:01:29 +0200 (CEST)
+Received: by mail-wm0-x241.google.com with SMTP id a140so5386862wma.2
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 08 Apr 2016 09:01:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=DIQAqBxDAgiNrkg2YJxUYAUU6ymXol+JPefyGckEcjo=;
+        b=QygR/uPCIz6D0NdFQllYBXUITIoWxpzkTRADXg2/u52UhrFR3Ew8+3bc84QnQcJZvS
+         HcfrmfRhJ4lntTtyGimOsmAw1Ps/VxIhTWsu3li1nDpZ/OJvyuQtCoia2c+a6tdNmg/I
+         8p2hUKz6T0oBR7vOAcOc7xHYV8cNp264l4m2j0XnacUTekvhR1oo6v3I/3vxTxdNCoYQ
+         /zrbFHjYRWdZ5BEY9MEZY8QvemUnESPIY+yRMXbwIhmPt2MRq449PoVVfbm8Q750/3N2
+         T6ho83RCPLw5hKGhtBqsh/4zYf+vTLvcDi29DbwPzWPhb6Kh9b635sJ4AWsb6kbeRt/C
+         xw4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=DIQAqBxDAgiNrkg2YJxUYAUU6ymXol+JPefyGckEcjo=;
+        b=dfzjmgWubBkn7etIIml3VwYzLaxjWoWdJAnsz/tl9Ae+I2yZTrWeZuL3kaRxaiL06i
+         leRiYNrPRObMB8gxnyMk9rSMY1Pb6UMPxt0a87zjZVdlyqAPVQAR+cav19SUqU602mSN
+         8L02jqgiEkIaO2nHci/Z5wmpIBGX/Z0Qn6zLQ6ZUc3B1vjVkffHCpXtDVTuxJyD79aaT
+         p8BPhYdaIMoRpWsT7HpnNENkWYUnljbQVybTPJBHekB/jF+szYz7xV0HrU2v1raqpaw2
+         nzOSeuUly/QVp2FMX13nbX6ap4oJzLXqQpp6GrO+EHfXMU6u0fpVsVafQL65NpbzkfoH
+         rVQQ==
+X-Gm-Message-State: AD7BkJLspL+yWFNXMrEIS7GWS3niz082unMEDbJQxBug2HfMTaBWwL1G2afDN8+sacpNNd3tpdBYGbZlfZq7gQ==
+X-Received: by 10.194.243.226 with SMTP id xb2mr10250578wjc.35.1460131289166;
+ Fri, 08 Apr 2016 09:01:29 -0700 (PDT)
+MIME-Version: 1.0
+Sender: lhuuuq@gmail.com
+Received: by 10.28.180.69 with HTTP; Fri, 8 Apr 2016 09:01:09 -0700 (PDT)
+From: Luc Damas <luc.damas@univ-savoie.fr>
+Date: Fri, 8 Apr 2016 18:01:09 +0200
+X-Google-Sender-Auth: _6y0hGDdFiJpdexjWryhxglXj6E
+Message-ID: <CAFW-+pZ9MQhJitjh8d6vVGhrSKHz8mvME7CYZqkQ4Ct=dLB7Ng@mail.gmail.com>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary=089e01493538d111b6052ffb4e53
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Appel =?UTF-8?Q?=C3=A0?= communications : HUMANITES
+ NUMERIQUES ET ICONOGRAPHIE =?UTF-8?Q?=E2=80=93?= LE CAS DE LA PEINTURE
+ MURALE ALPINE
+
+--089e01493538d111b6052ffb4e53
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------
+
+APPEL A COMMUNICATIONS (The call for papers in English comes after the
+French version)
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------
+
+HUMANITES NUMERIQUES ET ICONOGRAPHIE =E2=80=93
+
+LE CAS DE LA PEINTURE MURALE ALPINE
+
+
+28 & 29 novembre 2016
+
+Maison des Sciences de l=E2=80=99Homme =E2=80=93 Grenoble
+
+
+site web : http://hn2016.condillac.org
+
+
+Date limite de soumission des r=C3=A9sum=C3=A9s : 2 juin 2016
+
+Notification aux auteurs : 21 juillet 2016
+
+
+Le colloque international "Humanit=C3=A9s num=C3=A9riques et Iconographie. =
+Le cas de
+la peinture murale alpine" qui aura lieu =C3=A0 Grenoble du 28 au 29 novemb=
+re
+2016, est organis=C3=A9 par l=E2=80=99Universit=C3=A9 Grenoble Alpes avec l=
+a Maison des
+Sciences de l=E2=80=99Homme-Alpes et l=E2=80=99Universit=C3=A9 de Savoie Mo=
+nt-Blanc avec
+l=E2=80=99=C3=A9quipe Condillac =E2=80=93LISTIC.
+
+
+Dans le cadre des r=C3=A9flexions conduites =C3=A0 la Maison des Sciences d=
+e
+l=E2=80=99Homme-Alpes sur les liens entre Humanit=C3=A9s num=C3=A9riques et=
+ Patrimoine ce
+colloque international, r=C3=A9solument tourn=C3=A9 vers la prospective, pr=
+opose de
+s=E2=80=99interroger sur un aspect particulier : l=E2=80=99accessibilit=C3=
+=A9 "intelligente" aux
+donn=C3=A9es. Comment ouvrir =C3=A0 un large public =E2=80=94 qui pourra no=
+n seulement les
+=C3=A9changer mais aussi en diversifier les usages =E2=80=94, des donn=C3=
+=A9es num=C3=A9ris=C3=A9es et
+valid=C3=A9es scientifiquement dans le domaine des Sciences Humaines et Soc=
+iales
+? On affrontera plus particuli=C3=A8rement deux questions centrales. D=E2=
+=80=99une part,
+la n=C3=A9cessit=C3=A9 de respecter la diversit=C3=A9 linguistique en jeu d=
+ans
+l=E2=80=99=C3=A9laboration et la description de ces donn=C3=A9es. D=E2=80=
+=99autre part, la prise en
+compte de la multiplicit=C3=A9 des approches qui ont pr=C3=A9sid=C3=A9es =
+=C3=A0 la conception
+et la mise en forme des donn=C3=A9es en question.
+
+Pour r=C3=A9pondre =C3=A0 ces objectifs, nous souhaitons privil=C3=A9gier =
+=E2=80=94 sans exclure
+d=E2=80=99autres sources iconographiques =E2=80=94 les =C3=A9tudes de cas s=
+ur les peintures
+murales des r=C3=A9gions alpines entre le XIIIe et le XVIe si=C3=A8cle qui =
+font
+l=E2=80=99objet d=E2=80=99un recensement syst=C3=A9matique dans la base de =
+donn=C3=A9es PREALP
+h=C3=A9berg=C3=A9e =C3=A0 la Maison des Sciences de l=E2=80=99Homme-Alpes.
+
+
+Trois axes ont =C3=A9t=C3=A9 retenus : Langues, Concepts, images. Une atten=
+tion
+particuli=C3=A8re sera accord=C3=A9e aux r=C3=A9flexions portant sur les ap=
+ports de la
+terminologie pour traiter de la dimension linguistique, de l=E2=80=99ontolo=
+gie pour
+la dimension conceptuelle, et de la reconnaissance d=E2=80=99images pour la
+s=C3=A9lection et le classement des documents iconographiques.
+
+Ce colloque sera aussi l=E2=80=99occasion de constituer un r=C3=A9seau inte=
+rnational de
+chercheurs pour r=C3=A9pondre aux enjeux d=E2=80=99un domaine en pleine mut=
+ation.
+
+
+Les propositions de communication (800 mots maximum), en fran=C3=A7ais, ang=
+lais
+ou en italien qui sont les trois langues de communication du colloque, sont
+=C3=A0 adresser au comit=C3=A9 d=E2=80=99organisation :
+
+
+Dominique Rigaux (dominique.rigaux@msh-alpes.fr)
+
+Christophe Roche (christophe.roche@univ-savoie.fr)
+
+
+---------------------------------------------------------------------------=
+------------------------------------------------------------
+
+CALL FOR PAPERS
+
+---------------------------------------------------------------------------=
+------------------------------------------------------------
+
+DIGITAL HUMANITIES AND ICONOGRAPHY -
+
+THE CASE OF ALPINE MURAL PAINTING
+
+
+28 & 29 November 2016
+
+Maison des Sciences de l=E2=80=99Homme =E2=80=93 Grenoble =E2=80=93 France
+
+
+web site: hn2016en.condillac.org
+
+
+Deadline for submission of abstracts: 2 June 2016
+
+Notification to authors: 21 July 2016
+
+
+The international conference "Digital Humanities and Iconography - The case
+of alpine mural painting", to be held in Grenoble (France) from 28 to 29
+November 2016, is organised by the University of Grenoble-Alpes (Maison des
+Sciences de l=E2=80=99Homme) and the University of Savoie Mont Blanc (Condi=
+llac
+Research Group - LISTIC lab).
+
+
+As part of the discussions conducted at the Maison des Sciences de l=E2=80=
+=99Homme
+Sciences-Alpes on the links between Digital Humanities and Heritage, this
+international symposium, resolutely turned towards the future, aims to
+debate one particular aspect: how to "intelligently" access the data. How
+can digitised and scientifically validated data in the field of Social
+Sciences and Humanities be made available to a wider audience, that will
+not only share but also diversify its uses? There will be two pivotal
+topics under discussion: on the one hand, the need to respect the
+linguistic diversity involved in the development and description of such
+data. On the other hand, the need to consider the multiplicity of
+approaches that have presided over the conceptual modelling of the data in
+question.
+
+To meet these objectives, without excluding other iconographic sources, we
+draw the emphasis on case studies on the murals of the Alpine regions from
+the thirteenth to the sixteenth centuries in the PREALP database, hosted at
+the MSH-Alpes.
+
+
+Three areas have been selected: language - concepts - images. Particular
+attention will be given to reflections on the contribution of terminology
+to address the linguistic dimension, of ontology for the conceptual
+dimension, and of image recognition for the selection and classification of
+iconographic material.
+
+This conference is also an opportunity to establish an international
+network of researchers to meet the challenges of a rapidly changing field.
+
+
+Paper proposals (800 words maximum), in French, English or Italian, which
+will be the three working languages of the conference, should be sent to
+the organising committee:
+
+
+Dominique Rigaux (dominique.rigaux@msh-alpes.fr)
+
+Christophe Roche (christophe.roche@univ-savoie.fr)
+
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------
+
+--089e01493538d111b6052ffb4e53
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+=09
+=09
+=09
+=09
+
+
+<p style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"Arial, serif"=
+><font style=3D"font-size:10pt" size=3D"2">--------------------------------=
+---------------------------------------------------------------------------=
+-----------------------------</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">APPEL
+A COMMUNICATIONS (The call for papers in English comes after the
+French version)</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">--------------=
+---------------------------------------------------------------------------=
+-----------------------------------------------</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">HUMANITES
+NUMERIQUES ET ICONOGRAPHIE =E2=80=93 </font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">LE
+CAS DE LA PEINTURE MURALE ALPINE</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">28
+&amp; 29 novembre 2016</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Maison
+des Sciences de l=E2=80=99Homme =E2=80=93 Grenoble</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">site
+web=C2=A0: <a href=3D"http://hn2016.condillac.org">http://hn2016.condillac.=
+org</a></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><br></font></f=
+ont><font face=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">D=
+ate
+limite de soumission des r=C3=A9sum=C3=A9s : 2 juin 2016</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Notification
+aux auteurs : 21 juillet 2016</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><br>Le
+colloque international &quot;Humanit=C3=A9s num=C3=A9riques et Iconographie=
+.
+Le cas de la peinture murale alpine&quot; qui aura lieu =C3=A0 Grenoble
+du 28 au 29 novembre 2016, est organis=C3=A9 par l=E2=80=99Universit=C3=A9 =
+Grenoble
+Alpes  avec la Maison des Sciences de l=E2=80=99Homme-Alpes et l=E2=80=99Un=
+iversit=C3=A9
+de Savoie Mont-Blanc avec l=E2=80=99=C3=A9quipe Condillac =E2=80=93LISTIC.<=
+/font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Dans
+le cadre des r=C3=A9flexions conduites =C3=A0 la Maison des Sciences de
+l=E2=80=99Homme-Alpes sur les liens entre Humanit=C3=A9s num=C3=A9riques et
+Patrimoine ce colloque international, r=C3=A9solument tourn=C3=A9 vers la
+prospective, propose de s=E2=80=99interroger sur un aspect particulier :
+l=E2=80=99accessibilit=C3=A9 &quot;intelligente&quot; aux donn=C3=A9es. Com=
+ment
+ouvrir =C3=A0 un large public =E2=80=94 qui pourra non seulement les =C3=A9=
+changer
+mais aussi en diversifier les usages =E2=80=94, des donn=C3=A9es num=C3=A9r=
+is=C3=A9es
+et valid=C3=A9es scientifiquement dans le domaine des Sciences Humaines
+et Sociales ? On affrontera plus particuli=C3=A8rement deux questions
+centrales. D=E2=80=99une part, la n=C3=A9cessit=C3=A9 de respecter la diver=
+sit=C3=A9
+linguistique en jeu dans l=E2=80=99=C3=A9laboration et la description de ce=
+s
+donn=C3=A9es. D=E2=80=99autre part, la prise en compte de la multiplicit=C3=
+=A9 des
+approches qui ont pr=C3=A9sid=C3=A9es =C3=A0 la conception et la mise en fo=
+rme
+des donn=C3=A9es en question. </font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Pour
+r=C3=A9pondre =C3=A0 ces objectifs, nous souhaitons privil=C3=A9gier =E2=80=
+=94 sans
+exclure d=E2=80=99autres sources iconographiques =E2=80=94  les =C3=A9tudes=
+ de cas
+sur les peintures murales des r=C3=A9gions alpines entre le XIIIe et le
+XVIe si=C3=A8cle qui font l=E2=80=99objet d=E2=80=99un recensement syst=C3=
+=A9matique dans
+la base de donn=C3=A9es PREALP h=C3=A9berg=C3=A9e =C3=A0 la Maison des Scie=
+nces de
+l=E2=80=99Homme-Alpes. </font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Trois
+axes ont =C3=A9t=C3=A9 retenus : Langues, Concepts, images. Une  attention
+particuli=C3=A8re sera accord=C3=A9e  aux r=C3=A9flexions portant sur les a=
+pports
+de la terminologie pour traiter de la dimension linguistique,  de
+l=E2=80=99ontologie pour la dimension conceptuelle, et de la reconnaissance
+d=E2=80=99images pour la s=C3=A9lection et le classement des documents
+iconographiques.</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Ce
+colloque sera aussi l=E2=80=99occasion de constituer un r=C3=A9seau=20
+international de chercheurs pour r=C3=A9pondre aux enjeux d=E2=80=99un doma=
+ine
+en pleine mutation.</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Les
+propositions de communication (800 mots maximum), en fran=C3=A7ais,
+anglais ou en italien qui sont les trois langues de communication  du
+colloque, sont =C3=A0 adresser au comit=C3=A9 d=E2=80=99organisation :</fon=
+t></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Dominique
+Rigaux (<a href=3D"mailto:dominique.rigaux@msh-alpes.fr">dominique.rigaux@m=
+sh-alpes.fr</a>) </font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">Christophe
+Roche  (<a href=3D"mailto:christophe.roche@univ-savoie.fr">christophe.roche=
+@univ-savoie.fr</a>)</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">--------------=
+---------------------------------------------------------------------------=
+----------------------------------------------</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">CALL
+FOR PAPERS</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">--------------=
+---------------------------------------------------------------------------=
+----------------------------------------------</font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">DIGITAL
+HUMANITIES AND ICONOGRAPHY -</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">THE
+CASE OF ALPINE MURAL PAINTING</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">28
+&amp; 29 November 2016 </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Maison
+des Sciences de l=E2=80=99Homme =E2=80=93 Grenoble =E2=80=93 France</span><=
+/font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">web
+site: <a href=3D"http://hn2016en.condillac.org">hn2016en.condillac.org</a><=
+/span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Deadline
+for submission of abstracts: 2 June 2016</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Notification
+to authors: 21 July 2016 </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">The
+international conference &quot;Digital Humanities and Iconography -
+The case of alpine mural painting&quot;, to be held in Grenoble
+(France) from 28 to 29 November 2016, is organised by the University
+of Grenoble-Alpes (Maison des Sciences de l=E2=80=99Homme) and the
+University of Savoie Mont Blanc (Condillac Research Group - LISTIC
+lab). </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">As
+part of the discussions conducted at the Maison des Sciences de
+l=E2=80=99Homme Sciences-Alpes on the links between Digital Humanities and
+Heritage, this international symposium, resolutely turned towards the
+future, aims to debate one particular aspect: how to &quot;intelligently&qu=
+ot;
+access the data. How can digitised and scientifically validated data
+in the field of Social Sciences and Humanities be made available to a
+wider audience, that will not only share but also diversify its uses?
+There will be two pivotal topics under discussion: on the one hand,
+the need to respect the linguistic diversity involved in the
+development and description of such data. On the other hand, the need
+to consider the multiplicity of approaches that have presided over
+the conceptual modelling of the data in question. </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">To
+meet these objectives, without excluding other iconographic sources,
+we draw the emphasis on case studies on the murals of the Alpine
+regions from the thirteenth to the sixteenth centuries in the PREALP
+database, hosted at the MSH-Alpes. </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Three
+areas have been selected: language - concepts - images. Particular
+attention will be given to reflections on the contribution of
+terminology to address the linguistic dimension, of ontology for the
+conceptual dimension, and of image recognition for the selection and
+classification of iconographic material. </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">This
+conference is also an opportunity to establish an international
+network of researchers to meet the challenges of a rapidly changing
+field. </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Paper
+proposals (800 words maximum), in French, English or Italian, which
+will be the three working languages of the conference, should be sent
+to the organising committee:</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB">
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Dominique
+Rigaux (<a href=3D"mailto:dominique.rigaux@msh-alpes.fr">dominique.rigaux@m=
+sh-alpes.fr</a>) </span></font></font>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2"><span lang=3D"=
+en-GB">Christophe
+Roche  (<a href=3D"mailto:christophe.roche@univ-savoie.fr">christophe.roche=
+@univ-savoie.fr</a>)</span></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify" lang=3D"e=
+n-GB"><a name=3D"_GoBack"></a>
+<br>
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Arial, serif"><font style=3D"font-size:10pt" size=3D"2">--------------=
+---------------------------------------------------------------------------=
+-----------------------------------------------</font></font></p>
+
+</div>
+
+--089e01493538d111b6052ffb4e53--

@@ -1,0 +1,348 @@
+Return-Path: <fatma.abdelhedi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8D56718E5CAB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 14 Jan 2016 15:31:28 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 7F38D700C4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 14 Jan 2016 15:31:28 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 724452A45A0
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Jan 2016 15:31:28 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.111
+X-Spam-Level:
+X-Spam-Status: No, score=0.111 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.0207 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id fDiCrM8pFBsY for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 14 Jan 2016 15:31:27 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-io0-x234.google.com (mail-io0-x234.google.com [IPv6:2607:f8b0:4001:c06::234])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 8F180276EA0
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Jan 2016 15:31:26 +0100 (CET)
+Received: by mail-io0-x234.google.com with SMTP id 77so423057756ioc.2
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 14 Jan 2016 06:31:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to:content-type;
+        bh=QjZfSYSRfE0ggfdEtfpR5r3v71TNbHLebRvg4+Grai4=;
+        b=t1KTCxy4lmtlDCdzPqNIl1wYFNAWbmOdjmmn88Bc5+T9aVW+do7gAiyUehXTwTgEHr
+         xIPBPeMFfrl6ibha3gLKtlZm3kL9KogXSOVcGblVXzdjuu0OkGXGYPNL6F0e3m+wWlxD
+         CWHG7P3WwWvFRQWErDYZ4N4IfgTzsqOu+YVPQCSn5oFmslqwJuJoEJ3vpfCiHWecuLT0
+         9wyC/W7VlE2oEXdTYfRDyXmvBYoP2zuEwyfH0OchcecDB20fUKZGY8FYPClRAVdZ4F5J
+         OfvwCAXo6+e9c79BljC+feOWGMPNpaGP+voZ0Q9AcvMgA/08ki0NXkxJE3uILeoDNlCo
+         sV4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-type;
+        bh=QjZfSYSRfE0ggfdEtfpR5r3v71TNbHLebRvg4+Grai4=;
+        b=jONKS2ZvnJZmF/rzNjFoS6eV5xOd6XZia8ilr4YqITNG4yyHIHdzDzhIZKzJo/lfmq
+         9exWaE1jU74AxHYPn5KtnmNYlfm221MdnwoI/T6hXg4qPKysO+en+ayRfGcvVNg0TW7R
+         Vl445acJpjCRgQctK0/OqR+ulxtX/MEch8P0jB6qm1nQ4Ag+mAiEwfUtg6ujegglsvD9
+         6EFqzzYJNyZ9o/xmP0usUC4crI7BQm/hRPTKY1CMxB8oPs6VvwN+KbuS9P2hbFq6SGRt
+         1ZgYfmeBoXU/67cW87DDCZZXoQDxZoSEU6G3/YxsFggNp5hcn+4zNuUmm3My6ec1XqVz
+         b6+A==
+X-Gm-Message-State: ALoCoQn0gO/JbUw05l8nj+zg4DVX6ZLP52iYNHuo7xqMDsTdgpmJh2LWbhUXEJA296INfs6ss0NXWRlb8lRzMetvdR2bBfz7Pg==
+X-Received: by 10.107.170.16 with SMTP id t16mr5013244ioe.95.1452781885213;
+ Thu, 14 Jan 2016 06:31:25 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.79.104.134 with HTTP; Thu, 14 Jan 2016 06:30:55 -0800 (PST)
+From: Fatma Abdelhedi <fatma.abdelhedi@gmail.com>
+Date: Thu, 14 Jan 2016 15:30:55 +0100
+Message-ID: <CALiS7nSDWBJ_Pm6_nudAKQiQ9ZyNxePTcrZTRjA0VmNssH92Qg@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a11427a603450d805294c2400
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Offre de stage TRIMANE -- BI & Big Data
+
+--001a11427a603450d805294c2400
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+------------------------D=C3=A9sol=C3=A9e en cas de r=C3=A9ceptions
+multiples---------------------------------------------
+
+
+Bonjour,
+
+Nous proposons une offre de stage dans un contexte de Business Intelligence
+et Big Data.
+
+Ci-dessous le description du sujet.
+
+Cordialement,
+
+*Fatma ABDELHEDI*
+
+Directrice du laboratoire de recherche CBI=C2=B2
+
+[image: Description : TRIMANE]
+
+57, Rue de Mareil
+78100 Saint Germain en Laye
+*T=C3=A9l *01 72 55 00 55
+*Fax *01 72 55 00 61
+*Mail* Fatma.Abdelhedi@trimane.fr <mail@trimane.fr>
+*http://www.trimane.fr/* <http://www.trimane.fr/>
+---------------------------------------------------------------------------=
+-----------------------------------------
+
+*Sujet* : Plugin Eclipse pour un entrep=C3=B4t Big Data.
+
+*Mots-cl=C3=A9s* : Big Data, syst=C3=A8mes d=C3=A9cisionnels, Mod=C3=A9lisa=
+tion, ETL.
+
+*Date de d=C3=A9but* : variable selon la formation.
+
+*Localisation* : soci=C3=A9t=C3=A9 TRIMANE =E2=80=93 Saint Germain-en-Laye
+
+*Candidature :* CV d=C3=A9taill=C3=A9 =C3=A0 transmettre par mail =C3=A0
+Fatma.Abdelhedi@trimane.fr
+
+*Date de candidature* : au plus t=C3=B4t.
+
+*Profil recherch=C3=A9 du candidat *:
+
+   - Stagiaire BAC+5 en informatique (pr=C3=A9parant un dipl=C3=B4me de mas=
+ter ou une
+   =C3=A9cole d=E2=80=99ing=C3=A9nieur)
+   - Motiv=C3=A9(e), autonome, curieux (se) dans la recherche appliqu=C3=A9=
+e
+   - Bases de donn=C3=A9es, Business Intelligence, programmation.
+   - Des connaissances dans les technologies Big Data, fouille de donn=C3=
+=A9es
+   et apprentissage automatique, seraient un plus.
+
+
+
+*Description du stage* :
+
+Ce stage est propos=C3=A9 par le laboratoire CBI=C2=B2 (centre de recherche=
+ en
+Business Intelligence et Big Data) de la soci=C3=A9t=C3=A9 TRIMANE.
+
+Il comporte 3 phases :
+
+-        R=C3=A9alisation d=E2=80=99une =C3=A9tude comparative des outils e=
+xistants ;
+d=C3=A9finition des crit=C3=A8res de comparaison (temps de r=C3=A9ponse, sc=
+alabilit=C3=A9, etc.)
+
+-        D=C3=A9veloppement d=E2=80=99un plugin Eclipse permettant la cr=C3=
+=A9ation d=E2=80=99un
+entrep=C3=B4t sur un cluster Hadoop =C3=A0 partir des donn=C3=A9es sources =
+ayant des
+structures diff=C3=A9rentes et une grosse volum=C3=A9trie.
+
+-        Int=C3=A9gration de ce plugin dans un projet R&D de TRIMANE intitu=
+l=C3=A9
+TOA.
+
+Au cours de ce projet, vous aurez l=E2=80=99occasion d=E2=80=99appr=C3=A9he=
+nder toutes les
+phases du cycle de vie d=E2=80=99un logiciel.
+
+--001a11427a603450d805294c2400
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr"><div><p cl=
+ass=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify;line-h=
+eight:normal"><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">------------------------D=C3=A9sol=C3=A9e en cas de r=C3=A9ceptions mult=
+iples---------------------------------------------<br></span></p><p class=
+=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify;line-heig=
+ht:normal"><br></p><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;t=
+ext-align:justify;line-height:normal"><span style=3D"font-family:&quot;CMR1=
+0&quot;,&quot;serif&quot;"></span></p><p class=3D"MsoNormal" style=3D"margi=
+n-bottom:0.0001pt;text-align:justify;line-height:normal"><span style=3D"fon=
+t-family:&quot;CMR10&quot;,&quot;serif&quot;">Bonjour,</span></p><p class=
+=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify;line-heig=
+ht:normal"><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;">=
+</span></p><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-alig=
+n:justify;line-height:normal"><span style=3D"font-family:&quot;CMR10&quot;,=
+&quot;serif&quot;">Nous proposons une offre de stage dans un contexte de Bu=
+siness Intelligence et Big Data.</span></p><p class=3D"MsoNormal" style=3D"=
+margin-bottom:0.0001pt;text-align:justify;line-height:normal"><span style=
+=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;">Ci-dessous le descript=
+ion du sujet.</span></p><p class=3D"MsoNormal" style=3D"margin-bottom:0.000=
+1pt;text-align:justify;line-height:normal"><span style=3D"font-family:&quot=
+;CMR10&quot;,&quot;serif&quot;">Cordialement,</span></p><p class=3D"MsoNorm=
+al" style=3D"margin-bottom:0.0001pt;text-align:justify;line-height:normal">=
+</p><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justi=
+fy;line-height:normal"><span style=3D"font-family:&quot;CMR10&quot;,&quot;s=
+erif&quot;"></span></p><span></span><font size=3D"1"><b><span style=3D"font=
+-family:Arial,sans-serif">Fatma ABDELHEDI</span></b><span style=3D"font-fam=
+ily:Arial,sans-serif"><br></span></font><table style=3D"color:rgb(34,34,34)=
+;font-size:small;font-style:normal;font-variant:normal;font-weight:normal;l=
+etter-spacing:normal;line-height:normal;text-align:start;text-indent:0px;te=
+xt-transform:none;white-space:normal;word-spacing:0px;font-family:&quot;Tim=
+es New Roman&quot;;background-color:rgb(255,255,255)" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0"><tbody><tr><td colspan=3D"2" style=3D"font-fami=
+ly:arial,sans-serif;margin:0px;padding:0cm"><p style=3D"margin:0cm 0cm 0.00=
+01pt;font-family:&quot;Times New Roman&quot;,serif"><span style=3D"font-fam=
+ily:Arial,sans-serif"><font size=3D"1">Directrice du laboratoire de recherc=
+he CBI=C2=B2</font></span></p></td></tr><tr style=3D"height:97.5pt"><td sty=
+le=3D"font-family:arial,sans-serif;margin:0px;padding:0cm;height:97.5pt"><p=
+ style=3D"margin:0cm 0cm 0.0001pt;font-family:&quot;Times New Roman&quot;,s=
+erif"><font size=3D"1"><span style=3D"font-family:Arial,sans-serif"><img sr=
+c=3D"http://www.trimane.fr/images/Images_TRIMANE/trimane_signature.png" alt=
+=3D"Description=C2=A0: TRIMANE" height=3D"84" width=3D"96"></span><span sty=
+le=3D"font-family:Arial,sans-serif"></span></font></p></td><td style=3D"fon=
+t-family:arial,sans-serif;margin:0px;padding:0cm;height:97.5pt" valign=3D"t=
+op"><p style=3D"margin-right:0cm;margin-left:0cm;font-family:&quot;Times Ne=
+w Roman&quot;,serif"><font size=3D"1"><span><span style=3D"font-family:Aria=
+l,sans-serif">57, Rue de=C2=A0<span>Mareil</span></span></span><span style=
+=3D"font-family:Arial,sans-serif"><br><span>78100 Saint Germain en Laye</sp=
+an><br><b><span style=3D"color:rgb(229,47,42)">T=C3=A9l=C2=A0</span></b><sp=
+an style=3D"color:rgb(41,38,42)"><a href=3D"tel:01%2072%2055%2000%2055" val=
+ue=3D"+33172550055" target=3D"_blank">01 72 55 00 55</a><br></span><b><span=
+ style=3D"color:rgb(242,147,12)">Fax=C2=A0</span></b><span style=3D"color:r=
+gb(41,38,42)"><a href=3D"tel:01%2072%2055%2000%2061" value=3D"+33172550061"=
+ target=3D"_blank">01 72 55 00 61</a><br></span><b><span style=3D"color:rgb=
+(150,190,25)">Mail</span></b><span style=3D"color:rgb(41,38,42)">=C2=A0<a h=
+ref=3D"mailto:mail@trimane.fr" style=3D"color:purple" target=3D"_blank"><sp=
+an style=3D"color:rgb(41,38,42);text-decoration:none">Fatma.Abdelhedi@trima=
+ne.fr</span></a><br><a href=3D"http://www.trimane.fr/" style=3D"color:purpl=
+e" target=3D"_blank"><b><span style=3D"color:rgb(41,38,42);text-decoration:=
+none">http://www.trimane.fr/</span></b></a></span></span></font></p></td></=
+tr></tbody></table>--------------------------------------------------------=
+------------------------------------------------------------<br><p class=3D=
+"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><span style=3D=
+"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot;">Sujet</s=
+pan></b></font><span style=3D"font-size:12pt;line-height:115%;font-family:&=
+quot;CMR10&quot;,&quot;serif&quot;">=C2=A0</span><span style=3D"font-family=
+:&quot;CMR10&quot;,&quot;serif&quot;">: Plugin Eclipse pour un entrep=C3=B4=
+t Big Data.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">Mots-cl=C3=A9s</span></b></font><span style=3D"font-family:&quot;CMR10&q=
+uot;,&quot;serif&quot;">=C2=A0: Big Data, syst=C3=A8mes d=C3=A9cisionnels, =
+Mod=C3=A9lisation, ETL.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">Date de d=C3=A9but</span></b></font><span style=3D"font-family:&quot;CMR=
+10&quot;,&quot;serif&quot;"><font size=3D"2">=C2=A0</font>:<font size=3D"2"=
+> variable selon la formation.<span>=C2=A0 </span></font></span></p><font s=
+ize=3D"2">
+
+</font><p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"=
+><b><span style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;ser=
+if&quot;">Localisation</span></b></font><span style=3D"font-family:&quot;CM=
+R10&quot;,&quot;serif&quot;"><font size=3D"2">=C2=A0:</font> soci=C3=A9t=C3=
+=A9 TRIMANE =E2=80=93 Saint
+Germain-en-Laye</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an><span style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;seri=
+f&quot;">Candidature=C2=A0:</span></span></b></font><b><span style=3D"font-=
+size:12pt;line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot;"=
+> </span></b><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;=
+">CV d=C3=A9taill=C3=A9 =C3=A0 transmettre par mail =C3=A0 </span><a href=
+=3D"mailto:Fatma.Abdelhedi@trimane.fr" target=3D"_blank"><span style=3D"fon=
+t-family:&quot;CMR10&quot;,&quot;serif&quot;">Fatma.Abdelhedi@trimane.fr</s=
+pan></a><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;"></s=
+pan></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">Date de candidature</span></b></font><span style=3D"font-family:&quot;CM=
+R10&quot;,&quot;serif&quot;"><font size=3D"2">=C2=A0: </font>au plus t=C3=
+=B4t.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">Profil recherch=C3=A9 du candidat=C2=A0</span></b><span style=3D"font-fa=
+mily:&quot;CMR10&quot;,&quot;serif&quot;">:</span></font><b><span style=3D"=
+font-size:12pt;line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&q=
+uot;"></span></b></p>
+
+<ul><li><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;"><sp=
+an><span style=3D"font:7pt &quot;Times New Roman&quot;"></span></span></spa=
+n><span style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;">Stagiaire
+BAC+5 en informatique (pr=C3=A9parant un dipl=C3=B4me de master ou une =C3=
+=A9cole d=E2=80=99ing=C3=A9nieur) <br></span></li><li><span style=3D"font-f=
+amily:&quot;CMR10&quot;,&quot;serif&quot;"><span><span style=3D"font:7pt &q=
+uot;Times New Roman&quot;"></span></span></span><span style=3D"font-family:=
+&quot;CMR10&quot;,&quot;serif&quot;">Motiv=C3=A9(e),
+autonome, curieux (se) dans la recherche appliqu=C3=A9e</span></li><li><spa=
+n style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;"><span><span sty=
+le=3D"font:7pt &quot;Times New Roman&quot;"></span></span></span><span styl=
+e=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;">Bases
+de donn=C3=A9es, Business Intelligence, programmation.</span></li><li><span=
+ style=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;"><span><span styl=
+e=3D"font:7pt &quot;Times New Roman&quot;"></span></span></span><span style=
+=3D"font-family:&quot;CMR10&quot;,&quot;serif&quot;">Des connaissances
+dans les technologies Big Data, fouille de donn=C3=A9es et apprentissage au=
+tomatique,
+seraient un plus.</span></li></ul>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:&quot;CMR10&quot;,&quot;serif&quot;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><font size=3D"2"><b><sp=
+an style=3D"line-height:115%;font-family:&quot;CMR10&quot;,&quot;serif&quot=
+;">Description du stage</span></b><span style=3D"font-family:&quot;CMR10&qu=
+ot;,&quot;serif&quot;">=C2=A0:</span></font></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:&quot;CMR10&quot;,&quot;serif&quot;">Ce
+stage est propos=C3=A9 par le laboratoire CBI=C2=B2 (centre de recherche en=
+ Business
+Intelligence et Big Data) de la soci=C3=A9t=C3=A9 TRIMANE.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:&quot;CMR10&quot;,&quot;serif&quot;">Il
+comporte 3 phases=C2=A0: </span></p>
+
+<p style=3D"text-align:justify"><span style=3D"font-family:&quot;CMR10&quot=
+;,&quot;serif&quot;"><span>-<span style=3D"font:7pt &quot;Times New Roman&q=
+uot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span style=3D"font-family:&quot;CMR10&quot;,&quot;ser=
+if&quot;">R=C3=A9alisation
+d=E2=80=99une =C3=A9tude comparative des outils existants=C2=A0; d=C3=A9fin=
+ition des crit=C3=A8res de
+comparaison (temps de r=C3=A9ponse, scalabilit=C3=A9, etc.)</span></p>
+
+<p style=3D"text-align:justify"><span style=3D"font-family:&quot;CMR10&quot=
+;,&quot;serif&quot;"><span>-<span style=3D"font:7pt &quot;Times New Roman&q=
+uot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span style=3D"font-family:&quot;CMR10&quot;,&quot;ser=
+if&quot;">D=C3=A9veloppement
+d=E2=80=99un plugin Eclipse permettant la cr=C3=A9ation d=E2=80=99un entrep=
+=C3=B4t sur un cluster Hadoop
+=C3=A0 partir des donn=C3=A9es sources ayant des structures diff=C3=A9rente=
+s et une grosse
+volum=C3=A9trie.</span></p>
+
+<p style=3D"text-align:justify"><span style=3D"font-family:&quot;CMR10&quot=
+;,&quot;serif&quot;"><span>-<span style=3D"font:7pt &quot;Times New Roman&q=
+uot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><span style=3D"font-family:&quot;CMR10&quot;,&quot;ser=
+if&quot;">Int=C3=A9gration
+de ce plugin dans un projet R&amp;D de TRIMANE intitul=C3=A9 TOA.</span></p=
+>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-fam=
+ily:&quot;CMR10&quot;,&quot;serif&quot;">Au
+cours de ce projet, vous aurez l=E2=80=99occasion d=E2=80=99appr=C3=A9hende=
+r toutes les phases du
+cycle de vie d=E2=80=99un logiciel.</span></p>
+</div></div>
+</div><br></div>
+
+--001a11427a603450d805294c2400--

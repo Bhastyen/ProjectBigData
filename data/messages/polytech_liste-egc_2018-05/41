@@ -1,0 +1,422 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 1C7002292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 18 May 2018 11:18:10 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 1ABF56624A8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 18 May 2018 11:18:10 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 159B048571B3
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 18 May 2018 11:18:10 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.429
+X-Spam-Level:
+X-Spam-Status: No, score=-4.429 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 8.6795 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id XMcOtdKFJsFx for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 18 May 2018 11:18:09 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 2EB0A4821B20
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 18 May 2018 11:18:09 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id 0FEF73FB44
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 18 May 2018 11:18:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:mime-version:received:received:received; s=default;
+	 t=1526635088; x=1528449489; bh=4b/zgmvnuBR+jJ4iNFy8ssmvvR+HEnNY
+	jkrB9i4DcLI=; b=W3m7mti+uoLbyHAI1fBl7FNMS+yMl/UmU7QbL0lj2bgB25/R
+	DIcHsZzfSj2OUQPnVyUfyFdoEgZibgDfL7gg9Jq8+ajJC30LIfwOM6YyCFfQU9h0
+	Le0b83hzrtTHcoWUAoUW+uMRCtOPze6i48vn89GHfjNrSYoBbX0tgI0selU=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id gmkgkiHuSJs5 for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 18 May 2018 11:18:08 +0200 (CEST)
+Received: from mail-lf0-f42.google.com (mail-lf0-f42.google.com [209.85.215.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 8A2C73FB5E
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 18 May 2018 11:18:08 +0200 (CEST)
+Received: by mail-lf0-f42.google.com with SMTP id z142-v6so12907920lff.5
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 18 May 2018 02:18:08 -0700 (PDT)
+X-Gm-Message-State: ALKqPwdIYm29/GED57T5XBPNOHIvIr1PiPmLSUFf0czoEdUpMfp/s7sy
+	LDjITq4RtPrpo9cBPXriyQ9XpSmopkadlklUQNs=
+X-Google-Smtp-Source: AB8JxZrbXbTpbWmtrvc9qOV1gMrJpVey+l1gQF+vzSX0ZVCL5tqLpYVJiYhdC3qvSQCkXyi+rSMBYHKV5VVP8qNBDtc=
+X-Received: by 2002:a19:290b:: with SMTP id p11-v6mr19775844lfp.108.1526635087881;
+ Fri, 18 May 2018 02:18:07 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Fri, 18 May 2018 11:17:56 +0200
+X-Gmail-Original-Message-ID: <CALsPASVtJOqhZvo+2jLzf_xgQkhfQEeXu66CTFa_a+0XY1yGxg@mail.gmail.com>
+Message-ID: <CALsPASVtJOqhZvo+2jLzf_xgQkhfQEeXu66CTFa_a+0XY1yGxg@mail.gmail.com>
+To: "iot2018wt@easychair.org" <iot2018wt@easychair.org>
+Content-Type: multipart/alternative; boundary="0000000000001d6dfb056c776e86"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] IOT Conference 2018 Santa Barbara: Last Call for
+ Workshops and Tutorials
+
+--0000000000001d6dfb056c776e86
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+- Apologies for cross-posting -
+
+# Last call for Workshops and Tutorials
+
+Conference website: http://iot-conference.org/iot2018
+Deadline: *EXTENDED* May 31th, 2018.
+Submission form: https://easychair.org/conferences/?conf=3Diot2018wt
+
+## Call for Workshops
+(scroll down for the call for Tutorials)
+
+Workshops collocated with the 8th International Conference on the Internet
+of Things (IoT 2018) are opportunities to strengthen communities of
+researchers and practitioners working in specific topics related to the
+IoT. These events foster the exchange of new ideas, ongoing work, and
+latests results, in established or emerging sub-domains of interest. They
+are opportunities for IoT pioneers and practitioners in industry to share
+hands-on experience with IoT systems (use cases, deployments,
+architectures, etc.), and for researchers to present andreceive feedback on
+early research result.
+
+We invite submission of half-day workshop proposals, with a clearly defined
+scope that falls in the general topics of the conference. We also encourage
+the submission of workshops that follow alternative formats such as
+hackathons, plugfests, demo jams, or breakout sessions.
+
+
+### Review Criteria for Workshop proposals
+
+A limited number of workshop proposals will be accepted to IoT 2018. Each
+proposal will be evaluated based on the quality of the proposal, and its
+appeal to the IoT community. In particular, the proposals should
+demonstrate the following:
+
+- the workshops topics fall in the general scope of IoT2018
+- there is a clear identity and a focus on a specific problem or technology
+- there is an existing community of researchers and practitioners that are
+susceptible to contribute to this event
+- the organization and format are appealing for potential contributors and
+participants
+
+In case overlapping workshops are proposed, the Workshop Chairs may contact
+the organisers to discuss the possibility of merging workshops. The
+organisers of accepted workshops will be responsible for their own
+reviewing process and publicity (e.g., website, timelines and call for
+papers).
+
+
+### How to submit a Workshop proposal
+
+Submissions should be submitted no later than May 31th 2018 via EasyChair (
+https://easychair.org/conferences/?conf=3Diot2018wt ) as a 200 words
+abstract, along with a single PDF file of 4 pages maximum, containing the
+following section:
+
+- Title, acronym, potentially logo
+- Topics of interest covered by the workshop
+- Motivation: Why is the topic of particular interest to a reasonable
+fraction of the  IoT community? If applicable, a brief discussion of the
+workshop=E2=80=99s history (experiences, number of submissions and attendee=
+s,
+etc.).
+- Organization and Format: Description of the intended organization,
+selection process for the contributors, and schedule of the event.
+- Community: Evidence that there is an existing community of researchers
+and practitioners that are susceptible to contribute to this event.
+References to work relating to the core topic of the workshop that are not
+only co-authored by the organizers.
+- Chairs: Name, affiliation, email address, homepage and short biography of
+each chair, explaining the chair=E2=80=99s expertise for the workshop
+- Program Committee: Names and affiliations of potential PC members, half
+of the potential PC members should have confirmed at the time of submission=
+.
+
+All workshop participants will be required to register for the full
+conference as well. Workshop organizers will receive one complimentary
+conference ticket for one organizer or one workshop participant. At the
+discretion of the chairs, workshops may be cancelled if organisers have not
+registered in a timely manner or if a workshop has received too few
+submissions.
+
+
+## Call for Tutorials
+
+Tutorials collocated with the *8th International Conference on the Internet
+of Things (IoT 2018)* are opportunities for IoT researchers and
+practitioners to learn about models or technologies, providing practical
+solutions for specific problems related to the IoT.
+
+We invite submission of half-day tutorial proposals, with a clearly defined
+topic that falls in the general scope of the conference.
+
+
+### Review Criteria for Tutorial proposals
+
+A limited number of tutorial proposals will be accepted to IoT 2018. Each
+proposal will be evaluated based on the quality of the proposal, and its
+appeal to the IoT community. In particular, the proposals should
+demonstrate the following:
+
+- the tutorial topics fall in the general scope of IoT2018
+- there is a clear focus on a specific problem or technology
+- there is a sufficiently large community interested in the topic
+
+We expect tutorials to have practical parts in terms of examples or
+preferably hands-on sessions. The organisers of accepted workshops will be
+responsible for their own publicity (e.g., website, call for
+participation).
+
+### How to submit a Tutorial proposal
+
+Submissions should be submitted no later than May 31th 2018 via EasyChair (
+https://easychair.org/conferences/?conf=3Diot2018wt ) as a 200 words
+abstract, along with a single PDF file of 4 pages maximum, containing the
+following section:
+
+- Title, acronym, potentially logo
+- Model or technology covered by the tutorial
+- Motivation: Why is it of particular interest for the IoT community to
+learn about this model or technology? A brief discussion of the
+model/technology development history (previous tutorials, conferences where
+it has been presented or demonstrated, community behind its development,
+etc.).
+- Detailed Description: content and schedule, description of learning
+outcomes, presentation style, tutorial format, prior knowledge required by
+the attendees.
+- Tutorial Material: if applicable, description of the hardware and
+software used for the tutorial. Will the software be openly accessible to
+the participants? With what licence? If applicable, will the slides be
+shared with the audience, with what licence?
+- Audience: Evidence that there is an existing community of researchers and
+practitioners that are susceptible to participate to this event.
+- Presenters: Name, affiliation, email address, homepage and short
+biography of each presenter, explaining their expertise in the tutorial
+topic as well as their experiences in teaching and in tutorial presentation
+- Requirements: Audio-visual or technical requirements and any special room
+requirements.
+
+All tutorial participants will be required to register for the full
+conference as well. Tutorial organizers will receive one complimentary
+conference ticket for one organizer or one tutorial participant. At the
+discretion of the chairs, tutorials may be cancelled if organisers have not
+registered in a timely manner.
+
+
+# Workshop/ Tutorial Chairs
+- Grant McKenzie (University of Maryland, USA)
+- Maxime Lefran=C3=A7ois (=C3=89cole des Mines de Saint-=C3=89tienne, FR)
+
+--0000000000001d6dfb056c776e86
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style=3D"color:rgb(33,33,33);font-size:13px"><font co=
+lor=3D"#212121">- Apologies for cross-posting -</font></div><div style=3D"c=
+olor:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div=
+><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">=
+# Last call for Workshops and Tutorials=C2=A0</font></div><div style=3D"col=
+or:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><=
+div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">Co=
+nference website:=C2=A0<a href=3D"http://iot-conference.org/iot2018" target=
+=3D"_blank">http://iot-conference.org/iot2018</a></font></div><div style=3D=
+"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">Deadline: *EXT=
+ENDED* May 31th, 2018.</font></div><div style=3D"color:rgb(33,33,33);font-s=
+ize:13px"><font color=3D"#212121">Submission form:=C2=A0<a href=3D"https://=
+easychair.org/conferences/?conf=3Diot2018wt" target=3D"_blank">https://easy=
+chair.org/conferences/?conf=3Diot2018wt</a>=C2=A0</font></div><div style=3D=
+"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></d=
+iv><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121=
+">## Call for Workshops=C2=A0</font></div><div style=3D"color:rgb(33,33,33)=
+;font-size:13px"><font color=3D"#212121">(scroll down for the call for Tuto=
+rials)</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font =
+color=3D"#212121"><br></font></div><div style=3D"color:rgb(33,33,33);font-s=
+ize:13px"><font color=3D"#212121">Workshops collocated with the 8th Interna=
+tional Conference on the Internet of Things (IoT 2018) are opportunities to=
+ strengthen communities of researchers and practitioners working in specifi=
+c topics related to the IoT. These events foster the exchange of new ideas,=
+ ongoing work, and latests results, in established or emerging sub-domains =
+of interest. They are opportunities for IoT pioneers and practitioners in i=
+ndustry to share hands-on experience with IoT systems (use cases, deploymen=
+ts, architectures, etc.), and for researchers to present andreceive feedbac=
+k on early research result.=C2=A0</font></div><div style=3D"color:rgb(33,33=
+,33);font-size:13px"><font color=3D"#212121"><br></font></div><div style=3D=
+"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">We invite subm=
+ission of half-day workshop proposals, with a clearly defined scope that fa=
+lls in the general topics of the conference. We also encourage the submissi=
+on of workshops that follow alternative formats such as hackathons, plugfes=
+ts, demo jams, or breakout sessions.</font></div><div style=3D"color:rgb(33=
+,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font>=
+</div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212=
+121">### Review Criteria for Workshop proposals</font></div><div style=3D"c=
+olor:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div=
+><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">=
+A limited number of workshop proposals will be accepted to IoT 2018. Each p=
+roposal will be evaluated based on the quality of the proposal, and its app=
+eal to the IoT community. In particular, the proposals should demonstrate t=
+he following:</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"=
+><font color=3D"#212121"><br></font></div><div style=3D"color:rgb(33,33,33)=
+;font-size:13px"><font color=3D"#212121">- the workshops topics fall in the=
+ general scope of IoT2018</font></div><div style=3D"color:rgb(33,33,33);fon=
+t-size:13px"><font color=3D"#212121">- there is a clear identity and a focu=
+s on a specific problem or technology</font></div><div style=3D"color:rgb(3=
+3,33,33);font-size:13px"><font color=3D"#212121">- there is an existing com=
+munity of researchers and practitioners that are susceptible to contribute =
+to this event=C2=A0</font></div><div style=3D"color:rgb(33,33,33);font-size=
+:13px"><font color=3D"#212121">- the organization and format are appealing =
+for potential contributors and participants</font></div><div style=3D"color=
+:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><di=
+v style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">In c=
+ase overlapping workshops are proposed, the Workshop Chairs may contact the=
+ organisers to discuss the possibility of merging workshops. The organisers=
+ of accepted workshops will be responsible for their own reviewing process =
+and publicity (e.g., website, timelines and call for papers).</font></div><=
+div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><b=
+r></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font colo=
+r=3D"#212121"><br></font></div><div style=3D"color:rgb(33,33,33);font-size:=
+13px"><font color=3D"#212121">### How to submit a Workshop proposal</font><=
+/div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#2121=
+21"><br></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><fon=
+t color=3D"#212121">Submissions should be submitted no later than May 31th =
+2018 via EasyChair (=C2=A0<a href=3D"https://easychair.org/conferences/?con=
+f=3Diot2018wt" target=3D"_blank">https://easychair.org/conferences/?conf=3D=
+iot2018wt</a>=C2=A0) as a 200 words abstract, along with a single PDF file =
+of 4 pages maximum, containing the following section:</font></div><div styl=
+e=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font=
+></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#21=
+2121">- Title, acronym, potentially logo</font></div><div style=3D"color:rg=
+b(33,33,33);font-size:13px"><font color=3D"#212121">- Topics of interest co=
+vered by the workshop</font></div><div style=3D"color:rgb(33,33,33);font-si=
+ze:13px"><font color=3D"#212121">- Motivation: Why is the topic of particul=
+ar interest to a reasonable fraction of the=C2=A0 IoT community? If applica=
+ble, a brief discussion of the workshop=E2=80=99s history (experiences, num=
+ber of submissions and attendees, etc.).=C2=A0</font></div><div style=3D"co=
+lor:rgb(33,33,33);font-size:13px"><font color=3D"#212121">- Organization an=
+d Format: Description of the intended organization, selection process for t=
+he contributors, and schedule of the event.</font></div><div style=3D"color=
+:rgb(33,33,33);font-size:13px"><font color=3D"#212121">- Community: Evidenc=
+e that there is an existing community of researchers and practitioners that=
+ are susceptible to contribute to this event. References to work relating t=
+o the core topic of the workshop that are not only co-authored by the organ=
+izers.</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font =
+color=3D"#212121">- Chairs: Name, affiliation, email address, homepage and =
+short biography of each chair, explaining the chair=E2=80=99s expertise for=
+ the workshop</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"=
+><font color=3D"#212121">- Program Committee: Names and affiliations of pot=
+ential PC members, half of the potential PC members should have confirmed a=
+t the time of submission.</font></div><div style=3D"color:rgb(33,33,33);fon=
+t-size:13px"><font color=3D"#212121"><br></font></div><div style=3D"color:r=
+gb(33,33,33);font-size:13px"><font color=3D"#212121">All workshop participa=
+nts will be required to register for the full conference as well. Workshop =
+organizers will receive one complimentary conference ticket for one organiz=
+er or one workshop participant. At the discretion of the chairs, workshops =
+may be cancelled if organisers have not registered in a timely manner or if=
+ a workshop has received too few submissions.</font></div><div style=3D"col=
+or:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><=
+div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><b=
+r></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font colo=
+r=3D"#212121">## Call for Tutorials</font></div><div style=3D"color:rgb(33,=
+33,33);font-size:13px"><font color=3D"#212121"><br></font></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">Tutorials c=
+ollocated with the *8th International Conference on the Internet of Things =
+(IoT 2018)* are opportunities for IoT researchers and practitioners to lear=
+n about models or technologies, providing practical solutions for specific =
+problems related to the IoT.=C2=A0</font></div><div style=3D"color:rgb(33,3=
+3,33);font-size:13px"><font color=3D"#212121"><br></font></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">We invite s=
+ubmission of half-day tutorial proposals, with a clearly defined topic that=
+ falls in the general scope of the conference.=C2=A0</font></div><div style=
+=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font>=
+</div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212=
+121"><br></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><fo=
+nt color=3D"#212121">### Review Criteria for Tutorial proposals</font></div=
+><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">=
+<br></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font co=
+lor=3D"#212121">A limited number of tutorial proposals will be accepted to =
+IoT 2018. Each proposal will be evaluated based on the quality of the propo=
+sal, and its appeal to the IoT community. In particular, the proposals shou=
+ld demonstrate the following:</font></div><div style=3D"color:rgb(33,33,33)=
+;font-size:13px"><font color=3D"#212121"><br></font></div><div style=3D"col=
+or:rgb(33,33,33);font-size:13px"><font color=3D"#212121">- the tutorial top=
+ics fall in the general scope of IoT2018</font></div><div style=3D"color:rg=
+b(33,33,33);font-size:13px"><font color=3D"#212121">- there is a clear focu=
+s on a specific problem or technology</font></div><div style=3D"color:rgb(3=
+3,33,33);font-size:13px"><font color=3D"#212121">- there is a sufficiently =
+large community interested in the topic</font></div><div style=3D"color:rgb=
+(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><div st=
+yle=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">We expec=
+t tutorials to have practical parts in terms of examples or preferably hand=
+s-on sessions. The organisers of accepted workshops will be responsible for=
+ their own publicity (e.g., website, call for participation).=C2=A0</font><=
+/div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#2121=
+21"><br></font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><fon=
+t color=3D"#212121">### How to submit a Tutorial proposal</font></div><div =
+style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></=
+font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D=
+"#212121">Submissions should be submitted no later than May 31th 2018 via E=
+asyChair (=C2=A0<a href=3D"https://easychair.org/conferences/?conf=3Diot201=
+8wt" target=3D"_blank">https://easychair.org/conferences/?conf=3Diot2018wt<=
+/a>=C2=A0) as a 200 words abstract, along with a single PDF file of 4 pages=
+ maximum, containing the following section:</font></div><div style=3D"color=
+:rgb(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><di=
+v style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">- Ti=
+tle, acronym, potentially logo</font></div><div style=3D"color:rgb(33,33,33=
+);font-size:13px"><font color=3D"#212121">- Model or technology covered by =
+the tutorial</font></div><div style=3D"color:rgb(33,33,33);font-size:13px">=
+<font color=3D"#212121">- Motivation: Why is it of particular interest for =
+the IoT community to learn about this model or technology? A brief discussi=
+on of the model/technology development history (previous tutorials, confere=
+nces where it has been presented or demonstrated, community behind its deve=
+lopment, etc.).</font></div><div style=3D"color:rgb(33,33,33);font-size:13p=
+x"><font color=3D"#212121">- Detailed Description: content and schedule, de=
+scription of learning outcomes, presentation style, tutorial format, prior =
+knowledge required by the attendees.</font></div><div style=3D"color:rgb(33=
+,33,33);font-size:13px"><font color=3D"#212121">- Tutorial Material: if app=
+licable, description of the hardware and software used for the tutorial. Wi=
+ll the software be openly accessible to the participants? With what licence=
+? If applicable, will the slides be shared with the audience, with what lic=
+ence?=C2=A0</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><=
+font color=3D"#212121">- Audience: Evidence that there is an existing commu=
+nity of researchers and practitioners that are susceptible to participate t=
+o this event.</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"=
+><font color=3D"#212121">- Presenters: Name, affiliation, email address, ho=
+mepage and short biography of each presenter, explaining their expertise in=
+ the tutorial topic as well as their experiences in teaching and in tutoria=
+l presentation</font></div><div style=3D"color:rgb(33,33,33);font-size:13px=
+"><font color=3D"#212121">- Requirements: Audio-visual or technical require=
+ments and any special room requirements.</font></div><div style=3D"color:rg=
+b(33,33,33);font-size:13px"><font color=3D"#212121"><br></font></div><div s=
+tyle=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121">All tut=
+orial participants will be required to register for the full conference as =
+well. Tutorial organizers will receive one complimentary conference ticket =
+for one organizer or one tutorial participant. At the discretion of the cha=
+irs, tutorials may be cancelled if organisers have not registered in a time=
+ly manner.</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><f=
+ont color=3D"#212121"><br></font></div><div style=3D"color:rgb(33,33,33);fo=
+nt-size:13px"><font color=3D"#212121"><br></font></div><div style=3D"color:=
+rgb(33,33,33);font-size:13px"><font color=3D"#212121"># Workshop/ Tutorial =
+Chairs</font></div><div style=3D"color:rgb(33,33,33);font-size:13px"><font =
+color=3D"#212121">- Grant McKenzie (University of Maryland, USA)</font></di=
+v><div style=3D"color:rgb(33,33,33);font-size:13px"><font color=3D"#212121"=
+>- Maxime Lefran=C3=A7ois (=C3=89cole des Mines de Saint-=C3=89tienne, FR)<=
+/font></div></div>
+
+--0000000000001d6dfb056c776e86--

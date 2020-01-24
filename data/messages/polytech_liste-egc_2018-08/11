@@ -1,0 +1,278 @@
+Return-Path: <francois.petitjean@monash.edu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id DDC032292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 15 Aug 2018 03:58:20 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id D43906089F9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 15 Aug 2018 03:58:26 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 32243B4B135
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 15 Aug 2018 03:58:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.225
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.225 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SINGLE_HEADER_3K=3.015, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.3311 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=monash.edu
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id J8tuK6AKuu0I for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 15 Aug 2018 03:58:23 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id C701DB190AF
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 15 Aug 2018 03:58:22 +0200 (CEST)
+Received: by mail-pf1-x430.google.com with SMTP id j26-v6so10062399pfi.10
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 14 Aug 2018 18:58:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monash.edu; s=google;
+        h=from:subject:to:openpgp:autocrypt:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=aHPPeS55n5FF+pVZaVhDhv2lIqJ1hOKF54ycTbbzjb4=;
+        b=q5LcLCN3VSALZz4kDqVrhMp2PviqQmS1OS3M9r1IatY6d7rdEsAInZzHqaqWb3X78V
+         hoW76d2r0xhN1vs4+hnQdbpSRxA/dgbc2kvJp9Qx45rSRFIfh9PxzHM4BWkojXPl7yZX
+         mQC/U2NaF7h//vB2po+bQiTSBfqjnU5ClmogrOKCN3wC17HL7qnr+AhcfVMlzUrTQ+TY
+         SOHHru9x5LBG5dI4YwZ/FhlNy3V+xwNNMD4a4YkcYClsdG3WNg9NpO058NflQf97kisN
+         R750sWk7/Z5tfXF6pGvcAgXd2LjRF0bdnZvMy2kddOVEj8KgGoVAqvA8onHZCFxRKWtw
+         9DTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:to:openpgp:autocrypt:message-id
+         :date:user-agent:mime-version:content-language
+         :content-transfer-encoding;
+        bh=aHPPeS55n5FF+pVZaVhDhv2lIqJ1hOKF54ycTbbzjb4=;
+        b=j9IbZHgYmPvxs4bhxymH2p4qXp12UEHIfJ7yaxvwL33u7e/rEO6sLUDs/Ee7qzTY9B
+         kyssfqwGJ5X8B3f+hppjWiSTdkpFslBTB8UpYPVb5ZVl9oMWdy/SBZ15iQIBlNUECsdz
+         +0p8CpOoJUHpGLAIa4x1li0XQvFTu8xZ9Dv6kaJxFOVT2rSRUmt2GgFicC2VP0gy7B4B
+         JLNkaOo78AwJPHZYNBeWcqujB1wvbJTuk4f+4UQIhQByGAbBNf1Wmz7UYhGxpsQM9j0K
+         VLWHVX9KPbFWdBXPiGrZgL+HKCVGr/4oLi7WPKhhfFVqCq3O3ho+mrvlp8X9PVgddlTd
+         cFKQ==
+X-Gm-Message-State: AOUpUlFongMmhIWh8qx6b6qeWjAxivjmH4C/Ija5d/dHGBTYDlJqLEd9
+	ReUoOzr+LXuOhVetuJDOldHzGuAhrnzgxVYqzd/qfBNrLaC4mIOBoES0vduYHYgeCPIBuELIJ5N
+	D//wfySAax2gaTp7gOI3NWlMz+v3wYpoqU6upBtnm2z3P3mNXW4u2fXLY3KJ4+ZDz+CzrFhZmtW
+	jXeyTLRfDYjTQDRSZe0A==
+X-Google-Smtp-Source: AA+uWPyVpareoiN0PrR6T9oH9zVdbjGj2udZgb3nn+1HUE5B9btLpWwQwPKLhP1dpeEJ4nkZ+vBjnQ==
+X-Received: by 2002:a62:c0a:: with SMTP id u10-v6mr25676865pfi.43.1534298303498;
+        Tue, 14 Aug 2018 18:58:23 -0700 (PDT)
+Received: from ?IPv6:2001:388:608c:4c52:c9ab:a9cb:9645:f5c9? ([2001:388:608c:4c52:c9ab:a9cb:9645:f5c9])
+        by smtp.gmail.com with ESMTPSA id t19-v6sm52452404pfk.182.2018.08.14.18.58.21
+        for <liste-egc@polytech.univ-nantes.fr>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 14 Aug 2018 18:58:22 -0700 (PDT)
+From: Francois Petitjean <francois.petitjean@monash.edu>
+To: liste-egc@polytech.univ-nantes.fr
+Openpgp: preference=signencrypt
+Autocrypt: addr=francois.petitjean@monash.edu; prefer-encrypt=mutual; keydata=
+ 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
+ xHxFONOKYCbEzU0=
+Message-ID: <28077676-2bde-0f6e-7437-9598ab33f885@monash.edu>
+Date: Wed, 15 Aug 2018 11:58:20 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.9.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call for Workshops - 2019 SIAM International Conference
+ on Data Mining (SDM'19)
+
+Apologies for cross-postings
+
+===
+
+SDM'19: THE NINETEENTH SIAM INTERNATIONAL CONFERENCE ON DATA MINING
+
+May 2 - May 4, 2019
+Calgary, Canada
+https://www.siam.org/conferences/CM/Main/sdm19
+
+
+------------ CALL FOR WORKSHOPS ------------
+
+
+The SDM19 organizing committee invites proposals for workshops to be
+held in conjunction with the conference. The purpose of a workshop is to
+provide participants with the opportunity to present and discuss novel
+research ideas on active and emerging topics of knowledge discovery and
+data mining. Ideally a workshop should foster interactions between
+different communities within the scope of SDM (e.g. statisticians,
+computer scientists, industry, academia etc.). A workshop can be in the
+form of either a traditional workshop (call for paper mode) or
+minisymposium (invited talk mode). It should encourage the presentation
+of novel ideas, even if they are in an early stage of development,
+contact between different points of view, and active exchanges between
+participants. Therefore publishing notes is optional for the SDM workshops.
+
+The responsibilities of the traditional workshop organizers include:
+
+ - preparing the call for papers and publicizing it
+ - maintaining the workshop website
+ - deciding the workshop program content;
+ - inviting speakers, inviting reviewers, selecting the papers through a
+peer review process
+ - delivering the notes to the press in time (if the workshop organizers
+decide to publish notes), and
+ - delivering the final workshop program to the workshop chair in time.
+
+
+The responsibilities of the minisymposium organizers:
+
+
+ - maintaining the workshop website
+ - deciding the workshop program content;
+ - inviting speakers
+ - delivering the notes to the press in time (if the workshop organizers
+decide to publish notes), and
+ - delivering the final workshop program to the workshop chair in time.
+
+Proposal Format:
+A workshop proposal should include the following information:
+
+ - Workshop title
+ - Full contact information of the organizers
+ - A description of the workshop including objectives, content, topics
+of interest.
+ - A description of the format (e.g invited talks, round table, accepted
+presentations, etc) should be included.
+Please indicate your preference regarding the length of the workshop:
+half-day or full-day.  If you are only interested in hosting a full day
+workshop then please indicate so.
+ - A short description of the target audience.
+ - List of potential participants: For workshops this could include
+potential program committee members, potential authors and invited speakers.
+ - A summary of previous editions of the workshop (if it was run
+before), with an emphasis on number of attendees and paper submissions.
+ - A short biography of each organizer (Please include your experience
+on organizing workshops and conferences).
+
+
+A minisymposium proposal should include the following information (more
+information on minisymposium can be found on:
+https://www.siam.org/Conferences/About-SIAM-Conferences/Conference-Guidelines/Detail/guidelines-for-preparing-a-minisymposium-proposal):
+
+ - Workshop title
+ - Full contact information of the organizers
+ - A description of the workshop including objectives, content, topics
+of interest.
+ - A description of your minisymposium in no more than 1,500 characters,
+including spaces. The summary should be written to attract those who
+specifically work on your topic as well as those who work in related areas.
+ - A short description of the target audience.
+ - Proposed speakers. Provide the full name, affiliation, and email
+address of each speaker and the title of his/her presentation.
+Presentation titles and abstracts should be added to the Conference
+Management System by the presentation abstract deadline.
+ - A short biography of each organizer (Please include your experience
+on organizing workshops and conferences).
+
+Proposals will be judged by a sub-committee of the SDM19 organizing
+committee based on the above information.
+
+Particular preference will be given to proposals that demonstrate the
+ability to foster interactions among multiple communities, as noted
+above. We prefer workshops in which there is participation of diverse
+people who may not have worked with one another in the past, or which
+bridge between traditional SDM topics and communities and other fields.
+We also welcome proposals focusing on application issues or economical
+and social aspects of data mining. External sources of funding or
+sponsorship for special events held along with the workshop (e.g.
+invited talks, poster session) can be optionally included in the
+proposal submission.
+
+For any question regarding the workshops for SDM19, please contact the
+workshop co-chairs:
+Fosca Giannotti(fosca.giannotti@isti.cnr.it)
+Yizhou Sun (yzsun@cs.ucla.edu)
+
+Submission Instructions:
+
+Workshop proposals should be prepared as a web page and its URL is sent
+via e-mail to the SDM19 Workshop Co-Chairs: You will receive an
+acknowledgment of receipt within 24 hours. Please contact us if you do
+not receive a receipt within 24 hours.
+
+Please send the URL to Fosca Giannotti(fosca.giannotti@isti.cnr.it) and
+Yizhou Sun (yzsun@cs.ucla.edu) by October 5, 2018 11:59 PM (US Pacific
+Time), with the subject line: SDM 2019 Workshop Proposal Submission.
+
+
+Important Dates:
+
+Submission of Workshop Proposals:          October 5, 2018 11:59 PM (PDT)
+Notifications:                      November 5, 2018 11:59 PM (PDT)
+Workshop Websites Linked to SDM19:        November 19, 2018 11:59 PM (PDT)
+Final Workshop Notes to SDM with Program: January 23, 2019 11:59 PM (PDT)
+
+
+
+
+
+
+________________________________________
+
+Dr François PETITJEAN
+
+ARC DECRA Fellow
+Machine Learning Academic
+
+Monash University, Melbourne, Australia
+
+W: http://www.francois-petitjean.com
+T: @LeDataMiner
+
+Read about my most recent articles:
+- Best paper at SDM'18: Scalable learning of the warping window for DTW
+- http://bit.ly/SDM18BestPaperDTW
+- Machine Leaning 2018: BN parameter learning using HDPs -
+https://arxiv.org/pdf/1708.07581.pdf
+

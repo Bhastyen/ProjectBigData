@@ -1,0 +1,330 @@
+Return-Path: <talel.abdessalem@telecom-paristech.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 10E38229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Apr 2018 10:49:57 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 0F11E628823
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Apr 2018 10:49:57 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 0A145B4A244
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 10:49:57 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 4.302
+X-Spam-Level: ****
+X-Spam-Status: No, score=4.302 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, IMPRONONCABLE_2=1.5,
+	LONGWORD=0.3, MEGALONGWORD=0.6, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01, SARE_FROM_SPAM_WORD3=0.1,
+	SARE_UNI=0.591, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.4920 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=telecom-paristech.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id MYEwykcc_HPs for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Apr 2018 10:49:55 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy110.enst.fr (zproxy110.enst.fr [137.194.2.192])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id DB645A245FD
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 10:49:55 +0200 (CEST)
+Received: from localhost (localhost [IPv6:::1])
+	by zproxy110.enst.fr (Postfix) with ESMTP id DB6DF811AB
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 10:49:54 +0200 (CEST)
+Received: from zproxy110.enst.fr ([IPv6:::1])
+	by localhost (zproxy110.enst.fr [IPv6:::1]) (amavisd-new, port 10032)
+	with ESMTP id 9Kqrf_Hahdcq for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Apr 2018 10:49:54 +0200 (CEST)
+Received: from localhost (localhost [IPv6:::1])
+	by zproxy110.enst.fr (Postfix) with ESMTP id 41E70817BF
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 10:49:54 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 zproxy110.enst.fr 41E70817BF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=telecom-paristech.fr; s=A6AEC2EE-1106-11E5-B10E-D103FDDA8F2E;
+	t=1522831794; bh=R2YdoY76jZjH19Xm8HbKSQowHGlHtm3UyZUYgDaSdwg=;
+	h=MIME-Version:From:Date:Message-ID:To;
+	b=PIhJIr0AZQ3xVFPiCFNp0peeuJfD1TAdQuB17D7PhHNw0/2pQnByrgAM3l/xWuKVm
+	 95zcjlYgrUl3lPKvzGiOBNG9mut7ovVO4JkntrzaQO+TvTjH0KBKksXWQP9cD89toB
+	 lVMeQFPOo0/34NAHyCt7eu+AhMdVZjZrVqaSX3EE=
+X-Virus-Scanned: amavisd-new at zproxy110.enst.fr
+Received: from zproxy110.enst.fr ([IPv6:::1])
+	by localhost (zproxy110.enst.fr [IPv6:::1]) (amavisd-new, port 10026)
+	with ESMTP id h2YOZyPqECDN for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Apr 2018 10:49:54 +0200 (CEST)
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com [209.85.223.181])
+	by zproxy110.enst.fr (Postfix) with ESMTPSA id C84168179E
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 10:49:53 +0200 (CEST)
+Received: by mail-io0-f181.google.com with SMTP id b20so25394814iof.5
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 04 Apr 2018 01:49:53 -0700 (PDT)
+X-Gm-Message-State: ALQs6tD6GcR+qUnLercGcwNgV2wAf8vxZV/rDgeDNWiBFst9k93xPsWi
+	3EXqWInTeR0nhXPEcRBJdJQyL5b/J1Nh3vGQRpA=
+X-Google-Smtp-Source: AIpwx4/d9HvN1XHV3epJ4U3Y/iIFMbkc8ly49La02zhq8ZHlo8KDQnp7EkUOQA/7EYfT6WnlWQV877BS3qzMw39sG6o=
+X-Received: by 10.107.146.136 with SMTP id u130mr14498750iod.96.1522831792401;
+ Wed, 04 Apr 2018 01:49:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.39.82 with HTTP; Wed, 4 Apr 2018 01:49:51 -0700 (PDT)
+From: Talel Abdessalem <talel.abdessalem@telecom-paristech.fr>
+Date: Wed, 4 Apr 2018 10:49:51 +0200
+X-Gmail-Original-Message-ID: <CAJ473cmjr+jQGQUv_Bu-R27nyq5K3Yn0htETtEQrN_Gu4AcG4g@mail.gmail.com>
+Message-ID: <CAJ473cmjr+jQGQUv_Bu-R27nyq5K3Yn0htETtEQrN_Gu4AcG4g@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="94eb2c05579209f299056901e8ce"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call-for- Submission: IEEE/ACM ASONAM 2018 Research
+ Track
+
+--94eb2c05579209f299056901e8ce
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*The 2018 IEEE/ACM International Conference on Advances in Social Networks
+Analysis and Mining (ASONAM 2018) Barcelona, Spain, 28-31 August, 2018*
+
+*ASONAM 2018*
+
+
+*Barcelona, Spain 28-31 August, 2018*
+
+*http://asonam.cpsc.ucalgary.ca
+<http://email.asonamdata.com/c/eJwljs0KwyAQhJ8m3ir-NVkPHtLQvEZYV9MUTBPUHvr2=
+tZSZw8DANxOc9r2ggT2dEhKEaQI5CMslBzPeR2tmC2a6TaA6I7AcL9wDVuR07GxzYNYQQKirBeF=
+F0L3XgayXxmLUCJLtzvRagRpYclutZ6fHTs3NfxSnsxB_E6YH5g8nbA3LrmKKiaMPsZQW9zZdY4=
+pt83JifpYaaeNrZtX9Mcvv_ELrueT6BZHUQKw>*
+
+
+
+*Call-for-Submission: IEEE/ACM ASONAM 2018 Research Track. *
+
+The 2018 IEEE/ACM International Conference on Advances in Social Networks
+Analysis and Mining (ASONAM 2018)
+
+Barcelona, Spain, 28 -- 31 August 2018
+
+https://asonam.cpsc.ucalgary.ca
+
+*Submission deadline : 15 April 2018*
+
+
+
+Lets socialize in Barcelona to enjoy a rich cultural heritage and a
+cosmopolitan cultural centre and a major tourist destination!!!
+
+
+
+Two types of submissions are welcome, full papers (8 pages IEEE 2-columns
+format) and short papers papers (4 pages IEEE 2-columns format).
+
+
+
+All accepted papers will be published in the proceedings which will be
+included in the digital libraries of both sponsors: ACM and IEEE Computer
+Society. These are also indexed through various indexes including Thomson
+ISI Web of Science.
+
+
+
+- Research Track (main track): For more information visit:
+http://asonam.cpsc.ucalgary.ca/2018/CFP.php
+
+
+
+Following the trend from previous years, extended versions of accepted
+papers from ASONAM 2018 will be invited for publication in one of the
+following prestigious venues by Springer:
+
+
+
+- Social Networks Analysis and Mining Journal: http://link.springer.com/
+journal/13278
+
+
+
+- Network Modeling Analysis in Health Informatics and Bioinformatics
+Journal: http://link.springer.com/journal/volumesAndIssues/13721
+
+
+
+- Edited book in the Lecture Notes in Social Networks Series:
+http://www.springer.com/series/8768
+
+
+
+We look forward to seeing you at ASONAM 2018 in Barcelona, Spain!
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D
+
+unsubscribe
+<http://email.asonamdata.com/u/eJwNjDEOwyAMAF8TtiJwrWIGBhq1_zDgKJFCEwH_V9Et=
+t9yV8Ewvk506AhhLBidknfHaasL4iR6_nnB9rwQLGu7Xj2vhwTpfVe0hYQLrKaEnEDJMwOiynxO=
+2KW-gWhh8yqk5Fel9ap2bIafM_nFzO_qQvOutqREWiH8WQyqA>
+
+--94eb2c05579209f299056901e8ce
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small"><br=
+></div><div class=3D"gmail_quote"><u></u>
+
+
+
+
+
+
+
+
+
+
+<div style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-ser=
+if;box-sizing:border-box;font-size:14px;width:100%!important;height:100%;li=
+ne-height:1.6em;background-color:#f6f6f6;margin:0" bgcolor=3D"#f6f6f6">
+
+<table class=3D"m_3750612873220901880body-wrap" style=3D"font-family:&#39;H=
+elvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-si=
+ze:14px;width:100%;background-color:#f6f6f6;margin:0" bgcolor=3D"#f6f6f6"><=
+tbody><tr style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,san=
+s-serif;box-sizing:border-box;font-size:14px;margin:0"><td style=3D"font-fa=
+mily:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:border-=
+box;font-size:14px;vertical-align:top;margin:0" valign=3D"top"></td>
+		<td class=3D"m_3750612873220901880container" width=3D"600" style=3D"font-=
+family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:borde=
+r-box;font-size:14px;vertical-align:top;display:block!important;max-width:6=
+00px!important;clear:both!important;margin:0 auto" valign=3D"top">
+			<div class=3D"m_3750612873220901880content" style=3D"font-family:&#39;He=
+lvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-siz=
+e:14px;max-width:600px;display:block;margin:0 auto;padding:20px">
+				<table class=3D"m_3750612873220901880main" width=3D"100%" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"font-family:&#39;Helvetica Neue&#39;,Helv=
+etica,Arial,sans-serif;box-sizing:border-box;font-size:14px;border-radius:3=
+px;background-color:#fff;margin:0;border:1px solid #e9e9e9" bgcolor=3D"#fff=
+"><tbody><tr style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,=
+sans-serif;box-sizing:border-box;font-size:14px;margin:0"><td class=3D"m_37=
+50612873220901880alert m_3750612873220901880alert-warning" style=3D"font-fa=
+mily:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:border-=
+box;font-size:16px;vertical-align:top;color:#fff;font-weight:500;text-align=
+:center;border-radius:3px 3px 0 0;background-color:#ff9f00;margin:0;padding=
+:0px" align=3D"center" bgcolor=3D"#FF9F00" valign=3D"top">
+
+						</td>
+					</tr><tr style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial=
+,sans-serif;box-sizing:border-box;font-size:14px;margin:0"><td class=3D"m_3=
+750612873220901880content-wrap" style=3D"font-family:&#39;Helvetica Neue&#3=
+9;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-size:14px;vertical=
+-align:top;margin:0;padding:20px" valign=3D"top">
+							<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"f=
+ont-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:b=
+order-box;font-size:14px;margin:0"><tbody><tr style=3D"font-family:&#39;Hel=
+vetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-size=
+:14px;margin:0"><td class=3D"m_3750612873220901880content-block" style=3D"f=
+ont-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-serif;box-sizing:b=
+order-box;font-size:14px;vertical-align:top;margin:0;padding:0 0 20px" vali=
+gn=3D"top">
+										<strong style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,A=
+rial,sans-serif;box-sizing:border-box;font-size:14px;margin:0"></strong>
+									</td>
+								</tr><tr style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Ar=
+ial,sans-serif;box-sizing:border-box;font-size:14px;margin:0"><td class=3D"=
+m_3750612873220901880content-block" style=3D"font-family:&#39;Helvetica Neu=
+e&#39;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-size:14px;vert=
+ical-align:top;margin:0;padding:0 0 20px" valign=3D"top">
+										<p style=3D"line-height:normal;background:white"><strong><span st=
+yle=3D"font-size:17.0pt;font-family:&#39;Helvetica&#39;,sans-serif;color:#3=
+76092">The 2018 IEEE/ACM International Conference on Advances in Social Net=
+works Analysis and Mining (ASONAM 2018) Barcelona, Spain, 28-31 August, 201=
+8</span></strong></p>
+<p style=3D"margin-bottom:.0001pt;line-height:normal;background:white;borde=
+r:none;padding:0cm"><strong><span style=3D"font-size:24.0pt;font-family:&#3=
+9;Georgia&#39;,serif;color:#ff6600">ASONAM 2018</span></strong></p>
+<p style=3D"margin-bottom:.0001pt;line-height:normal;background:white;borde=
+r:none;padding:0cm"><strong><span style=3D"font-size:24.0pt;font-family:&#3=
+9;Georgia&#39;,serif;color:blue">Barcelona, Spain <br> 28-31 August, 2018</=
+span></strong></p>
+<p style=3D"margin-bottom:.0001pt;line-height:normal;background:white;borde=
+r:none;padding:0cm"><strong><span style=3D"font-size:24.0pt;font-family:&#3=
+9;Georgia&#39;,serif;color:black"><a href=3D"http://email.asonamdata.com/c/=
+eJwljs0KwyAQhJ8m3ir-NVkPHtLQvEZYV9MUTBPUHvr2tZSZw8DANxOc9r2ggT2dEhKEaQI5CMs=
+lBzPeR2tmC2a6TaA6I7AcL9wDVuR07GxzYNYQQKirBeFF0L3XgayXxmLUCJLtzvRagRpYclutZ6=
+fHTs3NfxSnsxB_E6YH5g8nbA3LrmKKiaMPsZQW9zZdY4pt83JifpYaaeNrZtX9Mcvv_ELrueT6B=
+ZHUQKw" target=3D"_blank"><span style=3D"color:#1155cc">http://asonam.cpsc.=
+ucalgary.ca</span></a></span></strong></p>
+<p style=3D"margin-bottom:.0001pt;line-height:normal;background:white"><str=
+ong><span style=3D"font-size:7.5pt;font-family:&#39;Helvetica&#39;,sans-ser=
+if;color:#626262">=C2=A0=C2=A0</span></strong></p>
+<p style=3D"margin-bottom:.0001pt;line-height:normal;background:white;borde=
+r:none;padding:0cm"><strong><span style=3D"font-size:36.0pt;font-family:&#3=
+9;Georgia&#39;,serif;color:#376092">Call-for-Submission: IEEE/ACM ASONAM 20=
+18 Research Track.=C2=A0</span></strong></p>
+<p>The 2018 IEEE/ACM International Conference on Advances in Social Network=
+s Analysis and Mining (ASONAM 2018)</p>
+<p>Barcelona, Spain, 28 -- 31 August 2018</p>
+<p><a href=3D"https://asonam.cpsc.ucalgary.ca" target=3D"_blank">https://as=
+onam.cpsc.ucalgary.<wbr>ca</a></p>
+<p><strong>Submission deadline : 15 April 2018</strong></p>
+<p>=C2=A0</p>
+<p>Lets socialize in Barcelona to enjoy a rich cultural heritage and a cosm=
+opolitan cultural centre and a major tourist destination!!!</p>
+<p>=C2=A0</p>
+<p>Two types of submissions are welcome, full papers (8 pages IEEE 2-column=
+s format) and short papers papers (4 pages IEEE 2-columns format).</p>
+<p>=C2=A0</p>
+<p>All accepted papers will be published in the proceedings which will be i=
+ncluded in the digital libraries of both sponsors: ACM and IEEE Computer So=
+ciety. These are also indexed through various indexes including Thomson ISI=
+ Web of Science.</p>
+<p>=C2=A0</p>
+<p>- Research Track (main track): For more information visit: <a href=3D"ht=
+tp://asonam.cpsc.ucalgary.ca/2018/CFP.php" target=3D"_blank">http://asonam.=
+cpsc.ucalgary.<wbr>ca/2018/CFP.php</a></p>
+<p>=C2=A0</p>
+<p>Following the trend from previous years, extended versions of accepted p=
+apers from ASONAM 2018 will be invited for publication in one of the follow=
+ing prestigious venues by Springer:</p>
+<p>=C2=A0</p>
+<p>- Social Networks Analysis and Mining Journal: <a href=3D"http://link.sp=
+ringer.com/journal/13278" target=3D"_blank">http://link.springer.com/<wbr>j=
+ournal/13278</a></p>
+<p>=C2=A0</p>
+<p>- Network Modeling Analysis in Health Informatics and Bioinformatics Jou=
+rnal: <a href=3D"http://link.springer.com/journal/volumesAndIssues/13721" t=
+arget=3D"_blank">http://link.springer.com/<wbr>journal/volumesAndIssues/137=
+21</a></p>
+<p>=C2=A0</p>
+<p>- Edited book in the Lecture Notes in Social Networks Series: <a href=3D=
+"http://www.springer.com/series/8768" target=3D"_blank">http://www.springer=
+.com/<wbr>series/8768</a></p>
+<p>=C2=A0</p>
+<p>We look forward to seeing you at ASONAM 2018 in Barcelona, Spain!</p>
+<p>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D</p>
+									</td>
+								</tr><tr style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Ar=
+ial,sans-serif;box-sizing:border-box;font-size:14px;margin:0"><td class=3D"=
+m_3750612873220901880content-block" style=3D"font-family:&#39;Helvetica Neu=
+e&#39;,Helvetica,Arial,sans-serif;box-sizing:border-box;font-size:14px;vert=
+ical-align:top;margin:0;padding:0 0 20px" valign=3D"top">
+									</td>
+								</tr></tbody></table></td>
+					</tr></tbody></table></div>
+		</td>
+		<td style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Arial,sans-se=
+rif;box-sizing:border-box;font-size:14px;vertical-align:top;margin:0" valig=
+n=3D"top"></td>
+	</tr></tbody></table><br>
+<p><a href=3D"http://email.asonamdata.com/u/eJwNjDEOwyAMAF8TtiJwrWIGBhq1_zD=
+gKJFCEwH_V9Ett9yV8Ewvk506AhhLBidknfHaasL4iR6_nnB9rwQLGu7Xj2vhwTpfVe0hYQLrKa=
+EnEDJMwOiynxO2KW-gWhh8yqk5Fel9ap2bIafM_nFzO_qQvOutqREWiH8WQyqA" target=3D"_=
+blank">unsubscribe</a></p><img width=3D"1px" height=3D"1px" alt=3D"" src=3D=
+"http://email.asonamdata.com/o/eJwljkEOgyAQRU9TdiUDjIILFta01zAjDLGJVAPcP6Vp=
+3uav3n_Rm22EYMXba1AOsOOUhUkq6XB-zhO-JofLY3H6hkD1_FCO1EiGM4vdJxOJBq0iRNysRss=
+GFLNNPPAIKojscTTaaSuKb3TwIWmLXGufuQsbH9xN94vKuzYOu0xFNP__WX9Ja0jXWtoXk7ozMA=
+"></div>
+
+</div><br><br>
+</div>
+
+--94eb2c05579209f299056901e8ce--

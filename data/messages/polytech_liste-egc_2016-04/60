@@ -1,0 +1,563 @@
+Return-Path: <ladjel.bellatreche@ensma.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 550C41903AA0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 29 Apr 2016 22:54:45 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 5196665E3BF
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 29 Apr 2016 22:54:45 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 40927B4B130
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 29 Apr 2016 22:54:45 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -2.692
+X-Spam-Level:
+X-Spam-Status: No, score=-2.692 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01,
+	HTML_FONT_SIZE_LARGE=0.001, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.147, SARE_HTML_MANY_BR05=0.5,
+	SPF_HELO_PASS=-0.001, SPF_PASS=-0.001, SUBJ_ALL_CAPS=1.625,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 10.6809 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=ensma.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5oz-segIhkMc for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 29 Apr 2016 22:54:44 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.ensma.fr (smtp.ensma.fr [193.55.167.4])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 0F7BC6E4
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 29 Apr 2016 22:54:44 +0200 (CEST)
+Received: from localhost (arthur.ensma.fr [193.55.167.16])
+	by smtp.ensma.fr (Postfix) with ESMTP id CAF79205B3;
+	Fri, 29 Apr 2016 22:54:43 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at ensma.fr
+Received: from smtp.ensma.fr ([193.55.167.4])
+	by localhost (arthur.ensma.fr [193.55.167.16]) (amavisd-new, port 10024)
+	with ESMTP id 2F9a_kGMC_Fo; Fri, 29 Apr 2016 22:51:13 +0200 (CEST)
+Received: from MacBook-Pro-de-Ladjel.local (vob86-1-78-207-192-18.fbx.proxad.net [78.207.192.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.ensma.fr (Postfix) with ESMTPSA id 476E620590;
+	Fri, 29 Apr 2016 22:54:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ensma.fr; s=mail;
+	t=1461963281; bh=ZoA4w2mWYpafoZrae1/K6RDIYEF+YuiLAv3OLyZidro=;
+	h=To:Cc:From:Subject:Date;
+	b=HvDI6HHw3bxK+knBrbypBPMSDooSzw9Lcvj6/Chm+aieesNBQLCMwHPq+boL9nRVE
+	 moFBCn3b2wbMIZAVShXZolsGKi3PczrFNrmDRTkqz7XUdA8ayLql0rbTEa5nx+vKPF
+	 pD+asXoJPIq40xGQFxvSMit0h0XnoLRu36KBoA88=
+To: bull-i3@irit.fr, liste-egc@polytech.univ-nantes.fr
+Cc: =?UTF-8?Q?Jes=c3=bas_Manuel_Almendros_Jim=c3=a9nez?= <jalmen@ual.es>,
+ Oscar Pastor <opastor@pros.upv.es>, Yamine AIT AMEUR <yamine@enseeiht.fr>
+From: Ladjel Bellatreche <ladjel.bellatreche@ensma.fr>
+Message-ID: <7c0b931d-fb33-f601-fe5b-46314720a7b1@ensma.fr>
+Date: Fri, 29 Apr 2016 22:54:41 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:45.0)
+ Gecko/20100101 Thunderbird/45.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------B28F3914A5A9BD67AD00F956"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] MEDI'2016: ABSTRACT DEADLINE IS APPROACHING
+
+This is a multi-part message in MIME format.
+--------------B28F3914A5A9BD67AD00F956
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Dear colleagues,
+
+Sorry for multiple postings.
+
+
+
+
+*6th International Conference on Model & Data Engineering**
+**(MEDI'2016)**
+**Aguadulce, Almeria, SPAIN
+
+**21-23 September 2016
+
+http://indalog.ual.es/MEDI2016/HOME.html
+
+
+
+*
+_*Special Issues:*_
+
+ 1. *Computer Standards & Interfaces, Elsevier (5-Year Impact Factor:
+    1.314)*
+ 2. *Computer Languages, Systems and Structures, Elsevier (5-Year Impact
+    Factor: 0.416)*
+
+_*Keynote Speakers:*_
+
+ 1. *Professor Ulrich Frank, Germany*
+ 2. *Professor Schahram Dustdar, Austria*
+
+
+*_Important Dates_*
+**
+
+  * *Abstract Submission: May 2, 2016**
+    *
+  * *Full paper submission deadline: May 11th 2016*
+  * *Notification to authors: June 19th 2016*
+  * *Camera ready submissions: July 6th 2016*
+
+_*Gala Party:
+
+*_
+*Gala party will take place 22 September in Fort-Bravo/Texas-Hollywood 
+which is thebiggest film studios of Western style in Europe. They are 
+located in the desert of **Tabernas, Almería : 
+http://indalog.ual.es/MEDI2016/SOCIAL_EVENTS.html*
+
+
+
+
+
+The 6th International Conference on Model & Data Engineering (MEDI) will 
+be held from 21 to 23 September 2016 in Almer√≠a, Spain. Previous MEDI 
+events took place at Obidos/Portugal (2011), Poitiers/France (2012), 
+Calabria/Italy (2013), Larnaca/Cyrpus (2014) and Rhodes Island/ Greece 
+(2015). The main objective of the conference is to provide a forum for 
+the dissemination of research accomplishments and to promote the 
+interaction and collaboration between the models and data research 
+communities. This international scientific event, initiated by 
+researchers from Euro-Mediterranean countries, aims also at promoting 
+the creation of north-south scientific networks, projects and 
+faculty/student exchanges.
+
+*_Topics_
+
+**Modelling and Models Engineering*
+
+  * Design of general-purpose modelling languages and related stand-ards
+  * Model driven engineering, modelling languages, meta-modelling, model
+    transformation, model evolution
+  * Formal modelling, verification and validation, analysis, testing
+  * Ontology based modelling, role of ontologies in modelling activities
+  * Model manipulation and models as first objects
+  * Heterogeneous modelling, model integration, interoperability
+  * Modeling in software engineering; applications of models
+  * Modeling in the contexts of emerging applications and paradigms:
+    cloud computing, data analytics, big data, social network,services, etc.
+  * Modeling &  Standards
+
+*Data Engineering*
+
+  * Heterogeneous data, data Integration and Interoperability
+  * Distributed, parallel, grid, p2p, cloud databases
+  * Data warehouses and OLAP, data mining
+  * Database system Internals, performance, self-tuning benchmarking and
+    testing
+  * Database security, personalization, recommendation
+  * Web databases, ontology based databases
+  * Applications and case studies
+  * Modeling for Data Management
+  * New models and architectures for databases and data warehouses
+  * Modeling and quality of data
+  * Modeling for enhancing sharing data
+  * Models for explicit and implicit semantics based data optimization
+  * Model reification, model repositories
+  * Modeling nonfunctional properties of systems
+  * Data as models and models as data
+  * Service based data management, service oriented applications
+  * Models for data monitoring
+  * Urbanization of database applications
+  * Cost Models for New Paradigms
+  * Eco-design of Advanced Database Applications
+  * Data Lifecycle Management for Big Data (sources, cleansing,
+    federation, preservation, privacy, etc.)
+  * Machine Learning
+  * Knowledge Bases
+  * Hardware optimizations for Big Data (multi-core, GPU, networking, etc.)
+  * Data Flow management and scheduling
+  * Storage and analytic architectures
+  * Recommendation & Personalization
+  * Trust and credential management
+  * Trusted Computing in Cloud Computing
+
+*Applications and tooling*
+
+  * Industry transfer, experiences
+  * Data and model manipulation and tooling
+  * Modelling tools and experimentation
+
+
+
+_*General Co-Chairs:*_
+
+  * Jesús M. Almendros-Jiménez, University of Almería, Spain
+  * Yamine Ait Ameur, ENSEEIHT/IRIT, France
+
+_*Program Committee Co-Chairs:*_
+
+  * Oscar Pastor López, Universitat Politècnica de València, Spain
+  * Ladjel Bellatreche, ISAE-ENSMA, Poitiers, France
+
+*Organizing Committee:*
+
+  * Jesús M. Almendros-Jiménez, University of Almería, Spain
+  * Antonio Becerra-Terón, University of Almería, Spain
+  * Manuel Torres, University of Almería, Spain
+
+*Program Committee:
+TBA
+
+*_*Submission Procedure:*_
+
+Authors are invited to submit research and application papers 
+representing original, previously unpublished work. Papers should be 
+submitted in PDF format. Submissions must conform to Springer's Lecture 
+Notes in Computer Science (LNCS) format and should not exceed 12 pages. 
+Authors who want to buy extra pages may submit a paper up to 16 pages 
+with the indication that the authors will purchase extra pages if the 
+paper is accepted. Submissions which do not conform to the LNCS format 
+and/or which exceed 12 pages (or 16 pages with the extra page purchase 
+commitment) will be rejected without reviews. Submitted papers will be 
+carefully evaluated based on originality, significance, technical 
+soundness, and clarity of exposition. All accepted papers will be 
+published in Springer LNCS series. Duplicate submissions are not allowed.
+
+
+
+*Gala party will take place 22 September in Fort-Bravo/Texas-Hollywood*
+
+
+http://fortbravooficial.com/
+
+
+/Fort-Bravo/Texas-Hollywood are the biggest film studios of Western 
+style in Europe. They are located in the desert of Tabernas, Almería. 
+These decorations dating from the 60´s when Sergio Leone discovered 
+Tabernas (Almería) and started rolling his numerous successes in the 
+cinema, making Tabernas a reference to making movies, knows as 
+spaghetti-western movies. Currently in Fort Bravo is still rolling 
+films, commercials, music videos, shorts films... You can contemplate an 
+authentic wooden populated American Old West, see a typical Mexican 
+town, enter in a military fort and see an Indian village or walking in 
+the streets of the West town, watching the show of cowboys with 
+gunfights and poker games in the Saloon, bank robbery, cancan dancing in 
+traditional costumes of the time, ride on horse cart, rental horses for 
+guided walks and routes, photo studio for dressing like the people of 
+the Western era... Fort-Bravo/Texas-Hollywood has Saloon-Bar , 
+restaurant, souvenir shop to get souvenir gift and bungalows fully 
+equipped for use and enjoyment. And in summer Fort-Bravo/Texas-Hollywood 
+has a beautiful themed swimming pool for taking a bath with your family 
+and a private BBQ local or a very big Saloon of celebrations for all 
+kinds of events, celebrations, parties, communions, weddings and bachelor./
+
+
+
+
+
+
+-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: bellatreche@ensma.fr
+URL: http://www.lias-lab.fr/members/bellatreche
+
+
+--------------B28F3914A5A9BD67AD00F956
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>
+    </p>
+    <div class="moz-text-html" lang="x-unicode"> Dear colleagues,<br>
+      <div class="moz-forward-container">
+        <div class="moz-text-html" lang="x-unicode">
+          <div class="moz-text-html" lang="x-unicode">
+            <div class="moz-text-html" lang="x-unicode"> <br>
+              Sorry for multiple postings.<br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div align="center"><big><big><font color="#ff0000"><b>6th
+                        International Conference on Model &amp; Data
+                        Engineering</b><b><br>
+                      </b><b>(MEDI'2016)</b><b><br>
+                      </b><b>Aguadulce, Almeria, SPAIN<br>
+                        <br>
+                      </b></font><b><font color="#ff0000">21-23
+                        September 2016<br>
+                        <br>
+                        <a moz-do-not-send="true"
+                          class="moz-txt-link-freetext"
+                          href="http://indalog.ual.es/MEDI2016/HOME.html">http://indalog.ual.es/MEDI2016/HOME.html</a><br>
+                        <br>
+                        <br>
+                        <br>
+                      </font></b></big></big>
+                <div align="left"><u><big><big><b><font color="#ff0000"><font
+                              size="+3">Special Issues:</font></font></b></big></big></u><br>
+                  <ol>
+                    <li><font color="#3333ff"><big><big><b>Computer
+                              Standards &amp; Interfaces, Elsevier
+                              (5-Year Impact Factor: 1.314)</b></big></big></font></li>
+                    <li><font color="#6633ff"><big><big><b>Computer
+                              Languages, Systems and Structures,
+                              Elsevier (5-Year Impact Factor: 0.416)</b></big></big></font></li>
+                  </ol>
+                </div>
+                <div align="left"><font size="+3"><u><b><font
+                          color="#ff0000">Keynote Speakers:</font></b></u></font><br>
+                  <ol>
+                    <li><font color="#333333"><big><big><b>Professor
+                              Ulrich Frank, Germany</b></big></big></font></li>
+                    <li><font color="#333333"><big><big><b>Professor
+                              Schahram Dustdar, Austria</b></big></big></font></li>
+                  </ol>
+                </div>
+                <br>
+                <div align="left"><font size="+2"><b><font
+                        color="#ff0000"><font size="+3"><u>Important
+                            Dates</u></font></font></b></font><br>
+                  <font size="+2"><b><font color="#ff0000"> </font></b></font>
+                  <ul>
+                    <li><font color="#ff0000" size="+2"><b>Abstract
+                          Submission: May 2, 2016</b><b><br>
+                        </b></font> </li>
+                    <li><font color="#ff0000" size="+2"><b>Full paper
+                          submission deadline: May 11th 2016</b></font></li>
+                    <li><font color="#ff0000" size="+2"><b>Notification
+                          to authors: June 19th 2016</b></font></li>
+                    <li><font color="#ff0000" size="+2"><b>Camera ready
+                          submissions: July 6th 2016</b></font></li>
+                  </ul>
+                </div>
+                <div align="left"><u><font size="+3"><b><font
+                          color="#ff0000">Gala Party:<br>
+                          <br>
+                        </font></b></font></u></div>
+                <div align="left"><font size="+2"><b><span
+                        class="style_1">Gala party</span> will take
+                      place 22 September in <span class="style_1">Fort-Bravo/Texas-Hollywood
+                        which is </span>the<font color="#ff0000">
+                        biggest film studios of Western style in Europe.</font>
+                      They are located in the desert of </b><b><span
+                        class="style_1">Tabernas, Almería : <a
+                          class="moz-txt-link-freetext"
+                          href="http://indalog.ual.es/MEDI2016/SOCIAL_EVENTS.html"><a class="moz-txt-link-freetext" href="http://indalog.ual.es/MEDI2016/SOCIAL_EVENTS.html">http://indalog.ual.es/MEDI2016/SOCIAL_EVENTS.html</a></a></span></b></font><br>
+                  <div align="center"> <span class="style_1"></span></div>
+                  <span class="style_1"><br>
+                  </span> </div>
+              </div>
+              <br>
+              <br>
+              <div align="center"><br>
+              </div>
+              <br>
+              The 6th International Conference on Model &amp; Data
+              Engineering (MEDI) will be held from 21 to 23 September
+              2016 in Almer√≠a, Spain. Previous MEDI events took place
+              at Obidos/Portugal (2011), Poitiers/France (2012),
+              Calabria/Italy (2013), Larnaca/Cyrpus (2014) and Rhodes
+              Island/ Greece (2015). The main objective of the
+              conference is to provide a forum for the dissemination of
+              research accomplishments and to promote the interaction
+              and collaboration between the models and data research
+              communities. This international scientific event,
+              initiated by researchers from Euro-Mediterranean
+              countries, aims also at promoting the creation of
+              north-south scientific networks, projects and
+              faculty/student exchanges.<br>
+              <br>
+              <big><b><u>Topics</u><br>
+                  <br>
+                </b><b>Modelling and Models Engineering</b></big>
+              <ul>
+                <li>Design of general-purpose modelling languages and
+                  related stand-ards</li>
+                <li>Model driven engineering, modelling languages,
+                  meta-modelling, model transformation, model evolution</li>
+                <li>Formal modelling, verification and validation,
+                  analysis, testing</li>
+                <li>Ontology based modelling, role of ontologies in
+                  modelling activities</li>
+                <li>Model manipulation and models as first objects</li>
+                <li>Heterogeneous modelling, model integration,
+                  interoperability</li>
+                <li>Modeling in software engineering; applications of
+                  models</li>
+                <li>Modeling in the contexts of emerging applications
+                  and paradigms: cloud computing, data analytics, big
+                  data, social network,services, etc.</li>
+                <li>Modeling &amp;  Standards</li>
+              </ul>
+              <big><b>Data Engineering</b></big><br>
+              <ul>
+                <li>Heterogeneous data, data Integration and
+                  Interoperability</li>
+                <li>Distributed, parallel, grid, p2p, cloud databases</li>
+                <li>Data warehouses and OLAP, data mining</li>
+                <li>Database system Internals, performance, self-tuning
+                  benchmarking and testing</li>
+                <li>Database security, personalization, recommendation</li>
+                <li>Web databases, ontology based databases</li>
+                <li>Applications and case studies</li>
+                <li>Modeling for Data Management</li>
+                <li>New models and architectures for databases and data
+                  warehouses</li>
+                <li>Modeling and quality of data</li>
+                <li>Modeling for enhancing sharing data</li>
+                <li>Models for explicit and implicit semantics based
+                  data optimization</li>
+                <li>Model reification, model repositories</li>
+                <li>Modeling nonfunctional properties of systems</li>
+                <li>Data as models and models as data</li>
+                <li>Service based data management, service oriented
+                  applications</li>
+                <li>Models for data monitoring</li>
+                <li>Urbanization of database applications</li>
+                <li>Cost Models for New Paradigms</li>
+                <li>Eco-design of Advanced Database Applications</li>
+                <li>Data Lifecycle Management for Big Data (sources,
+                  cleansing, federation, preservation, privacy, etc.)</li>
+                <li>Machine Learning</li>
+                <li>Knowledge Bases</li>
+                <li>Hardware optimizations for Big Data (multi-core,
+                  GPU, networking, etc.)</li>
+                <li>Data Flow management and scheduling</li>
+                <li>Storage and analytic architectures</li>
+                <li>Recommendation &amp; Personalization</li>
+                <li>Trust and credential management</li>
+                <li>Trusted Computing in Cloud Computing</li>
+              </ul>
+              <big><b>Applications and tooling</b></big><br>
+              <ul>
+                <li>Industry transfer, experiences</li>
+                <li>Data and model manipulation and tooling</li>
+                <li>Modelling tools and experimentation</li>
+              </ul>
+              <br>
+              <br>
+              <p style="padding-top: 0pt; " class="paragraph_style_1"><u><b>General
+                    Co-Chairs:</b></u><br>
+              </p>
+              <ul>
+                <li>Jesús M. Almendros-Jiménez, University of Almería,
+                  Spain</li>
+                <li>Yamine Ait Ameur, ENSEEIHT/IRIT, France<br>
+                </li>
+              </ul>
+              <p class="paragraph_style_1"><u><b>Program Committee
+                    Co-Chairs:</b></u><br>
+              </p>
+              <ul>
+                <li>Oscar Pastor López, Universitat Politècnica de
+                  València, Spain</li>
+                <li>Ladjel Bellatreche, <span class="style_1">ISAE-ENSMA,
+                    Poitiers, France</span> <br>
+                </li>
+              </ul>
+              <p class="paragraph_style_1"><b>Organizing Committee:</b><br>
+              </p>
+              <ul>
+                <li>Jesús M. Almendros-Jiménez, University of Almería,
+                  Spain<br>
+                </li>
+                <li>Antonio Becerra-Terón, University of Almería, Spain</li>
+                <li>Manuel Torres, University of Almería, Spain</li>
+              </ul>
+              <b>Program Committee:<br>
+                TBA<br>
+                <br>
+              </b><u><b>Submission Procedure:</b></u><br>
+              <br>
+              Authors are invited to submit research and application
+              papers representing original, previously unpublished work.
+              Papers should be submitted in PDF format. Submissions must
+              conform to Springer's Lecture Notes in Computer Science
+              (LNCS) format and should not exceed 12 pages. Authors who
+              want to buy extra pages may submit a paper up to 16 pages
+              with the indication that the authors will purchase extra
+              pages if the paper is accepted. Submissions which do not
+              conform to the LNCS format and/or which exceed 12 pages
+              (or 16 pages with the extra page purchase commitment) will
+              be rejected without reviews. Submitted papers will be
+              carefully evaluated based on originality, significance,
+              technical soundness, and clarity of exposition. All
+              accepted papers will be published in Springer LNCS series.
+              Duplicate submissions are not allowed.<br>
+              <br>
+              <br>
+              <br>
+              <div align="center"><big><big><b>Gala party will take
+                      place 22 September in Fort-Bravo/Texas-Hollywood</b></big></big><br>
+              </div>
+              <br>
+              <br>
+              <a moz-do-not-send="true" class="moz-txt-link-freetext"
+                href="http://fortbravooficial.com/">http://fortbravooficial.com/</a><br>
+              <br>
+              <br>
+              <i>Fort-Bravo/Texas-Hollywood are the biggest film studios
+                of Western style in Europe. They are located in the
+                desert of Tabernas, Almería. These decorations dating
+                from the 60´s when Sergio Leone discovered Tabernas
+                (Almería) and started rolling his numerous successes in
+                the cinema, making Tabernas a reference to making
+                movies, knows as spaghetti-western movies. Currently in
+                Fort Bravo is still rolling films, commercials, music
+                videos, shorts films... You can contemplate an authentic
+                wooden populated American Old West, see a typical
+                Mexican town, enter in a military fort and see an Indian
+                village or walking in the streets of the West town,
+                watching the show of cowboys with gunfights and poker
+                games in the Saloon, bank robbery, cancan dancing in
+                traditional costumes of the time, ride on horse cart,
+                rental horses for guided walks and routes, photo studio
+                for dressing like the people of the Western era...
+                Fort-Bravo/Texas-Hollywood has Saloon-Bar , restaurant,
+                souvenir shop to get souvenir gift and bungalows fully
+                equipped for use and enjoyment. And in summer
+                Fort-Bravo/Texas-Hollywood has a beautiful themed
+                swimming pool for taking a bath with your family and a
+                private BBQ local or a very big Saloon of celebrations
+                for all kinds of events, celebrations, parties,
+                communions, weddings and bachelor.</i><br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA  
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: <a class="moz-txt-link-abbreviated" href="mailto:bellatreche@ensma.fr">bellatreche@ensma.fr</a>
+URL: <a class="moz-txt-link-freetext" href="http://www.lias-lab.fr/members/bellatreche">http://www.lias-lab.fr/members/bellatreche</a></pre>
+  </body>
+</html>
+
+--------------B28F3914A5A9BD67AD00F956--

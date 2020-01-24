@@ -1,0 +1,451 @@
+Return-Path: <carmen.gervet@umontpellier.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 6E3782292948
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 17 Apr 2018 15:39:03 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 6C87662882C
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 17 Apr 2018 15:39:03 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 654A24821B38
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 15:39:03 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -14.134
+X-Spam-Level:
+X-Spam-Status: No, score=-14.134 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SARE_ADULT2=0.987, SARE_SPEC_LEO_LINE03a=0.408, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 12.3094 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=umontpellier.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Z0iqxpAvDuQy for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 17 Apr 2018 15:39:02 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mx5.umontpellier.fr (mx5.umontpellier.fr [193.51.152.36])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id AF18A47EC076
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 15:39:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=umontpellier.fr; i=@umontpellier.fr; q=dns/txt;
+  s=dkim-201706; t=1523972344; x=1555508344;
+  h=to:from:subject:message-id:date:mime-version;
+  bh=Ye5khk/4oRqQsSjxDaT6GRUDoXVn1/di7esR2ednuhU=;
+  b=K2gonMipDSeeWwuxuh0nlweRoG4333Xh9629+GgEWZ5l8hy6rlpuxBVq
+   tHJE8eI++WRCDjhfov34vZFdL9lXZjJNInph2hmvVZRtJwd5/WgWYgSlh
+   5Wiy6NriUkqApGTrpRS7UNHPxc1Jad1JlLr0jXoxph2giM1B77cLB+znD
+   c=;
+IronPort-PHdr: =?us-ascii?q?9a23=3AfAyU+hTJqdM6csa7yDowwUM4G9psv+yvbD5Q0Y?=
+ =?us-ascii?q?Iujvd0So/mwa67bBaN2/xhgRfzUJnB7Loc0qyN7PCmBDRIyK3CmU5BWaQEbw?=
+ =?us-ascii?q?UCh8QSkl5oK+++Imq/EsTXaTcnFt9JTl5v8iLzG0FUHMHjew+a+SXqvnZBUi?=
+ =?us-ascii?q?n4YA50Pfj4X4PdhOyv0OSj55DYY0NVgjujJLV7Kgm7tkPfrJo4m4xnf4040B?=
+ =?us-ascii?q?7EpD5nVt5o6F8gcVmahRPx4IG/8YR9/jh4pvcm8dJYXKH+fqkiC7JCWmd1e1?=
+ =?us-ascii?q?sp7dHm4EGQBTCE4WERBz0b?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GHJACp+NVamIaYM8EaAT8Dgn6BVgM?=
+ =?us-ascii?q?UYyiDKT+VGIFLgR4ajX6DcIEOgWQLHwyEPoJbITgUAQIBAQEBAQECAQECEAE?=
+ =?us-ascii?q?BAQEBCAsLBigjDII1IhFLWwEBAQEBASMCLk8XPjEvDgcCIUsGAgEBF4R2iWG?=
+ =?us-ascii?q?BDJtAghwfiCKCJYVigiSBVD+BDyOBezgHhFxRFR4IgjmCVAKXaAgaVo1FgTq?=
+ =?us-ascii?q?CIYE8gikPhQSLA4UggSUzgXR0gw8JgiUahHKJFm2ObQEB?=
+X-IPAS-Result: =?us-ascii?q?A2GHJACp+NVamIaYM8EaAT8Dgn6BVgMUYyiDKT+VGIFLg?=
+ =?us-ascii?q?R4ajX6DcIEOgWQLHwyEPoJbITgUAQIBAQEBAQECAQECEAEBAQEBCAsLBigjD?=
+ =?us-ascii?q?II1IhFLWwEBAQEBASMCLk8XPjEvDgcCIUsGAgEBF4R2iWGBDJtAghwfiCKCJ?=
+ =?us-ascii?q?YVigiSBVD+BDyOBezgHhFxRFR4IgjmCVAKXaAgaVo1FgTqCIYE8gikPhQSLA?=
+ =?us-ascii?q?4UggSUzgXR0gw8JgiUahHKJFm2ObQEB?=
+X-IronPort-AV: E=Sophos;i="5.48,463,1517871600"; 
+   d="scan'208,217";a="4762475"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mta-out2.infra.umontpellier.fr ([193.51.152.134])
+  by smtp-gw5.umontpellier.fr with ESMTP; 17 Apr 2018 15:38:58 +0200
+Received: from [172.16.50.30] (mtd205.teledetection.fr [193.48.189.205])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: p00000161488@umontpellier.fr)
+	by mta-out2.infra.umontpellier.fr (Postfix) with ESMTPSA id 4CDA180017
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 17 Apr 2018 15:38:57 +0200 (CEST)
+To: liste-egc@polytech.univ-nantes.fr
+From: Carmen-GERVET <carmen.gervet@umontpellier.fr>
+Message-ID: <8f7cc9ab-640d-7c53-ac8b-69bf42c94d85@umontpellier.fr>
+Date: Tue, 17 Apr 2018 15:39:10 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.7.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------6BD5E9A90C394FFCFA509CB4"
+Content-Language: en-US
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] PhD thesis : Discovery of tipping points for
+ constrained agricultural planning under uncertain data (climate forecasts,
+ socio-economics, agronomy ...)
+
+This is a multi-part message in MIME format.
+--------------6BD5E9A90C394FFCFA509CB4
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+*The research centre UMR ESPACE Dev seeks a candidate for a PhD thesis, 
+"contrat doctoral" university of Montpellier, in the field of 
+sensitivity analysis, constraint reasoning and robust modelling**
+**
+Topic:*Discovery of tipping points for constrained agricultural planning 
+under uncertain data (climate forecasts, socio-economics, agronomy ...)
+
+*Starting date*: septembre/octobre 2018.
+
+*For more information or to apply please contact as soon as possible: *
+Carmen Gervet, Professeur des Universités, Directrice adjoint UMR Espace 
+Dev, carmen.gervet@umontpellier.fr
+Benjamin Sultan, Directeur de Recherche, benjamin.sultan@ird.fr
+*
+Profile and skills required*
+Excellent level of Master or engineering school in data analysis, 
+information science, in one or more areas of modeling, constraint 
+programming, stochastic models and tipping point modelling.
+
+
+
+
+
+Project description
+Models and methods for determining tipping points have been developed 
+primarily in climatology, environmental science and ecology, to study 
+the state of change of a given system, often in connection with early 
+warning systems. These include stochastic models based on sensitivity 
+analysis approaches and more particularly tipping point models. When a 
+system is subject to multiple constraints: technical, geographical and 
+economical (production, yield, demand), the tipping points are relative 
+to a change of state which renders this system unsatisfiable.
+
+This thesis aims to define and implement tipping points methods for this 
+complex problem, subject to uncertain data and heterogeneous constraints 
+on different time scales. This will involve building a new model of 
+constraints with uncertain data that can assess the robustness of a new 
+agricultural planning system. The challenges we want to address are:
+
+1) Tipping point modeling that takes into account the time dimension, 
+the uncertainty of the data, to study the impact over time on future states
+
+2) Development of a robust system model and algorithms for agricultural 
+planning under constraints and uncertain data. This model and its 
+resolution will combine robustness and efficiency using mathematical and 
+constraint programming techniques with uncertain data.
+
+
+References
+[1] Lenton TM, Early warning of climate tipping points, in Nature 
+Climate Change, 2011.
+
+[2] Ricome A., Affholder F., Gérard F., Muller B., Poeydebat C., Quirion 
+P. and M. Sall, Are subsidies to weather-index insurance the best use of 
+public funds? A bio-economic farm model applied to the Senegalese 
+groundnut basin, Agricultural Systems, vol. 156, issue C, 149-176, 2017
+
+[3] Sultan B., Lalou R., Amadou Sanni M., Oumarou A., Soumaré M.A. 
+Adaptation de l’agriculture aux variations climatiques, exemple de la 
+zone sahélienne. In : Euzen A. (ed.) , Laville B. (ed.) , Thiebault S. 
+(ed.) L’adaptation au changement climatique, une question de sociétés. 
+Paris : CNRS, 2017, 416pp., ISBN : 978-2-271-09482-7, 2017
+
+[4] J. Ramarohetra, B. Pohl and B. Sultan, Errors and uncertainties 
+introduced by a regional climate model in climate impact assessments: 
+example of crop yield simulations in West Africa, , Environmental 
+Research Letters, 2015
+
+[5] Gervet C. and Galichet S. On Combining Regression Analysis and 
+Constraint Programming, IPMU, 2015.
+
+[6] Gervet C. Computational Constraint Models for Decision Support and 
+Holistic Solution Design, chapter book in Communicating Climate Change 
+Information for Decision-Making, Editors: Serrao-Neumann, Silvia, 
+Coudrain, Anne, Coulter, Liese (Eds.), 978-3-319-74668-5 Springer , 2018.
+
+[7] P. Esteve, C.Varela-Ortega, I. Blanco-Gutiérrez, T.E.Downing, A 
+hydro-economic model for the assessment of climate change impacts and 
+adaptation in irrigated agriculture, In Ecological Economics, Volume 
+120, Pages 49-58, 2015.
+
+[8] P Brandt, M Kvakić, K Butterbach-Bahl, MC Rufino, How to target 
+climate-smart agriculture? Concept and application of the 
+consensus-driven decision support framework “targetCSA”, Agricultural 
+Systems, Elsevier, 2017
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 
+--
+Carmen Gervet
+Professor Univ. Montpellier
+Resp. Master of Geomatics (UM, dept of CS)
+
+UMR Espace Dev, Maison de la Télédétection
+http://www.espace.ird.fr/
+Directrice Adjointe
+500 rue Jean François Breton
+34093 Montpellier Cedex 05
+Tel. 04 67 55 86 51
+carmen.gervet@umontpellier.fr
+  
+
+
+--------------6BD5E9A90C394FFCFA509CB4
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000066" bgcolor="#FFFFFF">
+    <div class="form-group row-fluid titreProp" style="width: 760px;
+      font-size: 1.3em; font-family: Arial,Helvetica,sans-serif; margin:
+      25px 0px 16px; padding: 0px 13px 10px 22px; border-bottom: 1px
+      solid rgb(194, 194, 194); color: rgb(32, 32, 32); font-style:
+      normal; font-variant-ligatures: normal; font-variant-caps: normal;
+      letter-spacing: normal; text-align: justify; text-indent: 0px;
+      text-transform: none; white-space: normal; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); text-decoration-style: initial; text-decoration-color:
+      initial;"><font size="-1"><b>The research centre UMR ESPACE Dev
+          seeks a candidate for a PhD thesis, "contrat doctoral"
+          university of Montpellier, in the field of sensitivity
+          analysis, constraint reasoning and robust modelling</b><b><br>
+        </b><b><br>
+          Topic:</b>Discovery of tipping points for constrained
+        agricultural planning under uncertain data (climate forecasts,
+        socio-economics, agronomy ...)<br>
+        <br>
+        <b>Starting date</b>: septembre/octobre 2018.<br>
+        <br>
+        <b>For more information or to apply please contact as soon as
+          possible: </b><br>
+        Carmen Gervet, Professeur des Universités, Directrice adjoint
+        UMR Espace Dev, <a class="moz-txt-link-abbreviated" href="mailto:carmen.gervet@umontpellier.fr">carmen.gervet@umontpellier.fr</a> <br>
+        Benjamin Sultan, Directeur de Recherche, <a class="moz-txt-link-abbreviated" href="mailto:benjamin.sultan@ird.fr">benjamin.sultan@ird.fr</a><br
+          clear="all">
+        <b><br>
+          Profile and skills required</b></font></div>
+    <div class="form-group row-fluid" style="width: 760px; color:
+      rgb(32, 32, 32); font-family: &quot;Helvetica Neue&quot;,
+      Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: 400; letter-spacing: normal; orphans: 2; text-align:
+      justify; text-indent: 0px; text-transform: none; white-space:
+      normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:
+      0px; background-color: rgb(255, 255, 255); text-decoration-style:
+      initial; text-decoration-color: initial;">
+      <div class="span11 offset1" style="float: left; min-height: 30px;
+        margin-left: 64.6719px; width: 695.313px; display: block;
+        box-sizing: border-box;">Excellent level of Master or
+        engineering school in data analysis, information science, in one
+        or more areas of modeling, constraint programming, stochastic
+        models and tipping point modelling.<br>
+        <span> <br>
+          <br>
+          <br>
+          <br>
+        </span></div>
+    </div>
+    <pre class="moz-signature" cols="72">
+
+</pre>
+    <div class="row-fluid titreProp" style="width: 760px; font-size:
+      1.3em; font-weight: bold; font-family: Arial, Helvetica,
+      sans-serif; margin: 25px 0px 16px; padding: 0px 13px 10px 22px;
+      border-bottom: 1px solid rgb(194, 194, 194); color: rgb(32, 32,
+      32); font-style: normal; font-variant-ligatures: normal;
+      font-variant-caps: normal; letter-spacing: normal; orphans: 2;
+      text-align: justify; text-indent: 0px; text-transform: none;
+      white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); text-decoration-style: initial; text-decoration-color:
+      initial;">
+      <div class="span12" style="float: left; min-height: 30px;
+        margin-left: 0px; width: 760px; display: block; box-sizing:
+        border-box;"><font size="-1">Project description</font></div>
+    </div>
+    <div class="form-group row-fluid" style="width: 760px; color:
+      rgb(32, 32, 32); font-family: &quot;Helvetica Neue&quot;,
+      Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: 400; letter-spacing: normal; orphans: 2; text-align:
+      justify; text-indent: 0px; text-transform: none; white-space:
+      normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:
+      0px; background-color: rgb(255, 255, 255); text-decoration-style:
+      initial; text-decoration-color: initial;">
+      <div class="span11 offset1" style="float: left; min-height: 30px;
+        margin-left: 64.6719px; width: 695.313px; display: block;
+        box-sizing: border-box;">Models and methods for determining
+        tipping points have been developed primarily in climatology,
+        environmental science and ecology, to study the state of change
+        of a given system, often in connection with early warning
+        systems. These include stochastic models based on sensitivity
+        analysis approaches and more particularly tipping point models.
+        When a system is subject to multiple constraints: technical,
+        geographical and economical (production, yield, demand), the
+        tipping points are relative to a change of state which renders
+        this system unsatisfiable.<br>
+        <br>
+        This thesis aims to define and implement tipping points methods
+        for this complex problem, subject to uncertain data and
+        heterogeneous constraints on different time scales. This will
+        involve building a new model of constraints with uncertain data
+        that can assess the robustness of a new agricultural planning
+        system. The challenges we want to address are:<br>
+        <br>
+        1) Tipping point modeling that takes into account the time
+        dimension, the uncertainty of the data, to study the impact over
+        time on future states<br>
+        <br>
+        2) Development of a robust system model and algorithms for
+        agricultural planning under constraints and uncertain data. This
+        model and its resolution will combine robustness and efficiency
+        using mathematical and constraint programming techniques with
+        uncertain data.<br>
+        <br>
+      </div>
+    </div>
+    <br style="color: rgb(32, 32, 32); font-family: &quot;Helvetica
+      Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;
+      font-style: normal; font-variant-ligatures: normal;
+      font-variant-caps: normal; font-weight: 400; letter-spacing:
+      normal; orphans: 2; text-align: justify; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: 2;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255); text-decoration-style:
+      initial; text-decoration-color: initial;">
+    <div class="form-group row-fluid titreProp" style="width: 760px;
+      font-size: 1.3em; font-weight: bold; font-family: Arial,
+      Helvetica, sans-serif; margin: 25px 0px 16px; padding: 0px 13px
+      10px 22px; border-bottom: 1px solid rgb(194, 194, 194); color:
+      rgb(32, 32, 32); font-style: normal; font-variant-ligatures:
+      normal; font-variant-caps: normal; letter-spacing: normal;
+      orphans: 2; text-align: justify; text-indent: 0px; text-transform:
+      none; white-space: normal; widows: 2; word-spacing: 0px;
+      -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
+      255); text-decoration-style: initial; text-decoration-color:
+      initial;"><font size="-1">References</font></div>
+    <div class="form-group row-fluid" style="width: 760px; color:
+      rgb(32, 32, 32); font-family: &quot;Helvetica Neue&quot;,
+      Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal;
+      font-variant-ligatures: normal; font-variant-caps: normal;
+      font-weight: 400; letter-spacing: normal; orphans: 2; text-align:
+      justify; text-indent: 0px; text-transform: none; white-space:
+      normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:
+      0px; background-color: rgb(255, 255, 255); text-decoration-style:
+      initial; text-decoration-color: initial;">
+      <div class="span11 offset1" style="float: left; min-height: 30px;
+        margin-left: 64.6719px; width: 695.313px; display: block;
+        box-sizing: border-box;"><font size="-2">[1] Lenton TM, Early
+          warning of climate tipping points, in Nature Climate Change,
+          2011.<span> </span><br>
+          <br>
+          [2] Ricome A., Affholder F., Gérard F., Muller B., Poeydebat
+          C., Quirion P. and M. Sall, Are subsidies to weather-index
+          insurance the best use of public funds? A bio-economic farm
+          model applied to the Senegalese groundnut basin, Agricultural
+          Systems, vol. 156, issue C, 149-176, 2017<br>
+          <br>
+          [3] Sultan B., Lalou R., Amadou Sanni M., Oumarou A., Soumaré
+          M.A. Adaptation de l’agriculture aux variations climatiques,
+          exemple de la zone sahélienne. In : Euzen A. (ed.) , Laville
+          B. (ed.) , Thiebault S. (ed.) L’adaptation au changement
+          climatique, une question de sociétés. Paris : CNRS, 2017,
+          416pp., ISBN : 978-2-271-09482-7, 2017<br>
+          <br>
+          [4] J. Ramarohetra, B. Pohl and B. Sultan, Errors and
+          uncertainties introduced by a regional climate model in
+          climate impact assessments: example of crop yield simulations
+          in West Africa, , Environmental Research Letters, 2015<br>
+          <br>
+          [5] Gervet C. and Galichet S. On Combining Regression Analysis
+          and Constraint Programming, IPMU, 2015.<br>
+          <br>
+          [6] Gervet C. Computational Constraint Models for Decision
+          Support and Holistic Solution Design, chapter book in
+          Communicating Climate Change Information for Decision-Making,
+          Editors: Serrao-Neumann, Silvia, Coudrain, Anne, Coulter,
+          Liese (Eds.), 978-3-319-74668-5 Springer , 2018.<br>
+          <br>
+          [7] P. Esteve, C.Varela-Ortega, I. Blanco-Gutiérrez,
+          T.E.Downing, A hydro-economic model for the assessment of
+          climate change impacts and adaptation in irrigated
+          agriculture, In Ecological Economics, Volume 120, Pages 49-58,
+          2015.<br>
+          <br>
+          [8] P Brandt, M Kvakić, K Butterbach-Bahl, MC Rufino, How to
+          target climate-smart agriculture? Concept and application of
+          the consensus-driven decision support framework “targetCSA”,
+          Agricultural Systems, Elsevier, 2017<span> <br>
+            <br>
+            <br>
+          </span></font></div>
+    </div>
+    <pre class="moz-signature" cols="72"><font size="-2">
+
+
+
+
+
+
+
+
+
+
+
+
+</font>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- 
+--
+Carmen Gervet
+Professor Univ. Montpellier
+Resp. Master of Geomatics (UM, dept of CS)
+
+UMR Espace Dev, Maison de la Télédétection
+<a class="moz-txt-link-freetext" href="http://www.espace.ird.fr/">http://www.espace.ird.fr/</a>
+Directrice Adjointe
+500 rue Jean François Breton
+34093 Montpellier Cedex 05
+Tel. 04 67 55 86 51
+<a class="moz-txt-link-abbreviated" href="mailto:carmen.gervet@umontpellier.fr">carmen.gervet@umontpellier.fr</a>
+ </pre>
+  </body>
+</html>
+
+--------------6BD5E9A90C394FFCFA509CB4--

@@ -1,0 +1,443 @@
+Return-Path: <singh.d.kamal@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A0C0C229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 16 Feb 2018 01:48:57 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 9A54B6287FB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 16 Feb 2018 01:48:57 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 8E66A422CEA6
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Feb 2018 01:48:57 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.612
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.612 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	MR_STRANGE_QUESTION=1.5, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.0014 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ktBvNBzmMKy8 for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 16 Feb 2018 01:48:56 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-vk0-x241.google.com (mail-vk0-x241.google.com [IPv6:2607:f8b0:400c:c05::241])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id DC2E7422CE8D
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 16 Feb 2018 01:48:55 +0100 (CET)
+Received: by mail-vk0-x241.google.com with SMTP id p74so979955vkd.1
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 15 Feb 2018 16:48:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=IvJbzSs1E9euIQqaWBczA9VSnth5qcbIx5Z0hGVlRUc=;
+        b=mfuIfDtXYixl6mGqWJpbmvzD3/s/v/U12yNDnl3OJZxd6AjssGp7zDz//5eR0/3vK+
+         CFcstKPwe4ElUzkbOArenVtM/ol0AKHaGqFhOsKwTUVxzq/YKsr1mckV++kYd1aKkA2B
+         WOXbzHfGMHgCUubnbQ25+zVof3dPjply/UU4b64Ul3jt3ksrnHo44yaa7EF+uuKvKodz
+         yfEWGRe3lXX56e4ULh7/qi8h0u2CrTIcgHy69W3EaUFSxaFe3iWbYQG/u3zVEGurEN72
+         mqURfM3KWpppX2P/Bs7VoocldBesynZs7pTTjmhKbbAzaGMxrBHCYzYuXVOCRNUAGdVV
+         0yHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=IvJbzSs1E9euIQqaWBczA9VSnth5qcbIx5Z0hGVlRUc=;
+        b=PjQEOapgRZYnoHH2jzewJCQ+onqHDksbHUoGjxjftYiFVcwe1SjN4SGTx/sEp8K/AW
+         S7C+ACr5bWxQgfQd1raKRU1xFUGljhRsmAJ+MAYcyP/J0zaM6oycJAXWoVUsVaPRycf+
+         UopSfN9i96vp32IKFcQ4MImTcgaLSNyo21HlFxTNHJ1gQRPer4RCh5X0kf7Vs6N1U1sD
+         iy/7a0pUJK+1wgfkQSN1oeMaQmXP6ATsqvPnuTf7Wcnk+vGLW33JFYw3KkKtCUAXzA2L
+         dQVuTPSAGyu9r5HkNq2MUAOUzf76zoS+o5aMosM5bkW+1nQWKq+GlMc0xa9AT0xGWOIx
+         tKQg==
+X-Gm-Message-State: APf1xPAfpCjazVuaIedlZiO5MVWv3PSV51USpQ4WzZxPhxKRdSUYcgaA
+	yD0OSsGCvPTUnkXLCaeEwFjbQ1vcSB+P5jIhSRk=
+X-Google-Smtp-Source: AH8x226fb2coCi7XuUKdENVIDX6I3+VR3Cq2CTW3C4WyXWvqEoIybKM9Ypz8W84owJSCUqjC6aZfTIO28XOLSeAE8E4=
+X-Received: by 10.31.178.16 with SMTP id b16mr3506129vkf.145.1518742134630;
+ Thu, 15 Feb 2018 16:48:54 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.31.156.23 with HTTP; Thu, 15 Feb 2018 16:48:53 -0800 (PST)
+From: Kamal Singh <singh.d.kamal@gmail.com>
+Date: Fri, 16 Feb 2018 01:48:53 +0100
+Message-ID: <CAHT1pDMweBgBnt2YcAWeO=8hE2z0qAosnQ0jYiAmvkYK+SdJrg@mail.gmail.com>
+To: tccc-announce@comsoc.org, rsd-forum@cines.fr, bull-i3@irit.fr, 
+	liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="001a1143080270adfd056549b5e1"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP: IWSSS '18, 25th June, 2018 Rome, Italy
+
+--001a1143080270adfd056549b5e1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+  *Our apologies if you receive multiple copies of this CFP*
+
+
+                      Call For Papers
+    The Third International Workshop on Smart Sensing Systems (IWSSS '18)
+             http://iwsss2018.puc.pu-toyama.ac.jp/
+                        Rome, Italy
+                 June 25, 2018 (tentative)
+               in conjunction with the 14th International Conference
+                on Intelligent Environments
+
+                 in cooperation with Smart Sensing Systems Group,
+       the Society of Instrument and Control System (SICE) [to be approved]
+
+During the past years, sensing technologies have become an important field
+in
+ computer science and technologies as seen in the trend of cyber physical
+systems (CPS), machine-to-machine (M2M) systems, and the Internet of
+Things
+(IoT). Researchers in sensing technologies provide technological means to
+capture
+environmental, technical, physiological and other data. They provide the
+raw
+materials on which smart applications and services will be built. Sensor
+data
+are the basis for the smart world. Due to various characteristics of sensor
+data
+and their corresponding processing requirements, such as multisource,
+heterogeneous,
+real-time, voluminous, continuous, streaming, ever-expanding and
+spatio-temporal,
+many traditional data processing and integration approaches begin to show
+their
+limitations, particularly when dealing with situations like sensor data and
+its
+application deluge.
+Streaming data analysis, knowledge extraction (data mining, machine
+learning)
+and complex event processing are required to treat and preprocess these
+data,
+to detect correlations in data and to discover patterns or abnormalities
+in
+dynamically evolving situations. Data files as well as data streams need to
+be
+treated.  A variety of representations exist depending on the Web-based
+systems,
+thus, the means for handling, storing and accessing this information to
+make
+valuable decisions need to be studied.
+Semantic web technologies have provided particular means to this aim.
+Social
+applications, and ubiquitous and pervasive computing are examples of areas
+making
+use of semantised sensed or processed data. Semantisation, privacy, trust,
+context
+awareness, community management, and data visualization are the core issues
+related
+to this area. We aim to bring together topics from several layers of data
+processing;
+from devices to services to enable novel ideas and collaboration combining
+the
+information from multiple sources.
+The workshop intends to provide a forum for exchange of experience among
+researchers
+from industry and academia actively involved in research, development and
+evaluation
+of new concepts, theoretical methods and experimental characterization and
+for
+debating different innovative solutions. Practitioners involved in
+applications
+domains are also welcome to present their tasks and to participate in these
+discussions.
+The workshop will feature a selective technical program consisting of
+regular research
+papers as well position talks.
+
+We invite authors to submit original research to present latest
+progresses,
+determine future goals, and show techniques for future development in the
+field.
+
+Topics of the Workshop
+
+IWSSS '18 is intended to foster the dissemination of research in at least
+one of
+the three areas below. Especially, those papers will be considered
+interesting,
+which study the aspects of multidisciplinary topics.
+
+[Web intelligence]
+Architectures for sensor data management in smart cities
+Semantic reasoning in sensor networks
+Semantic sensor context management and provenance
+Ontology Based Sensory Semantic Knowledge
+Semantic sensor networks (SSN), semantic sensor web
+Semantic Modelling and Annotations of Sensor Data
+Mashup technologies for the Semantic Sensor Web Crowdsourcing
+Collective Intelligence
+Natural Interfaces
+Ambient Intelligence
+Social Computing Situation-
+Awareness/Context Streaming Sensor Data Analytics Knowledge discovery
+Machine learning
+Complex Event Processing (CEP)
+Agent-based systems, Services, Security
+
+[Smart Sensing]
+Sensing Devices
+Context-aware sensing
+Compressive Sensing
+Communication Protocols for Smart Sensing
+Dependability of Smart Sensing Systems
+Virtualization of Sensing Systems
+Human Probes
+Middleware for Smart Sensing
+Cloud computing for sensor data processing
+Sensor Data Fusion
+Sensor Device/Data Interoperability
+
+[Signal Processing for Sensor Data]
+Participatory Sensing
+Urban Sensing
+Large Scale Data Collection
+Prototypes/Testbeds/Field Studies of Smart Sensing Systems
+Performance Evaluations of Smart Sensing Systems, etc.
+Utilization of Drones/UAVs for Sensing
+
+[Applications]
+Combining smart sensing and web intelligence techniques
+Smart sensing applications for smart cities
+Smart sensing for social infrastructure including bridges and roads
+Smart sensor networks for water management
+Smart sensor networks and applications in transportation
+Big data for smart sensing applications
+
+PAPER SUBMISSION GUIDELINES
+Submission Instruction and Review Process:
+The information about submission is described on the Web site:
+http://www.intenv.org/?q=3Dcontent/workshops18
+paper format: IOS Press
+https://www.iospress.nl/service/authors/latex-and-word-tools-for-book-autho=
+rs/
+submission site: https://easychair.org/conferences/?conf=3Diwsss18
+
+All paper submissions will be reviewed by at least two program committee
+members.
+Papers must be in PDF format and must be submitted via the submission
+site.
+All submissions must describe original research, not published or
+currently
+under review for another workshop, conference, or journal.
+
+
+Important Dates
+Submission deadline: March 10, 2018
+Notification of acceptance: April 10, 2018
+Camera-ready submission: April 15, 2018
+
+
+Organizing Committee
+Program Chairs
+Takeshi Iwamoto, Toyama Prefectural University, Japan
+Susanna Pirttikangas, University of Oulu, Finland
+Kamal Singh, Telecom Saint E=CC=81tienne / University of Jean Monnet, Franc=
+e
+
+Technical Program Committee
+Bert-Jan Van Beijnum, University of Twente, Netherlands
+Edward Curry, Digital Enterprise Research Institute, Ireland
+Xiaolong Zheng, Tsinghua University, Beijing, P.R. China.
+Yasuhiro Kawahara, The Open University of Japan
+Hideyuki Kawashima, University of Tsukuba, Japan
+Guillaume Lopez, Aoyama Gakuin University, Japan
+Simon Mayer, ETH Zurich, Switzerland
+Manfred Meyer, University of Applied Sciences, Germany
+Martin Alexander Neumann, Karlsruhe Institute of Technology, Germany
+Rajendra Akerkar, Western Norway Research Institute, Norway
+Stephan Sigg, National Institute of Informatics, Japan
+Yoshito Tobe, Aoyama Gakuin University, Japan
+Takuro Yonezawa, Keio University, Japan
+
+--001a1143080270adfd056549b5e1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">=C2=A0 *Our apologies if you receive multiple copies of th=
+is CFP*<br><br><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ca=
+ll For Papers
+<br>=C2=A0=C2=A0=C2=A0 The Third International Workshop on Smart Sensing Sy=
+stems (IWSSS &#39;18)
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 <a href=3D"http://iwsss2018.puc.pu-toyama.ac.jp/">http://iwsss2018.puc.=
+pu-toyama.ac.jp/</a>
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rome,=
+ Italy
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 June 25, 2018 (tentative)
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 in conjunction with the 14th International Conference=C2=A0
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 on Intelligent Environments
+<br>=C2=A0<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in cooperation with Smart Sensing Syst=
+ems Group,=C2=A0
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the Society of Instrument and Cont=
+rol System (SICE) [to be approved]
+<br>=C2=A0<br>During the past years, sensing technologies have become an im=
+portant field in
+<br>=C2=A0computer science and technologies as seen in the trend of cyber p=
+hysical=C2=A0
+<br>systems (CPS), machine-to-machine (M2M) systems, and the Internet of Th=
+ings=C2=A0
+<br>(IoT). Researchers in sensing technologies provide technological means =
+to capture=C2=A0
+<br>environmental, technical, physiological and other data. They provide th=
+e raw=C2=A0
+<br>materials on which smart applications and services will be built. Senso=
+r data=C2=A0
+<br>are the basis for the smart world. Due to various characteristics of se=
+nsor data=C2=A0
+<br>and their corresponding processing requirements, such as multisource, h=
+eterogeneous,=C2=A0
+<br>real-time, voluminous, continuous, streaming, ever-expanding and spatio=
+-temporal,=C2=A0
+<br>many traditional data processing and integration approaches begin to sh=
+ow their=C2=A0
+<br>limitations, particularly when dealing with situations like sensor data=
+ and its=C2=A0
+<br>application deluge.
+<br>Streaming data analysis, knowledge extraction (data mining, machine lea=
+rning)=C2=A0
+<br>and complex event processing are required to treat and preprocess these=
+ data,=C2=A0
+<br>to detect correlations in data and to discover patterns or abnormalitie=
+s in=C2=A0
+<br>dynamically evolving situations. Data files as well as data streams nee=
+d to be=C2=A0
+<br>treated.=C2=A0 A variety of representations exist depending on the Web-=
+based systems,=C2=A0
+<br>thus, the means for handling, storing and accessing this information to=
+ make=C2=A0
+<br>valuable decisions need to be studied.
+<br>Semantic web technologies have provided particular means to this aim. S=
+ocial=C2=A0
+<br>applications, and ubiquitous and pervasive computing are examples of ar=
+eas making=C2=A0
+<br>use of semantised sensed or processed data. Semantisation, privacy, tru=
+st, context=C2=A0
+<br>awareness, community management, and data visualization are the core is=
+sues related=C2=A0
+<br>to this area. We aim to bring together topics from several layers of da=
+ta processing;=C2=A0
+<br>from devices to services to enable novel ideas and collaboration combin=
+ing the=C2=A0
+<br>information from multiple sources.
+<br>The workshop intends to provide a forum for exchange of experience amon=
+g researchers=C2=A0
+<br>from industry and academia actively involved in research, development a=
+nd evaluation=C2=A0
+<br>of new concepts, theoretical methods and experimental characterization =
+and for=C2=A0
+<br>debating different innovative solutions. Practitioners involved in appl=
+ications=C2=A0
+<br>domains are also welcome to present their tasks and to participate in t=
+hese discussions.=C2=A0
+<br>The workshop will feature a selective technical program consisting of r=
+egular research=C2=A0
+<br>papers as well position talks.
+<br>=C2=A0<br>We invite authors to submit original research to present late=
+st progresses,=C2=A0
+<br>determine future goals, and show techniques for future development in t=
+he field.
+<br>=C2=A0<br>Topics of the Workshop
+<br>=C2=A0<br>IWSSS &#39;18 is intended to foster the dissemination of rese=
+arch in at least one of=C2=A0
+<br>the three areas below. Especially, those papers will be considered inte=
+resting,=C2=A0
+<br>which study the aspects of multidisciplinary topics.
+<br>=C2=A0<br>[Web intelligence]
+<br>Architectures for sensor data management in smart cities=C2=A0
+<br>Semantic reasoning in sensor networks
+<br>Semantic sensor context management and provenance=C2=A0
+<br>Ontology Based Sensory Semantic Knowledge
+<br>Semantic sensor networks (SSN), semantic sensor web=C2=A0
+<br>Semantic Modelling and Annotations of Sensor Data=C2=A0
+<br>Mashup technologies for the Semantic Sensor Web Crowdsourcing
+<br>Collective Intelligence
+<br>Natural Interfaces
+<br>Ambient Intelligence
+<br>Social Computing Situation-
+<br>Awareness/Context Streaming Sensor Data Analytics Knowledge discovery
+<br>Machine learning=C2=A0
+<br>Complex Event Processing (CEP)=C2=A0
+<br>Agent-based systems, Services, Security
+<br>=C2=A0<br>[Smart Sensing]
+<br>Sensing Devices
+<br>Context-aware sensing
+<br>Compressive Sensing
+<br>Communication Protocols for Smart Sensing
+<br>Dependability of Smart Sensing Systems=C2=A0
+<br>Virtualization of Sensing Systems
+<br>Human Probes
+<br>Middleware for Smart Sensing
+<br>Cloud computing for sensor data processing
+<br>Sensor Data Fusion
+<br>Sensor Device/Data Interoperability
+<br>=C2=A0<br>[Signal Processing for Sensor Data]
+<br>Participatory Sensing
+<br>Urban Sensing
+<br>Large Scale Data Collection
+<br>Prototypes/Testbeds/Field Studies of Smart Sensing Systems
+<br>Performance Evaluations of Smart Sensing Systems, etc.
+<br>Utilization of Drones/UAVs for Sensing
+<br>=C2=A0<br>[Applications]
+<br>Combining smart sensing and web intelligence techniques=C2=A0
+<br>Smart sensing applications for smart cities=C2=A0
+<br>Smart sensing for social infrastructure including bridges and roads
+<br>Smart sensor networks for water management
+<br>Smart sensor networks and applications in transportation=C2=A0
+<br>Big data for smart sensing applications
+<br>=C2=A0<br>PAPER SUBMISSION GUIDELINES
+<br>Submission Instruction and Review Process:
+<br>The information about submission is described on the Web site:
+<br><a href=3D"http://www.intenv.org/?q=3Dcontent/workshops18">http://www.i=
+ntenv.org/?q=3Dcontent/workshops18</a>
+<br>paper format: IOS Press=C2=A0=C2=A0=C2=A0
+<br><a href=3D"https://www.iospress.nl/service/authors/latex-and-word-tools=
+-for-book-authors/">https://www.iospress.nl/service/authors/latex-and-word-=
+tools-for-book-authors/</a>
+<br>submission site: <a href=3D"https://easychair.org/conferences/?conf=3Di=
+wsss18">https://easychair.org/conferences/?conf=3Diwsss18</a>=C2=A0
+<br>=C2=A0<br>All paper submissions will be reviewed by at least two progra=
+m committee members.=C2=A0
+<br>Papers must be in PDF format and must be submitted via the submission s=
+ite.=C2=A0
+<br>All submissions must describe original research, not published or curre=
+ntly=C2=A0
+<br>under review for another workshop, conference, or journal.
+<br>=C2=A0<br>=C2=A0<br>Important Dates
+<br>Submission deadline: March 10, 2018
+<br>Notification of acceptance: April 10, 2018
+<br>Camera-ready submission: April 15, 2018
+<br>=C2=A0<br>=C2=A0<br>Organizing Committee
+<br>Program Chairs
+<br>Takeshi Iwamoto, Toyama Prefectural University, Japan
+<br>Susanna Pirttikangas, University of Oulu, Finland
+<br>Kamal Singh, Telecom Saint E=CC=81tienne / University of Jean Monnet, F=
+rance
+<br>=C2=A0<br>Technical Program Committee
+<br>Bert-Jan Van Beijnum, University of Twente, Netherlands
+<br>Edward Curry, Digital Enterprise Research Institute, Ireland
+<br>Xiaolong Zheng, Tsinghua University, Beijing, P.R. China.
+<br>Yasuhiro Kawahara, The Open University of Japan
+<br>Hideyuki Kawashima, University of Tsukuba, Japan
+<br>Guillaume Lopez, Aoyama Gakuin University, Japan
+<br>Simon Mayer, ETH Zurich, Switzerland
+<br>Manfred Meyer, University of Applied Sciences, Germany
+<br>Martin Alexander Neumann, Karlsruhe Institute of Technology, Germany
+<br>Rajendra Akerkar, Western Norway Research Institute, Norway
+<br>Stephan Sigg, National Institute of Informatics, Japan
+<br>Yoshito Tobe, Aoyama Gakuin University, Japan
+<br>Takuro Yonezawa, Keio University, Japan
+<br><br></div>
+
+--001a1143080270adfd056549b5e1--

@@ -1,0 +1,940 @@
+Return-Path: <antoine.doucet@univ-lr.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9F0DC1903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 12 Jan 2017 15:56:07 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 8B1AD26A4BF
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 12 Jan 2017 15:56:07 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 8395A4821B3F
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 12 Jan 2017 15:56:07 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -1.949
+X-Spam-Level:
+X-Spam-Status: No, score=-1.949 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, IMPRONONCABLE_2=1.5,
+	J_CHICKENPOX_52=0.6, J_CHICKENPOX_72=0.6, J_CHICKENPOX_82=0.6,
+	LONGWORD=0.3, RCVD_IN_DNSWL_NONE=-0.0001, RP_MATCHES_RCVD=-0.55,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 10.3394 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lr.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id rZq7w3KmX6AQ for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 12 Jan 2017 15:56:06 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from bm-edge.univ-lr.fr (bm-edge.univ-lr.fr [193.48.38.146])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 35A3240C6D82
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 12 Jan 2017 15:56:06 +0100 (CET)
+Received: from dhcp-eduroam-86-50-10-42.mobile.helsinki.fi (dhcp-eduroam-86-50-10-42.mobile.helsinki.fi [86.50.10.42])
+	(Authenticated sender: adoucet@univ-lr.fr)
+	by bm-edge.univ-lr.fr (Postfix) with ESMTPSA id DD85D2000E19;
+	Thu, 12 Jan 2017 15:56:04 +0100 (CET)
+Authentication-Results: univ-lr.fr; dmarc=none header.from=univ-lr.fr
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lr.fr;
+	s=default; t=1484232965;
+	bh=wvym1HshJpvgjsnuED4Bcaf+DZjrGrlqcUnQi88uTrQ=;
+	h=Subject:To:References:From:Date:In-Reply-To:From;
+	b=eQFoY6INPsSIuJy8L/dA7CR6wlHe5YCRJicyGICBYHY3iXpUFUMlvq+wluqbvE0Tt
+	 cyG1bVLlcX7l7h4aM0SiyvTA1G4ud0d7MSCDiS6W6eUOx6JCOfXwRQncM6vagrxLXT
+	 R1O0TZXQSRTXHl8RsxbR4/xxfz6fHb0j0OmRkuJEAf5bm5JBKKNQDZK2bS5R+DBzKw
+	 wd7+mCVMWMGPftHTA0C0rR8igjEdIckJfC93TLKwUSX+Ut9eka9V5ZUmdlkZMI4ddC
+	 OxJo9cGjZJe7EoBmA6U1jM3VVu+3Sp22pMt7cG72H2EJsNFp8M24OI/DAP85Y/aj/h
+	 rRfluuC7bdlsg==
+To: Antoine Doucet <antoine.doucet@univ-lr.fr>
+References: <9f6f5c64-47b3-15dc-dda2-99dc21b38d42@univ-lr.fr>
+ <8e115e76-6f4f-8c0d-1ed1-7abf27abe052@univ-lr.fr>
+From: Antoine Doucet <antoine.doucet@univ-lr.fr>
+Message-ID: <f46b3341-6f04-28a0-886e-9ed72e34ef56@univ-lr.fr>
+Date: Thu, 12 Jan 2017 15:56:03 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:45.0)
+ Gecko/20100101 Thunderbird/45.6.0
+MIME-Version: 1.0
+In-Reply-To: <8e115e76-6f4f-8c0d-1ed1-7abf27abe052@univ-lr.fr>
+Content-Type: multipart/alternative;
+ boundary="------------AF44C38E30BD9218DA5CC4CF"
+X-Virus-Scanned: clamav-milter 0.99.2 at bm-edge
+X-Virus-Status: Clean
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Final Call for Participation - Shared Task on Automatic
+ Identification of Verbal Multiword Expressions
+
+This is a multi-part message in MIME format.
+--------------AF44C38E30BD9218DA5CC4CF
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+FINAL CALL FOR PARTICIPATION
+
+
+Shared task on automatic identification of verbal multiword expressions
+
+http://multiword.sourceforge.net/sharedtask2017
+
+=======================================================================
+
+Apologies for cross-posting
+
+
+The PARSEME <http://parseme.eu>shared task on automatic identification 
+of verbal multiword expressions (VMWEs) aims at identifying verbal MWEs 
+in running texts.  Verbal MWEs include idioms (to let the cat out of the 
+bag), light verb constructions (to make a decision), verb-particle 
+constructions (to give up), and inherently reflexive verbs (se 
+suicider'to suicide' in French).  Their identification is a well-known 
+challenge for NLP applications, due to their complex characteristics: 
+discontinuity, non-compositionality, heterogeneity and syntactic 
+variability.
+
+
+The shared task is highly multilingual: we cover 18 languages from as 
+many countries.  PARSEME members have elaborated annotation guidelines 
+based on annotation experiments in 16 languages from several language 
+families.  These guidelines take both universal and language-specific 
+phenomena into account. We hope that this will boost the development of 
+language-independent and cross-lingual VMWE identification systems.
+
+
+Participation
+
+-------------
+
+Participation is open and free worldwide.  We ask potential participant 
+teams to register using the expression of interest form 
+<https://docs.google.com/forms/d/e/1FAIpQLSfnrAfr1B9IV3ftymUwxPGau91Zzc0ggt10U96tP7IpCkAG0g/viewform>. 
+  Task updates and questions will be posted to our public mailing list 
+<http://groups.google.com/group/verbalmwe>.  For more details on the 
+annotation of the corpora visit the dedicated PARSEME page 
+<http://typo.uni-konstanz.de/parseme/index.php/2-general/142-parseme-shared-task-on-automatic-detection-of-verbal-mwes>and 
+check the annotation guidelines 
+<http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/>used in manual 
+annotation of the training and test sets.
+
+
+It should be noted that a large international community has been 
+gathered (via the PARSEME <http://www.parseme.eu/>network) around the 
+effort of putting forward universal guidelines and performing corpus 
+annotations.  Our policy is to allow the same national teams, which 
+provide annotated corpora, to also submit VMWE identification systems 
+for the shared task.  Our participation policy is described on the 
+shared task website.
+
+
+PARSEME travel grants
+
+---------------------
+
+PARSEME will fund travel and stay for over 30 MWE 2017 workshop 
+participants from the Action's member countries 
+<http://www.cost.eu/COST_Actions/ict/IC1207?parties>. The modalities are 
+available on a dedicated page 
+<http://typo.uni-konstanz.de/parseme/index.php/2-general/198-mwe-workshop-at-eacl-2017>.
+
+
+Publication and workshop
+
+------------------------
+
+Shared task participants will be invited to submit input of two kinds to 
+the SHARED TASK TRACK of the EACL 2017 workshop on Multiword Expressions 
+<http://multiword.sourceforge.net/mwe2017>via the dedicated START space 
+<https://www.softconf.com/eacl2017/mwe2017>:
+
+  *
+
+    System results(by January 27) obtained on the blind data (released
+    on 20 January). The results for all languages should be submitted in
+    a single .zip archive containing a single folder per language, named
+    according to the ISO 639-1
+    <https://en.wikipedia.org/wiki/ISO_639-1>code (e.g. FR for French,
+    MT for Maltese, etc.). Each output file must be named
+    test.system.parsemetsv and conform to the parsemetsv
+    <http://typo.uni-konstanz.de/parseme/index.php/2-general/184-parseme-shared-task-format-of-the-final-annotation>format.
+    The format of each file should be checked before submission by the
+    validation script
+    <https://gitlab.com/parseme/sharedtask-data/blob/master/bin/checkParsemeTsvFormat.py>as
+    follows:
+
+./checkParsemeTsvFormat.py test.system.parsemetsv
+
+If one system participates both in the open and in the closed track, two 
+independent submissions are required.
+
+  *
+
+    A system description paper(by February 5). These papers must follow
+    the workshop submission instructions and will go through
+    double-blind peer reviewing by other participants and selected MWE
+    2017 program committee members.  Their acceptance depends on the
+    quality of the paper rather than on the results obtained in the
+    shared task.  Authors of the accepted papers will present their work
+    as posters/demos in a dedicated session of the workshop. The
+    submission of a system description paper is not mandatory.
+
+
+Provided data
+
+-------------
+
+For most languages, we provide two corpora to the participants:
+
+  *
+
+    Manually built training corpora in which VMWEs are annotated
+    according to the universal guidelines
+    <http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/>.
+
+  *
+
+    Raw (unannotated) test corpora (to be released on 20 January) to be
+    used as input to the systems. The VMWE annotations contained in this
+    corpus, performed according to the same guidelines, will be kept secret.
+
+
+Training and test corpora are provided in the parsemetsv 
+<http://typo.uni-konstanz.de/parseme/index.php/2-general/184-parseme-shared-task-format-of-the-final-annotation>format, 
+inspired by the CONLL-U 
+<http://universaldependencies.org/format.html>format. For most languages 
+(all except BG, ES, HE and LT), paired files in the CONLL-U format - not 
+necessarily using UD tagsets - containing parts of speech, lemmas, 
+morphological features and/or syntactic dependencies are also provided. 
+Depending on the language, the information comes from treebanks (e.g., 
+Universal Dependencies <http://universaldependencies.org/>) or from 
+automatic parsers trained on treebanks (e.g., UDPipe 
+<http://ufal.mff.cuni.cz/udpipe>).
+
+
+The training data are available in our public GitLab repository 
+<https://gitlab.com/parseme/sharedtask-data>for 16 languages: Bulgarian 
+(BG), Czech (CS), German (DE), Greek (EL), Farsi (FA), French (FR), 
+Hebrew (HE), Hungarian (HU), Italian (IT), Lithuanian (LT), Maltese 
+(MT), Polish (PL), Brazilian Portuguese (PT), Romanian (RO), Slovene 
+(SL), Turkish (TR). For 2 languages, we intend to provide only test 
+data, but the trial data is available for training: Spanish (ES), 
+Swedish (SV). Follow the repository 
+<https://gitlab.com/parseme/sharedtask-data/tree/master>link to access 
+folders for individual languages. You can also download an archive 
+containing all the training data directly using this shortcut link 
+<https://gitlab.com/parseme/sharedtask-data/repository/archive.zip?ref=master>.
+
+
+Tracks
+
+------
+
+System results can be submitted in two tracks:
+
+  *
+
+    Closed track: Systems using only the provided training data - VMWE
+    annotations + CONLL-U files (if any) - to learn VMWE identification
+    models and/or rules.
+
+  *
+
+    Open track: Systems using or not the provided training data, plus
+    any additional resources deemed useful (MWE lexicons, symbolic
+    grammars, wordnets, raw corpora, word embeddings, parsers, etc.).
+    This track includes notably  purely symbolic and rule-based systems.
+
+
+Teams submitting systems in the open track will be requested to describe 
+and provide references to all resources used at submission time.  Each 
+team may submit one result per track for each language.  Teams are 
+encouraged to favor freely available resources for better 
+reproducibility of their results.
+
+
+Evaluation metrics
+
+------------------
+
+Participants will provide the output produced by their systems on the 
+blind test corpus. This output will be compared with the gold standard 
+(ground truth). Evaluation metrics are precision, recall and F1, both 
+strict (per VMWE) and fuzzy (taking partial matches into account). The 
+evaluation script 
+<https://gitlab.com/parseme/sharedtask-data/tree/master/bin>is available 
+in our public data repository. Token-based F1 takes into account the 
+fact that:
+
+  * discontinuities are allowed (takesomething into account)
+
+  * overlapping are allowed (takea walkand then a long shower)
+
+  * embeddings are allowed both at the syntactic level (takethe fact 
+that I didn't [give up] into account) and at the level of lexicalized 
+components (letthe cat outof the bag)
+
+  * multiword tokens may lead to one-token MWEs (ES suicidarse)
+
+
+Therefore, we measure the best F1 score from all possible matches 
+between the set of MWE token ranks in the gold and system sentences. We 
+perform this by looking at all possible ways of matching MWEs in both sets.
+
+
+VMWE categories (e.g., LVC, ID, IReflV, VPC - see the guidelines 
+<http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/?page=030_Categories_of_VMWEs>) 
+are ignored by the evaluation metrics. Categories are only provided in 
+the training data to guide system design. Systems focusing on selected 
+VMWE categories only are also encouraged to participate.
+
+
+Important dates
+
+-----------------
+
+  * Oct 14, 2016: first Call for Participation
+
+  * Nov 18, 2016: second Call for Participation
+
+  * Dec 13, 2016: trial data and evaluation script released
+
+  * Jan 6, 2016: training data released
+
+  * Jan 10, 2017: final Call for Participation
+
+  * Jan 20, 2017: blind test data released
+
+  * Jan 27, 2017: submission of system results
+
+  * Jan 30, 2017: announcement of results
+
+  * Feb 5, 2017: submission of shared task system description papers
+
+  * Feb 12, 2017: notification of acceptance
+
+  * Feb 19, 2017: camera-ready system description papers due
+
+  * 4 April 2017: shared task workshop colocated with MWE 2017 
+<http://multiword.sourceforge.net/mwe2017>
+
+
+Organizing team
+
+---------------
+
+Marie Candito, Fabienne Cap, Silvio Cordeiro, Antoine Doucet, Voula 
+Giouli, Behrang QasemiZadeh, Carlos Ramisch, Federico Sangati, Agata 
+Savary, Ivelina Stoyanova, Veronika Vincze.
+
+--------------AF44C38E30BD9218DA5CC4CF
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      center;"
+      id="docs-internal-guid-7702b2ea-932c-f08e-3335-c41ea5548a1b"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">FINAL
+        CALL FOR PARTICIPATION</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      center;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Shared
+        task on automatic identification of verbal multiword expressions</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      center;"><a href="http://multiword.sourceforge.net/sharedtask2017"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">http://multiword.sourceforge.net/sharedtask2017</span></a></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      center;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">=======================================================================</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      center;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#999999;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">Apologies
+        for cross-posting</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">The
+      </span><a href="http://parseme.eu" style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">PARSEME</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        shared task on automatic identification of verbal multiword
+        expressions (VMWEs) aims at identifying verbal MWEs in running
+        texts.  Verbal MWEs include idioms (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">to
+        let the cat out of the bag</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">),
+        light verb constructions (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">to
+        make a decision</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">),
+        verb-particle constructions (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">to
+        give up</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">),
+        and inherently reflexive verbs (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">se
+        suicider</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        'to suicide' in French).  Their identification is a well-known
+        challenge for NLP applications, due to their complex
+        characteristics: discontinuity, non-compositionality,
+        heterogeneity and syntactic variability.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">The
+        shared task is highly multilingual: we cover 18 languages from
+        as many countries.  PARSEME members have elaborated annotation
+        guidelines based on annotation experiments in 16 languages from
+        several language families.  These guidelines take both universal
+        and language-specific phenomena into account. We hope that this
+        will boost the development of language-independent and
+        cross-lingual VMWE identification systems.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Participation</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">-------------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Participation
+        is open and free worldwide.  We ask potential participant teams
+        to register using the expression of interest </span><a
+href="https://docs.google.com/forms/d/e/1FAIpQLSfnrAfr1B9IV3ftymUwxPGau91Zzc0ggt10U96tP7IpCkAG0g/viewform"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">form</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.
+         Task updates and questions will be posted to our public </span><a
+        href="http://groups.google.com/group/verbalmwe"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">mailing
+          list</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.
+         For more details on the annotation of the corpora visit the </span><a
+href="http://typo.uni-konstanz.de/parseme/index.php/2-general/142-parseme-shared-task-on-automatic-detection-of-verbal-mwes"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">dedicated
+          PARSEME page</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        and check the </span><a
+        href="http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">annotation
+          guidelines</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        used in manual annotation of the training and test sets.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">It
+        should be noted that a large international community has been
+        gathered (via the </span><a href="http://www.parseme.eu/"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">PARSEME</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        network) around the effort of putting forward universal
+        guidelines and performing corpus annotations.  Our policy is to
+        allow the same national teams, which provide annotated corpora,
+        to also submit VMWE identification systems for the shared task.
+         Our participation policy is described on the shared task
+        website.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">PARSEME
+        travel grants</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">---------------</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">PARSEME
+        will fund travel and stay for over 30 MWE 2017 workshop
+        participants from the Action's </span><a
+        href="http://www.cost.eu/COST_Actions/ict/IC1207?parties"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">member
+          countries</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.
+        The modalities are available on a </span><a
+href="http://typo.uni-konstanz.de/parseme/index.php/2-general/198-mwe-workshop-at-eacl-2017"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">dedicated
+          page</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Publication
+        and workshop</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">------------------------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Shared
+        task participants will be invited to submit input of two kinds
+        to the SHARED TASK TRACK of the </span><a
+        href="http://multiword.sourceforge.net/mwe2017"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">EACL
+          2017 workshop on Multiword Expressions</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        via the dedicated </span><a
+        href="https://www.softconf.com/eacl2017/mwe2017"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">START
+          space</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">:</span></p>
+    <ul style="margin-top:0pt;margin-bottom:0pt;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">System
+            results</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            (by January 27) obtained on the blind data (released on 20
+            January). The results for all languages should be submitted
+            in a single .zip archive containing a single folder per
+            language, named according to the </span><a
+            href="https://en.wikipedia.org/wiki/ISO_639-1"
+            style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">ISO
+              639-1</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            code (e.g. FR for French, MT for Maltese, etc.). Each output
+            file must be named test.system.parsemetsv and conform to the
+          </span><a
+href="http://typo.uni-konstanz.de/parseme/index.php/2-general/184-parseme-shared-task-format-of-the-final-annotation"
+            style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">parsemetsv</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            format. The format of each file should be checked before
+            submission by the validation </span><a
+href="https://gitlab.com/parseme/sharedtask-data/blob/master/bin/checkParsemeTsvFormat.py"
+            style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">script</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            as follows:</span></p>
+      </li>
+    </ul>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">   
+      </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">   
+      </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">./checkParsemeTsvFormat.py
+        test.system.parsemetsv</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;margin-left:
+      34.5pt;text-align: justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">If
+        one system participates both in the open and in the closed
+        track, two independent submissions are required.</span></p>
+    <ul style="margin-top:0pt;margin-bottom:0pt;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">A
+          </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">system
+            description paper</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+            (by February 5). These papers must follow the workshop
+            submission instructions and will go through double-blind
+            peer reviewing by other participants and selected MWE 2017
+            program committee members.  Their acceptance depends on the
+            quality of the paper rather than on the results obtained in
+            the shared task.  Authors of the accepted papers will
+            present their work as posters/demos in a dedicated session
+            of the workshop. The submission of a system description
+            paper is not mandatory.</span></p>
+      </li>
+    </ul>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Provided
+        data</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">-------------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">For
+        most languages, we provide two corpora to the participants:</span></p>
+    <ul style="margin-top:0pt;margin-bottom:0pt;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12px;font-family:Verdana;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Manually
+            built </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">training
+            corpora </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">in
+            which VMWEs are annotated according to the universal </span><a
+href="http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/"
+            style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">guidelines</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.</span></p>
+      </li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12px;font-family:Verdana;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Raw
+            (unannotated) </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">test
+            corpora </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">(to
+            be released on 20 January) to be used as input to the
+            systems. The VMWE annotations contained in this corpus,
+            performed according to the same guidelines, will be kept
+            secret.</span></p>
+      </li>
+    </ul>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Training
+        and test corpora are provided in the </span><a
+href="http://typo.uni-konstanz.de/parseme/index.php/2-general/184-parseme-shared-task-format-of-the-final-annotation"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">parsemetsv</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        format, inspired by the </span><a
+        href="http://universaldependencies.org/format.html"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">CONLL-U</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        format. For most languages (all except BG, ES, HE and LT),
+        paired files in the CONLL-U format - not necessarily using UD
+        tagsets - containing parts of speech, lemmas, morphological
+        features and/or syntactic dependencies are also provided.
+        Depending on the language, the information comes from treebanks
+        (e.g., </span><a href="http://universaldependencies.org/"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">Universal
+          Dependencies</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)
+        or from automatic parsers trained on treebanks (e.g., </span><a
+        href="http://ufal.mff.cuni.cz/udpipe"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">UDPipe</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">).</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">The
+        training data are available in our </span><a
+        href="https://gitlab.com/parseme/sharedtask-data"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">public
+          GitLab repository</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        for 16 languages: Bulgarian (BG), Czech (CS), German (DE), Greek
+        (EL), Farsi (FA), French (FR), Hebrew (HE), Hungarian (HU),
+        Italian (IT), Lithuanian (LT), Maltese (MT), Polish (PL),
+        Brazilian Portuguese (PT), Romanian (RO), Slovene (SL), Turkish
+        (TR). For 2 languages, we intend to provide only test data, but
+        the trial data is available for training: Spanish (ES), Swedish
+        (SV). Follow the </span><a
+        href="https://gitlab.com/parseme/sharedtask-data/tree/master"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">repository</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        link to access folders for individual languages. You can also
+        download an archive containing all the training data directly
+        using </span><a
+href="https://gitlab.com/parseme/sharedtask-data/repository/archive.zip?ref=master"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">this
+          shortcut link</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Tracks</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">System
+        results can be submitted in two tracks:</span></p>
+    <ul style="margin-top:0pt;margin-bottom:0pt;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Closed
+            track</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">:
+            Systems using only the provided training data - VMWE
+            annotations + CONLL-U files (if any) - to learn VMWE
+            identification models and/or rules.</span></p>
+      </li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        <p dir="ltr"
+          style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+          justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Open
+            track</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">:
+            Systems using or not the provided training data, plus any
+            additional resources deemed useful (MWE lexicons, symbolic
+            grammars, wordnets, raw corpora, word embeddings, parsers,
+            etc.). This track includes notably  purely symbolic and
+            rule-based systems.</span></p>
+      </li>
+    </ul>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Teams
+        submitting systems in the open track will be requested to
+        describe and provide references to all resources used at
+        submission time.  Each team may submit one result per track for
+        each language.  Teams are encouraged to favor freely available
+        resources for better reproducibility of their results.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Evaluation
+        metrics</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">------------------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Participants
+        will provide the output produced by their systems on the blind
+        test corpus. This output will be compared with the gold standard
+        (ground truth). Evaluation metrics are precision, recall and F1,
+        both strict (per VMWE) and fuzzy (taking partial matches into
+        account). The </span><a
+        href="https://gitlab.com/parseme/sharedtask-data/tree/master/bin"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">evaluation
+          script</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        is available in our public data repository. Token-based F1 takes
+        into account the fact that:</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * discontinuities are allowed (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">take</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        something </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">into
+        account</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * overlapping are allowed (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">take</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        a </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">walk</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        and then a long </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">shower</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * embeddings are allowed both at the syntactic level (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">take</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        the fact that I didn't </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">[give
+        up] into account</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)
+        and at the level of lexicalized components (</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">let</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        the cat </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">out</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+        of the bag</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * multiword tokens may lead to one-token MWEs (ES </span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;">suicidarse</span><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Therefore,
+        we measure the best F1 score from all possible matches between
+        the set of MWE token ranks in the gold and system sentences. We
+        perform this by looking at all possible ways of matching MWEs in
+        both sets.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">VMWE
+        categories (e.g., LVC, ID, IReflV, VPC - see the </span><a
+href="http://parsemefr.lif.univ-mrs.fr/guidelines-hypertext/?page=030_Categories_of_VMWEs"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">guidelines</span></a><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">)
+        are ignored by the evaluation metrics. Categories are only
+        provided in the training data to guide system design. Systems
+        focusing on selected VMWE categories only are also encouraged to
+        participate.</span></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Important
+        dates</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">-----------------</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Oct 14, 2016: first Call for Participation</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Nov 18, 2016: second Call for Participation</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Dec 13, 2016: trial data and evaluation script released</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Jan 6, 2016: training data released</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Jan 10, 2017: final Call for Participation</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Jan 20, 2017: blind test data released</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Jan 27, 2017: submission of system results</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Jan 30, 2017: announcement of results</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Feb 5, 2017: submission of shared task system description
+        papers</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Feb 12, 2017: notification of acceptance</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * Feb 19, 2017: camera-ready system description papers due</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">
+         * 4 April 2017: shared task workshop colocated with </span><a
+        href="http://multiword.sourceforge.net/mwe2017"
+        style="text-decoration:none;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#1155cc;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:underline;vertical-align:baseline;">MWE
+          2017</span></a></p>
+    <br>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Organizing
+        team</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:
+      justify;"><span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">---------------</span></p>
+    <span
+style="font-size:13.333333333333332px;font-family:Consolas;color:#222222;background-color:#ffffff;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;">Marie
+      Candito, Fabienne Cap, Silvio Cordeiro, Antoine Doucet, Voula
+      Giouli, Behrang QasemiZadeh, Carlos Ramisch, Federico Sangati,
+      Agata Savary, Ivelina Stoyanova, Veronika Vincze.</span>
+    <meta charset="utf-8">
+  </body>
+</html>
+
+--------------AF44C38E30BD9218DA5CC4CF--

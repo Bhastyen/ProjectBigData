@@ -1,0 +1,442 @@
+Return-Path: <tsebtravail@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 0F46E229294E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 10 Feb 2017 09:50:49 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 0A8BF242513
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 10 Feb 2017 09:50:49 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 027F84186DBE
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 10 Feb 2017 09:50:48 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.778
+X-Spam-Level:
+X-Spam-Status: No, score=-4.778 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001,
+	SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.9635 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id uq0a8pYu1Aoc for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 10 Feb 2017 09:50:48 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-ua0-x22c.google.com (mail-ua0-x22c.google.com [IPv6:2607:f8b0:400c:c08::22c])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id BDCE04021605
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 10 Feb 2017 09:50:47 +0100 (CET)
+Received: by mail-ua0-x22c.google.com with SMTP id i68so23162771uad.0
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 10 Feb 2017 00:50:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=BbZsCrpG7sOAcWqaQlGSYS5157F2wI/eSO4AJSkDxsc=;
+        b=ibetfvlvi9XcY0wy0/qPdIvv4gLeDx8oQOXlW36mWjqVO5Jx9Ou7+Slfr/uKcLi24q
+         GIkTycR1fSrWqY99ich2Ga1t5OaZTBpVICo5KA2XUwaAVXmYkaA0frXlo3INtFKtVUph
+         qgTuycdqJQzpBhn67wdfFtcKfXYP9pKloZJ0Jz/m5Ob06QKX5sVaeS6Pf2F52bIoMXzO
+         6AT3d2+gYQdMCdeAFU7WqZi8AYLLJXTziA+cCWMG/Ppc1zIvwINYeV3ZoJljapCKRReR
+         uBPAZVSqZm/tVVBJFRO7QfOzRfdDNXILh2lgm0h6xG3KU/fVskgMNlYXT4Pl+Yy/+Wck
+         nn1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=BbZsCrpG7sOAcWqaQlGSYS5157F2wI/eSO4AJSkDxsc=;
+        b=pMnjs/3t4v+pbCWRe1gGoYVUhZ968bI8k7R1pdlp3vVdOx/Io8MAMEWTQ9keyDpjwq
+         hDd1NIUjlHAczfxI1iNre6zZQQlRZasrclj+1dPEsqHEeGokfbUwM32NcMIP4D6y9ihm
+         sXhdzCnCHOvcfHUyDn4p1Z+NUrYQ0S9tw53MRIP06x3wwMyrEp1uafizfGaDN91Ww907
+         lNcLIAKt6EzaMSHWylaqIPPo0kxHeMc+67+D+xrj8cASnrpeSJbUTYziL3Sx5v1J6RuI
+         NLU4r56jtpgbYTN25e0inoYQ+Qh5gjaQ6Z48mgw23xlU84jA6ZgrahKsdzThebq33RrB
+         DEdw==
+X-Gm-Message-State: AMke39mEZiCael6EI9d+L0Z3FHROEAmNHt5gI3kR3nE7v1jwXAcjDW4QRL5qCIGnHhR951KY8w8Zt3QeELieYw==
+X-Received: by 10.159.41.5 with SMTP id t5mr4176721uat.142.1486716646453; Fri,
+ 10 Feb 2017 00:50:46 -0800 (PST)
+MIME-Version: 1.0
+Sender: tsebtravail@gmail.com
+Received: by 10.103.34.67 with HTTP; Fri, 10 Feb 2017 00:50:46 -0800 (PST)
+From: =?UTF-8?Q?S=C3=A9bastien_Fournier?= <sebastien.fournier@lsis.org>
+Date: Fri, 10 Feb 2017 09:50:46 +0100
+X-Google-Sender-Auth: hy_BU40gJOxmLuyIlg5fe6hC6uw
+Message-ID: <CABscHFap=Wu2DqtfqAx_drp4kzyNM5hw=Z4wLvFV=hX-0x0Vgg@mail.gmail.com>
+To: all@madics.fr, bull-i3@irit.fr, 
+	liste-egc <liste-egc@polytech.univ-nantes.fr>
+Content-Type: multipart/alternative; boundary=001a114bc20097f9e4054829311b
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [CORIA 2017] Appel =?UTF-8?Q?=C3=A0?= participation
+
+--001a114bc20097f9e4054829311b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Appel =C3=A0 participations :  CORIA et RJCRI 29 au 31 mars, Campus St Char=
+les, 3
+Place Victor Hugo, 13003 Marseille.
+
+
+
+Cr=C3=A9=C3=A9e en 2004 par l'association ARIA (http://www.asso-aria.org/),
+regroupant les chercheurs francophones du domaine de la recherche
+d'information (RI), la conf=C3=A9rence CORIA (Conf=C3=A9rence en Recherche
+d'Information et Applications) verra sa douzi=C3=A8me =C3=A9dition se d=C3=
+=A9rouler du 18
+au 20 Mars 2015 =C3=A0 Paris, France (http://coria2015.lip6.fr/).
+
+Pendant la conf=C3=A9rence CORIA 2017 seront =C3=A9galement organis=C3=A9es=
+ les 10i=C3=A8mes
+Rencontres Jeunes Chercheurs en Recherche d'Information. Elles ont pour
+objectif de permettre =C3=A0 tous les doctorants de pr=C3=A9senter leur pro=
+bl=C3=A9matique
+de recherche, d=E2=80=99=C3=A9tablir des contacts avec des =C3=A9quipes tra=
+vaillant sur des
+domaines similaires ou connexes, et d=E2=80=99offrir =C3=A0 l=E2=80=99ensem=
+ble de la communaut=C3=A9
+un aper=C3=A7u des axes de recherche actuels.
+
+CORIA accueillera trois invit=C3=A9s :
+
+=C2=B7        Jianfeng Gao (Microsoft Research)
+
+=C2=B7        Guy Lapalme (Universit=C3=A9 de Montr=C3=A9al)
+
+=C2=B7        Sadok Ben Yahia (Facult=C3=A9 des Sciences de Tunis)
+
+=C2=B7        Jacques Savoy
+
+Les inscriptions sont maintenant ouvertes :
+http://www.lsis.org/coria2017/#inscription
+
+
+------------
+Th=C3=A9matiques de la conf=C3=A9rence CORIA et des journ=C3=A9es RJCRI
+------------
+
+
+   - Th=C3=A9orie et mod=C3=A8les formels pour la RI : mod=C3=A8le logique,=
+ mod=C3=A8les
+   probabilistes, repr=C3=A9sentation de document et de requ=C3=AAte, mod=
+=C3=A8les bas=C3=A9s sur
+   l=E2=80=99apprentissage, =E2=80=A6
+   - Compr=C3=A9hension de requ=C3=AAte : intention de recherche, suggestio=
+n de
+   requ=C3=AAtes, RI conversationnelle
+   - Traitement Automatique de la Langue Naturelle pour la recherche
+   d=E2=80=99information
+   - Syst=C3=A8mes de Questions R=C3=A9ponses
+   - RI dans l=E2=80=99environnement mobile
+   - Multilinguisme : recherche d=E2=80=99information multilingue, traducti=
+on
+   automatique
+   - Passage =C3=A0 l=E2=80=99=C3=A9chelle & big data : indexation, compres=
+sion,
+   performances, architectures
+   - M=C3=A9thodes d=E2=80=99apprentissage : classification automatique, fi=
+ltrage et
+   recommandation, clustering, learning-to-rank, apprentissage profond
+   (deep-learning)
+   - Extraction d=E2=80=99informations : ontologies, ressources et recherch=
+e
+   d=E2=80=99informations, d=C3=A9tection d=E2=80=99entit=C3=A9s nomm=C3=A9=
+es et des relations
+   - Analyses du Web : grands graphes, utilisation de la topologie du web,
+   lois de puissances, citations, analyse de liens
+   - RI s=C3=A9mantique : ontologie, web s=C3=A9mantique, web de donn=C3=A9=
+es
+   - RI et documents structur=C3=A9s : RI et XML, RI pr=C3=A9cise et recher=
+che de
+   passages
+   - R=C3=A9seaux sociaux : analyse de r=C3=A9seaux, de rumeurs et d=E2=80=
+=99opinions,
+   diffusion d=E2=80=99information, pr=C3=A9diction d=E2=80=99activit=C3=A9=
+s, d=C3=A9tection d=E2=80=99=C3=A9v=C3=A9nements=E2=80=A6
+   - Interaction utilisateur : interrogation flexible, interfaces,
+   visualisation, mod=C3=A9lisation de l=E2=80=99utilisateur et de contexte=
+, accessibilit=C3=A9,
+   indexation collaborative, RI personnalis=C3=A9e
+   - Multim=C3=A9dia (images, audio, vid=C3=A9os, son, musique) : indexatio=
+n,
+   navigation, acc=C3=A8s,=E2=80=A6
+   - Biblioth=C3=A8ques num=C3=A9riques : RI sur des livres num=C3=A9ris=C3=
+=A9s, robustesse,
+   OCR et indexabilit=C3=A9
+   - Syst=C3=A8mes de recherche d=E2=80=99information d=C3=A9di=C3=A9s : re=
+cherche d=E2=80=99information
+   g=C3=A9nomique, g=C3=A9ographique, m=C3=A9dicale, recherche de brevets, =
+recherche de
+   produits =E2=80=A6
+   - Outils pour la recherche d=E2=80=99information : =C3=A9valuation, banc=
+s d=E2=80=99essais,
+   m=C3=A9triques, exp=C3=A9rimentations qualitatives des syst=C3=A8mes, op=
+en source
+
+
+
+------------------------
+Comit=C3=A9s
+------------------------
+Pr=C3=A9sidents des comit=C3=A9s de programme CORIA-RJCRI
+- Jian-Yun Nie (Universit=C3=A9 de Montr=C3=A9al, Montr=C3=A9al, Canada)
+=E2=81=83 Sylvain Lamprier (Universit=C3=A9 Pierre et Marie Curie, Paris, F=
+rance)
+
+Pr=C3=A9sidents du comit=C3=A9 d=E2=80=99organisation
+=E2=81=83 S=C3=A9bastien Fournier (Universit=C3=A9 Aix-Marseille, Marseille=
+, France)
+
+--001a114bc20097f9e4054829311b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;lin=
+e-height:normal;background-image:initial;background-position:initial;backgr=
+ound-size:initial;background-repeat:initial;background-origin:initial;backg=
+round-clip:initial"><span style=3D"font-size:9.5pt;font-family:arial,sans-s=
+erif">Appel =C3=A0 participations :=C2=A0=C2=A0CORIA=C2=A0et RJCRI 29 au 31=
+ mars, Campus
+St Charles, </span><span style=3D"font-size:10pt;font-family:arial,sans-ser=
+if;background-image:initial;background-position:initial;background-size:ini=
+tial;background-repeat:initial;background-origin:initial;background-clip:in=
+itial">3 Place Victor Hugo, 13003 Marseille.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal;b=
+ackground-image:initial;background-position:initial;background-size:initial=
+;background-repeat:initial;background-origin:initial;background-clip:initia=
+l"><span style=3D"font-size:9.5pt;font-family:arial,sans-serif"><span>=C2=
+=A0</span></span></p>
+
+<p style=3D"background-image:initial;background-position:initial;background=
+-size:initial;background-repeat:initial;background-origin:initial;backgroun=
+d-clip:initial"><span style=3D"font-size:9.5pt;font-family:arial,sans-serif=
+">Cr=C3=A9=C3=A9e en 2004 par l&#39;association ARIA (</span><a href=3D"htt=
+p://www.asso-aria.org/" target=3D"_blank"><span style=3D"font-size:9.5pt;fo=
+nt-family:arial,sans-serif">http://www.asso-aria.org/</span></a><span style=
+=3D"font-size:9.5pt;font-family:arial,sans-serif">),
+regroupant les chercheurs francophones du domaine de la recherche d&#39;inf=
+ormation
+(RI), la conf=C3=A9rence=C2=A0CORIA=C2=A0(Conf=C3=A9rence en Recherche d&#3=
+9;Information et
+Applications) verra sa douzi=C3=A8me =C3=A9dition se d=C3=A9rouler du 18 au=
+ 20
+Mars=C2=A02015=C2=A0=C3=A0 Paris, France (</span><a href=3D"http://coria201=
+5.lip6.fr/" target=3D"_blank"><span style=3D"font-size:9.5pt;font-family:ar=
+ial,sans-serif">http://coria2015.lip6.fr/</span></a><span style=3D"font-siz=
+e:9.5pt;font-family:arial,sans-serif">).=C2=A0<br>
+<br>
+Pendant la conf=C3=A9rence=C2=A0CORIA=C2=A02017=C2=A0seront =C3=A9galement =
+organis=C3=A9es les
+10i=C3=A8mes Rencontres Jeunes Chercheurs en Recherche d&#39;Information. E=
+lles ont pour
+objectif de permettre =C3=A0 tous les doctorants de pr=C3=A9senter leur pro=
+bl=C3=A9matique de
+recherche, d=E2=80=99=C3=A9tablir des contacts avec des =C3=A9quipes travai=
+llant sur des domaines
+similaires ou connexes, et d=E2=80=99offrir =C3=A0 l=E2=80=99ensemble de la=
+ communaut=C3=A9 un aper=C3=A7u des
+axes de recherche actuels.=C2=A0<br>
+<br>
+CORIA=C2=A0accueillera trois invit=C3=A9s :=C2=A0<br>
+<br>
+</span><span style=3D"font-size:9.5pt;font-family:arial,sans-serif;color:rg=
+b(80,0,80)"><span></span></span></p>
+
+<p style=3D"margin-left:36pt;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial"><span style=3D"font-size:9.5pt;font-family=
+:symbol;color:rgb(80,0,80)">=C2=B7<span style=3D"font-variant-numeric:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;ti=
+mes new roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:9.5pt;font-family:arial,sans-serif;c=
+olor:rgb(80,0,80)">Jianfeng Gao (Microsoft Research)<span></span></span></p=
+>
+
+<p style=3D"margin-left:36pt;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial"><span style=3D"font-size:9.5pt;font-family=
+:symbol;color:rgb(80,0,80)">=C2=B7<span style=3D"font-variant-numeric:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;ti=
+mes new roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:9.5pt;font-family:arial,sans-serif;c=
+olor:rgb(80,0,80)">Guy Lapalme (Universit=C3=A9 de Montr=C3=A9al)<span></sp=
+an></span></p>
+
+<p style=3D"margin-left:36pt;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial"><span style=3D"font-size:9.5pt;font-family=
+:symbol;color:rgb(80,0,80)">=C2=B7<span style=3D"font-variant-numeric:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;ti=
+mes new roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:9.5pt;font-family:arial,sans-serif;c=
+olor:rgb(80,0,80)">Sadok Ben Yahia (Facult=C3=A9 des Sciences de Tunis)<spa=
+n></span></span></p>
+
+<p style=3D"margin-left:36pt;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial"><span style=3D"font-size:9.5pt;font-family=
+:symbol;color:rgb(80,0,80)">=C2=B7<span style=3D"font-variant-numeric:norma=
+l;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;ti=
+mes new roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:9.5pt;font-family:arial,sans-serif;c=
+olor:rgb(80,0,80)">Jacques Savoy<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal;b=
+ackground-image:initial;background-position:initial;background-size:initial=
+;background-repeat:initial;background-origin:initial;background-clip:initia=
+l"><span style=3D"font-size:9.5pt;font-family:arial,sans-serif">Les inscrip=
+tions sont maintenant ouvertes=C2=A0: <a href=3D"http://www.lsis.org/coria2=
+017/#inscription">http://www.lsis.org/coria2017/#inscription</a><br>
+<br>
+<br>
+<span></span></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt"><span style=3D"font-size:9.5pt;font-fa=
+mily:arial,sans-serif">------------=C2=A0<br>
+Th=C3=A9matiques de la conf=C3=A9rence=C2=A0CORIA=C2=A0et des journ=C3=A9es=
+ RJCRI<br>
+------------=C2=A0<br>
+<br>
+</span><span style=3D"font-size:10.5pt;font-family:arial,sans-serif;color:b=
+lack;letter-spacing:0.75pt"><span></span></span></p>
+
+<ul type=3D"disc">
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">T=
+h=C3=A9orie et
+     mod=C3=A8les formels pour la RI : mod=C3=A8le logique, mod=C3=A8les pr=
+obabilistes,
+     repr=C3=A9sentation de document et de requ=C3=AAte, mod=C3=A8les bas=
+=C3=A9s sur l=E2=80=99apprentissage,
+     =E2=80=A6<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">C=
+ompr=C3=A9hension
+     de requ=C3=AAte : intention de recherche, suggestion de requ=C3=AAtes,=
+ RI
+     conversationnelle<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">T=
+raitement
+     Automatique de la Langue Naturelle pour la recherche d=E2=80=99informa=
+tion<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">S=
+yst=C3=A8mes
+     de Questions R=C3=A9ponses<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">R=
+I dans
+     l=E2=80=99environnement mobile<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">M=
+ultilinguisme
+     : recherche d=E2=80=99information multilingue, traduction automatique<=
+span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">P=
+assage =C3=A0
+     l=E2=80=99=C3=A9chelle &amp; big data : indexation, compression, perfo=
+rmances,
+     architectures<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">M=
+=C3=A9thodes
+     d=E2=80=99apprentissage : classification automatique, filtrage et reco=
+mmandation,
+     clustering, learning-to-rank, apprentissage profond (deep-learning)<sp=
+an></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">E=
+xtraction
+     d=E2=80=99informations : ontologies, ressources et recherche d=E2=80=
+=99informations,
+     d=C3=A9tection d=E2=80=99entit=C3=A9s nomm=C3=A9es et des relations<sp=
+an></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">A=
+nalyses
+     du Web : grands graphes, utilisation de la topologie du web, lois de
+     puissances, citations, analyse de liens<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">R=
+I
+     s=C3=A9mantique : ontologie, web s=C3=A9mantique, web de donn=C3=A9es<=
+span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">R=
+I et
+     documents structur=C3=A9s : RI et XML, RI pr=C3=A9cise et recherche de=
+ passages<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">R=
+=C3=A9seaux
+     sociaux : analyse de r=C3=A9seaux, de rumeurs et d=E2=80=99opinions, d=
+iffusion d=E2=80=99information,
+     pr=C3=A9diction d=E2=80=99activit=C3=A9s, d=C3=A9tection d=E2=80=99=C3=
+=A9v=C3=A9nements=E2=80=A6<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">I=
+nteraction
+     utilisateur : interrogation flexible, interfaces, visualisation,
+     mod=C3=A9lisation de l=E2=80=99utilisateur et de contexte, accessibili=
+t=C3=A9, indexation
+     collaborative, RI personnalis=C3=A9e<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">M=
+ultim=C3=A9dia
+     (images, audio, vid=C3=A9os, son, musique) : indexation, navigation, a=
+cc=C3=A8s,=E2=80=A6<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">B=
+iblioth=C3=A8ques
+     num=C3=A9riques : RI sur des livres num=C3=A9ris=C3=A9s, robustesse, O=
+CR et indexabilit=C3=A9<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">S=
+yst=C3=A8mes
+     de recherche d=E2=80=99information d=C3=A9di=C3=A9s : recherche d=E2=
+=80=99information g=C3=A9nomique,
+     g=C3=A9ographique, m=C3=A9dicale, recherche de brevets, recherche de p=
+roduits =E2=80=A6<span></span></span></li>
+ <li class=3D"MsoNormal" style=3D"color:black;line-height:normal"><span sty=
+le=3D"font-size:9.5pt;font-family:arial,sans-serif;letter-spacing:0.75pt">O=
+utils
+     pour la recherche d=E2=80=99information : =C3=A9valuation, bancs d=E2=
+=80=99essais, m=C3=A9triques,
+     exp=C3=A9rimentations qualitatives des syst=C3=A8mes, open source<span=
+></span></span></li>
+</ul>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal;b=
+ackground-image:initial;background-position:initial;background-size:initial=
+;background-repeat:initial;background-origin:initial;background-clip:initia=
+l"><span style=3D"font-size:9.5pt;font-family:arial,sans-serif"><br>
+<br>
+------------------------=C2=A0<br>
+Comit=C3=A9s=C2=A0<br>
+------------------------=C2=A0<br>
+Pr=C3=A9sidents des comit=C3=A9s de programme=C2=A0CORIA-RJCRI=C2=A0<br>
+- Jian-Yun Nie</span><span style=3D"font-size:9.5pt;font-family:&quot;ms go=
+thic&quot;"> </span><span style=3D"font-size:9.5pt;font-family:arial,sans-s=
+erif">(Universit=C3=A9 de
+Montr=C3=A9al, Montr=C3=A9al, Canada)=C2=A0<br>
+</span><span lang=3D"JA" style=3D"font-size:9.5pt;font-family:&quot;ms goth=
+ic&quot;">=E2=81=83</span><span style=3D"font-size:9.5pt;font-family:arial,=
+sans-serif">=C2=A0Sylvain Lamprier
+(Universit=C3=A9 Pierre et Marie Curie, Paris, France)=C2=A0<br>
+<br>
+Pr=C3=A9sidents du comit=C3=A9 d=E2=80=99organisation=C2=A0<br>
+</span><span lang=3D"JA" style=3D"font-size:9.5pt;font-family:&quot;ms goth=
+ic&quot;">=E2=81=83</span><span style=3D"font-size:9.5pt;font-family:arial,=
+sans-serif">=C2=A0S=C3=A9bastien
+Fournier (Universit=C3=A9 Aix-Marseille, Marseille, France)=C2=A0<br>
+<br>
+<span></span></span></p>
+
+<p class=3D"MsoNormal"><span>=C2=A0</span></p></div>
+
+--001a114bc20097f9e4054829311b--

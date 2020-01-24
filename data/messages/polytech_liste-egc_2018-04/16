@@ -1,0 +1,509 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id BE849229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  6 Apr 2018 17:02:37 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id BCF276287DD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  6 Apr 2018 17:02:37 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id B58394821B3F
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  6 Apr 2018 17:02:37 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.671
+X-Spam-Level:
+X-Spam-Status: No, score=0.671 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.5655 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Z0y3LGZpfdvZ for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  6 Apr 2018 17:02:36 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id E3BB64821B1E
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  6 Apr 2018 17:02:36 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id CBAD33FA08
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  6 Apr 2018 17:02:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:in-reply-to:references:mime-version:received:received
+	:received; s=default; t=1523026956; x=1524841357; bh=RJcuUgQaumg
+	9Hm/XagFDrwCksxFnUstoMI652iz4Xg8=; b=XMx0C2rDvn0xEy5EoepfhoILQab
+	WDedMkSYxriFTt5uQFYpOcGWDRxMsaAxI8hlr5CFgDr4NnGvbrkYK3fCUbaVhhdj
+	jXp/+y6ei4PZOLkRduefXPxRVd8oyP638FzJMdyprRBhFZPHrzKrPZc1zEgzCyj5
+	xEhXpKyGNXMFi+aI=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 2hmm06txqJkq for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  6 Apr 2018 17:02:36 +0200 (CEST)
+Received: from mail-lf0-f46.google.com (mail-lf0-f46.google.com [209.85.215.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 793303F9A7
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  6 Apr 2018 17:02:36 +0200 (CEST)
+Received: by mail-lf0-f46.google.com with SMTP id x70-v6so983601lfa.0
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 06 Apr 2018 08:02:36 -0700 (PDT)
+X-Gm-Message-State: ALQs6tBjGwdYBxAN4iLhPKtAHQR+hPkDwb/tpYemo2erBvn4TmA9A/p6
+	tj8G0vyiD7k6PGnniTK9eo2b4HDgvYISzLSAe2s=
+X-Google-Smtp-Source: AIpwx4+VMmGRQHXCxPKMByv0B5R/gkfolAC7l5Yu1GtNBs5hPHQidcEr0umW3UKcuymGc/0xUH7rDBx9CE8c7wKTc6k=
+X-Received: by 10.46.129.204 with SMTP id s12mr1813695ljg.83.1523026955877;
+ Fri, 06 Apr 2018 08:02:35 -0700 (PDT)
+MIME-Version: 1.0
+References: <CALsPASXJYtzWhd3pHPB-m2Cc8mxeJ8xdQ_Fb53c947DU1CYeVA@mail.gmail.com>
+In-Reply-To: <CALsPASXJYtzWhd3pHPB-m2Cc8mxeJ8xdQ_Fb53c947DU1CYeVA@mail.gmail.com>
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Fri, 06 Apr 2018 15:02:24 +0000
+X-Gmail-Original-Message-ID: <CALsPASUfk8obyeE5vZCb6njrr_CLHiuaBiMoA_JV486ofqRnzQ@mail.gmail.com>
+Message-ID: <CALsPASUfk8obyeE5vZCb6njrr_CLHiuaBiMoA_JV486ofqRnzQ@mail.gmail.com>
+To: iswc-ssn2018@easychair.org
+Content-Type: multipart/alternative; boundary="f4f5e80c5834b04a4005692f5820"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Second CFP for SSN 2018: deadline 1 June 2018, at ISWC
+ 2018
+
+--f4f5e80c5834b04a4005692f5820
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Apologies for cross-posting
+
+
+=3D  9th International Semantic Sensor Networks Workshop (SSN 2018) =3D
+
+
+
+Monterey, California, 9th October 2018
+
+
+
+WWW: https://ssn2018.github.io/
+
+E-mail: iswc-ssn2018@easychair.org
+
+Online CFP: https://easychair.org/cfp/iswc-ssn2018
+
+
+
+We would like to invite you cordially to consider contributing a paper to
+SSN 2018 - held as a part of the 17th International Semantic Web Conference
+(ISWC 2018).
+
+
+
+Rapid growth in the Internet of Things (IoT) means that connected sensors
+and actuators will be inundating the Web infrastructure with data.
+Semantics is increasingly seen as a key enabler for integration of sensor
+data and the broader Web ecosystem. The W3C and the Open Geospatial
+Consortium standardisation bodies have taken a second look at the Semantic
+Sensor Network ontology and have published a new standard ontology for
+representing Sensors, Observations, Sampling, Actuation and Sensor
+Networks. Analytical and reasoning capabilities afforded by Semantic Web
+standards and technologies are considered important for developing advanced
+applications that go from capturing observations to recognition of events,
+deeper insights and actions. Furthermore, the contribution of semantics to
+sensing and actuation patterns is currently being explored. Major
+industries including manufacturing, transport and logistics, personal and
+public health, smart cities and smart energy, crisis management and many
+others are spanning commercial, civic, and scientific operations that
+involve sensors, web, services and semantics. This workshop will continue
+the activity started within ISWC in 2006, and complemented by special
+tracks at ESWC since 2010. This 2018 edition benefits from renewed energy
+arising from the October 2017 W3C recommendation and OGC standard and, more
+importantly, increases significance due to the growth of IoT-enabled
+applications.
+
+
+
+The SSN workshop will be a half-day event that revives and strengthens the
+community around the ontological representation of sensor and actuation
+data and welcomes researchers from related communities. It will be highly
+interactive, so as to facilitate discussions among participants that could
+result in future collaborative work. An invited talk will be followed by
+authors presenting research papers in either long or short format, together
+with demonstrations that have been a successful feature of SSN in the past.
+Sufficient time will be dedicated to questions and answers for each paper.
+The session will end with a general discussion on experience with relevant
+ontologies and ideas for next steps.
+
+
+
+
+
+TOPICS
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+Topics include, but are not limited to:
+
+
+
+- Semantic integration in heterogeneous sensor networks
+
+- Evaluation of ontologies for sensing and sensors
+
+- Citizen sensors, participatory sensing and social sensing
+
+- Semantic middleware for sensor networks
+
+- Semantic interoperability and alignment with other standards and
+ontologies
+
+- Experience in sensor network applications of semantic technologies
+
+- Semantic algorithms for data fusion and situation awareness
+
+- Semantic reasoning for network topology management
+
+- Formal reasoning in sensor networks
+
+- Ontologies for sensor and RFID networks
+
+- Semantic policy management in sensor networks
+
+- Semantic feedback, control and actuation
+
+- Semantic discovery of sensors, sensor data and services
+
+- Emergent semantics and ambient intelligence in sensor systems
+
+- Semantic approaches to status monitoring and configuration of sensor
+systems
+
+- Scalability, security, trust and privacy in semantic sensor networks
+
+- Semantic provenance of sensor data
+
+- Semantically informed analytics of sensor data
+
+- Semantics and OGC SensorThings
+
+- Web of Things
+
+- Novel applications of semantic sensor networks, physical/IoT-cyber-social
+data
+
+- Sensors and observations for symbol grounding
+
+- Integration of semantic sensor networks with Internet/Web of Things
+
+- Linked sensor data
+
+- SSN/IoT ontology quality and semantic web best practices
+
+
+
+
+
+PAPER SUBMISSION
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+Papers should be submitted by June 1, 2018. We invite research papers and
+demonstration papers, either in long (16 pages) or short (8 pages) format.
+Submissions must be in PDF, formatted in the style of the Springer
+Publications format for Lecture Notes in Computer Science (LNCS).
+
+
+
+All proposed papers must be submitted in electronic form (PDF format) using
+the SSN 2018 conference management system at
+https://easychair.org/conferences/?conf=3Diswc-ssn2018
+
+
+
+See the full set of instructions at https://ssn2018.github.io/#submission
+
+
+
+
+
+PUBLICATION
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+Accepted papers will be published as CEUR workshop proceedings. At least
+one author of each accepted paper must register for the conference and
+present the paper there.
+
+
+
+
+
+IMPORTANT DATES
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+- Paper submission: 1 June 2018
+
+- Acceptance decision: 27 June 2018
+
+- Camera-ready version: 15 July 2018
+
+- Conference dates: 9th October 2018
+
+
+
+
+
+EVENT CHAIRS
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+- Kerry Taylor, Australian National University and University of Surrey, UK
+
+- Maxime Lefran=C3=A7ois, MINES Saint-=C3=89tienne, France
+
+- Ra=C3=BAl Garc=C3=ADa-Castro, Ontology Engineering Group, Universidad Pol=
+it=C3=A9cnica
+de Madrid, Spain
+
+- Am=C3=A9lie Gyrard, Knowledge-enabled Computing (Kno.e.sis), Wright State
+University, Ohio, U.S
+
+
+
+
+
+STEERING COMMITTEE
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+- Amit Sheth, Knowledge-enabled Computing (Kno.e.sis), Wright State
+University, Ohio, U.S.
+
+- Manfred Hauswirth, Fraunhofer Institute for Open Communication Systems,
+Berlin, Germany, Open Distributed Systems at the Technical University of
+Berlin, Germany
+
+- Kerry Taylor, Australian National University and University of Surrey, UK
+
+--f4f5e80c5834b04a4005692f5820
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(3=
+3,33,33)">Apologies for cross-posting</p><p class=3D"MsoNormal" style=3D"fo=
+nt-size:13px;color:rgb(33,33,33)"><br></p><p class=3D"MsoNormal" style=3D"f=
+ont-size:13px;color:rgb(33,33,33)">=3D=C2=A0 9th International Semantic Sen=
+sor Networks Workshop (SSN 2018) =3D</p><p class=3D"MsoNormal" style=3D"fon=
+t-size:13px;color:rgb(33,33,33)"><u></u></p><p class=3D"MsoNormal" style=3D=
+"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"Ms=
+oNormal" style=3D"font-size:13px;color:rgb(33,33,33)">Monterey, California,=
+ 9th October 2018<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-siz=
+e:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" =
+style=3D"font-size:13px;color:rgb(33,33,33)">WWW:=C2=A0<a href=3D"https://s=
+sn2018.github.io/" target=3D"_blank">https://ssn2018.github.io/</a><u></u><=
+u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33=
+)">E-mail:=C2=A0<a href=3D"mailto:iswc-ssn2018@easychair.org" target=3D"_bl=
+ank">iswc-ssn2018@easychair.org</a><u></u><u></u></p><p class=3D"MsoNormal"=
+ style=3D"font-size:13px;color:rgb(33,33,33)">Online CFP:=C2=A0<a href=3D"h=
+ttps://easychair.org/cfp/iswc-ssn2018" target=3D"_blank">https://easychair.=
+org/cfp/iswc-ssn2018</a>=C2=A0=C2=A0<br></p><p class=3D"MsoNormal" style=3D=
+"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"Ms=
+oNormal" style=3D"font-size:13px;color:rgb(33,33,33)">We would like to invi=
+te you cordially to consider contributing a paper to SSN 2018 - held as a p=
+art of the 17th International Semantic Web Conference (ISWC 2018).<u></u><u=
+></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)=
+"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;co=
+lor:rgb(33,33,33)">Rapid growth in the Internet of Things (IoT) means that =
+connected sensors and actuators will be inundating the Web infrastructure w=
+ith data. Semantics is increasingly seen as a key enabler for integration o=
+f sensor data and the broader Web ecosystem. The W3C and the Open Geospatia=
+l Consortium standardisation bodies have taken a second look at the Semanti=
+c Sensor Network ontology and have published a new standard ontology for re=
+presenting Sensors, Observations, Sampling, Actuation and Sensor Networks. =
+Analytical and reasoning capabilities afforded by Semantic Web standards an=
+d technologies are considered important for developing advanced application=
+s that go from capturing observations to recognition of events, deeper insi=
+ghts and actions. Furthermore, the contribution of semantics to sensing and=
+ actuation patterns is currently being explored. Major industries including=
+ manufacturing, transport and logistics, personal and public health, smart =
+cities and smart energy, crisis management and many others are spanning com=
+mercial, civic, and scientific operations that involve sensors, web, servic=
+es and semantics. This workshop will continue the activity started within I=
+SWC in 2006, and complemented by special tracks at ESWC since 2010. This 20=
+18 edition benefits from renewed energy arising from the October 2017 W3C r=
+ecommendation and OGC standard and, more importantly, increases significanc=
+e due to the growth of IoT-enabled applications.<u></u><u></u></p><p class=
+=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u=
+></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)=
+">The SSN workshop will be a half-day event that revives and strengthens th=
+e community around the ontological representation of sensor and actuation d=
+ata and welcomes researchers from related communities. It will be highly in=
+teractive, so as to facilitate discussions among participants that could re=
+sult in future collaborative work. An invited talk will be followed by auth=
+ors presenting research papers in either long or short format, together wit=
+h demonstrations that have been a successful feature of SSN in the past. Su=
+fficient time will be dedicated to questions and answers for each paper. Th=
+e session will end with a general discussion on experience with relevant on=
+tologies and ideas for next steps.<u></u><u></u></p><p class=3D"MsoNormal" =
+style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0=
+<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,3=
+3)">TOPICS<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;=
+color:rgb(33,33,33)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></=
+u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><=
+u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color=
+:rgb(33,33,33)">Topics include, but are not limited to:<u></u><u></u></p><p=
+ class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=
+=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(3=
+3,33,33)">- Semantic integration in heterogeneous sensor networks<u></u><u>=
+</u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"=
+>- Evaluation of ontologies for sensing and sensors<u></u><u></u></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Citizen sen=
+sors, participatory sensing and social sensing<u></u><u></u></p><p class=3D=
+"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Semantic middlew=
+are for sensor networks<u></u><u></u></p><p class=3D"MsoNormal" style=3D"fo=
+nt-size:13px;color:rgb(33,33,33)">- Semantic interoperability and alignment=
+ with other standards and ontologies<u></u><u></u></p><p class=3D"MsoNormal=
+" style=3D"font-size:13px;color:rgb(33,33,33)">- Experience in sensor netwo=
+rk applications of semantic technologies<u></u><u></u></p><p class=3D"MsoNo=
+rmal" style=3D"font-size:13px;color:rgb(33,33,33)">- Semantic algorithms fo=
+r data fusion and situation awareness<u></u><u></u></p><p class=3D"MsoNorma=
+l" style=3D"font-size:13px;color:rgb(33,33,33)">- Semantic reasoning for ne=
+twork topology management<u></u><u></u></p><p class=3D"MsoNormal" style=3D"=
+font-size:13px;color:rgb(33,33,33)">- Formal reasoning in sensor networks<u=
+></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33=
+,33,33)">- Ontologies for sensor and RFID networks<u></u><u></u></p><p clas=
+s=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Semantic pol=
+icy management in sensor networks<u></u><u></u></p><p class=3D"MsoNormal" s=
+tyle=3D"font-size:13px;color:rgb(33,33,33)">- Semantic feedback, control an=
+d actuation<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px=
+;color:rgb(33,33,33)">- Semantic discovery of sensors, sensor data and serv=
+ices<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:=
+rgb(33,33,33)">- Emergent semantics and ambient intelligence in sensor syst=
+ems<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:r=
+gb(33,33,33)">- Semantic approaches to status monitoring and configuration =
+of sensor systems<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-siz=
+e:13px;color:rgb(33,33,33)">- Scalability, security, trust and privacy in s=
+emantic sensor networks<u></u><u></u></p><p class=3D"MsoNormal" style=3D"fo=
+nt-size:13px;color:rgb(33,33,33)">- Semantic provenance of sensor data<u></=
+u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33=
+,33)">- Semantically informed analytics of sensor data<u></u><u></u></p><p =
+class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Semantic=
+s and OGC SensorThings<u></u><u></u></p><p class=3D"MsoNormal" style=3D"fon=
+t-size:13px;color:rgb(33,33,33)">- Web of Things<u></u><u></u></p><p class=
+=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Novel applica=
+tions of semantic sensor networks, physical/IoT-cyber-social data<u></u><u>=
+</u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"=
+>- Sensors and observations for symbol grounding<u></u><u></u></p><p class=
+=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Integration o=
+f semantic sensor networks with Internet/Web of Things<u></u><u></u></p><p =
+class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Linked s=
+ensor data<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;=
+color:rgb(33,33,33)">- SSN/IoT ontology quality and semantic web best pract=
+ices<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:=
+rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font=
+-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNorm=
+al" style=3D"font-size:13px;color:rgb(33,33,33)">PAPER SUBMISSION<u></u><u>=
+</u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"=
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></p><p class=3D"=
+MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u=
+></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">Pa=
+pers should be submitted by June 1, 2018. We invite research papers and dem=
+onstration papers, either in long (16 pages) or short (8 pages) format. Sub=
+missions must be in PDF, formatted in the style of the Springer Publication=
+s format for Lecture Notes in Computer Science (LNCS).<u></u><u></u></p><p =
+class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=
+=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,3=
+3,33)">All proposed papers must be submitted in electronic form (PDF format=
+) using the SSN 2018 conference management system at=C2=A0<a href=3D"https:=
+//easychair.org/conferences/?conf=3Diswc-ssn2018" target=3D"_blank">https:/=
+/easychair.org/conferences/?conf=3Diswc-ssn2018</a><u></u><u></u></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0=
+<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,3=
+3)">See the full set of instructions at=C2=A0<a href=3D"https://ssn2018.git=
+hub.io/#submission" target=3D"_blank">https://ssn2018.github.io/#submission=
+</a><u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:=
+rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font=
+-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNorm=
+al" style=3D"font-size:13px;color:rgb(33,33,33)">PUBLICATION<u></u><u></u><=
+/p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></p><p class=3D"MsoNor=
+mal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><=
+p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">Accepted=
+ papers will be published as CEUR workshop proceedings. At least one author=
+ of each accepted paper must register for the conference and present the pa=
+per there.<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;=
+color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=
+=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D=
+"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">IMPORTANT DATES<u>=
+</u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,=
+33,33)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></p><p cla=
+ss=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0=
+<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,3=
+3)">- Paper submission: 1 June 2018<u></u><u></u></p><p class=3D"MsoNormal"=
+ style=3D"font-size:13px;color:rgb(33,33,33)">- Acceptance decision: 27 Jun=
+e 2018<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;colo=
+r:rgb(33,33,33)">- Camera-ready version: 15 July 2018<u></u><u></u></p><p c=
+lass=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Conferenc=
+e dates: 9th October 2018<u></u><u></u></p><p class=3D"MsoNormal" style=3D"=
+font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"Mso=
+Normal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></=
+p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">EVENT=
+ CHAIRS<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;col=
+or:rgb(33,33,33)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u><=
+/p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u><=
+/u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rg=
+b(33,33,33)">- Kerry Taylor, Australian National University and University =
+of Surrey, UK<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13=
+px;color:rgb(33,33,33)">- Maxime Lefran=C3=A7ois, MINES Saint-=C3=89tienne,=
+ France<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;col=
+or:rgb(33,33,33)">- Ra=C3=BAl Garc=C3=ADa-Castro, Ontology Engineering Grou=
+p, Universidad Polit=C3=A9cnica de Madrid, Spain<u></u><u></u></p><p class=
+=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)">- Am=C3=A9lie G=
+yrard, Knowledge-enabled Computing (Kno.e.sis), Wright State University, Oh=
+io, U.S<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;col=
+or:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoNormal" style=3D"f=
+ont-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u></u></p><p class=3D"MsoN=
+ormal" style=3D"font-size:13px;color:rgb(33,33,33)">STEERING COMMITTEE<u></=
+u><u></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33=
+,33)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<u></u><u></u></p><p class=
+=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)"><u></u>=C2=A0<u=
+></u></p><p class=3D"MsoNormal" style=3D"font-size:13px;color:rgb(33,33,33)=
+">- Amit Sheth, Knowledge-enabled Computing (Kno.e.sis), Wright State Unive=
+rsity, Ohio, U.S.<u></u><u></u></p><p class=3D"MsoNormal" style=3D"font-siz=
+e:13px;color:rgb(33,33,33)">- Manfred Hauswirth, Fraunhofer Institute for O=
+pen Communication Systems, Berlin, Germany, Open Distributed Systems at the=
+ Technical University of Berlin, Germany<u></u><u></u></p><p class=3D"MsoNo=
+rmal" style=3D"font-size:13px;color:rgb(33,33,33)">- Kerry Taylor, Australi=
+an National University and University of Surrey, UK</p></div>
+
+--f4f5e80c5834b04a4005692f5820--

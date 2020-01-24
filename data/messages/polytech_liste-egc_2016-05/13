@@ -1,0 +1,1099 @@
+Return-Path: <chantalbonner@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id CDE081903874
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  5 May 2016 10:25:04 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id B8841700DF
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  5 May 2016 10:25:04 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 9DE8265EB183
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  5 May 2016 10:25:04 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.836
+X-Spam-Level: *
+X-Spam-Status: No, score=1.836 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, SUBJ_ALL_CAPS=1.625,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.2412 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id kbJ1Z32bMXun for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  5 May 2016 10:25:02 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-io0-x22e.google.com (mail-io0-x22e.google.com [IPv6:2607:f8b0:4001:c06::22e])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 70741688BA55
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  5 May 2016 10:25:02 +0200 (CEST)
+Received: by mail-io0-x22e.google.com with SMTP id d62so78027754iof.2
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 05 May 2016 01:25:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=em0ouvBG+TTdx1bvLUXBiLLJfTgvx7NwlK/i+BEU2/E=;
+        b=agEK7AO7ALPLeAvuXMUWDjrc+5mrOfKB33FSDaGaSXXVPVnIV95Vh3IHacTNbOfxj5
+         ef34gRnwer0NBUm95ICb6g5BsPweVEv/J1rFkoGt2gLA+GZJw8IuTc370tUtlB3QnwXu
+         3gFuO7h/LFpFToIYe4ZX3X2zwKupHUCtAYfO9XVf/EYisX6RR0RHDDLWgEZO458QtBQK
+         TjOaZFMhf6ta/e2rrU/DHYRPjsMl1CIh1qQtSDNCDxlEp9vLTtsZAfcroF0GR9IPVK8K
+         rK2zCpEVANZWMwcfUO9RzZ9PvN5I17a5l3iS65kdmsbP/eCYGMbuO1swKBJfBkf9YXsb
+         c0sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=em0ouvBG+TTdx1bvLUXBiLLJfTgvx7NwlK/i+BEU2/E=;
+        b=IT05WPt7OGuCI5tD1lZrzYjAgjCeiQYBmCNDlQvlNwnpKfUOtP3DrDNQ91yIaVyDDu
+         CaekCRcrNkkztEYh9OtnnPbiCDbqvg4HYoJnNA4Tptt0AYhJRN+zvqei59m+B9te/h9X
+         LM0FcHrT4s5r3eqiEprrWe6ReE3FA2N+JdSRb805xU3ueypTSTNfIRBU+oSaKuo3N3LK
+         roun+JbcF2UignMmf9P4PALoE17tlyFyQ5w7WBm0W9KECPQpkYVL93J4MhA7moCkamf3
+         5os3Z4jJnkBNZHcb3ETGCgKcdWYnNCWWVsN1XjEXE6w96pKQFWAVpvGJT5cepP/E2gSc
+         Vxkw==
+X-Gm-Message-State: AOPr4FXbOt06kQmQ3RR8Lvc2NOpgqmnoVWjd56K3f6MnPDzShT8voTfXtiY1ffWV4Fo0SS4bodjqTOM9tv44Vw==
+MIME-Version: 1.0
+X-Received: by 10.107.162.17 with SMTP id l17mr17534550ioe.42.1462436701137;
+ Thu, 05 May 2016 01:25:01 -0700 (PDT)
+Received: by 10.64.229.100 with HTTP; Thu, 5 May 2016 01:25:01 -0700 (PDT)
+Date: Thu, 5 May 2016 10:25:01 +0200
+Message-ID: <CAMrpTUOZhs5hf+wCnwkYCiu_GqVEdt3x8m6AROzPVeF5NeWErA@mail.gmail.com>
+From: Chantal Bonner <chantalbonner@gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a11409936141678053214140b
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP COMPLEX NETWORKS 2016 MILAN, ITALY NOVEMBER 30
+ DECEMBER 02, 2016
+
+--001a11409936141678053214140b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Apologies if you receive multiple copies of this Call for Papers
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Dear Colleagues,
+
+The Fifth International Workshop on Complex Networks and their Applications
+will be held in Milan =E2=80=93 Italy on November 30 =E2=80=93 December 02,=
+ 2016.
+
+http://complexnetworks.org <http://www.complexnetworks.org/>
+
+
+
+Please consider submitting original scientific results to COMPLEX NETWORKS
+2016
+
+*Full papers *and *Extended Abstracts* are welcome:
+
+=C2=B7       Accepted papers will be included in the proceedings published =
+by
+Springer
+
+=C2=B7       Accepted extended abstracts will be included in the book of
+abstracts (with ISBN)
+
+Extended version of selected papers will be published in special issues of
+International journals edited by Springer.
+
+=C2=B7       Computational Social Networks
+<http://www.computationalsocialnetworks.com/>
+
+=C2=B7       Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+
+
+
+*Keynote Speakers *
+
+Guido Caldarelli       <http://www.guidocaldarelli.com>
+IMT Lucca - Italy
+
+Raissa D=E2=80=99Souza <http://mae.engr.ucdavis.edu/dsouza/>
+U.C Davis - USA
+
+Renaud Lambiotte  <http://www.lambiotte.be/>                  University of
+Namur - Belgium
+
+Yamir Moreno <http://cosnet.bifi.es/people/yamir-moreno/>
+                 University of Zaragoza - Spain
+
+Eiko Yoneki <http://www.cnn.group.cam.ac.uk/directory/ey204@cam.ac.uk>
+                                    University of Cambridge - UK
+
+Ben Y. Zhao <http://www.cs.ucsb.edu/%7Eravenben/>
+                  U.C. Santa Barbara =E2=80=93 USA
+
+
+
+*Tutorials*
+
+Ernesto Estrada <http://www.estradalab.org>                          Univer=
+sity
+of Strathclyde =E2=80=93 UK
+
+Bruno Gon=C3=A7alves <http://www.bgoncalves.com/>                        Ne=
+w
+York University  =E2=80=93 USA
+
+
+
+The submission deadline is *September 05, 2015.*
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+Call For Paper =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+* Complex Networks 2016*
+
+*Fifth International **Workshop on Complex Networks and their Applications*
+
+*Milan, Italy, November 30 - December 02, 2016*
+
+
+
+http://complexnetworks.org <http://www.complexnetworks.org/>
+
+
+
+*Scope of the Workshop*
+
+Real-world entities often interconnect with each other through explicit or
+implicit relationships to form a complex network. Examples of complex
+networks are found in many fields of science such as biological systems,
+engineering systems, economic systems as well as social systems. The
+international workshop on Complex Networks and their Applications aims at
+bringing together researchers and practitioners from different science
+communities working on areas related to complex networks. The workshop
+targets two types of contributions from prospective authors: contributions
+dealing of theoretical tools and methods to solve practical problems as
+well as applications solved by tools from network sciences. Both
+contributions should stimulate interaction between theoreticians and
+practitioners.
+
+Authors are encouraged to submit both theoretical and applied papers on
+their research in complex networks.
+
+
+
+Topics for the workshop include, but are not limited to:
+
+
+
+=C2=B7       Models of Complex Networks
+
+=C2=B7       Structural Network Properties
+
+=C2=B7       Complex Networks and Epidemics
+
+=C2=B7       Community Structure & Discovery
+
+=C2=B7       Motif Discovery
+
+=C2=B7       Complex Networks Mining
+
+=C2=B7       Dynamics on and of Complex Networks
+
+=C2=B7       Link Prediction
+
+=C2=B7       Multiplex Networks
+
+=C2=B7       Network Controllability
+
+=C2=B7       Synchronization in Networks
+
+=C2=B7       Algorithms for Network Analysis
+
+=C2=B7       Networks Visual Representation
+
+=C2=B7       Large-scale Graph Analytics
+
+=C2=B7       Social Reputation, Influence, and Trust
+
+=C2=B7       Information Spreading in Social Media
+
+=C2=B7       Rumor and Viral Marketing
+
+=C2=B7       Recommendation Systems and Networks
+
+=C2=B7       Financial and Economic Networks
+
+=C2=B7       Political networks
+
+=C2=B7       Complex Networks and Mobility
+
+=C2=B7       Biological and Technological Networks
+
+=C2=B7       Mobile call Complex Networks
+
+=C2=B7       Bio-informatics and Earth Sciences Applications
+
+=C2=B7       Resilience and Robustness
+
+=C2=B7       Networks for Physical Infrastructures
+
+=C2=B7       Networks, Smart Cities and Smart Grids
+
+
+
+*Full papers* and *Extended Abstracts* are welcome. Both type of
+contributions can be accepted either for oral or poster presentation.
+
+
+
+=C2=B7       Full papers that, at the time of submission, are under review =
+for
+or have already been published or accepted for publication in a journal or
+conference will not be accepted.
+
+=C2=B7       This restriction does not apply to extended abstracts.
+
+
+
+*Publications*
+
+=C2=B7       Accepted *Extended abstracts* will be published in the Book of
+Abstracts (with ISBN) together with the abstracts of the keynote
+presentations.
+
+
+
+=C2=B7       Accepted *Full papers* will be included in the workshop procee=
+dings
+edited by Springer. Authors will be required to transfer copyright to
+Springer. The proceedings published on the Studies in Computational
+Intelligence <http://www.springer.com/series/7092> Series are submitted for
+indexing to SCOPUS, DBLP, MathSciNet, Zentralblatt Math, MetaPress, Ulrichs
+and Springerlink.
+
+
+
+*Format*
+
+Each submission must follow the Springer publication format available on
+the workshop website. <http://complexnetworks.org/#call>
+
+=C2=B7       Full Papers are recommended to be between 8-10 pages. They sho=
+uld
+not exceed 12 pages.
+
+=C2=B7       Extended Abstracts are recommended to be between 1-2 pages. Th=
+ey
+should not exceed 3 pages.
+
+
+
+*Submission*
+
+All contributions should be submitted via Easy chair
+<https://easychair.org/conferences/?conf=3Dcomplex_networks_2016>.
+
+https://easychair.org/conferences/?conf=3Dcomplex_networks_2016
+
+
+
+*Journal special issues*
+
+Extended versions of accepted contributions will be invited for publication
+in special issues of international journals edited by Springer
+
+
+
+=C2=B7       Computational Social Networks
+<http://www.computationalsocialnetworks.com/>
+
+=C2=B7       Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+
+
+
+<http://www.springer.com/physics/complexity/journal/41109>
+
+
+
+
+*Keynote Speakers *
+
+Guido Caldarelli                                  *IMT Lucca =E2=80=93 Ital=
+y*
+
+Raissa D=E2=80=99Souza *                                U.C Davis - USA*
+
+Renauld Lambiotte                           *University of Namur - Belgium*
+
+Yamir Moreno                                      *University of Zaragoza -
+Spain*
+
+Eiko Yoneki                                              *University of
+Cambridge - UK*
+
+Ben Y. Zhao           *                                   U. C. Santa
+Barbara =E2=80=93 USA*
+
+*Tutorials *
+
+Ernesto Estrada                                                     *Univer=
+sity
+of Strathclyde =E2=80=93 UK*
+
+Bruno Gon=C3=A7alves                                 *New York University -=
+ USA*
+
+
+
+*Important dates*
+
+* Paper Submission: September 05, 2016
+
+* Acceptance/Reject notification: October 02, 2016
+
+* Camera ready: October 09, 2016
+
+* Author registration: October 20, 2016
+
+
+
+*Program Committee: *  http://complexnetworks.org/#committees
+
+If you have any queries, please email at hocine.cherifi@u-bourgogne.fr and
+we will be happy to address them.
+
+
+--=20
+Chantal Cherifi
+Associate professor
+University of Lyon 2
+*IUT Lumi=C3=A8re*
+* - DISP Laboratory*(+ <+33650817184>33) 4 78 77 31 32 <+33650817184>
+
+
+*http://disp-lab.fr/en/chantal-cherifi
+<http://disp-lab.fr/en/chantal-cherifi>https://www.researchgate.net/profile=
+/Chantal_Cherifi2
+<https://www.researchgate.net/profile/Chantal_Cherifi2>*
+
+--001a11409936141678053214140b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin-bottom:6pt"><span l=
+ang=3D"EN-US">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<br>
+Apologies if you receive multiple copies of this Call for Papers<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+<br>
+Dear Colleagues,</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><span lang=3D"EN-US">The=
+ Fifth International Workshop on Complex </span><span><span lang=3D"EN-US">=
+Network</span></span><span lang=3D"EN-US">s and their Applications will be =
+held in Milan =E2=80=93 Italy on November 30 =E2=80=93
+December 02, 2016.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><span lang=3D"FR"><a href=3D"http://www.complexnetworks.org=
+/" target=3D"_blank"><span style=3D"font-size:14pt" lang=3D"EN-US">http://c=
+omplexnetworks.org</span></a></span><b><span style=3D"font-size:14pt" lang=
+=3D"EN-US"></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><span lang=3D"EN-US">=C2=
+=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><span lang=3D"EN-US">Ple=
+ase consider submitting original scientific results
+to COMPLEX NETWORKS 2016</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><b><span lang=3D"EN-US">=
+Full papers </span></b><span lang=3D"EN-US">and <b>Extended Abstracts</b> a=
+re welcome:</span></p>
+
+<p style=3D"margin-bottom:4pt"><span style=3D"font-family:Symbol" lang=3D"E=
+N-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-family:&q=
+uot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></sp=
+an><span lang=3D"EN-US">Accepted papers will be included in the proceedings=
+ published by Springer</span></p>
+
+<p style=3D"margin-bottom:4pt"><span style=3D"font-family:Symbol" lang=3D"E=
+N-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-family:&q=
+uot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></sp=
+an><span lang=3D"EN-US">Accepted extended abstracts will be included in the=
+ book of abstracts (with
+ISBN)</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><span lang=3D"EN-US">Ext=
+ended version of selected papers will be published
+in special issues of International journals </span><span lang=3D"EN-US">edi=
+ted by Springer</span><span lang=3D"EN-US">.</span></p>
+
+<p style=3D"margin-bottom:4pt"><span><span style=3D"font-family:Symbol" lan=
+g=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-fam=
+ily:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </spa=
+n></span></span><span lang=3D"FR"><a href=3D"http://www.computationalsocial=
+networks.com/" target=3D"_blank"><span lang=3D"EN-US">Computational Social =
+Networks</span></a></span><span><span lang=3D"EN-US"></span></span></p>
+
+<p style=3D"margin-bottom:4pt"><span style=3D"font-family:Symbol" lang=3D"E=
+N-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-family:&q=
+uot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></sp=
+an><span lang=3D"FR"><a href=3D"http://www.springer.com/physics/complexity/=
+journal/41109" target=3D"_blank"><span lang=3D"EN-US">Applied Network Scien=
+ce</span></a></span><span lang=3D"EN-US"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><span lang=3D"EN-US">=C2=
+=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><b><span style=3D"color:=
+black" lang=3D"EN-US">Keynote Speakers </span></b><span lang=3D"EN-US"></sp=
+an></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt"><span lang=3D"F=
+R"><a href=3D"http://www.guidocaldarelli.com" target=3D"_blank"><span lang=
+=3D"EN-US">Guido
+Caldarelli=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></a></span><span lang=
+=3D"EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IMT Lucca - Italy</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 18pt"><span lang=3D"FR">=
+<a href=3D"http://mae.engr.ucdavis.edu/dsouza/" target=3D"_blank">Raissa D=
+=E2=80=99Souza</a></span><span lang=3D"FR">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 U.C Davis - USA</=
+span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 18pt"><span lang=3D"FR">=
+<a href=3D"http://www.lambiotte.be/" target=3D"_blank"><span lang=3D"EN-US"=
+>Renaud
+Lambiotte=C2=A0 </span></a></span><span lang=3D"EN-US">=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 University
+of Namur - Belgium</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 18pt"><span lang=3D"FR">=
+<a href=3D"http://cosnet.bifi.es/people/yamir-moreno/" target=3D"_blank"><s=
+pan lang=3D"EN-US">Yamir Moreno</span></a></span><span lang=3D"EN-US">=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 University of Zaragoza -
+Spain</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt"><span lang=3D"F=
+R"><a href=3D"http://www.cnn.group.cam.ac.uk/directory/ey204@cam.ac.uk" tar=
+get=3D"_blank"><span lang=3D"EN-US">Eiko Yoneki</span></a></span><span lang=
+=3D"EN-US"> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Unive=
+rsity
+of Cambridge - UK</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 18pt"><span lang=3D"FR">=
+<a href=3D"http://www.cs.ucsb.edu/%7Eravenben/" target=3D"_blank"><span lan=
+g=3D"EN-US">Ben Y. Zhao</span></a></span><span lang=3D"EN-US"> =C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 U.C.
+Santa Barbara =E2=80=93 USA</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 18pt"><span lang=3D"EN-U=
+S">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:4pt"><b><span style=3D"color:=
+black" lang=3D"EN-US">Tutorials</span></b></p>
+
+<p style=3D"margin:0cm 0cm 4pt 17.85pt;text-align:justify;vertical-align:ba=
+seline"><a href=3D"http://www.estradalab.org" target=3D"_blank"><span style=
+=3D"font-size:11pt;font-family:Calibri" lang=3D"EN-US">Ernesto
+Estrada</span></a><span style=3D"font-size:9pt;font-family:Calibri;color:bl=
+ack" lang=3D"EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font-size:11pt;font-family:Cali=
+bri" lang=3D"EN-US">University of Strathclyde =E2=80=93 UK</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt 17.85pt;text-align:justify;vertical-ali=
+gn:baseline"><a href=3D"http://www.bgoncalves.com/" target=3D"_blank"><span=
+ style=3D"font-size:11pt;font-family:Calibri" lang=3D"EN-US">Bruno
+Gon=C3=A7alves</span></a><span style=3D"font-size:11pt;font-family:Calibri"=
+ lang=3D"EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ New
+York University=C2=A0 =E2=80=93 USA</span><i><span style=3D"font-size:9pt;f=
+ont-family:Calibri;color:black" lang=3D"EN-US"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span lang=3D"EN-US=
+">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The submission deadline is <b>S=
+eptember 05, 2015.</b></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:Cambria" lang=3D"EN-US">=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+Call For Paper
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><b><span style=3D"font-size:18pt;font-family:&quot;Times Ne=
+w Roman&quot;;text-transform:uppercase" lang=3D"EN-US">=C2=A0Complex
+Networks 2016</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><b><span style=3D"font-size:20pt" lang=3D"EN-US">Fifth
+International </span></b><b><span style=3D"font-size:20pt;font-family:&quot=
+;Times New Roman&quot;" lang=3D"EN-US">Workshop on Complex Networks
+and their Applications</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><b><span style=3D"font-size:16pt" lang=3D"EN-US">Milan,
+Italy, November 30 - December 02, 2016</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><b><span style=3D"font-size:16pt" lang=3D"EN-US">=C2=A0</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:center" a=
+lign=3D"center"><span lang=3D"FR"><a href=3D"http://www.complexnetworks.org=
+/" target=3D"_blank"><span style=3D"font-size:14pt" lang=3D"EN-US">http://c=
+omplexnetworks.org</span></a></span><b><span style=3D"font-size:14pt" lang=
+=3D"EN-US"></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:center" align=3D"center"><b><spa=
+n style=3D"font-size:14pt;line-height:115%;font-family:&quot;Times New Roma=
+n&quot;" lang=3D"EN-US">=C2=A0</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><b><span style=3D"f=
+ont-size:12pt;line-height:115%" lang=3D"EN-US">Scope of the
+Workshop</span></b><span style=3D"font-size:12pt;line-height:115%" lang=3D"=
+EN-US"> </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">Real-world
+entities often interconnect with each other through explicit or implicit
+relationships to form a complex network. Examples of complex networks are f=
+ound
+in many fields of science such as biological systems, engineering systems,
+economic systems as well as social systems. The international workshop on
+Complex Networks and their Applications aims at bringing together researche=
+rs
+and practitioners from different science communities working on areas relat=
+ed
+to complex networks. The workshop targets two types of contributions from
+prospective authors: contributions dealing of theoretical tools and methods=
+ to
+solve practical problems as well as applications solved by tools from netwo=
+rk
+sciences. Both contributions should stimulate interaction between theoretic=
+ians
+and practitioners. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">Authors
+are encouraged to submit both theoretical and applied papers on their resea=
+rch
+in complex networks. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">Topics
+for the workshop include, but are not limited to: </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span><span lang=3D"EN-US">Models
+of Complex Networks</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Structural Network Properti=
+es</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Complex Networks and Epidem=
+ics</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Community Structure &amp; D=
+iscovery</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Motif Discovery</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Complex Networks Mining</sp=
+an></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Dynamics on and of Complex =
+Networks</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Link Prediction</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Multiplex Networks</span></=
+p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Network Controllability</sp=
+an></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Synchronization in Networks=
+</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Algorithms for Network Anal=
+ysis</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Networks Visual Representat=
+ion</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Large-scale Graph Analytics=
+</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Social Reputation, Influenc=
+e, and
+Trust</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Information Spreading in So=
+cial
+Media</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Rumor and Viral Marketing</=
+span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Recommendation Systems and =
+Networks</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Financial and Economic Netw=
+orks</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Political networks</span></=
+p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Complex Networks and Mobili=
+ty</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Biological and Technologica=
+l
+Networks</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Mobile call Complex Network=
+s</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Bio-informatics and Earth S=
+ciences
+Applications</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Resilience and Robustness</=
+span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">Networks for Physical
+Infrastructures</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span><span lang=3D"EN-US">Networks,
+Smart Cities and Smart Grids</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<b><span lang=3D"EN-US">Full papers</span></b><span lang=3D"EN-US"> and <b>=
+Extended Abstracts</b> are welcome. Both type of contributions can be
+accepted either for oral or poster presentation. </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span><span lang=3D"EN-US">Full
+papers that, at the time of submission, are under review for or have alread=
+y
+been published or accepted for publication in a journal or conference will =
+not
+be accepted.</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 </span></span><span lang=3D"EN-US">This restriction does not a=
+pply to
+extended abstracts.</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span lang=3D"EN-US"=
+>=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><b><span style=3D"f=
+ont-size:14pt;line-height:115%" lang=3D"EN-US">Publications</span></b><b><s=
+pan style=3D"font-size:12pt;line-height:115%" lang=3D"EN-US"></span></b></p=
+>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span><span lang=3D"EN-US">Accepted
+<b>Extended abstracts</b> will be published
+in the Book of Abstracts (with ISBN) together with the abstracts of the key=
+note
+presentations.</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p style=3D"margin-bottom:0.0001pt;text-align:justify"><span style=3D"font-=
+family:Symbol" lang=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font=
+-size:7pt;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0
+</span></span><span lang=3D"EN-US">Accepted
+<b>Full papers</b> will be included in the
+workshop proceedings edited by Springer. Authors will be required to transf=
+er
+copyright to Springer. The proceedings published on the=C2=A0</span><span l=
+ang=3D"FR"><a href=3D"http://www.springer.com/series/7092" target=3D"_blank=
+"><span lang=3D"EN-US">Studies in Computational Intelligence</span></a></sp=
+an><span style=3D"color:black" lang=3D"EN-US"> Series are submitted for
+indexing to SCOPUS, DBLP, MathSciNet, Zentralblatt Math, MetaPress, Ulrichs=
+ and
+Springerlink.</span><span lang=3D"EN-US"></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;vertical-align:baseline"><b><span style=
+=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D"EN-US">=C2=A0</=
+span></b></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><b><span style=3D"f=
+ont-size:14pt;line-height:115%" lang=3D"EN-US">Format</span></b><b><span st=
+yle=3D"font-size:12pt;line-height:115%" lang=3D"EN-US"></span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Each submission must follow the Springer
+publication format available on the workshop </span><a href=3D"http://compl=
+exnetworks.org/#call" target=3D"_blank"><span style=3D"font-size:11pt;font-=
+family:Calibri" lang=3D"EN-US">website.</span></a><span style=3D"font-size:=
+11pt;font-family:Calibri;color:black" lang=3D"EN-US"></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt 36pt;text-align:justify;vertical-align:=
+baseline"><span style=3D"font-size:11pt;font-family:Symbol;color:black" lan=
+g=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-fam=
+ily:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:11pt;font-family:Calibri;color:black=
+" lang=3D"EN-US">Full Papers are recommended to be between 8-10 pages. They=
+ should not
+exceed 12 pages.</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt 36pt;text-align:justify;vertical-align:=
+baseline"><span style=3D"font-size:11pt;font-family:Symbol;color:black" lan=
+g=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-fam=
+ily:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span><span style=3D"font-size:11pt;font-family:Calibri;color:black=
+" lang=3D"EN-US">Extended Abstracts are recommended to be between 1-2 pages=
+. They should
+not exceed 3 pages.</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><b><span style=3D"f=
+ont-size:14pt;line-height:115%" lang=3D"EN-US">Submission</span></b><b><spa=
+n style=3D"font-size:12pt;line-height:115%" lang=3D"EN-US"></span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">All contributions should be submitted via </span><a href=3D"https:/=
+/easychair.org/conferences/?conf=3Dcomplex_networks_2016" target=3D"_blank"=
+><span style=3D"font-size:11pt;font-family:Calibri" lang=3D"EN-US">Easy
+chair</span></a><span style=3D"font-size:11pt;font-family:Calibri;color:bla=
+ck" lang=3D"EN-US">.</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><a href=3D"https://easychair.org/conferences/?conf=3Dcomplex_networks_=
+2016" target=3D"_blank"><span style=3D"font-size:11pt;font-family:Calibri" =
+lang=3D"EN-US">https://easychair.org/conferences/?conf=3Dcomplex_networks_2=
+016</span></a><span style=3D"font-size:11pt;font-family:Calibri;color:black=
+" lang=3D"EN-US"></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;vertical-align:baseline"><span style=3D=
+"font-size:11pt;font-family:Calibri;color:black" lang=3D"EN-US">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><b><span style=3D"font-size:14pt;font-family:Calibri;color:black" lang=
+=3D"EN-US">Journal special issues</span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Extended versions of accepted contributions
+will be invited for publication in special issues of international journals
+edited by Springer</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">=C2=A0</span></p>
+
+<p style=3D"margin-bottom:4pt"><span><span style=3D"font-family:Symbol" lan=
+g=3D"EN-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-fam=
+ily:&quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </spa=
+n></span></span><span lang=3D"FR"><a href=3D"http://www.computationalsocial=
+networks.com/" target=3D"_blank"><span lang=3D"EN-US">Computational Social =
+Networks</span></a></span><span><span lang=3D"EN-US"></span></span></p>
+
+<p style=3D"margin-bottom:4pt"><span style=3D"font-family:Symbol" lang=3D"E=
+N-US">=C2=B7<span style=3D"font-stretch:normal;font-size:7pt;font-family:&q=
+uot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></sp=
+an><span lang=3D"FR"><a href=3D"http://www.springer.com/physics/complexity/=
+journal/41109" target=3D"_blank"><span lang=3D"EN-US">Applied Network Scien=
+ce</span></a></span><span lang=3D"EN-US"></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:9pt;font-family:Calibri;color:black" lang=3D"=
+EN-US">=C2=A0</span></p>
+
+<div align=3D"center">
+
+<table style=3D"border-collapse:collapse;border:medium none" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0">
+ <tbody><tr>
+  <td style=3D"width:93.55pt;padding:0cm 5.4pt" valign=3D"top" width=3D"94"=
+>
+  <p style=3D"margin:0cm 0cm 0.0001pt;text-align:center;vertical-align:base=
+line" align=3D"center"><a href=3D"http://www.springer.com/physics/complexit=
+y/journal/41109" target=3D"_blank"><span style=3D"font-family:Helvetica;col=
+or:windowtext;text-decoration:none" lang=3D"EN-US"></span></a><span style=
+=3D"font-size:9pt;font-family:Calibri;color:black" lang=3D"EN-US"></span></=
+p>
+  <br></td>
+  <td style=3D"width:93.55pt;padding:0cm 5.4pt" valign=3D"top" width=3D"94"=
+>
+  <p style=3D"margin:0cm 0cm 0.0001pt;text-align:center;vertical-align:base=
+line" align=3D"center"><span style=3D"font-size:10.5pt;font-family:Tahoma;c=
+olor:rgb(34,34,0)" lang=3D"EN-US"></span><span style=3D"font-size:9pt;font-=
+family:Calibri;color:black" lang=3D"EN-US"></span></p>
+  <br></td>
+ </tr>
+</tbody></table>
+
+</div>
+
+<p style=3D"margin:3pt 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><b><span style=3D"font-size:9pt;font-family:Calibri;color:black" lang=
+=3D"EN-US">=C2=A0</span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;vertical-align:baseline"><b><span style=
+=3D"font-size:14pt;font-family:Calibri;color:black" lang=3D"EN-US">Keynote
+Speakers </span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Guido Caldarelli=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <i>IMT Lucc=
+a =E2=80=93 Italy</i></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=3D"colo=
+r:black" lang=3D"FR">Raissa D=E2=80=99Souza <i>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 U.C Davis - USA</i></span><span lang=3D"FR"></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Renauld Lambiotte=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 <i>University of Namur - Belgium</i></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Yamir Moreno=C2=A0=C2=A0=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <i>University of Zar=
+agoza - Spain</i></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Eiko Yoneki =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <i>University of Cam=
+bridge - UK</i></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black">Ben Y. =
+Zhao =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0<i>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 U.
+C. Santa Barbara =E2=80=93 USA</i></span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;vertical-align:baseline"><b><span style=
+=3D"font-size:14pt;font-family:Calibri;color:black" lang=3D"EN-US">Tutorial=
+s
+</span></b></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;text-align:justify;vertical-align:basel=
+ine"><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=3D=
+"EN-US">Ernesto Estrada=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><i><span style=3D"font-size:11pt;font-fa=
+mily:Calibri" lang=3D"EN-US">University of Strathclyde =E2=80=93 UK</span><=
+/i><i><span style=3D"font-size:11pt;font-family:Calibri;color:black" lang=
+=3D"EN-US"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><span style=3D"colo=
+r:black" lang=3D"FR">Bruno Gon=C3=A7alves=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 <i>New York University - USA</i></span><span lang=3D"FR"></span><=
+/p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><b><span style=3D"f=
+ont-size:14pt;line-height:115%" lang=3D"EN-US">Important dates</span></b><s=
+pan style=3D"font-size:12pt;line-height:115%" lang=3D"EN-US"> </span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span style=3D"font-size:9pt;line-height:115%;font-family:&quot;Times New R=
+oman&quot;" lang=3D"EN-US">* </span><span lang=3D"EN-US">Paper Submission: =
+September 05, 2016</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">*
+Acceptance/Reject notification: October 02, 2016</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">* Camera
+ready: October 09, 2016</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">*
+Author registration: October 20, 2016</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<span lang=3D"EN-US">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;text-align:justify">=
+<b><span style=3D"font-size:12pt;line-height:115%" lang=3D"EN-US">Program
+Committee: </span></b><span lang=3D"EN-US">=C2=A0=C2=A0</span><span lang=3D=
+"FR"><a href=3D"http://complexnetworks.org/#committees" target=3D"_blank"><=
+span lang=3D"EN-US">http://complexnetworks.org/#committees</span></a></span=
+><u><span style=3D"color:blue" lang=3D"EN-US"></span></u></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-US">If=
+ you have any queries, please
+email at <a href=3D"mailto:hocine.cherifi@u-bourgogne.fr" target=3D"_blank"=
+>hocine.cherifi@u-bourgogne.fr</a> and we will be happy to address them.</s=
+pan></p><br clear=3D"all"><br>-- <br><div class=3D"gmail_signature"><div di=
+r=3D"ltr"><span style=3D"color:rgb(102,102,102)">Chantal Cherifi</span><br>=
+<span style=3D"color:rgb(102,102,102)">Associate professor</span><br><span =
+style=3D"color:rgb(102,102,102)"><span style=3D"font-size:10pt;line-height:=
+115%;color:rgb(102,102,102)">University of Lyon 2</span><span style=3D"colo=
+r:rgb(102,102,102)">=C2=A0 </span><i><span style=3D"color:rgb(102,102,102)"=
+><br></span>IUT Lumi=C3=A8re</i></span><i><span style=3D"font-size:10pt;lin=
+e-height:115%;color:rgb(102,102,102)"></span><span style=3D"color:rgb(102,1=
+02,102)"> - DISP Laboratory<br></span></i><span style=3D"font-size:10pt;fon=
+t-family:&quot;Georgia&quot;,&quot;serif&quot;;color:rgb(102,102,102)"><fon=
+t size=3D"2"><span style=3D"font-family:Arial"><a href=3D"tel:+33650817184"=
+ target=3D"_blank">(+</a><a href=3D"tel:+33650817184" target=3D"_blank">33)=
+ 4 78 77 31 32</a><br><br></span><i><span style=3D"font-family:Arial"></spa=
+n></i><span style=3D"color:rgb(153,153,153)"><span style=3D"font-family:Ari=
+al"><span style=3D"color:rgb(51,102,255)"><u><a href=3D"http://disp-lab.fr/=
+en/chantal-cherifi">http://disp-lab.fr/en/chantal-cherifi</a><br><a href=3D=
+"https://www.researchgate.net/profile/Chantal_Cherifi2">https://www.researc=
+hgate.net/profile/Chantal_Cherifi2</a></u></span></span></span></font></spa=
+n><span style=3D"color:rgb(102,102,102)"></span><br><br></div></div>
+</div>
+
+--001a11409936141678053214140b--
+

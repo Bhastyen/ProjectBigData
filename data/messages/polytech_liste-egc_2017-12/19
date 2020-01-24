@@ -1,0 +1,328 @@
+Return-Path: <aurelien.bossard@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8A6992292952
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  7 Dec 2017 18:37:09 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 84B8573A1AE
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  7 Dec 2017 18:37:09 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 78352414A8E7
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  7 Dec 2017 18:37:09 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.988
+X-Spam-Level:
+X-Spam-Status: No, score=-4.988 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.9954 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id rhHOgM-BqmCJ for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  7 Dec 2017 18:37:08 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-pg0-x22c.google.com (mail-pg0-x22c.google.com [IPv6:2607:f8b0:400e:c05::22c])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 0942F4291422
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  7 Dec 2017 18:37:08 +0100 (CET)
+Received: by mail-pg0-x22c.google.com with SMTP id e14so4936327pgr.9
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 07 Dec 2017 09:37:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=s6X/Un6c2QbaBCj6rJ84mXom6mIIFn8ikUqBeoVlh6w=;
+        b=eUh51j1QQkEx+RcJUH7CJQftHS/X2DHNJygUgZo/ilnDkObVh+k5w0VnanAMIJfMXk
+         334E5KvmBlSb1kMeEjHXWFHOrhHyu4smEqOfoxfE07rKc5cgdQarfcPjs7eYzxZfLsiR
+         o45BvghfeYQ5zlGPy5CpMOejRm8nP2M8beAM9sHnSeHqxtNiZmCZUvW4h/qySSDpZs7g
+         71L2/UjtGfG7U9CBE2EhIKuYQfToeZBpfboANNytzlX+lsMwqRgQGoYdQg/oO5WcsRND
+         O3JJfUrAONxzoDo9YEu5TA3m5pC6tjDr0B/y4j7Zu74LLhzWYDfYu/PdCSGeUu85bOiX
+         Yjvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=s6X/Un6c2QbaBCj6rJ84mXom6mIIFn8ikUqBeoVlh6w=;
+        b=bBBSh2Z9Ja1DqFU4pvffce0We09oQs6mOic4MRemXYT7Zm0bGWExdTfUcH3x7RuUyN
+         p6LI2OKbXY6W2DgRKGAibuSZu5akxg/3iTVtKh9U10uhNS4Zv6irSmXoWT9yIROnTnRd
+         nI+/wSOE0nkx1qhcEOiZwmcNt22b74xcsOdHAFfwgtESNJVk6Jddvx/kTSY54PmJOJin
+         Y9sa/fs+gi3ljiiTcVdRT/TtBH4W4wqHn+DRRijW5+PlL8gkX/D4L4l3V98PNyFyRVQ/
+         8Ll+Kj9ppAEEd+NGJGOOjBeb0m5NiQl3qOlrH2Tsl0wae7ig1ye6G+c6rQOQIPDavC5X
+         ebXQ==
+X-Gm-Message-State: AJaThX6QI2OQrkEhGFijsbaKzIj0D4bgLzw75rxtijPA8PKW2Ybwarxv
+	5yY2VOiWIh61OzBkIuO318gwxyXbofhaI/+4LOB5
+X-Google-Smtp-Source: AGs4zMb4SYsRccJUzlbaG2UVHYT2IPboI5xDEc0cMKTd4/IeFg0IwHUiAG4gA66dSu8q0Z0WhRyntFeoBRNl7Xqnm3Y=
+X-Received: by 10.99.166.18 with SMTP id t18mr26227852pge.252.1512668226204;
+ Thu, 07 Dec 2017 09:37:06 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.100.247.199 with HTTP; Thu, 7 Dec 2017 09:37:05 -0800 (PST)
+From: =?UTF-8?Q?Aur=C3=A9lien_Bossard?= <aurelien.bossard@gmail.com>
+Date: Thu, 7 Dec 2017 18:37:05 +0100
+Message-ID: <CABg2GNzrox-eVNZS+qEZAa1kNazpFtABuSgs01y+M2m4T4vFeA@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="f403045e1d46494093055fc38497"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [Offre de stage M2] Deep learning pour le =?UTF-8?Q?r?=
+ =?UTF-8?Q?=C3=A9sum=C3=A9?= automatique, IUT de Montreuil
+
+--f403045e1d46494093055fc38497
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Sujet de stage M2 : Deep learning pour le r=C3=A9sum=C3=A9 automatique par =
+filtrage
+puis g=C3=A9n=C3=A9ration
+
+
+---------------------------------------------------------------------------=
+--------------------------
+Offre de stage de Master 2 : Deep learning pour le r=C3=A9sum=C3=A9 automat=
+ique par
+filtrage puis g=C3=A9n=C3=A9ration
+
+LIASD - Universit=C3=A9 Paris 8 - IUT de Montreuil
+---------------------------------------------------------------------------=
+---------------------------
+
+
+---------------------
+ Notre laboratoire
+---------------------
+
+Le LIASD est un laboratoire d'intelligence artificielle =C3=A0 cheval sur l=
+e
+campus de Saint-Denis de l'Universit=C3=A9 Paris 8 et le site de l'IUT de
+Montreuil. Nous d=C3=A9veloppons au sein de l'IUT de Montreuil un axe de
+recherche li=C3=A9 au texte, =C3=A0 la repr=C3=A9sentation des connaissance=
+s et =C3=A0 la
+recherche et =C3=A0 l'extraction d'information.
+
+
+---------------------
+ Contexte du stage
+---------------------
+
+Nous disposons d'un financement de l'Agence Nationale de la Recherche, le
+projet ASADERA (http://linc.iut.univ-paris8.fr/asadera), dont l'objectif
+est d'explorer de nouvelles modalit=C3=A9s et m=C3=A9thodes de r=C3=A9sum=
+=C3=A9 automatique.
+Dans ce cadre, nous voulons explorer des m=C3=A9thodes g=C3=A9n=C3=A9rative=
+s de r=C3=A9sum=C3=A9
+automatique. Le r=C3=A9sum=C3=A9 automatique a longtemps =C3=A9t=C3=A9 cant=
+onn=C3=A9 =C3=A0 des approches
+purement extractives (l'extraction de fragments de texte depuis les
+documents =C3=A0 r=C3=A9sumer), puis a =C3=A9volu=C3=A9 vers plus d'abstrac=
+tion gr=C3=A2ce aux
+approches de compression de phrases (les phrases sont compress=C3=A9es puis=
+ une
+=C3=A9tape d'extraction extrait les meilleures d'entre elles). Aujourd'hui,=
+ la
+communaut=C3=A9 scientifique s'int=C3=A9resse de plus pr=C3=A8s aux approch=
+es g=C3=A9n=C3=A9ratives
+(voir par exemple http://aclweb.org/anthology/D17-1221), notamment gr=C3=A2=
+ce =C3=A0
+l'apport des r=C3=A9seaux de neurones profonds r=C3=A9currents. Cependant, =
+la
+complexit=C3=A9 de l'apprentissage de la g=C3=A9n=C3=A9ration d'un texte co=
+urt depuis un
+texte beaucoup plus long fait qu'une approche purement g=C3=A9n=C3=A9rative=
+ reste
+impensable. De plus, puisque les r=C3=A9sum=C3=A9s =C3=A0 g=C3=A9n=C3=A9rer=
+ diff=C3=A8rent par leur sujet
+et donc les mots utilis=C3=A9s des r=C3=A9sum=C3=A9s sur lesquels un mod=C3=
+=A8le peut =C3=AAtre
+appris, le m=C3=A9canisme de g=C3=A9n=C3=A9ration doit faire appel =C3=A0 d=
+es techniques
+particuli=C3=A8res afin d'=C3=A9viter d'int=C3=A9grer des mots issus du voc=
+abulaire
+sp=C3=A9cifique des sujets du corpus d'apprentissage dans les r=C3=A9sum=C3=
+=A9s g=C3=A9n=C3=A9r=C3=A9s
+sur de nouveaux sujets.
+
+
+------------------------
+ Description du stage
+------------------------
+
+Nous proposons ici de r=C3=A9duire la complexit=C3=A9 du probl=C3=A8me en p=
+roc=C3=A9dant en
+premier lieu =C3=A0 une approche de filtrage des phrases : seules les phras=
+es
+les plus pertinentes doivent servir de base =C3=A0 l'apprentissage de la
+g=C3=A9n=C3=A9ration. Puis l'apprentissage, =C3=A0 base de r=C3=A9seaux de =
+neurones profonds
+r=C3=A9currents, doit incorporer un m=C3=A9canisme de copie (
+https://arxiv.org/abs/1603.06393) afin d'=C3=A9viter l'int=C3=A9gration de =
+mots hors
+sujet dans les r=C3=A9sum=C3=A9s g=C3=A9n=C3=A9r=C3=A9s.
+
+Le stagiaire devra donc impl=C3=A9menter ces diff=C3=A9rentes couches de tr=
+aitement
+afin de produire puis d'=C3=A9valuer un syst=C3=A8me de r=C3=A9sum=C3=A9 au=
+tomatique par
+filtrage/g=C3=A9n=C3=A9ration. Les corpus ainsi que les outils d'=C3=A9valu=
+ation sont
+pr=C3=AAts =C3=A0 utiliser, et les m=C3=A9canismes de filtrage =C3=A9galeme=
+nt. Diff=C3=A9rentes
+impl=C3=A9mentations des RNN avec m=C3=A9canisme par copie sont =C3=A9galem=
+ent disponible,
+mais externes =C3=A0 l'=C3=A9quipe.
+
+Le stage est d'une dur=C3=A9e de 6 mois.
+
+
+---------------------------------------
+ Comp=C3=A9tences/Connaissances requises
+---------------------------------------
+
+- Niveau Master 2
+- Ma=C3=AEtrise des frameworks Keras/Tensorflow
+- Forte compr=C3=A9hension des m=C3=A9canismes d'apprentissage des r=C3=A9s=
+eaux de neurone
+- Int=C3=A9r=C3=AAt pour le traitement automatique du langage
+- Parfaite ma=C3=AEtrise des syst=C3=A8mes Linux
+- Ma=C3=AEtrise des langages Python et Java
+
+
+-----------------
+ Lieu du stage
+-----------------
+
+IUT de Montreuil
+140 rue de la Nouvelle France
+93100 Montreuil
+M=C3=A9tro Mairie de Montreuil + bus (15 minutes)
+
+
+--------------------
+R=C3=A9f=C3=A9rences utiles
+--------------------
+
+Jiatao Gu, Zhengdong Lu, Hang Li, and Victor OK
+Li. 2016. Incorporating copying mechanism in
+sequence-to-sequence learning. In ACL, pages
+1631=E2=80=931640
+
+Chen Li, Fei Liu, Fuliang Weng, and Yang Liu. 2013.
+Document summarization via guided sentence compression.
+In EMNLP, pages 490=E2=80=93500.
+
+Alexander M Rush, Sumit Chopra, and Jason Weston.
+2015. A neural attention model for abstractive sentence
+summarization. EMNLP, pages 379=E2=80=93389.
+
+Ramesh Nallapati, Bowen Zhou, Caglar Gulcehre,
+Bing Xiang, et al. 2016. Abstractive text summarization
+using sequence-to-sequence rnns and beyond.
+arXiv preprint arXiv:1602.06023.
+
+
+
+
+
+Merci d=E2=80=99envoyer votre candidature =C3=A0 aurelien.bossard@gmail.com=
+ en indiquant
+en objet "Candidature stage r=C3=A9sum=C3=A9". N'oubliez =C3=A9videmment pa=
+s de joindre un
+CV et une lettre de motivation.
+
+--f403045e1d46494093055fc38497
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Sujet de stage M2 : Deep learning pour le r=C3=A9sum=
+=C3=A9 automatique par filtrage puis g=C3=A9n=C3=A9ration</div><div><br></d=
+iv><div><br></div><div>----------------------------------------------------=
+-------------------------------------------------</div><div>Offre de stage =
+de Master 2 : Deep learning pour le r=C3=A9sum=C3=A9 automatique par filtra=
+ge puis g=C3=A9n=C3=A9ration</div><div><br></div><div>LIASD - Universit=C3=
+=A9 Paris 8 - IUT de Montreuil</div><div>----------------------------------=
+--------------------------------------------------------------------</div><=
+div><br></div><div><br></div><div>---------------------</div><div>=C2=A0Not=
+re laboratoire</div><div>---------------------</div><div><br></div><div>Le =
+LIASD est un laboratoire d&#39;intelligence artificielle =C3=A0 cheval sur =
+le campus de Saint-Denis de l&#39;Universit=C3=A9 Paris 8 et le site de l&#=
+39;IUT de Montreuil. Nous d=C3=A9veloppons au sein de l&#39;IUT de Montreui=
+l un axe de recherche li=C3=A9 au texte, =C3=A0 la repr=C3=A9sentation des =
+connaissances et =C3=A0 la recherche et =C3=A0 l&#39;extraction d&#39;infor=
+mation.</div><div><br></div><div><br></div><div>---------------------</div>=
+<div>=C2=A0Contexte du stage</div><div>---------------------</div><div><br>=
+</div><div>Nous disposons d&#39;un financement de l&#39;Agence Nationale de=
+ la Recherche, le projet ASADERA (<a href=3D"http://linc.iut.univ-paris8.fr=
+/asadera">http://linc.iut.univ-paris8.fr/asadera</a>), dont l&#39;objectif =
+est d&#39;explorer de nouvelles modalit=C3=A9s et m=C3=A9thodes de r=C3=A9s=
+um=C3=A9 automatique. Dans ce cadre, nous voulons explorer des m=C3=A9thode=
+s g=C3=A9n=C3=A9ratives de r=C3=A9sum=C3=A9 automatique. Le r=C3=A9sum=C3=
+=A9 automatique a longtemps =C3=A9t=C3=A9 cantonn=C3=A9 =C3=A0 des approche=
+s purement extractives (l&#39;extraction de fragments de texte depuis les d=
+ocuments =C3=A0 r=C3=A9sumer), puis a =C3=A9volu=C3=A9 vers plus d&#39;abst=
+raction gr=C3=A2ce aux approches de compression de phrases (les phrases son=
+t compress=C3=A9es puis une =C3=A9tape d&#39;extraction extrait les meilleu=
+res d&#39;entre elles). Aujourd&#39;hui, la communaut=C3=A9 scientifique s&=
+#39;int=C3=A9resse de plus pr=C3=A8s aux approches g=C3=A9n=C3=A9ratives (v=
+oir par exemple <a href=3D"http://aclweb.org/anthology/D17-1221">http://acl=
+web.org/anthology/D17-1221</a>), notamment gr=C3=A2ce =C3=A0 l&#39;apport d=
+es r=C3=A9seaux de neurones profonds r=C3=A9currents. Cependant, la complex=
+it=C3=A9 de l&#39;apprentissage de la g=C3=A9n=C3=A9ration d&#39;un texte c=
+ourt depuis un texte beaucoup plus long fait qu&#39;une approche purement g=
+=C3=A9n=C3=A9rative reste impensable. De plus, puisque les r=C3=A9sum=C3=A9=
+s =C3=A0 g=C3=A9n=C3=A9rer diff=C3=A8rent par leur sujet et donc les mots u=
+tilis=C3=A9s des r=C3=A9sum=C3=A9s sur lesquels un mod=C3=A8le peut =C3=AAt=
+re appris, le m=C3=A9canisme de g=C3=A9n=C3=A9ration doit faire appel =C3=
+=A0 des techniques particuli=C3=A8res afin d&#39;=C3=A9viter d&#39;int=C3=
+=A9grer des mots issus du vocabulaire sp=C3=A9cifique des sujets du corpus =
+d&#39;apprentissage dans les r=C3=A9sum=C3=A9s g=C3=A9n=C3=A9r=C3=A9s sur d=
+e nouveaux sujets.</div><div><br></div><div><br></div><div>----------------=
+--------</div><div>=C2=A0Description du stage</div><div>-------------------=
+-----</div><div><br></div><div>Nous proposons ici de r=C3=A9duire la comple=
+xit=C3=A9 du probl=C3=A8me en proc=C3=A9dant en premier lieu =C3=A0 une app=
+roche de filtrage des phrases : seules les phrases les plus pertinentes doi=
+vent servir de base =C3=A0 l&#39;apprentissage de la g=C3=A9n=C3=A9ration. =
+Puis l&#39;apprentissage, =C3=A0 base de r=C3=A9seaux de neurones profonds =
+r=C3=A9currents, doit incorporer un m=C3=A9canisme de copie (<a href=3D"htt=
+ps://arxiv.org/abs/1603.06393">https://arxiv.org/abs/1603.06393</a>) afin d=
+&#39;=C3=A9viter l&#39;int=C3=A9gration de mots hors sujet dans les r=C3=A9=
+sum=C3=A9s g=C3=A9n=C3=A9r=C3=A9s.</div><div><br></div><div>Le stagiaire de=
+vra donc impl=C3=A9menter ces diff=C3=A9rentes couches de traitement afin d=
+e produire puis d&#39;=C3=A9valuer un syst=C3=A8me de r=C3=A9sum=C3=A9 auto=
+matique par filtrage/g=C3=A9n=C3=A9ration. Les corpus ainsi que les outils =
+d&#39;=C3=A9valuation sont pr=C3=AAts =C3=A0 utiliser, et les m=C3=A9canism=
+es de filtrage =C3=A9galement. Diff=C3=A9rentes impl=C3=A9mentations des RN=
+N avec m=C3=A9canisme par copie sont =C3=A9galement disponible, mais extern=
+es =C3=A0 l&#39;=C3=A9quipe.</div><div><br></div><div>Le stage est d&#39;un=
+e dur=C3=A9e de 6 mois.</div><div><br></div><div><br></div><div>-----------=
+----------------------------</div><div>=C2=A0Comp=C3=A9tences/Connaissances=
+ requises</div><div>---------------------------------------</div><div><br><=
+/div><div>- Niveau Master 2</div><div>- Ma=C3=AEtrise des frameworks Keras/=
+Tensorflow</div><div>- Forte compr=C3=A9hension des m=C3=A9canismes d&#39;a=
+pprentissage des r=C3=A9seaux de neurone</div><div>- Int=C3=A9r=C3=AAt pour=
+ le traitement automatique du langage</div><div>- Parfaite ma=C3=AEtrise de=
+s syst=C3=A8mes Linux</div><div>- Ma=C3=AEtrise des langages Python et Java=
+</div><div><br></div><div><br></div><div>-----------------</div><div>=C2=A0=
+Lieu du stage</div><div>-----------------</div><div><br></div><div>IUT de M=
+ontreuil</div><div>140 rue de la Nouvelle France</div><div>93100 Montreuil<=
+/div><div>M=C3=A9tro Mairie de Montreuil + bus (15 minutes)</div><div><br><=
+/div><div><br></div><div>--------------------</div><div>R=C3=A9f=C3=A9rence=
+s utiles</div><div>--------------------</div><div><br></div><div>Jiatao Gu,=
+ Zhengdong Lu, Hang Li, and Victor OK</div><div>Li. 2016. Incorporating cop=
+ying mechanism in</div><div>sequence-to-sequence learning. In ACL, pages</d=
+iv><div>1631=E2=80=931640</div><div><br></div><div>Chen Li, Fei Liu, Fulian=
+g Weng, and Yang Liu. 2013.</div><div>Document summarization via guided sen=
+tence compression.</div><div>In EMNLP, pages 490=E2=80=93500.</div><div><br=
+></div><div>Alexander M Rush, Sumit Chopra, and Jason Weston.</div><div>201=
+5. A neural attention model for abstractive sentence</div><div>summarizatio=
+n. EMNLP, pages 379=E2=80=93389.</div><div><br></div><div>Ramesh Nallapati,=
+ Bowen Zhou, Caglar Gulcehre,</div><div>Bing Xiang, et al. 2016. Abstractiv=
+e text summarization</div><div>using sequence-to-sequence rnns and beyond.<=
+/div><div>arXiv preprint arXiv:1602.06023.</div><div><br></div><div><br></d=
+iv><div><br></div><div><br></div><div><br></div><div>Merci d=E2=80=99envoye=
+r votre candidature =C3=A0 <a href=3D"mailto:aurelien.bossard@gmail.com">au=
+relien.bossard@gmail.com</a> en indiquant en objet &quot;Candidature stage =
+r=C3=A9sum=C3=A9&quot;. N&#39;oubliez =C3=A9videmment pas de joindre un CV =
+et une lettre de motivation.</div><div><br></div></div>
+
+--f403045e1d46494093055fc38497--

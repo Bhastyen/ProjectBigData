@@ -1,0 +1,451 @@
+Return-Path: <mathieu.daquin@open.ac.uk>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 36C97229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 27 Feb 2017 18:01:58 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 34BEA6D2217
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 27 Feb 2017 18:01:58 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 2BFB4B4A252
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Feb 2017 18:01:58 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.61
+X-Spam-Level:
+X-Spam-Status: No, score=-0.61 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H5=-1,
+	RCVD_IN_MSPIKE_WL=-0.01, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.5991 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=openuniv.onmicrosoft.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id aOq9J6YcXsy0 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 27 Feb 2017 18:01:56 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on0048.outbound.protection.outlook.com [104.47.1.48])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 3EACCB6A40E
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Feb 2017 18:01:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=openuniv.onmicrosoft.com; s=selector1-open-ac-uk;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=zjAXlXlZm9eFERCkPaFGZBKemYWNr8OaKLzzHIka/zA=;
+ b=B3yoKOFnewEUd+s/kVS0roIam9kgCT0O7lIqLqaYqis3TIqqWuGwIgtZ1rx00sDFEFsKdGbYg4ijrnW11D610LYlYfvJlZoJWYILqiPoR6QsVhHV5EqiMvcg0NqYvR86vlryl0eIPT6mbbtu56XQOir3bJw73WlGf83HFyUy8zg=
+Received: from HE1PR0401CA0062.eurprd04.prod.outlook.com (10.168.27.30) by
+ HE1PR0401MB2492.eurprd04.prod.outlook.com (10.168.147.139) with Microsoft
+ SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.933.12; Mon, 27
+ Feb 2017 16:47:38 +0000
+Received: from VE1EUR01FT003.eop-EUR01.prod.protection.outlook.com
+ (2a01:111:f400:7e01::209) by HE1PR0401CA0062.outlook.office365.com
+ (2603:10a6:3:19::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.933.12 via
+ Frontend Transport; Mon, 27 Feb 2017 16:47:38 +0000
+Authentication-Results: spf=pass (sender IP is 137.108.170.149)
+ smtp.mailfrom=open.ac.uk; polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=bestguesspass
+ action=none header.from=open.ac.uk;
+Received-SPF: Pass (protection.outlook.com: domain of open.ac.uk designates
+ 137.108.170.149 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.108.170.149; helo=ariel.open.ac.uk;
+Received: from ariel.open.ac.uk (137.108.170.149) by
+ VE1EUR01FT003.mail.protection.outlook.com (10.152.2.118) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.919.10
+ via Frontend Transport; Mon, 27 Feb 2017 16:47:37 +0000
+Received: from netscaler-s238.open.ac.uk ([137.108.238.2] helo=mail-ot0-f172.google.com)
+	by ariel.open.ac.uk with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80.1)
+	(envelope-from <m.daquin@open.ac.uk>)
+	id 1ciOSX-0007YE-5f
+	for liste-egc@polytech.univ-nantes.fr; Mon, 27 Feb 2017 16:47:37 +0000
+Received: by mail-ot0-f172.google.com with SMTP id k4so55484707otc.0
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 27 Feb 2017 08:47:37 -0800 (PST)
+X-Gm-Message-State: AMke39n8RaHtLyM30j+RRpEvqq6dcZf4xwUWuqVoBbmwl7p76brHxizviD6ay2q6q+4fnxbiVlUNebXztCbFqw==
+X-Received: by 10.157.52.33 with SMTP id v30mr8735867otb.156.1488214056018;
+ Mon, 27 Feb 2017 08:47:36 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.157.25.35 with HTTP; Mon, 27 Feb 2017 08:47:35 -0800 (PST)
+From: Mathieu d'Aquin <m.daquin@open.ac.uk>
+Date: Mon, 27 Feb 2017 16:47:35 +0000
+X-Gmail-Original-Message-ID: <CAB_H__cfyxhymsYQbsbx4fW+3p8WgU+dH+L91PHfEnZjdJ0ogg@mail.gmail.com>
+Message-ID: <CAB_H__cfyxhymsYQbsbx4fW+3p8WgU+dH+L91PHfEnZjdJ0ogg@mail.gmail.com>
+To: <web.semantique@inria.fr>, <info-ic@listes.irisa.fr>, <bull-i3@irit.fr>,
+	<liste-egc@polytech.univ-nantes.fr>
+Content-Type: multipart/alternative; boundary="001a114147c828b61a054985d6e7"
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:137.108.170.149;IPV:NLI;CTRY:GB;EFV:NLI;SFV:NSPM;SFS:(10009020)(7916002)(39840400002)(39450400003)(39410400002)(2980300002)(438002)(189002)(199003)(189998001)(8676002)(74482002)(38730400002)(8576002)(84326002)(7906003)(626004)(80366005)(53376002)(2201001)(2906002)(8936002)(9896002)(61726006)(246002)(230673001)(7596002)(42882006)(55446002)(450100001)(7636002)(512874002)(93516999)(606005)(54356999)(63696999)(50986999)(5660300001)(356003)(61266001)(9686003)(6306002)(54896002)(498394004)(106466001)(42186005)(236005)(1250700005)(92566002)(966004)(55456009);DIR:OUT;SFP:1101;SCL:1;SRVR:HE1PR0401MB2492;H:ariel.open.ac.uk;FPR:;SPF:Pass;PTR:ariel.open.ac.uk;MX:1;A:1;LANG:en;
+X-Microsoft-Exchange-Diagnostics: 1;VE1EUR01FT003;1:ua5byHuIPEsnfb8PSVS8ZFdycCNzXMMnCwKBvTByHIGKRh9paoOnwJ44mprlUPOVy0ZLOikLpcJLA0H9GBsZmFhNUPorATHS4cTSn5FykNX4pmkKRVFXARSMdXFXk3n84VwZN1yAtglBZiKLa0xzKr90L38ltgVPA7J03KvQbviAN8l/F0RanHU6g89DlCFHR73UL6jMMPo7TQ5PeKw1Qy51+ysHOvgoOPE+tMm9/W0C6ZHnWdYawnSbFFEPrPzpYAzo0Dus+ybQAV6XH0kbJM9QEKJuqtUb/BjXrWvBAfgXgKxUQwBIwkJHhxms2usVJO7T3yEzO6+bg9QbpUSfMRPqDzyRD4RTmoyF7yZfgKXwPMyuiWMgkjpftouJ/XZmYUuayPcUYgOTZlVSsCOndQGpGoAk3gthW+Yie+XZ3mxJB4ADV1pYiC1osQfX8BxcZsEx+RTMApQFXLTF0JDSnntQ07VZqJ0/FnSoB5Q2nVdOnihmd7TuJT1zJnoB5QuX
+X-MS-Office365-Filtering-Correlation-Id: b9b1da57-3a7d-48b8-241f-08d45f30567e
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(8251501002);SRVR:HE1PR0401MB2492;
+X-Microsoft-Exchange-Diagnostics: 1;HE1PR0401MB2492;3:M2jp8uI8Hfy7cq6wG0HCM7MIHBpNdiph9jAv8RG1kiapxzSjIY0U6MRKbqJeKvL6lb/OzIRSKswnPieWXAyCl9b7sp3rxxxgL5g7Bu1IjiHOzjte7t7oE9A0pfjANrJFguR1v+MWvaKAaCc/ud1xYCWlrTZCWpiquapTm2ObdnfrGddUypn/XuYPWOQ11vg+bbeoQr1UgfkAMhNPWmYUADimc8/hon+qUiip2ufpQlRytyHWGRi/trQOweLBLTL4uSimqSpCoCEEULxaf9sX8foqs71oXJd1v/LhiFgGexmxDoKXzuho4+QPp2zaJ0WmU/ON4GO1613kTRBnOyaD+YsrTtrr6Qg1YRUL0+poJdKE78A1sI67Yr1PbciNS97Sf9DjbRM6WpEy2mTD/t3fIg==;25:VA7qRITZjKl4MeWL0xopYB5xktlkOs2/66LVla3JhYlYnz0kAQLscurlUANZlM07y5L0Fni6e6G8Yy55pH2A6RjXng4PNq+ox7bzU9VwsLgCwJ4sSZgf3A5gfoKTBHhPFvzcdOxN5nfGvcWk9756iFlbjGoGfUn+ZCTweKLZnYZ38XUNl7Zppzj0RtWdR0KEpCJD0ICWDpSRV9C9zZvL4659QPRv8sKf7iRXPJv8CQAx+HERK0328gRMzrFtl1oL5ruh655sA9jH8T2/6Iq3ptV2IKUDSdtcQrMe4Tw+cHQ3sSj+Nd8Au+de+K4Jyr13M86ud4hRbp3p3XPn/7BNBtFG9eqrqFalAhW8Eq196tSFFks5rSAeuVG9wiqR9eZtLfBK++UfsO4JX5wXcz8dhkl68EIy0nCNkYx2Pa0S99J8qaLSIHamKis7y3jbkgbihxLzncUQWY4uIby2ne6y6Q==
+X-Microsoft-Exchange-Diagnostics: 1;HE1PR0401MB2492;31:xFItJo1FhbLDtGHumnV2l3ivNH3LbiohtpGGKjd4pS92GJLdqaEkbkv+CbD3AjKzwTDLxlBJ06Tl3EL0IY9rsmApr4P0HqlYn+TGnLU4hKbwKOKragDcxk7djMbCxGguHOQBU58PalNRS4Xry9KLJu9ssIgzEtcfKo8ImJ28q6IAWXR8JE6CBIIvCMpjImyECDvy575SCj+N/JW8SSZ/RPjKVl6pU599oOf4ZUse/XJqVFjRiB7j1GlEc/2V/0l6sPGWYXMtyda5BJfL86w5pw==;20:3oU2DI5NAIL8YiEALY7p7GLAU3a7ReZuuu8gOm6FLcmHcMFNTuVpSAbBYOM0Kmg4FHK80jYSH3CkhIwu2wVt2b7V86/WHOMSVW+7NnTTrZq4ijBGrsqj+WLhDUfGbXd/5nsuLVXHr6ntsmMfb10TW+2LuQTNcijbePbAEWnguP10LrdjeLb0Wd1faOJDkaLWx56LHLyzz2Z0vzrA4o3Z8O8uz3GkVCiGt62eEwqJ2SROLj0wQ4vNT2u/KKF2xVH9lk+ONGsw92BqWV6MCFBq6RaIs+nExcRqfT/vMqmVfWJRcfKsVE0bkf3sQK5smK8XFCz644gsBCw44ovLnIA/qyZa7+S7iVGU9sHnmh8S8aJU49wbrKPOJOxmMOn/xmF8CTGhVHLfmIxJTkEg0OFBkDtGVOEiNJbUL7mIIdV63L+czPDc5u81J3v+iKFe+B4Mq5QyaaTT0xmV/TUKqfDlUL9NN+Zmd2KIqnVBUtpwwaItbfG5DBuz0y8CITcszl1n
+X-Microsoft-Antispam-PRVS: <HE1PR0401MB24921D20F0084AB906262816B3570@HE1PR0401MB2492.eurprd04.prod.outlook.com>
+X-Exchange-Antispam-Report-Test: UriScan:(135901495187858)(148322886591682)(278428928389397)(209352067349851)(273050684538779)(5213294742642);
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:(6040375)(601004)(2401047)(13016025)(8121501046)(5005006)(13018025)(3002001)(10201501046)(6041248)(20161123558025)(20161123564025)(20161123562025)(20161123555025)(20161123560025)(6072148);SRVR:HE1PR0401MB2492;BCL:0;PCL:0;RULEID:;SRVR:HE1PR0401MB2492;
+X-Microsoft-Exchange-Diagnostics: 1;HE1PR0401MB2492;4:VUdYXZ9xpvpukm690ercV2Lx23yj4ZiGLRl4W8MixVlW8bhnFTd6aBzZROWuh9q9vlsX9dce6BaakpWSSm3PYBXXARBXtqVcCoMr7IrRgUl51ULITutba8pRJTU3Bb8pLwdh4UAev0d0zV2NVPrRK5dNuouzJjalyja+fnQQZxn8jnbFZePiszR1alzxMiy1cWqE0Yf/zbqfv3aDGOepXhp5rykSG9B5ea/hgYdV8uB71NliY8YL5HFHZztoG2xNtXvnIbtxkIlPrl2Tq2s2aUzIuOyur90E8CkLBhEMtP/kxeVqPzYXRf3XEYxlelm3z2j4/ZZW4iQVUuQLc667xQaAkQ6jbK2+A0RS11TLEI2ZMVSep7EUNIt0ef1v7UZi1Rh5rhzJwxSRpX4/m5e8JNc2iCmBarojoiB68seJ9BMbwXk/vkCr0uEZk3Ch4sZ0QZ+qtbWLsWvmxBs8u/os6wEs0UhsHeTl8A4bv6iQ2rDs3+AcQQJ1SOC8hlMYjsP2HqLz5+KWH63Z2qx2XJqODQHD5fC3Fol9EqcfrHxx0sw+5Iu0EKJx8fJMWdiCb3p6PYxi5SHIZQmeZJiWbAapOix7JtNC0FfuSNdaxzrkk4kXWEyWiMqMSmuxGpjhhQmf4aFRSBoQUwD9mjE5c/BIv7Pr26hkC9dL/SJnpoGuVtbqKrf5X9gIqtn7DK3wG0d9cxUR3YWmA3LzwpVVdPFor7sRlNZxDk0aBRK8REkUxp+J25u3fyU2DOtAO1EWwB0D140XhiEKoCIlSSrj0oCe4Jm6XnzwVtpEWDMu6G1wiGMotJ5CgKYur+ecvKefOXYgFnHdhW0uaCYk7/rJZu/ZON+YW0AAqPSfXlsBWIo9yuQ=
+X-Forefront-PRVS: 02318D10FB
+X-Microsoft-Exchange-Diagnostics: =?us-ascii?Q?1;HE1PR0401MB2492;23:U93/LNt1pEikaZq0bLnDNYGOTvH46hJoRvAZeDC?=
+ =?us-ascii?Q?OLY1l0d8o6+2mEbrh41jzj42CVP5QFKEUEcbJlckCEeDcsWuutRy5Ral+/aY?=
+ =?us-ascii?Q?q/AiVCBZz/wxZ6QRhRvyuqJJiMmqtUSykrHWc+hFBGozk5A4OXneoSuWzTtM?=
+ =?us-ascii?Q?PRKqoTywKFYgH5jtcoc954NUjleefQKZyq6V6sz8zIWPHWzgCeLc+Bv9Fs0N?=
+ =?us-ascii?Q?gPUdmLOZngdYCe59lbf8oZnd+QJjRi7Tmd41oRQJIZ8CPAnvbBE7OHDi1oio?=
+ =?us-ascii?Q?WuGjVwHPGD5K3mBI+uWUCCjXWR6/Wd3kafiX0+i735EwVdCEf4g+tRr06WbR?=
+ =?us-ascii?Q?7EQszsnyFU8GxBJceI83Foel2OqMJzWH+ubsZNQgy6ai5RNv8GbyqkY0PlcF?=
+ =?us-ascii?Q?E1HX2KKEcl4WWjpz7Lfhva3ZcxCVdq31DH7tkSL7O7IbPgU1WQqxgL1HPA1f?=
+ =?us-ascii?Q?Ii9GCAFcebUPb9BRl3Zue6ElARbD1uUZhf9rItfgiP5SXe95D+pTPQ+SZSub?=
+ =?us-ascii?Q?wWjyMhrSG9S11JsrEmkHEmNi2KyMJt6YfBQuZh0OHIAfSzIid6qFRvT21asY?=
+ =?us-ascii?Q?HeOHa/0uafmo1YHzhwMKG30epcy8/LpqYcUhGgt+UQH8S9nzFj4UH8+61bk+?=
+ =?us-ascii?Q?uvCcRF6ZdPYauz3EqiCYT+dCmq0GbqWuvS7pIlu/XeGp64ZJM7xo+IVyJWAb?=
+ =?us-ascii?Q?63pjPYkZShQGO1L8Ftnr/6KLxU/kd8p0xEWNxoj33XpwPRfjoam9PmKMesFO?=
+ =?us-ascii?Q?N/9BTAwbAImNgV6h+IDkL8HdJTR/qDZkpf+sDJQBud+rJKYZrvjQ5Nog3JYL?=
+ =?us-ascii?Q?4a7OLl457xGBmofVz1T6O/fDa0MgQbh8mUwjvuGIuXLmpyWneiNieOgiGjje?=
+ =?us-ascii?Q?j8Q3KCjUfIIp+nMesmVF1JT1GnwArZaQEZsh83S+xIUm9EXL0dp1Se6FOI9K?=
+ =?us-ascii?Q?PDapatlmtvWjpB6ZqMGHpWTDCRuC8Jf5ZVqLKECTPWK8l3xPVh08ijAZU9w4?=
+ =?us-ascii?Q?MALgbu+aJGFlTGmw+2b60wfbRpJeZ5SyuTqCsS7bjIWJiVtuPPmYljHH/NXb?=
+ =?us-ascii?Q?Oi0YUd8QPrr2YUdrHbeuIQyjrnFndPo6KmJapCqmZsqAaIdsfYj/RDjYxMd4?=
+ =?us-ascii?Q?AkGussDVz+1usXxoaeSooTvpUC8ZuFzwDwMxY7YrmyOr+iuDsvL5fPQ=3D?=
+ =?us-ascii?Q?=3D?=
+X-Microsoft-Exchange-Diagnostics: 1;HE1PR0401MB2492;6:Jksx44RDykX/MHZV3kt6ji+EBcZfcckYu4sItdCa7ZxNHDLfQnCeHOeO/iiyuPN+tU7b13T14HOEzZBxfHPA3XtcbJsp2zDhna8sScbpnhTieDNcYNrVrJ73vrE91IIoaPZsHeaafKt2YTA+Ibex6KHMYCSSmQ+yX+HDC7na4+Y8QfcQfx0bp9njUV6iHtl23qRKpZaQ0st74id9SDBuuBiz6Aktns56d/lO01vPW5Rd4mvnnsCxNwf1/RndkEfyuiKypBhsvThi6nrNXdpoJYZOHXmGuQQ9m8zZ5yot8FQsLbhMAWqAltEgrKeYiNluDo9LWffGVQgfClAjHZ9p1xeeDV8gHS0PPw3MnIXjCH7oPHefXD8NwhABvRiR/P3kqQ6IFEz+PkhuBqcRzCRqNA==;5:uZZVIrGZ5/2NU1SbP40wE47ZoOATtrWZhEs7ZOwSgDLDUVOxNtwi/KeLLQR9tmwvHPmqhSg+fpUNv2uA5hj/Zjy+6T7RvFExklFkVxyAG4o3g9Xq06k3t9rzTKWzQR7adsrFSQvfN51wNyV0oMb8iQ==;24:hHaiqcE4Lz3EUrCrc0UnIKnofSggLKplCBYQEGQ8SbKUFLX2AEQrlX/WgFNkCfyB3taOpJ03uAzmgYSJmuoJLQof6VgZifQWr7xN+kaYvtw=
+SpamDiagnosticOutput: 1:99
+SpamDiagnosticMetadata: NSPM
+X-Microsoft-Exchange-Diagnostics: 1;HE1PR0401MB2492;7:TwnL6myE6b/snQuKsWtLDnTJbOjMIuag4TUnwhNs0Lmkqvq5Dgt2affLm3bbAxYtu9qpNoT1f3uxlsEe9BgmJsbPT6ZylZQ3xyDpwcsPpucujsbUn48u8rS6BmAabZub59VH4lgOIZmhcEqAxxLFyLOOW9doxl2LJYWNQd54MnE8+gCHym8otm5nsLqVhI1voTWE/lz347kMSloRgpNwFMypJroRUaX2IKFLLN5eDlsQm096fnu3x6//BpaWaTwHWSJs0MFU/XG/H4aBYU5dKVYtN18sBoqEJYx1flFUw4GFu5WW7/J73GwSZ5rbT6WrI5XEQ7Cf1OAyEy4dLppDlg==
+X-OriginatorOrg: open.ac.uk
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2017 16:47:37.8696
+ (UTC)
+X-MS-Exchange-CrossTenant-Id: 0e2ed455-96af-4100-bed3-a8e5fd981685
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0e2ed455-96af-4100-bed3-a8e5fd981685;Ip=[137.108.170.149];Helo=[ariel.open.ac.uk]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2492
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Deadline Extended! AnSWeR@ESWC2017 - 1st International
+ Workshop on Application of Semantic Web technologies in Robotics
+
+--001a114147c828b61a054985d6e7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D Call for Papers (AnSWeR 2017) =3D=3D=3D=3D
+1st International Workshop on Application of Semantic Web technologies in R=
+obotics - AnSWeR 2017
+Co-located with the Extended Semantic Web Conference 2017 (ESWC 2017)
+
+
+Deadline extended to 10 March 2017!
+
+Date: May the 29th, 2017
+Venue: Portoroz, Slovenia (co-located with ESWC 2017)
+Hashtag: #answer2017
+Twitter: @answerworkshop
+Site: http://answer.kmi.open.ac.uk/
+
+Workshop chairs:
+- Emanuele Bastianelli - The Open University
+- Mathieu d'Aquin - The Open University
+- Daniele Nardi - Sapienza University of Rome
+
+# DESCRIPTION
+Robots are slowly spreading outside the industrial and research environment=
+, to approach our everyday life. As this happens, robots will need to expos=
+e an increasing capability to deal with different sources of knowledge abou=
+t the world, to accomplish complex tasks involving Planning, Computer Visio=
+n, Natural Language Processing and so on. The need for integrating robots w=
+ith Knowledge Bases to provide them with a basic understanding of semantics=
+ has been already noticed by the Robotics community, and is testified by re=
+search projects such as KnowRob [ http://knowrob.org/ ] and Robobrain [ htt=
+p://robobrain.me/ ].
+
+It is therefore natural to think about whether and how the Semantic Web can=
+ have a role in this context. In recent years, the Semantic Web community h=
+as studied how to model, mine, manage and exploit knowledge from and for th=
+e Web, promoting in parallel the adoption of standards for knowledge repres=
+entation. In this sense, Robotics appears as a key application domain for S=
+emantic Web technologies, whose findings can be applied, adapted and furthe=
+r developed, as also showed by projects such as RoboEarth [ http://roboeart=
+h.ethz.ch/ ].
+
+It is therefore important to understand how the Semantic Web community is i=
+nterfacing with Robotics, and whether it can be actually beneficial. To thi=
+s end, the aim of this workshop is to promote and strengthen the dialogue b=
+etween the two communities that are working on such connected topics, in or=
+der to find answers to the posed questions (and hopefully to ask new questi=
+ons). The stimulated debate should then serve as a background in fostering,=
+ on the one hand, the application of Semantic Web standards and techniques =
+in problems common to Robotics, while on the other, in highlighting Robotic=
+s as a fertile application field for the Semantic Web community.
+
+We expect original, high-quality contributions embracing both the general t=
+opics of Semantic Web and Robotics. Researchers whose work have reached a c=
+ertain level of maturity or have already developed impactful applications a=
+re invited to submit full papers.
+Initial works, ongoing challenges, or not yet fully evaluated systems are a=
+lso welcome, and can be submitted in the form of short papers, position pap=
+ers and demos.
+
+While we aim for AnSWeR to cover the broad range of potential interactions =
+between the Semantic Web and Robotics, authors are encouraged to consider t=
+he following set of topics:
+
+- Robotics application using Semantic Web technologies
+- Semantic methods to support the development of robotic systems
+- Knowledge acquisition in robotic applications
+- Representation and reasoning for Robotics
+- Standardisation of terminology for robotics
+- Automation using ontologies
+- Planning and navigation using semantic data and knowledge
+- Semantic Maps
+- Interlinking local robotic knowledge with information coming from the Web=
+ of Data
+- Usability of available Semantic Web resources in Robotics
+- Knowledge sharing and exchange among several robotic platforms or applica=
+tions
+- Knowledge and perception
+- Entity linking, grounding and anchoring
+- Concrete use cases of working robotic systems exploiting Semantic Web app=
+roaches
+- Robotics within the Web of Things
+- Semantics to support Cloud Robotics
+- Future trends at the intersection of Robotics and the Semantic Web
+
+Submissions in all the categories mentioned above (full, short, position, d=
+emo papers) will be peer-reviewed by researchers familiar with both scienti=
+fic communities.
+Assuming a sufficient number of submissions, accepted contributions will be=
+ published as online proceedings courtesy of CEUR-WS.org. Moreover, worksho=
+p chairs will award one best paper to be published as part of the proceedin=
+gs of the ESWC 2017 conference.
+
+# IMPORTANT DATES
+Submission deadline: (Friday, March 3) EXTENDED DEADLINE -> Friday, March 1=
+0!!!
+Notification to authors: Friday, March 31
+Camera-ready due on: Thursday, April 13
+Workshop day: Monday, May 29
+
+# SUBMISSION INSTRUCTIONS
+All papers must represent original and unpublished work that is not current=
+ly under review. Papers will be evaluated according to their significance, =
+originality, technical content, style, clarity, and relevance to the worksh=
+op.
+
+We welcome the following types of contributions:
+- Full papers (up to 10 pages)
+- Short papers, position papers or demos (up to 5 pages)
+
+All submissions must be PDF documents written in English and formatted acco=
+rding to LNCS instructions for authors
+[ http://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0 ].
+Papers are to be submitted through the Easychair Conference Management Syst=
+em. [ https://easychair.org/conferences/?conf=3Danswer17 ]
+Page limits are inclusive of references and appendices, if any.
+
+# PROGRAM COMMITTEE
+- Maurizio Atzori, University of Cagliari, Italy
+- Ebrahim Bagheri, Ryerson University, Canada
+- Valerio Basile, Universit=C3=83=C2=A9 C=C3=83=C2=B4te d'Azur, Inria, CNRS=
+, France
+- Vaishak Belle, KU Leuven, Belgium
+- Elena Cabrio, Universit=C3=83=C2=A9 C=C3=83=C2=B4te d'Azur, Inria, CNRS, =
+France
+- Philipp Cimiano, Bielefeld University, Germany
+- Enrico Daga, Open University, UK
+- Daniela D=C3=A2=E2=82=AC=E2=84=A2Auria, University of Naples Federico II,=
+ Italy
+- Daniele Dell'Aglio, University of Zuirch, Switzerland
+- Christian Dornhege, University of Freiburg, Germany
+- Esra Erdem, Sabanci University, Turkey
+- Mohammad Farazi, Birmingham City University, UK
+- Malik Ghallab, Univesity of Toulouse, France
+- Fei Han, Colorado School of Mines, USA
+- Marc Hanheide, University of Lincoln, UK
+- Fredrik Heintz, Link=C3=83=C2=B6ping University, Sweden
+- Joachim Hertzberg, University of =C3=83=E2=80=93snabruck, Germany
+- George Konidaris, Duke University, USA
+- Lars Kunze, University of Birmingham, UK
+- Gerhard Lakemeyer, RWTH Aachen University, Germany
+- Masoumeh Mansouri, =C3=83=E2=80=93rebro University, Sweden
+- Femke Ongenae, Ghent University, Belgium
+- Andrea Orlandini, ISTC CNR, Italy
+- Valentina Presutti, ISTC CNR, Italy
+- Alessandro Russo, ISTC CNR, Italy
+- Alessandro Saffiotti, Orebro University, Sweden
+- Ilaria Tiddi, The Open University, UK
+
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England & Wales and a charity registered in Scotland (SC 038=
+302). The Open University is authorised and regulated by the Financial Cond=
+uct Authority.
+
+--001a114147c828b61a054985d6e7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+</head>
+<body>
+<div dir=3D"ltr">
+<pre style=3D"color:rgb(0,0,0);word-wrap:break-word;white-space:pre-wrap"><=
+pre style=3D"word-wrap:break-word;white-space:pre-wrap">=3D=3D=3D=3D Call f=
+or Papers (AnSWeR 2017) =3D=3D=3D=3D
+1st International Workshop on Application of Semantic Web technologies in R=
+obotics - AnSWeR 2017
+Co-located with the Extended Semantic Web Conference 2017 (ESWC 2017)
+<br></pre><pre style=3D"word-wrap:break-word;white-space:pre-wrap">Deadline=
+ extended to 10 March 2017!</pre><pre style=3D"word-wrap:break-word;white-s=
+pace:pre-wrap">Date: May the 29th, 2017
+Venue: Portoroz, Slovenia (co-located with ESWC 2017)
+Hashtag: #answer2017
+Twitter: @answerworkshop
+Site: <a href=3D"http://answer.kmi.open.ac.uk/">http://answer.kmi.open.ac.u=
+k/</a>
+
+Workshop chairs:
+- Emanuele Bastianelli - The Open University
+- Mathieu d'Aquin - The Open University
+- Daniele Nardi - Sapienza University of Rome
+
+# DESCRIPTION
+Robots are slowly spreading outside the industrial and research environment=
+, to approach our everyday life. As this happens, robots will need to expos=
+e an increasing capability to deal with different sources of knowledge abou=
+t the world, to accomplish complex tasks involving Planning, Computer Visio=
+n, Natural Language Processing and so on. The need for integrating robots w=
+ith Knowledge Bases to provide them with a basic understanding of semantics=
+ has been already noticed by the Robotics community, and is testified by re=
+search projects such as KnowRob [ <a href=3D"http://knowrob.org/">http://kn=
+owrob.org/</a> ] and Robobrain [ <a href=3D"http://robobrain.me/">http://ro=
+bobrain.me/</a> ].=20
+
+It is therefore natural to think about whether and how the Semantic Web can=
+ have a role in this context. In recent years, the Semantic Web community h=
+as studied how to model, mine, manage and exploit knowledge from and for th=
+e Web, promoting in parallel the adoption of standards for knowledge repres=
+entation. In this sense, Robotics appears as a key application domain for S=
+emantic Web technologies, whose findings can be applied, adapted and furthe=
+r developed, as also showed by projects such as RoboEarth [ <a href=3D"http=
+://roboearth.ethz.ch/">http://roboearth.ethz.ch/</a> ].=20
+
+It is therefore important to understand how the Semantic Web community is i=
+nterfacing with Robotics, and whether it can be actually beneficial. To thi=
+s end, the aim of this workshop is to promote and strengthen the dialogue b=
+etween the two communities that are working on such connected topics, in or=
+der to find answers to the posed questions (and hopefully to ask new questi=
+ons). The stimulated debate should then serve as a background in fostering,=
+ on the one hand, the application of Semantic Web standards and techniques =
+in problems common to Robotics, while on the other, in highlighting Robotic=
+s as a fertile application field for the Semantic Web community.=20
+
+We expect original, high-quality contributions embracing both the general t=
+opics of Semantic Web and Robotics. Researchers whose work have reached a c=
+ertain level of maturity or have already developed impactful applications a=
+re invited to submit full papers.
+Initial works, ongoing challenges, or not yet fully evaluated systems are a=
+lso welcome, and can be submitted in the form of short papers, position pap=
+ers and demos.
+
+While we aim for AnSWeR to cover the broad range of potential interactions =
+between the Semantic Web and Robotics, authors are encouraged to consider t=
+he following set of topics:
+
+- Robotics application using Semantic Web technologies
+- Semantic methods to support the development of robotic systems
+- Knowledge acquisition in robotic applications
+- Representation and reasoning for Robotics
+- Standardisation of terminology for robotics
+- Automation using ontologies
+- Planning and navigation using semantic data and knowledge
+- Semantic Maps
+- Interlinking local robotic knowledge with information coming from the Web=
+ of Data
+- Usability of available Semantic Web resources in Robotics
+- Knowledge sharing and exchange among several robotic platforms or applica=
+tions
+- Knowledge and perception
+- Entity linking, grounding and anchoring
+- Concrete use cases of working robotic systems exploiting Semantic Web app=
+roaches
+- Robotics within the Web of Things
+- Semantics to support Cloud Robotics=20
+- Future trends at the intersection of Robotics and the Semantic Web
+
+Submissions in all the categories mentioned above (full, short, position, d=
+emo papers) will be peer-reviewed by researchers familiar with both scienti=
+fic communities.=20
+Assuming a sufficient number of submissions, accepted contributions will be=
+ published as online proceedings courtesy of CEUR-WS.org. Moreover, worksho=
+p chairs will award one best paper to be published as part of the proceedin=
+gs of the ESWC 2017 conference.
+
+# IMPORTANT DATES
+Submission deadline: (Friday, March 3) EXTENDED DEADLINE -&gt; Friday, Marc=
+h 10!!!
+Notification to authors: Friday, March 31
+Camera-ready due on: Thursday, April 13
+Workshop day: Monday, May 29
+
+# SUBMISSION INSTRUCTIONS
+All papers must represent original and unpublished work that is not current=
+ly under review. Papers will be evaluated according to their significance, =
+originality, technical content, style, clarity, and relevance to the worksh=
+op.
+
+We welcome the following types of contributions:
+- Full papers (up to 10 pages)
+- Short papers, position papers or demos (up to 5 pages)
+
+All submissions must be PDF documents written in English and formatted acco=
+rding to LNCS instructions for authors
+[ <a href=3D"http://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0=
+">http://www.springer.com/computer/lncs?SGWID=3D0-164-6-793341-0</a> ].
+Papers are to be submitted through the Easychair Conference Management Syst=
+em. [ <a href=3D"https://easychair.org/conferences/?conf=3Danswer17">https:=
+//easychair.org/conferences/?conf=3Danswer17</a> ]
+Page limits are inclusive of references and appendices, if any.
+
+# PROGRAM COMMITTEE
+- Maurizio Atzori, University of Cagliari, Italy
+- Ebrahim Bagheri, Ryerson University, Canada
+- Valerio Basile, Universit=C3=83=C2=A9 C=C3=83=C2=B4te d'Azur, Inria, CNRS=
+, France
+- Vaishak Belle, KU Leuven, Belgium
+- Elena Cabrio, Universit=C3=83=C2=A9 C=C3=83=C2=B4te d'Azur, Inria, CNRS, =
+France
+- Philipp Cimiano, Bielefeld University, Germany
+- Enrico Daga, Open University, UK
+- Daniela D=C3=A2=E2=82=AC=E2=84=A2Auria, University of Naples Federico II,=
+ Italy
+- Daniele Dell'Aglio, University of Zuirch, Switzerland
+- Christian Dornhege, University of Freiburg, Germany
+- Esra Erdem, Sabanci University, Turkey
+- Mohammad Farazi, Birmingham City University, UK
+- Malik Ghallab, Univesity of Toulouse, France
+- Fei Han, Colorado School of Mines, USA
+- Marc Hanheide, University of Lincoln, UK
+- Fredrik Heintz, Link=C3=83=C2=B6ping University, Sweden
+- Joachim Hertzberg, University of =C3=83=E2=80=93snabruck, Germany
+- George Konidaris, Duke University, USA
+- Lars Kunze, University of Birmingham, UK
+- Gerhard Lakemeyer, RWTH Aachen University, Germany
+- Masoumeh Mansouri, =C3=83=E2=80=93rebro University, Sweden
+- Femke Ongenae, Ghent University, Belgium
+- Andrea Orlandini, ISTC CNR, Italy
+- Valentina Presutti, ISTC CNR, Italy
+- Alessandro Russo, ISTC CNR, Italy
+- Alessandro Saffiotti, Orebro University, Sweden
+- Ilaria Tiddi, The Open University, UK</pre></pre>
+</div>
+-- The Open University is incorporated by Royal Charter (RC 000391), an exe=
+mpt charity in England &amp; Wales and a charity registered in Scotland (SC=
+ 038302). The Open University is authorised and regulated by the Financial =
+Conduct Authority.
+</body>
+</html>
+
+--001a114147c828b61a054985d6e7--
