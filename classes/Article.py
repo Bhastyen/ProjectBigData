@@ -54,9 +54,6 @@ class Article:
             if len(w) > 1 and w not in dico:
                 strange_word.append((w, c2))
                 c1 += 1
-        #print(c1, c2)
-
-        #print("Avant", self.abstract)
 
         # search two new words from a detected strange word
         for (w, index) in strange_word:
@@ -79,8 +76,6 @@ class Article:
                     insert = []
                     break
 
-        #print("Apres", self.abstract)
-
     def isEnglish(self):
         l = len(self.abstract)
         english_word = 0
@@ -91,7 +86,6 @@ class Article:
                 english_word += 1
             if w in self.stop_fr:
                 french_word += 1
-        #print("ratio french word", french_word/l, "ratio english word", english_word/l)
 
         return english_word/l > french_word/l
 

@@ -1,6 +1,6 @@
 import pandas as pd
 import time, random
-import PyPDF2, os, re
+import os, re
 import unidecode as unidecode
 import wget, pdfx
 from classes.Article import Article
@@ -14,10 +14,9 @@ path_to_stop_en = "dictionnary/stop-word-en.txt"
 
 # hyper-parameters
 ref_author = True
-min_number_of_common_works = 6
+min_number_of_common_works = 15
 number_of_top = 10
 
-#èéíáü
 def find_ref(refs):
     result = []
     groups = re.search(r'[A-Z][a-z\-]*\s*,\s*[A-Z]|(,\s*|(et|and)\s*)[A-Z]\s*[A-Z]\s*[A-Za-zç\-\']*', refs)
@@ -65,9 +64,6 @@ def find_ref(refs):
         elif value.endswith("  "):
             value = value[:-2]
 
-        # convert accent characters
-        #value = unidecode.unidecode(value)
-
         # last verification to remove common words
         if re.match(r'[A-Z](\s|-)', value):
             result.append(value)
@@ -98,9 +94,8 @@ def get_references(url, id, length_of_data):
         pdf = pdfx.PDFx("data/pdf/" + id + ".pdf")
         text = pdf.get_text()
         pages = text.split("\n\n")
-        print("NumberPage", pdf.get_metadata()["Pages"])
+
         for p in range(len(pages) - 1, 0, -1):   # we search on each page p from the end ...
-            #print("p", p, len(pages))
             for s in pages[p].split("."):   # ... on each sentence s ...
                 if "References" in s or "Références" in s:  # ... the page with references part
                     marker = p
@@ -109,7 +104,6 @@ def get_references(url, id, length_of_data):
                 break
 
         if marker != -1:
-            #print("Marker", marker, 'len', len(pages), "page", pages[marker])
             for p in range(marker, len(pages)):   # we process only the pages with references
                 for s in pages[p].split("."):
                     if reference_find or "References" in s or "Références" in s:  # ... the page with references part
@@ -117,7 +111,6 @@ def get_references(url, id, length_of_data):
                         reference_find = True
 
         if refs != "":  # if we have references in this article
-            print("refs", refs)
             for r in re.split(r'\([1-2][0-9][0-9][0-9]\)', refs):
                 content_pdf.append(find_ref(unidecode.unidecode(r)))   # we search the name of authors
 
@@ -191,6 +184,7 @@ def parse_article_from_csv(path_articles):
 
 def create_author_cluster(articles):
     authors = {}
+    dejavu = []
     output = open("edge_list_authors.txt", "w", encoding="utf8")
 
     # create dictionnary of authors
@@ -207,14 +201,16 @@ def create_author_cluster(articles):
     # create matrix adjency in txt format for R programs
     for (auth1, colleagues) in authors.items():
         for (auth2, weight) in colleagues.items():
-            if weight >= min_number_of_common_works:
+            if weight >= min_number_of_common_works and (auth1, auth2) not in dejavu and (auth2, auth1) not in dejavu:
                 output.write(auth1 + " " + auth2 + " " + str(weight) + "\n")
+                dejavu.append((auth1, auth2))
 
     output.close()
 
 
 def create_author_references_cluster(articles):
     authors = {}
+    dejavu = []
     output = open("edge_list_authors_references.txt", "w", encoding="utf8")
 
     # create dictionnary of authors
@@ -232,8 +228,9 @@ def create_author_references_cluster(articles):
     # create matrix adjency in txt format for R programs
     for (auth1, colleagues) in authors.items():
         for (auth2, weight) in colleagues.items():
-            if weight >= min_number_of_common_works:
+            if weight >= min_number_of_common_works and (auth1, auth2) not in dejavu and (auth2, auth1) not in dejavu:
                 output.write(auth1 + " " + auth2 + " " + str(weight) + "\n")
+                dejavu.append((auth1, auth2))
 
     output.close()
 
@@ -265,7 +262,7 @@ def create_author_references_distribution(articles):
 # get articles and their content
 articles = parse_article_from_csv("data/export_articles_EGC_2004_2018.csv")
 # write a graph to see the authors having often work together
-create_author_cluster(articles)
+#create_author_cluster(articles)
 # create a distribution to see what author have been most quoted in all articles
 create_author_references_distribution(articles)
 # create a graph to see the authors who work between them
