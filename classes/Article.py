@@ -37,11 +37,11 @@ class Article:
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
             # traduction en anglais
-            string = " "
-            title_en = Translator('en', 'fr', 'mymemory').translate(string.join(self.title))
-            self.title = title_en.split(" ")
-            abstract_en = Translator('en', 'fr', 'mymemory').translate(string.join(self.abstract))
-            self.abstract = abstract_en.split(" ")
+            # string = " "
+            # title_en = Translator('en', 'fr').translate(string.join(self.title))
+            # self.title = title_en.split(" ")
+            # abstract_en = Translator('en', 'fr').translate(string.join(self.abstract))
+            # self.abstract = abstract_en.split(" ")
 
             # string = " "
             # url = 'http://translate.google.com/translate_a/t'
