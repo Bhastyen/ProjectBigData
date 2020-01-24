@@ -31,4 +31,6 @@ plot(ceb, gn)
 
 # watch distribution about quoted authors in article
 a <- read.csv("distribution_author_quoted.csv")
-hist(a, col="red", breaks=1:10, xlim=c(0,10), main="Histogram of citations by authors top 10", border="black")
+barplot(a[,2], names.arg=a[,1], col=c("#FFAA00", "#FF0000"))
+
+#hist(a, breaks=1:vcount(gn)-1, xlim=c(0, 15), col="red", main="Histogram of node degree", border="black")
