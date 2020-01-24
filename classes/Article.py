@@ -1,7 +1,7 @@
 import re
 
-import requests
-from translate import Translator
+#import requests
+#from translate import Translator
 
 class Article:
 

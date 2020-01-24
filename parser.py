@@ -1,6 +1,4 @@
 from difflib import SequenceMatcher
-
-import unidecode as unicode
 import pandas as pd
 import time, random
 import os, re
@@ -281,7 +279,7 @@ def create_topic_cluster(articles):
     for (title1, similarity) in results.items():
         for (title2, weight) in similarity.items():
             if weight > 0.45:
-                output.write(unicode.unidecode(title1.split(" ")[0]) + " " + unicode.unidecode(title2.split(" ")[0]) + " " + str(weight) + "\n")
+                output.write(unidecode.unidecode(title1.split(" ")[0]) + " " + unidecode.unidecode(title2.split(" ")[0]) + " " + str(weight) + "\n")
     output.close()
 
 
