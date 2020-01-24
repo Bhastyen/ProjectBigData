@@ -1,0 +1,483 @@
+Return-Path: <m.lamolle@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 03D71229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 12 Apr 2017 16:14:54 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id F255926A4AF
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 12 Apr 2017 16:14:53 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id E6AEE401A6E2
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 12 Apr 2017 16:14:53 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.377
+X-Spam-Level:
+X-Spam-Status: No, score=-3.377 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_FONT_LOW_CONTRAST=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_LOW=-1, SPF_PASS=-0.001,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_MANGLED_SOMA=2.5,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.7181 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pQx5zgcemSDR for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 12 Apr 2017 16:14:52 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-yw0-x22f.google.com (mail-yw0-x22f.google.com [IPv6:2607:f8b0:4002:c05::22f])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 89FC6414A822
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 12 Apr 2017 16:14:52 +0200 (CEST)
+Received: by mail-yw0-x22f.google.com with SMTP id l189so12348218ywb.0
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 12 Apr 2017 07:14:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=ptP6ewWbAFZaJxzmDEZPPO2BSGvNyblwpEdcC5qLtBI=;
+        b=qKgghNRwqPDuOqRx5iraSuW/Roau6VveP9lFbKoUh3bpjGMvdp2T2Lf3XBXq4HJAN6
+         U+tENyib3PcpgTnK/S5+ZqdLCWlrUXLGYf6wIs96MHCBPYuhh3Z0La7zug2MpBiTFDvJ
+         pD9ygZ8W1XZb6ODm/oz4i63GFeZYvtADrbyngZJTMsy+osv2DNmbO/vAO5dYHs7qVH+V
+         YBnQZlsSh5uFmGlHSI/8oVnm9RIWCaUijwjbCr9XqM709YTFpoT4BoVUlb39K6iNPXJR
+         PhYCNal9riijH/EzR62CZ71LB0D+qj5n+hlKyMHyi3QNfn4zvL0co8pYVuM7jEgmIyL6
+         79mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=ptP6ewWbAFZaJxzmDEZPPO2BSGvNyblwpEdcC5qLtBI=;
+        b=NEKiYbxF++dh7Ov53h3gfV0PM2ufm9wYmohMs03CMpLrjg9Zp2rQr/0iAIxm76NPi+
+         /5h3RuZdjSmYK5aMixqP66ysCRIHXywK+R6cB8K2GvOoHMG/c2brvDs6OzDH1sq9/oM3
+         BqeJCk1oz4gFoVG1Y9xOBYfvTuMWpV2wxbIOsPzZFhnEAYNQQnl46+C8vlq0H5K2bKRb
+         Th4yVz8KedAcGSCGXtiTgwl5rLr/YEca/BqrbrlxqDIDRuQoew/ASZ+qX0e1pF6xFP3z
+         CbWD3PrF0EDrUHtRt/qQKzcA0RfzLZBQ7jeq6sEl75UMkbO50Y+5NFIxwwRRcgTpywSJ
+         dUnQ==
+X-Gm-Message-State: AFeK/H22LSG4Phoim2qtLQlyYubXaj0K18vX9g21k670zfoCf0AEcFZoCY20opqhfHKNg8RjPyGyAL1dYwCtug==
+X-Received: by 10.129.138.69 with SMTP id a66mr43478840ywg.277.1492006491135;
+ Wed, 12 Apr 2017 07:14:51 -0700 (PDT)
+MIME-Version: 1.0
+Reply-To: m.lamolle@iut.univ-paris8.fr
+Sender: m.lamolle@gmail.com
+Received: by 10.129.206.9 with HTTP; Wed, 12 Apr 2017 07:14:50 -0700 (PDT)
+From: Myriam Lamolle <m.lamolle@iut.univ-paris8.fr>
+Date: Wed, 12 Apr 2017 16:14:50 +0200
+X-Google-Sender-Auth: mwb2ajwlzl6bXfjuFj-d9WljvDU
+Message-ID: <CAKvY+7XP-+_KxKt7pn6BARbt6YnaDwGw3zvRze8oim48sXE+PA@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=94eb2c06ade6e8890d054cf8d435
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [WORKS-Web'17] APPEL =?UTF-8?Q?=C3=80?= COMMUNICATION
+ "Forum Jeunes Chercheurs"
+
+--94eb2c06ade6e8890d054cf8d435
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+*** D=C3=A9sol=C3=A9e pour les r=C3=A9ceptions multiples ****
+
+*WORKS-Web'1**7* (event.iut.univ-paris8.fr organise la deuxi=C3=A8me =C3=A9=
+dition du
+Forum Jeunes Chercheurs dont les objectifs principaux sont :
+
+   -
+
+   permettre aux jeunes chercheurs en 1re et 2e ann=C3=A9e de doctorat de
+   pr=C3=A9senter leur probl=C3=A9matique de recherche et d=E2=80=99=C3=A9t=
+ablir des contacts avec
+   des =C3=A9quipes travaillant sur les domaines similaires ou connexes,
+   -
+
+   offrir un aper=C3=A7u des axes de recherche actuels et ainsi =C3=A9largi=
+r le champ
+   des connaissances des jeunes chercheurs.
+
+La th=C3=A9matique g=C3=A9n=C3=A9rale de la manifestation concerne le *Web =
+S=C3=A9mantique*.
+Sans que la liste soit limitative, les communications peuvent porter sur
+une ou plusieurs des th=C3=A9matiques suivantes :
+
+   - Mod=C3=A9lisation d'ontologies,
+   - Ontologies de domaines, Terminologies,
+   - Modularisation d'ontologies,
+   - Acquisition de donn=C3=A9es, Peuplement d=E2=80=99ontologies, Annotati=
+on
+   s=C3=A9mantique,
+   - Ontologies et Fouille de donn=C3=A9es,
+   - Ontologies et Recherche d'Information,
+   - Ontologie et Objets connect=C3=A9s,
+   - Visualisation d'ontologies,
+   - Raisonnement et r=C3=A9vision d'ontologies,
+   - Web s=C3=A9mantique, Web de Donn=C3=A9es, Web social,
+   - Linked Open Data,
+   - Applications  pour les sciences de la vie, la culture, l=E2=80=99=C3=
+=A9ducation,
+   l=E2=80=99industrie, l=E2=80=99=C3=A9conomie, le droit, etc.
+
+Les doctorants sont invit=C3=A9s =C3=A0 soumettre un article en fran=C3=A7a=
+is ou en
+anglais sur leur sujet de recherche de quatre pages maximum (hors
+r=C3=A9f=C3=A9rences bibliographiques). L=E2=80=99article comprendra les se=
+ctions suivantes,
+conform=C3=A9ment =C3=A0 la feuille de style au format Latex
+<http://event.iut.univ-paris8.fr/images/fichiers/fjcWorksWeb_style_latex.zi=
+p>
+ou RTF
+<http://event.iut.univ-paris8.fr/images/fichiers/fjcWorksWeb_style_rtf.rtf>=
+.
+
+   1. Contexte
+   2. =C3=89tat de l'art
+   3. Probl=C3=A9matique
+   4. Actions r=C3=A9alis=C3=A9es
+   5. Actions futures
+   6. Bibliographie
+
+Cette soumission devra obligatoirement =C3=AAtre accompagn=C3=A9e d'une let=
+tre
+d'accord sign=C3=A9e par le directeur de recherche qui attestera que le jeu=
+ne
+chercheur est en 1re ou 2e ann=C3=A9e de doctorat.
+
+La soumission sera =C3=A0 envoyer =C3=A0 *Pr. Myriam* *Lamolle
+(m.lamolle@iut.univ-paris8.fr <m.lamolle@iut.univ-paris8.fr>)**.* L'auteur
+soumettra le fichier *nomauteur_WorksWeb.pdf.*
+
+Les contributions accept=C3=A9es par le Comit=C3=A9 de Programme feront l'o=
+bjet d'une
+publication dans les actes =C3=A9lectroniques du forum. Les jeunes chercheu=
+rs
+seront invit=C3=A9s =C3=A0 :
+
+   -
+
+   pr=C3=A9senter synth=C3=A9tiquement en 5' leurs travaux au cours d'une s=
+ession
+   sp=C3=A9cifique,
+   -
+
+   pr=C3=A9parer un poster au format A1 qui sera affich=C3=A9 tout au long =
+du
+   s=C3=A9minaire.
+
+*Contribution**s** =C2=AB Jeunes Chercheur =C2=BB **retenue**s*
+
+Les jeunes chercheurs qui seront invit=C3=A9s =C3=A0 pr=C3=A9senter leur ar=
+ticle seront
+pris en charge (d=C3=A9placement + h=C3=A9bergement) par le comit=C3=A9 d=
+=E2=80=99organisation. La
+meilleure contribution pr=C3=A9sent=C3=A9e sera r=C3=A9compens=C3=A9e par l=
+e prix WORKS-Web.
+*DATES IMPORTANTES*
+
+*R=C3=A9ception des articles *
+
+  *2**2** Mai 201**7*
+
+*Notification aux auteurs *
+
+*5* *Juin** 201**7*
+
+*R=C3=A9ception des textes d=C3=A9finitifs *
+
+  *1**2 Juin 201**7*
+
+*Date du Forum*
+
+*2**2** Juin 201**7*
+*CONTACT : **Pr. Myriam* *Lamolle (m.lamolle@iut.univ-paris8.fr
+<m.lamolle@iut.univ-paris8.fr>)*
+
+--=20
+Myriam Lamolle - Professeur des Universit=C3=A9s
+IUT de Montreuil - D=C3=A9partement Informatique
+140, rue de la Nouvelle France
+93100 Montreuil
+Laboratoire LIASD - Universit=C3=A9 Paris8
+2 rue de la Libert=C3=A9 - 93526 Saint-Denis cedex
+
+http//:www.iut.univ-paris8.fr/~lamolle
+<http://www.iut.univ-paris8.fr/%7Elamolle>
+T=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67
+
+--94eb2c06ade6e8890d054cf8d435
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p style=3D"margin-bottom:0.5cm;line-height:100%">*** D=C3=
+=A9sol=C3=A9e pour
+les r=C3=A9ceptions multiples ****</p>
+<p style=3D"margin-bottom:0cm;line-height:100%"><strong><font face=3D"Ubunt=
+u"><font style=3D"font-size:10pt" size=3D"2">WORKS-Web&#39;1</font></font><=
+/strong><strong><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=
+=3D"2">7</font></font></strong>
+(<a href=3D"http://event.iut.univ-paris8.fr" target=3D"_blank">event.iut.un=
+iv-paris8.fr</a> <font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=
+=3D"2">organise
+la </font></font><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=
+=3D"2">de</font></font><font face=3D"Ubuntu"><font style=3D"font-size:10pt"=
+ size=3D"2"><span style=3D"font-style:normal">uxi=C3=A8me</span></font></fo=
+nt><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">
+=C3=A9dition du Forum Jeunes Chercheurs dont les objectifs principaux
+sont :</font></font></p>
+<ul><li>
+<p style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"Ubuntu"><font=
+ style=3D"font-size:10pt" size=3D"2">permettre
+	aux jeunes chercheurs en 1<sup>re</sup> et 2<sup>e</sup> ann=C3=A9e de
+	doctorat de pr=C3=A9senter leur probl=C3=A9matique de recherche et d=E2=80=
+=99=C3=A9tablir
+	des contacts avec des =C3=A9quipes travaillant sur les domaines
+	similaires ou connexes, </font></font>
+	</p>
+	</li><li>
+<p style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"Ubuntu"><font=
+ style=3D"font-size:10pt" size=3D"2">offrir
+	un aper=C3=A7u des axes de recherche actuels et ainsi =C3=A9largir le cham=
+p
+	des connaissances des jeunes chercheurs. </font></font>
+	</p>
+</li></ul>
+<p style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"Ubuntu"><font=
+ style=3D"font-size:10pt" size=3D"2">La
+th=C3=A9matique g=C3=A9n=C3=A9rale de la manifestation concerne le </font><=
+/font><strong><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"=
+2">Web
+S=C3=A9mantique</font></font></strong><font face=3D"Ubuntu"><font style=3D"=
+font-size:10pt" size=3D"2">.
+Sans que la liste soit limitative, les communications peuvent porter
+sur une ou plusieurs des th=C3=A9matiques suivantes :</font></font></p>
+<ul><li>
+<font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Mod=C3=A9li=
+sation
+	d&#39;ontologies,=C2=A0</font></font></li><li><font face=3D"Ubuntu"><font =
+style=3D"font-size:10pt" size=3D"2">Ontologies
+	de domaines, Terminologies,</font></font></li><li><font face=3D"Ubuntu"><f=
+ont style=3D"font-size:10pt" size=3D"2">Modularisation
+	d&#39;ontologies, <br></font></font></li><li><font face=3D"Ubuntu"><font s=
+tyle=3D"font-size:10pt" size=3D"2">Acquisition
+	de donn=C3=A9es, Peuplement d=E2=80=99ontologies, Annotation s=C3=A9mantiq=
+ue, <br></font></font></li><li><font face=3D"Ubuntu"><font style=3D"font-si=
+ze:10pt" size=3D"2">Ontologies
+	et Fouille de donn=C3=A9es,</font></font></li><li><font face=3D"Ubuntu"><f=
+ont style=3D"font-size:10pt" size=3D"2">Ontologies
+	et Recherche d&#39;Information, <br></font></font></li><li><font face=3D"U=
+buntu"><font style=3D"font-size:10pt" size=3D"2">Ontologie
+	et Objets connect=C3=A9s,</font></font></li><li><font face=3D"Ubuntu"><fon=
+t style=3D"font-size:10pt" size=3D"2">Visualisation
+	d&#39;ontologies, <br></font></font></li><li><font face=3D"Ubuntu"><font s=
+tyle=3D"font-size:10pt" size=3D"2">Raisonnement
+	et r=C3=A9vision d&#39;ontologies, <br></font></font></li><li><font face=
+=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Web
+	s=C3=A9mantique, Web de Donn=C3=A9es, Web social,</font></font></li><li><f=
+ont face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Linked
+	Open Data, <br></font></font></li><li><font face=3D"Ubuntu"><font style=3D=
+"font-size:10pt" size=3D"2">Applications=C2=A0
+	pour les sciences de la vie, la culture, l=E2=80=99=C3=A9ducation,
+	l=E2=80=99industrie, l=E2=80=99=C3=A9conomie, le droit, etc.</font></font>
+	</li></ul>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Les
+doctorants sont invit=C3=A9s =C3=A0 soumettre un article en fran=C3=A7ais o=
+u en
+anglais sur leur sujet de recherche de quatre pages maximum (hors
+r=C3=A9f=C3=A9rences bibliographiques). L=E2=80=99article comprendra les se=
+ctions
+suivantes, conform=C3=A9ment =C3=A0 la feuille de style au format <a href=
+=3D"http://event.iut.univ-paris8.fr/images/fichiers/fjcWorksWeb_style_latex=
+.zip" target=3D"_blank">Latex</a>
+ou <a href=3D"http://event.iut.univ-paris8.fr/images/fichiers/fjcWorksWeb_s=
+tyle_rtf.rtf" target=3D"_blank">RTF</a></font></font><span style=3D"font-va=
+riant:normal"><span style=3D"text-decoration:none"><font face=3D"Ubuntu"><f=
+ont style=3D"font-size:10pt" size=3D"2"><span style=3D"font-style:normal">.=
+</span></font></font></span></span></p>
+<ol><li>
+<font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Contexte <b=
+r></font></font></li><li><font face=3D"Ubuntu"><font style=3D"font-size:10p=
+t" size=3D"2">=C3=89tat
+	de l&#39;art <br></font></font></li><li><font face=3D"Ubuntu"><font style=
+=3D"font-size:10pt" size=3D"2">Probl=C3=A9matique <br></font></font></li><l=
+i><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Actions
+	r=C3=A9alis=C3=A9es <br></font></font></li><li><font face=3D"Ubuntu"><font=
+ style=3D"font-size:10pt" size=3D"2">Actions
+	futures <br></font></font></li><li><font face=3D"Ubuntu"><font style=3D"fo=
+nt-size:10pt" size=3D"2">Bibliographie
+	</font></font>
+	</li></ol>
+<p align=3D"justify"><font face=3D"Ubuntu"><font style=3D"font-size:10pt" s=
+ize=3D"2">Cette
+soumission devra obligatoirement =C3=AAtre accompagn=C3=A9e d&#39;une lettr=
+e
+d&#39;accord sign=C3=A9e par le directeur de recherche qui attestera que le
+jeune chercheur est en 1re ou 2e ann=C3=A9e de doctorat.</font></font>=20
+</p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">La
+soumission sera </font></font><font face=3D"Ubuntu"><font style=3D"font-siz=
+e:10pt" size=3D"2">=C3=A0
+envoyer =C3=A0 </font></font><strong><span style=3D"font-variant:normal"><f=
+ont color=3D"#000000"><font face=3D"Ubuntu"><font style=3D"font-size:11pt" =
+size=3D"2"><span style=3D"font-style:normal"><span style=3D"font-weight:nor=
+mal">Pr.
+Myriam</span></span></font></font></font></span></strong><strong><font colo=
+r=3D"#000000"><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"=
+2">
+</font></font></font></strong><strong><font color=3D"#000000"><font face=3D=
+"Ubuntu"><font style=3D"font-size:11pt" size=3D"2"><span style=3D"font-weig=
+ht:normal">Lamolle
+(<a href=3D"mailto:m.lamolle@iut.univ-paris8.fr" target=3D"_blank">m.lamoll=
+e@iut.univ-paris8.fr</a>)</span></font></font></font></strong><strong><font=
+ color=3D"#000000"><font face=3D"Ubuntu"><font style=3D"font-size:11pt" siz=
+e=3D"2"><span style=3D"font-style:normal"><span style=3D"font-weight:normal=
+"><wbr>.</span></span></font></font></font></strong><font face=3D"Ubuntu"><=
+font style=3D"font-size:10pt" size=3D"2">
+</font></font><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"=
+2">L&#39;auteur
+soumettra le fichier </font></font><font face=3D"Ubuntu"><font style=3D"fon=
+t-size:10pt" size=3D"2"><i>nomauteur_WorksWeb.pdf.</i></font></font></p>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">Les
+contributions accept=C3=A9es par le Comit=C3=A9 de Programme feront l&#39;o=
+bjet
+d&#39;une publication dans les actes =C3=A9lectroniques du forum. Les jeune=
+s
+chercheurs seront invit=C3=A9s =C3=A0=C2=A0: </font></font>
+</p>
+<ul><li>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify">
+	<font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">pr=C3=A9se=
+nter
+	synth=C3=A9tiquement en 5&#39; leurs travaux au cours d&#39;une session
+	sp=C3=A9cifique, </font></font>
+	</p>
+	</li><li>
+<p><font face=3D"Ubuntu"><font style=3D"font-size:10pt" size=3D"2">pr=C3=A9=
+parer
+	un poster au format A1 qui sera affich=C3=A9 tout au long du s=C3=A9minair=
+e.
+	</font></font>
+	</p>
+</li></ul>
+<h3 class=3D"gmail-m_-802263198787782275gmail-western" style=3D"margin-top:=
+0.25cm;margin-bottom:0.1cm"><strong><font color=3D"#ff3300"><font face=3D"U=
+buntu"><font style=3D"font-size:13pt" size=3D"3">Contribution</font></font>=
+</font></strong><strong><font color=3D"#ff3300"><font face=3D"Ubuntu"><font=
+ style=3D"font-size:13pt" size=3D"3">s</font></font></font></strong><strong=
+><font color=3D"#ff3300"><font face=3D"Ubuntu"><font style=3D"font-size:13p=
+t" size=3D"3">
+=C2=AB=C2=A0Jeunes Chercheur=C2=A0=C2=BB </font></font></font></strong><str=
+ong><font color=3D"#ff3300"><font face=3D"Ubuntu"><font style=3D"font-size:=
+13pt" size=3D"3">retenue</font></font></font></strong><strong><font color=
+=3D"#ff3300"><font face=3D"Ubuntu"><font style=3D"font-size:13pt" size=3D"3=
+">s</font></font></font></strong></h3>
+<p style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify"><font fac=
+e=3D"Ubuntu">Les
+jeunes chercheurs qui seront <span style=3D"font-style:normal">invit=C3=A9s
+=C3=A0 pr=C3=A9senter leur article seront pris en charge (d=C3=A9placement =
++
+h=C3=A9bergement) par le comit=C3=A9 d=E2=80=99organisation. </span><span s=
+tyle=3D"font-style:normal">La</span>
+meilleure contribution pr=C3=A9sent=C3=A9e sera r=C3=A9compens=C3=A9e par l=
+e prix
+WORKS-Web<span style=3D"font-style:normal">.</span></font></p>
+<h3 class=3D"gmail-m_-802263198787782275gmail-western" style=3D"margin-top:=
+0.25cm;margin-bottom:0.1cm"><strong><font color=3D"#ff3300"><font face=3D"U=
+buntu"><font style=3D"font-size:13pt" size=3D"3">DATES
+IMPORTANTES</font></font></font></strong></h3>
+<table width=3D"330" cellspacing=3D"0" cellpadding=3D"0">
+	<colgroup><col width=3D"228">
+	<col width=3D"102">
+	</colgroup><tbody><tr style=3D"background:rgb(84,141,172) none repeat scro=
+ll 0% 0%" bgcolor=3D"#548dac">
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"228">
+			<p><strong><font color=3D"#ffffff"><font face=3D"Ubuntu">R=C3=A9ception
+			des articles </font></font></strong>
+			</p>
+		</td>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"102">
+			<p align=3D"right"><strong><font color=3D"#ffffff">=C2=A0 </font></stron=
+g><strong><font color=3D"#ffffff"><font face=3D"Ubuntu">2</font></font></st=
+rong><strong><font color=3D"#ffffff"><font face=3D"Ubuntu"><span style=3D"f=
+ont-style:normal">2</span></font></font></strong><strong><font color=3D"#ff=
+ffff"><font face=3D"Ubuntu">
+			Mai 201</font></font></strong><strong><font color=3D"#ffffff"><font face=
+=3D"Ubuntu">7</font></font></strong></p>
+		</td>
+	</tr>
+	<tr>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"228">
+			<p><strong><font face=3D"Ubuntu">Notification aux auteurs </font></stron=
+g>
+			</p>
+		</td>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"102">
+			<p align=3D"right"><strong><font face=3D"Ubuntu">5</font></strong><stron=
+g><font face=3D"Ubuntu">
+			</font></strong><strong><font face=3D"Ubuntu">Juin</font></strong><stron=
+g><font face=3D"Ubuntu">
+			201</font></strong><strong><font face=3D"Ubuntu">7</font></strong></p>
+		</td>
+	</tr>
+	<tr style=3D"background:rgb(84,141,172) none repeat scroll 0% 0%" bgcolor=
+=3D"#548dac">
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"228">
+			<p><strong><font color=3D"#ffffff"><font face=3D"Ubuntu">R=C3=A9ception
+			des textes d=C3=A9finitifs </font></font></strong>
+			</p>
+		</td>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"102">
+			<p align=3D"right"><strong><font color=3D"#ffffff">=C2=A0 </font></stron=
+g><strong><font color=3D"#ffffff">1</font></strong><strong><font color=3D"#=
+ffffff"><font face=3D"Ubuntu">2
+			Juin 201</font></font></strong><strong><font color=3D"#ffffff"><font fac=
+e=3D"Ubuntu">7</font></font></strong></p>
+		</td>
+	</tr>
+	<tr>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"228">
+			<p><strong><font face=3D"Ubuntu">Date du Forum</font></strong></p>
+		</td>
+		<td style=3D"border-width:medium;border-style:none;border-color:currentco=
+lor;padding:0cm" width=3D"102">
+			<p align=3D"right"><strong><font face=3D"Ubuntu">2</font></strong><stron=
+g><font face=3D"Ubuntu"><span style=3D"font-style:normal">2</span></font></=
+strong><strong><font face=3D"Ubuntu">
+			Juin 201</font></strong><strong><font face=3D"Ubuntu">7</font></strong><=
+/p>
+		</td>
+	</tr>
+</tbody></table>
+<h3 class=3D"gmail-m_-802263198787782275gmail-western" style=3D"margin-top:=
+0.25cm;margin-bottom:0.1cm"><strong><span style=3D"font-variant:normal"><fo=
+nt color=3D"#ff3300"><font face=3D"Ubuntu"><font style=3D"font-size:11pt" s=
+ize=3D"2"><span style=3D"font-style:normal">CONTACT=C2=A0:
+</span></font></font></font></span></strong><strong><span style=3D"font-var=
+iant:normal"><font color=3D"#000000"><font face=3D"Ubuntu"><font style=3D"f=
+ont-size:11pt" size=3D"2"><span style=3D"font-style:normal"><span style=3D"=
+font-weight:normal">Pr.
+Myriam</span></span></font></font></font></span></strong><strong><font colo=
+r=3D"#000000">
+</font></strong><strong><font color=3D"#000000"><font face=3D"Ubuntu"><font=
+ style=3D"font-size:11pt" size=3D"2"><span style=3D"font-weight:normal">Lam=
+olle
+(<a href=3D"mailto:m.lamolle@iut.univ-paris8.fr" target=3D"_blank">m.lamoll=
+e@iut.univ-paris8.fr</a>)</span></font></font></font></strong></h3><br clea=
+r=3D"all"><br>-- <br><div class=3D"gmail_signature">Myriam Lamolle - Profes=
+seur des Universit=C3=A9s<br>IUT de Montreuil - D=C3=A9partement Informatiq=
+ue<br>140, rue de la Nouvelle France<br>93100 Montreuil<br>Laboratoire LIAS=
+D - Universit=C3=A9 Paris8<br>2 rue de la Libert=C3=A9 - 93526 Saint-Denis =
+cedex<br><br>http//:<a href=3D"http://www.iut.univ-paris8.fr/%7Elamolle" ta=
+rget=3D"_blank">www.iut.univ-paris8.fr/~lamolle</a><br>T=C3=A9l: +33(0)1 48=
+ 70 34 61 Fax : +33(0)1 48 70 34 67</div>
+</div>
+
+--94eb2c06ade6e8890d054cf8d435--

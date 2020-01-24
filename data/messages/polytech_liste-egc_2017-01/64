@@ -1,0 +1,369 @@
+Return-Path: <nourmawas@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 73C961903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 24 Jan 2017 17:06:14 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 7371F26A4AB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 24 Jan 2017 17:06:14 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 686C740C6D93
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 24 Jan 2017 17:06:14 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -1.358
+X-Spam-Level:
+X-Spam-Status: No, score=-1.358 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_LOW=-1, RCVD_IN_MSPIKE_H3=-0.01,
+	RCVD_IN_MSPIKE_WL=-0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( -4.3138 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ipqBlpb3ghgX for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 24 Jan 2017 17:06:13 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from SNT004-OMC4S43.hotmail.com (snt004-omc4s43.hotmail.com [65.54.51.94])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 362C440C6D73
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 24 Jan 2017 17:06:13 +0100 (CET)
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com ([65.55.90.199]) by SNT004-OMC4S43.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Tue, 24 Jan 2017 08:06:11 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=/GOM9fTteIniptmAMTVeQSdbcgiwTjhhgVNk+G1nkDo=;
+ b=uRVeoCVvRQzPBhpWcFPdNSaxpISPiCkq7KG9mZ2XNtkv3Mh/W8FhmidF8W1nEUlBCezAK6l+0nRwKLgFhiT2aHxNifJgAgKx9rIo16Gxe8pkaLTUfGk7fetck4SsLbXx+tWyevJiD7ZR+t/4rqFquLqcGwW6ZpN3EaqPC7V+DQ7Tn9OsgY1XgjDGrBLBsBvzAQPk2Vda+l8n1FsJuA74UBhQP+VfJ54XHah/S42/OFsIQB7Wrbm2BOG2IfMfn44F3lnVjXPn8MHd/G2JUbQFAOdKpbmcYfVHxthBpYzlvS6aND19q162Tj8xDBMJeeelnylM+ApIPr3EwwEwnis3LQ==
+Received: from DB5EUR01FT035.eop-EUR01.prod.protection.outlook.com
+ (10.152.4.51) by DB5EUR01HT209.eop-EUR01.prod.protection.outlook.com
+ (10.152.5.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.803.8; Tue, 24 Jan
+ 2017 16:06:03 +0000
+Received: from HE1PR0602MB2843.eurprd06.prod.outlook.com (10.152.4.51) by
+ DB5EUR01FT035.mail.protection.outlook.com (10.152.4.243) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.803.8 via Frontend Transport; Tue, 24 Jan 2017 16:06:03 +0000
+Received: from HE1PR0602MB2843.eurprd06.prod.outlook.com ([10.175.32.139]) by
+ HE1PR0602MB2843.eurprd06.prod.outlook.com ([10.175.32.139]) with mapi id
+ 15.01.0860.021; Tue, 24 Jan 2017 16:06:03 +0000
+From: Nour EL Mawas <nourmawas@hotmail.com>
+To: "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>
+Thread-Topic: Special Session on Lifelong Learning - LLL 2017
+Thread-Index: AQHSdlvCODLgmtdPrUGlSSw+X1cU3g==
+Date: Tue, 24 Jan 2017 16:06:03 +0000
+Message-ID: <HE1PR0602MB2843C0E05944F8E2E4E799C5A0750@HE1PR0602MB2843.eurprd06.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=none action=none
+ header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:9A218E10C53898CC5A873D16421259F28AC8B2AC80E4274980092F34EA55E9E9;UpperCasedChecksum:ECAC0365794A742CC564253B4FF80F6EAC698452B312149397B6AF24E98C0008;SizeAsReceived:7479;Count:37
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [o7CYyxeSCs5tcm+zzbWKOSBXE7wQebbx]
+x-incomingheadercount: 37
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1;DB5EUR01HT209;7:L0U2kqSkUgN6MmCNe6iF7XO8LAVJbMcbcYsx/ZWA2kRDuemxEqelZNvnhk7kvIFhuOyCTQO/C4pxDq8RfydPdsb1YBqfKuk59/iQFff4fm2HQsTM0+pWYSfTtrVEfU0mcE6i4NIlC1m4AvXFo4aGJ4pj5dg3hXz1zPONIvp6et99DHd4ROu1v2CGx17DSc2M9i4On7Eqh/PKGMWbyHr0v8ylDiHYGF6fhw15rEFn5J7I5wTcraKX7II7oHQlZ8sp9scCiga9WyyXI1e/nSf++r27rW+t0s78UzJ5lXZlL6f7LttA1eIYUwTQN0axecCrDIjiyzkcvxTQR97MxDzk8cefz+OaHa3NwOBpn7XT/LnHConjZy5Qp4000ZS9YvPphHIViJtEguVwJfp6X1bpRYYP9Crwyto6e/7/uSoOab/m92dyOOYPjeTXf4/GJt4a/F1fys7M4vxTcvFtEtJyhA==
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900005);DIR:OUT;SFP:1102;SCL:1;SRVR:DB5EUR01HT209;H:HE1PR0602MB2843.eurprd06.prod.outlook.com;FPR:;SPF:None;LANG:en;
+x-ms-office365-filtering-correlation-id: c52ef7b7-7efb-4748-0ca7-08d44472e567
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(1601124038)(5061506344)(5061507293)(1603103113)(1601125047)(1701031023);SRVR:DB5EUR01HT209;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(444111334)(444112120)(432015012)(82015046);SRVR:DB5EUR01HT209;BCL:0;PCL:0;RULEID:;SRVR:DB5EUR01HT209;
+x-forefront-prvs: 0197AFBD92
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_HE1PR0602MB2843C0E05944F8E2E4E799C5A0750HE1PR0602MB2843_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jan 2017 16:06:03.0317
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR01HT209
+X-OriginalArrivalTime: 24 Jan 2017 16:06:11.0844 (UTC) FILETIME=[C81A6440:01D2765B]
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP: Special Session on Lifelong Learning - LLL 2017
+
+--_000_HE1PR0602MB2843C0E05944F8E2E4E799C5A0750HE1PR0602MB2843_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+(Please accept our apologies if you receive this email more than once)
+
+
+----------------------Call for Papers--------------------------------------=
+------------
+
+
+CSEDU 2017 The 9th International Conference on International Conference on =
+Computer Supported Education - CSEDU (http://www.csedu.org/)
+
+Special Session on Lifelong Learning - LLL 2017
+http://www.csedu.org/LLL.aspx
+
+---------------------------------------------------------------------------=
+------------
+
+SCOPE
+
+Most people associate learning with formal education at school, college, un=
+iversity etc. However, formal education is only one type of learning. There=
+ are many other opportunities for people to further their knowledge and dev=
+elop the skills they need throughout life. Lifelong learning is about the c=
+reation of formal, non-formal and informal learning opportunities for peopl=
+e of all ages. It allows them to unlock the knowledge of universities and i=
+nsure their personal and professional development for continuing education.=
+ This helps complete the knowledge that they acquire during their careers a=
+nd renew or develop new competencies. The Special Session on lifelong learn=
+ing aims to bring researchers and practitioners working on lifelong learnin=
+g approaches, problems, challenges and perspectives.
+
+
+TOPICS
+
+  *   Ethics in lifelong learning
+  *   Lifelong Learning challenges
+  *   Knowledge management in lifelong learning
+  *   Continuing education, professional competencies, and Development
+  *   Concepts, models, and issues
+  *   New ways of teaching and learning
+  *   Implications of lifelong learning for higher education policy
+  *   Open and distance education and blended learning
+  *   Issues of assessment
+  *   The learner model
+  *   Learners motivations and needs
+  *   MOOCs
+
+IMPORTANT DATES
+Paper Submission: February 21, 2017
+Authors Notification: March 1, 2017
+Camera Ready and Registration: March 13, 2017
+
+SPECIAL SESSION PROGRAM COMMITTEE
+
+Mohamed Amine Chatti, RWTH Aachen University, Germany
+Bruno De Li=E8vre, Universit=E9 de Mons, Belgium
+Serge Garlatti, TELECOM Bretagne, France
+Jean-marie GILLIOT, LABSTICC, France
+
+
+PAPER SUBMISSION
+Prospective authors are invited to submit papers in any of the topics liste=
+d above.
+Instructions for preparing the manuscript (in Word and Latex formats) are a=
+vailable at: Paper Templates<http://www.csedu.org/Templates.aspx>
+Please also check the Guidelines<http://www.csedu.org/Guidelines.aspx>.
+Papers must be submitted electronically via the web-based submission system=
+ using the appropriated button on this page.
+
+PUBLICATIONS
+After thorough reviewing by the special session program committee complemen=
+ted by members of the main conference program committee, all accepted paper=
+s will be published in a special section of the conference proceedings book=
+ - under an ISBN reference and on CD-ROM support - and submitted for indexa=
+tion by Thomson Reuters Conference Proceedings Citation Index (CPCI/ISI), I=
+NSPEC, DBLP, EI (Elsevier Engineering Village Index) and Scopus.
+SCITEPRESS is a member of CrossRef (http://www.crossref.org/) and every pap=
+er is given a DOI (Digital Object Identifier).
+All papers presented at the conference venue will be available at the SCITE=
+PRESS Digital Library<http://www.scitepress.org/DigitalLibrary/Default.aspx=
+>
+
+
+
+Nour El Mawas
+R&D Engineer
+IMT Atlantique Bretagne-Pays de la Loire
+Phone: +33 (0)2 29 00 14 17
+Website: http://perso.telecom-bretagne.eu/nourelmawas
+
+
+--_000_HE1PR0602MB2843C0E05944F8E2E4E799C5A0750HE1PR0602MB2843_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<p><span>(Please accept our apologies if you receive this email more than o=
+nce)</span></p>
+<p class=3D"x_x_p2" style=3D"margin:0px"><br>
+</p>
+<p class=3D"x_x_p1" style=3D"margin:0px">----------------------<span class=
+=3D"x_highlight" id=3D"x_0.8239141146912434" name=3D"x_searchHitInReadingPa=
+ne" style=3D"background-color:rgb(255,255,255)">Call</span><span style=3D"b=
+ackground-color:rgb(255,255,255)">
+</span><span class=3D"x_highlight" id=3D"x_0.8632086125392789" name=3D"x_se=
+archHitInReadingPane" style=3D"background-color:rgb(255,255,255)">for</span=
+><span style=3D"background-color:rgb(255,255,255)">
+</span><span class=3D"x_highlight" id=3D"x_0.8093217712394324" name=3D"x_se=
+archHitInReadingPane" style=3D"background-color:rgb(255,255,255)">Papers</s=
+pan>--------------------------------------------------</p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><br>
+</p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span>CSEDU 2017 The 9th Internati=
+onal Conference on International Conference on Computer Supported Education=
+ - CSEDU (<a href=3D"http://www.csedu.org/" target=3D"_blank" class=3D"x_OW=
+AAutoLink" id=3D"LPlnk598476" previewremoved=3D"true">http://www.csedu.org/=
+</a>)</span></p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span></span><span><b><span><span>=
+<b><span style=3D"font-size:12pt"></span></b></span></span></b></span></p>
+<b><b>
+<h2 id=3D"x_ctl00_pageContent_ctl04_divTitleDates" class=3D"x_dotted">Speci=
+al Session on Lifelong Learning - LLL 2017</h2>
+</b></b><a href=3D"http://www.csedu.org/LLL.aspx" target=3D"_blank" class=
+=3D"x_OWAAutoLink" id=3D"LPlnk983759" previewremoved=3D"true">http://www.cs=
+edu.org/LLL.aspx</a>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span>----------------------------=
+-----------------------------------------------------------</span></p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span><span><b><span style=3D"font=
+-size:12pt"></span></b></span></span></p>
+<b>
+<h2 id=3D"x_ctl00_pageContent_ctl04_divTitleDates" class=3D"x_dotted">SCOPE=
+</h2>
+</b>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span id=3D"x_ctl00_pageContent_ct=
+l02_lblScope" class=3D"x_Scope">Most people associate learning with formal =
+education at school, college, university etc. However, formal education is =
+only one type of learning. There are many
+ other opportunities for people to further their knowledge and develop the =
+skills they need throughout life. Lifelong learning is about the creation o=
+f formal, non-formal and informal learning opportunities for people of all =
+ages. It allows them to unlock the
+ knowledge of universities and insure their personal and professional devel=
+opment for continuing education. This helps complete the knowledge that the=
+y acquire during their careers and renew or develop new competencies. The S=
+pecial Session on lifelong learning
+ aims to bring researchers and practitioners working on lifelong learning a=
+pproaches, problems, challenges and perspectives.</span></p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><br>
+</p>
+<p class=3D"x_x_p1" style=3D"margin:0px"><span><b><span style=3D"font-size:=
+12pt"></span></b></span></p>
+<b>
+<h2 id=3D"x_ctl00_pageContent_ctl04_divTitleDates" class=3D"x_dotted">TOPIC=
+S</h2>
+</b>
+<ul>
+<li>Ethics in lifelong learning</li><li>Lifelong Learning challenges</li><l=
+i>Knowledge management in lifelong learning</li><li>Continuing education, p=
+rofessional competencies, and Development</li><li>Concepts, models, and iss=
+ues</li><li>New ways of teaching and learning</li><li>Implications of lifel=
+ong learning for higher education policy</li><li>Open and distance educatio=
+n and blended learning</li><li>Issues of assessment</li><li>The learner mod=
+el</li><li>Learners motivations and needs</li><li>MOOCs</li></ul>
+<a name=3D"x_important_dates" target=3D"_blank"></a><br>
+<h2 id=3D"x_ctl00_pageContent_ctl04_divTitleDates" class=3D"x_dotted">IMPOR=
+TANT DATES</h2>
+<div id=3D"x_ctl00_pageContent_ctl04_divRegular"><span id=3D"x_ctl00_pageCo=
+ntent_ctl04_lblRPaperSub">Paper Submission:
+</span><span id=3D"x_ctl00_pageContent_ctl04_lblRPaperSubDates" style=3D"co=
+lor:Black; font-weight:bold">February 21, 2017</span>
+<br>
+<span id=3D"x_ctl00_pageContent_ctl04_lblRAuthors">Authors Notification: </=
+span><span id=3D"x_ctl00_pageContent_ctl04_lblRAuthorsDates" style=3D"color=
+:Black; font-weight:bold">March 1, 2017</span>
+<br>
+<span id=3D"x_ctl00_pageContent_ctl04_lblRFinalPaperSubmission">Camera Read=
+y and Registration:
+</span><span id=3D"x_ctl00_pageContent_ctl04_lblRFinalPaperSubmissionDates"=
+ style=3D"color:Black; font-weight:bold">March 13, 2017<br>
+<br>
+</span></div>
+<div id=3D"x_Program_Committee"><a name=3D"x_program_committee" target=3D"_=
+blank"></a>
+<h2 class=3D"x_dotted">SPECIAL SESSION PROGRAM COMMITTEE</h2>
+<div id=3D"x_ctl00_pageContent_ctl05_div_Repeater">
+<p><span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl00_lblChairNam=
+e" style=3D"font-weight:bold">Mohamed Amine&nbsp;Chatti</span>,
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl00_lblChairInfo">=
+RWTH Aachen University, Germany</span>
+<br>
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl01_lblChairName" =
+style=3D"font-weight:bold">Bruno&nbsp;De Li=E8vre</span>,
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl01_lblChairInfo">=
+Universit=E9 de Mons, Belgium</span>
+<br>
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl02_lblChairName" =
+style=3D"font-weight:bold">Serge&nbsp;Garlatti</span>,
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl02_lblChairInfo">=
+TELECOM Bretagne, France</span>
+<br>
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl03_lblChairName" =
+style=3D"font-weight:bold">Jean-marie&nbsp;GILLIOT</span>,
+<span id=3D"x_ctl00_pageContent_ctl05_rptProgCommittee_ctl03_lblChairInfo">=
+LABSTICC, France</span>
+<br>
+<br>
+</p>
+</div>
+</div>
+<div id=3D"x_Presentation_Guidelines">
+<h2 class=3D"x_dotted">PAPER SUBMISSION</h2>
+<span id=3D"x_ctl00_pageContent_ctl06_lblPresentationGuidelines">Prospectiv=
+e authors are invited to submit papers in any of the topics listed above.<b=
+r>
+Instructions for preparing the manuscript (in Word and Latex formats) are a=
+vailable at:
+<a href=3D"http://www.csedu.org/Templates.aspx" target=3D"_blank">Paper Tem=
+plates</a><br>
+Please also check the <a href=3D"http://www.csedu.org/Guidelines.aspx" targ=
+et=3D"_blank">
+Guidelines</a>.<br>
+Papers must be submitted electronically via the web-based submission system=
+ using the appropriated button on this page.<br>
+<br>
+</span></div>
+<div id=3D"x_PublicationSpecialSession">
+<h2 class=3D"x_dotted">PUBLICATIONS</h2>
+<span id=3D"x_ctl00_pageContent_ctl07_lblPublicationSpecialSession">After t=
+horough reviewing by the special session program committee complemented by =
+members of the main conference program committee, all accepted papers will =
+be published in a special section
+ of the conference proceedings book - under an ISBN reference and on CD-ROM=
+ support - and submitted for indexation by Thomson Reuters Conference Proce=
+edings Citation Index (CPCI/ISI), INSPEC, DBLP, EI (Elsevier Engineering Vi=
+llage Index) and Scopus.<br>
+SCITEPRESS is a member of CrossRef (<a href=3D"http://www.crossref.org/" ta=
+rget=3D"_blank">http://www.crossref.org/</a>) and every paper is given a DO=
+I (Digital Object Identifier).<br>
+All papers presented at the conference venue will be available at the <a hr=
+ef=3D"http://www.scitepress.org/DigitalLibrary/Default.aspx" target=3D"_bla=
+nk">
+SCITEPRESS Digital Library</a></span> </div>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><span id=3D"x_ctl00_pageContent_ctl07_lblPublicationSpecialSession"><fon=
+t style=3D"" face=3D"Courier New,sans-serif">Nour El Mawas</font><br>
+<font style=3D"" face=3D"Courier New,sans-serif">R&amp;D Engineer<br>
+<span id=3D"ms-rterangepaste-start"></span><span>IMT Atlantique Bretagne-Pa=
+ys de la Loire</span><br>
+Phone: &#43;33 (0)2 29 00 14 17</font><font style=3D"" face=3D"Courier New,=
+sans-serif"><br>
+</font><font style=3D"" face=3D"Courier New,sans-serif">Website: <a href=3D=
+"http://perso.telecom-bretagne.eu/nourelmawas" target=3D"_blank">
+http://perso.telecom-bretagne.eu/nourelmawas</a></font></span><br>
+</p>
+<span id=3D"ms-rterangepaste-end"></span><br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_HE1PR0602MB2843C0E05944F8E2E4E799C5A0750HE1PR0602MB2843_--

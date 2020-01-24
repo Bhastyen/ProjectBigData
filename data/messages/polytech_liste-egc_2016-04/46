@@ -1,0 +1,688 @@
+Return-Path: <tmehenni@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id AC5E61903AA0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Apr 2016 12:32:09 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id A35BD676FED
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Apr 2016 12:32:09 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 9242E40A832F;
+	Mon, 25 Apr 2016 12:32:09 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.721
+X-Spam-Level: **
+X-Spam-Status: No, score=2.721 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	FREEMAIL_REPLY=1, HTML_MESSAGE=0.001, SPF_PASS=-0.001,
+	T_FILL_THIS_FORM_SHORT=0.01, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, VOWEL_TOCC_6=1.5] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.0762 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id LGnR1szshu8q; Mon, 25 Apr 2016 12:32:08 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-ig0-x242.google.com (mail-ig0-x242.google.com [IPv6:2607:f8b0:4001:c05::242])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id E4F314186DA0;
+	Mon, 25 Apr 2016 12:32:07 +0200 (CEST)
+Received: by mail-ig0-x242.google.com with SMTP id qu10so10434612igc.1;
+        Mon, 25 Apr 2016 03:32:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:date:message-id:subject:from:to;
+        bh=YxqtfuzMOn6j7IPNtz4JI3g9fGS638vE0TZGEEg8zSk=;
+        b=0pvzoF4gqAdFYRrS4CsPOrYc8J7SqrdB9LW9p0S0j+OhsqDkZDNz0mBG5Zxq511UC5
+         FIbSnno4nWH8rqTSCTx34z839jS4LwFHqTAr2etaQAMYqoj0kAZ0ls/p6eUWq8OKeWdE
+         0GJyOAWqK3SshmIYAvNtY3MO3oe96rdZNXFxo14aWV9Q9+FaG0f3F1oBsFp/L/ndZLsG
+         7RagcIoZom7BnMpK58DluDUbRtQDkK+HSPFKiglpec+xad1tLwLTDkn0sVSPp87jl2PQ
+         H1Kau6g2VStLI4gvsXfu7R4n5QRuJI0IGRGFcxwvIRCpxMygqDI9j6cK3vZOzpaThweF
+         6k8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:date:message-id:subject:from:to;
+        bh=YxqtfuzMOn6j7IPNtz4JI3g9fGS638vE0TZGEEg8zSk=;
+        b=iaHD4KhhLvSbZ9EK/ilD50uTvEjfO5eEcw/lwrs5O+L8rcgC+hOJ9ta07Ozz6uLRsE
+         Z74HCLzlLIue3+8AAlpS9TutBcllFblqmTdoK3iDk+dYgNd0Zb6tLOp+7JVa03ikloIj
+         mVUoyA9OjZ2XLXVfxfSwrwiMi9NdqlzKZY6xllVHB6LhQIc1B0FmG84RGL/I3s81JG6h
+         0Xe/3tHTjlrHYSjbTO3z5T+xRasxz7NyrAeYuB3SSLOUVgaXvMqLqXwNdgMksXNtGOSt
+         lNKA3MPrk7yFpmwCS0q7MRzuCmPuqxfsV4CReJziPEAN46yG3KYxmcj3esTJig8PtPDr
+         +v0w==
+X-Gm-Message-State: AOPr4FVWuPchqRvprEDkAt1eXhf5QHLdWSNY2Lhuwac24/8J7eDiTZAH+GWXylpUG1k72OLtJWZlG7JF38x8hg==
+MIME-Version: 1.0
+X-Received: by 10.50.217.129 with SMTP id oy1mr10581678igc.97.1461580326469;
+ Mon, 25 Apr 2016 03:32:06 -0700 (PDT)
+Received: by 10.107.48.135 with HTTP; Mon, 25 Apr 2016 03:32:06 -0700 (PDT)
+Date: Mon, 25 Apr 2016 11:32:06 +0100
+Message-ID: <CALr5U2MyvADAFsKM+g_nGYj1tiR+Lp43PfxQuEqvKUc0ZKM69Q@mail.gmail.com>
+From: TAHAR MEHENNI <tmehenni@gmail.com>
+To: ">" <hanachi@univ-tlse1.fr>, Abbache Farid <abbache_farid@yahoo.fr>, 
+	Abdel Aloui <alouiabdel@gmail.com>, 
+	"Abdel.Ennaji@univ-rouen.fr" <Abdel.Ennaji@univ-rouen.fr>, 
+	Abdelbaki Bouguerra <abaki.bouguerra@gmail.com>, ABDELHAMID MAOUCHE <abdelhamid68@gmail.com>, 
+	Abdelkamel TARI <tarikamel59@gmail.com>, abdelli Leila <abdelli.leila@gmail.com>, 
+	Abdelouahab MOUSSAOUI <moussaoui.abdel@gmail.com>, 
+	abdelraouf zerroug <zerroug.abdelraouf@gmail.com>, Abdelsatar Ghemougui <gabdelsatar@gmail.com>, 
+	"abdenour.mokrane@ema.fr" <abdenour.mokrane@ema.fr>, 
+	"abdourahamane.balde@inria.fr" <abdourahamane.balde@inria.fr>, Abidin Kaya <nabidin@gmail.com>, 
+	"acis@acisinternational.org" <acis@acisinternational.org>, adel bendjeddou <adelbendjeddo@gmail.com>, 
+	"admission@etsmtl.ca" <admission@etsmtl.ca>, "admission@uqo.ca" <admission@uqo.ca>, 
+	"aek.benyettou@univ-usto.dz" <aek.benyettou@univ-usto.dz>, afaf benslimane <flying07angel@gmail.com>, 
+	"agnes.braud" <agnes.braud@unistra.fr>, 
+	"agnes.braud@urs.u-strasbg.fr" <agnes.braud@urs.u-strasbg.fr>, 
+	Ahlem Mustapha Bouzaroura <ahlem-a@hotmail.com>, "ahlem.nabli@gmail.com" <ahlem.nabli@gmail.com>, 
+	ahmed ahmed <contactahmed09@gmail.com>, ahmed moussa <Ahmed.moussa2@gmail.com>, 
+	"ahmed.djaalab@yahoo.com" <ahmed.djaalab@yahoo.com>, 
+	"aicha_khadidja@yahoo.fr" <aicha_khadidja@yahoo.fr>, aissa zidane <doctorialeresyd@gmail.com>, 
+	"ait@ece.concordia.ca" <ait@ece.concordia.ca>, AJ RENE CASSIN <strasbourg.rene-cassin@fuaj.org>, 
+	"akaya@fatih.edu.tr" <akaya@fatih.edu.tr>, "akouomou@irisa.fr" <akouomou@irisa.fr>, 
+	"alexandre.vautier@irisa.fr" <alexandre.vautier@irisa.fr>, "alhassor28@yahoo.com" <alhassor28@yahoo.com>, 
+	Ali MAKRI <ali@interlignes.net>, "ali.charara@hds.utc.fr" <ali.charara@hds.utc.fr>, 
+	"alnemdili@yahoo.com" <alnemdili@yahoo.com>, "Amedeo.Napoli@loria.fr" <Amedeo.Napoli@loria.fr>, 
+	amel mesiliya <amel.khemayese@gmail.com>, amina alloiani <aminaalloiani@yahoo.com>, 
+	amirouche hamadouche <gladiateur06@hotmail.com>, 
+	"ammar@illaftrain.co.uk" <ammar@illaftrain.co.uk>, Amri Said <amrisaid13@yahoo.fr>, 
+	Amroune Nacer-Eddine <nsr.amr.cs@gmail.com>, Amroune Nacer-Eddine <nsramrcs@gmail.com>, 
+	Anne Laurent <laurent@lirmm.fr>, "Ansaf.Salleb@irisa.fr" <Ansaf.Salleb@irisa.fr>, 
+	Ariouat Youcef <youcef.ariouat@gmail.com>, Ariouat Youcef <youcefariouat@gmail.com>, 
+	"Arnaud.Martin@ensieta.fr" <Arnaud.Martin@ensieta.fr>, Assas Ouarda <Assas_warda@yahoo.fr>, 
+	Assas Ouarda <assas.warda@gmail.com>, Assas Ouarda <assas_ou@hotmail.com>, 
+	Athmani Samir <samir1904@yahoo.fr>, Atir Azzedine <azeddine.attir@gmail.com>, 
+	Atir Azzedine <azeddineattir@gmail.com>, Author Services <support@elsevier.com>, 
+	"azeddine1728@yahoo.fr" <azeddine1728@yahoo.fr>, "b-salim@just.edu.jd" <b-salim@just.edu.jd>, 
+	"b.noureddine@outlook.com" <b.noureddine@outlook.com>, babah taregh <tareghba@yahoo.fr>, 
+	Bachir Malika <malika_klm@yahoo.fr>, badir <hbadir@gmail.com>, 
+	Baghdad ATMANI <atmani.baghdad@gmail.com>, Bahi Amira <amirabahi@yahoo.fr>, 
+	"baptiste.jeudy@univ-st-etienne.fr" <baptiste.jeudy@univ-st-etienne.fr>, Barkat Abdelbasset <barkatab@gmail.com>, 
+	belazoui abdelouahab <belazoui@yahoo.fr>, Belhadj Foudil <belhadjfdl@yahoo.fr>, 
+	belkacem benmerad <benmeradbelka@yahoo.fr>, Belomoh Amin <info_amin@yahoo.com>, 
+	Belouadah Hocine <hbelouadah@hotmail.fr>, BELOUDAH Hocine <hbelouadah@yahoo.fr>, 
+	Benabderrahmane Benyattou <bbenyattou@yahoo.com>, Benahcen Derradji Rachid <benahcene@yahoo.fr>, 
+	Benahcen Derradji Rachid <benahcene@mail.lagh-univ.dz>, benali2 rachid <rachidbenali2@hotmail.com>, 
+	Benazi <benmak99@gmail.com>, Benazi Makhlouf <benazimakhlouf@yahoo.fr>, 
+	"benelhadj@lycos.com" <benelhadj@lycos.com>, "benhaddo@univ-usto.dz" <benhaddo@univ-usto.dz>, 
+	benhamidouche nordine <benhamidouche@yahoo.fr>, Benouis Mohamed <mhbenouis@yahoo.com>, 
+	"benyettou@simpa-usto.net" <benyettou@simpa-usto.net>, 
+	"bernadette.bouchon-meunier@lip6.fr" <bernadette.bouchon-meunier@lip6.fr>, 
+	bilal lounnas <lounnas.bilal@gmail.com>, 
+	"blanchard@leri.univ-reims.fr" <blanchard@leri.univ-reims.fr>, "bo_milas@yahoo.fr" <bo_milas@yahoo.fr>, 
+	Bouamama Salim <bouamamas@gmail.com>, Boubakir Mohamed <boubakirmohamed@yahoo.fr>, 
+	boubaya <hboubaya@free.fr>, "Boubaya, Hocine" <Hocine.boubaya@hp.com>, 
+	Boudaa Abdelghani <ghani.boudaa@gmail.com>, "boudaoudab@yahoo.fr" <boudaoudab@yahoo.fr>, 
+	Bouderah Brahim <bouderah_b@yahoo.fr>, Boudia Malika <boudiamalika@gmail.com>, 
+	Bougrara seddik <sed_boug@yahoo.fr>, Bouhouita Salah-Eddine <bouhouita@usa.com>, 
+	"boukeram@gmail.com" <boukeram@gmail.com>, "boukerram@hotmail.com" <boukerram@hotmail.com>, 
+	"Bounif_mohamed@univ-msila.dz" <Bounif_mohamed@univ-msila.dz>, Bourahla Mustapha <MBOURAHLA@hotmail.com>, 
+	Brahimi Belkacem <belkacem.brahimi@yahoo.fr>, Brahimi Mahmoud <ibrahimidz@yahoo.fr>, 
+	Brigitte Trousse <Brigitte.Trousse@inria.fr>, 
+	"Brigitte.Grau@ensiie.fr" <Brigitte.Grau@ensiie.fr>, Brik Mourad <mourad50200@yahoo.fr>, 
+	"Bruno.Cremilleux@info.unicaen.fr" <Bruno.Cremilleux@info.unicaen.fr>, 
+	"carl.frelicot@univ-lr.fr" <carl.frelicot@univ-lr.fr>, "cd@sdiwc.net" <cd@sdiwc.net>, 
+	"Cedric.Archaux@ensieta.fr" <Cedric.Archaux@ensieta.fr>, 
+	"cedric.mannu@bsc-france.com" <cedric.mannu@bsc-france.com>, Celyane Ben <celyane.ben@gmail.com>, 
+	Chalabi Baya <b_chalabi@esi.dz>, "charakamar@gmail.com" <charakamar@gmail.com>, 
+	Chatra Mohamed <chatramouh@hotmail.fr>, "cherif.mihoubi@yahoo.fr" <cherif.mihoubi@yahoo.fr>, 
+	Chikouche Noureddine <chiknour28@yahoo.fr>, 
+	"christel.vrain@lifo.univ-orleans.fr" <christel.vrain@lifo.univ-orleans.fr>, 
+	"Christel.Vrain@univ-orleans.fr" <Christel.Vrain@univ-orleans.fr>, 
+	"Christine.Largeron@univ-st-etienne.fr" <Christine.Largeron@univ-st-etienne.fr>, 
+	"christine@vicov.com" <christine@vicov.com>, "citic08@gmail.com" <citic08@gmail.com>, 
+	=?UTF-8?B?Q2l0aWMyMDA4IFPDqXRpZiwgQWxnw6lyaWU=?= <citic2008.setif@gmail.com>, 
+	"citic2008@univ-setif.dz" <citic2008@univ-setif.dz>, cnepru cnepru <cnepru@yahoo.fr>, 
+	"conference.ciia@gmail.com" <conference.ciia@gmail.com>, 
+	"conference2015.gmes@univ-constantine2.dz" <conference2015.gmes@univ-constantine2.dz>, 
+	"confirm-s2-3raiji0hxfgdbe3oqhf04lmr0aa0n2dd-tmehenni=gmail.com@yahoogroupes.fr" <confirm-s2-3raiji0hxfgdbe3oqhf04lmr0aa0n2dd-tmehenni=gmail.com@yahoogroupes.fr>, 
+	CSCC Conference <info@cscc.co>, "csernel@enst.fr" <csernel@enst.fr>, 
+	"cu.helioropes@crous.u-strasbg.fr" <cu.helioropes@crous.u-strasbg.fr>, Dabba Ali <alidabba@gmail.com>, 
+	"Darenchris ." <choosenone.a@gmail.com>, "ddg@di.ubi.pt" <ddg@di.ubi.pt>, 
+	Debbi Aimad-Eddine <aimad_ne@yahoo.fr>, Dehmeche Lkhayer <Khierdehmeche2005@yahoo.fr>, 
+	"demarchi@math.univ-bpclermont.fr" <demarchi@math.univ-bpclermont.fr>, 
+	"deptinformatique@univ-msila.dz" <deptinformatique@univ-msila.dz>, "dip@sdiwc.net" <dip@sdiwc.net>, 
+	"directeur@lirmm.fr" <directeur@lirmm.fr>, Djaber Khaled <khaled.djaber@gmail.com>, 
+	Djamel Abdelouahab <abdeljam@yahoo.fr>, "djeriouaissa@yahoo.fr" <djeriouaissa@yahoo.fr>, 
+	"djoudi@online.fr" <djoudi@online.fr>, Dris KORICHI <dkorichi@gmail.com>, 
+	"ds09@liaad.up.pt" <ds09@liaad.up.pt>, "dse@ac-strasbourg.fr" <dse@ac-strasbourg.fr>, 
+	"dztice-subscribe@yahoogroupes.fr" <dztice-subscribe@yahoogroupes.fr>, 
+	"dztice@yahoogroupes.fr" <dztice@yahoogroupes.fr>, "eamonn@cs.ucr.edu" <eamonn@cs.ucr.edu>, 
+	EasyChair Installation <installation-request@easychair.org>, 
+	Editor IJACSA <editorijacsa@thesai.org>, EGC 2010 <egc2010@easychair.org>, 
+	EGC-M 2011 <egcm2011@easychair.org>, "egcm2010@gmail.com" <egcm2010@gmail.com>, 
+	"egcm2011@gmail.com" <egcm2011@gmail.com>, 
+	"elghazel@bat710.univ-lyon1.fr" <elghazel@bat710.univ-lyon1.fr>, 
+	"elghazel@bat710.univ-lyon1.fr" <haytham.elghazel@gmail.com>, 
+	Elisa Bartomeus <ebartomeus@pacifico-meetings.com>, 
+	"Elsevier Ltd, Editorial-Production Department" <corrections.esch@elsevier.sps.co.in>, 
+	"enadc@eric.univ-lyon2.fr" <enadc@eric.univ-lyon2.fr>, 
+	Engelbert Mephu Nguifo <engelbert.mephu_nguifo@univ-bpclermont.fr>, 
+	Engelbert Mephu Nguifo <nguifo.mephu@gmail.com>, 
+	"english-amel52@yahoo.fr" <english-amel52@yahoo.fr>, 
+	"Eric.Gaussier@xrce.xerox.com" <Eric.Gaussier@xrce.xerox.com>, "ES4@mbc.net" <ES4@mbc.net>, 
+	"etalle@cs.utwente.nl" <etalle@cs.utwente.nl>, 
+	"Fabrice.Guillet@polytech.univ-nantes.fr" <Fabrice.Guillet@polytech.univ-nantes.fr>, 
+	faiz si abdellah <faiz3500@hotmail.com>, Fares Mezrag <fares.mezrag@gmail.com>, 
+	"fares.mezrag@univ-msila.dz" <fares.mezrag@univ-msila.dz>, 
+	"farouk.toumani@univ-bpclermont.fr" <farouk.toumani@univ-bpclermont.fr>, =?UTF-8?B?RmFydWsgw5Z6Z2Vy?= <farukozger@gmail.com>, 
+	Fatima Fatima <fatima78911@yahoo.fr>, 
+	"feedback@languagesapp.com" <feedback@languagesapp.com>, 
+	Fernini Linda Abdelouahab <Ferblinda@hotmail.com>, "fiot@lirmm.fr" <fiot@lirmm.fr>, 
+	"firon_2008@live.fr" <firon_2008@live.fr>, 
+	"Florent.Masseglia@sophia.inria.fr" <Florent.Masseglia@sophia.inria.fr>, 
+	"Francois.Rioult@info.unicaen.fr" <Francois.Rioult@info.unicaen.fr>, ftoumani <ftoumani@isima.fr>, 
+	"fuaj@fuaj.org" <fuaj@fuaj.org>, "gaaloul@loria.fr" <gaaloul@loria.fr>, 
+	Garderie Panossas-Veyssilieu <dgnsl04@free.fr>, Gasmi Abdelkader <GASMI_A@yahoo.fr>, 
+	Ghemougui Abdelssatar <inf8508@gmail.com>, "ghilousse@ayahoo.fr" <ghilousse@ayahoo.fr>, 
+	"ghilousse@yahoo.fr" <ghilousse@yahoo.fr>, GRAINI Abid <grainiabid@yahoo.fr>, 
+	Guerna Abderrahim <gurahim@gmail.com>, Guesmia Salah <guesmia.salah@gmail.com>, 
+	Hachem Slimani <haslimani@gmail.com>, hadjab lotfi <dido_lot@yahoo.fr>, 
+	Hajer acile <kaoutar-05@live.fr>, Hakim Hakim <touamahakim28@gmail.com>, 
+	Hamamache Kheddouci <hkheddou@bat710.univ-lyon1.fr>, Hamani Said <saidhamani@hotmail.com>, 
+	hamdani khadidja <hamdani.khadidja@gmail.com>, "hameur@irit.fr" <hameur@irit.fr>, 
+	hamza boudiaf <hamza.b.oud@hotmail.fr>, hamza Nsr <hamzanouasri.tic@gmail.com>, 
+	"han@cs.sfu.ca" <han@cs.sfu.ca>, "hanj@cs.uiuc.edu" <hanj@cs.uiuc.edu>, Happy Girl <girlh1260@gmail.com>, 
+	HASSEN CHAIBI <chaibih@yahoo.fr>, "hebrail@enst.fr" <hebrail@enst.fr>, 
+	Hellasa Madiha <madiha_info_isl@yahoo.fr>, Hemmak Allaoua <Hem_all@yahoo.fr>, 
+	"hichem.debbi@gmail.com" <hichem.debbi@gmail.com>, Hocine BOUBAYA <hocine.boubaya@neuf.fr>, 
+	"houria061@hotmail.fr" <houria061@hotmail.fr>, 
+	"hubert.marteau@etu.univ-tours.fr" <hubert.marteau@etu.univ-tours.fr>, Ibrahim meslem <bahi.meslem@gmail.com>, 
+	"ibrahim.osman@aub.edu.lb" <ibrahim.osman@aub.edu.lb>, ICAI09 <icai09@yahoo.com>, 
+	"icar-dir@univ-lyon2.fr" <icar-dir@univ-lyon2.fr>, icics icics <icics09@gmail.com>, 
+	ICIT-2014 <icit@thescienceone.com>, "icwit@univ-sba.dz" <icwit@univ-sba.dz>, 
+	"idir.belaidi@gmail.com" <idir.belaidi@gmail.com>, 
+	"ieee-dz@algeriescience.org" <ieee-dz@algeriescience.org>, 
+	"ifors2014@pacifico-meetings.com" <ifors2014@pacifico-meetings.com>, "ihm@setit.rnu.tn" <ihm@setit.rnu.tn>, 
+	IJIT JOURNAL <ijitjournal@airccse.org>, Iman Lamrad <lamradiman@yahoo.fr>, 
+	Imane DAOUD <imane.master2011@gmail.com>, imane seddiki <imaneseddiki5@gmail.com>, 
+	"imane_daoud@hotmail.fr" <imane_daoud@hotmail.fr>, INASE non-profit <inase.editorial1@gmail.com>, 
+	INASE non-profit <inase.editorial@gmail.com>, info ifors2014 <info@ifors2014.org>, 
+	"info.esalg@vfshelpline.com" <info.esalg@vfshelpline.com>, 
+	"info@saintjohnmadaba.com" <info@saintjohnmadaba.com>, "irdm2m2011@gmail.com" <irdm2m2011@gmail.com>, 
+	irshed msila <irshedmsila28@gmail.com>, Jacek Kitowski <kito@agh.edu.pl>, 
+	"jean-francois.boulicaut@insa-lyon.fr" <jean-francois.boulicaut@insa-lyon.fr>, 
+	Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>, 
+	"Jean-Paul.Sachet@univ-nantes.fr" <Jean-Paul.Sachet@univ-nantes.fr>, 
+	"jjk@lsiit.u-strasbg.fr" <jjk@lsiit.u-strasbg.fr>, 
+	"jmpetit@math.univ-bpclermont.fr" <jmpetit@math.univ-bpclermont.fr>, "joab@lirmm.fr" <joab@lirmm.fr>, 
+	"joannes.vermorel@ens.fr" <joannes.vermorel@ens.fr>, 
+	"Joseph, Janet Amali (ELS-CHN)" <J.Joseph@elsevier.com>, jozef pro <yasseramri19@gmail.com>, 
+	"kadi.o.moumen@yahoo.fr" <kadi.o.moumen@yahoo.fr>, Kadir Halit Tufan <ktufan@fatih.edu.tr>, 
+	"kadr.said28@gmail.com" <kadr.said28@gmail.com>, kadri abd elhak <kadrisoft2009@gmail.com>, 
+	Kadri Said <kadri.said28@gmail.com>, "kadri.said@yahoo.fr" <kadri.said@yahoo.fr>, 
+	kamal amroun <k_amroun25@yahoo.fr>, Kamel Mohamed <kamelbox@gmail.com>, 
+	Kaoutar Acile <kaoutaracile_05@yahoo.com>, 
+	"karabenyekhlef@yahoo.fr" <karabenyekhlef@yahoo.fr>, "kdd@ics.uci.edu" <kdd@ics.uci.edu>, 
+	"kh_saadi@yahoo.fr" <kh_saadi@yahoo.fr>, "khadidja_ha@yahoo.fr" <khadidja_ha@yahoo.fr>, 
+	khawla drif <khawladrif@gmail.com>, Kheddouci <hamamachek@gmail.com>, 
+	Khettaf Abdelouahab <a_khettaf@esi.dz>, "koukoukhaoula46@yahoo.fr" <koukoukhaoula46@yahoo.fr>, 
+	"krim_f_ieee_org@yahoo.fr" <krim_f_ieee_org@yahoo.fr>, "krim_f@ieee.org" <krim_f@ieee.org>, 
+	"kufan@fatih.edu.tr" <kufan@fatih.edu.tr>, Labid Kacem <lbdkcm94@gmail.com>, 
+	=?UTF-8?Q?Ladislav_Hluch=C3=BD?= <cai.ui@savba.sk>, 
+	"Ladislav.Hluchy@savba.sk" <Ladislav.Hluchy@savba.sk>, 
+	Lakehal Ayat Raouf Ouanis <raouf@lakehal-ayat.com>, Lakehal Meftah <lkmeftah@yahoo.fr>, 
+	"lakhal@lif.univ-mrs.fr" <lakhal@lif.univ-mrs.fr>, Lamiche Chaabane <lamiche07@gmail.com>, 
+	"lamis.hawarah@imag.fr" <lamis.hawarah@imag.fr>, "laouadi_nab@yahoo.fr" <laouadi_nab@yahoo.fr>, 
+	Larou youc <laryouc@gmail.com>, latifa chabane <latifa.chabane2@gmail.com>, 
+	"lebbah@lodyc.jussieu.fr" <lebbah@lodyc.jussieu.fr>, 
+	LEMAIRE Vincent <vincent.lemaire@orange-ftgroup.com>, "li@univ-tours.fr" <li@univ-tours.fr>, 
+	"li0676@hotmail.com" <li0676@hotmail.com>, Lina Soualmia <lina.soualmia@gmail.com>, 
+	"lina-dir@univ-nantes.fr" <lina-dir@univ-nantes.fr>, Linda Smail <lsmail@nyit.edu>, 
+	Linda Smail <linda.smail@nyit.edu.jo>, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, 
+	"LISTSERV@nic.surfnet.nl" <LISTSERV@nic.surfnet.nl>, "lorival@lirmm.fr" <lorival@lirmm.fr>, 
+	Luisa bouaka <bluisa@hotmail.fr>, 
+	"lylia.abrouk@u-bourgogne.fr" <lylia.abrouk@u-bourgogne.fr>, "m_hanoune@yahoo.fr" <m_hanoune@yahoo.fr>, 
+	Mahdjoubi Roussafi <mahdjoubir@yahoo.fr>, Mahmoud Gourar <mahmoud.gourar@gmail.com>, 
+	Mahmoud HAMOUCHE <m.hamouche06@gmail.com>, 
+	"makri_mustapha@yahoo.fr" <makri_mustapha@yahoo.fr>, Malek Ghenima <malekghenima@gmail.com>, 
+	Malek Khadidja <makdja@yahoo.com>, malika <malikawaboudia@yahoo.fr>, 
+	Mansouri Kamel <mansouri_kl@yahoo.fr>, Manuscript Review <engs@academicjournals.org>, 
+	"marc.boulle@orange-ftgroup.com" <marc.boulle@orange-ftgroup.com>, 
+	"marc.plantevit@lirmm.fr" <marc.plantevit@lirmm.fr>, 
+	"marc.sebban@univ-st-etienne.fr" <marc.sebban@univ-st-etienne.fr>, 
+	"mariam-a@just.edu.jo" <mariam-a@just.edu.jo>, 
+	"Marie_Aude.Aufaure@inria.fr" <Marie_Aude.Aufaure@inria.fr>, 
+	"marie-helene.abel@utc.fr" <marie-helene.abel@utc.fr>, "mariemsak21@gmail.com" <mariemsak21@gmail.com>, 
+	"Marinette.bouet@cust.univ-bpclermont.fr" <Marinette.bouet@cust.univ-bpclermont.fr>, "mark@cs.sfu.ca" <mark@cs.sfu.ca>, 
+	"martine.cadot@wanadoo.fr" <martine.cadot@wanadoo.fr>, 
+	"masterglmsila@yahoo.fr" <masterglmsila@yahoo.fr>, "Mathieu.Roche@lirmm.fr" <Mathieu.Roche@lirmm.fr>, 
+	Mawloud OMAR <mawloud.omar@gmail.com>, "Mayssam@cs.wisc.edu" <Mayssam@cs.wisc.edu>, 
+	"mbendraouche@yahoo.fr" <mbendraouche@yahoo.fr>, 
+	"mbernard@sic.univ-poitiers.fr" <mbernard@sic.univ-poitiers.fr>, "mbresyd2@gmail.com" <mbresyd2@gmail.com>, 
+	"Mebarek.Anane@lafarge.com" <Mebarek.Anane@lafarge.com>, 
+	"mebarek.annane@lafarge.com" <mebarek.annane@lafarge.com>, med charrak <moha200918@gmail.com>, 
+	"medbahache@gmail.com" <medbahache@gmail.com>, "medileh@yahoo.fr" <medileh@yahoo.fr>, 
+	Mehdi slimane kadi <mahdillas@gmail.com>, Mehenni Tahar <tmehenni@gmail.com>, 
+	Meliouh Amel <amel.dz.07@gmail.com>, Meliouh Amel <amel_74563@yahoo.fr>, 
+	"mephu@cril.univ-artois.fr" <mephu@cril.univ-artois.fr>, MESSAOUD AKHDAR <akhdarmessaoud@gmail.com>, 
+	Meziane Farid <f.meziane@salford.ac.uk>, "mezrag_fares@yahoo.com" <mezrag_fares@yahoo.com>, 
+	Mhand Abid <mhand.abid@cevital.com>, "mhbenouis@yahoo.fr" <mhbenouis@yahoo.fr>, 
+	Mi Msila <fmimsila@gmail.com>, Michel Simonet <michel.simonet@imag.fr>, 
+	"Michele.Raphalen@univ-ubs.fr" <Michele.Raphalen@univ-ubs.fr>, 
+	Miquel Grau <miquel.grau@hoteles-catalonia.es>, 
+	"mirsiadaty@virginia.edu" <mirsiadaty@virginia.edu>, 
+	"mmstic2011gmail@gmail.com" <mmstic2011gmail@gmail.com>, Moh Bou <mohbou92@gmail.com>, 
+	Mohamed Boudjellal <mboudjelal28@gmail.com>, 
+	Mohamed Chaouki Babahenini <chaouki.babahenini@gmail.com>, 
+	"mohamed_gasmi@ymail.com" <mohamed_gasmi@ymail.com>, 
+	Mohamed-Khireddine Kholladi <misc_2010_symposium@yahoo.com>, 
+	"mohamed.nadif@univ-metz.fr" <mohamed.nadif@univ-metz.fr>, Mohammed MEHENNI <mehenni_mohammed@hotmail.fr>, 
+	Mokhtar Essaid <mokialge@gmail.com>, Mokhtari Rabah <ra_mokhtari2000@yahoo.fr>, 
+	"mouad.1937@hotmail.com" <mouad.1937@hotmail.com>, Mouhoub Nacer Eddine <mouhoub_n@yahoo.fr>, 
+	Mounir Allal <allalmounir@gmail.com>, "Mourad Ykhlef, PhD." <ykhlef@ksu.edu.sa>, 
+	Moussaoui Adel <adel_moussaoui@hotmail.com>, moussaoui_abdel <moussaoui_abdel@yahoo.fr>, 
+	"mshacid@bat710.univ-lyon1.fr" <mshacid@bat710.univ-lyon1.fr>, 
+	"msila28000@gmail.com" <msila28000@gmail.com>, "mss4x@virginia.edu" <mss4x@virginia.edu>, 
+	mustapha titah <titeh_mustapha@yahoo.fr>, 
+	"Nacer.Boudjlida@loria.fr" <Nacer.Boudjlida@loria.fr>, "nadir_kh@yahoo.fr" <nadir_kh@yahoo.fr>, 
+	nadjet algeria <algeria.nadjet03@yahoo.com>, Nadjet Benyounes <nadjetbenyounes@yahoo.fr>, 
+	Nadjet Kamel <nadjet.kamel@gmail.com>, Nadjet KAMEL <nkamel@univ-setif.dz>, 
+	"nasreddine.amroune@gmail.com" <nasreddine.amroune@gmail.com>, "nasro_amr@yahoo.fr" <nasro_amr@yahoo.fr>, 
+	nassima barka <nassimabarka@gmail.com>, Nicolas Lachiche <nicolas.lachiche@unistra.fr>, 
+	"nicolas.ragot@univ-tours.fr" <nicolas.ragot@univ-tours.fr>, 
+	"noel.novelli@labri.u-bordeaux.fr" <noel.novelli@labri.u-bordeaux.fr>, nOREPLY <noreply@nticweb.com>, 
+	Nouioua Layla <nouioua.edtas@gmail.com>, "nouiribrahim@yahoo.fr" <nouiribrahim@yahoo.fr>, 
+	nourdine baza <interbaza07@yahoo.fr>, Office Osscom <Office@osscom.org>, 
+	"olfa.mabrouki@univ-paris12.fr" <olfa.mabrouki@univ-paris12.fr>, omar bicho <omarben2009@yahoo.fr>, 
+	Omar BOUSSAID <omar.boussaid@univ-lyon2.fr>, Osama gueroud <osamavalenc@gmail.com>, 
+	ouali dehimi <oualium@yahoo.com>, oukacha brahim <oukachabrahim@yahoo.fr>, 
+	Ouldmohamedi Najib <nedjib@gmail.com>, Pascal Poncelet <poncelet@lirmm.fr>, 
+	"Pascal.Poncelet@ema.fr" <Pascal.Poncelet@ema.fr>, 
+	"patrice.bellot@univ-avignon.fr" <patrice.bellot@univ-avignon.fr>, 
+	patrick gallinari <Patrick.Gallinari@lip6.fr>, 
+	Pattern Recognition Letters <prletters@elsevier.com>, Pavol Navrat <pavol.navrat@stuba.sk>, 
+	Petr Berka <berka@vse.cz>, Philippe Leray <philippe.Leray@univ-nantes.fr>, 
+	Pierre Gancarski <gancarski@unistra.fr>, 
+	"pierre-francois.marteau@univ-ubs.fr" <pierre-francois.marteau@univ-ubs.fr>, 
+	"Pierre.Gancarski@dpt-info.u-strasbg.fr" <Pierre.Gancarski@dpt-info.u-strasbg.fr>, 
+	"popova@sic.sp2mi.univ-poitiers.fr" <popova@sic.sp2mi.univ-poitiers.fr>, "quiniou@irisa.fr" <quiniou@irisa.fr>, 
+	"rachid.arezki@ema.fr" <rachid.arezki@ema.fr>, "roche@lri.fr" <roche@lri.fr>, 
+	"3qool+subscribe@googlegroups.com" <3qool+subscribe@googlegroups.com>, "ADD STIC M'sila" <addstic2011@gmail.com>, 
+	Mehenni Tahar <taharmehenni@gmail.com>, "registraire@etsmtl.ca" <registraire@etsmtl.ca>, 
+	=?UTF-8?Q?R=C3=A9pondre_par_courrier_=C3=A9lectronique?= <m+80o8252h000000hlokvs003zp75r3w5q28q@reply.facebook.com>, 
+	=?UTF-8?Q?R=C3=A9pondre_par_courrier_=C3=A9lectronique?= <m+806cslqm000000hlokvs004kdu1aeaqd28v@reply.facebook.com>, 
+	=?UTF-8?Q?R=C3=A9pondre_par_courrier_=C3=A9lectronique?= <m+9164rr2i000000hlokvs2yrjm8pldp5qjbg5mowvfaoolrc295@reply.facebook.com>, 
+	=?UTF-8?Q?R=C3=A9pondre_par_courrier_=C3=A9lectronique?= <m+30hfww9h000000hlokvs00002lban31joop75b66a648ff2t2et@reply.facebook.com>, 
+	"romaric@lri.fr" <romaric@lri.fr>, =?UTF-8?Q?Rub=C3=A9n_Ruiz_Garc=C3=ADa?= <rruiz@eio.upv.es>, 
+	Sadek Outayeb <soutayeb@gmail.com>, Sahbi Sidhom <sahbi.sidhom@loria.fr>, 
+	Sahbi Sidhom <sahbi.sidhom@gmail.com>, Sahraoui Mohamed <sahraoui.m@gmail.com>, 
+	Salem Al-Agtash <alagtash@gju.edu.jo>, samia tenzer <dgrsdt.org@gmail.com>, 
+	Saoudi Lalia <saoudi_l@yahoo.fr>, Sayad Lamri <siad_lamri@yahoo.fr>, "sebag@lri.fr" <sebag@lri.fr>, 
+	"sebillot@irisa.fr" <sebillot@irisa.fr>, 
+	"secretariat@datamining-conf.org" <secretariat@datamining-conf.org>, 
+	"secretariat@eric.univ-lyon2.fr" <secretariat@eric.univ-lyon2.fr>, "Selt.omar@yahoo.fr" <selt.omar@yahoo.fr>, 
+	Sevim Akyuz <sakyuz@republika.com.tr>, Sihem Ajissa <sihem_zebiri@yahoo.fr>, 
+	Simo Ben <oussama_b28@yahoo.fr>, "sitis@u-bourgogne.fr" <sitis@u-bourgogne.fr>, 
+	"skima2009@gmail.com" <skima2009@gmail.com>, Slimane BELLAOUAR <bellaouar_s@yahoo.fr>, 
+	"slimani_y09@yahoo.fr" <slimani_y09@yahoo.fr>, 
+	"socle.commun.mi@gmail.com" <socle.commun.mi@gmail.com>, 
+	"Somia.lakehali@gmail.com" <Somia.lakehali@gmail.com>, souad mazari <souadmazari@gmail.com>, 
+	soualah soufiane <soualahs1@gmail.com>, soumia lekehali <mirage.soumia@gmail.com>, 
+	ssa ass <soma.youcef@gmail.com>, "stefan.nickel@kit.edu" <stefan.nickel@kit.edu>, 
+	"stephane.lopez@prism.uvsq.fr" <stephane.lopez@prism.uvsq.fr>, "steve@iaria.org" <steve@iaria.org>, 
+	=?UTF-8?Q?STIC_M=27sila_Multim=C3=A9dia?= <mmstic2011@gmail.com>, 
+	"support@inase.org" <support@inase.org>, "tablennehas1@yahoo.fr" <tablennehas1@yahoo.fr>, tahar <mehnita@yahoo.fr>, 
+	Tahri Zohir <tahri.zohair@yahoo.com>, "Tayoub90@gmail.com" <Tayoub90@gmail.com>, 
+	"tct.msila@gmail.com" <tct.msila@gmail.com>, "teisseire@lirmm.fr" <teisseire@lirmm.fr>, "th@sdiwc.net" <th@sdiwc.net>, 
+	Therafi Abdellah <abdellahth@gmail.com>, Therafi Abdellah <abdellahth@yahoo.fr>, 
+	Therafi Abdellah <abdellahth@hotmail.fr>, Titouna Chafik <c_titouna@esi.dz>, 
+	"toumiab@ensieta.fr" <toumiab@ensieta.fr>, Veronique Eglin <veronique.eglin@insa-lyon.fr>, 
+	"vincent@univ-tours.fr" <vincent@univ-tours.fr>, Violaine Prince <prince@lirmm.fr>, Xiaoxin Yin <xiaoxin@gmail.com>, 
+	"xyin@microsoft.com" <xyin@microsoft.com>, Yacine SLIMANI <slimani_y09@hotmail.com>, 
+	Yagoubi Rached <rached.yagoubi@gmail.com>, youcef bentaleb <youcefbba@live.fr>, 
+	"Younes.Bennani@lipn.univ-paris13.fr" <Younes.Bennani@lipn.univ-paris13.fr>, Zedam Lemnaouar <l.zedam@yahoo.fr>, 
+	Zedam Lemnaouar <l.zedam@gmail.com>, ziane brahim <brahziane@gmail.com>, 
+	"zighed@univ-lyon2.fr" <zighed@univ-lyon2.fr>, zino dj <zinosoft@gmail.com>, 
+	Zouaoui Lila <lila.zouaoui@yahoo.fr>, =?UTF-8?B?2KfZhNmK2KfYsyDYpdmE2YrYp9iz?= <ilyalime17@gmail.com>
+Content-Type: multipart/alternative; boundary=14dae934052b2bbd8205314cb02d
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Call for Papers ISIA 2016, University of M'sila,
+ Algeria
+
+--14dae934052b2bbd8205314cb02d
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Sorry for multiple postings.
+
+***************************************************************************=
+**********
+The 2nd International Symposium on Informatics and its Applications (ISIA
+2016)
+University Mohamed Boudiaf, M=E2=80=99sila 28000, Algeria
+08-09 November 2016
+http://www.univ-msila.dz/ISIA16/
+
+***************************************************************************=
+**********
+IMPORTANT: Submission deadline: June 15, 2016
+***************************************************************************=
+**********
+
+Dear Colleague,
+
+You are receiving this call-for-papers for participation to the 2nd
+International Symposium on Informatics and its Applications (ISIA 2016)
+that will take place in M=E2=80=99sila/Algeria, November 08-09, 2016. Pleas=
+e
+consider to contribute and distribute this call to your students and
+colleagues.
+
+Objectives and topics
+-------------------------------
+The second International Symposium on Informatics and its Applications *ISI=
+A
+2016* will provide an exciting opportunity for researchers and
+practitioners to share ideas and experiences in different topics of
+Informatics area and its applications. The Symposium looks for significant
+contributions to all major fields of the computer science in theoretical
+and practical aspects. The second edition of ISIA is going to be held at
+the University of M=E2=80=99sila, Algeria, on November 08-09, 2016.  The IS=
+IA 2016
+topics include:
+
+=C2=B7        Track 1: Computational Intelligence.
+
+=C2=B7        Track 2: Information Systems and Databases.
+
+=C2=B7        Track 3: Information Technology, Networks and Distributed Sys=
+tems
+
+=C2=B7        Track 4: Optimization and Operational Research
+
+=C2=B7        Track 5: Computer Systems and Applications
+
+
+
+Important dates
+----------------------
+- Paper submission due:   June 15, 2016
+- Acceptance notification:  September 15, 2016
+- Camera-ready submission:  September 25, 2016
+- Conference date:  November 08-09, 2016
+
+Submission
+-----------------
+We invite researchers and scholars to submit their papers for the
+conference to be held on November 8th, 9th 2016. Papers must be written in
+English or French, carefully checked for grammar and spelling, addressing
+one or several conference topics. Authors are kindly invited to submit
+articles of up to 10 pages (including figures, tables and references),
+using the Springer standard template (
+http://www.springer.com/engineering?SGWID=3D0-175-6-1381428-0) including th=
+e
+title of the article, authors name, affiliation and e-mail address as well
+as a short abstract. Papers should be sent in PDF format to the ISIA'2016
+EasyChair website:
+http://www.easychair.org/conferences/?conf=3Disia2016
+
+Only original work will be considered. Hence, authors should make sure that
+their submissions do not substantially overlap works that have been already
+published or simultaneously submitted to another journal or conference.
+Papers that contain any form of plagiarism will be automatically rejected
+before the reviewing process. Original submissions will be examined
+thoroughly, and all accepted papers will be published in the conference
+proceedings.
+
+
+Honorary General Chair
+
+-------------------------------
+
+Pr HALILAT MOHAMED TAHAR, Rector of the University of M=E2=80=99sila.
+
+
+
+Vice Honorary General Chair
+
+-------------------------------------
+
+Dr BENABDERRAHMANE Benyattou, Dean of the Faculty of Mathematics and
+Informatics, University of M'sila.
+
+
+
+General Chair
+
+---------------------
+
+Dr. BOURAHLA Mustapha, Assoc. Prof., University of M=E2=80=99sila.
+
+
+
+ISIA Secretariat
+-----------------------
+Address: University of M=E2=80=99sila, PO Box 166, Ichbilia, M=E2=80=99sila=
+ 28000, Algeria.
+Tel :  +213 035.55.48.52
+
+Mobile : +213 05 54 38 82 41
+Fax : +213 035.55.48.52 <%2B213%20021.86.32.04>
+E-mail : Deptinformatique@univ-msila.dz / isia.msila16@gmail.com
+
+Web : http://www.univ-msila.dz/ISIA16/
+
+
+--=20
+Best Regards.
+
+****************************************
+*Dr. Tahar Mehenni*
+
+Associate Professor
+Head of Computer Science Department
+Faculty of Mathematics and Informatics
+University Mohamed Boudiaf of M'Sila
+---------------------------------
+Tel./Fax: +213 35 55 48 52
+Mobile: +213 5 54 38 82 41
+B.P. 166, Chebilia, 28003, M'sila, Algerie.
+
+*********************************************
+This message and its attachments may contain confidential or privileged
+information that may be protected by law; they should not be distributed,
+used or copied without authorisation.
+If you have received this email in error, please notify the sender and
+delete this message and its attachments.
+Thank you.
+
+--14dae934052b2bbd8205314cb02d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+<p class=3D"MsoNormal">Sorry for multiple postings.</p>
+
+<p class=3D"MsoNormal">****************************************************=
+*********************************<br>
+The 2nd International Symposium on Informatics and its Applications (ISIA 2=
+016)<br>
+University Mohamed Boudiaf, M=E2=80=99sila 28000, Algeria<br>
+08-09 November 2016<br>
+<a href=3D"http://www.univ-msila.dz/ISIA16/">http://www.univ-msila.dz/ISIA1=
+6/</a></p>
+
+<p class=3D"MsoNormal">****************************************************=
+*********************************<br>
+IMPORTANT: Submission deadline: June 15, 2016<br>
+***************************************************************************=
+**********<br>
+<br>
+Dear Colleague,<br>
+<br>
+You are receiving this call-for-papers for participation to the 2nd
+International Symposium on Informatics and its Applications (ISIA 2016) tha=
+t
+will take place in M=E2=80=99sila/Algeria, November 08-09, 2016. Please con=
+sider to
+contribute and distribute this call to your students and colleagues.<br>
+<br>
+Objectives and topics<br>
+-------------------------------<br>
+The second International Symposium on Informatics and its Applications <str=
+ong><span style=3D"font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">=
+ISIA 2016</span></strong> will provide an exciting opportunity for
+researchers and practitioners to share ideas and experiences in different
+topics of Informatics area and its applications. The Symposium looks for
+significant contributions to all major fields of the computer science in
+theoretical and practical aspects. The second edition of ISIA is going to b=
+e
+held at the University of M=E2=80=99sila, Algeria, on November 08-09, 2016.=
+<span style=3D"mso-spacerun:yes">=C2=A0 </span>The ISIA 2016 topics include=
+:</p>
+
+<p class=3D"" style=3D"margin:0cm 0cm 0.0001pt 18pt;line-height:normal"><sp=
+an style=3D"font-family:Symbol"><span style=3D"mso-list:Ignore">=C2=B7<span=
+ style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></span></span><span dir=3D"LTR"></span>Track 1: Computational
+Intelligence.</p>
+
+<p class=3D"" style=3D"margin:0cm 0cm 0.0001pt 18pt;line-height:normal"><sp=
+an style=3D"font-family:Symbol"><span style=3D"mso-list:Ignore">=C2=B7<span=
+ style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></span></span><span dir=3D"LTR"></span>Track 2: Information
+Systems and Databases.</p>
+
+<p class=3D"" style=3D"margin:0cm 0cm 0.0001pt 18pt;line-height:normal"><sp=
+an style=3D"font-family:Symbol"><span style=3D"mso-list:Ignore">=C2=B7<span=
+ style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></span></span><span dir=3D"LTR"></span>Track 3: Information
+Technology, Networks and Distributed Systems </p>
+
+<p class=3D"" style=3D"margin:0cm 0cm 0.0001pt 18pt;line-height:normal"><sp=
+an style=3D"font-family:Symbol"><span style=3D"mso-list:Ignore">=C2=B7<span=
+ style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></span></span><span dir=3D"LTR"></span>Track 4: Optimization and
+Operational Research </p>
+
+<p class=3D"" style=3D"margin:0cm 0cm 0.0001pt 18pt;line-height:normal"><sp=
+an style=3D"font-family:Symbol"><span style=3D"mso-list:Ignore">=C2=B7<span=
+ style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0
+</span></span></span><span dir=3D"LTR"></span>Track 5: Computer Systems
+and Applications </p>
+
+<p class=3D"MsoNormal"><br>
+<br>
+Important dates<br>
+----------------------<br>
+- Paper submission due:=C2=A0=C2=A0 June 15, 2016<br>
+- Acceptance notification:=C2=A0 September 15, 2016<br>
+- Camera-ready submission:=C2=A0 September 25, 2016<br>
+- Conference date:=C2=A0 November 08-09, 2016<br>
+<br>
+Submission<br>
+-----------------<br>
+We invite researchers and scholars to submit their papers for the conferenc=
+e to
+be held on November 8th, 9th 2016. Papers must be written in English or Fre=
+nch,
+carefully checked for grammar and spelling, addressing one or several
+conference topics. Authors are kindly invited to submit articles of up to 1=
+0
+pages (including figures, tables and references), using the Springer standa=
+rd
+template (<a href=3D"http://www.springer.com/engineering?SGWID=3D0-175-6-13=
+81428-0" target=3D"_blank">http://www.springer.com/engineering?SGWID=3D0-17=
+5-6-1381428-0</a>)
+including the title of the article, authors name, affiliation and e-mail
+address as well as a short abstract. Papers should be sent in PDF format to=
+ the
+ISIA&#39;2016 EasyChair website: <br>
+<a href=3D"http://www.easychair.org/conferences/?conf=3Disia2016">http://ww=
+w.easychair.org/conferences/?conf=3Disia2016</a></p>
+
+<p class=3D"MsoNormal">Only original work will be considered. Hence, author=
+s should
+make sure that their submissions do not substantially overlap works that ha=
+ve
+been already published or simultaneously submitted to another journal or
+conference. Papers that contain any form of plagiarism will be automaticall=
+y
+rejected before the reviewing process. Original submissions will be examine=
+d
+thoroughly, and all accepted papers will be published in the conference
+proceedings. </p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt"><br>
+Honorary General Chair=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">-------------------=
+------------</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+Pr HALILAT MOHAMED TAHAR, Rector of the University of M=E2=80=99sila.</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+Vice Honorary General Chair </p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">-------------------=
+------------------</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+Dr BENABDERRAHMANE Benyattou, Dean of the Faculty of Mathematics and Inform=
+atics,
+University of M&#39;sila. </p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt;line-height:normal">=
+General Chair</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">-------------------=
+--</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">Dr. BOURAHLA
+Mustapha, Assoc. Prof., University of M=E2=80=99sila.</p>
+
+<p class=3D"MsoNormal">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">ISIA Secretariat<br=
+>
+-----------------------<br>
+Address: University of M=E2=80=99sila, PO Box 166, Ichbilia, M=E2=80=99sila=
+ 28000, Algeria.<br>
+Tel :=C2=A0 +213 035.55.48.52</p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">Mobile=C2=A0:
++213 05 54 38 82 41<br>
+Fax : <a href=3D"tel:%2B213%20021.86.32.04" target=3D"_blank">+213 <span st=
+yle=3D"color:windowtext;text-decoration:none">035.55.48.52</span></a><br>
+E-mail : <a href=3D"mailto:Deptinformatique@univ-msila.dz">Deptinformatique=
+@univ-msila.dz</a>
+/ <a href=3D"mailto:isia.msila16@gmail.com">isia.msila16@gmail.com</a></p>
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:0.0001pt">Web : <a href=3D"ht=
+tp://www.univ-msila.dz/ISIA16/">http://www.univ-msila.dz/ISIA16/</a></p>
+
+<br clear=3D"all"><br>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><d=
+iv>Best Regards.<br><br>****************************************<br><b>Dr. =
+Tahar Mehenni</b><br><br>Associate Professor<br>Head of Computer Science De=
+partment<br>Faculty of Mathematics and Informatics<br>University Mohamed Bo=
+udiaf of M&#39;Sila<br>---------------------------------<br></div><div>Tel.=
+/Fax: +213 35 55 48 52<br></div><div>Mobile: +213 5 54 38 82 41<br></div><d=
+iv></div><div>B.P. 166, Chebilia, 28003, M&#39;sila, Algerie.<br><br></div>=
+<div dir=3D"ltr">*********************************************<br><span sty=
+le=3D"font-family:arial,helvetica,sans-serif">This message and its attachme=
+nts may contain confidential or privileged information that may be protecte=
+d by law; they should not be distributed, used or copied without authorisat=
+ion.<br>If you have received this email in error, please notify the sender =
+and delete this message and its attachments.<br>Thank you.</span><br></div>=
+</div></div></div></div></div></div></div></div></div>
+</div>
+
+--14dae934052b2bbd8205314cb02d--

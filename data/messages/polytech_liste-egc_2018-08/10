@@ -1,0 +1,1433 @@
+Return-Path: <hocine.cherifi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 6E8592292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 14 Aug 2018 10:41:45 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id E6ECD726DBD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 14 Aug 2018 10:41:50 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 61C84B4B124
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 14 Aug 2018 10:41:48 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.233
+X-Spam-Level: *
+X-Spam-Status: No, score=1.233 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	HTML_OBFUSCATE_05_10=0.001, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_MSPIKE_H2=-0.001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001, WEIRD_PORT=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.0299 )
+X-CRM114-CacheID: 
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id GbthvFdC67VG for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 14 Aug 2018 10:41:45 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 003B6B190A3
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 14 Aug 2018 10:41:44 +0200 (CEST)
+Received: by mail-lj1-f193.google.com with SMTP id u7-v6so14751263lji.3
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 14 Aug 2018 01:41:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=MUKPioMdRLCw4VPCzzku44l9jCol6zBqamkc/rilWzg=;
+        b=prSYlzT1BfYHh8eWESsIZBXF8veWekuuH/EMJKeeOuU8ErOhyOaduy0gxXz8vkq1Bj
+         /6KDA7I8bLakeKip3aAzslw387AOJQP4BuxUiTOUOx4lipn/6eP84DIbHnMTuYeapTw0
+         erKDk2aOcIdpVq8TIsJUTAI7Nzl2Qp/bxmo/ELBdb/sZeSfrghtAaQQUj8tbkyu5CdTd
+         EA1HWfSCKWM8zSQUQ5AyvHHPZ0Zlc/FeKffrKhswtwf3cniG/W+ELaTNsC6K/V+W4hn8
+         xxVRW3yWnxqlS2tUhMOIFAwysrfrj1uAFGOmdrx4o0sywvx96ODdWSUgWh2TC6Eki+JL
+         tqog==
+X-Gm-Message-State: AOUpUlFznY4iigv8bfGyIJJe9QamHqKvFfC/rtcqYDxIeoUl+rtpmfh7
+	sVHLCyzjbBp4Z2gvIqgwJk1ZywycNg1LcEY6NodXhmvk
+X-Google-Smtp-Source: AA+uWPyGueUqrfM/B0mZHST5gkLuS+fUjg2BfxgCg+4Co/J9cUalAvSRRpIQBQ6tx5/5opnBsIKvvFhHMDqD65QFl78=
+X-Received: by 2002:a2e:2bd7:: with SMTP id r84-v6mr15313552ljr.40.1534236105257;
+ Tue, 14 Aug 2018 01:41:45 -0700 (PDT)
+MIME-Version: 1.0
+From: hocine cherifi <hocine.cherifi@u-bourgogne.fr>
+Date: Tue, 14 Aug 2018 10:41:33 +0200
+Message-ID: <CAFX-JVs_jZDxSmQ_vMhPCg+Az-0ccUS8X4yZD6qaf_u_JyrmEQ@mail.gmail.com>
+To: "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, Liste ASR FORUM <asr-forum@cines.fr>, 
+	annonces@madics.fr, SIF <annonces@listes.societe-informatique-de-france.fr>
+Content-Type: multipart/alternative; boundary="0000000000000e36d90573612e6c"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP COMPLEX NETWORKS 2018 Cambridge UK deadline
+ September 04, 2018
+
+--0000000000000e36d90573612e6c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Apologies for any cross posting*
+
+*Seventh** Int. Conference on Complex Networks & Their Applications
+Cambridge, UK Dec. 11- 13, 2018*
+
+http://www.complexnetworks.org
+
+You are cordially invited to submit your contribution until September 04,
+2018.
+
+*Full papers (not previously published up to 12 pages) *and *Extended
+Abstracts* *(about published or unpublished research up to 3 pages)* *are
+welcome.*
+
+To submit your contribution visits the submission page
+<https://www.complexnetworks.org/submission/>.
+
+=C2=B7       *Papers *will be included in the conference *proceedings edite=
+d by
+Springer*
+
+=C2=B7       *Extended abstracts* will be published in the *Book of Abstrac=
+ts
+(with ISBN)*
+
+=C2=B7       Extended versions will be invited for publication in *special
+issues of international journals*:
+
+o   Applied Network Science <https://appliednetsci.springeropen.com/>
+edited by Springer
+
+o   Computational Social Networks
+<https://computationalsocialnetworks.springeropen.com/> edited by Springer
+
+o   Network Science
+<https://www.cambridge.org/core/journals/network-science> edited by
+Cambridge University Press
+
+o   Online Social Networks and Media
+<https://www.journals.elsevier.com/online-social-networks-and-media> edited
+by Elsevier
+
+o   Future Internet <http://www.mdpi.com/journal/futureinternet> Edited by
+MDPI
+
+
+
+*Speakers:*
+
+Vittoria Colizza <https://www.epicx-lab.com/vittoria-colizza.html> Inserm,
+France
+
+Aristides Gionis <https://users.ics.aalto.fi/gionis/> Aalto University,
+Finland
+
+Heather Harrington
+<https://www.maths.ox.ac.uk/people/heather.harrington> University
+of Oxford, UK
+
+Sune Lehmann <https://sunelehmann.com/> Technical University of Denmark,
+Denmark
+
+Hernan Makse <http://www-levich.engr.ccny.cuny.edu/webpage/hmakse/> City
+College of New York, USA
+
+Romualdo Pastor-Satorras <http://www-fen.upc.es/~romu/> Universitat
+Polit=C3=A8cnica de Catalunya, Spain
+
+Markus Strohmaier <http://markusstrohmaier.info/> RWTH Aachen Univeristy,
+Germany
+
+Donald Towsley <https://www.cics.umass.edu/faculty/directory/towsley_donald=
+>
+UMass Amherst, USA
+
+
+
+*Tutorials:* December 10, 2018
+
+Jes=C3=BAs G=C3=B3mez-Garde=C3=B1es <http://complex.unizar.es/~jesus/> Univ=
+esity of
+Saragoza, Spain
+
+Silvio Lattanzi <https://research.google.com/pubs/SilvioLattanzi.html>
+Google Zurich, Switzerland
+
+
+
+*Topics include, but are not limited to: *
+
+o   Models of Complex Networks
+
+o   Structural Network Properties and Analysis
+
+o   Complex Networks and Epidemics
+
+o   Community Structure in Networks
+
+o   Community Discovery in Complex Networks
+
+o   Motif Discovery in Complex Networks
+
+o   Complex Networks Mining
+
+o   Dynamics and Evolution Patterns of Complex Networks
+
+o   Link Prediction
+
+o   Multiplex Networks
+
+o   Network Controllability
+
+o   Synchronization in Networks
+
+o   Visual Representation of Complex Networks
+
+o   Large-scale Graph Analytics
+
+o   Social Reputation, Influence, and Trust
+
+o   Information Spreading in Social Media
+
+o   Rumour and Viral Marketing in Social Networks
+
+o   Recommendation Systems and Complex Networks
+
+o   Financial and Economic Networks
+
+o   Complex Networks and Mobility
+
+o   Biological and Technological Complex Networks
+
+o   Mobile call Complex Networks
+
+o   Bioinformatics and Earth Sciences Applications
+
+o   Resilience and Robustness of Complex Networks
+
+o   Complex Networks for Physical Infrastructures
+
+o   Complex Networks, Smart Cities and Smart Grids
+
+o   Political networks
+
+o   Supply chain networks
+
+o   Complex networks and information systems
+
+o   Complex networks and CPS/IoT
+
+o   Graph signal processing
+
+o   Cognitive Network Science
+
+o   Network Medicine
+
+o   Network Neuroscience
+
+o   Quantifying success through network analysis
+
+o   Temporal and spatial networks
+
+o   Network Embedding
+
+
+
+*GENERAL CHAIRS*
+
+Hocine Cherifi  University of Burgundy, France
+
+Pietro Lio  University of Cambridge, UK
+
+Renaud Lambiotte University of Oxford, UK
+
+
+
+*ADVISORY BOARD*
+
+Jon Crowcroft University of Cambridge, UK
+
+Raissa D'Souza UC Davis, USA
+
+Eugene Stanley Boston University, USA
+
+Ben Y. Zhao University of Chicago, USA
+
+
+
+*PROGRAM CHAIR*
+
+Luca Maria Aiello Nokia-Bell Labs, UK
+
+Chantal Cherifi University of Lyon, France
+
+Luis M. Rocha Indiana University, USA
+
+
+
+*POSTER CHAIRS*
+
+Elsa Arcaute UCL, UK
+
+Marton Karsai ENS/INRIA Lyon, France
+
+Jat Singh University of Cambridge, UK
+
+
+
+*LIGHTNING CHAIRS*
+
+Sebastian Ahnert University of Cambridge, UK
+
+Jean-Charles Delvenne UC Louvain, Belgium
+
+Huijuan Wang TU Delft, Netherlands
+
+
+
+*TUTORIAL CHAIRS*
+
+Jinhu L=C3=BC Chines Ac. Science, Bejing, China
+
+Eiko Yoneki University of Cambridge, UK
+
+Sarah Morgan University of Cambridge, UK
+
+
+
+*PUBLICITY CHAIRS*
+
+Carlos Gershenson  Universidad Nacional Aut=C3=B3noma de M=C3=A9xico
+<https://scholar.google.com/citations?view_op=3Dview_org&hl=3Den&org=3D9883=
+260652135677846>,
+Mexico
+
+Bruno Goncalves NYU, USA
+
+Leto Peel  UC Louvain, Belgium
+
+Feng Xia  Dalian University of Technology, China
+
+
+
+*INDUSTRY CHAIRS*
+
+Michael Simmons University of Cambridge, UK
+
+Alexandra Brintrup University of Cambridge, UK
+
+
+
+*PUBLICATION CHAIR*
+
+Sabrina Gaito  Universit=C3=A0 degli Studi di Milano, Italy
+
+--=20
+*******************************************
+*   Pr Hocine CHERIFI                     *
+*   Facult=C3=A9 des Sciences Mirande          *
+*    9 , avenue Alain Savary              *
+*    BP 47870                             *
+*    21078 DIJON    FRANCE                *
+*    Mel : hocine.cherifi@u-bourgogne.fr  *
+*    tel : (33)(0)380396849               *
+*    fax : (33)(0)380395887               *
+*    http://u-bourgogne.fr:8081/          *
+*******************************************
+
+--0000000000000e36d90573612e6c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-al=
+ign:justify;line-height:115%;font-size:11pt;font-family:Calibri"><i><u><spa=
+n lang=3D"EN-US">Apologies for any cross posting</span></u></i></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 6pt;text-align:justify;line-=
+height:115%;font-size:11pt;font-family:Calibri"><b><i><span lang=3D"EN-US">=
+Seventh</span></i></b><i><span lang=3D"EN-US"> <b>Int. Conference on Comple=
+x Networks &amp; Their Applications</b> Cambridge, UK Dec. 11- 13, 2018</sp=
+an></i></p>
+
+<p class=3D"gmail-normal" align=3D"center" style=3D"margin:0cm 0cm 3pt;text=
+-align:center;line-height:115%;font-size:11pt;font-family:Arial;color:black=
+"><span lang=3D"EN-GB"><a href=3D"http://www.complexnetworks.org/" style=3D=
+"color:blue"><span style=3D"font-size:12pt;line-height:115%;color:rgb(17,85=
+,204);background-image:initial;background-position:initial;background-size:=
+initial;background-repeat:initial;background-origin:initial;background-clip=
+:initial">http://www.complexnetworks.org</span></a></span><span lang=3D"EN-=
+GB" style=3D"font-size:12pt;line-height:115%;font-family:Times,serif"></spa=
+n></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;line-height:115%;fo=
+nt-size:11pt;font-family:Calibri"><span lang=3D"EN-US">You are cordially in=
+vited to submit your contribution until </span><span lang=3D"EN-US" style=
+=3D"font-size:12pt;line-height:115%;color:red">September 04, 2018</span><sp=
+an style=3D"font-size:12pt;line-height:115%;color:black">.</span><span lang=
+=3D"EN-US"></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt;line-height:115%;font-si=
+ze:11pt;font-family:Calibri"><b><span lang=3D"EN-US">Full papers (not previ=
+ously published up to 12 pages) </span></b><span lang=3D"EN-US">and <b>Exte=
+nded Abstracts</b> <b>(about published or unpublished research up to 3 page=
+s)</b> <b>are welcome.</b></span></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt;line-height:115%;font-si=
+ze:11pt;font-family:Calibri"><span lang=3D"EN-US" style=3D"color:black">To =
+submit your contribution visits the </span><a href=3D"https://www.complexne=
+tworks.org/submission/" style=3D"color:blue"><span lang=3D"EN-US">submissio=
+n page</span></a><span lang=3D"EN-US" style=3D"color:black">.</span><span l=
+ang=3D"EN-US"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 36pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:Symbol;background-image:initial;backgroun=
+d-position:initial;background-size:initial;background-repeat:initial;backgr=
+ound-origin:initial;background-clip:initial">=C2=B7<span style=3D"font-vari=
+ant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-=
+size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><b><span lang=3D"EN-GB" style=
+=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-image:=
+initial;background-position:initial;background-size:initial;background-repe=
+at:initial;background-origin:initial;background-clip:initial">Papers </span=
+></b><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helveti=
+ca Neue&quot;;background-image:initial;background-position:initial;backgrou=
+nd-size:initial;background-repeat:initial;background-origin:initial;backgro=
+und-clip:initial">will be included in the conference <b>proceedings edited =
+by Springer</b> </span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:Symbol;background-image:initial;backgrou=
+nd-position:initial;background-size:initial;background-repeat:initial;backg=
+round-origin:initial;background-clip:initial">=C2=B7<span style=3D"font-var=
+iant-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font=
+-size:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><b><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">Extended ab=
+stracts</span></b><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:=
+&quot;Helvetica Neue&quot;;background-image:initial;background-position:ini=
+tial;background-size:initial;background-repeat:initial;background-origin:in=
+itial;background-clip:initial"> will be published in the <b>Book of Abstrac=
+ts (with ISBN)</b> </span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;font-s=
+ize:10pt;font-family:Times,serif"><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;line-height:115%;font-family:Symbol;color:rgb(33,33,33);background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=B7<span=
+ style=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-s=
+tretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New =
+Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;background-image:initial;background-position:initial;backgr=
+ound-size:initial;background-repeat:initial;background-origin:initial;backg=
+round-clip:initial">Extended versions will be invited for publication in <b=
+>special issues of international journals</b>:</span><b><span lang=3D"EN-GB=
+" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue=
+&quot;;color:rgb(33,33,33);background-image:initial;background-position:ini=
+tial;background-size:initial;background-repeat:initial;background-origin:in=
+itial;background-clip:initial"></span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 72pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB"><a href=3D"https://a=
+ppliednetsci.springeropen.com/" style=3D"color:blue"><span style=3D"font-si=
+ze:10pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;bac=
+kground-position:initial;background-size:initial;background-repeat:initial;=
+background-origin:initial;background-clip:initial">Applied Network Science<=
+/span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&=
+quot;Helvetica Neue&quot;;background-image:initial;background-position:init=
+ial;background-size:initial;background-repeat:initial;background-origin:ini=
+tial;background-clip:initial"> edited by Springer</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 72pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB"><a href=3D"https://c=
+omputationalsocialnetworks.springeropen.com/" style=3D"color:blue"><span st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Computatio=
+nal Social Networks</span></a></span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;back=
+ground-position:initial;background-size:initial;background-repeat:initial;b=
+ackground-origin:initial;background-clip:initial"> edited by Springer</span=
+></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpFirst" style=3D"margin:0cm 0cm 4pt 72=
+pt;line-height:115%;font-size:11pt;font-family:Calibri"><span lang=3D"EN-US=
+" style=3D"font-family:&quot;Courier New&quot;">o<span style=3D"font-varian=
+t-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-si=
+ze:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=
+=C2=A0 </span></span><a href=3D"https://www.cambridge.org/core/journals/net=
+work-science" style=3D"color:blue"><span style=3D"font-size:10pt;line-heigh=
+t:115%;font-family:&quot;Helvetica Neue&quot;">Network Science</span></a><s=
+pan style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Ne=
+ue&quot;"> edited by Cambridge University Press</span><span lang=3D"EN-US">=
+</span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpMiddle" style=3D"margin:0cm 0cm 4pt 7=
+2pt;line-height:115%;font-size:11pt;font-family:Calibri"><span lang=3D"EN-U=
+S" style=3D"font-family:&quot;Courier New&quot;">o<span style=3D"font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-s=
+ize:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=
+=C2=A0 </span></span><a href=3D"https://www.journals.elsevier.com/online-so=
+cial-networks-and-media" style=3D"color:blue">Online Social Networks and Me=
+dia</a><span style=3D"font-size:10pt;line-height:115%;font-family:&quot;Hel=
+vetica Neue&quot;"> <span style=3D"background-image:initial;background-posi=
+tion:initial;background-size:initial;background-repeat:initial;background-o=
+rigin:initial;background-clip:initial">edited by Elsevier</span></span><spa=
+n lang=3D"EN-US"></span></p>
+
+<p class=3D"gmail-MsoListParagraphCxSpLast" style=3D"margin:0cm 0cm 4pt 72p=
+t;line-height:115%;font-size:11pt;font-family:Calibri"><span lang=3D"EN-US"=
+ style=3D"font-family:&quot;Courier New&quot;">o<span style=3D"font-variant=
+-numeric:normal;font-variant-east-asian:normal;font-stretch:normal;font-siz=
+e:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=C2=
+=A0 </span></span><a href=3D"http://www.mdpi.com/journal/futureinternet" st=
+yle=3D"color:blue"><span style=3D"font-size:10pt;line-height:115%;font-fami=
+ly:&quot;Helvetica Neue&quot;">Future Internet</span></a><span style=3D"fon=
+t-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;"> Edite=
+d by MDPI</span><span lang=3D"EN-US"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin-bottom:3pt;margin-right:=
+0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><b><span lang=
+=3D"EN-GB" style=3D"font-size:8pt;line-height:115%;font-family:&quot;Helvet=
+ica Neue&quot;;color:rgb(33,33,33);background-image:initial;background-posi=
+tion:initial;background-size:initial;background-repeat:initial;background-o=
+rigin:initial;background-clip:initial">=C2=A0</span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33);background-image:initial;background-pos=
+ition:initial;background-size:initial;background-repeat:initial;background-=
+origin:initial;background-clip:initial">Speakers:</span></b><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33)"> </span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><span lang=3D"=
+EN-GB"><a href=3D"https://www.epicx-lab.com/vittoria-colizza.html" style=3D=
+"color:blue"><span style=3D"font-size:10pt;line-height:115%;font-family:&qu=
+ot;Helvetica Neue&quot;">Vittoria Colizza</span></a></span><span lang=3D"EN=
+-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica N=
+eue&quot;;color:rgb(33,33,33)"> Inserm, France</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><span lang=3D"=
+EN-GB"><a href=3D"https://users.ics.aalto.fi/gionis/" style=3D"color:blue">=
+<span style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica =
+Neue&quot;">Aristides Gionis</span></a></span><span lang=3D"EN-GB" style=3D=
+"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;"> A=
+alto University, Finland</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><span lang=3D"=
+EN-GB"><a href=3D"https://www.maths.ox.ac.uk/people/heather.harrington" sty=
+le=3D"color:blue"><span style=3D"font-size:10pt;line-height:115%;font-famil=
+y:&quot;Helvetica Neue&quot;">Heather Harrington</span></a></span><span cla=
+ss=3D"gmail-MsoHyperlink" style=3D"color:blue;text-decoration-line:underlin=
+e"><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-famil=
+y:&quot;Helvetica Neue&quot;"> </span></span><span lang=3D"EN-GB" style=3D"=
+font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;">Uni=
+versity of Oxford, UK</span><span class=3D"gmail-MsoHyperlink" style=3D"col=
+or:blue;text-decoration-line:underline"><span lang=3D"EN-GB"></span></span>=
+</p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"https://sunelehmann.com/" style=3D"col=
+or:blue"><span style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quo=
+t;">Sune Lehmann</span></a></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;"> Technical University of Denmar=
+k, Denmark</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><span lang=3D"=
+EN-GB"><a href=3D"http://www-levich.engr.ccny.cuny.edu/webpage/hmakse/" sty=
+le=3D"color:blue"><span style=3D"font-size:10pt;line-height:115%;font-famil=
+y:&quot;Helvetica Neue&quot;">Hernan Makse</span></a></span><span lang=3D"E=
+N-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica =
+Neue&quot;"> City College of New York, USA</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"http://www-fen.upc.es/~romu/" style=3D=
+"color:blue"><span style=3D"font-size:10pt;font-family:&quot;Helvetica Neue=
+&quot;">Romualdo Pastor-Satorras</span></a></span><span lang=3D"EN-GB" styl=
+e=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;"> Universitat Po=
+lit=C3=A8cnica de Catalunya, Spain</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"http://markusstrohmaier.info/" style=
+=3D"color:blue"><span style=3D"font-size:10pt;font-family:&quot;Helvetica N=
+eue&quot;">Markus Strohmaier</span></a></span><span lang=3D"EN-GB" style=3D=
+"font-size:10pt;font-family:&quot;Helvetica Neue&quot;"> RWTH Aachen Univer=
+isty, Germany</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"https://www.cics.umass.edu/faculty/dir=
+ectory/towsley_donald" style=3D"color:blue"><span style=3D"font-size:10pt;f=
+ont-family:&quot;Helvetica Neue&quot;">Donald Towsley</span></a></span><spa=
+n lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&q=
+uot;"> UMass Amherst, USA</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helveti=
+ca Neue&quot;">=C2=A0</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33);background-image:initial;background-pos=
+ition:initial;background-size:initial;background-repeat:initial;background-=
+origin:initial;background-clip:initial">Tutorials:</span></b><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33)"> </span></b><span lang=3D"EN-GB" style=
+=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;=
+background-image:initial;background-position:initial;background-size:initia=
+l;background-repeat:initial;background-origin:initial;background-clip:initi=
+al">December 10, 2018</span><b><span lang=3D"EN-GB" style=3D"font-size:10pt=
+;line-height:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33=
+)"></span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"http://complex.unizar.es/~jesus/" styl=
+e=3D"color:blue"><span style=3D"font-size:10pt;font-family:&quot;Helvetica =
+Neue&quot;">Jes=C3=BAs G=C3=B3mez-Garde=C3=B1es</span></a></span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;">=
+ Univesity of Saragoza, Spain</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:=
+normal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,se=
+rif"><span lang=3D"EN-GB"><a href=3D"https://research.google.com/pubs/Silvi=
+oLattanzi.html" style=3D"color:blue"><span style=3D"font-size:10pt;font-fam=
+ily:&quot;Helvetica Neue&quot;">Silvio Lattanzi</span></a></span><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;">=
+ Google <span style=3D"background-image:initial;background-position:initial=
+;background-size:initial;background-repeat:initial;background-origin:initia=
+l;background-clip:initial">Zurich, Switzerland</span></span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33);background-image:initial;background-pos=
+ition:initial;background-size:initial;background-repeat:initial;background-=
+origin:initial;background-clip:initial">=C2=A0</span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt;margin-right=
+:0cm;margin-left:0cm;font-size:10pt;font-family:Times,serif"><b><span lang=
+=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helve=
+tica Neue&quot;;color:rgb(33,33,33);background-image:initial;background-pos=
+ition:initial;background-size:initial;background-repeat:initial;background-=
+origin:initial;background-clip:initial">Topics include, but are not limited=
+ to: </span></b></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Models of Complex Networks</=
+span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Structural Network Propertie=
+s and Analysis</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex Networks and Epidemi=
+cs</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Community Structure in Netwo=
+rks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Community Discovery in Compl=
+ex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Motif Discovery in Complex N=
+etworks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex Networks Mining</spa=
+n></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Dynamics and Evolution Patte=
+rns of Complex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Link Prediction</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Multiplex Networks</span></p=
+>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Network Controllability</spa=
+n></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Synchronization in Networks<=
+/span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Visual Representation of Com=
+plex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Large-scale Graph Analytics<=
+/span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Social Reputation, Influence=
+, and Trust</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Information Spreading in Soc=
+ial Media</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Rumour and Viral Marketing i=
+n Social Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Recommendation Systems and C=
+omplex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Financial and Economic Netwo=
+rks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex Networks and Mobilit=
+y</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Biological and Technological=
+ Complex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Mobile call Complex Networks=
+</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Bioinformatics and Earth Sci=
+ences Applications</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Resilience and Robustness of=
+ Complex Networks</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex Networks for Physica=
+l Infrastructures</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex Networks, Smart Citi=
+es and Smart Grids</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Political networks</span></p=
+>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Supply chain networks</span>=
+</p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex networks and informa=
+tion systems</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Complex networks and CPS/IoT=
+</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Graph signal processing</spa=
+n></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Cognitive Network Science</s=
+pan></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Network Medicine</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Network Neuroscience</span><=
+/p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Quantifying success through =
+network analysis</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Temporal and spatial network=
+s</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Courier New&quot;;background-image=
+:initial;background-position:initial;background-size:initial;background-rep=
+eat:initial;background-origin:initial;background-clip:initial">o<span style=
+=3D"font-variant-numeric:normal;font-variant-east-asian:normal;font-stretch=
+:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&=
+quot;">=C2=A0=C2=A0 </span></span><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background-image:initial;backgro=
+und-position:initial;background-size:initial;background-repeat:initial;back=
+ground-origin:initial;background-clip:initial">Network Embedding</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin-bottom:3pt;line-height:no=
+rmal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,seri=
+f"><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica=
+ Neue&quot;;background-image:initial;background-position:initial;background=
+-size:initial;background-repeat:initial;background-origin:initial;backgroun=
+d-clip:initial">=C2=A0</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-family:&quot;Helvetica Neue&quot;;co=
+lor:rgb(33,33,33);background-image:initial;background-position:initial;back=
+ground-size:initial;background-repeat:initial;background-origin:initial;bac=
+kground-clip:initial">GENERAL CHAIRS</span></b></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Hocine Che=
+rifi =C2=A0University of Burgundy, France</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Pietro Li=
+o =C2=A0University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">Renaud Lamb=
+iotte University of Oxford, UK</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><span lang=3D"EN-GB">=C2=A0</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-family:&quot;Helvetica Neue&quot;;co=
+lor:rgb(33,33,33);background-image:initial;background-position:initial;back=
+ground-size:initial;background-repeat:initial;background-origin:initial;bac=
+kground-clip:initial">ADVISORY BOARD</span></b></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Jon Crowcr=
+oft University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Raissa D&=
+#39;Souza UC Davis, USA</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Eugene St=
+anley Boston University, USA</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Ben Y. Zh=
+ao University of Chicago, USA</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">PROGRAM CHAIR</span></b></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Luca Maria=
+ Aiello Nokia-Bell Labs, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Chantal C=
+herifi University of Lyon, France</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">Luis M. Roc=
+ha Indiana University, USA</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><span lang=3D"EN-GB">=C2=A0</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">POSTER CHAIRS</span></b><span lang=
+=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Elsa Arcau=
+te UCL, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Marton Ka=
+rsai ENS/INRIA Lyon, France</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Jat Singh=
+ University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">LIGHTNING CHAIRS</span></b><span lan=
+g=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Sebastian =
+Ahnert University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Jean-Char=
+les Delvenne UC Louvain, Belgium</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Huijuan W=
+ang TU Delft, Netherlands</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">TUTORIAL CHAIRS</span></b><span lang=
+=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Jinhu L=C3=
+=BC Chines Ac. Science, Bejing, China</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Eiko Yone=
+ki University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Sarah Mor=
+gan University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin-bottom:3pt;line-height:no=
+rmal;margin-right:0cm;margin-left:0cm;font-size:10pt;font-family:Times,seri=
+f"><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica=
+ Neue&quot;;background-image:initial;background-position:initial;background=
+-size:initial;background-repeat:initial;background-origin:initial;backgroun=
+d-clip:initial">=C2=A0</span></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">PUBLICITY CHAIRS</span></b><span lan=
+g=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Carlos Ger=
+shenson =C2=A0</span><span lang=3D"EN-GB"><a href=3D"https://scholar.google=
+.com/citations?view_op=3Dview_org&amp;hl=3Den&amp;org=3D9883260652135677846=
+" style=3D"color:blue"><span style=3D"font-size:10pt;font-family:&quot;Helv=
+etica Neue&quot;;color:black;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial;text-decoration-line:none">Universidad Naci=
+onal Aut=C3=B3noma de M=C3=A9xico</span></a></span><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">, Mexico</s=
+pan></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Bruno Gon=
+calves NYU, USA</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Leto Peel=
+ =C2=A0UC Louvain, Belgium</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Feng Xia =
+=C2=A0Dalian University of Technology, China</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">INDUSTRY CHAIRS</span></b><span lang=
+=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin:0cm 0cm 3pt 18pt;line-he=
+ight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-ima=
+ge:initial;background-position:initial;background-size:initial;background-r=
+epeat:initial;background-origin:initial;background-clip:initial">Michael Si=
+mmons University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm 0cm 3pt 18pt;line-h=
+eight:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-im=
+age:initial;background-position:initial;background-size:initial;background-=
+repeat:initial;background-origin:initial;background-clip:initial">Alexandra=
+ Brintrup University of Cambridge, UK</span></p>
+
+<p class=3D"gmail-normalCxSpLast" style=3D"margin:0cm 0cm 3pt 18pt;line-hei=
+ght:normal;font-size:10pt;font-family:Times,serif"><span lang=3D"EN-GB" sty=
+le=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-imag=
+e:initial;background-position:initial;background-size:initial;background-re=
+peat:initial;background-origin:initial;background-clip:initial">=C2=A0</spa=
+n></p>
+
+<p style=3D"margin:0cm 0cm 0.0001pt;font-size:10pt;font-family:Times,serif"=
+><b><span lang=3D"EN-GB" style=3D"font-size:11pt;font-family:&quot;Century =
+Gothic&quot;;font-variant-numeric:normal;font-variant-east-asian:normal;fon=
+t-variant-caps:small-caps;color:black">PUBLICATION CHAIR</span></b><span la=
+ng=3D"EN-GB"></span></p>
+
+<p class=3D"gmail-normal" style=3D"margin:0cm 0cm 3pt 18pt;line-height:norm=
+al;font-size:11pt;font-family:Arial;color:black"><span lang=3D"EN-GB" style=
+=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background-image:=
+initial;background-position:initial;background-size:initial;background-repe=
+at:initial;background-origin:initial;background-clip:initial">Sabrina Gaito=
+ =C2=A0Universit=C3=A0 degli Studi di Milano, Italy</span></p><div><br></di=
+v>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail=
+_signature">*******************************************<br>*=C2=A0=C2=A0 Pr=
+ Hocine CHERIFI=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0=C2=A0 *<br>*=C2=A0=C2=A0 Facult=C3=A9 des Sciences Mirande=C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 9 , avenue Alain Savary=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 BP 47870=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 *<br>*=C2=A0 =C2=A0 21078 DIJON=C2=A0 =C2=A0=
+ FRANCE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * <br>*=C2=
+=A0 =C2=A0 Mel : <a href=3D"mailto:hocine.cherifi@u-bourgogne.fr" target=3D=
+"_blank">hocine.cherifi@u-bourgogne.fr</a>=C2=A0 *<br>*=C2=A0 =C2=A0 tel : =
+(33)(0)380396849=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0 *<br=
+>*=C2=A0 =C2=A0 fax : (33)(0)380395887=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0=C2=A0 *<br>*=C2=A0 =C2=A0 <a href=3D"http://u-bourgogne.fr:80=
+81/" target=3D"_blank">http://u-bourgogne.fr:8081/</a>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 *<br>*******************************************</div></div>
+
+--0000000000000e36d90573612e6c--

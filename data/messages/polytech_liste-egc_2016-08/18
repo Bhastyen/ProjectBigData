@@ -1,0 +1,556 @@
+Return-Path: <hocine.cherifi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D3A441903A06
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 30 Aug 2016 09:59:30 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id B4E5B26A4D7
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 30 Aug 2016 09:59:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id AA7292DF9C9
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 30 Aug 2016 09:59:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.736
+X-Spam-Level: *
+X-Spam-Status: No, score=1.736 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, SPF_PASS=-0.001, SUBJ_ALL_CAPS=1.625,
+	UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.5359 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id EOaKVfpgT7Hk for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 30 Aug 2016 09:59:29 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x244.google.com (mail-wm0-x244.google.com [IPv6:2a00:1450:400c:c09::244])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 23FB12DFA24
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 30 Aug 2016 09:59:29 +0200 (CEST)
+Received: by mail-wm0-x244.google.com with SMTP id q128so1963032wma.1
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 30 Aug 2016 00:59:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=RSiomqQ79E/0UHWxP7tKwKS0ww4cXKNzRszctjMrI6Q=;
+        b=CatZTZKtCS+GZPyVq4T6Tw0uYGFuj27SBiSmLOmfWTvk41q0pP0XW6ngeiaptmrRgZ
+         5Anyb90dCE8Z7z4VL5yvKWU3KVrWI7mOlyCubHJeAWQBS/YQBG4su8PAo2aOqQh+qslY
+         MRVPYiqvJoqZB+g15dbWJPQ6E0htcOlb6yqeFCILRdXQeFOE4inJdCd2y8pK/GKB332d
+         XTFyNy5sa3BRJKGrTQlXDfyUJAddMFUcn/IjBoHsxkghwKYHgbV3HI12KlqbOp5Uxsb2
+         tmODtevoUe9rICRLkvCr1lICAmbw0VhJwOiTBMrzyEk46PI0p71HSlTnnvZOVw14cUs6
+         5dWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=RSiomqQ79E/0UHWxP7tKwKS0ww4cXKNzRszctjMrI6Q=;
+        b=lN4HwGsXLzor/h94/7mOVN7X35jmWhyljAn2vR2qYxRk8Av+18ArfjmPf1c0ZU5toI
+         J5TAZ9XeE7n3YB/TtlP4aPug3Jw7+iKEJU9LnrsAhZlPB0Q1lMCR2cXSxV/iJZheZFul
+         763S3La79IfeKbrBMkGA7QT+dMo7flfYxV4tGTK4oMEfHN6HNXV3CYANhb9DZ1pvKr9b
+         cLpt2I7usXntdqBNEAMCeakflgIZpHvqqaB+et+85/k9hkKlnjJtZ6Kt6gvyVA4HIGpx
+         sXdrrAEJFIq2Ibb0aS133bi7We7ZJvDn3dx+3X0Rjv+cK6RFkdj4/gMcL6xe1mkfbZsN
+         0czA==
+X-Gm-Message-State: AE9vXwNYzLNBFVtbzE/WnN9S4lOoiGEilDHr1LO5mKiUDvTo3F8dSe1Zp/xRS4q0b39E3662Pw4XVhDnQ5lYZw==
+X-Received: by 10.194.223.7 with SMTP id qq7mr305673wjc.147.1472543968635;
+ Tue, 30 Aug 2016 00:59:28 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.28.152.72 with HTTP; Tue, 30 Aug 2016 00:59:27 -0700 (PDT)
+From: Hocine Cherifi <hocine.cherifi@gmail.com>
+Date: Tue, 30 Aug 2016 09:59:27 +0200
+Message-ID: <CAFX-JVvONBtG42KwCmTSCxAZFzR7FgwY3-yD3TUrqEaATqV5fg@mail.gmail.com>
+To: "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, annonces@madics.fr, 
+	rsd-forum@cines.fr, "bull-i3@irit.fr" <bull-i3@irit.fr>, tciin.isat@u-bourgogne.fr, 
+	tcbd@comsoc.org
+Content-Type: multipart/alternative; boundary=001a11c3ad282ab5d5053b455c57
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] LAST CFP : COMPLEX NETWORKS 2016: SUBMISSION DEADLINE
+ SEPTEMBER 05, 2016
+
+--001a11c3ad282ab5d5053b455c57
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Apologies if you receive multiple copies of this Call for Papers
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+                             http://complexnetworks.org
+<http://www.complexnetworks.org/>
+
+The *Fifth International Workshop on Complex Networks and their
+Applications*
+
+
+
+where: *Milan, Italy*
+
+when : November 30 =E2=80=93 December 02, 2016
+
+Tutorials : November 29, 2016
+
+
+
+Submission deadline: September 05, 2016
+
+
+
+*Full papers *and *Extended Abstracts* are welcome:
+
+=C2=B7       Accepted papers will be included in the proceedings published =
+by
+Springer
+
+=C2=B7       Accepted extended abstracts will be included in the book of
+abstracts (with ISBN)
+
+*Extended versions of accepted contributions will be invited for
+publication in special issues of international journals edited by *
+*Springer*
+
+
+
+=EF=82=B7       Computational Social Networks
+<http://www.computationalsocialnetworks.com/>
+
+=EF=82=B7       Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+
+
+
+*Keynote Speakers*
+
+Guido Caldarelli        <http://www.guidocaldarelli.com/>                  =
+IMT
+Lucca - Italy
+
+Raissa D=E2=80=99Souza <http://mae.engr.ucdavis.edu/dsouza/>
+         U.C
+Davis - USA
+
+Renaud Lambiotte   <http://www.lambiotte.be/>                  University
+of Namur - Belgium
+
+Yamir Moreno <http://cosnet.bifi.es/people/yamir-moreno/>
+               University
+of Zaragoza - Spain
+
+Eiko Yoneki <http://www.cnn.group.cam.ac.uk/directory/ey204@cam.ac.uk>
+                                    University
+of Cambridge - UK
+
+Ben Y. Zhao <http://www.cs.ucsb.edu/~ravenben/>
+             U.C.
+Santa Barbara =E2=80=93 USA
+
+
+
+*Tutorials (November 29)*
+
+*Ernesto Estrada*                          University of Strathclyde =E2=80=
+=93 UK
+
+*Bruno Gon=C3=A7alves*                        New York University  =E2=80=
+=93 USA
+
+
+
+
+
+
+
+
+
+
+--=20
+
+*Join us at *:  COMPLEX NETWORKS 2016 Milan <http://complexnetworks.org/>
+
+*Publish your work on:* Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+*re**ad:
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>*Complex
+Networks & their Applications
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>
+***********************************************
+*   Pr Hocine CHERIFI                             *
+*          LE2I   UMR CNRS 6306              *
+*   Facult=C3=A9 des Sciences Mirande            *
+*    9 , avenue Alain Savary                     *
+*    BP 47870                                           *
+*    21078 DIJON    FRANCE                  *
+**********************************************
+
+--001a11c3ad282ab5d5053b455c57
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class=3D"MsoNormal" style=3D"margin-bottom:6pt"><span style=3D"font-size=
+:12pt;font-family:arial;color:rgb(34,34,34)">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br=
+>
+Apologies if you receive multiple copies of this Call for Papers<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<span></span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin-bottom:6pt"><span lang=3D"EN-US" style=3D"font-size:14pt;fon=
+t-family:arial;color:rgb(34,34,34)">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0</span><span lang=3D"EN-US"><a href=3D"ht=
+tp://www.complexnetworks.org/"><span style=3D"font-size:14pt;font-family:ar=
+ial;color:rgb(17,85,204)">http://complexnetworks.org</span></a></span><span=
+ style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)"><span></spa=
+n></span></p><p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom=
+:4pt;text-align:center"><span lang=3D"EN-US" style=3D"font-size:12pt;font-f=
+amily:arial;color:rgb(34,34,34)">The=C2=A0<b><i>Fifth International Worksho=
+p on Complex=C2=A0Networks and
+their Applications</i></b></span><span style=3D"font-size:12pt;font-family:=
+arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin-bottom:4pt"><span style=3D"font-size:12pt;font-family:arial;=
+color:rgb(34,34,34)"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin-bottom:4pt"><span lang=3D"EN-US" style=3D"font-size:12pt;fon=
+t-family:arial;color:rgb(34,34,34)">where:=C2=A0<b><i>Milan, Italy</i></b><=
+/span><span style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)">=
+<span></span></span></p><p class=3D"MsoNormal" style=3D"margin-bottom:4pt">=
+<span lang=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:rgb(34=
+,34,34)">when :=C2=A0</span><span style=3D"font-size:12pt;font-family:arial=
+;color:rgb(34,34,34)">November 30 =E2=80=93
+December 02, 2016<span></span></span></p><p class=3D"MsoNormal" style=3D"ma=
+rgin-bottom:4pt"><span lang=3D"EN-US" style=3D"font-size:12pt;font-family:a=
+rial;color:rgb(34,34,34)">Tutorials : November 29, 2016</span><span style=
+=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)"><span></span></sp=
+an></p><p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">=
+<span lang=3D"EN-US" style=3D"font-size:16pt;font-family:arial;color:red"><=
+span>=C2=A0</span></span></p><p class=3D"MsoNormal" align=3D"center" style=
+=3D"text-align:center"><span lang=3D"EN-US" style=3D"font-size:16pt;font-fa=
+mily:arial;color:red">Submission
+deadline: September 05, 2016</span><span style=3D"font-size:16pt;font-famil=
+y:arial;color:red"><span></span></span></p><p class=3D"MsoNormal" style=3D"=
+margin-bottom:4pt"><span lang=3D"EN-US" style=3D"font-size:12pt;font-family=
+:arial;color:rgb(34,34,34)">=C2=A0</span><span style=3D"font-size:12pt;font=
+-family:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoN=
+ormal" style=3D"margin-bottom:4pt"><b><span lang=3D"EN-US" style=3D"font-si=
+ze:12pt;font-family:arial;color:rgb(34,34,34)">Full papers=C2=A0</span></b>=
+<span lang=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:rgb(34=
+,34,34)">and=C2=A0<b>Extended
+Abstracts</b>=C2=A0are welcome:</span><span style=3D"font-size:12pt;font-fa=
+mily:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNorm=
+al" style=3D"margin-bottom:4pt"><span lang=3D"EN-US" style=3D"font-size:12p=
+t;font-family:symbol;color:rgb(34,34,34)">=C2=B7</span><span lang=3D"EN-US"=
+ style=3D"font-size:7pt;font-family:&#39;times new roman&#39;;color:rgb(34,=
+34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span lang=3D"EN-U=
+S" style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)">Accepted =
+papers will be included in the proceedings published by
+Springer</span><span style=3D"font-size:12pt;font-family:arial;color:rgb(34=
+,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin-bot=
+tom:4pt"><span lang=3D"EN-US" style=3D"font-size:12pt;font-family:symbol;co=
+lor:rgb(34,34,34)">=C2=B7</span><span lang=3D"EN-US" style=3D"font-size:7pt=
+;font-family:&#39;times new roman&#39;;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span lang=3D"EN-US" style=3D"font-size:1=
+2pt;font-family:arial;color:rgb(34,34,34)">Accepted extended abstracts will=
+ be included in the book of abstracts
+(with ISBN)</span><span style=3D"font-size:12pt;font-family:arial;color:rgb=
+(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"text-al=
+ign:justify;vertical-align:baseline;background-image:initial;background-col=
+or:white;background-size:initial;background-origin:initial;background-clip:=
+initial;background-position:initial;background-repeat:initial"><b><span lan=
+g=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:black">Extended=
+ versions of
+accepted contributions will be invited for publication in special issues of
+international journals edited by </span></b><b><span lang=3D"EN-US" style=
+=3D"font-size:12pt;font-family:arial;color:red">Springer</span></b><b><span=
+ style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)"><span></spa=
+n></span></b></p><p class=3D"MsoNormal" style=3D"text-align:justify;vertica=
+l-align:baseline;background-image:initial;background-color:white;background=
+-size:initial;background-origin:initial;background-clip:initial;background-=
+position:initial;background-repeat:initial"><span lang=3D"EN-US" style=3D"f=
+ont-size:12pt;font-family:arial;color:black">=C2=A0</span><span style=3D"fo=
+nt-size:12pt;font-family:arial;color:rgb(34,34,34)"><span></span></span></p=
+><p class=3D"MsoNormal" style=3D"margin-bottom:4pt;background-image:initial=
+;background-color:white;background-size:initial;background-origin:initial;b=
+ackground-clip:initial;background-position:initial;background-repeat:initia=
+l"><span lang=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:rgb=
+(34,34,34)">=EF=82=B7</span><span lang=3D"EN-US" style=3D"font-size:12pt;fo=
+nt-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0</span><span lang=3D"FR" style=3D"font-size:12pt;font-family:arial;co=
+lor:rgb(34,34,34)"><a href=3D"http://www.computationalsocialnetworks.com/">=
+<span lang=3D"EN-US" style=3D"color:rgb(17,85,204)">Computational Social Ne=
+tworks</span></a></span><span style=3D"font-size:12pt;font-family:arial;col=
+or:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"m=
+argin-bottom:4pt;background-image:initial;background-color:white;background=
+-size:initial;background-origin:initial;background-clip:initial;background-=
+position:initial;background-repeat:initial"><span lang=3D"EN-US" style=3D"f=
+ont-size:12pt;font-family:arial;color:rgb(34,34,34)">=EF=82=B7</span><span =
+lang=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34=
+)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span lang=3D"FR" style=
+=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)"><a href=3D"http:/=
+/www.springer.com/physics/complexity/journal/41109"><span lang=3D"EN-US" st=
+yle=3D"color:rgb(17,85,204)">Applied Network
+Science</span></a></span><span style=3D"font-size:12pt;font-family:arial;co=
+lor:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"=
+margin-bottom:4pt"><span style=3D"font-size:12pt;font-family:arial;color:rg=
+b(34,34,34)"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"=
+margin-bottom:4pt"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font-fam=
+ily:arial;color:black">Keynote Speakers</span></b><span style=3D"font-size:=
+12pt;font-family:arial;color:rgb(34,34,34)"><span></span></span></p><p clas=
+s=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt"><span lang=3D"EN-US"><=
+a href=3D"http://www.guidocaldarelli.com/"><span style=3D"font-size:12pt;fo=
+nt-family:arial;color:rgb(17,85,204)">Guido Caldarelli=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0</span></a></span><span lang=3D"EN-US" style=3D"font-s=
+ize:12pt;font-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0IMT
+Lucca - Italy</span><span style=3D"font-size:12pt;font-family:arial;color:r=
+gb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"margi=
+n:0cm 0cm 4pt 18pt"><span lang=3D"EN-US"><a href=3D"http://mae.engr.ucdavis=
+.edu/dsouza/"><span lang=3D"FR" style=3D"font-size:12pt;font-family:arial;c=
+olor:rgb(17,85,204)">Raissa
+D=E2=80=99Souza</span></a></span><span lang=3D"FR" style=3D"font-size:12pt;=
+font-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0U.C
+Davis - USA</span><span style=3D"font-size:12pt;font-family:arial;color:rgb=
+(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:=
+0cm 0cm 4pt 18pt"><span lang=3D"EN-US"><a href=3D"http://www.lambiotte.be/"=
+><span style=3D"font-size:12pt;font-family:arial;color:rgb(17,85,204)">Rena=
+ud Lambiotte=C2=A0=C2=A0</span></a></span><span lang=3D"EN-US" style=3D"fon=
+t-size:12pt;font-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0University
+of Namur - Belgium</span><span style=3D"font-size:12pt;font-family:arial;co=
+lor:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"=
+margin:0cm 0cm 4pt 18pt"><span lang=3D"EN-US"><a href=3D"http://cosnet.bifi=
+.es/people/yamir-moreno/"><span style=3D"font-size:12pt;font-family:arial;c=
+olor:rgb(17,85,204)">Yamir Moreno</span></a></span><span lang=3D"EN-US" sty=
+le=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0University
+of Zaragoza - Spain</span><span style=3D"font-size:12pt;font-family:arial;c=
+olor:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D=
+"margin:0cm 0cm 4pt 17.85pt"><span lang=3D"EN-US"><a href=3D"http://www.cnn=
+.group.cam.ac.uk/directory/ey204@cam.ac.uk"><span style=3D"font-size:12pt;f=
+ont-family:arial;color:rgb(17,85,204)">Eiko Yoneki</span></a></span><span l=
+ang=3D"EN-US" style=3D"font-size:12pt;font-family:arial;color:rgb(34,34,34)=
+">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+University
+of Cambridge - UK</span><span style=3D"font-size:12pt;font-family:arial;col=
+or:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" style=3D"m=
+argin:0cm 0cm 4pt 18pt"><span lang=3D"EN-US"><a href=3D"http://www.cs.ucsb.=
+edu/~ravenben/"><span style=3D"font-size:12pt;font-family:arial;color:rgb(1=
+7,85,204)">Ben Y. Zhao</span></a></span><span lang=3D"EN-US" style=3D"font-=
+size:12pt;font-family:arial;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0U.C.
+Santa Barbara =E2=80=93 USA</span><span style=3D"font-size:12pt;font-family=
+:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal">=
+<span lang=3D"EN-US"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin-bottom:4pt"><b><span lang=3D"EN-US" style=3D"font-size:12pt;=
+font-family:arial;color:black">Tutorials (November 29)<span></span></span><=
+/b></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 4pt 17.85pt;text-alig=
+n:justify;vertical-align:baseline;background-image:initial;background-color=
+:white;background-size:initial;background-origin:initial;background-clip:in=
+itial;background-position:initial;background-repeat:initial"><span style=3D=
+"font-size:12pt;font-family:arial;color:rgb(34,34,34)"><span><u><span lang=
+=3D"EN-US" style=3D"font-family:calibri;color:rgb(17,85,204)">Ernesto
+Estrada</span></u></span></span><span lang=3D"EN-US" style=3D"font-size:12p=
+t;font-family:calibri;color:black">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><span lang=3D"EN-US" style=
+=3D"font-size:12pt;font-family:calibri;color:rgb(34,34,34)">University
+of Strathclyde =E2=80=93 UK</span><span style=3D"font-size:12pt;font-family=
+:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" =
+style=3D"margin-left:17.85pt;text-align:justify;vertical-align:baseline;bac=
+kground-image:initial;background-color:white;background-size:initial;backgr=
+ound-origin:initial;background-clip:initial;background-position:initial;bac=
+kground-repeat:initial"><span style=3D"font-size:12pt;font-family:arial;col=
+or:rgb(34,34,34)"><span><u><span lang=3D"EN-US" style=3D"font-family:calibr=
+i;color:rgb(17,85,204)">Bruno
+Gon=C3=A7alves</span></u></span></span><span lang=3D"EN-US" style=3D"font-s=
+ize:12pt;font-family:calibri;color:rgb(34,34,34)">=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+New York University=C2=A0 =E2=80=93 USA</span><span style=3D"font-size:12pt=
+;font-family:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D=
+"MsoNormal" style=3D"background-image:initial;background-color:white;backgr=
+ound-size:initial;background-origin:initial;background-clip:initial;backgro=
+und-position:initial;background-repeat:initial"><span lang=3D"EN-US" style=
+=3D"font-size:9.5pt;font-family:arial;color:rgb(34,34,34)">=C2=A0</span><sp=
+an style=3D"font-size:9.5pt;font-family:arial;color:rgb(34,34,34)"><span></=
+span></span></p><p class=3D"MsoNormal" style=3D"margin-bottom:4pt;backgroun=
+d-image:initial;background-color:white;background-size:initial;background-o=
+rigin:initial;background-clip:initial;background-position:initial;backgroun=
+d-repeat:initial"><span lang=3D"EN-US" style=3D"font-size:9.5pt;font-family=
+:arial;color:rgb(34,34,34)">=C2=A0</span><span style=3D"font-size:9.5pt;fon=
+t-family:arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"Mso=
+Normal" style=3D"text-align:justify;vertical-align:baseline;background-imag=
+e:initial;background-color:white;background-size:initial;background-origin:=
+initial;background-clip:initial;background-position:initial;background-repe=
+at:initial"><span lang=3D"EN-US" style=3D"font-size:9pt;font-family:calibri=
+;color:black">=C2=A0</span><span style=3D"font-size:9.5pt;font-family:arial=
+;color:rgb(34,34,34)"><span></span></span></p><div align=3D"center">
+
+<table class=3D"gmail-MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" style=3D"border-collapse:collapse">
+ <tbody><tr>
+  <td width=3D"94" valign=3D"top" style=3D"width:93.55pt;padding:0cm 5.4pt"=
+></td>
+  <td width=3D"94" valign=3D"top" style=3D"width:93.55pt;padding:0cm 5.4pt"=
+></td>
+ </tr>
+</tbody></table>
+
+</div><p class=3D"MsoNormal" style=3D"text-align:justify;background-image:i=
+nitial;background-color:white;background-size:initial;background-origin:ini=
+tial;background-clip:initial;background-position:initial;background-repeat:=
+initial"><span lang=3D"EN-US" style=3D"font-size:9.5pt;font-family:arial;co=
+lor:rgb(34,34,34)">=C2=A0</span><span style=3D"font-size:9.5pt;font-family:=
+arial;color:rgb(34,34,34)"><span></span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"text-align:justify;vertical-align:baseline;background-image:initial=
+;background-size:initial;background-origin:initial;background-clip:initial;=
+background-position:initial;background-repeat:initial">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class=3D"MsoNormal"><span lang=3D"EN-US"><span>=C2=A0</span></span><=
+/p>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div><br></div><div><b>Join us at </b>:<span style=3D"font-s=
+ize:12.8px">=C2=A0 </span><a href=3D"http://complexnetworks.org/" style=3D"=
+font-size:12.8px" target=3D"_blank">COMPLEX NETWORKS 2016 Milan</a></div><d=
+iv><br></div><div><b>Publish your work on:</b>=C2=A0<a href=3D"http://www.s=
+pringer.com/physics/complexity/journal/41109" target=3D"_blank">Applied Net=
+work Science</a></div><div><b>re</b><span style=3D"font-size:12.8px"><b>ad:=
+<a href=3D"http://www.cambridgescholars.com/complex-networks-and-their-appl=
+ications-9" target=3D"_blank"> </a></b><a href=3D"http://www.cambridgeschol=
+ars.com/complex-networks-and-their-applications-9" target=3D"_blank">Comple=
+x Networks &amp; their Applications</a></span></div><div>******************=
+*****************************<br>* =C2=A0 Pr Hocine CHERIFI =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 *<br>*=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LE2=
+I =C2=A0 UMR CNRS 6306 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br=
+>*=C2=A0=C2=A0 Facult=C3=A9 des Sciences Mirande =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0*<br>*=C2=A0 =C2=A0 9 , avenue Alain Savary =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0=
+ BP 47870 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 21078 DIJON=C2=A0 =C2=A0 FRANCE =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0* <br>*****************=
+*****************************</div></div></div></div></div></div></div></di=
+v></div></div>
+</div>
+
+--001a11c3ad282ab5d5053b455c57--

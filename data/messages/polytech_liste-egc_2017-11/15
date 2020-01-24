@@ -1,0 +1,340 @@
+Return-Path: <nicolas.cheifetz@veolia.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9ED4C229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  9 Nov 2017 23:22:27 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 9B95D628820
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  9 Nov 2017 23:22:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 8EEB8401B76B
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  9 Nov 2017 23:22:27 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -5.101
+X-Spam-Level:
+X-Spam-Status: No, score=-5.101 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-1,
+	RCVD_IN_WSFF=0.01, SARE_HEAD_8BIT_SPAM=0.888, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.9478 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=veolia.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id u5mJfQxnnhcm for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  9 Nov 2017 23:22:26 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qk0-x231.google.com (mail-qk0-x231.google.com [IPv6:2607:f8b0:400d:c09::231])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 39DF14114793
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  9 Nov 2017 23:22:26 +0100 (CET)
+Received: by mail-qk0-x231.google.com with SMTP id 2so8910785qkg.13
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 09 Nov 2017 14:22:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=veolia.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=3KT0Fc74yACWui6THAOoHT2gMJliOTYEe5aLUJHNXO0=;
+        b=RMAnAtUVkTaGzpKFrR1poTVnk5U/kbbtgaodVXJ0TYcHy/6x5c5jA/Wejhug+SvYG4
+         bRXaemd3UMuj0Z+IczYLKgAJBqlx+HrYTq0r0KNEyCiNusq++2GakGE8UmkjvWNEk1Mi
+         /xLjK0X4IbJ1LRpyPutG2S2kf3KvlEGcnLHG+uhPbL400M3sk9j2AtUEJJk/Ewf+1WMa
+         0ty+GjGvlcaq8qQc5GKR2UNILPJtaXrzrjFgTHNlIysSLXx3C5ezf1SsIWXDJ5rL1J1q
+         n3/4EXVoulO5AhMX46ZZyoXpqc1csQpsMmBTE/N3ykp7M/051BQ2YzlxhdJjRSBe10rv
+         +6lA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=3KT0Fc74yACWui6THAOoHT2gMJliOTYEe5aLUJHNXO0=;
+        b=HvUukcr/OvBgxCaUc4TC9wK/dbbmBOB4KC4zLepe2O5BSjPaPQ1oE4MUlAhRDcdU7O
+         lTRRoPHIIlcNzRAH0evNsAhMeSPEVYdY2ByGny78poDOxYE0GrZhFaJ1e9UccvVlPZhV
+         mHRW5CFSY72w6++mR8VqEnn0wErQUN0KOVMyfMA5Rc9px44L7+tqDWeA95qZyUe83TxC
+         zguDyxiFZOiCcpR07FzOeFzwMN8r4XMB1VjynPkZy8nSicR+AWs+Nq0Cz76WFrVwv77h
+         A0dV2jXyrsJ58USFKrKLMMgEIQ8SBf7gcgFLDWRfhQqokWeYU572U5h6WvoM75yoTwGV
+         75Yg==
+X-Gm-Message-State: AJaThX6mASFuTfJPCs5AdU/WALaZasLUguONY7HCWl/FXok5LipaOmcA
+	RynsHnhqfWPUkbY2ipbYrbEsAMzAYv70HC1K9IG8BGydFQkNi5KqoyMo+/AWDlCQKujPMZjOSxr
+	sCCwv8fY4Cltwt4kFMMoubnArdNypOcZHkCaOorqH9ntqnQ==
+X-Google-Smtp-Source: AGs4zMZZxHM6X1cnRmx27o2LApD/iI9+sfXqf6RrTtE6g55M5n23wlT4OcXP62AF5O0sTBKygkZGoa6qI8D54TgFf0s=
+X-Received: by 10.55.138.135 with SMTP id m129mr3237027qkd.214.1510266144659;
+ Thu, 09 Nov 2017 14:22:24 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.55.109.195 with HTTP; Thu, 9 Nov 2017 14:22:04 -0800 (PST)
+From: "CHEIFETZ, Nicolas" <nicolas.cheifetz@veolia.com>
+Date: Thu, 9 Nov 2017 23:22:04 +0100
+Message-ID: <CACugnAUErDE8StXf26iTA-MUYY+iULgsNh7C-6qRLzr6RcROiw@mail.gmail.com>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="94eb2c06f71c11fc51055d943d09"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Stage M2 - Surveillance d'un =?UTF-8?Q?r=C3=A9seau_d?=
+ =?UTF-8?Q?=E2=80=99eau?= potable =?UTF-8?Q?=C3=A0?= Veolia Eau d'Ile de
+ France
+
+--94eb2c06f71c11fc51055d943d09
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+[D=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples]
+
+Bonjour,
+
+Nous recherchons un candidat pour un stage de master sur le probl=C3=A8me d=
+e
+surveillance spatio-temporelle de la qualit=C3=A9 d=E2=80=99eau potable dan=
+s un r=C3=A9seau
+de distribution =C3=A0 large =C3=A9chelle.
+
+Plus de d=C3=A9tails sur le sujet et le profil du candidat recherch=C3=A9 s=
+ont
+d=C3=A9crits dans la suite du message.
+
+Cordialement,
+
+=E2=80=8BN. Cheifetz
+
+
+*Nicolas CHEIFETZ, Ph.D.*Veolia Eau d=E2=80=99Ile-de-France
+DACE - Service =C3=89tudes, Recherche & D=C3=A9veloppement
++33 1 55 67 66 82
+
+Le Vermont, 28 Boulevard de Pesaro - TSA 31197
+92739 Nanterre Cedex
+
+*Intitul=C3=A9 du stage :*
+=E2=80=8BSurveillance spatio-temporelle de la qualit=C3=A9 d=E2=80=99eau po=
+table dans un r=C3=A9seau
+de distribution =C3=A0 large =C3=A9chelle
+
+*Mots cl=C3=A9s :*
+=E2=80=8Banalyse de donn=C3=A9es, apprentissage statistique, segmentation d=
+u signal,
+r=C3=A9duction de graphe, d=C3=A9tection s=C3=A9quentielle, simulations Mon=
+te-Carlo et
+hydrauliques
+
+*Contexte industriel*
+
+Les r=C3=A9seaux de distribution d=E2=80=99eau potable sont des syst=C3=A8m=
+es complexes
+distribu=C3=A9s dont il est n=C3=A9cessaire d=E2=80=99assurer la s=C3=A9cur=
+it=C3=A9 et la gestion des
+risques sanitaires. Apr=C3=A8s potabilisation de l=E2=80=99eau, sa qualit=
+=C3=A9 se d=C3=A9grade en
+r=C3=A9seau ce qui est observable =C3=A0 partir de signaux mesur=C3=A9s in =
+situ. Veolia
+Eau d=E2=80=99Ile-de-France
+<https://www.veolia.fr/activites/gestion-de-l-eau/nos-realisations/municipa=
+lites/syndicat-des-eaux-d-ile-de-france-sedif>
+a d=C3=A9ploy=C3=A9 quelques centaines de sondes sur l=E2=80=99ensemble du =
+r=C3=A9seau de
+distribution du Syndicat des Eaux d=E2=80=99=C3=8Ele-de-France (SEDIF). Les=
+ relations
+temporelles entre signaux de qualit=C3=A9 peuvent =C3=AAtre impr=C3=A9cises=
+ et leurs
+relations spatiales varient en fonction des conditions op=C3=A9rationnelles=
+ du
+r=C3=A9seau. Le stage s=E2=80=99inscrit dans le cadre du projet de recherch=
+e ResiWater
+<https://www.resiwater.eu/> dont le but est de d=C3=A9velopper des outils p=
+our
+la gestion de crises et la r=C3=A9silience des services d=E2=80=99eau.
+
+
+*=E2=80=8BObjectif*
+L=E2=80=99objectif de ce stage est de tester la m=C3=A9thodologie initi=C3=
+=A9e par Veolia Eau
+d=E2=80=99Ile de France pour la d=C3=A9tection de toute contamination accid=
+entelle ou
+volontaire sur le r=C3=A9seau. La variabilit=C3=A9 des syst=C3=A8mes de dis=
+tribution est
+un aspect encore largement ignor=C3=A9 par les d=C3=A9tecteurs actuels. La =
+premi=C3=A8re
+=C3=A9tape du stage a =C3=A9t=C3=A9 propos=C3=A9e [1] pour extraire des con=
+figurations
+significatives du syst=C3=A8me de distribution. Sur la base de ces r=C3=A9s=
+ultats,
+l=E2=80=99=C3=A9tudiant devra simuler de nombreuses contaminations (pour un=
+e
+configuration donn=C3=A9e) =C3=A0 partir de mod=C3=A8les hydrauliques exist=
+ants. Des
+relations spatiales entre zones de qualit=C3=A9 seront extraites depuis les
+matrices de contaminations simul=C3=A9es. Et enfin, la performance de d=C3=
+=A9tecteurs
+de contamination sera =C3=A9valu=C3=A9e =C3=A0 partir de donn=C3=A9es r=C3=
+=A9elles.
+Une revue de litt=C3=A9rature des m=C3=A9thodes de d=C3=A9tection sera =C3=
+=A9tablie tout au
+long du stage. L=E2=80=99=C3=A9tudiant devra avoir de solides bases en stat=
+istiques et
+informatique ainsi qu=E2=80=99une bonne connaissance en langages de calcul
+num=C3=A9rique tels que Matlab/R et/ou Python.
+
+
+[1] N. Cheifetz, S. Kraiem, P. Mandel, C. F=C3=A9liers, and V. Heim. Extrac=
+ting
+temporal patterns for contamination event detection in a large water
+distribution system. In 1*5th International Computing and Control for Water
+Industry conference (CCWI 2017)*, Sheffield, UK, sep 2017.
+
+*Modalit=C3=A9s du stage*
+
+Dur=C3=A9e de 6 mois et r=C3=A9mun=C3=A9ration de l=E2=80=99ordre de 1000=
+=E2=82=AC
+=E2=80=8B/mois.
+
+Veolia Eau d=E2=80=99Ile-de-France
+Le Vermont, 28 Boulevard de Pesaro
+92751 Nanterre
+RER A - Nanterre-Pr=C3=A9fecture
+
+*Contact*
+
+nicolas.cheifetz@veolia.com
+
+--=20
+
+---------------------------------------------------------------------------=
+-----------------
+This e-mail transmission (message and any attached files) may contain=20
+information that is proprietary, privileged and/or confidential to Veolia=
+=20
+Environnement and/or its affiliates and is intended exclusively for the=20
+person(s) to whom it is addressed. If you are not the intended recipient,=
+=20
+please notify the sender by return e-mail and delete all copies of this=20
+e-mail, including all attachments. Unless expressly authorized, any use,=20
+disclosure, publication, retransmission or dissemination of this e-mail=20
+and/or of its attachments is strictly prohibited.=20
+
+Ce message electronique et ses fichiers attaches sont strictement=20
+confidentiels et peuvent contenir des elements dont Veolia Environnement=20
+et/ou l'une de ses entites affiliees sont proprietaires. Ils sont donc=20
+destines a l'usage de leurs seuls destinataires. Si vous avez recu ce=20
+message par erreur, merci de le retourner a son emetteur et de le detruire=
+=20
+ainsi que toutes les pieces attachees. L'utilisation, la divulgation, la=20
+publication, la distribution, ou la reproduction non expressement=20
+autorisees de ce message et de ses pieces attachees sont interdites.
+---------------------------------------------------------------------------=
+-----------------
+
+--94eb2c06f71c11fc51055d943d09
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">[D=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples]</=
+div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-=
+serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Bonjour,<br><br>Nous=20
+recherchons un candidat pour un stage de master sur le probl=C3=A8me de sur=
+veillance spatio-temporelle de la qualit=C3=A9 d=E2=80=99eau potable dans u=
+n r=C3=A9seau de distribution =C3=A0 large =C3=A9chelle.<br><br>Plus de d=
+=C3=A9tails sur le sujet et le profil du candidat recherch=C3=A9 sont d=C3=
+=A9crits dans la suite du message.<br><br>Cordialement,<br><br>=E2=80=8BN. =
+Cheifetz</div><div class=3D"gmail_default" style=3D"font-family:arial,helve=
+tica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-famil=
+y:arial,helvetica,sans-serif"><div class=3D"gmail_default" style=3D"font-fa=
+mily:arial,helvetica,sans-serif"><b><span style=3D"font-family:verdana,sans=
+-serif">Nicolas CHEIFETZ, Ph.D.<br></span></b><font face=3D"verdana,sans-se=
+rif">Veolia Eau d=E2=80=99Ile-de-France<br>DACE - Service =C3=89tudes, Rech=
+erche &amp; D=C3=A9veloppement<br>+33 1 55 67 66 82</font><font face=3D"ver=
+dana,sans-serif"><br></font><font size=3D"1" face=3D"verdana,sans-serif"><b=
+r>Le Vermont, 28 Boulevard de Pesaro - TSA 31197<br>92739 Nanterre Cedex</f=
+ont><b><font face=3D"verdana,sans-serif"><br><img src=3D"http://nicolas.che=
+ifetz.free.fr/images/VEDIF.jpg"></font></b></div></div><div class=3D"gmail_=
+default" style=3D"font-family:arial,helvetica,sans-serif"><b><span style=3D=
+"font-family:verdana,sans-serif"><div style=3D"font-family:arial,helvetica,=
+sans-serif;display:inline" class=3D"gmail_default"><br></div></span></b><b>=
+<font face=3D"verdana,sans-serif"></font></b></div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif"><b>Intitul=C3=A9 du s=
+tage :</b> <div style=3D"font-family:arial,helvetica,sans-serif;display:inl=
+ine" class=3D"gmail_default">=E2=80=8BSurveillance spatio-temporelle de la =
+qualit=C3=A9 d=E2=80=99eau potable dans un r=C3=A9seau de distribution =C3=
+=A0 large =C3=A9chelle<br></div><br><b>Mots cl=C3=A9s :</b>
+ <div style=3D"font-family:arial,helvetica,sans-serif;display:inline" class=
+=3D"gmail_default">=E2=80=8Banalyse de donn=C3=A9es, apprentissage statisti=
+que, segmentation du signal, r=C3=A9duction de graphe, d=C3=A9tection s=C3=
+=A9quentielle, simulations Monte-Carlo et hydrauliques<br></div><br><b>Cont=
+exte industriel</b></div><div class=3D"gmail_default" style=3D"font-family:=
+arial,helvetica,sans-serif"><b><br></b></div><div class=3D"gmail_default" s=
+tyle=3D"font-family:arial,helvetica,sans-serif">Les r=C3=A9seaux de distrib=
+ution d=E2=80=99eau potable sont des syst=C3=A8mes complexes distribu=C3=A9=
+s dont il est n=C3=A9cessaire d=E2=80=99assurer la s=C3=A9curit=C3=A9 et la=
+ gestion des risques sanitaires. Apr=C3=A8s potabilisation de l=E2=80=99eau=
+, sa qualit=C3=A9 se d=C3=A9grade en r=C3=A9seau ce qui est observable =C3=
+=A0 partir de signaux mesur=C3=A9s in situ. <a href=3D"https://www.veolia.f=
+r/activites/gestion-de-l-eau/nos-realisations/municipalites/syndicat-des-ea=
+ux-d-ile-de-france-sedif">Veolia Eau d=E2=80=99Ile-de-France</a> a d=C3=A9p=
+loy=C3=A9 quelques centaines de sondes sur l=E2=80=99ensemble du r=C3=A9sea=
+u de distribution du Syndicat des Eaux d=E2=80=99=C3=8Ele-de-France (SEDIF)=
+. Les relations temporelles entre signaux de qualit=C3=A9 peuvent =C3=AAtre=
+ impr=C3=A9cises et leurs relations spatiales varient en fonction des condi=
+tions op=C3=A9rationnelles du r=C3=A9seau. Le stage s=E2=80=99inscrit dans =
+le cadre du projet de recherche <a href=3D"https://www.resiwater.eu/">ResiW=
+ater</a> dont le but est de d=C3=A9velopper des outils pour la gestion de c=
+rises et la r=C3=A9silience des services d=E2=80=99eau.<br><br><b><div styl=
+e=3D"font-family:arial,helvetica,sans-serif;display:inline" class=3D"gmail_=
+default">=E2=80=8BObjectif<br></div></b><br><div style=3D"font-family:arial=
+,helvetica,sans-serif;display:inline" class=3D"gmail_default">L=E2=80=99obj=
+ectif de ce stage est de tester la m=C3=A9thodologie initi=C3=A9e par Veoli=
+a Eau d=E2=80=99Ile de France pour la d=C3=A9tection de toute contamination=
+ accidentelle ou volontaire sur le r=C3=A9seau. La variabilit=C3=A9 des sys=
+t=C3=A8mes de distribution est un aspect encore largement ignor=C3=A9 par l=
+es d=C3=A9tecteurs actuels. La premi=C3=A8re =C3=A9tape du stage a =C3=A9t=
+=C3=A9 propos=C3=A9e [1] pour extraire des configurations significatives du=
+ syst=C3=A8me de distribution. Sur la base de ces r=C3=A9sultats, l=E2=80=
+=99=C3=A9tudiant devra simuler de nombreuses contaminations (pour une confi=
+guration donn=C3=A9e) =C3=A0 partir de mod=C3=A8les hydrauliques existants.=
+ Des relations spatiales entre zones de qualit=C3=A9 seront extraites depui=
+s les matrices de contaminations simul=C3=A9es. Et enfin, la performance de=
+ d=C3=A9tecteurs de contamination sera =C3=A9valu=C3=A9e =C3=A0 partir de d=
+onn=C3=A9es r=C3=A9elles.<br>Une revue de litt=C3=A9rature des m=C3=A9thode=
+s de d=C3=A9tection sera =C3=A9tablie tout au long du stage. L=E2=80=99=C3=
+=A9tudiant devra avoir de solides bases en statistiques et informatique ain=
+si qu=E2=80=99une bonne connaissance en langages de calcul num=C3=A9rique t=
+els que Matlab/R et/ou Python.<br></div><div style=3D"font-family:arial,hel=
+vetica,sans-serif;display:inline" class=3D"gmail_default">
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:8pt" lang=3D"EN-US"><br></span></p><p class=3D"MsoNormal" style=3D"text-a=
+lign:justify"><span style=3D"font-size:8pt" lang=3D"EN-US">[1] N. Cheifetz,=
+ S. Kraiem, P. Mandel, C. F=C3=A9liers, and V. Heim. Extracting temporal pa=
+tterns for contamination event detection in a large water distribution syst=
+em. In 1<i>5th International Computing and Control for Water Industry confe=
+rence (CCWI 2017)</i>, Sheffield, UK, sep 2017.<br></span></p></div><br><b>=
+Modalit=C3=A9s du stage</b><br><br>Dur=C3=A9e de 6 mois et r=C3=A9mun=C3=A9=
+ration de l=E2=80=99ordre de 1000=E2=82=AC <div style=3D"font-family:arial,=
+helvetica,sans-serif;display:inline" class=3D"gmail_default">=E2=80=8B/mois=
+.<br></div><br>Veolia Eau d=E2=80=99Ile-de-France<br>Le Vermont, 28 Bouleva=
+rd de Pesaro<br>92751 Nanterre<br>RER A - Nanterre-Pr=C3=A9fecture<br><br><=
+b>Contact</b><br><br><a href=3D"mailto:nicolas.cheifetz@veolia.com" target=
+=3D"_blank">nicolas.cheifetz@veolia.com</a></div><div class=3D"gmail_defaul=
+t" style=3D"font-family:arial,helvetica,sans-serif"><br></div>
+</div>
+
+<br>
+<div><br></div><font size=3D"2" face=3D"Arial">----------------------------=
+--<WBR>------------------------------<WBR>------------------------------<WB=
+R>--</font><div><font size=3D"2" face=3D"Arial">This e-mail transmission (m=
+essage and any attached files) may contain information that is proprietary,=
+ privileged and/or confidential to Veolia Environnement and/or its affiliat=
+es and is intended exclusively for the person(s) to whom it is addressed. I=
+f you are not the intended recipient, please notify the sender by return e-=
+mail and delete all copies of this e-mail, including all attachments. Unles=
+s expressly authorized, any use, disclosure, publication, retransmission or=
+ dissemination of this e-mail and/or of its attachments is strictly prohibi=
+ted.=C2=A0</font></div><div><font size=3D"2" face=3D"Arial"><br></font></di=
+v><div><font size=3D"2" face=3D"Arial">Ce message electronique et ses fichi=
+ers attaches sont strictement confidentiels et peuvent contenir des element=
+s dont Veolia Environnement et/ou l&#39;une de ses entites affiliees sont p=
+roprietaires. Ils sont donc destines a l&#39;usage de leurs seuls destinata=
+ires. Si vous avez recu ce message par erreur, merci de le retourner a son =
+emetteur et de le detruire ainsi que toutes les pieces attachees. L&#39;uti=
+lisation, la divulgation, la publication, la distribution, ou la reproducti=
+on non expressement autorisees de ce message et de ses pieces attachees son=
+t interdites.</font></div><div><font size=3D"2" face=3D"Arial">------------=
+------------------<WBR>------------------------------<WBR>-----------------=
+-------------<WBR>--</font></div>
+--94eb2c06f71c11fc51055d943d09--

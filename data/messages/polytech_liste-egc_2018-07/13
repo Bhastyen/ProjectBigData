@@ -1,0 +1,510 @@
+Return-Path: <l.labiod@yahoo.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id AA1DA2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 10 Jul 2018 09:11:26 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id A8A746D21C8
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 10 Jul 2018 09:11:26 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 200F34222FE4
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 10 Jul 2018 09:11:26 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.898
+X-Spam-Level: *
+X-Spam-Status: No, score=1.898 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FORGED_MUA_MOZILLA=1.596, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H3=-0.01,
+	RCVD_IN_MSPIKE_WL=-0.01, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	T_KAM_HTML_FONT_INVALID=0.01, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.5039 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=yahoo.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id y4eOZFLYBMpZ for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 10 Jul 2018 09:11:24 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from sonic305-19.consmr.mail.ir2.yahoo.com (sonic305-19.consmr.mail.ir2.yahoo.com [77.238.177.81])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 0FDE64222FE3
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 10 Jul 2018 09:11:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s2048; t=1531206683; bh=rZ1anBnpIzR28fXvk6UaH+okyiuCiewNcd5ReUr3mjk=; h=Date:From:To:Subject:References:From:Subject; b=iHeu2iVrJ1TA4qgiPZBVglI5YocrZwY3ikAzfQZhSB72dy5I0gFDWzGookFWB37U1ml4my3KTeBWRwN7b3RZK4z+CWOAPkJUIaQkC9u4A5PQP0JFhWD/8bGFteJDicgSTItdfDKsgfi4g2dVfj0RPl9KOFedZ8rn2Qu3Pi4fctwXR6wX9Lt7TcEsqyApLRk4QFSqlYkdsH7I7003n0StRSdom/J7TUa9DltezXrkYy8fvfKmnMmRiveERaZ1pPirFqJ103jYNBjGdVVpeyfSZBwuFZITHgozSOOlU60T0i24UDQVlp0woJq9SwSjqB/swso6rKCm4SIAdCCmmoVb0g==
+X-YMail-OSG: XQZPotgVM1kvv6G3A.r3SAhI9oylA5hdpZ5Lanwv2k3fEGRGrQ1Q4ekRn6CYzAd
+ fqDKqpTifAbADwkWRrKG9TTR1Tlohulwesi5gBHIoYu1LCC25G8EAvHeqoCsCTMuIjMNhy0eF1cM
+ zuPq8sScxPlcEmS9JPiTi0ny1VLXWznvABveuhBkYH.ehEjZUEFUVW5vlyApn5LZPe9WWtCFxQfG
+ ttKTgkldg8fbvx1lL3U_saBfuKoDCfYv.OGimQvMZbZkPSLROLKb4_LxLvu9jFiccV96mkd.HYXs
+ Ay1XsAKQoHC4BjEypXN.Qw1UxN69JKh7_BOeNKuEuf7Q_Spc5E0sGFEWlT2QkZl_sRU3u8tY66A0
+ M4ZOhZHh44.DLzrBiNvuOMBV2dv7o1L1AQiEU_jl9u5RT7SsHbcK9mBVZcYP0BI6TVLMOyUzq9dM
+ kLliuFQfpyExAoFS.kZF7bNclftd4jJCUdyR69WzkFTZlnyg9EgxCq2ahaUwJudFflu90Y4DizxM
+ r3JYPD3Z17i6zPKB3Hx6rRQw3Y074lF7ICASAXws58wuEGSi.F_Uj7KQrY05l9NqrOJ8yFTJkkDx
+ bQOadcAju0obKItbSOvGf5SGxPzmiZs7WBZqaZXl5N8c3iv0YVbhiEX8o6tjxgavN3YEeTDLL23r
+ 8rU8JtcECX.BgTX4pTPf6xR0Cbmxqwj18sT6BlyqwOfk1Q3PYYcgtTGCgdw3J2HMz2Jt4hBK6NFu
+ kgNut4MX6RPsSXqTGeJUI3oTO1Snl0oFbl7gr77XqUJTeLo1gdobFuFlhzDJ9b0gXpEnd._zjbRv
+ ch48ALX4Apivd72mlE2qhqP2ZiOJ2Pk8feNXrnQoSnxZGw2nwMzRL30WRDg6Faz9csyUg_owO4H.
+ hSYAeL5O8LNE.LROwHWJlap5hHUSJ2CKcvyjbt5lGjw0YHnRuoENeAToR
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.ir2.yahoo.com with HTTP; Tue, 10 Jul 2018 07:11:23 +0000
+Date: Tue, 10 Jul 2018 07:10:20 +0000 (UTC)
+From: labiod lazhar <l.labiod@yahoo.fr>
+To: liste-egc@polytech.univ-nantes.fr
+Message-ID: <543098535.2724910.1531206620388@mail.yahoo.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2724909_697280895.1531206620377"
+References: <543098535.2724910.1531206620388.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.12062 YMailNorrin Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Second  CFP - DLC 2018
+
+------=_Part_2724909_697280895.1531206620377
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Second=C2=A0=C2=A0CFP=C2=A0- DLC 2018
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+
+DLC2018: IEEE=C2=A0ICDM=C2=A0WORKSHOP=C2=A0ON DEEP LEARNING AND CLUSTERING
+
+(https://sites.google.com/site/icdmdlc18/home=C2=A0)
+
+In conjunction with=C2=A0 IEEE=C2=A0ICDM=C2=A02018=C2=A0November 17-20, 201=
+8 in Singapore
+
+(http://icdm2018.org/)
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+The=C2=A0main goal of this=C2=A0workshop=C2=A0is to bring together the lead=
+ing researchers who work on state-of-the-art deep unsupervised feature extr=
+action and clustering models, and also the practitioners who seek for novel=
+ applications.In summary, this=C2=A0workshop=C2=A0is an opportunity to:
+  =20
+   -   =20
+Present the recent advances in deep learning based clustering algorithms.
+
+   -   =20
+Outline potential applications that could inspire new deep clustering appro=
+aches.
+
+   -   =20
+Explore benchmark data to better evaluate and study deep clustering models.
+
+
+The=C2=A0workshop=C2=A0is co-located with the=C2=A0IEEE International Confe=
+rence on Data Mining (ICDM=C2=A02018).
+
+
+
+
+
+Important Dates
+
+|=20
+Workshop=C2=A0papers submission:
+ |=20
+August 7, 2018=C2=A0
+ |
+|=20
+Notifications of paper acceptance:
+ |=20
+September 4, 2018
+ |
+|=20
+Camera-ready copy, copyright form and registration:
+ |=20
+September 15, 2018
+ |
+|=20
+Conference dates:
+ |=20
+November 17-20, 2018
+ |
+
+
+Scope & Topics
+This=C2=A0workshop=C2=A0intends to promote research at the intersection of =
+deep learning and clustering, and its application to real-life data mining =
+challenges. The=C2=A0workshop=C2=A0welcomes both high-quality academic (the=
+oretical or empirical) and practical papers on unsupervised feature extract=
+ion for clustering and related work. For reference, here is a non-exclusive=
+ list of topics of interest:
+
+Technical areas=C2=A0:=C2=A0Deep clustering models, Unsupervised feature le=
+arning, Deep network embedding, Manifold learning, Dimensionality reduction=
+, Spectral data embedding, Mixtures models, Visualization .
+
+Application areas=C2=A0:=C2=A0Bioinformatics,=C2=A0Medicine,=C2=A0Recommend=
+ation Systems, Computer Vision, Information Retrieval, Natural Language Pro=
+cessing
+=20
+Submission Details
+Papers submitted to this=C2=A0workshop=C2=A0must not have been accepted for=
+ publication elsewhere or be under review for another=C2=A0workshop, confer=
+ence or journal.All paper submissions should be limited to a maximum of=C2=
+=A0=C2=A08 pages=C2=A0in the=C2=A0IEEE 2-column format.=C2=A0All papers mus=
+t be formatted to IEEE Computer Society proceedings manuscript style. Pleas=
+e follow the=C2=A0IEEE=C2=A0ICDM=C2=A0submission guidelines.=C2=A0After you=
+ have generated a pdf file of your paper, you can proceed to the=C2=A0Works=
+hop=C2=A0submission system.
+
+Submit a paper here.
+
+
+
+
+Workshop=C2=A0Proceedings
+
+Accepted papers will be included in the IEEE=C2=A0ICDM=C2=A02018=C2=A0Works=
+hops=C2=A0Proceedings volume published by IEEE Computer Society Press (also=
+ included in the IEEE Xplore Digital)
+
+
+
+
+Workshop=C2=A0Organizers
+  =20
+   -   =20
+Lazhar Labiod:=C2=A0lazhar.labiod@parisdescartes.fr, University of Paris De=
+scartes
+
+   -   =20
+Mohamed Nadif:=C2=A0mohamed.nadif@parisdescartes.fr, University of Paris De=
+scartes
+
+   -   =20
+Aghiles Salah:=C2=A0asalah@smu.edu.sg,=C2=A0SIS, Singapore Management Unive=
+rsity
+
+
+
+Workshop=C2=A0Contact
+lazhar.labiod@parisdescartes.fr
+
+
+------=_Part_2724909_697280895.1531206620377
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"font-family:courier new, courier, mo=
+naco, monospace, sans-serif;font-size:13px;"><div style=3D"font-family:cour=
+ier new, courier, monaco, monospace, sans-serif;font-size:13px;"><span><spa=
+n style=3D"color: rgb(34, 34, 34); font-family: &quot;courier new&quot;, co=
+urier, monaco, monospace, sans-serif;"><p align=3D"CENTER"><font color=3D"#=
+000000"><font face=3D"Times New Roman, serif"><font size=3D"5"><b>Second&nb=
+sp;&nbsp;<span class=3D"ydp56e49facil">CFP</span>&nbsp;- DLC 2018</b></font=
+></font></font></p><p align=3D"CENTER"><font color=3D"#000000"><font face=
+=3D"Times New Roman, serif"><font size=3D"5"><b><font size=3D"4"><span lang=
+=3D"fr-FR">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></font></b></font></font></font>=
+</p><h2 class=3D"ydp56e49facm_-6644058690751350264ydp887d8f9cwestern" align=
+=3D"CENTER"><a name=3D"m_-6644058690751350264_sites-chrome-userheader-title=
+"></a><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font s=
+ize=3D"5"><b><font face=3D"Times New Roman, serif"><font size=3D"4"><span l=
+ang=3D"fr-FR"><a href=3D"https://sites.google.com/site/icdmdlc18/" data-saf=
+eredirecturl=3D"https://www.google.com/url?q=3Dhttps://sites.google.com/sit=
+e/icdmdlc18/&amp;source=3Dgmail&amp;ust=3D1531292687487000&amp;usg=3DAFQjCN=
+H0AhlMk-Bw1lhKI1HiC9OY5j4Aog" style=3D"color: rgb(17, 85, 204);" rel=3D"nof=
+ollow" target=3D"_blank">DLC2018: IEEE&nbsp;<span class=3D"ydp56e49facil">I=
+CDM</span>&nbsp;<span class=3D"ydp56e49facil">WORKSHOP</span>&nbsp;ON DEEP =
+LEARNING AND CLUSTERING</a></span></font></font></b></font></font></font></=
+h2><h2 class=3D"ydp56e49facm_-6644058690751350264ydp887d8f9cwestern" align=
+=3D"CENTER"><font color=3D"#000000"><font face=3D"Times New Roman, serif"><=
+font size=3D"5"><b><font face=3D"Times New Roman, serif"><font size=3D"4"><=
+span lang=3D"fr-FR">(</span></font></font><font face=3D"Times New Roman, se=
+rif"><font size=3D"4"><span lang=3D"fr-FR"><a href=3D"https://sites.google.=
+com/site/icdmdlc18/home" data-saferedirecturl=3D"https://www.google.com/url=
+?q=3Dhttps://sites.google.com/site/icdmdlc18/home&amp;source=3Dgmail&amp;us=
+t=3D1531292687487000&amp;usg=3DAFQjCNH55D0SAWoNSX_buoea1lSmYa7Z5A" style=3D=
+"color: rgb(17, 85, 204);" rel=3D"nofollow" target=3D"_blank">https://sites=
+.google.com/site/icdmdlc18/home</a>&nbsp;</span></font></font><font face=3D=
+"Times New Roman, serif"><font size=3D"4"><span lang=3D"fr-FR">)</span></fo=
+nt></font></b></font></font></font></h2><p align=3D"CENTER"><font color=3D"=
+#000000"><font face=3D"Times New Roman, serif"><font size=3D"5"><b><a href=
+=3D"http://www.google.com/url?q=3Dhttp%3A%2F%2Ficdm2018.org%2F&amp;sa=3DD&a=
+mp;sntz=3D1&amp;usg=3DAFQjCNFLwwqLjk5Km0NbGZMN6MAUAef7Cw" data-saferedirect=
+url=3D"https://www.google.com/url?q=3Dhttp://www.google.com/url?q%3Dhttp%25=
+3A%252F%252Ficdm2018.org%252F%26sa%3DD%26sntz%3D1%26usg%3DAFQjCNFLwwqLjk5Km=
+0NbGZMN6MAUAef7Cw&amp;source=3Dgmail&amp;ust=3D1531292687487000&amp;usg=3DA=
+FQjCNGe8xi7l8yERBvb1fqOacl-fHcaDw" style=3D"color: rgb(17, 85, 204);" rel=
+=3D"nofollow" target=3D"_blank"><font color=3D"#000000"><font face=3D"Times=
+ New Roman, serif"><font size=3D"4"><span lang=3D"fr-FR">In conjunction wit=
+h</span></font></font></font><font color=3D"#000000"><font face=3D"Times Ne=
+w Roman, serif"><font size=3D"4"><span lang=3D"fr-FR">&nbsp; IEEE&nbsp;<spa=
+n class=3D"ydp56e49facil">ICDM</span>&nbsp;2018</span></font></font></font>=
+</a><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font siz=
+e=3D"4"><span lang=3D"fr-FR">&nbsp;November 17-20, 2018 in Singapore</span>=
+</font></font></font></b></font></font></font></p><p align=3D"CENTER"><font=
+ color=3D"#000000"><font face=3D"Times New Roman, serif"><font size=3D"5"><=
+b><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font size=
+=3D"4"><span lang=3D"fr-FR">(<a href=3D"http://icdm2018.org/" data-saferedi=
+recturl=3D"https://www.google.com/url?q=3Dhttp://icdm2018.org/&amp;source=
+=3Dgmail&amp;ust=3D1531292687487000&amp;usg=3DAFQjCNHaRGPANiD-9uOGHgbuPKsiR=
+m1Z-Q" style=3D"color: rgb(17, 85, 204);" rel=3D"nofollow" target=3D"_blank=
+">http://icdm2018.org/</a>)</span></font></font></font></b></font></font></=
+font></p><p align=3D"CENTER"><font color=3D"#000000"><font face=3D"Times Ne=
+w Roman, serif"><font size=3D"5"><b><font size=3D"4"><span lang=3D"fr-FR">=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></font></b></font></font></font></p><p st=
+yle=3D"margin-top: 0.18cm; margin-bottom: 0.18cm;"><font face=3D"Times New =
+Roman, serif"><font size=3D"3"><font color=3D"#000000"><span lang=3D"fr-FR"=
+>The</span></font><font color=3D"#000000"><span lang=3D"fr-FR">&nbsp;main g=
+oal of th</span></font><font color=3D"#000000"><span lang=3D"fr-FR">is</spa=
+n></font><font color=3D"#000000"><span lang=3D"fr-FR">&nbsp;<span class=3D"=
+ydp56e49facil">workshop</span>&nbsp;is to bring together the leading resear=
+chers who work on state-of-the-art deep unsupervised feature extraction and=
+ clustering models, and also the practitioners who seek for novel applicati=
+ons.</span></font><font color=3D"#000000">In summary, this&nbsp;<span class=
+=3D"ydp56e49facil">workshop</span>&nbsp;is an opportunity to:</font></font>=
+</font></p><ul><li style=3D"margin-left: 15px;"><p lang=3D"fr-FR" style=3D"=
+margin-bottom: 0cm;"><font color=3D"#000000"><font face=3D"Times New Roman,=
+ serif"><font size=3D"3">Present the recent advances in deep learning based=
+ clustering algorithms.</font></font></font></p></li><li style=3D"margin-le=
+ft: 15px;"><p lang=3D"fr-FR" style=3D"margin-bottom: 0cm;"><font color=3D"#=
+000000"><font face=3D"Times New Roman, serif"><font size=3D"3">Outline pote=
+ntial applications that could inspire new deep clustering approaches.</font=
+></font></font></p></li><li style=3D"margin-left: 15px;"><p lang=3D"fr-FR">=
+<font color=3D"#000000"><font face=3D"Times New Roman, serif"><font size=3D=
+"3">Explore benchmark data to better evaluate and study deep clustering mod=
+els.</font></font></font></p></li></ul><p><font color=3D"#000000"><font fac=
+e=3D"Times New Roman, serif"><font size=3D"5"><font face=3D"Times New Roman=
+, serif"><font size=3D"3"><span lang=3D"fr-FR">The&nbsp;<span class=3D"ydp5=
+6e49facil">workshop</span>&nbsp;is co-located with the&nbsp;</span></font><=
+/font><a href=3D"http://icdm2018.org/" data-saferedirecturl=3D"https://www.=
+google.com/url?q=3Dhttp://icdm2018.org/&amp;source=3Dgmail&amp;ust=3D153129=
+2687487000&amp;usg=3DAFQjCNHaRGPANiD-9uOGHgbuPKsiRm1Z-Q" style=3D"color: rg=
+b(17, 85, 204);" rel=3D"nofollow" target=3D"_blank"><font color=3D"#0000ff"=
+><font face=3D"Times New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR=
+">IEEE International Conference on Data Mining (<span class=3D"ydp56e49faci=
+l">ICDM</span>&nbsp;2018)</span></font></font></font></a><font face=3D"Time=
+s New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR">.</span></font></=
+font></font></font></font></p><p><br><br></p><p><font color=3D"#000000"><fo=
+nt face=3D"Times New Roman, serif"><font size=3D"3"><b>Important Dates</b><=
+/font></font></font></p><table class=3D"ydp56e49facm_-6644058690751350264yd=
+pe02644d9yahoo-compose-table-card ydp56e49facm_-6644058690751350264yahoo-co=
+mpose-table-card" width=3D"90%" cellspacing=3D"0" cellpadding=3D"2" border=
+=3D"1"><colgroup><col><col></colgroup><tbody><tr><td width=3D"69%" style=3D=
+"font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; margin: 0p=
+x; border-top: 1px double rgb(128, 128, 128); border-bottom: 1px double rgb=
+(128, 128, 128); border-left: 1px double rgb(128, 128, 128); border-right: =
+none; padding: 0.05cm 0cm 0.05cm 0.05cm;"><p><font color=3D"#000000"><font =
+face=3D"Times New Roman, serif"><font size=3D"3"><span class=3D"ydp56e49fac=
+il">Workshop</span>&nbsp;papers submission:</font></font></font></p></td><t=
+d width=3D"31%" style=3D"font-family: Roboto, RobotoDraft, Helvetica, Arial=
+, sans-serif; margin: 0px; border-color: rgb(128, 128, 128); border-style: =
+double; border-width: 1px; padding: 0.05cm;"><p><font color=3D"#000000"><fo=
+nt face=3D"Times New Roman, serif"><font size=3D"3">August 7, 2018&nbsp;</f=
+ont></font></font></p></td></tr><tr><td width=3D"69%" style=3D"font-family:=
+ Roboto, RobotoDraft, Helvetica, Arial, sans-serif; margin: 0px; border-top=
+: none; border-bottom: 1px double rgb(128, 128, 128); border-left: 1px doub=
+le rgb(128, 128, 128); border-right: none; padding: 0cm 0cm 0.05cm 0.05cm;"=
+><p><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font siz=
+e=3D"3">Notifications of paper acceptance:</font></font></font></p></td><td=
+ width=3D"31%" style=3D"font-family: Roboto, RobotoDraft, Helvetica, Arial,=
+ sans-serif; margin: 0px; border-top: none; border-bottom: 1px double rgb(1=
+28, 128, 128); border-left: 1px double rgb(128, 128, 128); border-right: 1p=
+x double rgb(128, 128, 128); padding: 0cm 0.05cm 0.05cm;"><p><font color=3D=
+"#000000"><font face=3D"Times New Roman, serif"><font size=3D"3">September =
+4, 2018</font></font></font></p></td></tr><tr><td width=3D"69%" style=3D"fo=
+nt-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; margin: 0px; =
+border-top: none; border-bottom: 1px double rgb(128, 128, 128); border-left=
+: 1px double rgb(128, 128, 128); border-right: none; padding: 0cm 0cm 0.05c=
+m 0.05cm;"><p lang=3D"fr-FR"><font color=3D"#000000"><font face=3D"Times Ne=
+w Roman, serif"><font size=3D"3">Camera-ready copy, copyright form and regi=
+stration:</font></font></font></p></td><td width=3D"31%" style=3D"font-fami=
+ly: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; margin: 0px; border-=
+top: none; border-bottom: 1px double rgb(128, 128, 128); border-left: 1px d=
+ouble rgb(128, 128, 128); border-right: 1px double rgb(128, 128, 128); padd=
+ing: 0cm 0.05cm 0.05cm;"><p><font color=3D"#000000"><font face=3D"Times New=
+ Roman, serif"><font size=3D"3">September 15, 2018</font></font></font></p>=
+</td></tr><tr><td width=3D"69%" style=3D"font-family: Roboto, RobotoDraft, =
+Helvetica, Arial, sans-serif; margin: 0px; border-top: none; border-bottom:=
+ 1px double rgb(128, 128, 128); border-left: 1px double rgb(128, 128, 128);=
+ border-right: none; padding: 0cm 0cm 0.05cm 0.05cm;"><p><font color=3D"#00=
+0000"><font face=3D"Times New Roman, serif"><font size=3D"3">Conference dat=
+es:</font></font></font></p></td><td width=3D"31%" style=3D"font-family: Ro=
+boto, RobotoDraft, Helvetica, Arial, sans-serif; margin: 0px; border-top: n=
+one; border-bottom: 1px double rgb(128, 128, 128); border-left: 1px double =
+rgb(128, 128, 128); border-right: 1px double rgb(128, 128, 128); padding: 0=
+cm 0.05cm 0.05cm;"><p><font color=3D"#000000"><font face=3D"Times New Roman=
+, serif"><font size=3D"3">November 17-20, 2018</font></font></font></p></td=
+></tr></tbody></table><pre class=3D"ydp56e49facm_-6644058690751350264ydp887=
+d8f9cwestern" style=3D"white-space: pre-wrap; margin-top: 0.18cm; margin-bo=
+ttom: 0.18cm; line-height: 17.94px;"><font color=3D"#000000"><font face=3D"=
+Times New Roman, serif"><font size=3D"3"><b><span style=3D"background-color=
+: transparent; background-image: none; background-size: auto;"><br>Scope &a=
+mp; Topics</span></b></font></font></font></pre><p style=3D"margin-top: 0.1=
+8cm; margin-bottom: 0.18cm; line-height: 17.94px;"><font color=3D"#000000">=
+<font face=3D"Times New Roman, serif"><font size=3D"3"><span style=3D"backg=
+round-color: transparent; background-image: none; background-size: auto;">T=
+his&nbsp;<span class=3D"ydp56e49facil">workshop</span>&nbsp;intends to prom=
+ote research at the intersection of deep learning and clustering, and its a=
+pplication to real-life data mining challenges. The&nbsp;<span class=3D"ydp=
+56e49facil">workshop</span>&nbsp;welcomes both high-quality academic (theor=
+etical or empirical) and practical papers on unsupervised feature extractio=
+n for clustering and related work. For reference, here is a non-exclusive l=
+ist of topics of interest:</span></font></font></font></p><p style=3D"margi=
+n-top: 0.18cm; margin-bottom: 0.18cm; line-height: 17.94px;"><font color=3D=
+"#000000"><font face=3D"Times New Roman, serif"><font size=3D"3"><b><span s=
+tyle=3D"background-color: transparent; background-image: none; background-s=
+ize: auto;">Technical areas&nbsp;:&nbsp;</span></b><span style=3D"backgroun=
+d-color: transparent; background-image: none; background-size: auto;">Deep =
+clustering models, Unsupervised feature learning, Deep network embedding, M=
+anifold learning, Dimensionality reduction, Spectral data embedding, Mixtur=
+es models, Visualization .</span></font></font></font></p><p style=3D"margi=
+n-top: 0.18cm; margin-bottom: 0.18cm; line-height: 17.94px;"><font face=3D"=
+Times New Roman, serif"><font size=3D"3"><font color=3D"#000000"><span lang=
+=3D"fr-FR"><b><span style=3D"background-color: transparent; background-imag=
+e: none; background-size: auto;">Application areas&nbsp;:&nbsp;</span></b><=
+/span></font><font color=3D"#000000"><span lang=3D"fr-FR"><span style=3D"ba=
+ckground-color: transparent; background-image: none; background-size: auto;=
+">Bioinformatics,&nbsp;</span></span></font><font color=3D"#000000"><span l=
+ang=3D"fr-FR"><span style=3D"background-image: none; background-size: auto;=
+">Medicine,&nbsp;</span></span></font><font color=3D"#000000"><span lang=3D=
+"fr-FR"><span style=3D"background-color: transparent; background-image: non=
+e; background-size: auto;">Recommendation Systems, Computer Vision, Informa=
+tion Retrieval, Natural Language Processing</span></span></font></font></fo=
+nt></p><pre class=3D"ydp56e49facm_-6644058690751350264ydp887d8f9cwestern" s=
+tyle=3D"white-space: pre-wrap; margin-bottom: 0.42cm; text-align: justify;"=
+><font color=3D"#000000"> </font>
+<font face=3D"Times New Roman, serif"><font size=3D"3"><b><font color=3D"#0=
+00000"><span lang=3D"fr-FR">Submission Details</span></font></b></font></fo=
+nt></pre><p style=3D"margin-bottom: 0.42cm;"><font color=3D"#000000"><font =
+face=3D"Times New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR">Paper=
+s submitted to this&nbsp;<span class=3D"ydp56e49facil">workshop</span>&nbsp=
+;must not have been accepted for publication elsewhere or be under review f=
+or another&nbsp;<span class=3D"ydp56e49facil">workshop</span>, conference o=
+r journal.All paper submissions should be limited to a maximum of</span></f=
+ont></font></font><font face=3D"Times New Roman, serif"><font size=3D"3">&n=
+bsp;&nbsp;</font></font><font color=3D"#ff0000"><font face=3D"Times New Rom=
+an, serif"><font size=3D"3"><span lang=3D"fr-FR"><b>8 pages</b></span></fon=
+t></font></font><font face=3D"Times New Roman, serif"><font size=3D"3"><spa=
+n lang=3D"fr-FR">&nbsp;</span></font></font><font color=3D"#000000"><font f=
+ace=3D"Times New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR">in the=
+</span></font></font></font><font face=3D"Times New Roman, serif"><font siz=
+e=3D"3"><span lang=3D"fr-FR">&nbsp;<a href=3D"http://www.ieee.org/conferenc=
+es_events/conferences/publishing/templates.html" data-saferedirecturl=3D"ht=
+tps://www.google.com/url?q=3Dhttp://www.ieee.org/conferences_events/confere=
+nces/publishing/templates.html&amp;source=3Dgmail&amp;ust=3D153129268748800=
+0&amp;usg=3DAFQjCNFYLgc-hWNVdNqztulrnOr_UqNhaQ" style=3D"color: rgb(17, 85,=
+ 204);" rel=3D"nofollow" target=3D"_blank">IEEE 2-column format</a>.&nbsp;<=
+/span></font></font><font color=3D"#000000"><font face=3D"Times New Roman, =
+serif"><font size=3D"3"><span lang=3D"fr-FR">All papers must be formatted t=
+o IEEE Computer Society proceedings manuscript style. Please follow the</sp=
+an></font></font></font><font face=3D"Times New Roman, serif"><font size=3D=
+"3"><span lang=3D"fr-FR">&nbsp;<a href=3D"http://icdm2018.org/calls/call-fo=
+r-papers/" data-saferedirecturl=3D"https://www.google.com/url?q=3Dhttp://ic=
+dm2018.org/calls/call-for-papers/&amp;source=3Dgmail&amp;ust=3D153129268748=
+8000&amp;usg=3DAFQjCNGpdOadclb97PyTS0PEGUxBP54ijA" style=3D"color: rgb(17, =
+85, 204);" rel=3D"nofollow" target=3D"_blank">IEEE&nbsp;<span class=3D"ydp5=
+6e49facil">ICDM</span>&nbsp;submission guidelines</a>.&nbsp;</span></font><=
+/font><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font s=
+ize=3D"3"><span lang=3D"fr-FR">After you have generated a pdf file of your =
+paper, you can proceed to the&nbsp;<span class=3D"ydp56e49facil">Workshop</=
+span>&nbsp;submission system</span></font></font></font><font face=3D"Times=
+ New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR">.</span></font></f=
+ont></p><p align=3D"CENTER" style=3D"margin-bottom: 0cm;"><font face=3D"Tim=
+es New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR"><u><span style=
+=3D"background-image: none; background-size: auto;"><a href=3D"https://wi-l=
+ab.com/cyberchair/2018/icdm18/scripts/submit.php?subarea=3DS23&amp;undispla=
+y_detail=3D1&amp;wh=3D/cyberchair/2018/icdm18/scripts/ws_submit.php" data-s=
+aferedirecturl=3D"https://www.google.com/url?q=3Dhttps://wi-lab.com/cyberch=
+air/2018/icdm18/scripts/submit.php?subarea%3DS23%26undisplay_detail%3D1%26w=
+h%3D/cyberchair/2018/icdm18/scripts/ws_submit.php&amp;source=3Dgmail&amp;us=
+t=3D1531292687488000&amp;usg=3DAFQjCNEagI_mSQJZJjHmRUK_lYJPuI7UaQ" style=3D=
+"color: rgb(17, 85, 204);" rel=3D"nofollow" target=3D"_blank">Submit a pape=
+r here</a>.</span></u></span></font></font><font face=3D"Times New Roman, s=
+erif"><font size=3D"3"></font></font></p><p lang=3D"fr-FR"><br></p><p lang=
+=3D"fr-FR"><font color=3D"#000000"><font face=3D"Times New Roman, serif"><f=
+ont size=3D"3"><b><span class=3D"ydp56e49facil">Workshop</span>&nbsp;Procee=
+dings</b></font></font></font></p><p lang=3D"fr-FR" style=3D"margin-top: 0.=
+18cm; margin-bottom: 0.18cm; line-height: 17.94px;"><font color=3D"#000000"=
+><font face=3D"Times New Roman, serif"><font size=3D"3"><span style=3D"back=
+ground-color: transparent; background-image: none; background-size: auto;">=
+Accepted papers will be included in the IEEE&nbsp;<span class=3D"ydp56e49fa=
+cil">ICDM</span>&nbsp;2018&nbsp;<span class=3D"ydp56e49facil">Workshops</sp=
+an>&nbsp;Proceedings volume published by IEEE Computer Society Press (also =
+included in the IEEE Xplore Digital)</span></font></font></font></p></span>=
+<div style=3D"color: rgb(34, 34, 34); font-family: &quot;courier new&quot;,=
+ courier, monaco, monospace, sans-serif;"><p><font face=3D"Times New Roman,=
+ serif"><font size=3D"3"><font color=3D"#000000"><b><br></b></font></font><=
+/font></p><p><font face=3D"Times New Roman, serif"><font size=3D"3"><font c=
+olor=3D"#000000"><b><span class=3D"ydp56e49facil">Workshop</span>&nbsp;Orga=
+nizers</b></font></font></font></p></div><span style=3D"color: rgb(34, 34, =
+34); font-family: &quot;courier new&quot;, courier, monaco, monospace, sans=
+-serif;"></span><span style=3D"color: rgb(34, 34, 34); font-family: &quot;c=
+ourier new&quot;, courier, monaco, monospace, sans-serif;"></span><span sty=
+le=3D"color: rgb(34, 34, 34); font-family: &quot;courier new&quot;, courier=
+, monaco, monospace, sans-serif;"><ul><li style=3D"margin-left: 15px;"><p s=
+tyle=3D"margin-bottom: 0cm;"><font color=3D"#000000"><font face=3D"Times Ne=
+w Roman, serif"><font size=3D"3"><span style=3D"background-color: transpare=
+nt; background-image: none; background-size: auto;">Lazhar Labiod:&nbsp;</s=
+pan></font></font></font><a href=3D"mailto:lazhar.labiod@parisdescartes.fr"=
+ style=3D"color: rgb(17, 85, 204);" rel=3D"nofollow" target=3D"_blank"><fon=
+t color=3D"#0000ff"><font face=3D"Times New Roman, serif"><font size=3D"3">=
+<u><span style=3D"background-color: transparent; background-image: none; ba=
+ckground-size: auto;">lazhar.labiod@parisdescartes.fr</span></u></font></fo=
+nt></font></a><font color=3D"#000000"><font face=3D"Times New Roman, serif"=
+><font size=3D"3"><span style=3D"background-color: transparent; background-=
+image: none; background-size: auto;">, University of Paris Descartes</span>=
+</font></font></font></p></li><li style=3D"margin-left: 15px;"><p style=3D"=
+margin-bottom: 0cm;"><font color=3D"#000000"><font face=3D"Times New Roman,=
+ serif"><font size=3D"3"><span style=3D"background-color: transparent; back=
+ground-image: none; background-size: auto;">Mohamed Nadif:&nbsp;</span></fo=
+nt></font></font><a href=3D"mailto:mohamed.nadif@parisdescartes.fr" style=
+=3D"color: rgb(17, 85, 204);" rel=3D"nofollow" target=3D"_blank"><font colo=
+r=3D"#0000ff"><font face=3D"Times New Roman, serif"><font size=3D"3"><u><sp=
+an style=3D"background-color: transparent; background-image: none; backgrou=
+nd-size: auto;">mohamed.nadif@parisdescartes.fr</span></u></font></font></f=
+ont></a><font color=3D"#000000"><font face=3D"Times New Roman, serif"><font=
+ size=3D"3"><span style=3D"background-color: transparent; background-image:=
+ none; background-size: auto;">, University of Paris Descartes</span></font=
+></font></font></p></li><li style=3D"margin-left: 15px;"><p><font color=3D"=
+#000000"><font face=3D"Times New Roman, serif"><font size=3D"3"><span style=
+=3D"background-color: transparent; background-image: none; background-size:=
+ auto;">Aghiles Salah:&nbsp;</span></font></font></font><a href=3D"mailto:a=
+salah@smu.edu.sg" style=3D"color: rgb(17, 85, 204);" rel=3D"nofollow" targe=
+t=3D"_blank"><font color=3D"#0000ff"><font face=3D"Times New Roman, serif">=
+<font size=3D"3"><u><span style=3D"background-color: transparent; backgroun=
+d-image: none; background-size: auto;">asalah@smu.edu.sg</span></u></font><=
+/font></font></a><font color=3D"#000000"><font face=3D"Times New Roman, ser=
+if"><font size=3D"3"><span style=3D"background-color: transparent; backgrou=
+nd-image: none; background-size: auto;">,</span></font></font></font><font =
+face=3D"Times New Roman, serif"><font size=3D"3">&nbsp;</font></font><font =
+color=3D"#000000"><font face=3D"Times New Roman, serif"><font size=3D"3"><s=
+pan style=3D"background-color: transparent; background-image: none; backgro=
+und-size: auto;">SIS, Singapore Management University</span></font></font><=
+/font></p></li></ul><p style=3D"margin-top: 0.18cm; margin-bottom: 0.18cm; =
+line-height: 17.94px;"><font color=3D"#000000"><font face=3D"Times New Roma=
+n, serif"><font size=3D"3"><span lang=3D"fr-FR"><span style=3D"background-c=
+olor: transparent; background-image: none; background-size: auto;"><br></sp=
+an></span></font></font></font><font color=3D"#000000"><font face=3D"Times =
+New Roman, serif"><font size=3D"3"><span lang=3D"fr-FR"><b><span style=3D"b=
+ackground-color: transparent; background-image: none; background-size: auto=
+;"><span class=3D"ydp56e49facil">Workshop</span>&nbsp;Contact</span></b></s=
+pan></font></font></font><font color=3D"#000000"><font face=3D"Times New Ro=
+man, serif"><font size=3D"3"><span lang=3D"fr-FR"><span style=3D"background=
+-color: transparent; background-image: none; background-size: auto;"><br></=
+span></span></font></font></font><font color=3D"#0000ff" style=3D"color: rg=
+b(17, 85, 204);"><font face=3D"Times New Roman, serif"><font size=3D"3"><sp=
+an lang=3D"fr-FR"><u><span style=3D"background-color: transparent; backgrou=
+nd-image: none; background-size: auto;"><a href=3D"mailto:lazhar.labiod@par=
+isdescartes.fr" style=3D"color: rgb(17, 85, 204);" rel=3D"nofollow" target=
+=3D"_blank">lazhar.labiod@parisdescartes.fr</a></span></u></span></font></f=
+ont></font></p><div><font color=3D"#0000ff" style=3D"color: rgb(17, 85, 204=
+);"><font face=3D"Times New Roman, serif"><font size=3D"3"><span lang=3D"fr=
+-FR"><u><br></u></span></font></font></font></div></span></span></div></div=
+></body></html>
+------=_Part_2724909_697280895.1531206620377--

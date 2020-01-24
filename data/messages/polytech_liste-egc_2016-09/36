@@ -1,0 +1,359 @@
+Return-Path: <lebbah@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 86E581903BAB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 22 Sep 2016 19:43:27 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 7C27F9552
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 22 Sep 2016 19:43:27 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 622972B2452
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 19:43:27 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.289
+X-Spam-Level:
+X-Spam-Status: No, score=-4.289 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, J_CHICKENPOX_43=0.6, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 5.0495 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xym0wxcXGrNh for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 22 Sep 2016 19:43:25 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x229.google.com (mail-wm0-x229.google.com [IPv6:2a00:1450:400c:c09::229])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 872812B23AD
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 19:43:25 +0200 (CEST)
+Received: by mail-wm0-x229.google.com with SMTP id l132so341383839wmf.0
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 22 Sep 2016 10:43:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=ukzPwVGe7yOUkDDSbMaqUI7+6mNkgAdXJoulN/4E/lo=;
+        b=X6trApwR5dmdLlL7kRJ1HsaFbF5e+i86fAJnnwBB/wUJHO+z8xcZ2XX5y5/avpy5ay
+         Hnbv7i2+KaWu5+CADojRrFjk2sCiPeEBrpHiNZUQDBCwtnSrfiR+rq8g+dQ5SBg4RKLX
+         Nzq04cOIyq2lJJ2FmMScwIkpDYn/OiAYd3/gykO663Tm+xTS0ztdFzh1eg8i9ybX+APr
+         2QliQPSvE5R6rPB0W5ojERSSgVLlTpk+t+Y9pEHeDCpA054bwc/XSRHqEoLGiXa4Vcby
+         SgOqw0LYGY8ZEd/udMD0904jtD8EvW1P6Z/LErt3FQgs5ZIj2lCQ9gqeyvQIS+GZKN96
+         Sdsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=ukzPwVGe7yOUkDDSbMaqUI7+6mNkgAdXJoulN/4E/lo=;
+        b=FA7L5qlaTGKTTb514Yw+CPrWCxrXFPNU1zBuyXYwRHiibOl5RmyOaGoAN1dEzm4Pxl
+         3QVPZThQZk19hQPaWofZywIhusqpL+1cwAzxT9Kl9JNDr8pu/rvV251MsPhxsK3NFY7S
+         5UH9ghm067/typi0Z78FzZLXI9Cv2IPAlt+ZWk/7AGcLazb9Kid1umUGxBzUH40+Cby9
+         93yQzNOxiYOhnfz3MRmwqbV3opcaa+Wq0rKZSg4MtjY88T2ebW34MGoXcUu7NLJmFbO/
+         36NtK55d9EVPrWtRCqImkoIqZiJYqw2Olm7RmD41PhAUUcdeLsunemq0uuKxTO7Kd7jm
+         hBEg==
+X-Gm-Message-State: AE9vXwNeAofaSXgz1Io+WAnqYTyEUFLHsuYp1DwFk22auV2t2UQ6LQ0ps/UfCLWcmuRZlEXSWA/OY9MriKcuVw==
+X-Received: by 10.28.92.82 with SMTP id q79mr3465328wmb.113.1474566204828;
+ Thu, 22 Sep 2016 10:43:24 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.80.186.227 with HTTP; Thu, 22 Sep 2016 10:42:54 -0700 (PDT)
+From: Mustapha Lebbah <lebbah@gmail.com>
+Date: Thu, 22 Sep 2016 19:42:54 +0200
+Message-ID: <CAFVunfdZvhUPOnTXdfMuhqXDGx86v52OVVFMgKk-3VKUqYBECw@mail.gmail.com>
+To: liste-egc <liste-egc@polytech.univ-nantes.fr>, bull-i3@irit.fr
+Content-Type: multipart/alternative; boundary=001a1146fb7ed635ad053d1c32d9
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Formation du groupe DMA-SFdS (une =?UTF-8?Q?journ?=
+ =?UTF-8?Q?=C3=A9e=2C?= 5 =?UTF-8?Q?D=C3=A9cembre?=
+ 2016) : Introduction aux =?UTF-8?Q?mod=C3=A8les?= statistiques scalables"
+ =?UTF-8?Q?=C3=A0?= Paris (IHP)
+
+--001a1146fb7ed635ad053d1c32d9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+** d=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples
+
+
+
+*Formation*
+
+*Introduction aux mod=C3=A8les statistiques scalables*
+*Mod=C3=A9lisation, nouveaux paradigmes, =C3=A9cosyst=C3=A8me =E2=80=9CBig =
+Data=E2=80=9D*
+
+Le cours se d=C3=A9roulera *le 5 d=C3=A9cembre* =C3=A0 l=E2=80=99IHP :
+*Salle 201* (2=C3=A8me =C3=A9tage)
+Institut Henri Poincar=C3=A9
+11 rue Pierre et Marie Curie 75005 Paris
+
+Acc=C3=A8s : RER ligne B station : Luxembourg
+Bus : 21, 27, 38, 84, 85, 89
+*https://bigdata-stat.sciencesconf.org*
+<https://bigdata-stat.sciencesconf.org>
+
+Formation  propos=C3=A9e par le groupe DMA
+<http://www.sfds.asso.fr/83-Presentation_des_objectifs_du_groupe> (Data
+Mining et Apprentissage) de la Soci=C3=A9t=C3=A9 Fran=C3=A7aise de Statisti=
+que
+
+
+*Date de la formation : le 5 d=C3=A9cembre 2016Date limite pour les inscrip=
+tions
+: le 15 octobre 2016*
+(Le nombre de places est limit=C3=A9 =C3=A0 20)
+
+*Cette formation est pour vous si =E2=80=A6*
+=E2=97=8F      Vous =C3=AAtes un =E2=80=9Cdata scientist=E2=80=9D avec une =
+exp=C3=A9rience dans la
+mod=C3=A9lisation des donn=C3=A9es, le data mining, l=E2=80=99apprentissage=
+ statistique,
+business intelligence, ou vous avez une exp=C3=A9rience dans la cha=C3=AEne=
+ de
+traitement traditionnel des donn=C3=A9es.
+=E2=97=8F      Vous =C3=AAtes un ing=C3=A9nieur ayant une exp=C3=A9rience d=
+ans les architectures
+et solutions Scala, Java, Python ou R et vous avez besoin d'int=C3=A9grer l=
+es
+technologies =C3=A9volutives dans l'architecture de votre entreprise
+
+*=C3=80 la fin de cette formation, vous aurez une solide compr=C3=A9hension=
+ de :*
+=E2=97=8F    Comment mod=C3=A9liser et d=C3=A9velopper des mod=C3=A8les sta=
+tistiques scalables
+dans l'=C3=A9cosyst=C3=A8me Big Data dans votre laboratoire ou en entrepris=
+e avec des
+outils qui vous permettront de se concentrer sur la phase mod=C3=A9lisation
+=E2=97=8F      Comment ing=C3=A9rer et traiter de multiples flux de donn=C3=
+=A9es
+=E2=97=8F      Comment construire une cha=C3=AEne rigoureuse de traitement =
+statistique
+de donn=C3=A9es massives
+
+*Formateurs* (La formation sera donn=C3=A9e en langue fran=C3=A7aise)
+
+*Andy Petrella, Data-FellasXavier Tordoir, Data-Fellas*
+
+*Quelques r=C3=A9f=C3=A9rences internationales sur les formateurs et la for=
+mation*
+
+
+* -
+<http://www.oreilly.com/online-training/building-distributed-pipelines-for-=
+data-science.html>http://www.oreilly.com/online-training/building-distribut=
+ed-pipelines-for-data-science.html
+<http://www.oreilly.com/online-training/building-distributed-pipelines-for-=
+data-science.html>-
+http://www.oreilly.com/online-training/building-distributed-pipelines-for-d=
+ata-science.html
+<http://www.oreilly.com/online-training/building-distributed-pipelines-for-=
+data-science.html>-
+http://conferences.oreilly.com/strata/hadoop-big-data-eu/public/schedule/sp=
+eaker/204775
+<http://conferences.oreilly.com/strata/hadoop-big-data-eu/public/schedule/s=
+peaker/204775>-
+http://cfp.devoxx.fr/2016/speaker/andy_petrella.htm
+<http://cfp.devoxx.fr/2016/speaker/andy_petrella.html>*
+
+*Programme de la formation*
+La formation sera donn=C3=A9e en langue fran=C3=A7aise. Une image vous sera=
+ donn=C3=A9e =C3=A0
+installer avec docker (pr=C3=A9voir docker sur votre PC)
+
+9:00 : Accueil caf=C3=A9
+9:30-11:00 : Introduction =C3=A0 Spark, Spark-Notebook, et l=E2=80=99=C3=A9=
+cosyst=C3=A8me Bigdata
+11:00-12:00 : Apprentissage automatique local vs massivement distribu=C3=A9
+(scalable)
+12:00-13:00    D=C3=A9jeuner
+13:00-13:30 : Scala et Data Science
+13:30-14:30 : De RDD =C3=A0 Dataset par DataFrame
+14:30-15:30 : Streaming: du Micro Batching au Structured Stream
+15:30-16:30 : =C3=89crire un programme en apprentissage distribu=C3=A9
+16:30 : Discussion cl=C3=B4ture
+
+*Organisateurs*
+*Christophe Biernacki <http://math.univ-lille1.fr/%7Ebiernack/>*,
+Universit=C3=A9 Lille1 - INRIA
+*Mustapha Lebbah <https://sites.google.com/site/lebbah/>*, LIPN, Universit=
+=C3=A9
+Paris 13
+
+*Droits d'inscription au cours*
+
+*=E2=97=8F      Tarif entreprise : 600 euros=E2=97=8F      Tarif universita=
+ire: 300 euros*
+
+*Conditions et modalit=C3=A9s d=E2=80=99inscription*
+*https://bigdata-stat.sciencesconf.org/resource/page/id/3*
+<https://bigdata-stat.sciencesconf.org/resource/page/id/3>
+
+Afin d'assurer une plus grande convivialit=C3=A9 =C3=A0 la formation et de =
+favoriser
+les =C3=A9changes entre les participants, le nombre de places est limit=C3=
+=A9 =C3=A0 20.
+
+*Lien d=E2=80=99inscription :*
+*http://lime.sfds.asso.fr/index.php?sid=3D93666&lang=3Dfr*
+<http://lime.sfds.asso.fr/index.php?sid=3D93666&lang=3Dfr>
+
+*Pour tout renseignement*
+T=C3=A9l : (33) 01 44 27 66 60
+E-mail : *servane.bianciardi@ihp.fr* <servane.bianciardi@ihp.fr>
+Site internet :
+*http://www.sfds.asso.fr* <http://www.sfds.asso.fr>
+<http://www.sfds.asso.fr>
+<http://www.sfds.asso.fr>
+------------------------------------------------------------------
+Universit=C3=A9 Paris 13, Sorbonne Paris Cit=C3=A9,
+Laboratoire d'Informatique de Paris-Nord (LIPN),
+CNRS(UMR 7030),
+99, av. J-B Cl=C3=A9ment
+F-93430, Villetaneuse, France.
+Tel: +331 49 40 38 94
+Fax: +331 48 26 07 12
+http://www-lipn.univ-paris13.fr/~lebbah
+------------------------------------------------------------------
+
+--001a1146fb7ed635ad053d1c32d9
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div>** d=C3=A9sol=C3=A9 pour l=
+es r=C3=A9ceptions multiples <br><br></div><div dir=3D"ltr"><div class=3D"g=
+mail_quote"><div dir=3D"ltr"><font style=3D"font-family:verdana,arial,helve=
+tica,sans-serif;font-size:12px;color:rgb(51,51,51)"><div align=3D"center"><=
+b><font size=3D"2"><font color=3D"#000099" size=3D"3">Formation</font><br><=
+/font><br></b></div><div align=3D"center"><font color=3D"#000099" size=3D"2=
+"><b><font size=3D"3">Introduction aux mod=C3=A8les statistiques scalables<=
+/font><br></b></font></div><div align=3D"center"><font color=3D"#000099" si=
+ze=3D"2"><b>Mod=C3=A9lisation, nouveaux paradigmes, =C3=A9cosyst=C3=A8me =
+=E2=80=9CBig Data=E2=80=9D</b></font><br></div><br>Le cours se d=C3=A9roule=
+ra <b>le 5 d=C3=A9cembre</b> =C3=A0 l=E2=80=99IHP :<br><div align=3D"center=
+"><b>Salle 201</b> (2<sup>=C3=A8me</sup> =C3=A9tage)<br>Institut Henri Poin=
+car=C3=A9<br>11 rue Pierre et Marie Curie 75005 Paris<br><br>Acc=C3=A8s : R=
+ER ligne B station : Luxembourg<br>Bus : 21, 27, 38, 84, 85, 89 <br><a href=
+=3D"https://bigdata-stat.sciencesconf.org" target=3D"_blank"><font color=3D=
+"#669900"><b>https://bigdata-stat.sciencesc<wbr>onf.org</b></font></a><br><=
+/div><br>Formation=C2=A0 propos=C3=A9e par le <a href=3D"http://www.sfds.as=
+so.fr/83-Presentation_des_objectifs_du_groupe" target=3D"_blank"><font colo=
+r=3D"#000099">groupe DMA</font></a> (Data Mining et Apprentissage) de la So=
+ci=C3=A9t=C3=A9 Fran=C3=A7aise de Statistique<br>=C2=A0<br><b>Date de la fo=
+rmation : le 5 d=C3=A9cembre 2016<br>Date limite pour les inscriptions : le=
+ 15 octobre 2016</b><br>(Le nombre de places est limit=C3=A9 =C3=A0 20)<br>=
+=C2=A0<br><font color=3D"#000099"><b>Cette formation est pour vous si =E2=
+=80=A6</b></font><br>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+ Vous =C3=AAtes un =E2=80=9Cdata scientist=E2=80=9D avec une exp=C3=A9rienc=
+e dans la mod=C3=A9lisation=20
+des donn=C3=A9es, le data mining, l=E2=80=99apprentissage statistique,=C2=
+=A0 business=20
+intelligence, ou vous avez une exp=C3=A9rience dans la cha=C3=AEne de trait=
+ement=20
+traditionnel des donn=C3=A9es.<br>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 V=
+ous =C3=AAtes un ing=C3=A9nieur ayant une=20
+exp=C3=A9rience dans les architectures et solutions Scala, Java, Python ou =
+R=20
+et vous avez besoin d&#39;int=C3=A9grer les technologies =C3=A9volutives da=
+ns=20
+l&#39;architecture de votre entreprise<br><br><font color=3D"#000099"><b>=
+=C3=80 la fin de cette formation, vous aurez une solide compr=C3=A9hension =
+de :</b></font><br>=E2=97=8F=C2=A0=C2=A0=C2=A0
+ Comment mod=C3=A9liser et d=C3=A9velopper des mod=C3=A8les statistiques sc=
+alables dans
+ l&#39;=C3=A9cosyst=C3=A8me Big Data dans votre laboratoire ou en entrepris=
+e avec des=20
+outils qui vous permettront de se concentrer sur la phase mod=C3=A9lisation=
+<br>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Comment ing=C3=A9rer et traiter=
+ de multiples flux de donn=C3=A9es<br>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Comment construire une cha=C3=AEne rigoureuse de traitement statistique=
+ de donn=C3=A9es massives<br><br><font color=3D"#000099"><b>Formateurs</b><=
+/font> (La formation sera donn=C3=A9e en langue fran=C3=A7aise)<br><b>Andy =
+Petrella, Data-Fellas<br>Xavier Tordoir, Data-Fellas</b><br><br><b><font co=
+lor=3D"#000099">Quelques r=C3=A9f=C3=A9rences internationales sur les forma=
+teurs et la formation</font></b><br><font color=3D"#669900"><b><ul><li styl=
+e=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align:justify;m=
+argin-left:10px"><a href=3D"http://www.oreilly.com/online-training/building=
+-distributed-pipelines-for-data-science.html" target=3D"_blank"><span style=
+=3D"font-size:medium"></span></a><a href=3D"http://www.oreilly.com/online-t=
+raining/building-distributed-pipelines-for-data-science.html" target=3D"_bl=
+ank">http://www.oreilly.com/online-<wbr>training/building-distributed-<wbr>=
+pipelines-for-data-science.<wbr>html</a></li><li style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;text-align:justify;margin-left:10px"><a re=
+l=3D"nofollow" href=3D"http://www.oreilly.com/online-training/building-dist=
+ributed-pipelines-for-data-science.html" style=3D"text-decoration:none" tar=
+get=3D"_blank"><span style=3D"font-size:14.6667px;font-family:verdana;color=
+:rgb(17,85,204);background-color:transparent;font-weight:400;font-style:nor=
+mal;font-variant:normal;text-decoration:underline;vertical-align:baseline">=
+http://www.oreilly.com/online-<wbr>training/building-distributed-<wbr>pipel=
+ines-for-data-science.<wbr>html</span></a></li><li style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt;text-align:justify;margin-left:10px"><a =
+rel=3D"nofollow" href=3D"http://conferences.oreilly.com/strata/hadoop-big-d=
+ata-eu/public/schedule/speaker/204775" style=3D"text-decoration:none" targe=
+t=3D"_blank"><span style=3D"font-size:14.6667px;font-family:verdana;color:r=
+gb(17,85,204);background-color:transparent;font-weight:400;font-style:norma=
+l;font-variant:normal;text-decoration:underline;vertical-align:baseline">ht=
+tp://conferences.oreilly.<wbr>com/strata/hadoop-big-data-eu/<wbr>public/sch=
+edule/speaker/204775</span></a></li><li style=3D"margin-left:10px"><a rel=
+=3D"nofollow" href=3D"http://cfp.devoxx.fr/2016/speaker/andy_petrella.html"=
+ style=3D"text-decoration:none" target=3D"_blank"><span style=3D"font-size:=
+14.6667px;font-family:verdana;color:rgb(17,85,204);background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:=
+underline;vertical-align:baseline">http://cfp.devoxx.fr/2016/<wbr>speaker/a=
+ndy_petrella.htm</span></a></li></ul></b></font><br><br><b><font color=3D"#=
+000099">Programme de la formation</font></b><br>La formation sera donn=C3=
+=A9e en langue fran=C3=A7aise. Une image vous sera donn=C3=A9e =C3=A0 insta=
+ller avec docker (pr=C3=A9voir docker sur votre PC)<br><br>9:00 : Accueil c=
+af=C3=A9<br>9:30-11:00 : Introduction =C3=A0 Spark, Spark-Notebook, et l=E2=
+=80=99=C3=A9cosyst=C3=A8me Bigdata<br>11:00-12:00 : Apprentissage automatiq=
+ue local vs massivement distribu=C3=A9 (scalable)<br>12:00-13:00=C2=A0=C2=
+=A0=C2=A0 D=C3=A9jeuner<br>13:00-13:30 : Scala et Data Science<br>13:30-14:=
+30 : De RDD =C3=A0 Dataset par DataFrame<br>14:30-15:30 : Streaming: du Mic=
+ro Batching au Structured Stream<br>15:30-16:30 : =C3=89crire un programme =
+en apprentissage distribu=C3=A9<br>16:30 : Discussion cl=C3=B4ture<br>=C2=
+=A0<br><font color=3D"#000099"><b>Organisateurs</b></font><br><b><a href=3D=
+"http://math.univ-lille1.fr/%7Ebiernack/" target=3D"_blank"><font color=3D"=
+#669900">Christophe Biernacki</font></a></b>, Universit=C3=A9 Lille1 - INRI=
+A<br><b><a href=3D"https://sites.google.com/site/lebbah/" target=3D"_blank"=
+><font color=3D"#669900">Mustapha Lebbah</font></a></b>, LIPN, Universit=C3=
+=A9 Paris 13<br><font color=3D"#000099"><b><br>Droits d&#39;inscription au =
+cours</b></font><br><b>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tarif entrep=
+rise : 600 euros<br>=E2=97=8F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Tarif universit=
+aire: 300 euros</b><br><br><b><font color=3D"#000099">Conditions et modalit=
+=C3=A9s d=E2=80=99inscription</font></b><br><a href=3D"https://bigdata-stat=
+.sciencesconf.org/resource/page/id/3" target=3D"_blank"><b><font color=3D"#=
+669900">https://bigdata-stat.sciencesc<wbr>onf.org/resource/page/id/3</font=
+></b></a><br><br>Afin
+ d&#39;assurer une plus grande convivialit=C3=A9 =C3=A0 la formation et de =
+favoriser=20
+les =C3=A9changes entre les participants, le nombre de places est limit=C3=
+=A9 =C3=A0=20
+20.<br><br><font color=3D"#000099"><b>Lien d=E2=80=99inscription :</b></fon=
+t><br><a href=3D"http://lime.sfds.asso.fr/index.php?sid=3D93666&amp;lang=3D=
+fr" target=3D"_blank"><b><font color=3D"#669900">http://lime.sfds.asso.fr/i=
+ndex<wbr>.php?sid=3D93666&amp;lang=3Dfr</font></b></a><br><br><b><font colo=
+r=3D"#000099">Pour tout renseignement</font></b><br>T=C3=A9l : <a href=3D"t=
+el:%2833%29%2001%2044%2027%2066%2060" value=3D"+33144276660" target=3D"_bla=
+nk">(33) 01 44 27 66 60</a><br>E-mail : <a href=3D"mailto:servane.bianciard=
+i@ihp.fr" target=3D"_blank"><font color=3D"#669900"><b>servane.bianciardi@i=
+hp.fr</b></font></a><br>Site internet : <a href=3D"http://www.sfds.asso.fr"=
+ target=3D"_blank"><font color=3D"#669900"><b>http://www.sfds.asso.fr<br cl=
+ear=3D"all"></b></font></a></font><a href=3D"http://www.sfds.asso.fr" targe=
+t=3D"_blank"></a><font style=3D"font-family:verdana,arial,helvetica,sans-se=
+rif;font-size:12px;color:rgb(51,51,51)"><a href=3D"http://www.sfds.asso.fr"=
+ target=3D"_blank"><font color=3D"#669900"><b><br></b></font></a></font><di=
+v><div dir=3D"ltr"><div><div dir=3D"ltr"><div><span>-----------------------=
+-------<wbr>------------------------------<wbr>------<br>Universit=C3=A9 Pa=
+ris 13, Sorbonne Paris Cit=C3=A9,<br>Laboratoire d&#39;Informatique de Pari=
+s-Nord (LIPN),<br>CNRS(UMR 7030),<br>99, av. J-B Cl=C3=A9ment<br>F-93430, V=
+illetaneuse, France.<br>Tel: <a value=3D"+33149403894" href=3D"tel:%2B331%2=
+049%2040%2038%2094" target=3D"_blank">+331 49 40 38 94</a><br>Fax: <a value=
+=3D"+33148260712" href=3D"tel:%2B331%2048%2026%2007%2012" target=3D"_blank"=
+>+331 48 26 07 12</a><br><a href=3D"http://www-lipn.univ-paris13.fr/%7Elebb=
+ah" target=3D"_blank">http://www-lipn.univ-paris13.f<wbr>r/~lebbah</a></spa=
+n><br>------------------------------<wbr>------------------------------<wbr=
+>------</div></div></div></div></div>
+
+</div></div></div></div></div>
+
+--001a1146fb7ed635ad053d1c32d9--

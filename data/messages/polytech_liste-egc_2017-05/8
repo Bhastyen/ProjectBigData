@@ -1,0 +1,445 @@
+Return-Path: <jm.gilliot@imt-atlantique.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 9E678229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 May 2017 17:23:44 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 97652242643
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 May 2017 17:23:44 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 8BDAF401A714
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 May 2017 17:23:44 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -7.48
+X-Spam-Level:
+X-Spam-Status: No, score=-7.48 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MANGLED_FREE=2.3,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.4648 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=imt-atlantique.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id z-UUjQVJ_HYG for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  4 May 2017 17:23:43 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy220.enst-bretagne.fr (zproxy220.enst-bretagne.fr [192.108.117.9])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 9B464400A107
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 May 2017 17:23:43 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTP id 8DF8C3027F
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 May 2017 17:23:43 +0200 (CEST)
+Received: from zproxy220.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy220.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id DI1UZXUiwFfN for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  4 May 2017 17:23:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTP id E70B030282
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 May 2017 17:23:41 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy220.enst-bretagne.fr E70B030282
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imt-atlantique.fr;
+	s=50EA75E8-DE22-11E6-A6DE-0662BA474D24; t=1493911421;
+	bh=u7qO8SYnhftqeZj+niHR2x5rPFn7O2nlH19dp1w0uPQ=;
+	h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type;
+	b=esiyPwRmihJXxRzj+T5755yq9TuGPNHw8sim1TheKIQV0H4Bpy4mqUoCF98gKpwgN
+	 wxtLaOYUkiPwT1LB5jiSF68foN5Z729tP3vP40U389yvKDd8MqBtAJenUSy5BNFAs3
+	 4MybVb8OZ9XsMHQEBNoxO7sOUwCqazxhn1Ujbch8=
+X-Virus-Scanned: amavisd-new at zproxy220.enst-bretagne.fr
+Received: from zproxy220.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy220.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id kyf4Lz1kSJNz for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  4 May 2017 17:23:41 +0200 (CEST)
+Received: from [IPv6:2001:660:7302:5:408c:dec4:addc:a7db] (passerelle-interne.enst-bretagne.fr [192.108.117.210])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTPSA id BB14E3027F
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 May 2017 17:23:41 +0200 (CEST)
+From: Jean-Marie Gilliot <jm.gilliot@imt-atlantique.fr>
+To: liste-egc@polytech.univ-nantes.fr
+Message-ID: <9dfcc566-e4ae-4973-b303-cf17819be9c0@imt-atlantique.fr>
+Date: Thu, 4 May 2017 17:23:30 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.8.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------72F76527589A1E620740E69A"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Offre d'emploi =?UTF-8?Q?ing=C3=A9nieur_recherche/d?=
+ =?UTF-8?Q?=C3=A9veloppement?= CDD
+
+This is a multi-part message in MIME format.
+--------------72F76527589A1E620740E69A
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,
+
+nous proposons un CDD ing=C3=A9nieur de recherche ou de d=C3=A9veloppemen=
+t pour=20
+d=C3=A9velopper une plateforme logicielle et des mod=C3=A8les de connaiss=
+ances=20
+pour l'autodirection des apprentissages bas=C3=A9e sur un cloud personnel=
+. Le=20
+poste se situe sur Brest.
+
+*Dur=C3=A9e :* 24 mois
+
+*Date limite de candidature :* 21/05/2017
+
+*Date de d=C3=A9marrage :* au plus t=C3=B4t
+
+*Lieu :* IMT Atlantique, Brest, France
+
+IMT Atlantique <http://www.imt-atlantique.fr/> est une =C3=A9cole=20
+d=E2=80=99ing=C3=A9nieurs issue de la fusion de Telecom Bretagne=20
+<http://www.telecom-bretagne.eu/about/brest-campus/> et de l=E2=80=99=C3=A9=
+cole des=20
+Mines de Nantes. Elle est un =C3=A9tablissement public, sous l'=C3=A9gide=
+ du=20
+Minist=C3=A8re de l'Industrie et est membre de l=E2=80=99Institut Mines-T=
+elecom=20
+<http://www.mines-telecom.fr/en_accueil.html> et de l'Universit=C3=A9=20
+Bretagne Loire.
+
+*Description du laboratoire *
+
+Le candidat sera recrut=C3=A9 dans l=E2=80=99=C3=A9quipe de recherche IHS=
+EV (Interactions=20
+Humains Syst=C3=A8mes et Environnements Virtuels), =C3=A9quipe du Lab-STI=
+CC (CNRS=20
+UMR 6285). Le Lab-STICC regroupe plus de 500 chercheurs et f=C3=A9d=C3=A8=
+re=20
+l=E2=80=99ensemble des activit=C3=A9s en STIC en Bretagne Oc=C3=A9ane. Il=
+ r=C3=A9unit trois=20
+p=C3=B4les de recherche au sein d'un th=C3=A8me central: "Des capteurs =C3=
+=A0 la=20
+connaissance". Les trois p=C3=B4les sont les suivants: i) MOM: micro-onde=
+s et=20
+des mat=C3=A9riaux; ii) CAC: les communications, l'architecture et les=20
+circuits; iii) CID: la connaissance, l'information, la d=C3=A9cision.=20
+L=E2=80=99=C3=A9quipe IHSEV se consacre aux interactions, coop=C3=A9ratio=
+ns et=20
+collaborations entre l=E2=80=99homme et les syst=C3=A8mes complexes, robo=
+tiques,=20
+domotiques, s=E2=80=99appuyant sur une approche pluridisciplinaire centr=C3=
+=A9e sur=20
+l=E2=80=99utilisateur.
+
+*A propos du projet Sedela *
+
+Le projet Sedela (SElf Data for Enhancing lifelong Learning Autonomy)=20
+est financ=C3=A9 par le labex Cominlabs <http://www.cominlabs.ueb.eu/>.=20
+L=E2=80=99objectif du projet Sedela est de d=C3=A9velopper l=E2=80=99auto=
+nomie des apprenants=20
+tout au long de la vie. Sedela est un projet interdisciplinaire qui=20
+permettra =C3=A0 la fois de travailler sur l=E2=80=99accompagnement =C3=A0=
+=20
+l=E2=80=99autor=C3=A9gulation des apprentissages et =C3=A0 une infrastruc=
+ture facilitant=20
+l=E2=80=99autonomie. Les utilisateurs pourront g=C3=A9rer leurs apprentis=
+sages,=20
+conserver leurs parcours tout au long de leur vie et partager leurs=20
+exp=C3=A9riences selon leurs pr=C3=A9f=C3=A9rences personnelles.
+
+SEDELA prendra appui sur une plateforme de cloud personnel existante,=20
+pour proposer des mod=C3=A8les et des services permettant une gestion des=
+=20
+apprentissages tout au long de la vie, qui sera test=C3=A9e et =C3=A9valu=
+=C3=A9e de=20
+mani=C3=A8re it=C3=A9rative avec des =C3=A9tudiants en cycle professionna=
+lisant.
+
+Les partenaires de ce projet sont les =C3=A9quipes du LS2N (Nantes), du C=
+READ=20
+(Rennes) et LabSTICC (Brest).
+
+*Missions*
+
+Dans le cadre du projet Sedela, le candidat sera en charge de :
+
+-La conception, la mise en =C5=93uvre et le test de l=E2=80=99application=
+ de gestion=20
+des apprentissages ;
+
+-Le d=C3=A9veloppement de mod=C3=A8les de gestion de donn=C3=A9es d=E2=80=
+=99apprentissage bas=C3=A9s=20
+sur les technologies du web s=C3=A9mantique ;
+
+-La gestion des outils de gestion de projet
+
+=C3=80 cette fin, le candidat fera partie d'une =C3=A9quipe de huit perso=
+nnes,=20
+sous la supervision du chef de projet =C3=A0 IMT Atlantique.
+
+*Profil du poste *
+
+Comp=C3=A9tences solides de niveau ing=C3=A9nieur en informatique. Id=C3=A9=
+alement, le=20
+candidat a une exp=C3=A9rience dans les outils modernes de d=C3=A9veloppe=
+ment web,=20
+une expertise dans le domaine du web s=C3=A9mantique. Il maitrise la gest=
+ion=20
+de projet, les outils de g=C3=A9nie logiciel et d=C3=A9veloppement Web. U=
+n bon=20
+niveau en anglais (=C3=A9crit et oral) est exig=C3=A9.
+
+Ses qualit=C3=A9s : autonome, curieux, avec le sens de la responsabilit=C3=
+=A9 et=20
+le respect des engagements, appr=C3=A9cie le travail en =C3=A9quipe.
+
+Dipl=C3=B4me en informatique de niveau Master, Doctorat en informatique,=20
+sp=C3=A9cialit=C3=A9 EIAH appr=C3=A9ci=C3=A9e
+
+Pour toute information compl=C3=A9mentaire, vous pouvez contacter :
+
+Jean-Marie Gilliot, jm.gilliot@imt-atlantique.fr=20
+<mailto:jm.gilliot@imt-atlantique.fr>, +33 (0) 229 00 15 39 (responsable=20
+du projet)
+
+Serge Garlatti, serge.garlatti@imt-atlantique=20
+<mailto:serge.garlatti@imt-atlantique>, +33 (0) 229 00 14 53=20
+(responsable du d=C3=A9partement)
+
+*Pour d=C3=A9poser votre candidature: *
+
+Merci d=E2=80=99adresser par mail =C3=A0 l=E2=80=99adresse suivante :
+
+recrut17-ing-info@mlistes.telecom-bretagne.eu=20
+<mailto:recrut17-ing-info@mlistes.telecom-bretagne.eu>
+
+*-* Un CV d=C3=A9taill=C3=A9
+
+- Une lettre de motivation
+
+_______________________________________________________
+
+Jean-Marie GILLIOT
+Ma=C3=AEtre de conf=C3=A9rences
++33 2 29 00 15 39
+
+IMT Atlantique =E2=80=93 Lab-STICC (UMR CNRS 6285)
+Technop=C3=B4le Brest-Iroise CS 83818, 29238 Brest Cedex 3
+_______________________________________________________
+
+IMT Atlantique :http://www.imt-atlantique.fr  =E2=80=93 Lab-STICChttp://w=
+ww.lab-sticc.fr/ =20
+Twitter :https://twitter.com/jmgilliot  - LinkedIn :https://www.linkedin.=
+com/in/jeanmariegilliot   - Blog :https://tipes.wordpress.com/ =20
+
+
+--------------72F76527589A1E620740E69A
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <p>Bonjour, <br>
+      <br>
+      nous proposons un CDD ing=C3=A9nieur de recherche ou de d=C3=A9velo=
+ppement
+      pour d=C3=A9velopper une plateforme logicielle et des mod=C3=A8les =
+de
+      connaissances pour l'autodirection des apprentissages bas=C3=A9e su=
+r un
+      cloud personnel. Le poste se situe sur Brest. <br>
+    </p>
+    <p> </p>
+    <p> </p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Dur=C3=A9e=C2=A0:</b> 24 =
+mois</p>
+    <p> </p>
+    <p> </p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Date limite de candidatur=
+e
+        :</b> 21/05/2017<o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Date de d=C3=A9marrage=C2=
+=A0:</b> au
+      plus t=C3=B4t <br>
+    </p>
+    <o:p></o:p>
+    <p> </p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Lieu :</b> IMT Atlantique=
+,
+      Brest, France<o:p></o:p></p>
+    <p><a href=3D"http://www.imt-atlantique.fr/"><span
+          class=3D"LienInternet">IMT Atlantique</span></a> est une =C3=A9=
+cole
+      d=E2=80=99ing=C3=A9nieurs issue de la fusion de <a
+        href=3D"http://www.telecom-bretagne.eu/about/brest-campus/"><span
+          class=3D"LienInternet"><span
+            style=3D"background:white;mso-highlight:white">Telecom
+            Bretagne</span></span></a> et de l=E2=80=99=C3=A9cole des Min=
+es de
+      Nantes. Elle est un =C3=A9tablissement public, sous l'=C3=A9gide du
+      Minist=C3=A8re de l'Industrie et est membre de l=E2=80=99<a
+        href=3D"http://www.mines-telecom.fr/en_accueil.html"><span
+          class=3D"LienInternet"><span
+            style=3D"color:#0070C0;background:white;mso-highlight:
+            white;mso-bidi-font-weight:bold">Institut Mines-Telecom</span=
+></span></a>
+      et de l'Universit=C3=A9 Bretagne Loire. <o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Description du laboratoir=
+e
+        <o:p></o:p></b></p>
+    <p>Le candidat sera recrut=C3=A9 dans l=E2=80=99=C3=A9quipe de recher=
+che IHSEV
+      (Interactions Humains Syst=C3=A8mes et Environnements Virtuels), =C3=
+=A9quipe
+      du Lab-STICC (CNRS UMR 6285). Le Lab-STICC regroupe plus de 500
+      chercheurs et f=C3=A9d=C3=A8re l=E2=80=99ensemble des activit=C3=A9=
+s en STIC en Bretagne
+      Oc=C3=A9ane. Il r=C3=A9unit trois p=C3=B4les de recherche au sein d=
+'un th=C3=A8me
+      central: "Des capteurs =C3=A0 la connaissance". Les trois p=C3=B4le=
+s sont
+      les suivants: i) MOM: micro-ondes et des mat=C3=A9riaux; ii) CAC: l=
+es
+      communications, l'architecture et les circuits; iii) CID: la
+      connaissance, l'information, la d=C3=A9cision. L=E2=80=99=C3=A9quip=
+e IHSEV se
+      consacre aux interactions, coop=C3=A9rations et collaborations entr=
+e
+      l=E2=80=99homme et les syst=C3=A8mes complexes, robotiques, domotiq=
+ues,
+      s=E2=80=99appuyant sur une approche pluridisciplinaire centr=C3=A9e=
+ sur
+      l=E2=80=99utilisateur.<o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">A propos du projet Sedela
+        <o:p></o:p></b></p>
+    <p>Le projet Sedela (SElf Data for Enhancing lifelong Learning
+      Autonomy) est financ=C3=A9 par le labex <a
+        href=3D"http://www.cominlabs.ueb.eu/"><span class=3D"LienInternet=
+">Cominlabs</span></a>.
+      L=E2=80=99objectif du projet Sedela est de d=C3=A9velopper l=E2=80=99=
+autonomie des
+      apprenants tout au long de la vie. Sedela est un projet
+      interdisciplinaire qui permettra =C3=A0 la fois de travailler sur
+      l=E2=80=99accompagnement =C3=A0 l=E2=80=99autor=C3=A9gulation des a=
+pprentissages et =C3=A0 une
+      infrastructure facilitant l=E2=80=99autonomie. Les utilisateurs pou=
+rront
+      g=C3=A9rer leurs apprentissages, conserver leurs parcours tout au l=
+ong
+      de leur vie et partager leurs exp=C3=A9riences selon leurs pr=C3=A9=
+f=C3=A9rences
+      personnelles. <o:p></o:p></p>
+    <p>SEDELA prendra appui sur une plateforme de cloud personnel
+      existante, pour proposer des mod=C3=A8les et des services permettan=
+t
+      une gestion des apprentissages tout au long de la vie, qui sera
+      test=C3=A9e et =C3=A9valu=C3=A9e de mani=C3=A8re it=C3=A9rative ave=
+c des =C3=A9tudiants en cycle
+      professionnalisant. <o:p></o:p></p>
+    <p>Les partenaires de ce projet sont les =C3=A9quipes du LS2N (Nantes=
+),
+      du CREAD (Rennes) et LabSTICC (Brest). <o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Missions<o:p></o:p></b></=
+p>
+    <p>Dans le cadre du projet Sedela, le candidat sera en charge de :<o:=
+p></o:p></p>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt
+          &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span></span>La
+      conception, la mise en =C5=93uvre et le test de l=E2=80=99applicati=
+on de
+      gestion des apprentissages ;<o:p></o:p></p>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt
+          &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span></span>Le
+      d=C3=A9veloppement de mod=C3=A8les de gestion de donn=C3=A9es d=E2=80=
+=99apprentissage
+      bas=C3=A9s sur les technologies du web s=C3=A9mantique=C2=A0;<o:p><=
+/o:p></p>
+    <p style=3D"margin-left:53.4pt;text-indent:-18.0pt;mso-list:l0 level1
+      lfo1"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt
+          &quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 </span></span>La gestion
+      des outils de gestion de projet <o:p></o:p></p>
+    <p>=C3=80 cette fin, le candidat fera partie d'une =C3=A9quipe de hui=
+t
+      personnes, sous la supervision du chef de projet =C3=A0 IMT Atlanti=
+que.
+      <o:p></o:p></p>
+    <p><b style=3D"mso-bidi-font-weight:normal">Profil du poste <o:p></o:=
+p></b></p>
+    <p>Comp=C3=A9tences solides de niveau ing=C3=A9nieur en informatique.
+      Id=C3=A9alement, le candidat=C2=A0a une exp=C3=A9rience dans les ou=
+tils modernes
+      de d=C3=A9veloppement web, une expertise dans le domaine du web
+      s=C3=A9mantique. Il maitrise la gestion de projet, les outils de g=C3=
+=A9nie
+      logiciel et d=C3=A9veloppement Web. Un bon niveau en anglais (=C3=A9=
+crit et
+      oral) est exig=C3=A9. <o:p></o:p></p>
+    <p>Ses qualit=C3=A9s=C2=A0: autonome, curieux, avec le sens de la
+      responsabilit=C3=A9 et le respect des engagements, appr=C3=A9cie le=
+ travail
+      en =C3=A9quipe.<o:p></o:p></p>
+    <p>Dipl=C3=B4me en informatique de niveau Master, Doctorat en
+      informatique, sp=C3=A9cialit=C3=A9 EIAH appr=C3=A9ci=C3=A9e<br
+        style=3D"mso-special-character:line-break">
+      <br style=3D"mso-special-character:line-break">
+      <o:p></o:p></p>
+    <p class=3D"MsoNormal">Pour toute information compl=C3=A9mentaire, vo=
+us
+      pouvez contacter=C2=A0: <o:p></o:p></p>
+    <p class=3D"MsoNormal">Jean-Marie Gilliot, <a
+        href=3D"mailto:jm.gilliot@imt-atlantique.fr"><span
+          class=3D"LienInternet">jm.gilliot@imt-atlantique.fr</span></a>,
+      +33 (0) 229 00 15 39 (responsable du projet)<o:p></o:p></p>
+    <p class=3D"MsoNormal">Serge Garlatti, <a
+        href=3D"mailto:serge.garlatti@imt-atlantique"><span
+          class=3D"LienInternet">serge.garlatti@imt-atlantique</span></a>=
+,
+      +33 (0) 229 00 14 53 (responsable du d=C3=A9partement)<br
+        style=3D"mso-special-character: line-break">
+      <br style=3D"mso-special-character:line-break">
+      <o:p></o:p></p>
+    <p class=3D"MsoNormal"><b style=3D"mso-bidi-font-weight:normal">Pour
+        d=C3=A9poser votre candidature: <o:p></o:p></b></p>
+    <p>Merci d=E2=80=99adresser par mail =C3=A0 l=E2=80=99adresse suivant=
+e : <o:p></o:p></p>
+    <p><a href=3D"mailto:recrut17-ing-info@mlistes.telecom-bretagne.eu"><=
+span
+          class=3D"LienInternet">recrut17-ing-info@mlistes.telecom-bretag=
+ne.eu</span></a>
+      <o:p></o:p></p>
+    <p style=3D"margin-left:35.4pt"><b>-</b> Un CV d=C3=A9taill=C3=A9 <o:=
+p></o:p></p>
+    <p style=3D"margin-left:35.4pt">- Une lettre de motivation<o:p></o:p>=
+</p>
+    <pre class=3D"moz-signature" cols=3D"72">____________________________=
+___________________________
+
+Jean-Marie GILLIOT
+Ma=C3=AEtre de conf=C3=A9rences=20
++33 2 29 00 15 39
+
+IMT Atlantique =E2=80=93 Lab-STICC (UMR CNRS 6285)
+Technop=C3=B4le Brest-Iroise CS 83818, 29238 Brest Cedex 3
+_______________________________________________________
+
+IMT Atlantique : <a class=3D"moz-txt-link-freetext" href=3D"http://www.im=
+t-atlantique.fr">http://www.imt-atlantique.fr</a> =E2=80=93 Lab-STICC <a =
+class=3D"moz-txt-link-freetext" href=3D"http://www.lab-sticc.fr/">http://=
+www.lab-sticc.fr/</a>=20
+Twitter : <a class=3D"moz-txt-link-freetext" href=3D"https://twitter.com/=
+jmgilliot">https://twitter.com/jmgilliot</a> - LinkedIn : <a class=3D"moz=
+-txt-link-freetext" href=3D"https://www.linkedin.com/in/jeanmariegilliot"=
+>https://www.linkedin.com/in/jeanmariegilliot</a>  - Blog : <a class=3D"m=
+oz-txt-link-freetext" href=3D"https://tipes.wordpress.com/">https://tipes=
+.wordpress.com/</a> </pre>
+  </body>
+</html>
+
+--------------72F76527589A1E620740E69A--

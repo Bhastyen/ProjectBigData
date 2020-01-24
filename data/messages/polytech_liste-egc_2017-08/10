@@ -1,0 +1,2626 @@
+Return-Path: <prvs=388d61b43=sam@univ-tours.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id DF3BD229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 10 Aug 2017 12:02:24 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id D8A3D6D21FD
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 10 Aug 2017 12:02:24 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id C33A8B4A248
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 10 Aug 2017 12:02:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.571
+X-Spam-Level: *
+X-Spam-Status: No, score=1.571 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SPF_PASS=-0.001, UN_COMMAS_IN_SUBJ=2, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -4.6802 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new);
+	domainkeys=pass (1024-bit key) header.from=yacine.sam@univ-tours.fr
+	header.d=univ-tours.fr; dkim=pass (1024-bit key)
+	header.d=univ-tours.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 8VI53vbQxYQh for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 10 Aug 2017 12:02:23 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from angelia.univ-tours.fr (angelia.univ-tours.fr [193.52.209.20])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 93D6069C3E3
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 10 Aug 2017 12:02:23 +0200 (CEST)
+DomainKey-Signature: s=main; d=univ-tours.fr; c=nofws; q=dns;
+  h=IronPort-PHdr:X-IronPort-Anti-Spam-Filtered:
+   X-IronPort-Anti-Spam-Result:X-IPAS-Result:Received:
+   Received:Received:X-Virus-Scanned:Received:Received:Date:
+   From:To:Message-ID:Subject:MIME-Version:Content-Type:
+   X-Originating-IP:X-Mailer:Thread-Topic:Thread-Index;
+  b=mNq6vQWTGRJIOwSkB5KIH+uxBGYF6gBKN6p2j7zUC9fhVSih1T/1EDN7
+   8GBBRps4ulvsoTzdkIvB0NwBlNnm7laPi0NUG6IMHcCmFLPHgCWvl/YTR
+   BlX0fA6badhynK67D5jW+yCqD8bcXRR5MZviHJlhgbtvM7S5Kajvnv7SN
+   g=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=univ-tours.fr; i=@univ-tours.fr; q=dns/txt; s=main;
+  t=1502359343; x=1533895343;
+  h=date:from:to:message-id:subject:mime-version;
+  bh=ERuxNyhvzxadAPPmrRFTPpNMPuZ9LhKeq5YO74sbDZc=;
+  b=cvtvDLxUo4at48zro2+ULmguGG1omeWwWUZdP6HueBKUVO2F5FKVpzZp
+   4fcUYAD26n+R/eK3UfNjZtJKqumFEReIntalKnYxt1qHnrTYHI1MbtaBi
+   l46qXmJRb78P3T8bBQ8Xobddv1Yebx6YrU5gBlNOcqi63mDF8Xegvl44v
+   c=;
+IronPort-PHdr: =?us-ascii?q?9a23=3Avz/Q/RDQy1Hp6XTwCWuBUyQJP3N1i/DPJgcQr6Af?=
+ =?us-ascii?q?oPdwSP36oc2wAkXT6L1XgUPTWs2DsrQf2rqQ4/+rADNIyK3CmUhKSIZLWR4BhJ?=
+ =?us-ascii?q?detC0bK+nBN3fGKuX3ZTcxBsVIWQwt1Xi6NU9IBJS2PAWK8TW94jEIBxrwKxd+?=
+ =?us-ascii?q?KPjrFY7OlcS30P2594HObwlSijewZbB/IA+1oAjTucUanIlvIbstxxXUpXdFZ/?=
+ =?us-ascii?q?5Yzn5yK1KJmBb86Maw/Jp9/ClVpvks6c1OX7jkcqohVbBXAygoPG4z5M3wqBnM?=
+ =?us-ascii?q?VhCP6WcGUmUXiRVHHQ7I5wznU5jrsyv6su192DSGPcDzULs5Vyiu47ttRRT1ji?=
+ =?us-ascii?q?oMKjw3/3zNisFogqxVoAyvqR9izYHbfI6VNf1wfr/GcNwAWWZOQt1eWjZdDo6+?=
+ =?us-ascii?q?aYYEEuoPPfxfr4n4v1YBrwGxChWtBOPp1DBDm2L40rc/0+88FgzH3BYvEM4PsH?=
+ =?us-ascii?q?TSstr5LrwSXvqwzKTT0DXDafJW2Snk5IjUdRAhvOuMXalqfcrf00kiDgXIhUie?=
+ =?us-ascii?q?p4ziOjOazOUNs26D4up7TeKvkW8nqwd+ojex3McgkJXGhoUQylzc6Sp5x4A1Jd?=
+ =?us-ascii?q?OkSE58Zt6kFIFcuD2dN4tzWs8iXmdouCckyrEfpZ67ezUKyI48xxLFZfyHaY6F?=
+ =?us-ascii?q?6Q/gWuaJOTp0mW5pdKiiixu2/0Ws0O3xWtOp3FpSsyZJjsPAum0J2hHd8MSKSu?=
+ =?us-ascii?q?Fx80en1D2SzQ7c8PtELloxlafDLp4hxaM/mYQLvETYGy/2hF32jKiLdkU44uSo?=
+ =?us-ascii?q?6/roYrHhppKEL490kAb+M6sum8CiHeg0KAkPX2me+eunzr3s51f1QKhMjv03jK?=
+ =?us-ascii?q?nVqYzaJcMGpq6jGA9ZyIIj6xGjADi81NQUhXgHLFRbdxKbl4XlJk3CLOrlAfq7?=
+ =?us-ascii?q?jVmgijdmy+rbMrH5B5XCNHnDkLPvfbZn7E5czRI+zctF6JJREbwBPfTzWk7vtN?=
+ =?us-ascii?q?DBEh85NBG0w/z8CNln2IMeQ3qDArWFP6PKrV+I+uUvLvGXZIAPvTb9KuIp6OXu?=
+ =?us-ascii?q?jX84g18dfLKk3ZQSaH+iH/RmJ1+VbmbrgtcECW0KpBYxTPT2iF2eVj5ef3myUL?=
+ =?us-ascii?q?g95z4lFIKmEZnMSZuwj7GPxyq7H5hWaXpJClyWH3fobZ2OW+0QZyKKPs9hjjsE?=
+ =?us-ascii?q?WKC6RI880RGusBb2y7tpI+fP+y0Yr5Pj1MRv6+3djxE47SZ0ANiF02GRU2F0mX?=
+ =?us-ascii?q?sFRzs33KBkvUxy1E6P3rZ3g/NEDtFT//RJUgM6NJ7A0eN1F9DyVhjcftePSVam?=
+ =?us-ascii?q?XMyqATcrQdI3398BfV19F8+sjhDZxyCqGaMal6SXBJwo9aLRx3bwKNx5y3bHya?=
+ =?us-ascii?q?YtlVYmTdFVOm2iga5/6gzTCpXVk0qHk6ala7gT3CnI9Gua1mqOoVxXUBZqXqXf?=
+ =?us-ascii?q?XHAffVHaosrk5hCKc7j7A6kjNk5AkuaDMKpWLNPzyR1CRez/NZHTbGmZg2C0FA?=
+ =?us-ascii?q?qFzbPKcYzrZSAb1SPBBVNCnRpXtXmPJwUiGiqrrzn2DTlnGhTheRDC6+57/UKy?=
+ =?us-ascii?q?RU4ywkmxZkgpg6u88R8TiLqHQvY7w7QFpmI9rChuBxCzxYSFWJK7uwN9cfAEMp?=
+ =?us-ascii?q?sG61Bd2DeBug=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2GVAwCHLoxZ/wEFwQpdHAEBBAEBCgEBF?=
+ =?us-ascii?q?wEBBAEBCgEBgkQ+gRGBFAefW5ZFgVxUimMUAQEBAQEBAQEBAQECgRCCMyIQRiw?=
+ =?us-ascii?q?BAQEBAQEBAQEjAQEBAQEBIwIIBQY9AUNoATEPAQkCWwWKUa8XgiaMHYMog06BY?=
+ =?us-ascii?q?zaBQIJtgWqBFBKDOoJhBaAdeYEviH6Obox0AolQgmGGToMNAjaBLDIhKIUhUAw?=
+ =?us-ascii?q?QgWl1h2KBMoEPAQEB?=
+X-IPAS-Result: =?us-ascii?q?A2GVAwCHLoxZ/wEFwQpdHAEBBAEBCgEBFwEBBAEBCgEBgkQ?=
+ =?us-ascii?q?+gRGBFAefW5ZFgVxUimMUAQEBAQEBAQEBAQECgRCCMyIQRiwBAQEBAQEBAQEjA?=
+ =?us-ascii?q?QEBAQEBIwIIBQY9AUNoATEPAQkCWwWKUa8XgiaMHYMog06BYzaBQIJtgWqBFBK?=
+ =?us-ascii?q?DOoJhBaAdeYEviH6Obox0AolQgmGGToMNAjaBLDIhKIUhUAwQgWl1h2KBMoEPA?=
+ =?us-ascii?q?QEB?=
+Received: from proxy10.zimbra.univ-tours.local ([10.193.5.1])
+  by angelia2.univ-tours.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Aug 2017 12:02:21 +0200
+Received: from proxy10.zimbra.univ-tours.local (localhost [127.0.0.1])
+	by proxy10.zimbra.univ-tours.local (Postfix) with ESMTPS id B34541FE16;
+	Thu, 10 Aug 2017 12:02:21 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by proxy10.zimbra.univ-tours.local (Postfix) with ESMTP id 9F1B71FE8B;
+	Thu, 10 Aug 2017 12:02:21 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at proxy10.zimbra.univ-tours.local
+Received: from proxy10.zimbra.univ-tours.local ([127.0.0.1])
+	by localhost (proxy10.zimbra.univ-tours.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id uX68COIldO-V; Thu, 10 Aug 2017 12:02:21 +0200 (CEST)
+Received: from mail21.zimbra.univ-tours.local (mail21.zimbra.univ-tours.local [10.193.5.57])
+	by proxy10.zimbra.univ-tours.local (Postfix) with ESMTP id 5A5A11FE16;
+	Thu, 10 Aug 2017 12:02:21 +0200 (CEST)
+Date: Thu, 10 Aug 2017 12:02:21 +0200 (CEST)
+From: Yacine Sam <yacine.sam@univ-tours.fr>
+To: bull-i3@irit.fr, liste-egc@polytech.univ-nantes.fr, gazettebd3@imag.fr
+Message-ID: <370265155.45669406.1502359341199.JavaMail.zimbra@univ-tours.fr>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_45669405_549844614.1502359341196"
+X-Originating-IP: [10.193.5.5]
+X-Mailer: Zimbra 8.6.0_GA_1200 (ZimbraWebClient - GC60 (Win)/8.6.0_GA_1200)
+Thread-Topic: KASA@ICSOC 2017, Malaga Spain, November 13-16, 2017
+Thread-Index: 79WUYPfvSrW8ulrj1RDCyCpaREXaEg==
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP: KASA@ICSOC 2017, Malaga Spain, November 13-16,
+ 2017
+
+------=_Part_45669405_549844614.1502359341196
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+KASA@ICSOC 2017: Second International Workshop on Knowledge Aware Service O=
+riented Applications, KASA 2017,=20
+In conjunction with ICSOC 2017=20
+Link: http://www.info.univ-tours.fr/kasa2017/=20
+
+Service oriented computing is widely accepted for building interoperable, d=
+ynamic and adaptive systems. However, in spite of the tremendous advances a=
+nd adoption, a considerable manual work is still required to align the impl=
+ementation of service-based systems with business and end-users requirement=
+s.=20
+
+Several efforts have been interested in bridging the gap between business a=
+nd end-users level on one hand and the implementation and technical layer o=
+n the other hand. Initially driven by semantic Web technologies, the propos=
+ed and emergent approaches adopt new techniques such as formal concept anal=
+ysis, information retrieval, social based recommendation, natural language =
+processing, and statistical analysis and mining. Typically, these approache=
+s abstract from/complement technical details and focus on services and BP f=
+rom a semantic and knowledge perspective. The ultimate goal is managing ser=
+vice-oriented applications from a business and semantic level.=20
+
+The efforts made by both Semantic Web and SOA research communities have led=
+ to the present SOA standards where ontologies and other formal frameworks =
+can be considered in several ways to improve SOA frameworks efficiency. How=
+ever, reaching the level of natively and fully semantic-aware SOA framework=
+s is still a challenging task.=20
+
+Moreover, the recent advances in Internet of Thing (IoT), which is leading =
+to a linked Web of resources, data, and services, a more global integration=
+ of Linked Open Data (LOD) principles in SOA frameworks should be thought f=
+or a high efficiency use and reuse of IoT data and resources.=20
+
+The workshop aims at bringing together researchers and practitioners workin=
+g in semantically enabled and knowledge aware service oriented systems in o=
+rder to present, discuss and share original research works and practical ex=
+perience.=20
+
+Topics include but are not limited to:=20
+
+Knowledge aware service oriented engineering=20
+Service and BP representation and description: formal specification, ontolo=
+gy based description=20
+Services and BP indexation, discovery and composition: reasoning, formal co=
+ncept analysis, ontology based matchmaking information retrieval, recommend=
+ation and social-based techniques=20
+Service and BP variability management: configurable and reference models, f=
+eature oriented development=20
+Service and BP knowledge extraction: natural language processing, mining an=
+d crowd sourcing techniques=20
+Service and BP versioning and adaptation=20
+Service and BP mining=20
+Collections of services and BPs: organisation, visualisation and business i=
+ntelligence=20
+Techniques for knowledge aware service oriented engineering: ontology based=
+, statistical analysis and mining techniques, natural language processing, =
+social and Human centric techniques, cloud computing=20
+Knowledge aware service oriented engineering applied to related domains: gr=
+een IT, disaster management, e-health, e-government, smart home/cities, sen=
+sor-based applications=20
+Knowledge aware service oriented engineering in practice =E2=80=A2Ontologie=
+s and vocabularies for domain-specific services and BP=20
+Surveys and empirical studies=20
+Industrial and real use-cases=20
+Semantic web Semantic web technologies for SOA IoT applications development=
+=20
+LOD principles for IoT services composition and linking=20
+
+The workshop is soliciting both academic and industrial research contributi=
+ons, which have not been published elsewhere. Two types of papers are accep=
+ted for submission:=20
+
+Regular papers: should have a length of 14 pages and present mature work.=
+=20
+Short and position papers: should have a length of 6 pages and present work=
+ in progress having an original idea behind.=20
+
+Submitted papers must be written in English and formatted according to Spri=
+nger LNCS format ( http://www.springer.com/computer/lncs?SGWID=3D0-164-6-79=
+3341-0 ). Papers must be in PDF format and should be submitted electronical=
+ly via the ConfTool submission system following the url below.=20
+
+http://www.conftool.com/icsoc2017=20
+
+Authors must use this link and then, during the submission procedure, selec=
+t the Workshop on Knowledge Aware Service Oriented Applications.=20
+
+Each paper will be reviewed by 3 distinct reviewers.=20
+
+At least one author of each accepted paper should register for the workshop=
+ program and attend to present the paper. This is a prerequisite for the pu=
+blication of the paper in the workshop proceedings.=20
+
+Important Dates=20
+
+Workshop Papers Submission Deadline: August 14, 2017=20
+Authors Notification Deadline: September 14, 2017=20
+Early Registration Deadline: September 24, 2017=20
+Camera Ready Paper & Copyright: October 1, 2017=20
+Workshops: November 13, 2017=20
+
+Workshop Chairs:=20
+
+Sami Bhiri University of Monastir, Tunisia=20
+Walid Gaaloul CNRS Samovar Lab, Telecom SudParis, France=20
+Nizar Messai University Computer Science Lab, University of Tours, France=
+=20
+Yacine Sam Computer Science Lab, University of Tours, France=20
+
+Program committee=20
+
+Nour Assy, Technische Universiteit Eindhoven, Netherlands=20
+Salima Benbernou, Paris Descartes University, France=20
+Boualem Benatallah, University of New South Wales, Australia=20
+Omar Boucelma, Aix-Marseille University, France=20
+Jorge Cardoso, University of Coimbra, Portugal=20
+Christine Collet, Grenoble Informatics laboratory (LIG), France=20
+Edward Curry, DERI, University of Ireland, Galway, Ireland=20
+Wassim Derguech, DERI, University of Ireland, Galway, Ireland=20
+Khaled Gaaloul, Public Research Centre Henri Tudor, Luxembourg=20
+Feng Gao, DERI, University of Ireland, Galway, Ireland=20
+Claude Godart, LORIA, Nancy, France=20
+Mohamed Graiet, ISIMA, University of Monastir, Tunisia=20
+Imen Grida Ben Yahia, Orange, France=20
+Mohand-Said Hacid, University of Lyon, France=20
+Marianne Huchard, LIRMM, CNRS, University Montpellier 2, France=20
+Kais Klai, University Paris 13, France=20
+Mourad Kmimech, ISIMA, University of Monastir, Tunisia=20
+Massimo Mecella, SAPIENZA, University of Rome, Italy=20
+Amedeo Napoli, LORIA, Nancy, France=20
+George A. Papadopoulos University of Cyprus=20
+Olivier Perrin, LORIA, Nancy, France=20
+Pierluigi Plebani, Politecnico di Milano, Italy=20
+Mohamed Quafafou, Aix-Marseille University, France=20
+Seung Hwan Ryu, University of New South Wales, Australia=20
+Brahmananda Sapkota, University of Twente, Netherlands=20
+Mohamed Sellami, RDI Group, LISITE LAB, ISEP Paris, France=20
+Sana Sellami, Aix-Marseille University, France=20
+Samir Tata, Institut Mines-Telecom, Telecom SudParis, France=20
+Yehia Taher, David Lab., Versailles University, France=20
+Tomas Vitvar, Czech Technical University, Czech Republic=20
+Zhangbing Zhou, CUG Beijing, China=20
+
+--=20
+Ma=C3=AEtre de conf=C3=A9rences=20
+Universit=C3=A9 Fran=C3=A7ois Rabelais Tours=20
+Laboratoire d'Informatique - IUT de Blois=20
+3 place Jean Jaur=C3=A8s - 41000 Blois=20
+02 54 55 21 53=20
+
+------=_Part_45669405_549844614.1502359341196
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: times new roman,new york,times,serif=
+; font-size: 12pt; color: #000000"><div><span style=3D"color: #000000; font=
+-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-va=
+riant-ligatures: normal; font-variant-caps: normal; font-weight: normal; le=
+tter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text=
+-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webki=
+t-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style:=
+ initial; text-decoration-color: initial; display: inline !important; float=
+: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; =
+font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fon=
+t-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphan=
+s: 2; text-align: start; text-indent: 0px; text-transform: none; white-spac=
+e: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; ba=
+ckground-color: #ffffff; text-decoration-style: initial; text-decoration-co=
+lor: initial; display: inline !important; float: none;">KASA@ICSOC 2017: Se=
+cond International Workshop on Knowledge Aware Service Oriented Application=
+s, KASA 2017, </span></div><div><span style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial; display: inline !important; float: none;"=
+ data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial; display: inline !important; float: none;">In conjunction with ICSOC 2=
+017</span><br style=3D"color: #000000; font-family: 'Times New Roman'; font=
+-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-va=
+riant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgr=
+ound-color: #ffffff; text-decoration-style: initial; text-decoration-color:=
+ initial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'=
+; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: normal; letter-spacing: normal; orph=
+ans: 2; text-align: start; text-indent: 0px; text-transform: none; white-sp=
+ace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: #ffffff; text-decoration-style: initial; text-decoration-=
+color: initial;"><span style=3D"color: #000000; font-family: 'Times New Rom=
+an'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; o=
+rphans: 2; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; background-color: #ffffff; text-decoration-style: initial; text-decorati=
+on-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Link:</span><span style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial; display: inline !important; =
+float: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Rom=
+an'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; o=
+rphans: 2; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; background-color: #ffffff; text-decoration-style: initial; text-decorati=
+on-color: initial; display: inline !important; float: none;"><span>&nbsp;</=
+span></span><span class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT420_co=
+m_zimbra_url" style=3D"color: #005a95; text-decoration: none; cursor: point=
+er; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff;" data-mce-styl=
+e=3D"color: #005a95; text-decoration: none; cursor: pointer; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff;"><span class=3D"Object" role=3D"=
+link" id=3D"OBJ_PREFIX_DWT425_com_zimbra_url" style=3D"color: #005a95; text=
+-decoration: none; cursor: pointer;" data-mce-style=3D"color: #005a95; text=
+-decoration: none; cursor: pointer;"><a href=3D"http://www.info.univ-tours.=
+fr/kasa2017/" target=3D"_blank" style=3D"color: #005a95; text-decoration: n=
+one; cursor: pointer;" data-mce-href=3D"http://www.info.univ-tours.fr/kasa2=
+017/" data-mce-style=3D"color: #005a95; text-decoration: none; cursor: poin=
+ter;">http://www.info.univ-tours.fr/kasa2017/</a></span></span><br style=3D=
+"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; t=
+ext-decoration-style: initial; text-decoration-color: initial;" data-mce-st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial;"><br s=
+tyle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px;=
+ font-style: normal; font-variant-ligatures: normal; font-variant-caps: nor=
+mal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: s=
+tart; text-indent: 0px; text-transform: none; white-space: normal; widows: =
+2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ff=
+ffff; text-decoration-style: initial; text-decoration-color: initial;" data=
+-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+"><span style=3D"color: #000000; font-family: 'Times New Roman'; font-size:=
+ 14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-=
+caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text=
+-align: start; text-indent: 0px; text-transform: none; white-space: normal;=
+ widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-c=
+olor: #ffffff; text-decoration-style: initial; text-decoration-color: initi=
+al; display: inline !important; float: none;" data-mce-style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial; display: inline !importa=
+nt; float: none;">Service oriented computing is widely accepted for buildin=
+g interoperable, dynamic and adaptive systems. However, in spite of the tre=
+mendous advances and adoption, a considerable manual work is still required=
+ to align the implementation of service-based systems with business and end=
+-users requirements.</span><br style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial;" data-mce-style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial;"><br style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial;" data-mce-style=3D"color: #000000; font-f=
+amily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: normal; lett=
+er-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-t=
+ransform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-=
+text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: i=
+nitial; text-decoration-color: initial;"><span style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial; display: inline !important; floa=
+t: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial; display: inline !important; float: none;">Several efforts ha=
+ve been interested in bridging the gap between business and end-users level=
+ on one hand and the implementation and technical layer on the other hand. =
+Initially driven by semantic Web technologies, the proposed and emergent ap=
+proaches adopt new techniques such as formal concept analysis, information =
+retrieval, social based recommendation, natural language processing, and st=
+atistical analysis and mining. Typically, these approaches abstract from/co=
+mplement technical details and focus on services and BP from a semantic and=
+ knowledge perspective. The ultimate goal is managing service-oriented appl=
+ications from a business and semantic level.</span><br style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial;" data-mce-style=3D"color=
+: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: =
+normal; font-variant-ligatures: normal; font-variant-caps: normal; font-wei=
+ght: normal; letter-spacing: normal; orphans: 2; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-de=
+coration-style: initial; text-decoration-color: initial;"><br style=3D"colo=
+r: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style:=
+ normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
+ight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; widows: 2; word-spac=
+ing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-d=
+ecoration-style: initial; text-decoration-color: initial;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;"><span st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial; displa=
+y: inline !important; float: none;" data-mce-style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial; display: inline !important; float:=
+ none;">The efforts made by both Semantic Web and SOA research communities =
+have led to the present SOA standards where ontologies and other formal fra=
+meworks can be considered in several ways to improve SOA frameworks efficie=
+ncy. However, reaching the level of natively and fully semantic-aware SOA f=
+rameworks is still a challenging task.</span><br style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial;" data-mce-style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial;"><br style=3D"color: #00=
+0000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
+ 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorat=
+ion-style: initial; text-decoration-color: initial;" data-mce-style=3D"colo=
+r: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style:=
+ normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
+ight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; widows: 2; word-spac=
+ing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-d=
+ecoration-style: initial; text-decoration-color: initial;"><span style=3D"c=
+olor: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-sty=
+le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
+-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; tex=
+t-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-s=
+pacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; tex=
+t-decoration-style: initial; text-decoration-color: initial; display: inlin=
+e !important; float: none;" data-mce-style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial; display: inline !important; float: none;">=
+Moreover, the recent advances in Internet of Thing (IoT), which is leading =
+to a linked Web of resources, data, and services, a more global integration=
+ of Linked Open Data (LOD) principles in SOA frameworks should be thought f=
+or a high efficiency use and reuse of IoT data and resources.</span><br sty=
+le=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; f=
+ont-style: normal; font-variant-ligatures: normal; font-variant-caps: norma=
+l; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: sta=
+rt; text-indent: 0px; text-transform: none; white-space: normal; widows: 2;=
+ word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffff=
+ff; text-decoration-style: initial; text-decoration-color: initial;" data-m=
+ce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.1=
+6px; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
+ normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-alig=
+n: start; text-indent: 0px; text-transform: none; white-space: normal; wido=
+ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color:=
+ #ffffff; text-decoration-style: initial; text-decoration-color: initial;">=
+<br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.=
+16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-ali=
+gn: start; text-indent: 0px; text-transform: none; white-space: normal; wid=
+ows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color=
+: #ffffff; text-decoration-style: initial; text-decoration-color: initial;"=
+ data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial;"><span style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial; display: inline !important; float: none;" data-mce-style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial; display: inline !im=
+portant; float: none;">The workshop aims at bringing together researchers a=
+nd practitioners working in semantically enabled and knowledge aware servic=
+e oriented systems in order to present, discuss and share original research=
+ works and practical experience.</span><br style=3D"color: #000000; font-fa=
+mily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varia=
+nt-ligatures: normal; font-variant-caps: normal; font-weight: normal; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
+ansform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-t=
+ext-stroke-width: 0px; background-color: #ffffff; text-decoration-style: in=
+itial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial;"><br style=3D"color: #000000; =
+font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fon=
+t-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal=
+; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-st=
+yle: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00=
+0000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
+ 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorat=
+ion-style: initial; text-decoration-color: initial;"><span style=3D"color: =
+#000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: no=
+rmal; font-variant-ligatures: normal; font-variant-caps: normal; font-weigh=
+t: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
+nt: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing=
+: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-deco=
+ration-style: initial; text-decoration-color: initial; display: inline !imp=
+ortant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;">Topics=
+ include but are not limited to:</span><br style=3D"color: #000000; font-fa=
+mily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varia=
+nt-ligatures: normal; font-variant-caps: normal; font-weight: normal; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
+ansform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-t=
+ext-stroke-width: 0px; background-color: #ffffff; text-decoration-style: in=
+itial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial;"><br style=3D"color: #000000; =
+font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fon=
+t-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal=
+; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-st=
+yle: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00=
+0000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
+ 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorat=
+ion-style: initial; text-decoration-color: initial;"><span style=3D"color: =
+#000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: no=
+rmal; font-variant-ligatures: normal; font-variant-caps: normal; font-weigh=
+t: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
+nt: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing=
+: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-deco=
+ration-style: initial; text-decoration-color: initial; display: inline !imp=
+ortant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;">Knowle=
+dge aware service oriented engineering</span><br style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial;" data-mce-style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial;"><span style=3D"color: #=
+000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: nor=
+mal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight=
+: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing:=
+ 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decor=
+ation-style: initial; text-decoration-color: initial; display: inline !impo=
+rtant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial; display: inline !important; float: none;">Service=
+ and BP representation and description: formal specification, ontology base=
+d description</span><br style=3D"color: #000000; font-family: 'Times New Ro=
+man'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norma=
+l; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whit=
+e-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0=
+px; background-color: #ffffff; text-decoration-style: initial; text-decorat=
+ion-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial;"><span style=3D"color: #000000; font-family: 'Tim=
+es New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
+ normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke=
+-width: 0px; background-color: #ffffff; text-decoration-style: initial; tex=
+t-decoration-color: initial; display: inline !important; float: none;" data=
+-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+ display: inline !important; float: none;">Services and BP indexation, disc=
+overy and composition: reasoning, formal concept analysis, ontology based m=
+atchmaking information retrieval, recommendation and social-based technique=
+s</span><br style=3D"color: #000000; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff; text-decoration-style: initial; text-decoration-color: i=
+nitial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; =
+font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fon=
+t-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphan=
+s: 2; text-align: start; text-indent: 0px; text-transform: none; white-spac=
+e: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; ba=
+ckground-color: #ffffff; text-decoration-style: initial; text-decoration-co=
+lor: initial;"><span style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Service and BP variability management: con=
+figurable and reference models, feature oriented development</span><br styl=
+e=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fo=
+nt-style: normal; font-variant-ligatures: normal; font-variant-caps: normal=
+; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: star=
+t; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fffff=
+f; text-decoration-style: initial; text-decoration-color: initial;" data-mc=
+e-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16=
+px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align=
+: start; text-indent: 0px; text-transform: none; white-space: normal; widow=
+s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: =
+#ffffff; text-decoration-style: initial; text-decoration-color: initial;"><=
+span style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+ display: inline !important; float: none;" data-mce-style=3D"color: #000000=
+; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; f=
+ont-variant-ligatures: normal; font-variant-caps: normal; font-weight: norm=
+al; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px=
+; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-=
+style: initial; text-decoration-color: initial; display: inline !important;=
+ float: none;">Service and BP knowledge extraction: natural language proces=
+sing, mining and crowd sourcing techniques</span><br style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial;" data-mce-style=3D"color: =
+#000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: no=
+rmal; font-variant-ligatures: normal; font-variant-caps: normal; font-weigh=
+t: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
+nt: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing=
+: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-deco=
+ration-style: initial; text-decoration-color: initial;"><span style=3D"colo=
+r: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style:=
+ normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
+ight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; widows: 2; word-spac=
+ing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-d=
+ecoration-style: initial; text-decoration-color: initial; display: inline !=
+important; float: none;" data-mce-style=3D"color: #000000; font-family: 'Ti=
+mes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatu=
+res: normal; font-variant-caps: normal; font-weight: normal; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-strok=
+e-width: 0px; background-color: #ffffff; text-decoration-style: initial; te=
+xt-decoration-color: initial; display: inline !important; float: none;">Ser=
+vice and BP versioning and adaptation</span><br style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial;" data-mce-style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;"><span style=3D"color: #0=
+00000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
+: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decora=
+tion-style: initial; text-decoration-color: initial; display: inline !impor=
+tant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times N=
+ew Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
+th: 0px; background-color: #ffffff; text-decoration-style: initial; text-de=
+coration-color: initial; display: inline !important; float: none;">Service =
+and BP mining</span><br style=3D"color: #000000; font-family: 'Times New Ro=
+man'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norma=
+l; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whit=
+e-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0=
+px; background-color: #ffffff; text-decoration-style: initial; text-decorat=
+ion-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial;"><span style=3D"color: #000000; font-family: 'Tim=
+es New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
+ normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke=
+-width: 0px; background-color: #ffffff; text-decoration-style: initial; tex=
+t-decoration-color: initial; display: inline !important; float: none;" data=
+-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+ display: inline !important; float: none;">Collections of services and BPs:=
+ organisation, visualisation and business intelligence</span><br style=3D"c=
+olor: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-sty=
+le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
+-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; tex=
+t-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-s=
+pacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; tex=
+t-decoration-style: initial; text-decoration-color: initial;" data-mce-styl=
+e=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fo=
+nt-style: normal; font-variant-ligatures: normal; font-variant-caps: normal=
+; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: star=
+t; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fffff=
+f; text-decoration-style: initial; text-decoration-color: initial;"><span s=
+tyle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px;=
+ font-style: normal; font-variant-ligatures: normal; font-variant-caps: nor=
+mal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: s=
+tart; text-indent: 0px; text-transform: none; white-space: normal; widows: =
+2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ff=
+ffff; text-decoration-style: initial; text-decoration-color: initial; displ=
+ay: inline !important; float: none;" data-mce-style=3D"color: #000000; font=
+-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-va=
+riant-ligatures: normal; font-variant-caps: normal; font-weight: normal; le=
+tter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text=
+-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webki=
+t-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style:=
+ initial; text-decoration-color: initial; display: inline !important; float=
+: none;">Techniques for knowledge aware service oriented engineering: ontol=
+ogy based, statistical analysis and mining techniques, natural language pro=
+cessing, social and Human centric techniques, cloud computing</span><br sty=
+le=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; f=
+ont-style: normal; font-variant-ligatures: normal; font-variant-caps: norma=
+l; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: sta=
+rt; text-indent: 0px; text-transform: none; white-space: normal; widows: 2;=
+ word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffff=
+ff; text-decoration-style: initial; text-decoration-color: initial;" data-m=
+ce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.1=
+6px; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
+ normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-alig=
+n: start; text-indent: 0px; text-transform: none; white-space: normal; wido=
+ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color:=
+ #ffffff; text-decoration-style: initial; text-decoration-color: initial;">=
+<span style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 1=
+4.16px; font-style: normal; font-variant-ligatures: normal; font-variant-ca=
+ps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-a=
+lign: start; text-indent: 0px; text-transform: none; white-space: normal; w=
+idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-col=
+or: #ffffff; text-decoration-style: initial; text-decoration-color: initial=
+; display: inline !important; float: none;" data-mce-style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial; display: inline !important=
+; float: none;">Knowledge aware service oriented engineering applied to rel=
+ated domains: green IT, disaster management, e-health, e-government, smart =
+home/cities, sensor-based applications</span><br style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial;" data-mce-style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial;"><span style=3D"color: #=
+000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: nor=
+mal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight=
+: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing:=
+ 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decor=
+ation-style: initial; text-decoration-color: initial; display: inline !impo=
+rtant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial; display: inline !important; float: none;">Knowled=
+ge aware service oriented engineering in practice =E2=80=A2Ontologies and v=
+ocabularies for domain-specific services and BP</span><br style=3D"color: #=
+000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: nor=
+mal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight=
+: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing:=
+ 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decor=
+ation-style: initial; text-decoration-color: initial;" data-mce-style=3D"co=
+lor: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-styl=
+e: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-=
+weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text=
+-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-sp=
+acing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text=
+-decoration-style: initial; text-decoration-color: initial;"><span style=3D=
+"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; t=
+ext-decoration-style: initial; text-decoration-color: initial; display: inl=
+ine !important; float: none;" data-mce-style=3D"color: #000000; font-family=
+: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: normal; letter-sp=
+acing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transf=
+orm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; background-color: #ffffff; text-decoration-style: initia=
+l; text-decoration-color: initial; display: inline !important; float: none;=
+">Surveys and empirical studies</span><br style=3D"color: #000000; font-fam=
+ily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varian=
+t-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter=
+-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
+nsform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-te=
+xt-stroke-width: 0px; background-color: #ffffff; text-decoration-style: ini=
+tial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial;"><span style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial; display: inline !important; =
+float: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Rom=
+an'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; o=
+rphans: 2; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; background-color: #ffffff; text-decoration-style: initial; text-decorati=
+on-color: initial; display: inline !important; float: none;">Industrial and=
+ real use-cases</span><br style=3D"color: #000000; font-family: 'Times New =
+Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: nor=
+mal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal=
+; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; wh=
+ite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; background-color: #ffffff; text-decoration-style: initial; text-decor=
+ation-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Time=
+s New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; background-color: #ffffff; text-decoration-style: initial; text=
+-decoration-color: initial;"><span style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial; display: inline !important; float: none;" da=
+ta-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff; text-decoration-style: initial; text-decoration-color: initia=
+l; display: inline !important; float: none;">Semantic web Semantic web tech=
+nologies for SOA IoT applications development</span><br style=3D"color: #00=
+0000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
+ 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorat=
+ion-style: initial; text-decoration-color: initial;" data-mce-style=3D"colo=
+r: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style:=
+ normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
+ight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-i=
+ndent: 0px; text-transform: none; white-space: normal; widows: 2; word-spac=
+ing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-d=
+ecoration-style: initial; text-decoration-color: initial;"><span style=3D"c=
+olor: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-sty=
+le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
+-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; tex=
+t-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-s=
+pacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; tex=
+t-decoration-style: initial; text-decoration-color: initial; display: inlin=
+e !important; float: none;" data-mce-style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial; display: inline !important; float: none;">=
+LOD principles for IoT services composition and linking</span><br style=3D"=
+color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-st=
+yle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fon=
+t-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-=
+spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; te=
+xt-decoration-style: initial; text-decoration-color: initial;" data-mce-sty=
+le=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; f=
+ont-style: normal; font-variant-ligatures: normal; font-variant-caps: norma=
+l; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: sta=
+rt; text-indent: 0px; text-transform: none; white-space: normal; widows: 2;=
+ word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffff=
+ff; text-decoration-style: initial; text-decoration-color: initial;"><br st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial;" data-=
+mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.=
+16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-ali=
+gn: start; text-indent: 0px; text-transform: none; white-space: normal; wid=
+ows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color=
+: #ffffff; text-decoration-style: initial; text-decoration-color: initial;"=
+><span style=3D"color: #000000; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff; text-decoration-style: initial; text-decoration-color: initia=
+l; display: inline !important; float: none;" data-mce-style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial; display: inline !importan=
+t; float: none;">The workshop is soliciting both academic and industrial re=
+search contributions, which have not been published elsewhere. Two types of=
+ papers are accepted for submission:</span><br style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial;"><br style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;" data-mce-style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial;"><span style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial; display: inline !important; float: none;">Re=
+gular papers: should have a length of 14 pages and present mature work.</sp=
+an><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff; text-decoration-style: initial; text-decoration-color: initia=
+l;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial;"><span style=3D"color: #000000; font-family: 'Times New Roman'; fo=
+nt-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-=
+variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans:=
+ 2; text-align: start; text-indent: 0px; text-transform: none; white-space:=
+ normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; back=
+ground-color: #ffffff; text-decoration-style: initial; text-decoration-colo=
+r: initial; display: inline !important; float: none;" data-mce-style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;">Short and position papers: should have a length o=
+f 6 pages and present work in progress having an original idea behind.</spa=
+n><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 1=
+4.16px; font-style: normal; font-variant-ligatures: normal; font-variant-ca=
+ps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-a=
+lign: start; text-indent: 0px; text-transform: none; white-space: normal; w=
+idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-col=
+or: #ffffff; text-decoration-style: initial; text-decoration-color: initial=
+;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff; text-decoration-style: initial; text-decoration-color: i=
+nitial;"><br style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial;"><span style=3D"color: #000000; font-family: 'Times New Roma=
+n'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal;=
+ font-variant-caps: normal; font-weight: normal; letter-spacing: normal; or=
+phans: 2; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
+; background-color: #ffffff; text-decoration-style: initial; text-decoratio=
+n-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Submitted papers must be written in Englis=
+h and formatted according to Springer LNCS format (</span><span class=3D"Ob=
+ject" role=3D"link" id=3D"OBJ_PREFIX_DWT421_com_zimbra_url" style=3D"color:=
+ #005a95; text-decoration: none; cursor: pointer; font-family: 'Times New R=
+oman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: normal; letter-spacing: normal;=
+ orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whi=
+te-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: =
+0px; background-color: #ffffff;" data-mce-style=3D"color: #005a95; text-dec=
+oration: none; cursor: pointer; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff;"><span class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT426=
+_com_zimbra_url" style=3D"color: #005a95; text-decoration: none; cursor: po=
+inter;" data-mce-style=3D"color: #005a95; text-decoration: none; cursor: po=
+inter;"><a href=3D"http://www.springer.com/computer/lncs?SGWID=3D0-164-6-79=
+3341-0" target=3D"_blank" style=3D"color: #005a95; text-decoration: none; c=
+ursor: pointer;" data-mce-href=3D"http://www.springer.com/computer/lncs?SGW=
+ID=3D0-164-6-793341-0" data-mce-style=3D"color: #005a95; text-decoration: n=
+one; cursor: pointer;">http://www.springer.com/computer/lncs?SGWID=3D0-164-=
+6-793341-0</a></span></span><span style=3D"color: #000000; font-family: 'Ti=
+mes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatu=
+res: normal; font-variant-caps: normal; font-weight: normal; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-strok=
+e-width: 0px; background-color: #ffffff; text-decoration-style: initial; te=
+xt-decoration-color: initial; display: inline !important; float: none;" dat=
+a-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 1=
+4.16px; font-style: normal; font-variant-ligatures: normal; font-variant-ca=
+ps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-a=
+lign: start; text-indent: 0px; text-transform: none; white-space: normal; w=
+idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-col=
+or: #ffffff; text-decoration-style: initial; text-decoration-color: initial=
+; display: inline !important; float: none;">). Papers must be in PDF format=
+ and should be submitted electronically via the ConfTool submission system =
+following the url below.</span><br style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial;" data-mce-style=3D"color: #000000; font-fami=
+ly: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant=
+-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-=
+spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
+sform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; background-color: #ffffff; text-decoration-style: init=
+ial; text-decoration-color: initial;"><br style=3D"color: #000000; font-fam=
+ily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varian=
+t-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter=
+-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
+nsform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-te=
+xt-stroke-width: 0px; background-color: #ffffff; text-decoration-style: ini=
+tial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial;"><span class=3D"Object" role=3D=
+"link" id=3D"OBJ_PREFIX_DWT422_com_zimbra_url" style=3D"color: #005a95; tex=
+t-decoration: none; cursor: pointer; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff;" data-mce-style=3D"color: #005a95; text-decoration: none=
+; cursor: pointer; font-family: 'Times New Roman'; font-size: 14.16px; font=
+-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; =
+font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start;=
+ text-indent: 0px; text-transform: none; white-space: normal; widows: 2; wo=
+rd-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;=
+"><span class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT427_com_zimbra_u=
+rl" style=3D"color: #005a95; text-decoration: none; cursor: pointer;" data-=
+mce-style=3D"color: #005a95; text-decoration: none; cursor: pointer;"><a hr=
+ef=3D"http://www.conftool.com/icsoc2017" target=3D"_blank" style=3D"color: =
+#005a95; text-decoration: none; cursor: pointer;" data-mce-href=3D"http://w=
+ww.conftool.com/icsoc2017" data-mce-style=3D"color: #005a95; text-decoratio=
+n: none; cursor: pointer;">http://www.conftool.com/icsoc2017</a></span></sp=
+an><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff; text-decoration-style: initial; text-decoration-color: initia=
+l;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial;"><br style=3D"color: #000000; font-family: 'Times New Roman'; font=
+-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-va=
+riant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgr=
+ound-color: #ffffff; text-decoration-style: initial; text-decoration-color:=
+ initial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'=
+; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: normal; letter-spacing: normal; orph=
+ans: 2; text-align: start; text-indent: 0px; text-transform: none; white-sp=
+ace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: #ffffff; text-decoration-style: initial; text-decoration-=
+color: initial;"><span style=3D"color: #000000; font-family: 'Times New Rom=
+an'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; o=
+rphans: 2; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; background-color: #ffffff; text-decoration-style: initial; text-decorati=
+on-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Authors must use this link and then, durin=
+g the submission procedure, select the Workshop on Knowledge Aware Service =
+Oriented Applications.</span><br style=3D"color: #000000; font-family: 'Tim=
+es New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
+ normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke=
+-width: 0px; background-color: #ffffff; text-decoration-style: initial; tex=
+t-decoration-color: initial;" data-mce-style=3D"color: #000000; font-family=
+: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: normal; letter-sp=
+acing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transf=
+orm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; background-color: #ffffff; text-decoration-style: initia=
+l; text-decoration-color: initial;"><br style=3D"color: #000000; font-famil=
+y: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initi=
+al; text-decoration-color: initial;" data-mce-style=3D"color: #000000; font=
+-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-va=
+riant-ligatures: normal; font-variant-caps: normal; font-weight: normal; le=
+tter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text=
+-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webki=
+t-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style:=
+ initial; text-decoration-color: initial;"><span style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial; display: inline !important; fl=
+oat: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial; display: inline !important; float: none;">Each paper will =
+be reviewed by 3 distinct reviewers.</span><br style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial;"><br style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;" data-mce-style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial;"><span style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial; display: inline !important; float: none;">At=
+ least one author of each accepted paper should register for the workshop p=
+rogram and attend to present the paper. This is a prerequisite for the publ=
+ication of the paper in the workshop proceedings.</span><br style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial;" data-mce-style=3D"=
+color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-st=
+yle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fon=
+t-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-=
+spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; te=
+xt-decoration-style: initial; text-decoration-color: initial;"><br style=3D=
+"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; t=
+ext-decoration-style: initial; text-decoration-color: initial;" data-mce-st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial;"><span=
+ style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16p=
+x; font-style: normal; font-variant-ligatures: normal; font-variant-caps: n=
+ormal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #=
+ffffff; text-decoration-style: initial; text-decoration-color: initial; dis=
+play: inline !important; float: none;" data-mce-style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial; display: inline !important; flo=
+at: none;">Important Dates</span><br style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial;" data-mce-style=3D"color: #000000; font-fa=
+mily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varia=
+nt-ligatures: normal; font-variant-caps: normal; font-weight: normal; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
+ansform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-t=
+ext-stroke-width: 0px; background-color: #ffffff; text-decoration-style: in=
+itial; text-decoration-color: initial;"><br style=3D"color: #000000; font-f=
+amily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: normal; lett=
+er-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-t=
+ransform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-=
+text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: i=
+nitial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; =
+font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fon=
+t-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal=
+; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-st=
+yle: initial; text-decoration-color: initial;"><span style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial; display: inline !important=
+; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times New R=
+oman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: normal; letter-spacing: normal;=
+ orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whi=
+te-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: =
+0px; background-color: #ffffff; text-decoration-style: initial; text-decora=
+tion-color: initial; display: inline !important; float: none;">Workshop Pap=
+ers Submission Deadline: August 14, 2017</span><br style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial;" data-mce-style=3D"color: #0=
+00000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
+: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decora=
+tion-style: initial; text-decoration-color: initial;"><span style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial; display: inline !im=
+portant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Time=
+s New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; background-color: #ffffff; text-decoration-style: initial; text=
+-decoration-color: initial; display: inline !important; float: none;">Autho=
+rs Notification Deadline: September 14, 2017</span><br style=3D"color: #000=
+000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: n=
+ormal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: =
+0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorati=
+on-style: initial; text-decoration-color: initial;" data-mce-style=3D"color=
+: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: =
+normal; font-variant-ligatures: normal; font-variant-caps: normal; font-wei=
+ght: normal; letter-spacing: normal; orphans: 2; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-de=
+coration-style: initial; text-decoration-color: initial;"><span style=3D"co=
+lor: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-styl=
+e: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-=
+weight: normal; letter-spacing: normal; orphans: 2; text-align: start; text=
+-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-sp=
+acing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text=
+-decoration-style: initial; text-decoration-color: initial; display: inline=
+ !important; float: none;" data-mce-style=3D"color: #000000; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff; text-decoration-style: initial; =
+text-decoration-color: initial; display: inline !important; float: none;">E=
+arly Registration Deadline: September 24, 2017</span><br style=3D"color: #0=
+00000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
+: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decora=
+tion-style: initial; text-decoration-color: initial;" data-mce-style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial;"><span style=3D"=
+color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-st=
+yle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fon=
+t-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-=
+spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; te=
+xt-decoration-style: initial; text-decoration-color: initial; display: inli=
+ne !important; float: none;" data-mce-style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial; display: inline !important; float: none;"=
+>Camera Ready Paper &amp; Copyright: October 1, 2017</span><br style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;"><span st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial; displa=
+y: inline !important; float: none;" data-mce-style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial; display: inline !important; float:=
+ none;">Workshops: November 13, 2017</span><br style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00000=
+0; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; =
+font-variant-ligatures: normal; font-variant-caps: normal; font-weight: nor=
+mal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
+x; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration=
+-style: initial; text-decoration-color: initial;"><br style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;" data-mce-style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial;"><span style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial; display: inline !important; float: none;">Wo=
+rkshop Chairs:</span><br style=3D"color: #000000; font-family: 'Times New R=
+oman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: normal; letter-spacing: normal;=
+ orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whi=
+te-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: =
+0px; background-color: #ffffff; text-decoration-style: initial; text-decora=
+tion-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial;"><br style=3D"color: #000000; font-family: 'Time=
+s New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; background-color: #ffffff; text-decoration-style: initial; text=
+-decoration-color: initial;" data-mce-style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial;"><span style=3D"color: #000000; font-fami=
+ly: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant=
+-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-=
+spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
+sform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; background-color: #ffffff; text-decoration-style: init=
+ial; text-decoration-color: initial; display: inline !important; float: non=
+e;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial; display: inline !important; float: none;">Sami Bhiri University of=
+ Monastir, Tunisia</span><br style=3D"color: #000000; font-family: 'Times N=
+ew Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
+th: 0px; background-color: #ffffff; text-decoration-style: initial; text-de=
+coration-color: initial;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial;"><span style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial; display: inline !important; float: none;"=
+ data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial; display: inline !important; float: none;">Walid Gaaloul CNRS Samovar =
+Lab, Telecom SudParis, France</span><br style=3D"color: #000000; font-famil=
+y: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initi=
+al; text-decoration-color: initial;" data-mce-style=3D"color: #000000; font=
+-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-va=
+riant-ligatures: normal; font-variant-caps: normal; font-weight: normal; le=
+tter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text=
+-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webki=
+t-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style:=
+ initial; text-decoration-color: initial;"><span style=3D"color: #000000; f=
+ont-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font=
+-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal;=
+ letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
+ext-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-sty=
+le: initial; text-decoration-color: initial; display: inline !important; fl=
+oat: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial; display: inline !important; float: none;">Nizar Messai Uni=
+versity Computer Science Lab, University of Tours, France</span><br style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;" data-mce=
+-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16p=
+x; font-style: normal; font-variant-ligatures: normal; font-variant-caps: n=
+ormal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #=
+ffffff; text-decoration-style: initial; text-decoration-color: initial;"><s=
+pan style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.=
+16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-ali=
+gn: start; text-indent: 0px; text-transform: none; white-space: normal; wid=
+ows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color=
+: #ffffff; text-decoration-style: initial; text-decoration-color: initial; =
+display: inline !important; float: none;" data-mce-style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial; display: inline !important; =
+float: none;">Yacine</span><span style=3D"color: #000000; font-family: 'Tim=
+es New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
+ normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke=
+-width: 0px; background-color: #ffffff; text-decoration-style: initial; tex=
+t-decoration-color: initial; display: inline !important; float: none;" data=
+-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+ display: inline !important; float: none;"><span>&nbsp;</span></span><span =
+class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT423_com_zimbra_date" sty=
+le=3D"color: #005a95; text-decoration: none; cursor: pointer; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff;" data-mce-style=3D"color: #005a=
+95; text-decoration: none; cursor: pointer; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff;"><span class=3D"Object" role=3D"link" id=3D"OBJ_P=
+REFIX_DWT428_com_zimbra_date" style=3D"color: #005a95; text-decoration: non=
+e; cursor: pointer;" data-mce-style=3D"color: #005a95; text-decoration: non=
+e; cursor: pointer;">Sam</span></span><span style=3D"color: #000000; font-f=
+amily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: normal; lett=
+er-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-t=
+ransform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-=
+text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: i=
+nitial; text-decoration-color: initial; display: inline !important; float: =
+none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; fo=
+nt-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-=
+variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans:=
+ 2; text-align: start; text-indent: 0px; text-transform: none; white-space:=
+ normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; back=
+ground-color: #ffffff; text-decoration-style: initial; text-decoration-colo=
+r: initial; display: inline !important; float: none;"><span>&nbsp;</span></=
+span><span style=3D"color: #000000; font-family: 'Times New Roman'; font-si=
+ze: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varia=
+nt-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; t=
+ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
+al; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgroun=
+d-color: #ffffff; text-decoration-style: initial; text-decoration-color: in=
+itial; display: inline !important; float: none;" data-mce-style=3D"color: #=
+000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: nor=
+mal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight=
+: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inden=
+t: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing:=
+ 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decor=
+ation-style: initial; text-decoration-color: initial; display: inline !impo=
+rtant; float: none;">Computer Science Lab, University of Tours, France</spa=
+n><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 1=
+4.16px; font-style: normal; font-variant-ligatures: normal; font-variant-ca=
+ps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-a=
+lign: start; text-indent: 0px; text-transform: none; white-space: normal; w=
+idows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-col=
+or: #ffffff; text-decoration-style: initial; text-decoration-color: initial=
+;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff; text-decoration-style: initial; text-decoration-color: i=
+nitial;"><br style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial;"><span style=3D"color: #000000; font-family: 'Times New Roma=
+n'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal;=
+ font-variant-caps: normal; font-weight: normal; letter-spacing: normal; or=
+phans: 2; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
+; background-color: #ffffff; text-decoration-style: initial; text-decoratio=
+n-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Program committee</span><br style=3D"color=
+: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: =
+normal; font-variant-ligatures: normal; font-variant-caps: normal; font-wei=
+ght: normal; letter-spacing: normal; orphans: 2; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-de=
+coration-style: initial; text-decoration-color: initial;" data-mce-style=3D=
+"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; t=
+ext-decoration-style: initial; text-decoration-color: initial;"><br style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;" data-mce=
+-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16p=
+x; font-style: normal; font-variant-ligatures: normal; font-variant-caps: n=
+ormal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #=
+ffffff; text-decoration-style: initial; text-decoration-color: initial;"><s=
+pan style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.=
+16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-ali=
+gn: start; text-indent: 0px; text-transform: none; white-space: normal; wid=
+ows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color=
+: #ffffff; text-decoration-style: initial; text-decoration-color: initial; =
+display: inline !important; float: none;" data-mce-style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial; display: inline !important; =
+float: none;">Nour Assy, Technische Universiteit Eindhoven, Netherlands</sp=
+an><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: =
+14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-c=
+aps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-co=
+lor: #ffffff; text-decoration-style: initial; text-decoration-color: initia=
+l;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial;"><span style=3D"color: #000000; font-family: 'Times New Roman'; fo=
+nt-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-=
+variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans:=
+ 2; text-align: start; text-indent: 0px; text-transform: none; white-space:=
+ normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; back=
+ground-color: #ffffff; text-decoration-style: initial; text-decoration-colo=
+r: initial; display: inline !important; float: none;" data-mce-style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;">Salima Benbernou, Paris Descartes University, Fra=
+nce</span><br style=3D"color: #000000; font-family: 'Times New Roman'; font=
+-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-va=
+riant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgr=
+ound-color: #ffffff; text-decoration-style: initial; text-decoration-color:=
+ initial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'=
+; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: normal; letter-spacing: normal; orph=
+ans: 2; text-align: start; text-indent: 0px; text-transform: none; white-sp=
+ace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: #ffffff; text-decoration-style: initial; text-decoration-=
+color: initial;"><span style=3D"color: #000000; font-family: 'Times New Rom=
+an'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal=
+; font-variant-caps: normal; font-weight: normal; letter-spacing: normal; o=
+rphans: 2; text-align: start; text-indent: 0px; text-transform: none; white=
+-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0p=
+x; background-color: #ffffff; text-decoration-style: initial; text-decorati=
+on-color: initial; display: inline !important; float: none;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial; display: =
+inline !important; float: none;">Boualem Benatallah, University of New Sout=
+h Wales, Australia</span><br style=3D"color: #000000; font-family: 'Times N=
+ew Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
+th: 0px; background-color: #ffffff; text-decoration-style: initial; text-de=
+coration-color: initial;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial;"><span style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial; display: inline !important; float: none;"=
+ data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial; display: inline !important; float: none;">Omar Boucelma, Aix-Marseill=
+e University, France</span><br style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial;" data-mce-style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial;"><span style=3D"color: #000000; font-famil=
+y: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initi=
+al; text-decoration-color: initial; display: inline !important; float: none=
+;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff; text-decoration-style: initial; text-decoration-color: i=
+nitial; display: inline !important; float: none;">Jorge Cardoso, University=
+ of Coimbra, Portugal</span><br style=3D"color: #000000; font-family: 'Time=
+s New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; background-color: #ffffff; text-decoration-style: initial; text=
+-decoration-color: initial;" data-mce-style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial;"><span style=3D"color: #000000; font-fami=
+ly: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant=
+-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-=
+spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
+sform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; background-color: #ffffff; text-decoration-style: init=
+ial; text-decoration-color: initial; display: inline !important; float: non=
+e;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial; display: inline !important; float: none;">Christine Collet, Grenob=
+le Informatics laboratory (LIG), France</span><br style=3D"color: #000000; =
+font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fon=
+t-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal=
+; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-st=
+yle: initial; text-decoration-color: initial;" data-mce-style=3D"color: #00=
+0000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
+ 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decorat=
+ion-style: initial; text-decoration-color: initial;"><span style=3D"color: =
+#000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: no=
+rmal; font-variant-ligatures: normal; font-variant-caps: normal; font-weigh=
+t: normal; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
+nt: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing=
+: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-deco=
+ration-style: initial; text-decoration-color: initial; display: inline !imp=
+ortant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;">Edward=
+ Curry, DERI, University of Ireland, Galway, Ireland</span><br style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial;" data-mce-style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;"><span st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial; displa=
+y: inline !important; float: none;" data-mce-style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial; display: inline !important; float:=
+ none;">Wassim Derguech, DERI, University of Ireland, Galway, Ireland</span=
+><br style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14=
+.16px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-al=
+ign: start; text-indent: 0px; text-transform: none; white-space: normal; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-colo=
+r: #ffffff; text-decoration-style: initial; text-decoration-color: initial;=
+" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-si=
+ze: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varia=
+nt-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; t=
+ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
+al; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgroun=
+d-color: #ffffff; text-decoration-style: initial; text-decoration-color: in=
+itial;"><span style=3D"color: #000000; font-family: 'Times New Roman'; font=
+-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-va=
+riant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; white-space: n=
+ormal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgr=
+ound-color: #ffffff; text-decoration-style: initial; text-decoration-color:=
+ initial; display: inline !important; float: none;" data-mce-style=3D"color=
+: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: =
+normal; font-variant-ligatures: normal; font-variant-caps: normal; font-wei=
+ght: normal; letter-spacing: normal; orphans: 2; text-align: start; text-in=
+dent: 0px; text-transform: none; white-space: normal; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-de=
+coration-style: initial; text-decoration-color: initial; display: inline !i=
+mportant; float: none;">Khaled Gaaloul, Public Research Centre Henri Tudor,=
+ Luxembourg</span><br style=3D"color: #000000; font-family: 'Times New Roma=
+n'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal;=
+ font-variant-caps: normal; font-weight: normal; letter-spacing: normal; or=
+phans: 2; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
+; background-color: #ffffff; text-decoration-style: initial; text-decoratio=
+n-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times Ne=
+w Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: n=
+ormal; font-variant-caps: normal; font-weight: normal; letter-spacing: norm=
+al; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-widt=
+h: 0px; background-color: #ffffff; text-decoration-style: initial; text-dec=
+oration-color: initial;"><span style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;" data-m=
+ce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.1=
+6px; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
+ normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-alig=
+n: start; text-indent: 0px; text-transform: none; white-space: normal; wido=
+ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color:=
+ #ffffff; text-decoration-style: initial; text-decoration-color: initial; d=
+isplay: inline !important; float: none;">Feng Gao, DERI, University of Irel=
+and, Galway, Ireland</span><br style=3D"color: #000000; font-family: 'Times=
+ New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures=
+: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: n=
+ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
+e; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; background-color: #ffffff; text-decoration-style: initial; text-=
+decoration-color: initial;" data-mce-style=3D"color: #000000; font-family: =
+'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-lig=
+atures: normal; font-variant-caps: normal; font-weight: normal; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-st=
+roke-width: 0px; background-color: #ffffff; text-decoration-style: initial;=
+ text-decoration-color: initial;"><span style=3D"color: #000000; font-famil=
+y: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initi=
+al; text-decoration-color: initial; display: inline !important; float: none=
+;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-s=
+ize: 14.16px; font-style: normal; font-variant-ligatures: normal; font-vari=
+ant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: nor=
+mal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgrou=
+nd-color: #ffffff; text-decoration-style: initial; text-decoration-color: i=
+nitial; display: inline !important; float: none;">Claude Godart, LORIA, Nan=
+cy, France</span><br style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times New=
+ Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: no=
+rmal; font-variant-caps: normal; font-weight: normal; letter-spacing: norma=
+l; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; w=
+hite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
+: 0px; background-color: #ffffff; text-decoration-style: initial; text-deco=
+ration-color: initial;"><span style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial; display: inline !important; float: none;" data-mc=
+e-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16=
+px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align=
+: start; text-indent: 0px; text-transform: none; white-space: normal; widow=
+s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: =
+#ffffff; text-decoration-style: initial; text-decoration-color: initial; di=
+splay: inline !important; float: none;">Mohamed Graiet, ISIMA, University o=
+f Monastir, Tunisia</span><br style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial;" data-mce-style=3D"color: #000000; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff; text-decoration-style: initial; =
+text-decoration-color: initial;"><span style=3D"color: #000000; font-family=
+: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: normal; letter-sp=
+acing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transf=
+orm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; background-color: #ffffff; text-decoration-style: initia=
+l; text-decoration-color: initial; display: inline !important; float: none;=
+" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-si=
+ze: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varia=
+nt-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; t=
+ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
+al; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgroun=
+d-color: #ffffff; text-decoration-style: initial; text-decoration-color: in=
+itial; display: inline !important; float: none;">Imen Grida Ben Yahia, Oran=
+ge, France</span><br style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times New=
+ Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: no=
+rmal; font-variant-caps: normal; font-weight: normal; letter-spacing: norma=
+l; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; w=
+hite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
+: 0px; background-color: #ffffff; text-decoration-style: initial; text-deco=
+ration-color: initial;"><span style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial; display: inline !important; float: none;" data-mc=
+e-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16=
+px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align=
+: start; text-indent: 0px; text-transform: none; white-space: normal; widow=
+s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: =
+#ffffff; text-decoration-style: initial; text-decoration-color: initial; di=
+splay: inline !important; float: none;">Mohand-Said Hacid, University of Ly=
+on, France</span><br style=3D"color: #000000; font-family: 'Times New Roman=
+'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; orp=
+hans: 2; text-align: start; text-indent: 0px; text-transform: none; white-s=
+pace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ background-color: #ffffff; text-decoration-style: initial; text-decoration=
+-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Times New=
+ Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: no=
+rmal; font-variant-caps: normal; font-weight: normal; letter-spacing: norma=
+l; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; w=
+hite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
+: 0px; background-color: #ffffff; text-decoration-style: initial; text-deco=
+ration-color: initial;"><span style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial; display: inline !important; float: none;" data-mc=
+e-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16=
+px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
+normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align=
+: start; text-indent: 0px; text-transform: none; white-space: normal; widow=
+s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: =
+#ffffff; text-decoration-style: initial; text-decoration-color: initial; di=
+splay: inline !important; float: none;">Marianne Huchard, LIRMM, CNRS, Univ=
+ersity Montpellier 2, France</span><br style=3D"color: #000000; font-family=
+: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: normal; letter-sp=
+acing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transf=
+orm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; background-color: #ffffff; text-decoration-style: initia=
+l; text-decoration-color: initial;" data-mce-style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial;"><span style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial; display: inline !important; flo=
+at: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'=
+; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: normal; letter-spacing: normal; orph=
+ans: 2; text-align: start; text-indent: 0px; text-transform: none; white-sp=
+ace: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+background-color: #ffffff; text-decoration-style: initial; text-decoration-=
+color: initial; display: inline !important; float: none;">Kais Klai, Univer=
+sity Paris 13, France</span><br style=3D"color: #000000; font-family: 'Time=
+s New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
+ne; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
+width: 0px; background-color: #ffffff; text-decoration-style: initial; text=
+-decoration-color: initial;" data-mce-style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial;"><span style=3D"color: #000000; font-fami=
+ly: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant=
+-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-=
+spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
+sform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; background-color: #ffffff; text-decoration-style: init=
+ial; text-decoration-color: initial; display: inline !important; float: non=
+e;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-=
+size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; white-space: no=
+rmal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgro=
+und-color: #ffffff; text-decoration-style: initial; text-decoration-color: =
+initial; display: inline !important; float: none;">Mourad Kmimech, ISIMA, U=
+niversity of Monastir, Tunisia</span><br style=3D"color: #000000; font-fami=
+ly: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant=
+-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-=
+spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
+sform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; background-color: #ffffff; text-decoration-style: init=
+ial; text-decoration-color: initial;" data-mce-style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial;"><span style=3D"color: #000000; =
+font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fon=
+t-variant-ligatures: normal; font-variant-caps: normal; font-weight: normal=
+; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-st=
+yle: initial; text-decoration-color: initial; display: inline !important; f=
+loat: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roma=
+n'; font-size: 14.16px; font-style: normal; font-variant-ligatures: normal;=
+ font-variant-caps: normal; font-weight: normal; letter-spacing: normal; or=
+phans: 2; text-align: start; text-indent: 0px; text-transform: none; white-=
+space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px=
+; background-color: #ffffff; text-decoration-style: initial; text-decoratio=
+n-color: initial; display: inline !important; float: none;">Massimo Mecella=
+, SAPIENZA, University of Rome, Italy</span><br style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial;" data-mce-style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;"><span style=3D"color: #0=
+00000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: norm=
+al; font-variant-ligatures: normal; font-variant-caps: normal; font-weight:=
+ normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
+: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decora=
+tion-style: initial; text-decoration-color: initial; display: inline !impor=
+tant; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times N=
+ew Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
+th: 0px; background-color: #ffffff; text-decoration-style: initial; text-de=
+coration-color: initial; display: inline !important; float: none;">Amedeo N=
+apoli, LORIA, Nancy, France</span><br style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial;" data-mce-style=3D"color: #000000; font-f=
+amily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-vari=
+ant-ligatures: normal; font-variant-caps: normal; font-weight: normal; lett=
+er-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-t=
+ransform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-=
+text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: i=
+nitial; text-decoration-color: initial;"><span style=3D"color: #000000; fon=
+t-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-v=
+ariant-ligatures: normal; font-variant-caps: normal; font-weight: normal; l=
+etter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webk=
+it-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style=
+: initial; text-decoration-color: initial; display: inline !important; floa=
+t: none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial; display: inline !important; float: none;">George A. Papadopo=
+ulos University of Cyprus</span><br style=3D"color: #000000; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff; text-decoration-style: initial; =
+text-decoration-color: initial;" data-mce-style=3D"color: #000000; font-fam=
+ily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varian=
+t-ligatures: normal; font-variant-caps: normal; font-weight: normal; letter=
+-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
+nsform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-te=
+xt-stroke-width: 0px; background-color: #ffffff; text-decoration-style: ini=
+tial; text-decoration-color: initial;"><span style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial; display: inline !important; float:=
+ none;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; f=
+ont-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font=
+-variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans=
+: 2; text-align: start; text-indent: 0px; text-transform: none; white-space=
+: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; bac=
+kground-color: #ffffff; text-decoration-style: initial; text-decoration-col=
+or: initial; display: inline !important; float: none;">Olivier Perrin, LORI=
+A, Nancy, France</span><br style=3D"color: #000000; font-family: 'Times New=
+ Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: no=
+rmal; font-variant-caps: normal; font-weight: normal; letter-spacing: norma=
+l; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; w=
+hite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
+: 0px; background-color: #ffffff; text-decoration-style: initial; text-deco=
+ration-color: initial;" data-mce-style=3D"color: #000000; font-family: 'Tim=
+es New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: normal; letter-spacing:=
+ normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
+one; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke=
+-width: 0px; background-color: #ffffff; text-decoration-style: initial; tex=
+t-decoration-color: initial;"><span style=3D"color: #000000; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff; text-decoration-style: initial; =
+text-decoration-color: initial; display: inline !important; float: none;" d=
+ata-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-size:=
+ 14.16px; font-style: normal; font-variant-ligatures: normal; font-variant-=
+caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text=
+-align: start; text-indent: 0px; text-transform: none; white-space: normal;=
+ widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-c=
+olor: #ffffff; text-decoration-style: initial; text-decoration-color: initi=
+al; display: inline !important; float: none;">Pierluigi Plebani, Politecnic=
+o di Milano, Italy</span><br style=3D"color: #000000; font-family: 'Times N=
+ew Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
+th: 0px; background-color: #ffffff; text-decoration-style: initial; text-de=
+coration-color: initial;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial;"><span style=3D"color: #000000; font-family:=
+ 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-li=
+gatures: normal; font-variant-caps: normal; font-weight: normal; letter-spa=
+cing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfo=
+rm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; background-color: #ffffff; text-decoration-style: initial=
+; text-decoration-color: initial; display: inline !important; float: none;"=
+ data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial; display: inline !important; float: none;">Mohamed Quafafou, Aix-Marse=
+ille University, France</span><br style=3D"color: #000000; font-family: 'Ti=
+mes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatu=
+res: normal; font-variant-caps: normal; font-weight: normal; letter-spacing=
+: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-strok=
+e-width: 0px; background-color: #ffffff; text-decoration-style: initial; te=
+xt-decoration-color: initial;" data-mce-style=3D"color: #000000; font-famil=
+y: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: normal; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text=
+-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initi=
+al; text-decoration-color: initial;"><span style=3D"color: #000000; font-fa=
+mily: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-varia=
+nt-ligatures: normal; font-variant-caps: normal; font-weight: normal; lette=
+r-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tr=
+ansform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-t=
+ext-stroke-width: 0px; background-color: #ffffff; text-decoration-style: in=
+itial; text-decoration-color: initial; display: inline !important; float: n=
+one;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; fon=
+t-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-v=
+ariant-caps: normal; font-weight: normal; letter-spacing: normal; orphans: =
+2; text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backg=
+round-color: #ffffff; text-decoration-style: initial; text-decoration-color=
+: initial; display: inline !important; float: none;">Seung Hwan Ryu, Univer=
+sity of New South Wales, Australia</span><br style=3D"color: #000000; font-=
+family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: normal; let=
+ter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-=
+transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: =
+initial; text-decoration-color: initial;" data-mce-style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial;"><span style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial; display: inline !importan=
+t; float: none;" data-mce-style=3D"color: #000000; font-family: 'Times New =
+Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: nor=
+mal; font-variant-caps: normal; font-weight: normal; letter-spacing: normal=
+; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; wh=
+ite-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width:=
+ 0px; background-color: #ffffff; text-decoration-style: initial; text-decor=
+ation-color: initial; display: inline !important; float: none;">Brahmananda=
+ Sapkota, University of Twente, Netherlands</span><br style=3D"color: #0000=
+00; font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal;=
+ font-variant-ligatures: normal; font-variant-caps: normal; font-weight: no=
+rmal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0=
+px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px=
+; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoratio=
+n-style: initial; text-decoration-color: initial;" data-mce-style=3D"color:=
+ #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: normal; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
+ent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacin=
+g: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-dec=
+oration-style: initial; text-decoration-color: initial;"><span style=3D"col=
+or: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-style=
+: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
+eight: normal; letter-spacing: normal; orphans: 2; text-align: start; text-=
+indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spa=
+cing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-=
+decoration-style: initial; text-decoration-color: initial; display: inline =
+!important; float: none;" data-mce-style=3D"color: #000000; font-family: 'T=
+imes New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligat=
+ures: normal; font-variant-caps: normal; font-weight: normal; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stro=
+ke-width: 0px; background-color: #ffffff; text-decoration-style: initial; t=
+ext-decoration-color: initial; display: inline !important; float: none;">Mo=
+hamed Sellami, RDI Group, LISITE LAB, ISEP Paris, France</span><br style=3D=
+"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; t=
+ext-indent: 0px; text-transform: none; white-space: normal; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; t=
+ext-decoration-style: initial; text-decoration-color: initial;" data-mce-st=
+yle=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; widows: 2=
+; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #fff=
+fff; text-decoration-style: initial; text-decoration-color: initial;"><span=
+ style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16p=
+x; font-style: normal; font-variant-ligatures: normal; font-variant-caps: n=
+ormal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #=
+ffffff; text-decoration-style: initial; text-decoration-color: initial; dis=
+play: inline !important; float: none;" data-mce-style=3D"color: #000000; fo=
+nt-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-=
+variant-ligatures: normal; font-variant-caps: normal; font-weight: normal; =
+letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
+xt-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-styl=
+e: initial; text-decoration-color: initial; display: inline !important; flo=
+at: none;">Sana Sellami, Aix-Marseille University, France</span><br style=
+=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; fon=
+t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
+ font-weight: normal; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff=
+; text-decoration-style: initial; text-decoration-color: initial;" data-mce=
+-style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16p=
+x; font-style: normal; font-variant-ligatures: normal; font-variant-caps: n=
+ormal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; white-space: normal; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #=
+ffffff; text-decoration-style: initial; text-decoration-color: initial;"><s=
+pan style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.=
+16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: normal; letter-spacing: normal; orphans: 2; text-ali=
+gn: start; text-indent: 0px; text-transform: none; white-space: normal; wid=
+ows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color=
+: #ffffff; text-decoration-style: initial; text-decoration-color: initial; =
+display: inline !important; float: none;" data-mce-style=3D"color: #000000;=
+ font-family: 'Times New Roman'; font-size: 14.16px; font-style: normal; fo=
+nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: norma=
+l; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px;=
+ text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-s=
+tyle: initial; text-decoration-color: initial; display: inline !important; =
+float: none;">Samir Tata, Institut Mines-Telecom, Telecom SudParis, France<=
+/span><br style=3D"color: #000000; font-family: 'Times New Roman'; font-siz=
+e: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; white-space: norma=
+l; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background=
+-color: #ffffff; text-decoration-style: initial; text-decoration-color: ini=
+tial;" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; fo=
+nt-size: 14.16px; font-style: normal; font-variant-ligatures: normal; font-=
+variant-caps: normal; font-weight: normal; letter-spacing: normal; orphans:=
+ 2; text-align: start; text-indent: 0px; text-transform: none; white-space:=
+ normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; back=
+ground-color: #ffffff; text-decoration-style: initial; text-decoration-colo=
+r: initial;"><span style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial; display: inline !important; float: none;" data-mce-style=3D"=
+color: #000000; font-family: 'Times New Roman'; font-size: 14.16px; font-st=
+yle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fon=
+t-weight: normal; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-=
+spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; te=
+xt-decoration-style: initial; text-decoration-color: initial; display: inli=
+ne !important; float: none;">Yehia Taher, David Lab., Versailles University=
+, France</span><br style=3D"color: #000000; font-family: 'Times New Roman';=
+ font-size: 14.16px; font-style: normal; font-variant-ligatures: normal; fo=
+nt-variant-caps: normal; font-weight: normal; letter-spacing: normal; orpha=
+ns: 2; text-align: start; text-indent: 0px; text-transform: none; white-spa=
+ce: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; b=
+ackground-color: #ffffff; text-decoration-style: initial; text-decoration-c=
+olor: initial;" data-mce-style=3D"color: #000000; font-family: 'Times New R=
+oman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: normal; letter-spacing: normal;=
+ orphans: 2; text-align: start; text-indent: 0px; text-transform: none; whi=
+te-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: =
+0px; background-color: #ffffff; text-decoration-style: initial; text-decora=
+tion-color: initial;"><span style=3D"color: #000000; font-family: 'Times Ne=
+w Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures: n=
+ormal; font-variant-caps: normal; font-weight: normal; letter-spacing: norm=
+al; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-widt=
+h: 0px; background-color: #ffffff; text-decoration-style: initial; text-dec=
+oration-color: initial; display: inline !important; float: none;" data-mce-=
+style=3D"color: #000000; font-family: 'Times New Roman'; font-size: 14.16px=
+; font-style: normal; font-variant-ligatures: normal; font-variant-caps: no=
+rmal; font-weight: normal; letter-spacing: normal; orphans: 2; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; widows:=
+ 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #f=
+fffff; text-decoration-style: initial; text-decoration-color: initial; disp=
+lay: inline !important; float: none;">Tomas Vitvar, Czech Technical Univers=
+ity, Czech Republic</span><br style=3D"color: #000000; font-family: 'Times =
+New Roman'; font-size: 14.16px; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: normal; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-wi=
+dth: 0px; background-color: #ffffff; text-decoration-style: initial; text-d=
+ecoration-color: initial;" data-mce-style=3D"color: #000000; font-family: '=
+Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-liga=
+tures: normal; font-variant-caps: normal; font-weight: normal; letter-spaci=
+ng: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform=
+: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; background-color: #ffffff; text-decoration-style: initial; =
+text-decoration-color: initial;"><span style=3D"color: #000000; font-family=
+: 'Times New Roman'; font-size: 14.16px; font-style: normal; font-variant-l=
+igatures: normal; font-variant-caps: normal; font-weight: normal; letter-sp=
+acing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transf=
+orm: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-=
+stroke-width: 0px; background-color: #ffffff; text-decoration-style: initia=
+l; text-decoration-color: initial; display: inline !important; float: none;=
+" data-mce-style=3D"color: #000000; font-family: 'Times New Roman'; font-si=
+ze: 14.16px; font-style: normal; font-variant-ligatures: normal; font-varia=
+nt-caps: normal; font-weight: normal; letter-spacing: normal; orphans: 2; t=
+ext-align: start; text-indent: 0px; text-transform: none; white-space: norm=
+al; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; backgroun=
+d-color: #ffffff; text-decoration-style: initial; text-decoration-color: in=
+itial; display: inline !important; float: none;">Zhangbing Zhou, CUG Beijin=
+g, China</span></div><div><br></div><div data-marker=3D"__SIG_POST__">-- <b=
+r></div><div>Ma=C3=AEtre de conf=C3=A9rences <br>Universit=C3=A9 Fran=C3=A7=
+ois Rabelais Tours<br>Laboratoire d'Informatique - IUT de Blois<br>3 place =
+Jean Jaur=C3=A8s - 41000 Blois<br>02 54 55 21 53</div></div></body></html>
+------=_Part_45669405_549844614.1502359341196--
+
+

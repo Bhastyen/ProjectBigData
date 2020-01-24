@@ -1,0 +1,300 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D908D2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 11:58:10 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id D7370628822
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 25 Jun 2018 11:58:10 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id D1B1141E4ED9
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 11:58:10 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.529
+X-Spam-Level:
+X-Spam-Status: No, score=-4.529 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.8463 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id MIGSSAF1-40Z for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 11:58:09 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id E77C6401C11A
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 11:58:09 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id C1A3E3F8E6
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 11:58:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:mime-version:received:received:received; s=default;
+	 t=1529920689; x=1531735090; bh=LrPAXVTQou6NbISAO4+oAxW2i00g1KE8
+	ipUSVivo7mg=; b=LFNizqmqNabOknBjLizY9sbyyzcgGB91YRzIEhpn4VBkfqFR
+	XD6LesFBhkWlshrKbLF6/vEYhX+QHR0loQRlLdR9yBXKZVPLuWzytxDfztY/ZN7E
+	+clfEpTIUpw8/F8yjaqc63B49DFCK4hkCQobm0tnOZomYEeds1HqzwWEjN0=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id rvGvuITHIJhD for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 25 Jun 2018 11:58:09 +0200 (CEST)
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 733843F8E3
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 11:58:09 +0200 (CEST)
+Received: by mail-lj1-f175.google.com with SMTP id i125-v6so5603564lji.2
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 25 Jun 2018 02:58:09 -0700 (PDT)
+X-Gm-Message-State: APt69E3KB+d/L8bgIcCCUMElJD0y8VkhTvs7UjO6SsFpIHmcVddVrqU0
+	FQmXz51vdws8ydUbFdrtQaSgMr49K2m08lHHc8g=
+X-Google-Smtp-Source: ADUXVKIQRf+hKg1enox0PHxhNeGdYxkXJ7COUyY4Skf2tvo7nBMo/9pK+WSLjq6kMtF+/tyjdJlVMYRB6Q/jjHqaFi0=
+X-Received: by 2002:a2e:5f59:: with SMTP id t86-v6mr3790946ljb.0.1529920688900;
+ Mon, 25 Jun 2018 02:58:08 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Mon, 25 Jun 2018 11:57:57 +0200
+X-Gmail-Original-Message-ID: <CALsPASXB7X0oiKxj1ABuVGMBfweht+mRdqUJW9qtU5rPfOhy5Q@mail.gmail.com>
+Message-ID: <CALsPASXB7X0oiKxj1ABuVGMBfweht+mRdqUJW9qtU5rPfOhy5Q@mail.gmail.com>
+To: "iot-sisiot2018@easychair.org" <iot-sisiot2018@easychair.org>
+Content-Type: multipart/alternative; boundary="0000000000003251ea056f746b2f"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] First CFP for 2nd Int. Workshop on Semantic
+ Interoperability and Standardization in the IoT
+
+--0000000000003251ea056f746b2f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Apologies for cross postings.
+
+Please consider contributing to the SIS-IoT 2018 workshop, held as a part
+of the 8th International Conference on the Internet of Things (IoT 2018):
+
+2nd International Workshop on Semantic Interoperability and Standardization
+in the IoT (SIS-IoT 2018)
+
+Santa-Barbara, California, 15th October 2018
+
+WWW: https://iot2018wt.github.io/sis-iot/
+E-mail: iot-sisiot2018@easychair.org
+
+The main objective of this workshop is to bring SDOs and industrial
+practitioners in IoT with an interest in semantic interoperability together
+with the strong and successful research community at IoT 2018 to discuss
+current trends and challenges in Semantic Interoperability and
+Standardization in IoT.
+
+Semantic technology and linked data are perceived by the IoT industry as
+beneficial technologies to enable semantic interoperability in the
+fragmented landscape of IoT ecosystems and platforms. However, most
+industrial practitioners are not familiar with these technologies and are
+not willing to learn them, as they believe the learning curve is too steep.
+IoT developers - whether device manufacturers or application developers -
+ask for rather simple ontologies that are easy to use, and clear guidelines
+on how to implement semantic web/ linked data solutions, possibly supported
+by standards development organizations (SDOs), whereas the information they
+can currently find on the Internet is overwhelming and perceived as not
+directly applicable. As we have often heard from industrial stakeholders in
+the past years, there is a clear need to bring semantic technology out of
+the research labs - where it has been successful so far - to be adopted and
+applied in operational environments by the IoT industry. Semantic
+Interoperability is a key issue on the Internet of Things, and several
+organizations develop ontologies to describe IoT devices and the data they
+exchange. (W3C SSN, W3C WoT, ETSI SmartM2M, ETSI ISG CIM, BAC.net, KNX,
+BRICK, =E2=80=A6). We encourage these organizations to submit papers about =
+their
+work.
+
+The SIS-IoT workshop will be a half-day event with short and full papers,
+openly peer-reviewed on EasyChair. The event is meant to be highly
+interactive, so as to facilitate discussions among participants that could
+result in future collaborative work. A keynote/invited talk will be
+planned, and followed by authors presenting their paper. We will ensure
+sufficient time will be dedicated to questions and answers for each paper.
+The session will end with a general discussion session to discuss
+experience related to the topics of the workshop. A panel with experts from
+the research community and industrial stakeholders may be planned.
+
+
+TOPICS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Relevant topics of interest include the development and use of (ontology)
+standards for solving semantic interoperability issues along the following
+lines:
+
+
+- Cross-cutting IoT semantic interoperability approaches reusing standards
+- Use cases and implementations from pilots, innovation and research
+projects
+- Current trends in standardization bodies related to IoT
+- IoT standardization in vertical sectors (Smart Cities, Industrial
+Applications, Ageing Well, Smart Agriculture, Smart Energy, Wearables,
+Smart Appliances, Cooperative and Connected Mobility, etc.)
+- REST-like and RESTful architectural styles for applications involving
+constrained devices
+- Alignment of ontology standards among standardization bodies
+- Solutions for machine-to-machine semantic interoperability
+- Open source implementations of standards for semantic interoperability
+- Interoperability and alignment among standards, ontologies, catalogues,
+related to sensors, actuators, and the web of things
+- Semantic standards for Web of Data and Things
+- Semantic standards for constructing systems of IoT Systems
+
+
+PAPER SUBMISSION
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Papers should be submitted by August 15, 2018. We invite research papers
+and demonstration papers, either in long (16 pages) or short (8 pages)
+format. Submissions must be in PDF, formatted in the style of the Springer
+Publications format for Lecture Notes in Computer Science (LNCS).
+
+All proposed papers must be submitted in electronic form (PDF format) using
+the SSN 2018 conference management system at
+https://easychair.org/conferences/?conf=3Diot-sisiot2018
+
+See the full set of instructions at
+https://iot2018wt.github.io/sis-iot/#submission
+
+
+PUBLICATION
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Accepted papers will be published as CEUR workshop proceedings. At least
+one author of each accepted paper must register for the conference and
+present the paper there.
+
+
+IMPORTANT DATES
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+- Papers submission deadline: August 15, 2018 (midnight Hawaii time)
+- Notification to authors: September 5 at the latest, 2018
+- Late registration for IoT 2018 starts: September 7, 2018
+- Camera-ready papers: September 20, 2018
+- Workshop date: October 15, 2018, morning
+
+
+EVENT CHAIRS
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+- Laura Daniele, TNO, NL
+- Anna Fensel, University of Innsbruck, Austria
+- Ra=C3=BAl Garc=C3=ADa-Castro, Ontology Engineering Group, Universidad Pol=
+it=C3=A9cnica
+de Madrid, Spain
+- Maxime Lefran=C3=A7ois, MINES Saint-=C3=89tienne, France
+
+--0000000000003251ea056f746b2f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Apologies for cross postings.</div><div><br></div><di=
+v>Please consider contributing to the SIS-IoT 2018 workshop, held as a part=
+ of the 8th International Conference on the Internet of Things (IoT 2018):<=
+/div><div><br></div><div>2nd International Workshop on Semantic Interoperab=
+ility and Standardization in the IoT (SIS-IoT 2018)</div><div>=C2=A0</div><=
+div>Santa-Barbara, California, 15th October 2018</div><div>=C2=A0</div><div=
+>WWW: <a href=3D"https://iot2018wt.github.io/sis-iot/">https://iot2018wt.gi=
+thub.io/sis-iot/</a>=C2=A0</div><div>E-mail: <a href=3D"mailto:iot-sisiot20=
+18@easychair.org">iot-sisiot2018@easychair.org</a>=C2=A0</div><div>=C2=A0=
+=C2=A0</div><div>The main objective of this workshop is to bring SDOs and i=
+ndustrial practitioners in IoT with an interest in semantic interoperabilit=
+y together with the strong and successful research community at IoT 2018 to=
+ discuss current trends and challenges in Semantic Interoperability and Sta=
+ndardization in IoT.</div><div><br></div><div>Semantic technology and linke=
+d data are perceived by the IoT industry as beneficial technologies to enab=
+le semantic interoperability in the fragmented landscape of IoT ecosystems =
+and platforms. However, most industrial practitioners are not familiar with=
+ these technologies and are not willing to learn them, as they believe the =
+learning curve is too steep. IoT developers - whether device manufacturers =
+or application developers - ask for rather simple ontologies that are easy =
+to use, and clear guidelines on how to implement semantic web/ linked data =
+solutions, possibly supported by standards development organizations (SDOs)=
+, whereas the information they can currently find on the Internet is overwh=
+elming and perceived as not directly applicable. As we have often heard fro=
+m industrial stakeholders in the past years, there is a clear need to bring=
+ semantic technology out of the research labs - where it has been successfu=
+l so far - to be adopted and applied in operational environments by the IoT=
+ industry. Semantic Interoperability is a key issue on the Internet of Thin=
+gs, and several organizations develop ontologies to describe IoT devices an=
+d the data they exchange. (W3C SSN, W3C WoT, ETSI SmartM2M, ETSI ISG CIM, B=
+AC.net, KNX, BRICK, =E2=80=A6). We encourage these organizations to submit =
+papers about their work.</div><div><br></div><div>The SIS-IoT workshop will=
+ be a half-day event with short and full papers, openly peer-reviewed on Ea=
+syChair. The event is meant to be highly interactive, so as to facilitate d=
+iscussions among participants that could result in future collaborative wor=
+k. A keynote/invited talk will be planned, and followed by authors presenti=
+ng their paper. We will ensure sufficient time will be dedicated to questio=
+ns and answers for each paper. The session will end with a general discussi=
+on session to discuss experience related to the topics of the workshop. A p=
+anel with experts from the research community and industrial stakeholders m=
+ay be planned.</div><div>=C2=A0</div><div>=C2=A0</div><div>TOPICS</div><div=
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=C2=A0</div><div>Re=
+levant topics of interest include the development and use of (ontology) sta=
+ndards for solving semantic interoperability issues along the following lin=
+es:</div><div><br></div><div>=C2=A0</div><div>- Cross-cutting IoT semantic =
+interoperability approaches reusing standards</div><div>- Use cases and imp=
+lementations from pilots, innovation and research projects</div><div>- Curr=
+ent trends in standardization bodies related to IoT</div><div>- IoT standar=
+dization in vertical sectors (Smart Cities, Industrial Applications, Ageing=
+ Well, Smart Agriculture, Smart Energy, Wearables, Smart Appliances, Cooper=
+ative and Connected Mobility, etc.)</div><div>- REST-like and RESTful archi=
+tectural styles for applications involving constrained devices</div><div>- =
+Alignment of ontology standards among standardization bodies</div><div>- So=
+lutions for machine-to-machine semantic interoperability</div><div>- Open s=
+ource implementations of standards for semantic interoperability</div><div>=
+- Interoperability and alignment among standards, ontologies, catalogues, r=
+elated to sensors, actuators, and the web of things</div><div>- Semantic st=
+andards for Web of Data and Things</div><div>- Semantic standards for const=
+ructing systems of IoT Systems</div><div>=C2=A0</div><div>=C2=A0</div><div>=
+PAPER SUBMISSION</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>=
+<div>=C2=A0</div><div>Papers should be submitted by August 15, 2018. We inv=
+ite research papers and demonstration papers, either in long (16 pages) or =
+short (8 pages) format. Submissions must be in PDF, formatted in the style =
+of the Springer Publications format for Lecture Notes in Computer Science (=
+LNCS).</div><div>=C2=A0</div><div>All proposed papers must be submitted in =
+electronic form (PDF format) using the SSN 2018 conference management syste=
+m at <a href=3D"https://easychair.org/conferences/?conf=3Diot-sisiot2018">h=
+ttps://easychair.org/conferences/?conf=3Diot-sisiot2018</a></div><div>=C2=
+=A0</div><div>See the full set of instructions at <a href=3D"https://iot201=
+8wt.github.io/sis-iot/#submission">https://iot2018wt.github.io/sis-iot/#sub=
+mission</a></div><div>=C2=A0</div><div>=C2=A0</div><div>PUBLICATION</div><d=
+iv>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=C2=A0</div><div>Ac=
+cepted papers will be published as CEUR workshop proceedings. At least one =
+author of each accepted paper must register for the conference and present =
+the paper there.</div><div>=C2=A0</div><div>=C2=A0</div><div>IMPORTANT DATE=
+S</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=C2=A0</di=
+v><div>- Papers submission deadline: August 15, 2018 (midnight Hawaii time)=
+</div><div>- Notification to authors: September 5 at the latest, 2018</div>=
+<div>- Late registration for IoT 2018 starts: September 7, 2018</div><div>-=
+ Camera-ready papers: September 20, 2018</div><div>- Workshop date: October=
+ 15, 2018, morning</div><div>=C2=A0</div><div>=C2=A0</div><div>EVENT CHAIRS=
+</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div>=C2=A0</di=
+v><div>- Laura Daniele, TNO, NL</div><div>- Anna Fensel, University of Inns=
+bruck, Austria</div><div>- Ra=C3=BAl Garc=C3=ADa-Castro, Ontology Engineeri=
+ng Group, Universidad Polit=C3=A9cnica de Madrid, Spain</div><div>- Maxime =
+Lefran=C3=A7ois, MINES Saint-=C3=89tienne, France=C2=A0</div></div>
+
+--0000000000003251ea056f746b2f--

@@ -1,0 +1,431 @@
+Return-Path: <hocine.cherifi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3A41C229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  7 Aug 2017 16:06:38 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 349CF73A1A6
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  7 Aug 2017 16:06:38 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 27B1D4821B3B
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  7 Aug 2017 16:06:38 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.737
+X-Spam-Level: **
+X-Spam-Status: No, score=2.737 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	SUBJ_ALL_CAPS=1.625, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001,
+	VOWEL_URI_5=1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.5284 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WebQp1-qMwXe for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  7 Aug 2017 16:06:36 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x243.google.com (mail-lf0-x243.google.com [IPv6:2a00:1450:4010:c07::243])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id CC5B24416C69
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  7 Aug 2017 16:06:35 +0200 (CEST)
+Received: by mail-lf0-x243.google.com with SMTP id y15so397042lfd.5
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 07 Aug 2017 07:06:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=JTAUecmASYEf0GtzcKfQQuVbqRk5UcfgXcZyaeHDpWw=;
+        b=aU/t5fdy1MSYHJpgdqo9N42yjlhwK8ogq5rCbVQnDJHoCAX/vPeGKJFlAlAI8clU+j
+         ZNx/cpF0xzh0N6U4huf7LiZ0VG0MZIsQKb7o+fsHb70u3g9SEXUcJS3tWci3sLOUvvm1
+         wgUn8tpYo0LYELweclP1aDIssDl77sd4OkHWjumz3CVr2te7BRo6uM0xoPyJLNfrhne5
+         wp+ZZ6rdAXh2VqCxF8+zh1sMYXtrHaB3hG5yUKlEml4q0dDobiz+OgQOotiWBVtPfZCN
+         +v8wbvD/xYxXl8sHuExY8vNwddCGVT9pnc59gWdDGlREiBJzlX4nNFSsAi9+JQhLR1zU
+         M+6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=JTAUecmASYEf0GtzcKfQQuVbqRk5UcfgXcZyaeHDpWw=;
+        b=LATD8fYctInRdgfgblaYQLimdI0xu5NSPWfyxmQHidOPFW39GgcyHcBUiQCXJ8tAxN
+         +sQj4SDcFQRZwcLTC4UJtXE9So7241AaMCHJAWpcREA5seuFydxhU0RIDs+VMJrHe23R
+         l5ZGsYL5xk0qopvTjrmXQHnYbRJrqAe5n20kjPG7H/CUG/yeXY0VhXMwZnxow5NEWGYV
+         5Ys1OHakPmbwxJsnLhZBKFXvZpKX0aKkBw4Tq125QixmAA12GsVkKRb7r7SUunS+Kvy9
+         gDlEKkfzU8rb3JSVoMuNzGhDzOb9//PDvDFpyy5BFmqU2gTD6X85dpBUhGN+6ZhHOMrW
+         Tleg==
+X-Gm-Message-State: AHYfb5ggciKYHknDVomxa3Pr1jCGp9pKkGYVj9yJoKz8FlAhUBEDjfz2
+	1GC9/jGP//XH3xNf45MwuwH2YPnryg==
+X-Received: by 10.25.93.70 with SMTP id p6mr213656lfj.139.1502114794997; Mon,
+ 07 Aug 2017 07:06:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.46.14.1 with HTTP; Mon, 7 Aug 2017 07:06:34 -0700 (PDT)
+From: Hocine Cherifi <hocine.cherifi@gmail.com>
+Date: Mon, 7 Aug 2017 16:06:34 +0200
+Message-ID: <CAFX-JVtrK4VL3ypnAREgth-XSb4wgWRWBNHfEY_Osq02xC8F1Q@mail.gmail.com>
+To: info@sicc-it.org, rsd-forum@cines.fr, tcbd@comsoc.org, 
+	tciin.isat@u-bourgogne.fr, yins@mailman.yale.edu, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, SCISIP <SCISIP@listserv.nsf.gov>, 
+	SIF <annonces@listes.societe-informatique-de-france.fr>
+Content-Type: multipart/alternative; boundary="f403045e2640c48c5705562a5a32"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] COMPLEX NETWORKS 2017 DEADLINE APPROACHING
+
+--f403045e2640c48c5705562a5a32
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+Apologies for any cross-posting
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+*COMPLEX NETWORKS 2017*
+
+*Sixth Int. Conference on Complex Networks** & Their Applications*
+
+*http://www.complexnetworks.org <http://www.complexnetworks.org>*
+
+*Where and When:*
+
+Lyon, France, November 29  - 1 December 01, 2017.
+
+*Important dates:*
+
+* Abstract/Paper submission deadline: September 04, 2017
+
+* Notification of acceptance: October 01, 2017
+
+* Submission of Camera-Ready: October 8, 2017
+
+*Speakers:*
+
+Alex Arenas, <http://deim.urv.cat/~alexandre.arenas/> Universidad Rovira i
+Virgili, Spain
+
+Santo Fortunato <https://sites.google.com/site/santofortunato/>, Indiana
+University, USA
+
+Jure Leskovec <http://cs.stanford.edu/people/jure/>, Stanford, USA
+
+Daniele Quercia, <http://researchswinger.org/> Bell Labs Cambridge, UK
+
+Frank Schweitzer <https://www.sg.ethz.ch/team/people/fschweitzer/>, ETH
+Zurich, Switzerland
+
+Katharina Anna Zweig, <http://gtna.informatik.uni-kl.de/en/gruppe/zweig/>
+Technical University Kaiserslautern, Germany
+
+*Tutorials:* November 28, 2017
+
+Ginestra Bianconi, <http://www.maths.qmul.ac.uk/~gbianconi/> Queen Mary
+University of London, UK
+
+Francesco Bonchi, <http://francescobonchi.com/> ISI Foundation, Italy
+
+*Kind of contribution:*
+
+COMPLEX NETWORKS accepts contributions in the form of *papers* (not
+previously published) and *extended abstracts*.
+
+*Publication:*
+
+=C2=B7       *Papers *will be included in the conference *proceedings edite=
+d by
+Springer* on the Studies in Computational Intelligence Series (
+http://www.springer.com/series/7092).
+
+=C2=B7       *Extended abstracts* will be published in the *Book of Abstrac=
+ts
+(with ISBN)* together with the abstracts of the keynote presentations.
+
+
+
+=C2=B7       Extended versions of accepted contributions  will be invited f=
+or
+publication in *special issues of international journals*:
+
+o   Computational Social Networks
+<http://www.computationalsocialnetworks.com/> edited by Springer
+
+o   Applied Network Science <https://appliednetsci.springeropen.com/>
+edited by Springer
+
+o   Journal of Complex Networks <https://academic.oup.com/comnet> edited by
+Oxford University Press
+
+*Join us at *:  COMPLEX NETWORKS 2017, Lyon, France
+<http://complexnetworks.org/>
+
+*Publish your work on:* Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+*re**ad:
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>*Complex
+Networks & their Applications
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>
+***********************************************
+*   Pr Hocine CHERIFI                             *
+*          LE2I   UMR CNRS 6306              *
+*   Facult=C3=A9 des Sciences Mirande            *
+*    9 , avenue Alain Savary                     *
+*    BP 47870                                           *
+*    21078 DIJON    FRANCE                  *
+**********************************************
+
+--f403045e2640c48c5705562a5a32
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class=3D"gmail-normalCxSpFirst" style=3D"margin-bottom:3pt;line-height:1=
+37%"><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:137%;font-fam=
+ily:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);background:white">=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><s=
+pan lang=3D"EN-GB"><span></span></span></p><p class=3D"gmail-normalCxSpMidd=
+le" style=3D"margin-bottom:3pt;line-height:137%"><span lang=3D"EN-GB" style=
+=3D"font-size:10pt;line-height:137%;font-family:&quot;Helvetica Neue&quot;;=
+color:rgb(33,33,33);background:white">Apologies for any cross-posting</span=
+><span lang=3D"EN-GB"><span></span></span></p><p class=3D"gmail-normalCxSpM=
+iddle" style=3D"margin-bottom:3pt;line-height:137%"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10pt;line-height:137%;font-family:&quot;Helvetica Neue&quo=
+t;;color:rgb(33,33,33);background:white">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><span lang=3D"EN-GB"><span></=
+span></span></p><p class=3D"gmail-normalCxSpMiddle" align=3D"center" style=
+=3D"margin-bottom:3pt;text-align:center"><b><span lang=3D"EN-GB" style=3D"f=
+ont-size:14pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;color=
+:rgb(33,33,33);background:white">COMPLEX
+NETWORKS 2017</span></b><b><span lang=3D"EN-GB" style=3D"font-size:10pt;lin=
+e-height:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);ba=
+ckground:white"><span></span></span></b></p><p class=3D"gmail-normalCxSpMid=
+dle" style=3D"margin-bottom:3pt"><b><span lang=3D"EN-GB" style=3D"font-size=
+:14pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,=
+33,33);background:white">Sixth Int. Conference on
+Complex Networks</span></b><b><span lang=3D"EN-GB" style=3D"font-size:14pt;=
+line-height:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33)=
+"> &amp; Their Applications</span></b></p><p class=3D"gmail-normalCxSpMiddl=
+e" align=3D"center" style=3D"margin-bottom:3pt;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:12pt;line-height:115%;font-family:Times"><sp=
+an><u><span style=3D"font-family:Arial;color:rgb(17,85,204);background:whit=
+e"><a href=3D"http://www.complexnetworks.org">http://www.complexnetworks.or=
+g</a></span></u></span></span><span lang=3D"EN-GB" style=3D"font-size:12pt;=
+line-height:115%"><span></span></span></p><p class=3D"gmail-normalCxSpMiddl=
+e" style=3D"margin-bottom:3pt"><b><span lang=3D"EN-GB" style=3D"font-size:1=
+0pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33=
+,33);background:white">Where and When:</span></b><span lang=3D"EN-GB" style=
+=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;=
+color:rgb(33,33,33);background:white"> </span><span lang=3D"EN-GB"><span></=
+span></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:=
+3pt"><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-fam=
+ily:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);background:white">Lyon, =
+France,</span><span lang=3D"EN-GB" style=3D"font-size:9.5pt;line-height:115=
+%;color:rgb(34,34,34);background:white"> November 29 <span>=C2=A0</span>- 1
+December 01, 2017</span><span lang=3D"EN-GB" style=3D"font-size:10pt;line-h=
+eight:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);backg=
+round:white">.</span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margi=
+n-bottom:3pt"><b><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:1=
+15%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);background:w=
+hite">Important dates:</span></b><span lang=3D"EN-GB"><span></span></span><=
+/p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt"><span la=
+ng=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Hel=
+vetica Neue&quot;;background:white">* Abstract/Paper submission deadline: <=
+/span><span lang=3D"EN-GB"><span style=3D"background-color:rgb(255,0,0)">Se=
+ptember 04, 2017</span><span></span></span></p><p class=3D"gmail-normalCxSp=
+Middle" style=3D"margin-bottom:3pt"><span lang=3D"EN-GB" style=3D"font-size=
+:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;background:wh=
+ite">* Notification of acceptance: October 01,
+2017</span><span lang=3D"EN-GB"><span></span></span></p><p class=3D"gmail-n=
+ormalCxSpMiddle" style=3D"margin-bottom:3pt"><span lang=3D"EN-GB" style=3D"=
+font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;back=
+ground:white">* Submission of Camera-Ready: October 8,
+2017</span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3=
+pt"><b><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-f=
+amily:&quot;Helvetica Neue&quot;;color:rgb(33,33,33);background:white">Spea=
+kers:</span></b><b><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height=
+:115%;font-family:&quot;Helvetica Neue&quot;;color:rgb(33,33,33)"><span></s=
+pan></span></b></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bott=
+om:3pt;line-height:normal"><span lang=3D"EN-GB"><a href=3D"http://deim.urv.=
+cat/~alexandre.arenas/"><span style=3D"font-size:10pt;font-family:&quot;Hel=
+vetica Neue&quot;;background:white">Alex
+Arenas,</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;font-=
+family:&quot;Helvetica Neue&quot;;background:white"> Universidad Rovira i
+Virgili, Spain<span></span></span></p><p class=3D"gmail-normalCxSpMiddle" s=
+tyle=3D"margin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB"><a href=
+=3D"https://sites.google.com/site/santofortunato/"><span style=3D"font-size=
+:10pt;font-family:&quot;Helvetica Neue&quot;;background:white">Santo
+Fortunato</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;fon=
+t-family:&quot;Helvetica Neue&quot;;background:white">, Indiana University,
+USA<span></span></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"mar=
+gin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB"><a href=3D"http://c=
+s.stanford.edu/people/jure/"><span style=3D"font-size:10pt;font-family:&quo=
+t;Helvetica Neue&quot;;background:white">Jure
+Leskovec</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;font=
+-family:&quot;Helvetica Neue&quot;;background:white">, Stanford, USA<span><=
+/span></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom=
+:3pt;line-height:normal"><span lang=3D"EN-GB"><a href=3D"http://researchswi=
+nger.org/"><span style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&q=
+uot;;background:white">Daniele Quercia,</span></a></span><span lang=3D"EN-G=
+B" style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;backgroun=
+d:white"> Bell Labs=C2=A0Cambridge, UK<span></span></span></p><p class=3D"g=
+mail-normalCxSpMiddle" style=3D"margin-bottom:3pt;line-height:normal"><span=
+ lang=3D"EN-GB"><a href=3D"https://www.sg.ethz.ch/team/people/fschweitzer/"=
+><span style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;backg=
+round:white">Frank
+Schweitzer</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;fo=
+nt-family:&quot;Helvetica Neue&quot;;background:white">,
+ETH Zurich, Switzerland<span></span></span></p><p class=3D"gmail-normalCxSp=
+Middle" style=3D"margin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB"=
+><a href=3D"http://gtna.informatik.uni-kl.de/en/gruppe/zweig/"><span style=
+=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background:white"=
+>Katharina Anna Zweig,</span></a></span><span lang=3D"EN-GB" style=3D"font-=
+size:10pt;font-family:&quot;Helvetica Neue&quot;;background:white"> Technic=
+al University Kaiserslautern, Germany<span></span></span></p><p class=3D"gm=
+ail-normalCxSpMiddle" style=3D"margin-bottom:3pt"><b><span lang=3D"EN-GB" s=
+tyle=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&qu=
+ot;;color:rgb(33,33,33);background:white">Tutorials:</span></b><b><span lan=
+g=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helv=
+etica Neue&quot;;color:rgb(33,33,33)"> </span></b><span lang=3D"EN-GB" styl=
+e=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;=
+;background:white">November 28, 2017</span><b><span lang=3D"EN-GB" style=3D=
+"font-size:10pt;line-height:115%;font-family:&quot;Helvetica Neue&quot;;col=
+or:rgb(33,33,33)"><span></span></span></b></p><p class=3D"gmail-normalCxSpM=
+iddle" style=3D"margin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB">=
+<a href=3D"http://www.maths.qmul.ac.uk/~gbianconi/"><span style=3D"font-siz=
+e:10pt;font-family:&quot;Helvetica Neue&quot;;background:white">Ginestra
+Bianconi,</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;fon=
+t-family:&quot;Helvetica Neue&quot;;background:white"> Queen Mary Universit=
+y
+of London, UK<span></span></span></p><p class=3D"gmail-normalCxSpMiddle" st=
+yle=3D"margin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB"><a href=
+=3D"http://francescobonchi.com/"><span style=3D"font-size:10pt;font-family:=
+&quot;Helvetica Neue&quot;;background:white">Francesco Bonchi,</span></a></=
+span><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helveti=
+ca Neue&quot;;background:white"> ISI Foundation, Italy</span></p><p class=
+=3D"gmail-normalCxSpMiddle" style=3D"margin-bottom:3pt"><b><span lang=3D"EN=
+-GB" style=3D"font-size:10pt;line-height:115%;font-family:&quot;Helvetica N=
+eue&quot;;color:rgb(33,33,33);background:white">Kind of contribution:<span>=
+</span></span></b></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin-b=
+ottom:3pt;line-height:normal"><span lang=3D"EN-GB" style=3D"font-size:10pt;=
+font-family:&quot;Helvetica Neue&quot;;background:white">COMPLEX NETWORKS a=
+ccepts contributions in
+the form of <b>papers</b> (not previously
+published) and <b>extended abstracts</b>.</span></p><p class=3D"gmail-norma=
+lCxSpMiddle" style=3D"margin-bottom:3pt;line-height:148%"><b><span lang=3D"=
+EN-GB" style=3D"font-size:10pt;line-height:148%;font-family:&quot;Helvetica=
+ Neue&quot;;color:rgb(33,33,33);background:white">Publication:</span></b><b=
+><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:148%;font-family:=
+&quot;Helvetica Neue&quot;;color:rgb(81,81,81);background:white"> <span></s=
+pan></span></b></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm =
+0cm 3pt 36pt;line-height:normal"><span lang=3D"EN-GB" style=3D"font-size:10=
+pt;font-family:Symbol;background:white"><span>=C2=B7<span style=3D"font-sty=
+le:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-s=
+ize:7pt;line-height:normal;font-family:&quot;Times New Roman&quot;">=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-GB" style=3D"font-size:10pt;font-f=
+amily:&quot;Helvetica Neue&quot;;background:white">Papers </span></b><span =
+lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quo=
+t;;background:white">will
+be included in the conference <b>proceedings
+edited by Springer</b> on the Studies in Computational Intelligence Series =
+(<span><a href=3D"http://www.springer.com/series/7092">http://www.springer.=
+com/series/7092</a></span>).<span></span></span></p><p class=3D"gmail-norma=
+lCxSpMiddle" style=3D"margin:0cm 0cm 3pt 36pt;line-height:normal"><span lan=
+g=3D"EN-GB" style=3D"font-size:10pt;font-family:Symbol;background:white"><s=
+pan>=C2=B7<span style=3D"font-style:normal;font-variant:normal;font-weight:=
+normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&qu=
+ot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><b><span lang=3D"EN-GB" style=3D"font-size:10pt;font-f=
+amily:&quot;Helvetica Neue&quot;;background:white">Extended abstracts</span=
+></b><span lang=3D"EN-GB" style=3D"font-size:10pt;font-family:&quot;Helveti=
+ca Neue&quot;;background:white"> will be published in the <b>Book of Abstra=
+cts (with ISBN)</b> together with the abstracts of the
+keynote presentations.<span></span></span></p><p class=3D"gmail-normalCxSpM=
+iddle" style=3D"margin-bottom:3pt;line-height:normal"><span lang=3D"EN-GB" =
+style=3D"font-size:10pt;font-family:&quot;Helvetica Neue&quot;;background:w=
+hite"><span>=C2=A0</span></span></p><p class=3D"gmail-normalCxSpMiddle" sty=
+le=3D"margin:0cm 0cm 3pt 36pt"><span lang=3D"EN-GB" style=3D"font-size:10pt=
+;line-height:115%;font-family:Symbol;color:rgb(33,33,33);background:white">=
+<span>=C2=B7<span style=3D"font-style:normal;font-variant:normal;font-weigh=
+t:normal;font-stretch:normal;font-size:7pt;line-height:normal;font-family:&=
+quot;Times New Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span></s=
+pan></span><span lang=3D"EN-GB" style=3D"font-size:10pt;line-height:115%;fo=
+nt-family:&quot;Helvetica Neue&quot;;background:white">Extended versions of=
+ accepted
+contributions <span>=C2=A0</span>will be invited for
+publication in <b>special issues of
+international journals</b>:<b><span style=3D"color:rgb(33,33,33)"><span></s=
+pan></span></b></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"marg=
+in:0cm 0cm 3pt 72pt;line-height:normal"><span lang=3D"EN-GB" style=3D"font-=
+size:10pt;font-family:&quot;Courier New&quot;;background:white"><span>o<spa=
+n style=3D"font-style:normal;font-variant:normal;font-weight:normal;font-st=
+retch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New R=
+oman&quot;">=C2=A0=C2=A0 </span></span></span><span lang=3D"EN-GB"><a href=
+=3D"http://www.computationalsocialnetworks.com/"><span style=3D"font-size:1=
+0pt;font-family:&quot;Helvetica Neue&quot;;background:white">Computational =
+Social Networks</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10=
+pt;font-family:&quot;Helvetica Neue&quot;;background:white"> edited by Spri=
+nger<span></span></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"ma=
+rgin:0cm 0cm 3pt 72pt;line-height:normal"><span lang=3D"EN-GB" style=3D"fon=
+t-size:10pt;font-family:&quot;Courier New&quot;;background:white"><span>o<s=
+pan style=3D"font-style:normal;font-variant:normal;font-weight:normal;font-=
+stretch:normal;font-size:7pt;line-height:normal;font-family:&quot;Times New=
+ Roman&quot;">=C2=A0=C2=A0 </span></span></span><span lang=3D"EN-GB"><a hre=
+f=3D"https://appliednetsci.springeropen.com/"><span style=3D"font-size:10pt=
+;font-family:&quot;Helvetica Neue&quot;;background:white">Applied Network S=
+cience</span></a></span><span lang=3D"EN-GB" style=3D"font-size:10pt;font-f=
+amily:&quot;Helvetica Neue&quot;;background:white"> edited by Springer<span=
+></span></span></p><p class=3D"gmail-normalCxSpMiddle" style=3D"margin:0cm =
+0cm 3pt 72pt;line-height:normal"><span lang=3D"EN-GB" style=3D"font-size:10=
+pt;font-family:&quot;Courier New&quot;;background:white"><span>o<span style=
+=3D"font-style:normal;font-variant:normal;font-weight:normal;font-stretch:n=
+ormal;font-size:7pt;line-height:normal;font-family:&quot;Times New Roman&qu=
+ot;">=C2=A0=C2=A0 </span></span></span><span lang=3D"EN-GB"><a href=3D"http=
+s://academic.oup.com/comnet"><span style=3D"font-size:10pt;font-family:&quo=
+t;Helvetica Neue&quot;;background:white">Journal
+of Complex Networks</span></a></span><span lang=3D"EN-GB" style=3D"font-siz=
+e:10pt;font-family:&quot;Helvetica Neue&quot;;background:white">
+edited by Oxford University Press</span></p><div class=3D"gmail_signature">=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+><br></div><div><b>Join us at </b>:<span style=3D"font-size:12.8px">=C2=A0 =
+<a href=3D"http://complexnetworks.org/" target=3D"_blank">COMPLEX NETWORKS =
+2017, Lyon, France</a></span></div><div><br></div><div><b>Publish your work=
+ on:</b>=C2=A0<a href=3D"http://www.springer.com/physics/complexity/journal=
+/41109" target=3D"_blank">Applied Network Science</a></div><div><b>re</b><s=
+pan style=3D"font-size:12.8px"><b>ad:<a href=3D"http://www.cambridgescholar=
+s.com/complex-networks-and-their-applications-9" target=3D"_blank"> </a></b=
+><a href=3D"http://www.cambridgescholars.com/complex-networks-and-their-app=
+lications-9" target=3D"_blank">Complex Networks &amp; their Applications</a=
+></span></div><div>***********************************************<br>* =C2=
+=A0 Pr Hocine CHERIFI =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LE2I =C2=A0 UMR CNRS 6306 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>*=C2=A0=C2=A0 Facult=C3=A9 des Scien=
+ces Mirande =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>*=C2=A0 =C2=A0 9 =
+, avenue Alain Savary =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 BP 47870 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 21078 DIJ=
+ON=C2=A0 =C2=A0 FRANCE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0* <br>**********************************************</div></div><=
+/div></div></div></div></div></div></div></div></div></div>
+</div>
+
+--f403045e2640c48c5705562a5a32--

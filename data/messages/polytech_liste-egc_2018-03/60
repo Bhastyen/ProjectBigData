@@ -1,0 +1,371 @@
+Return-Path: <l_bouzar@esi.dz>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id D8D86229294F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 23 Mar 2018 21:32:21 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id D43C06006D1
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 23 Mar 2018 21:32:21 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id C82C842761FC
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 23 Mar 2018 21:32:21 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.364
+X-Spam-Level:
+X-Spam-Status: No, score=-3.364 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, SUBJ_ALL_CAPS=1.625,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.7675 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=esi.dz
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id faw5ZTO-Mew1 for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 23 Mar 2018 21:32:20 +0100 (CET)
+X-Greylist: from auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x244.google.com (mail-wm0-x244.google.com [IPv6:2a00:1450:400c:c09::244])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 90ADF422CE80
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 23 Mar 2018 21:32:20 +0100 (CET)
+Received: by mail-wm0-x244.google.com with SMTP id t6so5694135wmt.5
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 23 Mar 2018 13:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=esi.dz; s=google;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=pmDnyl/sbTuzpSj2pBZQLVBYPBNUiWOc6Gv5oFZogcI=;
+        b=ScOtVm1FF5Zj1KVlfWoi6gbQuc9ZR3Rd1SoR1YWF9grxJXCydylGY+5r78mhqPv1i8
+         Lcop9oMUe+yHq0T/S85ya0llLwG9OlrqGNnpW+QswiUsVsevH1DvIkWHD2uq8DWGuTD8
+         eNhR0I9a7jzw88icI0LzUhrWii5zzhP/4tJZh8IThD2/OQ094bzZmNrfCXBgNF8Xw3vG
+         HzbU3dDhi1xB3OPEsb4X/D39Iw1TxCMGs7dq9aVYf0N7LA8QPihP7x9CWjbOgaKYY0Ft
+         oRowlWw8hEsLmkZLu6qyAc5FLnPoCTjqIVdEhiIT1fvd0p4WotBhsT4MVNWb2WV5KXio
+         J3iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=pmDnyl/sbTuzpSj2pBZQLVBYPBNUiWOc6Gv5oFZogcI=;
+        b=Dcyh8zJ6VDj3OwVF+Rrv8lyK+PpfhTvDhbRDJsY8/fLIpVGE0K1WXSfptKpZTPfFMI
+         TLeLGjgayHGN1/mBP56gQd5EhPw1YhDkxOZUK9q0JpUOlQueBEh2La40KMrIfg/1GdSx
+         Kgpgdr1fCilRY/+5actRVvRwuq6DgJGUrgvwoDdflG/mXO/GVbHHJ37Bt8JU2nbY3RRO
+         Tvk1Ysgg02DSXRCOjieaIm90RYRqmmJXgcUatWCLl8cnJLH2tB8vzqMwZQDf3fRoDEd4
+         san1+d2HMDDHNvWPF36LZLsQyWr+sSaW80KeDdTfQMChotouOvlHxHLwtB2K8OWKtLH1
+         SQ4w==
+X-Gm-Message-State: AElRT7Gds2sTzARaEF6UtIeoC31Qdjoe492P/KIe9mcrz9mpQk/kmJLp
+	Qv6V33PAu1RQEiPBX7wQ52irZkMuZuG1xxuLrOR4rw==
+X-Google-Smtp-Source: AG47ELvmxCYybHgPATf78itKlxWmwCuB5CuVk1P88m08bNcrm2lDGR6cxWRKpkrnllGjf7ixealbrnBdrSx7aq/ORnc=
+X-Received: by 10.28.191.70 with SMTP id p67mr10521055wmf.17.1521837139900;
+ Fri, 23 Mar 2018 13:32:19 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.223.134.116 with HTTP; Fri, 23 Mar 2018 13:32:19 -0700 (PDT)
+In-Reply-To: <CA+N+s-zTd8s_hFPXMDGYhrjDpWS=xKVfGH32N50O1d9LihB-7Q@mail.gmail.com>
+References: <CA+N+s-zTd8s_hFPXMDGYhrjDpWS=xKVfGH32N50O1d9LihB-7Q@mail.gmail.com>
+From: Ens bouzar lydia <l_bouzar@esi.dz>
+Date: Fri, 23 Mar 2018 21:32:19 +0100
+Message-ID: <CA+N+s-yjtK+pTjvVO_nbeODb7wdKStnE14J6TN1y063xc0RbgQ@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="001a114e210821559705681a5216"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Fwd: IEEE FMI-2018
+
+--001a114e210821559705681a5216
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+> The 6th IEEE International Workshop on Formal Methods Integration
+>> FMI 2018
+>> http://www.sis.pitt.edu/iri2018/workshop_fmi.html
+>> (Collocated with IEEE IRI 2018)
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>
+>> Introduction and Scope:
+>> ----------------------
+>> Formal Methods (FM) are mathematically based techniques to model, design=
+,
+>> and analyze computing systems. Such techniques aim at improving the
+>> dependability of computing systems. Different techniques may be required
+>> throughout the development life cycle and to cover the different aspects=
+ of
+>> the system.
+>> Machine learning and nowadays deep neural networks match human abilities
+>> in various tasks. Solutions based on machine learning are ubiquitous, fr=
+om
+>> automated medical diagnosis and self-driving cars to security. However,
+>> machine learning does not offer guarantees or reasoning techniques to pr=
+ove
+>> the dependability of the automated decisions. Such systems must be
+>> verified/validated using existing techniques or call for new techniques.
+>> Formal reasoning techniques are needed to arrive at as well as to explai=
+n
+>> deductive and even inductive conclusions.
+>> This year's workshop is dedicated to the memory of Prof. Thouraya
+>> Bouabana-Tebibel who founded the series and organized all of the previou=
+s
+>> years. The workshop seeks contributions from researchers and practitione=
+rs
+>> interested in all aspects of integrated methods, either formal or
+>> semi-formal, for system development covering all engineering development
+>> phases from user requirements through validation/testing. The workshop
+>> encourages contributions from new initiatives building bridges between F=
+M
+>> and machine learning, especially contributions using FM as a tool to ver=
+ify
+>> safety-critical machine learning systems. Moreover, logics for learning =
+and
+>> generalization, which are distinct from neural methods are especially
+>> welcome.
+>>
+>> Topics of interest include, but are not limited to:
+>> --------------------------------------------------
+>> * Modelling uncertainty in deep learning
+>> * Verification methodologies for machine learning
+>> * Integration of deep learning modules for deeper learning
+>> * Methods for, results in, and applications of auto-associative neural
+>> network
+>> * Axiomatic and denotational semantics for provable higher-level
+>> specifications
+>> * Predicate calculi for concept capture and resolution
+>> * Integrated software/hardware specification and analysis
+>> * Hybrid and embedded systems modeling and analysis
+>> * Object and multi-agent systems modeling and analysis
+>> * Requirement specification and analysis
+>> * Software and hardware specification, verification, and validation
+>> * Theorem proving and decision procedures
+>> * Formal aspects of software evolution and maintenance
+>> * Formal methods for re-engineering and reuse
+>> * Randomization-based methods for simplification/optimization
+>> * Formal languages integration
+>> * Semi-formal (UML, SysML, =E2=80=A6) and formal model integration
+>> * Informal and formal language integration
+>> * Integration of formal methods into software engineering practice
+>> * Integrated analysis techniques
+>> * Tools integration
+>> * Integrated formal methods in education
+>> * Integrated formal methods in health
+>> * Integrated formal methods in industry
+>> * Integrated formal methods in security
+>>
+>> Important dates
+>> ---------------
+>> * Abstract Submission deadline: April 4th, 2018
+>> * Paper submission deadline: April 18th, 2018
+>> * Paper notification: June 1st, 2018
+>> * Camera ready submission deadline: June 20th, 2018
+>>
+>> Paper submission
+>> ----------------
+>> Submitted papers must be unpublished and not considered elsewhere for
+>> publication. Submissions will undergo a rigorous review process handled =
+by
+>> the Technical Program Committee. Papers will be selected based on their
+>> originality, significance, relevance, and clarity of presentation. Only
+>> electronic submissions in PDF format through the EasyChair submission si=
+te
+>>  https://easychair.org/conferences/?conf=3Dfmi2018 will be considered.
+>> Papers must be in English, up to 8 pages in IEEE format, including
+>> references and appendices. The IEEE LaTeX and Microsoft Word templates, =
+as
+>> well as formatting guidelines, can be found on the paper submission
+>> instructions available at the main conference website.
+>>
+>> Paper Publication
+>> -----------------
+>> At least one of the authors must register and present each accepted
+>> paper. Registered and presented papers will be published as workshop pap=
+ers
+>> in the IEEE IRI conference proceedings published by IEEE Computer Societ=
+y
+>> Press and included in the IEEE Xplore Digital Library. As for previous
+>> editions of the workshop, authors of best papers will be invited to expa=
+nd
+>> and submit their papers for possible publication in a book of Advanced i=
+n
+>> Intelligent Systems and Computing and in a special issue of the Informat=
+ion
+>> Systems Frontiers journal both published by Springer [Pending approval].
+>>
+>> Workshop Co-chairs
+>> -----------------
+>> * Lydia Bouzar-Benlabiod -  =C3=89cole nationale Sup=C3=A9rieure d=E2=80=
+=99Informatique
+>> (ESI), Algeria
+>> * Ferhat Khendek - Concordia University, Canada
+>> * Stuart Rubin =E2=80=93 SPAWAR SYSTEMS CENTER PACIFIC (SSC-Pacific), US=
+A
+>>
+>> Program Committee
+>> -----------------
+>> Please visit http://www.sis.pitt.edu/iri2018/workshop_fmi.html
+>>
+>> Contact
+>> -------
+>> Lydia Bouzar-Benlabiod at l_bouzar@esi.dz
+>>
+>>
+>> Best regards,
+>>
+>> Lydia Bouzar-Benlabiod,
+>> Ferhat Khendek,
+>> Stuart H. Rubin,
+>> FMI 2018 co-chairs
+>>
+>
+
+--001a114e210821559705681a5216
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr">=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D<br><div class=3D"gmail_extra"><di=
+v class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><di=
+v class=3D"gmail_quote"><div dir=3D"ltr"><div><div><div><div><div><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr"><div class=3D"gmail_quote"><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">
+The 6th IEEE International Workshop on Formal Methods Integration<br>
+FMI 2018<br>
+<a href=3D"http://www.sis.pitt.edu/iri2018/workshop_fmi.html" rel=3D"norefe=
+rrer" target=3D"_blank">http://www.sis.pitt.edu/iri201<wbr>8/workshop_fmi.h=
+tml</a><br>
+(Collocated with IEEE IRI 2018)<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D<wbr>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr>=3D=3D=3D<br>
+<br>
+Introduction and Scope:<br>
+----------------------<br>
+Formal Methods (FM) are mathematically based techniques to model,=20
+design, and analyze computing systems. Such techniques aim at improving=20
+the dependability of computing systems. Different techniques may be=20
+required throughout the development life cycle and to cover the=20
+different aspects of the system.<br>
+Machine learning and nowadays deep neural networks match human abilities
+ in various tasks. Solutions based on machine learning are ubiquitous,=20
+from automated medical diagnosis and self-driving cars to security.=20
+However, machine learning does not offer guarantees or reasoning=20
+techniques to prove the dependability of the automated decisions. Such=20
+systems must be verified/validated using existing techniques or call for
+ new techniques. Formal reasoning techniques are needed to arrive at as=20
+well as to explain deductive and even inductive conclusions.<br>
+This year&#39;s workshop is dedicated to the memory of Prof. Thouraya=20
+Bouabana-Tebibel who founded the series and organized all of the=20
+previous years. The workshop seeks contributions from researchers and=20
+practitioners interested in all aspects of integrated methods, either=20
+formal or semi-formal, for system development covering all engineering=20
+development phases from user requirements through validation/testing.=20
+The workshop encourages contributions from new initiatives building=20
+bridges between FM and machine learning, especially contributions using=20
+FM as a tool to verify safety-critical machine learning systems.=20
+Moreover, logics for learning and generalization, which are distinct=20
+from neural methods are especially welcome.<br>
+<br>
+Topics of interest include, but are not limited to:<br>
+------------------------------<wbr>--------------------<br>
+* Modelling uncertainty in deep learning<br>
+* Verification methodologies for machine learning<br>
+* Integration of deep learning modules for deeper learning<br>
+* Methods for, results in, and applications of auto-associative neural netw=
+ork<br>
+* Axiomatic and denotational semantics for provable higher-level specificat=
+ions<br>
+* Predicate calculi for concept capture and resolution<br>
+* Integrated software/hardware specification and analysis<br>
+* Hybrid and embedded systems modeling and analysis<br>
+* Object and multi-agent systems modeling and analysis<br>
+* Requirement specification and analysis<br>
+* Software and hardware specification, verification, and validation<br>
+* Theorem proving and decision procedures<br>
+* Formal aspects of software evolution and maintenance<br>
+* Formal methods for re-engineering and reuse<br>
+* Randomization-based methods for simplification/optimization<br>
+* Formal languages integration<br>
+* Semi-formal (UML, SysML, =E2=80=A6) and formal model integration<br>
+* Informal and formal language integration<br>
+* Integration of formal methods into software engineering practice<br>
+* Integrated analysis techniques<br>
+* Tools integration<br>
+* Integrated formal methods in education<br>
+* Integrated formal methods in health<br>
+* Integrated formal methods in industry<br>
+* Integrated formal methods in security<br>
+<br>
+Important dates<br>
+---------------<br>
+* Abstract Submission deadline: April 4th, 2018<br>
+* Paper submission deadline: April 18th, 2018<br>
+* Paper notification: June 1st, 2018<br>
+* Camera ready submission deadline: June 20th, 2018<br>
+<br>
+Paper submission<br>
+----------------<br>
+Submitted papers must be unpublished and not considered elsewhere for=20
+publication. Submissions will undergo a rigorous review process handled=20
+by the Technical Program Committee. Papers will be selected based on=20
+their originality, significance, relevance, and clarity of presentation.
+ Only electronic submissions in PDF format through the EasyChair=20
+submission site=C2=A0 =C2=A0<a href=3D"https://easychair.org/conferences/?c=
+onf=3Dfmi2018" rel=3D"noreferrer" target=3D"_blank">https://easychair.org/c=
+onfere<wbr>nces/?conf=3Dfmi2018</a>
+ will be considered. Papers must be in English, up to 8 pages in IEEE=20
+format, including references and appendices. The IEEE LaTeX and=20
+Microsoft Word templates, as well as formatting guidelines, can be found
+ on the paper submission instructions available at the main conference=20
+website.<br>
+<br>
+Paper Publication<br>
+-----------------<br>
+At least one of the authors must register and present each accepted=20
+paper. Registered and presented papers will be published as workshop=20
+papers in the IEEE IRI conference proceedings published by IEEE Computer
+ Society Press and included in the IEEE Xplore Digital Library. As for=20
+previous editions of the workshop, authors of best papers will be=20
+invited to expand and submit their papers for possible publication in a=20
+book of Advanced in Intelligent Systems and Computing and in a special=20
+issue of the Information Systems Frontiers journal both published by=20
+Springer [Pending approval].<br>
+<br>
+Workshop Co-chairs<br>
+-----------------<br>
+* Lydia Bouzar-Benlabiod -=C2=A0 =C3=89cole nationale Sup=C3=A9rieure d=E2=
+=80=99Informatique (ESI), Algeria<br>
+* Ferhat Khendek - Concordia University, Canada<br>
+* Stuart Rubin =E2=80=93 SPAWAR SYSTEMS CENTER PACIFIC (SSC-Pacific), USA<b=
+r>
+<br>
+Program Committee<br>
+-----------------<br>
+Please visit <a href=3D"http://www.sis.pitt.edu/iri2018/workshop_fmi.html" =
+rel=3D"noreferrer" target=3D"_blank">http://www.sis.pitt.edu/iri201<wbr>8/w=
+orkshop_fmi.html</a><br>
+<br>
+Contact<br>
+-------<br>
+Lydia Bouzar-Benlabiod at <a href=3D"mailto:l_bouzar@esi.dz" target=3D"_bla=
+nk">l_bouzar@esi.dz</a><br>
+<br>
+<br>
+Best regards,<br>
+<br>
+Lydia Bouzar-Benlabiod,<br>
+Ferhat Khendek,<br>
+Stuart H. Rubin,<br>
+FMI 2018 co-chairs<span class=3D"m_-8000629670950460144m_780698046129293872=
+1HOEnZb"><font color=3D"#888888"><br>
+</font></span></blockquote></div><span class=3D"m_-8000629670950460144m_780=
+6980461292938721HOEnZb"></span></div></div></div></div></div></div></div></=
+div></div></div></blockquote></div></div></div>
+</div></div>
+
+--001a114e210821559705681a5216--

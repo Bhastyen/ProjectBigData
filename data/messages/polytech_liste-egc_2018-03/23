@@ -1,0 +1,372 @@
+Return-Path: <mary.kutraki@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 29B47229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Mar 2018 13:10:53 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 265CA62882F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Mar 2018 13:10:53 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 1C684B4B135
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Mar 2018 13:10:53 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.888
+X-Spam-Level:
+X-Spam-Status: No, score=-0.888 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -4.4351 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id DOuNDOnklHI3 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  5 Mar 2018 13:10:52 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-oi0-x232.google.com (mail-oi0-x232.google.com [IPv6:2607:f8b0:4003:c06::232])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id ED32266192D
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Mar 2018 13:10:51 +0100 (CET)
+Received: by mail-oi0-x232.google.com with SMTP id j79so11820703oib.12
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 05 Mar 2018 04:10:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=wF0Sd2uZlKHoWfY2XfiJNs20TAmndIblBAGk04oC7a0=;
+        b=aEtCp2VtWhvgHKWvuoyQlDMSACxHAPAeCZJ2ondIU7C8GlwkYnnEEZ2KbikCMJZysc
+         m9qq4V8ra4GtSM6md9S07Q72ZYsXBhE4f/uVoSqutIwPCyslh6ndl9OxphzIjfoZxyeC
+         olfTbwO1uMMIHk9behSj3tKw4kNQzUD9eDOk7VMeKbYQjpkoXaKwnOOdciMr2k20vtEX
+         CGOOX6ko1V6wjgFqlqasx8DbWKRlD0T3LHwDxhtRwSoceUUZPbK12GDZcXorqGR29Q3C
+         jF1N9cLrwXQSym+v0qisgEwtrA/61pnxgTKN1WlJ9qEAihjBXQuEh9th4QJBBMqhFCC7
+         WTxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=wF0Sd2uZlKHoWfY2XfiJNs20TAmndIblBAGk04oC7a0=;
+        b=tAhhKqt4ao1UbKRWh7Kp16wWQLzH/JzEKOicMZwG1dg3Z7NofMWog+sVkurgSGu2Fr
+         9cmsWGHLYl/UIGeKdYg4OuMTFEcx3bdIcn4n4N5WKmElem3oqPq81aLQsBLT/3sRyRfk
+         KWeco/K3WQVXNBUwUtYQoQErO7NG+GAQkWwMZS31AOP/7sgsiNVnKjp7AUI+vH3G7FGN
+         fvX8dyyG5V6dXS6mGe6mGmmfOgKs8nNB6FN4swr+C8iqiAsHXQK54gL7kdbtm4bhNzPZ
+         eQ8SR9ZpNN0n1+hwlIXv6p9/D6el26rNDC72NigAzrT/0KF3287ZtNoUxXWUsaJ4l2xw
+         VLTw==
+X-Gm-Message-State: AElRT7GsnbqU/v7Wc+hfYOH4hkQE5O0/TJRiygCnyWzdlep8Jko7krPF
+	Us87ZOguv8+h55PdZxYnZSvK2RkNYUTf2JZCa0oMfQ==
+X-Google-Smtp-Source: AG47ELso+dd9M59NdFWH18Um743srYCVEzpqkhQacDcQiWRe0uojXIX8YthttwdRcoHEuoY5ppYhp41v+30lMZMxpNE=
+X-Received: by 10.202.226.7 with SMTP id z7mr9807460oig.2.1520251850180; Mon,
+ 05 Mar 2018 04:10:50 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.157.88.46 with HTTP; Mon, 5 Mar 2018 04:10:29 -0800 (PST)
+From: Maria Koutraki <mary.kutraki@gmail.com>
+Date: Mon, 5 Mar 2018 13:10:29 +0100
+Message-ID: <CAPn-qvb7HpHusA-Gpy-YPNR9Ldt2xL9G4rND1X5gROWui_-akg@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="001a11407f7c7fcfe80566a93777"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] DL4KGS@ESWC2018: Deadline is approaching
+
+--001a11407f7c7fcfe80566a93777
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ *Apologies for cross-posting*=E2=80=8B
+---------------------------------------------------------------------------=
+------
+                                             Call For Papers
+---------------------------------------------------------------------------=
+------=E2=80=8B
+1st International=E2=80=8B Workshop on Deep Learning for Knowledge Graphs
+                    and Semantic Technologies (DL4KGs)
+                     http://usc-isi-i2.github.io/DL4KGS/
+
+
+In conjunction with ESWC 20=E2=80=8B18, 3rd-7th June 2018, Heraklion, Crete=
+, Greece
+
+
+---------------------------------------------------------------------------=
+------
+                                             Workshop Overview
+---------------------------------------------------------------------------=
+------
+
+Semantic Web technologies and deep learning share the goal of creating
+intelligent artifacts that emulate human capacities such as reasoning,
+validating, and predicting. There are notable examples of contributions
+leveraging either deep neural architectures or distributed representations
+learned via deep neural networks in the broad area of Semantic Web
+technologies. Knowledge Graphs (KG) are one of the most well-known outcomes
+from the Semantic Web community, with wide use in web search, text
+classification, entity linking etc. KGs are large networks of real-world
+entities described in terms of their semantic types and their relationships
+to each other. Most famous examples of KGs are: DBpedia, Yago and Wikidata.
+
+A challenging but paramount task for problems ranging from entity
+classification to entity recommendation or entity linking is that of
+learning features representing entities in the knowledge graph (building
+=E2=80=9Cknowledge graph embeddings=E2=80=9D) that can be fed into machine =
+learning
+algorithms. The feature learning process ought to be able to effectively
+capture the relational structure of the graph (i.e. connectivity patterns)
+as well as the semantics of its properties and classes, either in an
+unsupervised way and/or in a supervised way to optimize a downstream
+prediction task. In the past years, Deep Learning (DL) algorithms have been
+used to learn features from knowledge graphs, resulting in enhancements of
+the state-of-the-art in entity relatedness measures, entity recommendation
+systems and entity classification. DL algorithms have equally been applied
+to classic problems in semantic applications, such as (semi-automated)
+ontology learning, ontology alignment, duplicate recognition, ontology
+prediction, relation extraction, and semantically grounded inference.
+
+
+---------------------------------------------------------------------------=
+------
+                                                 Topics of Interest
+---------------------------------------------------------------------------=
+------
+Topics of interest for this first workshop on Deep Learning for Knowledge
+Graphs and Semantic Technologies, include but are not limited to the
+following fields and problems:
+
+   - Knowledge graph embeddings for entity linking, recommendation,
+   relatedness
+   - Knowledge graph embeddings for link prediction and validation
+   - Time-aware and scalable knowledge graph embeddings
+   - Text-based entity embeddings vs knowledge graph entity embeddings
+   - Deep learning models for learning knowledge representations from text
+   - Knowledge graph agnostic embeddings
+   - Knowledge Base Completion
+   - Type Inference
+   - Question Answering
+   - Domain Specific Knowledge Base Construction
+   - Reasoning over KGs and with deep learning methods
+   - Neural networks and logic rules for semantic compositionality
+   - Quality checking and Data cleaning
+   - Multilingual resources for neural representations of linguistics
+   - Commonsense reasoning and vector space models
+   - Deep ontology learning
+   - Deep learning ontological annotations
+   - Applications of knowledge graph embeddings in real business scenarios
+
+
+---------------------------------------------------------------------------=
+---------
+                                                Important  Dates
+---------------------------------------------------------------------------=
+---------
+Submission deadline:                Friday March 16, 2018
+Notification of Acceptance:        Tuesday April 17, 2018
+Camera-ready Submission:       Tuesday April 24, 2018
+
+=E2=80=8B
+---------------------------------------------------------------------------=
+------
+                                                 WORKSHOP CO-CHAIRS
+---------------------------------------------------------------------------=
+------
+
+Michael Cochez, Fraunhofer Institute for Applied Information Technology,
+Germany
+Thierry Declerck, DFKI GmbH, Germany
+Gerard de Melo, Rutgers University, USA
+Luis Espinosa Anke, Cardiff University, UK
+Besnik Fetahu, L3S Research Center, Leibniz University of Hannover, Germany
+Dagmar Gromann, Technical University Dresden, Germany
+Mayank Kejriwal, Information Sciences Institute, USA
+Maria Koutraki, FIZ-Karlsruhe, Karlsruhe Institute of Technology (KIT),
+Germany
+Freddy Lecue, Accenture Technology Labs, Ireland; INRIA, France
+Enrico Palumbo, ISMB, Italy; EURECOM, France; Politecnico di Torino, Italy
+Harald Sack, FIZ Karlsruhe, Karlsruhe Institute of Technology (KIT),
+Germany=E2=80=8B
+=E2=80=8B
+More information about DL4KGs 2018 is available at:
+http://usc-isi-i2.github.io/DL4KGS/=E2=80=8B=E2=80=8B
+
+--=20
+Dr. Maria Koutraki
+Postdoctoral Researcher
+FIZ & KIT Karlsruhe
+
+--001a11407f7c7fcfe80566a93777
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style=3D"color:rgb(33,33,33);font-family:&quot;Segoe =
+UI&quot;,&quot;Segoe WP&quot;,&quot;Segoe UI WPC&quot;,Tahoma,Arial,sans-se=
+rif;font-size:15px;background-color:rgb(255,255,255)">
+*Apologies for cross-posting*=E2=80=8B<br>
+</div>
+<div>
+<div>
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0Call For Papers</div>
+<div>----------------------------------------------------------------------=
+-----------=E2=80=8B<br>
+</div>
+</div>
+<div>1st International=E2=80=8B=C2=A0Workshop=C2=A0on Deep Learning for Kno=
+wledge Graphs=C2=A0<br>
+</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0and Semantic Technologie=
+s (DL4KGs)</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0=C2=A0=C2=A0<a href=3D"http://usc-isi-i2=
+.github.io/DL4KGS/" target=3D"_blank">http://usc-isi-i2.github.io/DL4KGS/</=
+a></div>
+<div>
+<div>=C2=A0</div>
+<br>
+</div>
+<div>In conjunction with ESWC 20=E2=80=8B18, 3rd-7th June 2018,=C2=A0Herakl=
+ion, Crete, Greece<br>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Workshop Overview</div>
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div>=C2=A0</div>
+<div>Semantic Web technologies and deep learning share the goal of=20
+creating intelligent artifacts that emulate human capacities such as=20
+reasoning, validating, and predicting. There are notable examples of=20
+contributions leveraging either deep neural architectures or distributed
+ representations learned via deep neural networks in the broad area of=20
+Semantic Web technologies. Knowledge Graphs (KG) are one of the most=20
+well-known outcomes from the Semantic Web community, with wide use in=20
+web search, text classification, entity linking etc. KGs are large=20
+networks of real-world entities described in terms of their semantic=20
+types and their relationships to each other. Most famous examples of KGs
+ are: DBpedia, Yago and Wikidata.<br>
+<br>
+A challenging but paramount task for problems ranging from entity=20
+classification to entity recommendation or entity linking is that of=20
+learning features representing entities in the knowledge graph (building
+ =E2=80=9Cknowledge graph embeddings=E2=80=9D) that can be fed into machine=
+ learning=20
+algorithms. The feature learning process ought to be able to effectively
+ capture the relational structure of the graph (i.e. connectivity=20
+patterns) as well as the semantics of its properties and classes, either
+ in an unsupervised way and/or in a supervised way to optimize a=20
+downstream prediction task. In the past years, Deep Learning (DL)=20
+algorithms have been used to learn features from knowledge graphs,=20
+resulting in enhancements of the state-of-the-art in entity relatedness=20
+measures, entity recommendation systems and entity classification. DL=20
+algorithms have equally been applied to classic problems in semantic=20
+applications, such as (semi-automated) ontology learning, ontology=20
+alignment, duplicate recognition, ontology prediction, relation=20
+extraction, and semantically grounded inference.<br>
+<br>
+<br>
+---------------------------------------------------------------------------=
+------</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+Topics of Interest</div>
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div>Topics of interest for this first workshop on Deep Learning for=20
+Knowledge Graphs and Semantic Technologies, include but are not limited=20
+to the following fields and problems:</div>
+<div>
+<ul>
+<li>Knowledge graph embeddings for entity linking, recommendation, relatedn=
+ess=C2=A0<br>
+</li><li>Knowledge graph embeddings for link prediction and validation=C2=
+=A0<br>
+</li><li>Time-aware and scalable knowledge graph embeddings=C2=A0<br>
+</li><li>Text-based entity embeddings vs knowledge graph entity embeddings=
+=C2=A0<br>
+</li><li>Deep learning models for learning knowledge representations from t=
+ext=C2=A0<br>
+</li><li>Knowledge graph agnostic embeddings=C2=A0<br>
+</li><li>Knowledge Base Completion=C2=A0<br>
+</li><li>Type Inference=C2=A0<br>
+</li><li>Question Answering=C2=A0<br>
+</li><li>Domain Specific Knowledge Base Construction=C2=A0<br>
+</li><li>Reasoning over KGs and with deep learning methods=C2=A0<br>
+</li><li>Neural networks and logic rules for semantic compositionality=C2=
+=A0<br>
+</li><li>Quality checking and Data cleaning=C2=A0<br>
+</li><li>Multilingual resources for neural representations of linguistics=
+=C2=A0<br>
+</li><li>Commonsense reasoning and vector space models=C2=A0<br>
+</li><li>Deep ontology learning=C2=A0<br>
+</li><li>Deep learning ontological annotations=C2=A0<br>
+</li><li>Applications of knowledge graph embeddings in real business scenar=
+ios<br>
+</li></ul>
+</div>
+<div><br>
+</div>
+<div>----------------------------------------------------------------------=
+--------------</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Import=
+ant =C2=A0Dates</div>
+<div>----------------------------------------------------------------------=
+--------------</div>
+<div>Submission deadline:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Friday March 16, 2018</div>
+<div>Notification of Acceptance:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0Tuesday April 17, 2018</div>
+<div>Camera-ready Submission:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Tues=
+day=C2=A0April 24, 2018</div>
+<br>
+=E2=80=8B=20
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+WORKSHOP CO-CHAIRS</div>
+<div>----------------------------------------------------------------------=
+-----------</div>
+<div><br>
+</div>
+<div>Michael Cochez, Fraunhofer Institute for Applied Information Technolog=
+y, Germany</div>
+<div>Thierry Declerck, DFKI GmbH, Germany</div>
+<div>Gerard de Melo, Rutgers University, USA</div>
+<div>Luis Espinosa Anke, Cardiff University, UK</div>
+<div>Besnik Fetahu, L3S Research Center, Leibniz University of Hannover, Ge=
+rmany</div>
+<div>Dagmar Gromann, Technical University Dresden, Germany</div>
+<div>Mayank Kejriwal, Information Sciences Institute, USA</div>
+<div>Maria Koutraki, FIZ-Karlsruhe, Karlsruhe Institute of Technology (KIT)=
+, Germany</div>
+<div>Freddy Lecue, Accenture Technology Labs, Ireland; INRIA, France</div>
+<div>Enrico Palumbo, ISMB, Italy; EURECOM, France; Politecnico di Torino, I=
+taly</div>
+<div>Harald Sack, FIZ Karlsruhe, Karlsruhe Institute of Technology (KIT), G=
+ermany=E2=80=8B</div>
+=E2=80=8B</div>
+More information about DL4KGs 2018=C2=A0is available at:=C2=A0<a href=3D"ht=
+tp://usc-isi-i2.github.io/DL4KGS/" target=3D"_blank">http://usc-isi-i2.gith=
+ub.io/DL4KGS/</a>=E2=80=8B=E2=80=8B=20
+<br clear=3D"all"><br>-- <br><div class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><div>Dr. Maria Koutraki<div><font col=
+or=3D"#999999">Postdoctoral Researcher</font></div><div><font color=3D"#999=
+999">FIZ &amp; KIT Karlsruhe</font></div></div></div></div>
+</div>
+
+--001a11407f7c7fcfe80566a93777--

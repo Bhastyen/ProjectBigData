@@ -1,0 +1,340 @@
+Return-Path: <maxime.lefrancois@emse.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id EA2962292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  2 May 2018 10:57:46 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id E867262884D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  2 May 2018 10:57:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id E444F4856715
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 10:57:46 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.429
+X-Spam-Level:
+X-Spam-Status: No, score=-4.429 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, NO_RDNS2=0.01,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_SORBS=1, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 10.0149 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=emse.fr
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 27Ctw-FfZELL for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  2 May 2018 10:57:46 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mincen.emse.fr (mincen.emse.fr [193.49.172.150])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 294374856711
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 10:57:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mincen.emse.fr (Postfix) with ESMTP id 0C8A33F8FF
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 10:57:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emse.fr; h=
+	content-type:content-type:subject:subject:message-id:date:date
+	:from:from:mime-version:received:received:received; s=default;
+	 t=1525251465; x=1527065866; bh=LBrREcPbI/Mcti0wvkgGBzhZhs+jN9S4
+	9Fj7XlJKj30=; b=ZnRI4vi1chJIfpaNxo5yshy0VCbbImVjk4hqhKwiNG9GMf6X
+	3tGsA8KzJux67c7L3J/Zm18FwV1ELng/ucK7XylOIgxPZL4RnMQYBmWKbgLPCRam
+	ux3a1m6wFNI8v3R+eoKfLT6w/Wsw0HhshvOLnZ84MCNCrPc9FSs1Z+sPIQM=
+X-Virus-Scanned: Debian amavisd-new at mincen.emse.fr
+Received: from mincen.emse.fr ([127.0.0.1])
+	by localhost (mincen.emse.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id QBX_tlhETV9t for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  2 May 2018 10:57:45 +0200 (CEST)
+Received: from mail-lf0-f48.google.com (mail-lf0-f48.google.com [209.85.215.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: maxime.lefrancois)
+	by mincen.emse.fr (Postfix) with ESMTPSA id 6CB4E3F8F8
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  2 May 2018 10:57:45 +0200 (CEST)
+Received: by mail-lf0-f48.google.com with SMTP id b23-v6so19727999lfg.4
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 02 May 2018 01:57:45 -0700 (PDT)
+X-Gm-Message-State: ALQs6tA2Yvo7Cqn0WjfbyJ+fv+cz31rM4nhWpnuzS98Qn8anW6f3L8OI
+	8AzqjdMxOSlDPAO1DGYgX4LiK/qNcpHk6jlzawI=
+X-Google-Smtp-Source: AB8JxZrcVb3FVjsx6EhizNjr3NoNIFQ7hYkEAxtTK2QuE1kIEQE9/LLJCwYh6/TnPOvHUjCF+gusMdebsu2ECShWRfI=
+X-Received: by 2002:a19:2ccd:: with SMTP id s196-v6mr12022466lfs.18.1525251463773;
+ Wed, 02 May 2018 01:57:43 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?Q?Maxime_Lefran=C3=A7ois?= <maxime.lefrancois@emse.fr>
+Date: Wed, 02 May 2018 08:57:33 +0000
+X-Gmail-Original-Message-ID: <CALsPASWfUVfJ25DteOnLNCMtqFXoHinDGCJ1VdhU88FpvDhYzQ@mail.gmail.com>
+Message-ID: <CALsPASWfUVfJ25DteOnLNCMtqFXoHinDGCJ1VdhU88FpvDhYzQ@mail.gmail.com>
+To: "iot2018wt@easychair.org" <iot2018wt@easychair.org>
+Content-Type: multipart/alternative; boundary="000000000000b10544056b354765"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] IOT Conference 2018 Santa Barbara: Second Call for
+ Workshops and Tutorials
+
+--000000000000b10544056b354765
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+- Apologies for cross-posting -
+
+# Call for Workshops and Tutorials
+
+Conference website: http://iot-conference.org/iot2018
+Deadline: May 15th, 2018.
+Submission form: https://easychair.org/conferences/?conf=3Diot2018wt
+
+## Call for Workshops
+(scroll down for the call for Tutorials)
+
+Workshops collocated with the 8th International Conference on the Internet
+of Things (IoT 2018) are opportunities to strengthen communities of
+researchers and practitioners working in specific topics related to the
+IoT. These events foster the exchange of new ideas, ongoing work, and
+latests results, in established or emerging sub-domains of interest. They
+are opportunities for IoT pioneers and practitioners in industry to share
+hands-on experience with IoT systems (use cases, deployments,
+architectures, etc.), and for researchers to present and receive feedback
+on early research result.
+
+We invite submission of half-day workshop proposals, with a clearly defined
+scope that falls in the general topics of the conference. We also encourage
+the submission of workshops that follow alternative formats such as
+hackathons, plugfests, demo jams, or breakout sessions.
+
+
+### Review Criteria for Workshop proposals
+
+A limited number of workshop proposals will be accepted to IoT 2018. Each
+proposal will be evaluated based on the quality of the proposal, and its
+appeal to the IoT community. In particular, the proposals should
+demonstrate the following:
+
+- the workshops topics fall in the general scope of IoT2018
+- there is a clear identity and a focus on a specific problem or technology
+- there is an existing community of researchers and practitioners that are
+susceptible to contribute to this event
+- the organization and format are appealing for potential contributors and
+participants
+
+In case overlapping workshops are proposed, the Workshop Chairs may contact
+the organisers to discuss the possibility of merging workshops. The
+organisers of accepted workshops will be responsible for their own
+reviewing process and publicity (e.g., website, timelines and call for
+papers).
+
+
+### How to submit a Workshop proposal
+
+Submissions should be submitted no later than May 15th 2018 via EasyChair (
+https://easychair.org/conferences/?conf=3Diot2018wt ) as a 200 words
+abstract, along with a single PDF file of 4 pages maximum, containing the
+following section:
+
+- Title, acronym, potentially logo
+- Topics of interest covered by the workshop
+- Motivation: Why is the topic of particular interest to a reasonable
+fraction of the  IoT community? If applicable, a brief discussion of the
+workshop=E2=80=99s history (experiences, number of submissions and attendee=
+s,
+etc.).
+- Organization and Format: Description of the intended organization,
+selection process for the contributors, and schedule of the event.
+- Community: Evidence that there is an existing community of researchers
+and practitioners that are susceptible to contribute to this event.
+References to work relating to the core topic of the workshop that are not
+only co-authored by the organizers.
+- Chairs: Name, affiliation, email address, homepage and short biography of
+each chair, explaining the chair=E2=80=99s expertise for the workshop
+- Program Committee: Names and affiliations of potential PC members, half
+of the potential PC members should have confirmed at the time of submission=
+.
+
+All workshop participants will be required to register for the full
+conference as well. Workshop organizers will receive one complimentary
+conference ticket for one organizer or one workshop participant. At the
+discretion of the chairs, workshops may be cancelled if organisers have not
+registered in a timely manner or if a workshop has received too few
+submissions.
+
+
+## Call for Tutorials
+
+Tutorials collocated with the *8th International Conference on the Internet
+of Things (IoT 2018)* are opportunities for IoT researchers and
+practitioners to learn about models or technologies, providing practical
+solutions for specific problems related to the IoT.
+
+We invite submission of half-day tutorial proposals, with a clearly defined
+topic that falls in the general scope of the conference.
+
+
+### Review Criteria for Tutorial proposals
+
+A limited number of tutorial proposals will be accepted to IoT 2018. Each
+proposal will be evaluated based on the quality of the proposal, and its
+appeal to the IoT community. In particular, the proposals should
+demonstrate the following:
+
+- the tutorial topics fall in the general scope of IoT2018
+- there is a clear focus on a specific problem or technology
+- there is a sufficiently large community interested in the topic
+
+We expect tutorials to have practical parts in terms of examples or
+preferably hands-on sessions. The organisers of accepted workshops will be
+responsible for their own publicity (e.g., website, call for
+participation).
+
+### How to submit a Tutorial proposal
+
+Submissions should be submitted no later than May 15th 2018 via EasyChair (
+https://easychair.org/conferences/?conf=3Diot2018wt ) as a 200 words
+abstract, along with a single PDF file of 4 pages maximum, containing the
+following section:
+
+- Title, acronym, potentially logo
+- Model or technology covered by the tutorial
+- Motivation: Why is it of particular interest for the IoT community to
+learn about this model or technology? A brief discussion of the
+model/technology development history (previous tutorials, conferences where
+it has been presented or demonstrated, community behind its development,
+etc.).
+- Detailed Description: content and schedule, description of learning
+outcomes, presentation style, tutorial format, prior knowledge required by
+the attendees.
+- Tutorial Material: if applicable, description of the hardware and
+software used for the tutorial. Will the software be openly accessible to
+the participants? With what licence? If applicable, will the slides be
+shared with the audience, with what licence?
+- Audience: Evidence that there is an existing community of researchers and
+practitioners that are susceptible to participate to this event.
+- Presenters: Name, affiliation, email address, homepage and short
+biography of each presenter, explaining their expertise in the tutorial
+topic as well as their experiences in teaching and in tutorial presentation
+- Requirements: Audio-visual or technical requirements and any special room
+requirements.
+
+All tutorial participants will be required to register for the full
+conference as well. Tutorial organizers will receive one complimentary
+conference ticket for one organizer or one tutorial participant. At the
+discretion of the chairs, tutorials may be cancelled if organisers have not
+registered in a timely manner.
+
+
+# Workshop/ Tutorial Chairs
+- Grant McKenzie (University of Maryland, USA)
+- Maxime Lefran=C3=A7ois (=C3=89cole des Mines de Saint-=C3=89tienne, FR)
+
+--000000000000b10544056b354765
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>- Apologies for cross-posting -</div><div><br></div><=
+div># Call for Workshops and Tutorials=C2=A0</div><div><br></div><div>Confe=
+rence website: <a href=3D"http://iot-conference.org/iot2018">http://iot-con=
+ference.org/iot2018</a></div><div>Deadline: May 15th, 2018.</div><div>Submi=
+ssion form: <a href=3D"https://easychair.org/conferences/?conf=3Diot2018wt"=
+>https://easychair.org/conferences/?conf=3Diot2018wt</a>=C2=A0</div><div><b=
+r></div><div>## Call for Workshops=C2=A0</div><div>(scroll down for the cal=
+l for Tutorials)</div><div><br></div><div>Workshops collocated with the 8th=
+ International Conference on the Internet of Things (IoT 2018) are opportun=
+ities to strengthen communities of researchers and practitioners working in=
+ specific topics related to the IoT. These events foster the exchange of ne=
+w ideas, ongoing work, and latests results, in established or emerging sub-=
+domains of interest. They are opportunities for IoT pioneers and practition=
+ers in industry to share hands-on experience with IoT systems (use cases, d=
+eployments, architectures, etc.), and for researchers to present and receiv=
+e feedback on early research result.=C2=A0</div><div><br></div><div>We invi=
+te submission of half-day workshop proposals, with a clearly defined scope =
+that falls in the general topics of the conference. We also encourage the s=
+ubmission of workshops that follow alternative formats such as hackathons, =
+plugfests, demo jams, or breakout sessions.</div><div><br></div><div><br></=
+div><div>###=C2=A0Review Criteria for Workshop proposals</div><div><br></di=
+v><div>A limited number of workshop proposals will be accepted to IoT 2018.=
+ Each proposal will be evaluated based on the quality of the proposal, and =
+its appeal to the IoT community. In particular, the proposals should demons=
+trate the following:</div><div><br></div><div>- the workshops topics fall i=
+n the general scope of IoT2018</div><div>- there is a clear identity and a =
+focus on a specific problem or technology</div><div>- there is an existing =
+community of researchers and practitioners that are susceptible to contribu=
+te to this event=C2=A0</div><div>- the organization and format are appealin=
+g for potential contributors and participants</div><div><br></div><div>In c=
+ase overlapping workshops are proposed, the Workshop Chairs may contact the=
+ organisers to discuss the possibility of merging workshops. The organisers=
+ of accepted workshops will be responsible for their own reviewing process =
+and publicity (e.g., website, timelines and call for papers).</div><div><br=
+></div><div><br></div><div>### How to submit a Workshop proposal</div><div>=
+<br></div><div>Submissions should be submitted no later than May 15th 2018 =
+via EasyChair ( <a href=3D"https://easychair.org/conferences/?conf=3Diot201=
+8wt">https://easychair.org/conferences/?conf=3Diot2018wt</a> ) as a 200 wor=
+ds abstract, along with a single PDF file of 4 pages maximum, containing th=
+e following section:</div><div><br></div><div>- Title, acronym, potentially=
+ logo</div><div>- Topics of interest covered by the workshop</div><div>- Mo=
+tivation: Why is the topic of particular interest to a reasonable fraction =
+of the=C2=A0 IoT community? If applicable, a brief discussion of the worksh=
+op=E2=80=99s history (experiences, number of submissions and attendees, etc=
+.).=C2=A0</div><div>- Organization and Format: Description of the intended =
+organization, selection process for the contributors, and schedule of the e=
+vent.</div><div>- Community: Evidence that there is an existing community o=
+f researchers and practitioners that are susceptible to contribute to this =
+event. References to work relating to the core topic of the workshop that a=
+re not only co-authored by the organizers.</div><div>- Chairs: Name, affili=
+ation, email address, homepage and short biography of each chair, explainin=
+g the chair=E2=80=99s expertise for the workshop</div><div>- Program Commit=
+tee: Names and affiliations of potential PC members, half of the potential =
+PC members should have confirmed at the time of submission.</div><div><br><=
+/div><div>All workshop participants will be required to register for the fu=
+ll conference as well. Workshop organizers will receive one complimentary c=
+onference ticket for one organizer or one workshop participant. At the disc=
+retion of the chairs, workshops may be cancelled if organisers have not reg=
+istered in a timely manner or if a workshop has received too few submission=
+s.</div><div><br></div><div><br></div><div>## Call for Tutorials</div><div>=
+<br></div><div>Tutorials collocated with the *8th International Conference =
+on the Internet of Things (IoT 2018)* are opportunities for IoT researchers=
+ and practitioners to learn about models or technologies, providing practic=
+al solutions for specific problems related to the IoT.=C2=A0</div><div><br>=
+</div><div>We invite submission of half-day tutorial proposals, with a clea=
+rly defined topic that falls in the general scope of the conference.=C2=A0<=
+/div><div><br></div><div><br></div><div>### Review Criteria for Tutorial pr=
+oposals</div><div><br></div><div>A limited number of tutorial proposals wil=
+l be accepted to IoT 2018. Each proposal will be evaluated based on the qua=
+lity of the proposal, and its appeal to the IoT community. In particular, t=
+he proposals should demonstrate the following:</div><div><br></div><div>- t=
+he tutorial topics fall in the general scope of IoT2018</div><div>- there i=
+s a clear focus on a specific problem or technology</div><div>- there is a =
+sufficiently large community interested in the topic</div><div><br></div><d=
+iv>We expect tutorials to have practical parts in terms of examples or pref=
+erably hands-on sessions. The organisers of accepted workshops will be resp=
+onsible for their own publicity (e.g., website, call for participation).=C2=
+=A0</div><div><br></div><div>### How to submit a Tutorial proposal</div><di=
+v><br></div><div>Submissions should be submitted no later than May 15th 201=
+8 via EasyChair ( <a href=3D"https://easychair.org/conferences/?conf=3Diot2=
+018wt">https://easychair.org/conferences/?conf=3Diot2018wt</a> ) as a 200 w=
+ords abstract, along with a single PDF file of 4 pages maximum, containing =
+the following section:</div><div><br></div><div>- Title, acronym, potential=
+ly logo</div><div>- Model or technology covered by the tutorial</div><div>-=
+ Motivation: Why is it of particular interest for the IoT community to lear=
+n about this model or technology? A brief discussion of the model/technolog=
+y development history (previous tutorials, conferences where it has been pr=
+esented or demonstrated, community behind its development, etc.).</div><div=
+>- Detailed Description: content and schedule, description of learning outc=
+omes, presentation style, tutorial format, prior knowledge required by the =
+attendees.</div><div>- Tutorial Material: if applicable, description of the=
+ hardware and software used for the tutorial. Will the software be openly a=
+ccessible to the participants? With what licence? If applicable, will the s=
+lides be shared with the audience, with what licence?=C2=A0</div><div>- Aud=
+ience: Evidence that there is an existing community of researchers and prac=
+titioners that are susceptible to participate to this event.</div><div>- Pr=
+esenters: Name, affiliation, email address, homepage and short biography of=
+ each presenter, explaining their expertise in the tutorial topic as well a=
+s their experiences in teaching and in tutorial presentation</div><div>- Re=
+quirements: Audio-visual or technical requirements and any special room req=
+uirements.</div><div><br></div><div>All tutorial participants will be requi=
+red to register for the full conference as well. Tutorial organizers will r=
+eceive one complimentary conference ticket for one organizer or one tutoria=
+l participant. At the discretion of the chairs, tutorials may be cancelled =
+if organisers have not registered in a timely manner.</div><div><br></div><=
+div><br></div><div># Workshop/ Tutorial Chairs</div><div>- Grant McKenzie (=
+University of Maryland, USA)</div><div>- Maxime Lefran=C3=A7ois (=C3=89cole=
+ des Mines de Saint-=C3=89tienne, FR)</div></div>
+
+--000000000000b10544056b354765--

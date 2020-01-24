@@ -1,0 +1,853 @@
+Return-Path: <abdelmalek.amine@univ-saida.dz>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id BE277229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 11 Dec 2017 22:12:59 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id BC24A73A1C4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 11 Dec 2017 22:12:59 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id AAB2F4821B2A
+	for <polytech_liste-egc@univ-nantes.fr>; Mon, 11 Dec 2017 22:12:59 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.474
+X-Spam-Level:
+X-Spam-Status: No, score=-3.474 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, HTML_MESSAGE=0.001,
+	MR_NOT_ATTRIBUTED_IP=0.2, NO_RDNS2=0.01, RCVD_IN_BRBL_LASTEXT=1.644,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, T_DKIM_INVALID=0.01,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 6.6067 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=neutral
+	reason="invalid (public key: not available)" header.d=univ-saida.dz
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id htstdZsz5cl6 for <polytech_liste-egc@univ-nantes.fr>;
+	Mon, 11 Dec 2017 22:12:55 +0100 (CET)
+X-Greylist: delayed 01:16:13 by SQLgrey-1.6.7
+Received: from mail.univ-saida.dz (mail.univ-saida.dz [41.110.190.118])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id A404E47EC07D
+	for <polytech_liste-egc@univ-nantes.fr>; Mon, 11 Dec 2017 22:12:55 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id 56CAD24138848
+	for <polytech_liste-egc@univ-nantes.fr>; Mon, 11 Dec 2017 20:56:40 +0100 (CET)
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id o5q2mLTgz71n for <polytech_liste-egc@univ-nantes.fr>;
+	Mon, 11 Dec 2017 20:56:37 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.univ-saida.dz (Postfix) with ESMTP id 3180124138852
+	for <polytech_liste-egc@univ-nantes.fr>; Mon, 11 Dec 2017 20:56:37 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.univ-saida.dz 3180124138852
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=univ-saida.dz; s=-u;
+	t=1513022197; bh=q5dEzdN86+twM8EofvtGukMzZ2gav+0JJc74KdlgREs=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=ss5PdkTRhjIX6Y52ar1oIHXGPAMUnvSAuv/qMeR6PbzKKKVr4AGh79DXUDW4mKi8+
+	 RN4E7w4nLbmtbDtbUjvcRcc1jntZ3RXxqjEfN14GFWgCJmTYrQqmAwb6UIIe5//Ymo
+	 vlFvaCLXgPAFUU1eIOEax40Uslwd8+DkOF4sCeeoE+fo1TPk3gSISF16S6tvWXdYE4
+	 QrSio1pawVY2XQIDUxxMABvT9Og/mE00ghfOi7qb91H1/eBSRNNKtAJVlD6ry4lHUr
+	 4f+Tr+EniPWYkAmk/c8OfxLGkZlmrP4ysoHeNwdEMhtsbKraKFsDAfnBJhs632WM6Q
+	 ZcUHIy6k+nhRA==
+X-Virus-Scanned: amavisd-new at mail.univ-saida.dz
+Received: from mail.univ-saida.dz ([127.0.0.1])
+	by localhost (mail.univ-saida.dz [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id ZZuttQAg65pT for <polytech_liste-egc@univ-nantes.fr>;
+	Mon, 11 Dec 2017 20:56:37 +0100 (CET)
+Received: from mail.univ-saida.dz (mail.univ-saida.dz [10.168.100.119])
+	by mail.univ-saida.dz (Postfix) with ESMTP id 00B3024138848
+	for <polytech_liste-egc@univ-nantes.fr>; Mon, 11 Dec 2017 20:56:36 +0100 (CET)
+Date: Mon, 11 Dec 2017 20:56:36 +0100 (CET)
+From:  abdelmalek amine <abdelmalek.amine@univ-saida.dz>
+To: polytech liste-egc <polytech_liste-egc@univ-nantes.fr>
+Message-ID: <343621412.1764.1513022196880.JavaMail.zimbra@univ-saida.dz>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="=_a7d062fe-fd65-460d-bcd4-c19ec1b4736b"
+X-Originating-IP: [10.168.100.119]
+X-Mailer: Zimbra 8.7.11_GA_1854 (ZimbraWebClient - FF57 (Win)/8.7.11_GA_1854)
+Thread-Index: 8lPdPzbYqbRtQ6Q/gphgLeIWtsSJ/w==
+Thread-Topic: Special Track IEA-AIE 2018_The 31st International Conference on Industrial, Engineering & Other Applications of Applied Intelligent Systems
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] CFP: Special Track IEA-AIE 2018_The 31st International
+ Conference on Industrial, Engineering & Other Applications of Applied
+ Intelligent Systems
+
+--=_a7d062fe-fd65-460d-bcd4-c19ec1b4736b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[We apologize for multiple reception] 
+
+
+
+Special Track : Internet of Things (IoT), Ubiquitous Computing and Big Data 
+
+The 31st International Conference on Industrial, Engineering & Other Applications of Applied Intelligent Systems (IEA-AIE 2018) 
+
+June 25-28, 2018 Montreal 
+
+[ http://ieaaie2018.encs.concordia.ca/tracks.html | http://ieaaie2018.encs.concordia.ca/tracks.html ] 
+
+
+
+The main scope of this special track is the convergence of IoT and big data technologies, and aims at bringing together researchers and practitioners working in IoT in order to present, discuss and share original research works and practical experiences, and provide the latest and most innovative contributions. 
+
+The Track welcomes submissions related to the practical and theoretical issues related to developing and deploying such systems. The main topics include but are not limited to: 
+
+    * IoT and big data platform architecture 
+    * IoT and big data analytics 
+    * IoT Applications, Services, and Implementations 
+    * Real-time and stream processing techniques 
+    * Predictive and advanced machine learning model 
+    * Ubiquitous machine learning 
+    * Security, Privacy, and Trust for IoT 
+
+
+
+The conference proceedings will be published by Springer in the [ http://www.springer.com/gp/computer-science/lncs | Lecture Notes in Artificial Intelligence (LNCS/LNAI)  ] series . A paper will be accepted either as a long or as a short paper. Long papers will be allocated 12 pages while short papers will be allocated 6 pages in the proceedings. Authors of accepted papers will be allocated time for an oral presentation at the conference and will have the opportunity to present their work in a poster session. At least one author of each accepted paper is required to attend the conference to present the work. Authors must agree to this requirement prior to submitting their paper for review. 
+
+
+
+Important Dates: 
+
+    * Paper Submission deadline: January 9, 2018 
+    * Notification of Acceptance/Rejection: February 16, 2018 
+    * Camera Ready Paper Submission: February 26, 2018 
+
+
+
+
+--=_a7d062fe-fd65-460d-bcd4-c19ec1b4736b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div id=3D"zimbraEditorContainer" style=3D"font-family: arial, =
+helvetica, sans-serif; font-size: 12pt; color: #000000" class=3D"2"><style =
+type=3D"text/css" scoped=3D"">
+<!--
+ /* Font Definitions */
+ @font-face
+=09{font-family:Wingdings;
+=09panose-1:5 0 0 0 0 0 0 0 0 0;
+=09mso-font-charset:2;
+=09mso-generic-font-family:auto;
+=09mso-font-pitch:variable;
+=09mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;
+=09mso-font-charset:0;
+=09mso-generic-font-family:roman;
+=09mso-font-pitch:variable;
+=09mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;
+=09mso-font-charset:0;
+=09mso-generic-font-family:swiss;
+=09mso-font-pitch:variable;
+=09mso-font-signature:-536859905 -1073732485 9 0 511 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{mso-style-unhide:no;
+=09mso-style-qformat:yes;
+=09mso-style-parent:"";
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09line-height:115%;
+=09mso-pagination:widow-orphan;
+=09font-size:11.0pt;
+=09font-family:"Calibri","sans-serif";
+=09mso-ascii-font-family:Calibri;
+=09mso-ascii-theme-font:minor-latin;
+=09mso-fareast-font-family:Calibri;
+=09mso-fareast-theme-font:minor-latin;
+=09mso-hansi-font-family:Calibri;
+=09mso-hansi-theme-font:minor-latin;
+=09mso-bidi-font-family:Arial;
+=09mso-bidi-theme-font:minor-bidi;
+=09mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:blue;
+=09text-decoration:underline;
+=09text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+=09{mso-style-noshow:yes;
+=09mso-style-priority:99;
+=09color:purple;
+=09mso-themecolor:followedhyperlink;
+=09text-decoration:underline;
+=09text-underline:single;}
+.zimbra1
+=09{mso-style-type:export-only;
+=09mso-default-props:yes;
+=09mso-ascii-font-family:Calibri;
+=09mso-ascii-theme-font:minor-latin;
+=09mso-fareast-font-family:Calibri;
+=09mso-fareast-theme-font:minor-latin;
+=09mso-hansi-font-family:Calibri;
+=09mso-hansi-theme-font:minor-latin;
+=09mso-bidi-font-family:Arial;
+=09mso-bidi-theme-font:minor-bidi;
+=09mso-fareast-language:EN-US;}
+.zimbra2
+=09{mso-style-type:export-only;
+=09margin-bottom:10.0pt;
+=09line-height:115%;}
+@page Section1
+=09{size:595.3pt 841.9pt;
+=09margin:70.85pt 70.85pt 70.85pt 70.85pt;
+=09mso-header-margin:35.4pt;
+=09mso-footer-margin:35.4pt;
+=09mso-paper-source:0;}
+div.Section1
+=09{page:Section1;}
+ /* List Definitions */
+ @list l0
+=09{mso-list-id:852452361;
+=09mso-list-template-ids:-606339020;}
+@list l0:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:=EF=82=B7;
+=09mso-level-tab-stop:36.0pt;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09mso-ansi-font-size:10.0pt;
+=09font-family:Symbol;}
+@list l1
+=09{mso-list-id:1728645517;
+=09mso-list-template-ids:1194515442;}
+@list l1:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:=EF=82=B7;
+=09mso-level-tab-stop:36.0pt;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09mso-ansi-font-size:10.0pt;
+=09font-family:Symbol;}
+ol
+=09{margin-bottom:0cm;}
+ul
+=09{margin-bottom:0cm;}
+-->
+</style><div style=3D"text-align: center;" data-mce-style=3D"text-align: ce=
+nter;"> <!--StartFragment-->[We apologize for multiple reception]<!--EndFra=
+gment--> </div><div><br data-mce-bogus=3D"1"></div><div>   <!-- [if gte mso=
+ 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:HyphenationZone>21</w:HyphenationZone>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>FR</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>AR-SA</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val=3D"Cambria Math"/>
+   <m:brkBin m:val=3D"before"/>
+   <m:brkBinSub m:val=3D"--"/>
+   <m:smallFrac m:val=3D"off"/>
+   <m:dispDef/>
+   <m:lMargin m:val=3D"0"/>
+   <m:rMargin m:val=3D"0"/>
+   <m:defJc m:val=3D"centerGroup"/>
+   <m:wrapIndent m:val=3D"1440"/>
+   <m:intLim m:val=3D"subSup"/>
+   <m:naryLim m:val=3D"undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!-- [if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState=3D"false" DefUnhideWhenUsed=3D"true"
+  DefSemiHidden=3D"true" DefQFormat=3D"false" DefPriority=3D"99"
+  LatentStyleCount=3D"267">
+  <w:LsdException Locked=3D"false" Priority=3D"0" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Normal"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"heading 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 7"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 8"/>
+  <w:LsdException Locked=3D"false" Priority=3D"9" QFormat=3D"true" Name=3D"=
+heading 9"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 7"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 8"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" Name=3D"toc 9"/>
+  <w:LsdException Locked=3D"false" Priority=3D"35" QFormat=3D"true" Name=3D=
+"caption"/>
+  <w:LsdException Locked=3D"false" Priority=3D"10" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Title"/>
+  <w:LsdException Locked=3D"false" Priority=3D"1" Name=3D"Default Paragraph=
+ Font"/>
+  <w:LsdException Locked=3D"false" Priority=3D"11" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Subtitle"/>
+  <w:LsdException Locked=3D"false" Priority=3D"22" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Strong"/>
+  <w:LsdException Locked=3D"false" Priority=3D"20" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Emphasis"/>
+  <w:LsdException Locked=3D"false" Priority=3D"59" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Table Grid"/>
+  <w:LsdException Locked=3D"false" UnhideWhenUsed=3D"false" Name=3D"Placeho=
+lder Text"/>
+  <w:LsdException Locked=3D"false" Priority=3D"1" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"No Spacing"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 1"/>
+  <w:LsdException Locked=3D"false" UnhideWhenUsed=3D"false" Name=3D"Revisio=
+n"/>
+  <w:LsdException Locked=3D"false" Priority=3D"34" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"List Paragraph"/>
+  <w:LsdException Locked=3D"false" Priority=3D"29" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Quote"/>
+  <w:LsdException Locked=3D"false" Priority=3D"30" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Intense Quote"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 1"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 2"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 3"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 4"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 5"/>
+  <w:LsdException Locked=3D"false" Priority=3D"60" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Shading Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"61" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light List Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"62" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Light Grid Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"63" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"64" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"65" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 1 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"66" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium List 2 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"67" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"68" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"69" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"70" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Dark List Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"71" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Shading Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"72" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful List Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"73" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" Name=3D"Colorful Grid Accent 6"/>
+  <w:LsdException Locked=3D"false" Priority=3D"19" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Subtle Emphasis"/>
+  <w:LsdException Locked=3D"false" Priority=3D"21" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Intense Emphasis"/>
+  <w:LsdException Locked=3D"false" Priority=3D"31" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Subtle Reference"/>
+  <w:LsdException Locked=3D"false" Priority=3D"32" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Intense Reference"/>
+  <w:LsdException Locked=3D"false" Priority=3D"33" SemiHidden=3D"false"
+   UnhideWhenUsed=3D"false" QFormat=3D"true" Name=3D"Book Title"/>
+  <w:LsdException Locked=3D"false" Priority=3D"37" Name=3D"Bibliography"/>
+  <w:LsdException Locked=3D"false" Priority=3D"39" QFormat=3D"true" Name=3D=
+"TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!-- [if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+=09{mso-style-name:"Tableau Normal";
+=09mso-tstyle-rowband-size:0;
+=09mso-tstyle-colband-size:0;
+=09mso-style-noshow:yes;
+=09mso-style-priority:99;
+=09mso-style-qformat:yes;
+=09mso-style-parent:"";
+=09mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+=09mso-para-margin-top:0cm;
+=09mso-para-margin-right:0cm;
+=09mso-para-margin-bottom:10.0pt;
+=09mso-para-margin-left:0cm;
+=09line-height:115%;
+=09mso-pagination:widow-orphan;
+=09font-size:11.0pt;
+=09font-family:"Calibri","sans-serif";
+=09mso-ascii-font-family:Calibri;
+=09mso-ascii-theme-font:minor-latin;
+=09mso-hansi-font-family:Calibri;
+=09mso-hansi-theme-font:minor-latin;
+=09mso-bidi-font-family:Arial;
+=09mso-bidi-theme-font:minor-bidi;
+=09mso-fareast-language:EN-US;}
+</style>
+<![endif]--> <!--StartFragment--><p class=3D"MsoNormal" style=3D"text-align=
+: center; margin: 0px;" data-mce-style=3D"text-align: center; margin: 0px;"=
+ align=3D"center"><span style=3D"font-size: 14.0pt; line-height: 115%; font=
+-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-f=
+areast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; ms=
+o-bidi-theme-font: major-bidi; color: red; mso-ansi-language: EN-GB; mso-fa=
+reast-language: FR;" data-mce-style=3D"font-size: 14.0pt; line-height: 115%=
+; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi;=
+ mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bi=
+di; mso-bidi-theme-font: major-bidi; color: red; mso-ansi-language: EN-GB; =
+mso-fareast-language: FR;" lang=3D"EN-GB">Special Track&nbsp;: Internet of =
+Things (IoT), Ubiquitous Computing and Big Data<o:p></o:p></span></p><p cla=
+ss=3D"MsoNormal" style=3D"text-align: center; margin: 0px;" data-mce-style=
+=3D"text-align: center; margin: 0px;" align=3D"center"><span style=3D"font-=
+size: 14.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; ms=
+o-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman';=
+ mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; color: =
+red; mso-ansi-language: EN-GB; mso-fareast-language: FR;" data-mce-style=3D=
+"font-size: 14.0pt; line-height: 115%; font-family: 'Times New Roman','seri=
+f'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New R=
+oman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; c=
+olor: red; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-=
+GB">The 31st International Conference on Industrial, Engineering &amp; Othe=
+r Applications of Applied Intelligent Systems (IEA-AIE 2018)<o:p></o:p></sp=
+an></p><p class=3D"MsoNormal" style=3D"text-align: center; margin: 0px;" da=
+ta-mce-style=3D"text-align: center; margin: 0px;" align=3D"center"><b><span=
+ style=3D"font-size: 12.0pt; line-height: 115%; font-family: 'Times New Rom=
+an','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Ti=
+mes New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: majo=
+r-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" data-mce-style=
+=3D"font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','s=
+erif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times Ne=
+w Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi=
+; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">June =
+25-28, 2018 Montreal<o:p></o:p></span></b></p><p class=3D"MsoNormal" style=
+=3D"text-align: center; margin: 0px;" data-mce-style=3D"text-align: center;=
+ margin: 0px;" align=3D"center"><span style=3D"font-size: 12.0pt; line-heig=
+ht: 115%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: maj=
+or-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: =
+major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-=
+fareast-language: FR;" data-mce-style=3D"font-size: 12.0pt; line-height: 11=
+5%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bid=
+i; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-=
+bidi; mso-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareas=
+t-language: FR;" lang=3D"EN-GB"><a href=3D"http://ieaaie2018.encs.concordia=
+.ca/tracks.html" data-mce-href=3D"http://ieaaie2018.encs.concordia.ca/track=
+s.html">http://ieaaie2018.encs.concordia.ca/tracks.html</a><o:p></o:p></spa=
+n></p><p class=3D"MsoNormal" style=3D"text-align: justify; margin: 0px;" da=
+ta-mce-style=3D"text-align: justify; margin: 0px;"><span style=3D"font-size=
+: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso-as=
+cii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-them=
+e-font: major-bidi; mso-ansi-language: EN-GB;" data-mce-style=3D"font-size:=
+ 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso-asc=
+ii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme=
+-font: major-bidi; mso-ansi-language: EN-GB;" lang=3D"EN-GB"><o:p>&nbsp;</o=
+:p></span></p><p class=3D"MsoNormal" style=3D"text-align: justify; line-hei=
+ght: normal; margin: 0px;" data-mce-style=3D"text-align: justify; line-heig=
+ht: normal; margin: 0px;"><span style=3D"font-size: 12.0pt; font-family: 'T=
+imes New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font=
+-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-them=
+e-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; =
+mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman=
+'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-a=
+nsi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">The main sco=
+pe of this special track is the convergence of IoT and big data technologie=
+s, and aims at bringing together researchers and practitioners working in I=
+oT in order to present, discuss and share original research works and pract=
+ical experiences, and provide the latest and most innovative contributions.=
+ <o:p></o:p></span></p><p class=3D"MsoNormal" style=3D"text-align: justify;=
+ line-height: normal; margin: 0px;" data-mce-style=3D"text-align: justify; =
+line-height: normal; margin: 0px;"><span style=3D"font-size: 12.0pt; font-f=
+amily: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-far=
+east-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-=
+bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language=
+: FR;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',=
+'serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times =
+New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bi=
+di; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">The=
+ Track welcomes submissions related to the practical and theoretical issues=
+ related to developing and deploying such systems. The main topics include =
+but are not limited to: <o:p></o:p></span></p><ul type=3D"disc"><li class=
+=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: au=
+to; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab=
+-stops: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margi=
+n-bottom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 =
+level1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; fon=
+t-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-=
+fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; m=
+so-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-langu=
+age: FR;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roma=
+n','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Tim=
+es New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major=
+-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">=
+IoT and big data platform architecture<o:p></o:p></span></li><li class=3D"M=
+soNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; t=
+ext-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab-stop=
+s: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 level=
+1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-fam=
+ily: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-farea=
+st-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bi=
+di-theme-font: major-bidi; mso-fareast-language: FR;" data-mce-style=3D"fon=
+t-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-ascii-theme-fon=
+t: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-=
+font: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-language: FR=
+;">IoT and big data analytics<o:p></o:p></span></li><li class=3D"MsoNormal"=
+ style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align=
+: justify; line-height: normal; mso-list: l1 level1 lfo1; tab-stops: list 3=
+6.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: =
+auto; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; t=
+ab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Tim=
+es New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-f=
+amily: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-=
+font: major-bidi; mso-fareast-language: FR;" data-mce-style=3D"font-size: 1=
+2.0pt; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-=
+bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: maj=
+or-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-language: FR;">IoT Ap=
+plications, Services, and Implementations<o:p></o:p></span></li><li class=
+=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: au=
+to; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab=
+-stops: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margi=
+n-bottom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 =
+level1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; fon=
+t-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-=
+fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; m=
+so-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-langu=
+age: FR;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roma=
+n','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Tim=
+es New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major=
+-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">=
+Real-time and stream processing techniques<o:p></o:p></span></li><li class=
+=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: au=
+to; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab=
+-stops: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margi=
+n-bottom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 =
+level1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; fon=
+t-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-=
+fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; m=
+so-bidi-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-langu=
+age: FR;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roma=
+n','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Tim=
+es New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major=
+-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">=
+Predictive and advanced machine learning model<o:p></o:p></span></li><li cl=
+ass=3D"MsoNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt:=
+ auto; text-align: justify; line-height: normal; mso-list: l1 level1 lfo1; =
+tab-stops: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-ma=
+rgin-bottom-alt: auto; text-align: justify; line-height: normal; mso-list: =
+l1 level1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; =
+font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; m=
+so-fareast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi=
+; mso-bidi-theme-font: major-bidi; mso-fareast-language: FR;" data-mce-styl=
+e=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-ascii-t=
+heme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hans=
+i-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-lang=
+uage: FR;">Ubiquitous machine learning<o:p></o:p></span></li><li class=3D"M=
+soNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; t=
+ext-align: justify; line-height: normal; mso-list: l1 level1 lfo1; tab-stop=
+s: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto; text-align: justify; line-height: normal; mso-list: l1 level=
+1 lfo1; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-fam=
+ily: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-farea=
+st-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bi=
+di-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: =
+FR;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman','s=
+erif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times Ne=
+w Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi=
+; mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Secur=
+ity, Privacy, and Trust for IoT<o:p></o:p></span></li></ul><p class=3D"MsoN=
+ormal" style=3D"text-align: justify; margin: 0px;" data-mce-style=3D"text-a=
+lign: justify; margin: 0px;"><span style=3D"font-size: 12.0pt; line-height:=
+ 115%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-=
+bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; ms=
+o-ansi-language: EN-GB;" data-mce-style=3D"font-size: 12.0pt; line-height: =
+115%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-b=
+idi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso=
+-ansi-language: EN-GB;" lang=3D"EN-GB">The conference proceedings will be p=
+ublished by Springer in the </span><span style=3D"font-size: 12.0pt; line-h=
+eight: 115%; font-family: 'Times New Roman','serif'; mso-ascii-theme-font: =
+major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bi=
+di;" data-mce-style=3D"font-size: 12.0pt; line-height: 115%; font-family: '=
+Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-hansi-theme=
+-font: major-bidi; mso-bidi-theme-font: major-bidi;"><a href=3D"http://www.=
+springer.com/gp/computer-science/lncs" data-mce-href=3D"http://www.springer=
+.com/gp/computer-science/lncs"><span style=3D"mso-ansi-language: EN-GB;" da=
+ta-mce-style=3D"mso-ansi-language: EN-GB;" lang=3D"EN-GB">Lecture Notes in =
+Artificial Intelligence (LNCS/LNAI) </span></a></span><span style=3D"font-s=
+ize: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso=
+-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-t=
+heme-font: major-bidi; mso-ansi-language: EN-GB;" data-mce-style=3D"font-si=
+ze: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; mso-=
+ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-th=
+eme-font: major-bidi; mso-ansi-language: EN-GB;" lang=3D"EN-GB">series . A =
+paper will be accepted either as a long or as a short paper. Long papers wi=
+ll be allocated 12 pages while short papers will be allocated 6 pages in th=
+e proceedings. Authors of accepted papers will be allocated time for an ora=
+l presentation at the conference and will have the opportunity to present t=
+heir work in a poster session. At least one author of each accepted paper i=
+s required to attend the conference to present the work. Authors must agree=
+ to this requirement prior to submitting their paper for review.<o:p></o:p>=
+</span></p><p class=3D"MsoNormal" style=3D"text-align: justify; margin: 0px=
+;" data-mce-style=3D"text-align: justify; margin: 0px;"><span style=3D"font=
+-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; m=
+so-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi=
+-theme-font: major-bidi; mso-ansi-language: EN-GB;" data-mce-style=3D"font-=
+size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif'; ms=
+o-ascii-theme-font: major-bidi; mso-hansi-theme-font: major-bidi; mso-bidi-=
+theme-font: major-bidi; mso-ansi-language: EN-GB;" lang=3D"EN-GB"><o:p>&nbs=
+p;</o:p></span></p><p class=3D"MsoNormal" style=3D"text-align: justify; lin=
+e-height: normal; margin: 0px;" data-mce-style=3D"text-align: justify; line=
+-height: normal; margin: 0px;"><b><span style=3D"font-size: 12.0pt; font-fa=
+mily: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fare=
+ast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-b=
+idi-theme-font: major-bidi; mso-fareast-language: FR;" data-mce-style=3D"fo=
+nt-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-ascii-theme-fo=
+nt: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme=
+-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-language: F=
+R;">Important Dates:</span></b><span style=3D"font-size: 12.0pt; font-famil=
+y: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast=
+-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi=
+-theme-font: major-bidi; mso-fareast-language: FR;" data-mce-style=3D"font-=
+size: 12.0pt; font-family: 'Times New Roman','serif'; mso-ascii-theme-font:=
+ major-bidi; mso-fareast-font-family: 'Times New Roman'; mso-hansi-theme-fo=
+nt: major-bidi; mso-bidi-theme-font: major-bidi; mso-fareast-language: FR;"=
+><o:p></o:p></span></p><ul type=3D"disc"><li class=3D"MsoNormal" style=3D"m=
+so-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: justify; =
+line-height: normal; mso-list: l0 level1 lfo2; tab-stops: list 36.0pt;" dat=
+a-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-=
+align: justify; line-height: normal; mso-list: l0 level1 lfo2; tab-stops: l=
+ist 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Times New Roma=
+n','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Tim=
+es New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major=
+-bidi; mso-fareast-language: FR;" data-mce-style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-f=
+areast-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; ms=
+o-bidi-theme-font: major-bidi; mso-fareast-language: FR;">Paper Submission =
+deadline: January 9, 2018<o:p></o:p></span></li><li class=3D"MsoNormal" sty=
+le=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; text-align: ju=
+stify; line-height: normal; mso-list: l0 level1 lfo2; tab-stops: list 36.0p=
+t;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto=
+; text-align: justify; line-height: normal; mso-list: l0 level1 lfo2; tab-s=
+tops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-family: 'Times N=
+ew Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-famil=
+y: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font=
+: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: FR;" data-mce=
+-style=3D"font-size: 12.0pt; font-family: 'Times New Roman','serif'; mso-as=
+cii-theme-font: major-bidi; mso-fareast-font-family: 'Times New Roman'; mso=
+-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi; mso-ansi-la=
+nguage: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Notification of Ac=
+ceptance/Rejection: February 16, 2018<o:p></o:p></span></li><li class=3D"Ms=
+oNormal" style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; te=
+xt-align: justify; line-height: normal; mso-list: l0 level1 lfo2; tab-stops=
+: list 36.0pt;" data-mce-style=3D"mso-margin-top-alt: auto; mso-margin-bott=
+om-alt: auto; text-align: justify; line-height: normal; mso-list: l0 level1=
+ lfo2; tab-stops: list 36.0pt;"><span style=3D"font-size: 12.0pt; font-fami=
+ly: 'Times New Roman','serif'; mso-ascii-theme-font: major-bidi; mso-fareas=
+t-font-family: 'Times New Roman'; mso-hansi-theme-font: major-bidi; mso-bid=
+i-theme-font: major-bidi; mso-ansi-language: EN-GB; mso-fareast-language: F=
+R;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman','se=
+rif'; mso-ascii-theme-font: major-bidi; mso-fareast-font-family: 'Times New=
+ Roman'; mso-hansi-theme-font: major-bidi; mso-bidi-theme-font: major-bidi;=
+ mso-ansi-language: EN-GB; mso-fareast-language: FR;" lang=3D"EN-GB">Camera=
+ Ready Paper Submission: February 26, 2018<o:p></o:p></span></li></ul><p cl=
+ass=3D"MsoNormal" style=3D"margin: 0px;" data-mce-style=3D"margin: 0px;"><s=
+pan style=3D"mso-ansi-language: EN-GB;" data-mce-style=3D"mso-ansi-language=
+: EN-GB;" lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p><!--EndFragment--> </d=
+iv></div></body></html>
+--=_a7d062fe-fd65-460d-bcd4-c19ec1b4736b--
+
+
+

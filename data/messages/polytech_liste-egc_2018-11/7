@@ -1,0 +1,419 @@
+Return-Path: <m.lamolle@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3D31D2292950
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Nov 2018 19:27:11 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 3424B6D255A
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Nov 2018 19:27:11 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 2F7D3B4A24A
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Nov 2018 19:27:11 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 3.331
+X-Spam-Level: ***
+X-Spam-Status: No, score=3.331 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H2=-0.001, RCVD_IN_SORBS=1,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_COMMAS_IN_SUBJ=2,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.6932 )
+X-CRM114-CacheID: 
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id xYZx4gi7ACrj for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  5 Nov 2018 19:27:10 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-it1-f181.google.com (mail-it1-f181.google.com [209.85.166.181])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 13653B190BE
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Nov 2018 19:27:10 +0100 (CET)
+Received: by mail-it1-f181.google.com with SMTP id k141-v6so12227130itk.3
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 05 Nov 2018 10:27:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=KmFeoctQCEPQZaUJl3re31fQgHFkhG4bCGZ2fHtq95o=;
+        b=dQzHZBzxq5MVuhAZo76o2GBU829skdxHV3iRj/0GwYJyP8S2s6s+r2pyMiQTkP5tEc
+         1ZmqnWJUgUHBjBZeBcwuhicnm32uumuo65d44FJpmSfpEfTdzKikHuU2hjAa1nEDyndH
+         MRpK9nKdCTvjoRynLQd9xlRFnS7s73QpuC5MXhQBWMQmVaLrh2H1SYV5M13jZYLhMkxG
+         ZfssSk2Q7/BnzArvpu3Lu7AMYL5jbJUr4DxnqvbRdlBK2GvETUg7GjLzbVBsa33vPdqo
+         NEfYb83iLeKdYHPlGxuUugE6jo53tejoKbxD2wJV7rULE0qgxEIq4LXhKlKS/BMC6qbs
+         h/Zw==
+X-Gm-Message-State: AGRZ1gK74ndAvksHgm4NEH+HrHfdSt/9J8fmJw+hLz5s30Z8mIFokA07
+	q11Qpam8lF8sslPS7lymz+2Vx1FneWFrmVOldbs=
+X-Google-Smtp-Source: AJdET5chRFSPXW0THjVMKevbU0QkKJMJY40jINdK9tx1gWlmRQ0P9M5ZT8n0mjZQlWHDhG62g0Lq71bijDlhLTM3SEM=
+X-Received: by 2002:a24:cd02:: with SMTP id l2-v6mr7709401itg.70.1541442428576;
+ Mon, 05 Nov 2018 10:27:08 -0800 (PST)
+MIME-Version: 1.0
+Reply-To: m.lamolle@iut.univ-paris8.fr
+From: Myriam Lamolle <m.lamolle@iut.univ-paris8.fr>
+Date: Mon, 5 Nov 2018 19:26:57 +0100
+Message-ID: <CAKvY+7XedDQ7s0487Xq9yoFEgOror_8mbqR8bSTPvWZaieXFxQ@mail.gmail.com>
+To: gazettebd3@univ-grenoble-alpes.fr, liste-egc@polytech.univ-nantes.fr, 
+	liste-proml@lri.fr, echos@lists.ens.fr, info-ic@listes.irisa.fr, 
+	labo@ai.univ-paris8.fr, 
+	"Personnel@iut.univ-paris8.fr" <personnel@iut.univ-paris8.fr>
+Content-Type: multipart/alternative; boundary="00000000000065a7ba0579ef085e"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [HDR] Soutenance : Chan LE DUC, Raisonnement et
+ =?UTF-8?Q?r=C3=A9vision?=
+ pour des ontologies en logique de description , IUT de Montreuil, 29 nov.
+ 2018, 14h
+
+--00000000000065a7ba0579ef085e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+
+Soutenance d'HDR de Chan LE DUC - LIASD, IUT de Montreuil, Universit=C3=A9 =
+Paris
+8
+
+
+Jeudi 29 Novembre 2018, 14h00 - IUT de Montreuil, Amphi 2
+
+
+Titre : Raisonnement et r=C3=A9vision pour des ontologies en logique de
+description.
+
+Title : Reasoning and revision for ontologies in description logics
+
+
+Jury :
+
+   - Odile Papini, Professeur =C3=A0 l=E2=80=99Universit=C3=A9 d=E2=80=99Ai=
+x-Marseille, Rapportrice
+   - J=C3=A9r=C3=B4me Euzenat, Directeur de recherche =C3=A0 l=E2=80=99INRI=
+A, Rapporteur
+   - Marie-Christine Rousset, Professeur =C3=A0 l=E2=80=99Universit=C3=A9 d=
+e Grenoble,
+   Examinatrice
+   - Nhan Le-Thanh, Professeur =C3=A0 l=E2=80=99Universit=C3=A9 C=C3=B4te d=
+=E2=80=99Azur, Examinateur
+   - Andrea Tettamanzi, Professeur =C3=A0 l=E2=80=99Universit=C3=A9 C=C3=B4=
+te d=E2=80=99Azur, Examinateur
+   - Myriam Lamolle, Professeur =C3=A0 l'Universit=C3=A9 Paris 8, Garante
+
+
+R=C3=A9sum=C3=A9 : Ce m=C3=A9moire d'habilitation d=C3=A9crit quelques m=C3=
+=A9thodes et outils issus
+de mes activit=C3=A9s de recherche au cours de ces derni=C3=A8res ann=C3=A9=
+es ainsi que
+mes projets scientifiques pour un futur proche. Ces m=C3=A9thodes et outils=
+ ont
+=C3=A9t=C3=A9 d=C3=A9velopp=C3=A9s pour le raisonnement et r=C3=A9vision de=
+ bases de connaissances
+utilis=C3=A9es dans le contexte du Web s=C3=A9mantique o=C3=B9 les donn=C3=
+=A9es et
+connaissances stock=C3=A9es dans ces bases sont cens=C3=A9es =C3=AAtre repr=
+=C3=A9sent=C3=A9es en
+langage muni d'une s=C3=A9mantique formelle et non ambig=C3=BCe. Cette dern=
+i=C3=A8re rend
+possible de mettre en place un m=C3=A9canisme de raisonnement automatis=C3=
+=A9 sur une
+telle base de connaissances, qui sera appel=C3=A9e une ontologie dans ce
+m=C3=A9moire. Afin de r=C3=A9pondre aux exigences relatives =C3=A0 la repr=
+=C3=A9sentation et
+l'=C3=A9change des donn=C3=A9es dans le contexte du Web s=C3=A9mantique, le=
+s logiques de
+description =C3=A9tant un fragment d=C3=A9cidable de la logique du premier =
+ordre sont
+utilis=C3=A9es pour "encoder" la s=C3=A9mantique du langage OWL (Ontology W=
+eb
+Language) qui a =C3=A9t=C3=A9 adopt=C3=A9 par W3C. Je me suis int=C3=A9ress=
+=C3=A9 =C3=A0 des
+d=C3=A9veloppements d'algorithmes et d'outils permettant le traitement
+automatis=C3=A9 des donn=C3=A9es et connaissances repr=C3=A9sent=C3=A9es en=
+ logique de
+description. L'objet principal de mes travaux de recherche porte donc sur
+les trois aspects suivants : Premi=C3=A8rement, il s'agit du d=C3=A9veloppe=
+ment d'une
+m=C3=A9thode des tableaux optimis=C3=A9e, appel=C3=A9e m=C3=A9thode des tab=
+leaux compress=C3=A9s,
+pour le raisonnement sur des ontologies expressives. Cette m=C3=A9thode per=
+met
+d'obtenir un algorithme de raisonnement de complexit=C3=A9 optimale dans le=
+ pire
+des cas en conservant le comportement =C2=AB orient=C3=A9-objectif =C2=BB d=
+e la m=C3=A9thode
+des tableaux standard, i.e. la recherche de solutions effectu=C3=A9e dans u=
+n
+espace r=C3=A9duit. L'algorithme a =C3=A9t=C3=A9 impl=C3=A9ment=C3=A9 dans =
+le prototype, nomm=C3=A9
+Star=C3=A9, et =C3=A9valu=C3=A9 avec diverses ontologies. Deuxi=C3=A8mement=
+, je me suis
+int=C3=A9ress=C3=A9 =C3=A0 augmenter le pouvoir d'expression de la logique =
+de description
+en y rajoutant la fermeture transitive de relations binaires qui s'est
+montr=C3=A9e un connecteur logique int=C3=A9ressant pour la mod=C3=A9lisati=
+on des
+connaissances. A l'aide de la m=C3=A9thode des tableaux compress=C3=A9s qui=
+ sert non
+seulement =C3=A0 l'optimisation mais aussi =C3=A0 la d=C3=A9termination de =
+d=C3=A9cidabilit=C3=A9
+d'un langage, nous avons montr=C3=A9 qu'un nouveau langage r=C3=A9sultant d=
+'une
+combinaison libre d'une logique de description expressive avec la fermeture
+transitive est ind=C3=A9cidable. Ce r=C3=A9sultat nous a permis de proposer=
+ une
+restriction avec laquelle ce nouveau langage devient d=C3=A9cidable. Le
+troisi=C3=A8me aspect concerne la r=C3=A9vision d'une ontologie expressive.
+Lorsqu'une nouvelle connaissance est ajout=C3=A9e =C3=A0 une ontologie, cet=
+te
+derni=C3=A8re pourrait devenir incoh=C3=A9rente. Afin de restaurer la coh=
+=C3=A9rence, il
+est n=C3=A9cessaire de changer l'ontologie initiale de telle fa=C3=A7on que=
+ le
+changement soit minimal et la nouvelle connaissance soit prise en compte
+dans l'ontologie r=C3=A9sultante. Nous avons propos=C3=A9 une m=C3=A9thode =
+de r=C3=A9vision qui
+repose sur une caract=C3=A9risation de la s=C3=A9mantique d'une ontologie e=
+n
+utilisant un ensemble fini de graphes pour la repr=C3=A9sentation de mod=C3=
+=A8les
+d'ontologie. La m=C3=A9thode a =C3=A9t=C3=A9 impl=C3=A9ment=C3=A9e dans le =
+prototype mis en ligne,
+nomm=C3=A9 OntoRev.
+
+Mots-cl=C3=A9s : Raisonnement, r=C3=A9vision, ontologie, logiques de descri=
+ption,
+m=C3=A9thode des tableaux
+
+
+Abstract : This habilitation thesis outlines methods and tools resulting
+from my research activities during the last nine years. These methods and
+tools have been developed for reasoning and revision on knowledge bases
+used in the context of the Semantic Web where data and knowledge stored in
+these bases would be represented in a langage equipped with a formal and
+unambiguous semantics. Such a formal semantics makes possible to develop an
+automated mechanism for reasoning on the kind of such knowledge bases which
+are called ontologies in this thesis. In order to address the requirements
+for representing and exchanging data in the context of the Semantic Web,
+description logics (a decidable fragment of First Order Logic) are used for
+"encoding" the semantics of the language OWL (Ontology Web Language) that
+was adopted by W3C. I was interested in developing algorithms and tools
+which allow for processing data and knowledge represented in description
+logics. My research therefore focuses on the three following topics. First,
+it is the development of an optimized tableau method, called compressed
+tableau, for reasoning on expressive ontologies. This method allows to
+obtain a worst-case optimal algorithm in preserving the =C2=AB goal-oriente=
+d =C2=BB
+behavior of the standard tableau method, i.e. searching performed in a
+reduced space. The method has been implemented in the prototype, named
+Star=C3=A9, and evaluated with various ontologies. Second, I was interested=
+ in
+augmenting the expression power of description logics by adding the
+transitive closure of binary relations which is known as an interesting
+logical connector for knowledge modeling. By using the compressed tableau
+method which allows not only for optimization but also for determining
+decidability of a language, we have showed that a new language obtained by
+fully combining an expressive description logic with the transitive closure
+may be undecidable. This result led us to propose a restriction which
+enables the new langage to be decidable. The third topic of my research is
+concerned with expressive ontology revision. When adding new knowledge to
+an ontology, it may become inconsistent. In order to restore consistency of
+the ontology, it is needed to change the initial ontology in such a way
+that the change should be minimal and the new knowledge should be taken
+into account in the resulting ontology. We have proposed a revision method
+which relies on a characterization of the semantics of an ontology by using
+a finite set of graphs for representing ontology models. The method has
+been implemented in the prototype available online, named OntoRev. Keywords
+: Reasoning, revision, ontology, description logics, tableau method
+
+
+Chan Le Duc
+
+--=20
+Myriam Lamolle - Professeur des Universit=C3=A9s
+Cheffe du d=C3=A9partement Informatique
+IUT de Montreuil - D=C3=A9partement Informatique
+140, rue de la Nouvelle France
+93100 Montreuil
+Laboratoire LIASD - Universit=C3=A9 Paris8
+2 rue de la Libert=C3=A9 - 93526 Saint-Denis cedex
+
+http//:www.iut.univ-paris8.fr/~lamolle
+T=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67
+
+--00000000000065a7ba0579ef085e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><p style=3D"margin:0px;f=
+ont-stretch:normal;font-size:13px;line-height:normal;font-family:Arial;colo=
+r:rgb(26,26,26)"><span>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Soutenance d&#39;HDR de Chan=
+ LE DUC - LIASD, IUT de Montreuil, Universit=C3=A9 Paris 8</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26);min-height:15px"><span></span><br><=
+/p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Jeudi 29 Novembre 2018, 14h0=
+0 - IUT de Montreuil, Amphi 2</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26);min-height:15px"><span></span><br><=
+/p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Titre : Raisonnement et r=C3=
+=A9vision pour des ontologies en logique de description.</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Title : Reasoning and revisi=
+on for ontologies in description logics</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26);min-height:15px"><span></span><br><=
+/p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Jury :</span></p>
+<ul>
+<li style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norm=
+al;font-family:Arial;color:rgb(26,26,26)"><span style=3D"font-stretch:norma=
+l;font-size:15.6px;line-height:normal"></span><span>Odile Papini, Professeu=
+r =C3=A0 l=E2=80=99Universit=C3=A9 d=E2=80=99Aix-Marseille, Rapportrice</sp=
+an></li>
+<li style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norm=
+al;font-family:Arial;color:rgb(26,26,26)"><span style=3D"font-stretch:norma=
+l;font-size:15.6px;line-height:normal"></span><span>J=C3=A9r=C3=B4me Euzena=
+t, Directeur de recherche =C3=A0 l=E2=80=99INRIA, Rapporteur=C2=A0</span></=
+li><li style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:n=
+ormal;font-family:Arial;color:rgb(26,26,26)">Marie-Christine Rousset, Profe=
+sseur =C3=A0 l=E2=80=99Universit=C3=A9 de Grenoble, Examinatrice</li>
+<li style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norm=
+al;font-family:Arial;color:rgb(26,26,26)"><span style=3D"font-stretch:norma=
+l;font-size:15.6px;line-height:normal"></span><span>Nhan Le-Thanh, Professe=
+ur =C3=A0 l=E2=80=99Universit=C3=A9 C=C3=B4te d=E2=80=99Azur, Examinateur=
+=C2=A0</span></li>
+<li style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norm=
+al;font-family:Arial;color:rgb(26,26,26)"><span style=3D"font-stretch:norma=
+l;font-size:15.6px;line-height:normal"></span><span>Andrea Tettamanzi, Prof=
+esseur =C3=A0 l=E2=80=99Universit=C3=A9 C=C3=B4te d=E2=80=99Azur, Examinate=
+ur</span></li><li style=3D"margin:0px;font-stretch:normal;font-size:13px;li=
+ne-height:normal;font-family:Arial;color:rgb(26,26,26)">Myriam Lamolle, Pro=
+fesseur =C3=A0 l&#39;Universit=C3=A9 Paris 8, Garante</li></ul>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26);min-height:15px"><span></span><br><=
+/p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>R=C3=A9sum=C3=A9 : Ce m=C3=
+=A9moire d&#39;habilitation d=C3=A9crit quelques m=C3=A9thodes et outils is=
+sus de mes activit=C3=A9s de recherche au cours de ces derni=C3=A8res ann=
+=C3=A9es ainsi que mes projets scientifiques pour un futur proche. Ces m=C3=
+=A9thodes et outils ont =C3=A9t=C3=A9 d=C3=A9velopp=C3=A9s pour le raisonne=
+ment et r=C3=A9vision de bases de connaissances utilis=C3=A9es dans le cont=
+exte du Web s=C3=A9mantique o=C3=B9 les donn=C3=A9es et connaissances stock=
+=C3=A9es dans ces bases sont cens=C3=A9es =C3=AAtre repr=C3=A9sent=C3=A9es =
+en langage muni d&#39;une s=C3=A9mantique formelle et non ambig=C3=BCe. Cet=
+te derni=C3=A8re rend possible de mettre en place un m=C3=A9canisme de rais=
+onnement automatis=C3=A9 sur une telle base de connaissances, qui sera appe=
+l=C3=A9e une ontologie dans ce m=C3=A9moire. Afin de r=C3=A9pondre aux exig=
+ences relatives =C3=A0 la repr=C3=A9sentation et l&#39;=C3=A9change des don=
+n=C3=A9es dans le contexte du Web s=C3=A9mantique, les logiques de descript=
+ion =C3=A9tant un fragment d=C3=A9cidable de la logique du premier ordre so=
+nt utilis=C3=A9es pour &quot;encoder&quot; la s=C3=A9mantique du langage OW=
+L (Ontology Web Language) qui a =C3=A9t=C3=A9 adopt=C3=A9 par W3C. Je me su=
+is int=C3=A9ress=C3=A9 =C3=A0 des d=C3=A9veloppements d&#39;algorithmes et =
+d&#39;outils permettant le traitement automatis=C3=A9 des donn=C3=A9es et c=
+onnaissances repr=C3=A9sent=C3=A9es en logique de description. L&#39;objet =
+principal de mes travaux de recherche porte donc sur les trois aspects suiv=
+ants : Premi=C3=A8rement, il s&#39;agit du d=C3=A9veloppement d&#39;une m=
+=C3=A9thode des tableaux optimis=C3=A9e, appel=C3=A9e m=C3=A9thode des tabl=
+eaux compress=C3=A9s, pour le raisonnement sur des ontologies expressives. =
+Cette m=C3=A9thode permet d&#39;obtenir un algorithme de raisonnement de co=
+mplexit=C3=A9 optimale dans le pire des cas en conservant le comportement =
+=C2=AB=C2=A0orient=C3=A9-objectif=C2=A0=C2=BB de la m=C3=A9thode des tablea=
+ux standard, i.e. la recherche de solutions effectu=C3=A9e dans un espace r=
+=C3=A9duit. L&#39;algorithme a =C3=A9t=C3=A9 impl=C3=A9ment=C3=A9 dans le p=
+rototype, nomm=C3=A9 Star=C3=A9, et =C3=A9valu=C3=A9 avec diverses ontologi=
+es. Deuxi=C3=A8mement, je me suis int=C3=A9ress=C3=A9 =C3=A0 augmenter le p=
+ouvoir d&#39;expression de la logique de description en y rajoutant la ferm=
+eture transitive de relations binaires qui s&#39;est montr=C3=A9e un connec=
+teur logique int=C3=A9ressant pour la mod=C3=A9lisation des connaissances. =
+A l&#39;aide de la m=C3=A9thode des tableaux compress=C3=A9s qui sert non s=
+eulement =C3=A0 l&#39;optimisation mais aussi =C3=A0 la d=C3=A9termination =
+de d=C3=A9cidabilit=C3=A9 d&#39;un langage, nous avons montr=C3=A9 qu&#39;u=
+n nouveau langage r=C3=A9sultant d&#39;une combinaison libre d&#39;une logi=
+que de description expressive avec la fermeture transitive est ind=C3=A9cid=
+able. Ce r=C3=A9sultat nous a permis de proposer une restriction avec laque=
+lle ce nouveau langage devient d=C3=A9cidable. Le troisi=C3=A8me aspect con=
+cerne la r=C3=A9vision d&#39;une ontologie expressive. Lorsqu&#39;une nouve=
+lle connaissance est ajout=C3=A9e =C3=A0 une ontologie, cette derni=C3=A8re=
+ pourrait devenir incoh=C3=A9rente. Afin de restaurer la coh=C3=A9rence, il=
+ est n=C3=A9cessaire de changer l&#39;ontologie initiale de telle fa=C3=A7o=
+n que le changement soit minimal et la nouvelle connaissance soit prise en =
+compte dans l&#39;ontologie r=C3=A9sultante. Nous avons propos=C3=A9 une m=
+=C3=A9thode de r=C3=A9vision qui repose sur une caract=C3=A9risation de la =
+s=C3=A9mantique d&#39;une ontologie en utilisant un ensemble fini de graphe=
+s pour la repr=C3=A9sentation de mod=C3=A8les d&#39;ontologie. La m=C3=A9th=
+ode a =C3=A9t=C3=A9 impl=C3=A9ment=C3=A9e dans le prototype mis en ligne, n=
+omm=C3=A9 OntoRev.</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Mots-cl=C3=A9s : Raisonnemen=
+t, r=C3=A9vision, ontologie, logiques de description, m=C3=A9thode des tabl=
+eaux</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26);min-height:15px"><span></span><br><=
+/p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:13px;line-height:norma=
+l;font-family:Arial;color:rgb(26,26,26)"><span>Abstract : This habilitation=
+ thesis outlines methods and tools resulting from my research activities du=
+ring the last nine years. These methods and tools have been developed for r=
+easoning and revision on knowledge bases used in the context of the Semanti=
+c Web where data and knowledge stored in these bases would be represented i=
+n a langage equipped with a formal and unambiguous semantics. Such a formal=
+ semantics makes possible to develop an automated mechanism for reasoning o=
+n the kind of such knowledge bases which are called ontologies in this thes=
+is. In order to address the requirements for representing and exchanging da=
+ta in the context of the Semantic Web, description logics (a decidable frag=
+ment of First Order Logic) are used for &quot;encoding&quot; the semantics =
+of the language OWL (Ontology Web Language) that was adopted by W3C. I was =
+interested in developing algorithms and tools which allow for processing da=
+ta and knowledge represented in description logics. My research therefore f=
+ocuses on the three following topics. First, it is the development of an op=
+timized tableau method, called compressed tableau, for reasoning on express=
+ive ontologies. This method allows to obtain a worst-case optimal algorithm=
+ in preserving the =C2=AB=C2=A0goal-oriented=C2=A0=C2=BB behavior of the st=
+andard tableau method, i.e. searching performed in a reduced space. The met=
+hod has been implemented in the prototype, named Star=C3=A9, and evaluated =
+with various ontologies. Second, I was interested in augmenting the express=
+ion power of description logics by adding the transitive closure of binary =
+relations which is known as an interesting logical connector for knowledge =
+modeling. By using the compressed tableau method which allows not only for =
+optimization but also for determining decidability of a language, we have s=
+howed that a new language obtained by fully combining an expressive descrip=
+tion logic with the transitive closure may be undecidable. This result led =
+us to propose a restriction which enables the new langage to be decidable. =
+The third topic of my research is concerned with expressive ontology revisi=
+on. When adding new knowledge to an ontology, it may become inconsistent. I=
+n order to restore consistency of the ontology, it is needed to change the =
+initial ontology in such a way that the change should be minimal and the ne=
+w knowledge should be taken into account in the resulting ontology. We have=
+ proposed a revision method which relies on a characterization of the seman=
+tics of an ontology by using a finite set of graphs for representing ontolo=
+gy models. The method has been implemented in the prototype available onlin=
+e, named OntoRev. Keywords : Reasoning, revision, ontology, description log=
+ics, tableau method</span></p><p style=3D"margin:0px;font-stretch:normal;fo=
+nt-size:13px;line-height:normal;font-family:Arial;color:rgb(26,26,26)"><spa=
+n><br></span></p><p style=3D"margin:0px;font-stretch:normal;font-size:13px;=
+line-height:normal;font-family:Arial;color:rgb(26,26,26)"><span>Chan Le Duc=
+</span></p><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail-m_31919728=
+86404242796gmail-m_-2660897360567432744m_6367042069164042686gmail_signature=
+"><div dir=3D"ltr"><div>Myriam Lamolle - Professeur des Universit=C3=A9s</d=
+iv><div>Cheffe du d=C3=A9partement Informatique</div><div>IUT de Montreuil =
+- D=C3=A9partement Informatique<br>140, rue de la Nouvelle France<br>93100 =
+Montreuil<br>Laboratoire LIASD - Universit=C3=A9 Paris8<br>2 rue de la Libe=
+rt=C3=A9 - 93526 Saint-Denis cedex<br><br>http//:<a href=3D"http://www.iut.=
+univ-paris8.fr/~lamolle" target=3D"_blank">www.iut.univ-paris8.fr/~lamolle<=
+/a><br>T=C3=A9l: +33(0)1 48 70 34 61 Fax : +33(0)1 48 70 34 67</div></div><=
+/div></div></div></div>
+
+--00000000000065a7ba0579ef085e--

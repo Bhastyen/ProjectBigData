@@ -1,0 +1,446 @@
+Return-Path: <guenael.cabanes@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 3F45D229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 26 Jul 2017 15:01:49 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 3DDA86287FF
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 26 Jul 2017 15:01:49 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 3302F414A8DA
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 26 Jul 2017 15:01:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.342
+X-Spam-Level:
+X-Spam-Status: No, score=0.342 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-1,
+	RCVD_IN_WSFF=0.01, SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, T_REMOTE_IMAGE=0.01,
+	UN_PHISHING_PW=0.1, UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001,
+	VOWEL_URI_5=1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.0518 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id G8xClKyV5bnP for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 26 Jul 2017 15:01:48 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x22e.google.com (mail-wm0-x22e.google.com [IPv6:2a00:1450:400c:c09::22e])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id E82BE435ADB5
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 26 Jul 2017 15:01:47 +0200 (CEST)
+Received: by mail-wm0-x22e.google.com with SMTP id c184so77982370wmd.0
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 26 Jul 2017 06:01:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=2D16wqbo6280hH6lgfMwsJQx0B2pgcwPXyTB0xI96x0=;
+        b=M9omcXO/USs1LFYzbe/HfHSj3eHgBjf/d5bmNF3p0EvzXcOVWxEanuGa+uXURJ4aIY
+         pHXlIQeL+gSsgberD/Pf59nVfgNE5dBMQV3XAqnBM77ZOpj24pPtBDMHBR0W94OevwWu
+         SVVj4wDoOCER88lyf38Iv/RgFPZDyzvjv5pYrJMoxxnSiP++mI9N5HglssKspbI7f2Za
+         w4yxW7WYXn5PQtPrETM9N+sJxS0YeU37yneirp1TdHsT7dLwYWhQqpZLkN44CpcVGJzy
+         KK9p9I30jXM2aC2124UDF+4jeNgrB3CfMKA6dVHa9jbQTEEn6Ot+KwbLzGmJV3i/qD7G
+         e2FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=2D16wqbo6280hH6lgfMwsJQx0B2pgcwPXyTB0xI96x0=;
+        b=V2HGnHXBTlS+qtrgPdXi1JkU5PxZlnQgqailYOLvz37ajYJiG7KqfpYKW76quQXu/g
+         jTc/9FMInuaBl0wZ2+QjTN/Z7XugSifRAFZCFdyx9yOt69VsIjKeL66pKSHzwsVfQkHU
+         rgPps1+4KDsLN0CmGy+HaqlkCwnp9L5VKA6k45GOTzG7GONjzKvGadGFt/FFy5hYYJhK
+         XVwF4CZofm1UJlbIiCNmzprvrFT8hTm2M3NbGDiZ69qa/uYKrXu6ZzxIFNHlRrjLllVj
+         0zI9VNWwTErAcqswNcUno0R9TNbR6W2GENt2aGMjfPyB2WSYa8bjUisJDpI71+xfKiMy
+         AyZQ==
+X-Gm-Message-State: AIVw110imRngekPgNxsaIYtByO5iil545oHIULsZSF/+76BsCEDiC6FY
+	WDTH5JZsjcSITxsZCqlLXNVgvq8RMw==
+X-Received: by 10.80.215.7 with SMTP id t7mr761913edi.19.1501074104953; Wed,
+ 26 Jul 2017 06:01:44 -0700 (PDT)
+MIME-Version: 1.0
+Sender: guenael.cabanes@gmail.com
+Received: by 10.80.132.103 with HTTP; Wed, 26 Jul 2017 06:01:04 -0700 (PDT)
+From: =?UTF-8?B?R3XDqW5hw6tsIENhYmFuZXM=?= <guenael.cabanes@lipn.univ-paris13.fr>
+Date: Wed, 26 Jul 2017 15:01:04 +0200
+X-Google-Sender-Auth: OUAdH646WocUQj1UeYrNXwy22W8
+Message-ID: <CAE0eC8tN0VjdfWT=4cPmU2JuH9bwYAG3J056YQQZ+mT-KmWmfA@mail.gmail.com>
+To: info-ic <info-ic@listes.irisa.fr>, bull-i3@irit.fr, 
+	liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="f403045dbe94ceb0c00555380c4f"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [EXTENDED DEADLINE] Representation learning for
+ transfer and collaborative approaches (Special session in IEEE CIDM/SSCI
+ 2017)
+
+--f403045dbe94ceb0c00555380c4f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+*Call for Papers in Special Session*
+Representation learning for transfer and collaborative approaches
+
+*IEEE Symposium on Computational Intelligence and Data Mining*
+<http://www.ele.uri.edu/ieee-ssci2017/CIDM.htm>* (CIDM)*
+
+*IEEE * <http://www.ele.uri.edu/ieee-ssci2017/CIDM.htm>*Symposium Series of
+Computational Intelligence <http://www.ele.uri.edu/ieee-ssci2017/>** (SSCI
+2017)*
+
+*Honolulu, Hawaii, Nov 27 =E2=80=93 Dec 1, 2017. *
+
+
+*Papers due August 7*
+
+
+*Submission : **http://www.ele.uri.edu/ieee-ssci2017/PaperSubmission.htm
+<http://www.ele.uri.edu/ieee-ssci2017/PaperSubmission.htm>*
+
+*Select "CIDM6" as **Main research topic*
+
+
+
+
+Data Clustering is a fundamental task in the process of knowledge
+extraction from databases that aims to discover the intrinsic structures in
+a set of objects by forming clusters that share similar features. Over the
+past two decades, these tasks have become even more challenging when the
+available data sets became more complex with the introduction of multi-view
+data sets, distributed data, data streams and data set having different
+scales of structures of interest (e.g. hierarchical clusters). Because of
+this increased complexity in an already hard problem, new approaches are
+needed.
+
+
+Within this context, the purpose of our session is to bring together
+researchers working on unsupervised frameworks learning involving a
+decomposition of the clustering task into several sub-problems. The
+decomposition can involve algorithms working on different subsets of a
+multi-view or a distributed data set, searching for different scales of
+interested in the same data to find hierarchical structures, analyzing in
+parallel different time periods of a data stream, etc=E2=80=A6 These approa=
+ches are
+a recent area of research with a large number of applications to tackle
+difficult problems, such as clustering of distributed data, multi-expert
+clustering, multi-scale clustering analysis or multi-view clustering. Most
+of these frameworks can be regrouped under the umbrella of transfer and
+collaborative learning, the aim of which is to reveal the underlying
+structure of the data by sharing information between algorithms working on
+different sub-problems.
+
+
+*Topics of interest include, but are not limited to the following:*
+
+
+
+   -
+
+   Collaborative clustering
+   -
+
+   Collaborative learning
+   -
+
+   Cooperative learning
+   -
+
+   Multi-view learning
+   -
+
+   Multi-task learning
+
+
+
+
+   -
+
+   Transfers learning
+   -
+
+   Representation learning
+   -
+
+   Modular approaches
+   -
+
+   Distributed data
+   -
+
+   Task decomposition
+
+*Contact Session Co-Chairs:*
+
+   -
+
+   Gu=C3=A9na=C3=ABl Cabanes: Institut Galil=C3=A9e, University Paris 13, F=
+rance (contact:
+   cabanes@lipn.univ-paris13.fr)
+
+
+   -
+
+   Youn=C3=A8s Bennani: Institut Galil=C3=A9e, University Paris 13, France
+   -
+
+   Nistor Grozavu: Institut Galil=C3=A9e, University Paris 13, France
+   -
+
+   Basarab Matei: Institut Galil=C3=A9e, University Paris 13, France
+
+
+<http://www.avg.com/email-signature?utm_medium=3Demail&utm_source=3Dlink&ut=
+m_campaign=3Dsig-email&utm_content=3Dwebmail>
+Garanti
+sans virus. www.avg.com
+<http://www.avg.com/email-signature?utm_medium=3Demail&utm_source=3Dlink&ut=
+m_campaign=3Dsig-email&utm_content=3Dwebmail>
+<#m_-6810839065198604463_m_2317926423415867219_DAB4FAD8-2DD7-40BB-A1B8-4E2A=
+A1F9FDF2>
+
+--f403045dbe94ceb0c00555380c4f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><br><br><br><div dir=3D"ltr"><d=
+iv class=3D"gmail_quote"><br><div dir=3D"ltr"><div dir=3D"ltr"><p align=3D"=
+center" style=3D"margin-bottom:0cm;line-height:0.64cm"><font color=3D"#4444=
+44"><font face=3D"Times New Roman, serif"><font style=3D"font-size:18pt"><s=
+pan style=3D"letter-spacing:-0.6pt"><span lang=3D"en-US"><b>Call
+for Papers in Special Session</b></span></span></font></font></font></p>
+<h2 class=3D"m_-6810839065198604463m_2317926423415867219gmail-western" alig=
+n=3D"center" style=3D"margin-top:0.42cm;margin-bottom:0.53cm;line-height:0.=
+64cm">
+<font color=3D"#444444"><font face=3D"Times New Roman, serif"><font style=
+=3D"font-size:22pt"><span style=3D"letter-spacing:-0.6pt"><span lang=3D"en-=
+US">Representation
+learning for transfer and collaborative approaches</span></span></font></fo=
+nt></font></h2>
+<p align=3D"center" style=3D"margin-bottom:0cm;line-height:0.64cm"><a href=
+=3D"http://www.ele.uri.edu/ieee-ssci2017/CIDM.htm" target=3D"_blank"><font =
+color=3D"#427597"><font face=3D"Times New Roman, serif"><font style=3D"font=
+-size:12pt"><span lang=3D"en-US"><u><b>IEEE
+Symposium on Computational Intelligence and Data Mining</b></u></span></fon=
+t></font></font></a><font color=3D"#444444"><font face=3D"Times New Roman, =
+serif"><font style=3D"font-size:12pt"><span lang=3D"en-US"><b>
+(CIDM)</b></span></font></font></font></p>
+<p align=3D"center" style=3D"margin-bottom:0cm;line-height:0.64cm"><a href=
+=3D"http://www.ele.uri.edu/ieee-ssci2017/CIDM.htm" target=3D"_blank"><font =
+color=3D"#427597"><font face=3D"Times New Roman, serif"><font style=3D"font=
+-size:12pt"><span lang=3D"en-US"><u><b>IEEE=C2=A0</b></u></span></font></fo=
+nt></font></a><font color=3D"#427597"><font face=3D"Times New Roman, serif"=
+><font style=3D"font-size:12pt"><span lang=3D"en-US"><u><b><a href=3D"http:=
+//www.ele.uri.edu/ieee-ssci2017/" target=3D"_blank">Symposium
+Series of Computational Intelligence</a></b></u></span></font></font></font=
+><font color=3D"#444444"><font face=3D"Times New Roman, serif"><font style=
+=3D"font-size:12pt"><span lang=3D"en-US"><b>
+ (SSCI 2017)</b></span></font></font></font></p>
+<p align=3D"center" style=3D"margin-bottom:0cm;line-height:0.64cm"><font co=
+lor=3D"#444444"><font face=3D"Times New Roman, serif"><font style=3D"font-s=
+ize:12pt"><span lang=3D"en-US"><b>Honolulu,
+Hawaii, Nov 27 =E2=80=93 Dec 1, 2017.=C2=A0</b></span></font></font></font>=
+</p>
+<p lang=3D"en-US" align=3D"center" style=3D"margin-bottom:0cm;line-height:0=
+.64cm">
+<br>
+
+</p>
+<p align=3D"center" style=3D"margin-bottom:0cm;line-height:0.64cm"><font co=
+lor=3D"#ff0000"><font face=3D"Times New Roman, serif"><font style=3D"font-s=
+ize:16pt"><span lang=3D"en-US"><b>Papers
+due August 7</b></span></font></font></font></p><p align=3D"center" style=
+=3D"margin-bottom:0cm;line-height:0.64cm"><font color=3D"#ff0000"><font fac=
+e=3D"Times New Roman, serif"><font style=3D"font-size:16pt"><span lang=3D"e=
+n-US"><b><br></b></span></font></font></font></p><p align=3D"center" style=
+=3D"margin-bottom:0cm;line-height:0.64cm"><font color=3D"#000000" size=3D"4=
+"><font face=3D"Times New Roman, serif"><font><span lang=3D"en-US"><b>Submi=
+ssion :=C2=A0</b></span></font></font><font face=3D"Times New Roman, serif"=
+><b><a href=3D"http://www.ele.uri.edu/ieee-ssci2017/PaperSubmission.htm" ta=
+rget=3D"_blank">http://www.ele.uri.edu/ieee-<wbr>ssci2017/PaperSubmission.h=
+tm</a></b></font></font></p><p align=3D"center" style=3D"margin-bottom:0cm;=
+line-height:0.64cm"><font color=3D"#000000" size=3D"4"><font face=3D"Times =
+New Roman, serif"><font><span lang=3D"en-US"><b>Select &quot;CIDM6&quot; as=
+=C2=A0</b></span></font></font><font face=3D"Times New Roman, serif"><b>Mai=
+n research topic</b></font></font></p>
+<p lang=3D"en-US" align=3D"center" style=3D"margin-bottom:0cm;line-height:0=
+.64cm">
+<br>
+
+</p>
+<p align=3D"center" style=3D"margin-bottom:0cm;line-height:100%"><font colo=
+r=3D"#333333">=C2=A0</font></p>
+<p align=3D"justify" style=3D"margin-bottom:0cm;line-height:100%"><font col=
+or=3D"#333333"><font face=3D"Times New Roman, serif"><font style=3D"font-si=
+ze:12pt"><span lang=3D"en-US">Data
+Clustering is a fundamental task in the process of knowledge
+extraction from databases that aims to discover the intrinsic
+structures in a set of objects by forming clusters that share similar
+features. Over the past two decades, these tasks have become even
+more challenging when the available data sets became more complex
+with the introduction of multi-view data sets, distributed data, data
+streams and data set having different scales of structures of
+interest (e.g. hierarchical clusters). Because of this increased
+complexity in an already hard problem, new approaches are needed.</span></f=
+ont></font></font></p>
+<p lang=3D"en-US" align=3D"justify" style=3D"margin-bottom:0cm;line-height:=
+100%">
+<br>
+
+</p>
+<p align=3D"justify" style=3D"margin-bottom:0cm;line-height:100%"><font col=
+or=3D"#333333"><font face=3D"Times New Roman, serif"><font style=3D"font-si=
+ze:12pt"><span lang=3D"en-US">Within
+this context, the purpose of our session is to bring together
+researchers working on unsupervised frameworks learning involving a
+decomposition of the clustering task into several sub-problems. The
+decomposition can involve algorithms working on different subsets of
+a multi-view or a distributed data set, searching for different
+scales of interested in the same data to find hierarchical
+structures, analyzing in parallel different time periods of a data
+stream, etc=E2=80=A6 These approaches are a recent area of research with a
+large number of applications to tackle difficult problems, such as
+clustering of distributed data, multi-expert clustering, multi-scale
+clustering analysis or multi-view clustering. Most of these
+frameworks can be regrouped under the umbrella of transfer and
+collaborative learning, the aim of which is to reveal the underlying
+structure of the data by sharing information between algorithms
+working on different sub-problems.</span></font></font></font></p>
+<p lang=3D"en-US" style=3D"margin-bottom:0cm;line-height:100%"><br>
+
+</p>
+<p style=3D"margin-bottom:0cm;line-height:0.64cm"><font color=3D"#333333"><=
+font face=3D"Times New Roman, serif"><font style=3D"font-size:12pt"><span l=
+ang=3D"en-US"><b>Topics
+of interest include, but are not limited to the following:</b></span></font=
+></font></font></p>
+<p lang=3D"en-US" style=3D"margin-bottom:0cm;line-height:0.64cm"><br>
+
+</p>
+<center>
+	<table width=3D"604" cellpadding=3D"7" cellspacing=3D"0">
+		<colgroup><col width=3D"288">
+		<col width=3D"288">
+		</colgroup><tbody><tr valign=3D"top">
+			<td width=3D"288" height=3D"109" style=3D"border:none;padding:0cm">
+				<ul>
+					<li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Colla=
+borative
+					clustering</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Colla=
+borative
+					learning</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Coope=
+rative
+					learning</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Multi=
+-view
+					learning </span></font></font></font>
+					</p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Multi=
+-task
+					learning </span></font></font></font>
+					</p>
+				</li></ul>
+				<p lang=3D"en-US" style=3D"margin-left:1.27cm;margin-bottom:0cm">
+				<br>
+
+				</p>
+				<p lang=3D"en-US" style=3D"margin-left:1.27cm"><br>
+
+				</p>
+			</td>
+			<td width=3D"288" style=3D"border:none;padding:0cm">
+				<ul>
+					<li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Trans=
+fers
+					learning</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Repre=
+sentation
+					learning</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Modul=
+ar
+					approaches</span></font></font></font></p>
+					</li><li>
+<p style=3D"margin-bottom:0cm"><font color=3D"#333333"><font face=3D"Times =
+New Roman, serif"><font style=3D"font-size:12pt"><span lang=3D"en-US">Distr=
+ibuted
+					data</span></font></font></font></p>
+					</li><li>
+<p><a name=3D"m_-6810839065198604463_m_2317926423415867219__GoBack"></a><fo=
+nt color=3D"#333333"><font face=3D"Times New Roman, serif"><font style=3D"f=
+ont-size:12pt"><span lang=3D"en-US">Task
+					decomposition </span></font></font></font>
+					</p>
+				</li></ul>
+			</td>
+		</tr>
+	</tbody></table>
+</center>
+<p style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#333333"><fo=
+nt face=3D"Times New Roman, serif"><font style=3D"font-size:12pt"><span lan=
+g=3D"en-US"><b>Contact
+Session Co-Chairs:</b></span></font></font></font></p>
+<ul>
+	<li>
+<p style=3D"margin-bottom:0.21cm;line-height:100%"><font color=3D"#333333">=
+<font face=3D"Times New Roman, serif"><font style=3D"font-size:12pt">Gu=C3=
+=A9na=C3=ABl Cabanes: Institut Galil=C3=A9e, University Paris 13, France (c=
+</font></font></font><font color=3D"#333333"><font face=3D"Times New Roman,=
+ serif"><font style=3D"font-size:12pt">ontact:
+	</font></font></font><font face=3D"Times New Roman, serif"><font style=3D"=
+font-size:12pt"><a href=3D"mailto:cabanes@lipn.univ-paris13.fr" target=3D"_=
+blank">cabanes@lipn.univ-paris13.fr</a>)</font></font></p></li></ul><ul><li=
+>
+<p style=3D"margin-bottom:0.21cm;line-height:0.64cm"><font color=3D"#333333=
+"><font face=3D"Times New Roman, serif"><font style=3D"font-size:12pt">Youn=
+=C3=A8s Bennani: Institut Galil=C3=A9e, University Paris 13, France</font><=
+/font></font></p>
+	</li><li>
+<p style=3D"margin-bottom:0.21cm;line-height:0.64cm"><font color=3D"#333333=
+"><font face=3D"Times New Roman, serif"><font style=3D"font-size:12pt"><spa=
+n lang=3D"en-US">Nistor Grozavu: Institut Galil=C3=A9e, University Paris 13=
+, France</span></font></font></font></p>
+	</li><li>
+<p style=3D"margin-bottom:0.21cm;line-height:0.64cm"><font color=3D"#333333=
+"><font face=3D"Times New Roman, serif"><font style=3D"font-size:12pt">Basa=
+rab Matei: Institut Galil=C3=A9e, University Paris 13, France</font></font>=
+</font></p>
+</li></ul></div></div><div id=3D"m_-6810839065198604463m_231792642341586721=
+9DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br> <table style=3D"border-top:1px =
+solid #d3d4de">
+	<tbody><tr>
+      <td style=3D"width:55px;padding-top:18px"><a href=3D"http://www.avg.c=
+om/email-signature?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaig=
+n=3Dsig-email&amp;utm_content=3Dwebmail" target=3D"_blank"><img src=3D"http=
+s://ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png" widt=
+h=3D"46" height=3D"29" style=3D"width:46px;height:29px"></a></td>
+		<td style=3D"width:470px;padding-top:17px;color:#41424e;font-size:13px;fo=
+nt-family:Arial,Helvetica,sans-serif;line-height:18px">Garanti sans virus. =
+<a href=3D"http://www.avg.com/email-signature?utm_medium=3Demail&amp;utm_so=
+urce=3Dlink&amp;utm_campaign=3Dsig-email&amp;utm_content=3Dwebmail" style=
+=3D"color:#4453ea" target=3D"_blank">www.avg.com</a> 		</td>
+	</tr>
+</tbody></table>
+<a href=3D"#m_-6810839065198604463_m_2317926423415867219_DAB4FAD8-2DD7-40BB=
+-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1"></a></div>
+</div><br></div>
+</div><br></div>
+
+--f403045dbe94ceb0c00555380c4f--

@@ -1,3 +1,6 @@
+from difflib import SequenceMatcher
+
+import unidecode as unicode
 import pandas as pd
 import time, random
 import os, re
@@ -181,7 +184,6 @@ def parse_article_from_csv(path_articles):
 
     return articles
 
-
 def create_author_cluster(articles):
     authors = {}
     dejavu = []
@@ -206,7 +208,6 @@ def create_author_cluster(articles):
                 dejavu.append((auth1, auth2))
 
     output.close()
-
 
 def create_author_references_cluster(articles):
     authors = {}
@@ -259,13 +260,41 @@ def create_author_references_distribution(articles):
     output.close()
 
 
+def create_topic_cluster(articles):
+    results = {}
+    titles = []
+    output = open("edge_similarity_title_abstract.txt", "w", encoding="utf8")
+    string = " "
+
+    # create list of title
+    for art in articles:
+        titles.append(string.join(art.title))
+        results[string.join(art.title)] = {}
+
+    # create similarity table
+    for art in articles:
+        for title in titles:
+            if title != string.join(art.title):
+                results[title][string.join(art.title)] = SequenceMatcher(None, title, string.join(art.abstract)).ratio()
+
+    # create matrix adjency in txt format for R programs
+    for (title1, similarity) in results.items():
+        for (title2, weight) in similarity.items():
+            if weight > 0.45:
+                output.write(unicode.unidecode(title1.split(" ")[0]) + " " + unicode.unidecode(title2.split(" ")[0]) + " " + str(weight) + "\n")
+    output.close()
+
+
 # get articles and their content
 articles = parse_article_from_csv("data/export_articles_EGC_2004_2018.csv")
+
 # write a graph to see the authors having often work together
-#create_author_cluster(articles)
+create_author_cluster(articles)
 # create a distribution to see what author have been most quoted in all articles
 create_author_references_distribution(articles)
 # create a graph to see the authors who work between them
 create_author_references_cluster(articles)
+# create data to calculate cluster of topics
+create_topic_cluster(articles)
 
-print(articles[random.randrange(0, len(articles))])
+#print(articles[random.randrange(0, len(articles))])

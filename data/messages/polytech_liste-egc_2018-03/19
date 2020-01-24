@@ -1,0 +1,392 @@
+Return-Path: <imen.megdiche@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 37FCB229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Mar 2018 10:37:47 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 366CE7238A1
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  5 Mar 2018 10:37:47 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 30CEE4821B1A
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Mar 2018 10:37:47 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.199
+X-Spam-Level:
+X-Spam-Status: No, score=0.199 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, TW_DH=0.077, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.8146 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 9TIdXxi1kuFe for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  5 Mar 2018 10:37:45 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x242.google.com (mail-wm0-x242.google.com [IPv6:2a00:1450:400c:c09::242])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id E8375450C740
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  5 Mar 2018 10:37:44 +0100 (CET)
+Received: by mail-wm0-x242.google.com with SMTP id z81so14396805wmb.4
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 05 Mar 2018 01:37:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-language;
+        bh=MZ0lrR7wfTwWBBMvgamx0IKFlxHNEwKEW8KjQ1cq+PM=;
+        b=ijlzHGJoiXSn7yEnYsNe69+DQHn5EueoluiA0xTaYKAExOyfeDjhqrnLOXLyxoBPZZ
+         LJ8BIWrnNnxBVKI8g8bRtpLhGJiMd4OpLfK51y7Q/1iR0ge1FufAgX/uNbhouPXjQ8MU
+         7/5x2hPMFxPxJ/NiLM9bDEkjJeUCsapJrkdNH0Q+WmW1hCeU6Kd+b0C8p4f0iBf0knlI
+         +L+rY5rtpY0MGrZL4XlgQ2+7RXbkMHE6mJh8BbE2T0JYWGhfFAL4VbSiOiLNSPcOptG8
+         0c17Kws81ebdhSma+4awY+puKH+z42ae1URlW6gUbk1R2ABYHvByGkqynKoGV+ktfOkK
+         v7Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-language;
+        bh=MZ0lrR7wfTwWBBMvgamx0IKFlxHNEwKEW8KjQ1cq+PM=;
+        b=rs6m25HRhqIseXHCfsd4WSGxEy+kYw1lLLP34WMYOQ8dB8TvIozaMTawuJUK8suJEY
+         iRfNo8xKs5VX9SZI+mLia9onq6zq6ST3iiM6AyYS2wc6e9jfuoMH8uD6hH2p6j6Az0Q6
+         MoMz1yzaph4316vmFjjPvz82IyMwRmSmgqyc64SrNj2uBhFGVeAmdTre+O0vYjSOJCA3
+         K3MUSpIMWETSuNb3xBbNnpSG3HVTAzq/z7kPp6vUEwiTA6FE9YoakUH0237IYMLGBQc2
+         351DaorTO04dC/3iiQoxroNvElrn8byYx7y+Nlajlcx7fNxmW9lcD62VH7x951ybLo09
+         4O5w==
+X-Gm-Message-State: AElRT7FFToJ+AF+Kf3yNJsrt8H+Awjpv4aIUZECZNYPlCxpkjSBEhJjW
+	1bbeZb9Ms8wxqKekyeYsGIjq0Ps=
+X-Google-Smtp-Source: AG47ELuS7IsyvnWqugJsJyPrd1qNmWVZsR/7lViRpITlg8qTVtv42kREb34FgDqhN2SF0Ca/MvFe3g==
+X-Received: by 10.28.230.147 with SMTP id e19mr8293568wmi.2.1520242663909;
+        Mon, 05 Mar 2018 01:37:43 -0800 (PST)
+Received: from [127.0.0.1] ([194.57.185.44])
+        by smtp.gmail.com with ESMTPSA id o204sm6356515wma.1.2018.03.05.01.37.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Mar 2018 01:37:42 -0800 (PST)
+To: bull-i3@irit.fr, liste-egc@polytech.univ-nantes.fr
+From: "imen.megdiche" <imen.megdiche@gmail.com>
+Message-ID: <0ef4d9e0-796c-5962-5077-18652134b395@gmail.com>
+Date: Mon, 5 Mar 2018 10:37:37 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.6.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------A843A76E6147F48BE9EF164F"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Call for papers hpcs 2018 dhn-ami session
+
+This is a multi-part message in MIME format.
+--------------A843A76E6147F48BE9EF164F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+*CALL FOR PAPERS & PARTICIPATION*
+*As part of*
+*The 16th International Conference on High Performance Computing & 
+Simulation (HPCS 2018)*
+*http://hpcs2018.cisedu.info/  or http://cisedu.us/rp/hpcs18*
+*
+*
+*July 16 – 20, 2018*
+*Orléans, France*
+
+
+*Paper Submission Deadline: _March 12, 2018_*
+*_
+_*
+*Submissions could be for full papers, short papers, poster papers, or 
+posters*
+
+*
+SCOPE AND OBJECTIVES*
+Recent years have witnessed rapid developments of the information 
+communication technology and the Next-Generation Internet. 4G and 5G 
+wireless mobile networks have been striding to a large-scale deployment 
+and application.  So, we have seen the potential and value for new 
+technologies from a variety of digital networks to various 
+interconnected digital devices, which made it possible to improve user’s 
+digital experiences.
+
+The emerging versatile networks could enable a convenient connection 
+“anytime, anywhere, anything, anyone” to the information communications 
+network.  Unfortunately, in such environment, copyright infringement 
+behaviors, such as illicit copying, malicious distribution, unauthorized 
+usage, free sharing of copyright-protected digital contents, will also 
+become a much more common phenomenon.  Multimedia contents protection & 
+Digital Rights Management (DRM) have a tangible goal to safeguard the 
+rights and benefits of multimedia contents owners, copyrights holders, 
+digital services providers, and even consumers in contents value chain.  
+Some applications research frontiers, related to digital home network, 
+have emerged in recent years.  These include subjects on digital home 
+network models, architectures and mechanisms, secure digital multimedia 
+broadcasting and controlled contents sharing.  Researchers, contents 
+industry engineers and administrators attempt to resort to the 
+state-of-the-art technologies and ideas to protect valuable multimedia 
+contents and services assets against attacks and IP piracy in the 
+emerging triple play.
+
+This special session aims to bring together related research works in 
+the realm of *Digital Home Networks and Ambient Intelligence*, and 
+further investigates and discusses trusted solutions and secure 
+techniques for Digital Home Networks and DRM, as well as some open 
+issues faced by digital contents owners/rights holders/multimedia 
+services providers, who dedicate themselves to protect their 
+Intellectual Property Rights and business benefits.  In addition, novel 
+ideas and research works from end users and consumer electronics’ 
+perspective, such as trust management and evaluations, 3D display and 
+quality test methods, will be embraced by this special session.
+*
+The DHN-AmI Session topics include (but are not limited to) the following*:
+
+  * Environmental sensing and applications
+  * Middleware for wireless sensor networks
+  * Sensor fusion, tracking and positioning
+  * Modelling and simulation of smart environments
+  * Body-worn and Environmental sensor networks architectures
+  * Context and location-aware Frameworks and Sensing
+  * Security Model, Architecture, Mechanisms and Protocols for Digital
+    Home Networks
+  * Multimodal interfaces
+  * Mining techniques for mobile and sensor data
+  * Learning, reasoning and adaptation techniques
+  * Context-Awareness in Assistive Environments
+  * Digital Rights Management  & Interoperability
+  * Authentication, Authorization and Access Control in Digital Networks
+  * 3D Display and Quality Test Methods for Consumer Electronics
+  * IP, Privacy and Usage Control for Home Networks
+  * Trust Management and Evaluations Among Users
+  * Secure Digital Multimedia Broadcasting
+  * Multimedia Contents Sharing Modeling  and Simulations
+  * Contents Security and Protection in Multimedia Social Networks
+  * Internet of Things and Intelligent Ambience
+  * NFC/RFID integration in the Internet of Things
+  * Cyber Physical Systems
+  * User interactions and experience
+  * Mobile multimedia platforms
+  * Embedded Multimedia in wearable computing
+
+
+*IMPORTANT DATES*
+
+    *Paper Submissions: -------------------------------------------March
+    12, 2018 *
+    *Acceptance Notification: --------------------------------------
+    April 11, 2018*
+    *Camera Ready Papers and Registration Due by: ----------- May 03, 2018*
+    *Conference Dates: -------------------------------------------- July
+    16 – 20, 2018*
+
+
+Link to the page : 
+http://hpcs2018.cisedu.info/2-conference/special-sessions---hpcs2018/session07-dhn-ami
+
+	
+	
+
+
+--------------A843A76E6147F48BE9EF164F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <div style="text-align:center"><font style="line-height:16.6667px"
+        size="5" face="verdana, sans-serif"><b
+style="line-height:16.6667px;color:rgb(153,0,0);background-color:transparent">CALL
+          FOR PAPERS &amp; PARTICIPATION</b></font></div>
+    <font style="line-height:16.6667px" size="3" face="verdana,
+      sans-serif">
+      <div style="text-align:center">
+        <div style="font-size:13px;line-height:16.6667px"><font size="2"><b>As
+              part of</b></font><br>
+          <font size="2"><b>The 16th International Conference on High
+              Performance Computing &amp; Simulation (HPCS 2018)</b></font>
+          <div style="line-height:16.25px">
+            <div><b
+                style="background-color:transparent;font-size:13.3333px"><a
+                  href="http://hpcs2018.cisedu.info/" rel="nofollow">http://hpcs2018.cisedu.info/</a>  or 
+                 <a href="http://cisedu.us/rp/hpcs18" rel="nofollow">http://cisedu.us/rp/hpcs18</a></b></div>
+            <div><b
+                style="background-color:transparent;font-size:13.3333px"><br>
+              </b></div>
+          </div>
+          <div style="font-size:13.3333px"><b
+              style="font-size:13px;line-height:16.25px"><font size="3"><span
+                  style="color:rgb(153,0,0)">July 16 – 20, 2018</span></font></b></div>
+          <div style="font-size:13.3333px"><b
+              style="line-height:16.25px"><font size="3"><font
+                  color="#38761d">Orléans, France</font></font></b></div>
+        </div>
+        <div style="font-size:13px;line-height:16.6667px"><br>
+          <br>
+          <font size="3"><b>Paper Submission Deadline: <span
+                style="color:rgb(204,0,0)"><u>March 12, 2018</u></span></b></font></div>
+        <div style="font-size:13px;line-height:16.6667px"><font size="3"><b><span
+                style="color:rgb(204,0,0)"><u><br>
+                </u></span></b></font></div>
+      </div>
+    </font>
+    <div style="font-size:13px;line-height:16.6667px;text-align:center"><font
+        face="verdana, sans-serif"><b style="color:rgb(102,0,0)">Submissions
+          could be for full papers, short papers, poster papers, or
+          posters</b><br>
+        <br>
+      </font></div>
+    <font face="verdana, sans-serif"><span style="font-size:13px"></span></font><span
+      style="line-height:16.6667px"><font style="font-size:13.3333px"
+        face="verdana, sans-serif"><font size="3"><b><br>
+            SCOPE AND OBJECTIVES</b></font><br>
+      </font><span style="font-size:13px;line-height:16.6667px"><font
+          face="verdana, sans-serif">Recent years have witnessed rapid
+          developments of the information communication technology and
+          the Next-Generation Internet. 4G and 5G wireless mobile
+          networks have been striding to a large-scale deployment and
+          application.  So, we have seen the potential and value for new
+          technologies from a variety of digital networks to various
+          interconnected digital devices, which made it possible to
+          improve user’s digital experiences. <br>
+          <br>
+          The emerging versatile networks could enable a convenient
+          connection “anytime, anywhere, anything, anyone” to the
+          information communications network.  Unfortunately, in such
+          environment, copyright infringement behaviors, such as illicit
+          copying, malicious distribution, unauthorized usage, free
+          sharing of copyright-protected digital contents, will also
+          become a much more common phenomenon.  Multimedia contents
+          protection &amp; Digital Rights Management (DRM) have a
+          tangible goal to safeguard the rights and benefits of
+          multimedia contents owners, copyrights holders, digital
+          services providers, and even consumers in contents value
+          chain.  Some applications research frontiers, related to
+          digital home network, have emerged in recent years.  These
+          include subjects on digital home network models, architectures
+          and mechanisms, secure digital multimedia broadcasting and
+          controlled contents sharing.  Researchers, contents industry
+          engineers and administrators attempt to resort to the
+          state-of-the-art technologies and ideas to protect valuable
+          multimedia contents and services assets against attacks and IP
+          piracy in the emerging triple play. <br>
+          <br>
+          This special session aims to bring together related research
+          works in the realm of <b>Digital Home Networks and Ambient
+            Intelligence</b>, and further investigates and discusses
+          trusted solutions and secure techniques for Digital Home
+          Networks and DRM, as well as some open issues faced by digital
+          contents owners/rights holders/multimedia services providers,
+          who dedicate themselves to protect their Intellectual Property
+          Rights and business benefits.  In addition, novel ideas and
+          research works from end users and consumer electronics’
+          perspective, such as trust management and evaluations, 3D
+          display and quality test methods, will be embraced by this
+          special session. <br>
+          <span style="color:rgb(180,95,6)"><font size="3"><b><br>
+                The DHN-AmI Session topics include (but are not limited
+                to) the following</b>: </font></span><br>
+          <ul>
+            <li>Environmental sensing and applications</li>
+            <li>Middleware for wireless sensor networks</li>
+            <li>Sensor fusion, tracking and positioning</li>
+            <li>Modelling and simulation of smart environments </li>
+            <li>Body-worn and Environmental sensor networks
+              architectures</li>
+            <li>Context and location-aware Frameworks and Sensing</li>
+            <li>Security Model, Architecture, Mechanisms and Protocols
+              for Digital Home Networks</li>
+            <li>Multimodal interfaces</li>
+            <li>Mining techniques for mobile and sensor data</li>
+            <li>Learning, reasoning and adaptation techniques </li>
+            <li>Context-Awareness in Assistive Environments</li>
+            <li>Digital Rights Management  &amp; Interoperability</li>
+            <li>Authentication, Authorization and Access Control in
+              Digital Networks</li>
+            <li>3D Display and Quality Test Methods for Consumer
+              Electronics</li>
+            <li>IP, Privacy and Usage Control for Home Networks</li>
+            <li>Trust Management and Evaluations Among Users</li>
+            <li>Secure Digital Multimedia Broadcasting</li>
+            <li>Multimedia Contents Sharing Modeling  and Simulations </li>
+            <li>Contents Security and Protection in Multimedia Social
+              Networks</li>
+            <li>Internet of Things and Intelligent Ambience</li>
+            <li>NFC/RFID integration in the Internet of Things</li>
+            <li>Cyber Physical Systems</li>
+            <li>User interactions and experience</li>
+            <li>Mobile multimedia platforms</li>
+            <li>Embedded Multimedia in wearable computing</li>
+          </ul>
+        </font></span></span><span style="line-height:16.6667px"><font
+        face="verdana, sans-serif">
+        <div>
+          <div style="font-size:13.3333px"><font face="verdana,
+              sans-serif"><br>
+            </font></div>
+          <div style="font-size:13.3333px"><font
+              style="font-size:13.3333px" face="verdana, sans-serif"><span
+                style="line-height:16.6667px"><b style="font-size:13px"><font
+                    size="3">IMPORTANT DATES</font></b></span></font></div>
+        </div>
+      </font></span>
+    <blockquote style="margin:0 0 0 40px;border:none;padding:0px"><span
+        style="line-height:16.6667px"><font face="verdana, sans-serif">
+          <div>
+            <div><b style="font-size:13.3333px"><span
+                  style="font-size:13px">Paper Submissions:
+                  -------------------------------------------</span><font
+                  size="1">  </font><span style="font-size:13px">March
+                  12, 2018 </span></b></div>
+          </div>
+        </font></span><span style="line-height:16.6667px"><font
+          face="verdana, sans-serif">
+          <div>
+            <div><b style="font-size:13px">Acceptance Notification:
+                -------------------------------------- April 11, 2018</b></div>
+          </div>
+        </font></span><span style="line-height:16.6667px"><font
+          face="verdana, sans-serif">
+          <div>
+            <div><b style="font-size:13px">Camera Ready Papers and
+                Registration Due by: ----------- May 03, 2018</b></div>
+          </div>
+        </font></span><span style="line-height:16.6667px"><font
+          face="verdana, sans-serif">
+          <div>
+            <div><b style="font-size:13px">Conference Dates: 
+                -------------------------------------------- July 16 –
+                20, 2018</b></div>
+          </div>
+        </font></span></blockquote>
+    <span style="line-height:16.6667px"><font face="verdana, sans-serif">
+        <div>
+          <div>
+            <div
+              style="font-size:13.3333px;line-height:16.6667px;margin-left:40px"><br>
+            </div>
+          </div>
+        </div>
+      </font></span>
+    <div class="moz-signature">Link to the page :
+<a class="moz-txt-link-freetext" href="http://hpcs2018.cisedu.info/2-conference/special-sessions---hpcs2018/session07-dhn-ami">http://hpcs2018.cisedu.info/2-conference/special-sessions---hpcs2018/session07-dhn-ami</a><br>
+      <table>
+        <tbody>
+          <tr>
+            <td valign="top"><br>
+            </td>
+            <td valign="top"><br>
+            </td>
+            <td valign="top"> <br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+--------------A843A76E6147F48BE9EF164F--

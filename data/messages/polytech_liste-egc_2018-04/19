@@ -1,0 +1,358 @@
+Return-Path: <lakhdar.sais@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id EE4D6229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  7 Apr 2018 22:04:09 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id E89CA6287F9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  7 Apr 2018 22:04:09 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id DD9F34389CC2
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  7 Apr 2018 22:04:09 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.568
+X-Spam-Level:
+X-Spam-Status: No, score=-3.568 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, MANGLED_MEDS=2.3,
+	RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 10.7676 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id F1zbEXVkt5jZ for <liste-egc@polytech.univ-nantes.fr>;
+	Sat,  7 Apr 2018 22:04:08 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-qk0-x231.google.com (mail-qk0-x231.google.com [IPv6:2607:f8b0:400d:c09::231])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 8346842C8D9D
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  7 Apr 2018 22:04:08 +0200 (CEST)
+Received: by mail-qk0-x231.google.com with SMTP id c188so4907139qkg.2
+        for <liste-egc@polytech.univ-nantes.fr>; Sat, 07 Apr 2018 13:04:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=BBqDM8qCuhF0Vi2eX9mojlmI/dyWt6PmV0hGXcG5JYY=;
+        b=WOpFE4OAhtcn8B04flSyUFEjrOYWE/EFjq9yjRVn11FdCDFTFk0KYZEeRgrJj2DsSO
+         KpTodD+sOZHKleB12S3qFoPBmdxwuRp3lD5YGkh4UrkMSuVu+jgPC8+tDwtchLuWdtHW
+         eMUIhknQSKALtdq431p4zzBAnBkxihVh050OVDMbjl9LzNxgSXwa9zndJ5rUDZt1pcrk
+         taVGbCqDkwfys4oe+V7k9hhp5siENG9RitOBojtOadP4IzCeiRiUFGJJaDjBaoVluA/U
+         wCcRXfHBjwjy/78/amT5uNY7mK95SziKB+uSjUxhXaIEwijTNV3gchRj5ekaFTTsHrE6
+         b3sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=BBqDM8qCuhF0Vi2eX9mojlmI/dyWt6PmV0hGXcG5JYY=;
+        b=OcUE3rYJXBhwIGO0///RvflC06KR1oS7+ANyGj8M7kGKorQ7dBrDDXLk2VyKzfShMA
+         9JIPVfR1harOUirwgOeDQqaXsU+G9FO+zzgRFUV0o3/My3cX4MgsEtq1QxYvEIR/QsVO
+         ddwwvD2zJqSZV7YsHIh3L/hQDSZ7zp26dPYntz6dnHEHPSUDmulhtTpIEpSLROl8nqic
+         MHrsMbcYgx63BZ4VqN+5DFNso6vU50Qqmi3103jOi8dT3yJtufKoQ22m3LRP0Sc352VH
+         wVtWV6w9cu4ryIXPPS3EfGe3MNfatrDXzAdGIUUymVU2DDTSmjEj77qItPbe9/lY26Ph
+         xSNA==
+X-Gm-Message-State: ALQs6tBapsI7H57l2d6Fwx4UdAXPB3YaKkI8+2ctX1a55q4C646iGX+6
+	/pzYTo3N/CXovM+vfmavfJcIVlAfdKi1AM+YNzeohQ==
+X-Google-Smtp-Source: AIpwx4/QWd8GOh4cm6co2pjsa571k1Z6rfSSIRpqlt6l6oPbifNxwsxcRaszeRm5ZtKo5mV2qdugBKa0uspXR51B5kQ=
+X-Received: by 10.55.21.40 with SMTP id f40mr40305493qkh.287.1523131447107;
+ Sat, 07 Apr 2018 13:04:07 -0700 (PDT)
+MIME-Version: 1.0
+Sender: lakhdar.sais@gmail.com
+Received: by 10.200.35.169 with HTTP; Sat, 7 Apr 2018 13:04:06 -0700 (PDT)
+From: Lakhdar Sais <sais@cril.fr>
+Date: Sat, 7 Apr 2018 22:04:06 +0200
+X-Google-Sender-Auth: YPLO38SOGioVrI9ceaPixs2nexI
+Message-ID: <CAMLWrY_xNY2GRMDYo7x-hLh-qqFhE7RhVe09Pe9u5gfzLOfP6A@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary="001a1147d3ead9e41f056947ac43"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [CFP - COSI 2018] Deadline =?UTF-8?Q?=C3=A9tendu?= -
+ Appel =?UTF-8?Q?=C3=A0?= contribution - =?UTF-8?Q?15=C3=A8me?= Colloque
+ sur l'Optimisation et les =?UTF-8?Q?Syst=C3=A8mes?= d'Information
+
+--001a1147d3ead9e41f056947ac43
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+[D=C3=A9sol=C3=A9 pour les r=C3=A9ceptions multiples]
+
+[Deadline =C3=A9tendu au 29 avril pour les r=C3=A9sum=C3=A9s et 6 mai pour =
+les articles]
+
+COSI'2018
+15=C3=A8me Colloque sur l'Optimisation et les Syst=C3=A8mes d'Information
+3 - 6 Septembre 2018
+Universit=C3=A9 des Sciences et de la Technologie d'Oran (USTO MB), Alg=C3=
+=A9rie
+http://www.isima.fr/cosi/cosi2018/
+------------------------------------------------------------
+----------------------
+Dates Importantes
+Soumission des r=C3=A9sum=C3=A9s des articles : 29 avril 2018
+Soumission des articles : 6 Mai 2018
+Notification aux auteurs :   16 Juin 2018
+R=C3=A9ception des articles en version finale : 23 juin 2018
+Colloque COSI : 4 - 6 septembre 2018
+------------------------------------------------------------
+----------------------
+COSI (Colloque sur l'Optimisation et les Syst=C3=A8mes d'Information) a pou=
+r
+objectif de regrouper des chercheurs en Informatique et Math=C3=A9matiques,
+issus principalement des communaut=C3=A9s Optimisation combinatoire, Th=C3=
+=A9orie des
+graphes, Syst=C3=A8mes d'information et Intelligence Artificielle. Cette
+quinzi=C3=A8me =C3=A9dition de COSI, qui se tiendra =C3=A0 Oran du 4 au 6 s=
+eptembre 2018,
+sera organis=C3=A9e par l'Universit=C3=A9 des Sciences et de la Technologie=
+ d'Oran
+Mohamed Boudiaf. Elle fait suite aux =C3=A9ditions ant=C3=A9rieures qui se =
+sont
+d=C3=A9roul=C3=A9es =C3=A0 Tizi-Ouzou (2004), Bejaia (2005), Alger (2006), =
+Oran (2007),
+Tizi-Ouzou (2008), Annaba (2009), Ouargla (2010), Guelma (2011), Tlemcen
+(2012), Alger (2013), Bejaia (2014), Oran (2015), S=C3=A9tif (2016) et Boui=
+ra
+(2017).
+
+COSI se veut un lieu convivial de rencontres, d'=C3=A9changes et de discuss=
+ions
+entre chercheurs du nord et du sud. Dans la continuit=C3=A9 des =C3=A9ditio=
+ns
+pr=C3=A9c=C3=A9dentes, l'=C3=A9dition 2018 comportera des conf=C3=A9rences =
+invit=C3=A9es de premier
+plan,  des articles scientifiques originaux et des d=C3=A9monstrations de
+prototype de recherche.
+
+Le programme de cette 15=C3=A8me =C3=A9dition de COSI sera pr=C3=A9c=C3=A9d=
+=C3=A9 (3 septembre 2018)
+d'une =C3=A9cole d'=C3=A9t=C3=A9 =C3=A0 destination des =C3=A9tudiants et d=
+es enseignants chercheurs
+sur les avanc=C3=A9s r=C3=A9centes dans le domaine de l'intelligence artifi=
+cielle.
+
+Un autre objectif est de permettre aux doctorants de pr=C3=A9senter leurs
+travaux =C3=A0 l'ensemble de la communaut=C3=A9 scientifique de COSI. Aussi=
+,
+ils/elles sont encourag=C3=A9s =C3=A0 soumettre leurs travaux en cours.
+
+Nous sollicitons deux types d'articles :
+
+-          Des papiers classiques ne devant pas exc=C3=A9der 12 pages (form=
+at
+LNCS).
+-          Des papiers d=C3=A9monstration ne devant pas exc=C3=A9der 4 page=
+s
+
+Les propositions d'articles doivent imp=C3=A9rativement =C3=AAtre soumises =
+ par voie
+=C3=A9lectronique au format .pdf, voir les modalit=C3=A9s (nombre de pages,=
+ styles
+latex et word ) sur http://www.isima.fr/cosi/cosi2018/soumettre.php
+
+Tous les articles accept=C3=A9s par le CP seront publi=C3=A9s dans les acte=
+s du
+Colloque. Les meilleurs papiers de chaque th=C3=A8me seront s=C3=A9lectionn=
+=C3=A9s pour
+=C3=AAtre publi=C3=A9s dans une revue du domaine.
+
+
+La conf=C3=A9rence COSI est organis=C3=A9e autour de 4 grands th=C3=A8mes a=
+vec deux
+responsables par th=C3=A8me. Pour chacun d?eux, une liste non exhaustive de=
+ mots
+cl=C3=A9s est donn=C3=A9e ci-dessous :
+
+Th=C3=A8me A : Syst=C3=A8mes d'information
+-          Bases de donn=C3=A9es (langages, contraintes, optimisation,
+indexation, stockage, s=C3=A9curit=C3=A9?)
+-          Extraction et gestion de connaissances (e.g. r=C3=A8gles, treill=
+is,
+=C3=A9num=C3=A9ration de motifs, m=C3=A9thodes statistiques)
+-          Traitement et gestion de donn=C3=A9es massives (Big Data)
+-          Int=C3=A9gration d'information et d'applications (syst=C3=A8mes =
+de
+m=C3=A9diation, Services Web, Web s=C3=A9mantique...)
+
+Th=C3=A8me B : Recherche op=C3=A9rationnelle et aide =C3=A0 la d=C3=A9cisio=
+n
+-          Optimisation combinatoire, programmation math=C3=A9matique,
+-          Algorithmiques et th=C3=A9orie des graphes
+-          Heuristiques et m=C3=A9ta heuristiques?
+-          Ordonnancement et gestion de production, ...
+
+Th=C3=A8me C : Intelligence Artificielle
+-          Repr=C3=A9sentation des connaissances et raisonnement
+-          Programmation par contraintes
+-          Apprentissage automatique
+-          Traitement d'images et vision artificielle
+
+Th=C3=A8me D : Applications Innovantes
+-          R=C3=A9seaux dynamiques (Adhoc, WSN, VANETS, ...)
+-          R=C3=A9seaux sociaux (recherche de communaut=C3=A9s, algorithmes=
+ de
+recommandation, s=C3=A9curit=C3=A9 dans les r=C3=A9seaux sociaux)
+-          Sant=C3=A9 et Biologie
+-          Transport et logistique
+-          Environnement et d=C3=A9veloppement durable
+
+
+Pr=C3=A9sidente du comit=C3=A9 d'organisation :
+Professeur Nac=C3=A9ra Benamrane, Directrice du Laboratoire  SIMPA , USTO M=
+B
+Vice-pr=C3=A9sident :
+Professeur Abdelkader Benyettou, USTO MB
+
+Pr=C3=A9sident du comit=C3=A9 de programme :
+Fr=C3=A9d=C3=A9ric Saubion, Professeur =C3=A0 l'Universit=C3=A9 d'Angers (F=
+rance)
+Co-responsable de l'Equipe M=C3=A9taheuristiques, Optimisation et Applicati=
+ons -
+MOA
+
+
+--=20
+Pr. Lakhdar Sa=C3=AFs
+Handbook of Parallel Constraint Reasoning
+http://www.springer.com/us/book/9783319635156
+---
+CRIL - CNRS, UMR 8188
+Universit=C3=A9 d'Artois, Lens
+http://www.cril.fr/~sais
+
+--001a1147d3ead9e41f056947ac43
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"color:rgb(34,34,34);font-family:arial,sans-=
+serif;font-size:12.8px;font-style:normal;font-variant-ligatures:normal;font=
+-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start=
+;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;ba=
+ckground-color:rgb(255,255,255);text-decoration-style:initial;text-decorati=
+on-color:initial;float:none;display:inline">[D=C3=A9sol=C3=A9 pour les r=C3=
+=A9ceptions multiples]</span><div style=3D"color:rgb(34,34,34);font-family:=
+arial,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:=
+normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-=
+align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;background-color:rgb(255,255,255);text-decoration-style:initial;te=
+xt-decoration-color:initial"><br clear=3D"all"><div><span style=3D"color:rg=
+b(34,34,34);font-family:arial,sans-serif;font-size:12.8px;font-style:normal=
+;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;let=
+ter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whi=
+te-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-dec=
+oration-style:initial;text-decoration-color:initial;float:none;display:inli=
+ne">[Deadline =C3=A9tendu au 29 avril pour les r=C3=A9sum=C3=A9s et 6 mai p=
+our les articles]</span><div style=3D"color:rgb(34,34,34);font-family:arial=
+,sans-serif;font-size:12.8px;font-style:normal;font-variant-ligatures:norma=
+l;font-variant-caps:normal;font-weight:400;letter-spacing:normal;text-align=
+:start;text-indent:0px;text-transform:none;white-space:normal;word-spacing:=
+0px;background-color:rgb(255,255,255);text-decoration-style:initial;text-de=
+coration-color:initial"><br><div><div><div>COSI&#39;2018</div><div>15=C3=A8=
+me Colloque sur l&#39;Optimisation et les Syst=C3=A8mes d&#39;Information</=
+div><div>3 - 6 Septembre 2018</div><div>Universit=C3=A9 des Sciences et de =
+la Technologie d&#39;Oran (USTO MB), Alg=C3=A9rie</div><div><a href=3D"http=
+://www.isima.fr/cosi/cosi2018/" target=3D"_blank" style=3D"color:rgb(17,85,=
+204)">http://www.isima.fr/cosi/cosi2<wbr>018/</a>=C2=A0 =C2=A0</div><div>--=
+----------------------------<wbr>------------------------------<wbr>-------=
+---------------</div><div>Dates Importantes</div><div>Soumission des r=C3=
+=A9sum=C3=A9s des articles : 29 avril 2018</div><div>Soumission des article=
+s : 6 Mai 2018=C2=A0</div><div>Notification aux auteurs :=C2=A0 =C2=A016 Ju=
+in 2018</div><div>R=C3=A9ception des articles en version finale : 23 juin 2=
+018</div><div>Colloque COSI : 4 - 6 septembre 2018=C2=A0</div><div>--------=
+----------------------<wbr>------------------------------<wbr>-------------=
+---------</div><div>COSI (Colloque sur l&#39;Optimisation et les Syst=C3=A8=
+mes d&#39;Information) a pour objectif de regrouper des chercheurs en Infor=
+matique et Math=C3=A9matiques, issus principalement des communaut=C3=A9s Op=
+timisation combinatoire, Th=C3=A9orie des graphes, Syst=C3=A8mes d&#39;info=
+rmation et Intelligence Artificielle. Cette quinzi=C3=A8me =C3=A9dition de =
+COSI, qui se tiendra =C3=A0 Oran du 4 au 6 septembre 2018, sera organis=C3=
+=A9e par l&#39;Universit=C3=A9 des Sciences et de la Technologie d&#39;Oran=
+ Mohamed Boudiaf. Elle fait suite aux =C3=A9ditions ant=C3=A9rieures qui se=
+ sont d=C3=A9roul=C3=A9es =C3=A0 Tizi-Ouzou (2004), Bejaia (2005), Alger (2=
+006), Oran (2007), Tizi-Ouzou (2008), Annaba (2009), Ouargla (2010), Guelma=
+ (2011), Tlemcen (2012), Alger (2013), Bejaia (2014), Oran (2015), S=C3=A9t=
+if (2016) et Bouira (2017).=C2=A0</div><div>=C2=A0</div><div>COSI se veut u=
+n lieu convivial de rencontres, d&#39;=C3=A9changes et de discussions entre=
+ chercheurs du nord et du sud. Dans la continuit=C3=A9 des =C3=A9ditions pr=
+=C3=A9c=C3=A9dentes, l&#39;=C3=A9dition 2018 comportera des conf=C3=A9rence=
+s invit=C3=A9es de premier plan,=C2=A0 des articles scientifiques originaux=
+ et des d=C3=A9monstrations de prototype de recherche.</div><div>=C2=A0</di=
+v><div>Le programme de cette 15=C3=A8me =C3=A9dition de COSI sera pr=C3=A9c=
+=C3=A9d=C3=A9 (3 septembre 2018) d&#39;une =C3=A9cole d&#39;=C3=A9t=C3=A9 =
+=C3=A0 destination des =C3=A9tudiants et des enseignants chercheurs sur les=
+ avanc=C3=A9s r=C3=A9centes dans le domaine de l&#39;intelligence artificie=
+lle.=C2=A0</div><div>=C2=A0</div><div>Un autre objectif est de permettre au=
+x doctorants de pr=C3=A9senter leurs travaux =C3=A0 l&#39;ensemble de la co=
+mmunaut=C3=A9 scientifique de COSI. Aussi, ils/elles sont encourag=C3=A9s =
+=C3=A0 soumettre leurs travaux en cours.</div><div>=C2=A0</div><div>Nous so=
+llicitons deux types d&#39;articles :</div><div><br></div><div>-=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 Des papiers classiques ne devant pas exc=C3=A9der =
+12 pages (format LNCS).</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Des p=
+apiers d=C3=A9monstration ne devant pas exc=C3=A9der 4 pages</div><div>=C2=
+=A0</div><div>Les propositions d&#39;articles doivent imp=C3=A9rativement =
+=C3=AAtre soumises=C2=A0 par voie =C3=A9lectronique au format .pdf, voir le=
+s modalit=C3=A9s (nombre de pages, styles latex et word ) sur<span>=C2=A0</=
+span><a href=3D"http://www.isima.fr/cosi/cosi2018/soumettre.php" target=3D"=
+_blank" style=3D"color:rgb(17,85,204)">http://www.isima.fr/cosi/c<wbr>osi20=
+18/soumettre.php</a>=C2=A0=C2=A0</div><div>=C2=A0</div><div>Tous les articl=
+es accept=C3=A9s par le CP seront publi=C3=A9s dans les actes du Colloque. =
+Les meilleurs papiers de chaque th=C3=A8me seront s=C3=A9lectionn=C3=A9s po=
+ur =C3=AAtre publi=C3=A9s dans une revue du domaine.</div><div>=C2=A0</div>=
+<div>=C2=A0</div><div>La conf=C3=A9rence COSI est organis=C3=A9e autour de =
+4 grands th=C3=A8mes avec deux responsables par th=C3=A8me. Pour chacun d?e=
+ux, une liste non exhaustive de mots cl=C3=A9s est donn=C3=A9e ci-dessous :=
+</div><div>=C2=A0</div><div>Th=C3=A8me A : Syst=C3=A8mes d&#39;information=
+=C2=A0</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Bases de donn=C3=A9es =
+(langages, contraintes, optimisation, indexation, stockage, s=C3=A9curit=C3=
+=A9?)</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Extraction et gestion d=
+e connaissances (e.g. r=C3=A8gles, treillis, =C3=A9num=C3=A9ration de motif=
+s, m=C3=A9thodes statistiques)</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 Traitement et gestion de donn=C3=A9es massives (Big Data)</div><div>-=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Int=C3=A9gration d&#39;information et d&=
+#39;applications (syst=C3=A8mes de m=C3=A9diation, Services Web, Web s=C3=
+=A9mantique...)</div><div>=C2=A0</div><div>Th=C3=A8me B : Recherche op=C3=
+=A9rationnelle et aide =C3=A0 la d=C3=A9cision</div><div>-=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 Optimisation combinatoire, programmation math=C3=A9matiqu=
+e,</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Algorithmiques et th=C3=A9=
+orie des graphes</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Heuristiques=
+ et m=C3=A9ta heuristiques?</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 O=
+rdonnancement et gestion de production, ...</div><div>=C2=A0</div><div>Th=
+=C3=A8me C : Intelligence Artificielle</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 Repr=C3=A9sentation des connaissances et raisonnement</div><div>=
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Programmation par contraintes</div><div=
+>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Apprentissage automatique</div><div>-=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Traitement d&#39;images et vision artifi=
+cielle</div><div>=C2=A0</div><div>Th=C3=A8me D : Applications Innovantes</d=
+iv><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 R=C3=A9seaux dynamiques (Adhoc,=
+ WSN, VANETS, ...)</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 R=C3=A9sea=
+ux sociaux (recherche de communaut=C3=A9s, algorithmes de recommandation, s=
+=C3=A9curit=C3=A9 dans les r=C3=A9seaux sociaux)</div><div>-=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 Sant=C3=A9 et Biologie</div><div>-=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 Transport et logistique</div><div>-=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 Environnement et d=C3=A9veloppement durable</div><div>=C2=A0</di=
+v><div>=C2=A0</div><div>Pr=C3=A9sidente du comit=C3=A9 d&#39;organisation :=
+</div><div>Professeur Nac=C3=A9ra Benamrane, Directrice du Laboratoire=C2=
+=A0 SIMPA , USTO MB</div><div>Vice-pr=C3=A9sident :=C2=A0</div><div>Profess=
+eur Abdelkader Benyettou, USTO MB=C2=A0</div><div><br></div><div>Pr=C3=A9si=
+dent du comit=C3=A9 de programme :</div><div>Fr=C3=A9d=C3=A9ric Saubion, Pr=
+ofesseur =C3=A0 l&#39;Universit=C3=A9 d&#39;Angers (France)</div><div>Co-re=
+sponsable de l&#39;Equipe M=C3=A9taheuristiques, Optimisation et Applicatio=
+ns - MOA</div></div></div></div></div></div><br clear=3D"all"><div><br></di=
+v>-- <br><div class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=
+<div dir=3D"ltr"><div><span style=3D"font-size:x-small">Pr. Lakhdar Sa=C3=
+=AFs</span></div><div><span style=3D"font-size:x-small">Handbook of Paralle=
+l Constraint Reasoning=C2=A0</span></div><div><font size=3D"1"><a href=3D"h=
+ttp://www.springer.com/us/book/9783319635156" target=3D"_blank">http://www.=
+springer.com/us/book/9783319635156</a></font><br></div><div><span style=3D"=
+font-size:x-small">---</span></div><div><div><span style=3D"font-size:x-sma=
+ll">CRIL - CNRS, UMR 8188</span></div><div><span style=3D"font-size:x-small=
+">Universit=C3=A9 d&#39;Artois, Lens</span></div><div><span style=3D"font-s=
+ize:x-small"><a href=3D"http://www.cril.fr/~sais" target=3D"_blank">http://=
+www.cril.fr/~sais</a></span></div></div></div></div>
+</div>
+
+--001a1147d3ead9e41f056947ac43--

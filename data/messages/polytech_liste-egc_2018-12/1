@@ -1,0 +1,576 @@
+Return-Path: <vsiyou@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 216D12292950
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  1 Dec 2018 06:48:22 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 17B7C6E1883
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat,  1 Dec 2018 06:48:22 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 103D7B4A261
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  1 Dec 2018 06:48:22 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 0.222
+X-Spam-Level:
+X-Spam-Status: No, score=0.222 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01, SPF_PASS=-0.001,
+	T_KAM_HTML_FONT_INVALID=0.01, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.7502 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id yBv8rfp4_Aar for <liste-egc@polytech.univ-nantes.fr>;
+	Sat,  1 Dec 2018 06:48:21 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 16330B190A6
+	for <liste-egc@polytech.univ-nantes.fr>; Sat,  1 Dec 2018 06:48:21 +0100 (CET)
+Received: by mail-wm1-x32b.google.com with SMTP id a18so899891wmj.1
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 30 Nov 2018 21:48:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=VoE3fWoAXgQE0E7OV3m9VtZH3GH36QHVp6zThY8dRj0=;
+        b=r40wZ5NQlJ7l7DV2fIBC6J0xGEmo7sWrSocjKeOH8+KFAfQdndq48Z1nhgWwdME4sK
+         z02qDincFENcvhPND/utUxPyNdw9s+IZX6tx5iTJZmoqMyIDb4b2CuxZ8dNfyK/My0gA
+         LnYQ0WZzWEUAJJzoThhBBUY8jBgB47NtLE8F3Sgrw+KKweHV3jVPBZngIPCUxUBGxD63
+         mhJwsqAEM1Cnxkp/xBU2WALyDB5J5i5slZH4y1KQsVAOoV2Ji0yS4pvCyi2yPCMVu8UM
+         bFWRNH9GdLzxqV1ga3NJDYpAaLvh7v0+tG1JKQl7KKYRzKQ4f8v4fynXRKCGCBU0VNUz
+         hsUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=VoE3fWoAXgQE0E7OV3m9VtZH3GH36QHVp6zThY8dRj0=;
+        b=RO4Xf89tuuDFSj3M4zbBedRrp8MIU50cc8/wj7K63oaLManMjtI2MVU5aIPADciFkX
+         DkhmhZAl5TDidR2AWfe70f8HYg/IaU9TmjmSbRmB8r1AF6B4e5uwNVjTIiIYftjqwYih
+         btq2A0/XusfVhxhdeZw7f81xsGB+P97dKuti7Z8b8OuaGBNIRqmU9DTLhuHU7/1FQArz
+         Y8dqFn2zW0Sfg97hTJQ0WaCj8eOhpmU1LTYex7luLcH8UPNm2hWTclw6KzlymacVWWmd
+         JeJw2G9XddRJ0AVFn6f274qLXJokTT0gKxY9wUQ6eqo5zEG6yqTz4OJWQA6ZMQVuSeyv
+         W8zg==
+X-Gm-Message-State: AA+aEWZPpKxAHRcI/CSImzNxu1vXHlUIA1URK8sxOdih/mt1GPoNJYmI
+	l3xqyxOqIj2YKMqilNsou5XCJpxmQXR2w1fB+4ERTnB8
+X-Google-Smtp-Source: AFSGD/U/GDGWnSuR8SeKFO4ViD25loSjoeyf+R4nKnSV7ievvW+Lljq7Lvh7+amsxE0sLNAREknxNZZsoowluPhIT5w=
+X-Received: by 2002:a7b:c4cb:: with SMTP id g11mr1250524wmk.149.1543643300226;
+ Fri, 30 Nov 2018 21:48:20 -0800 (PST)
+MIME-Version: 1.0
+From: Vanel Siyou <vsiyou@gmail.com>
+Date: Sat, 1 Dec 2018 06:48:08 +0100
+Message-ID: <CAFThQQ4Q0psf49mn+ooAGExdf4YHNQ2LhPRGbHtG5up2KDY1TQ@mail.gmail.com>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="00000000000091ea13057bef760b"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Avis de soutenance de Vanel Steve Siyou Fotso
+
+--00000000000091ea13057bef760b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Chers tous, (Dear All)
+
+J'ai le plaisir de vous inviter =C3=A0 ma soutenance de th=C3=A8se qui se d=
+=C3=A9roulera
+le *Mardi 11 D=C3=A9cembre =C3=A0 13h30*, dans la salle A002 du LIMOS (UCA,=
+ Campus
+des C=C3=A9zeaux)
+
+I am pleased to invite you to my thesis defense which will take place
+on *Tuesday,
+December 11 at 1:30 pm*, in room A002 at LIMOS (UCA, Campus des C=C3=A9zeau=
+x)
+
+Jury (Committee) :
+
+*Rapporteurs :*
+
+MASSEGLIA Florent, Charg=C3=A9 de Recherches - HDR, INRIA, Montpellier, Fra=
+nce.
+
+MEIRA Jr. Wagner, Professeur, Universidade Federal de Minas Gerais, Br=C3=
+=A9sil.
+
+PALPANAS Themis, Professeur, IUF, Universit=C3=A9 Paris Descartes, France.
+
+*Examinatrices :*
+
+ZEITOUNI Karine, Professeur, Universit=C3=A9 de Versailles St Quentin, Fran=
+ce.
+
+CHEZE Laurence, Professeur, Universit=C3=A9 de Lyon 1, France.
+
+*Directeurs de th=C3=A8se* :
+
+MEPHU NGUIFO Engelbert, Professeur, Universit=C3=A9 Clermont Auvergne, Fran=
+ce.
+
+VASLIN Philippe, Maitre de conf=C3=A9rences, Universit=C3=A9 Clermont Auver=
+gne,
+France.
+
+--------
+
+*Titre :* Extraction de connaissances de s=C3=A9ries temporelles cycliques =
+et
+incertaines : application =C3=A0 l=E2=80=99analyse de la locomotion en faut=
+euil roulant
+manuel
+
+*R=C3=A9sum=C3=A9*
+
+L=E2=80=99=C3=A9valuation des capacit=C3=A9s motrices des utilisateurs de F=
+auteuil roulant
+manuel est souvent subjective, car elle se base sur l=E2=80=99avis d=E2=80=
+=99un expert.
+C=E2=80=99est pourquoi, un fauteuil roulant manuel ergom=C3=A8tre de terrai=
+n a =C3=A9t=C3=A9
+fabriqu=C3=A9. Il permet d=E2=80=99enregistrer les efforts effectu=C3=A9s p=
+ar les
+utilisateurs de fauteuil roulant manuel pendant leur d=C3=A9placement. Les
+mesures ainsi effectu=C3=A9es sont des s=C3=A9ries temporelles ayant les
+caract=C3=A9ristiques sp=C3=A9cifiques suivantes : elles sont longues, ince=
+rtaines et
+cycliques. En nous appuyant sur ces mesures ainsi que sur leurs propri=C3=
+=A9t=C3=A9s,
+l=E2=80=99objectif de cette th=C3=A8se est d=E2=80=99effectuer une analyse =
+objective de la
+locomotion en fauteuil roulant manuel. =C3=80 cet effet, nous proposons tro=
+is
+mod=C3=A8les. Le premier mod=C3=A8le est une heuristique permettant de trou=
+ver le
+nombre judicieux de segment =C3=A0 consid=C3=A9rer pour la compression des =
+s=C3=A9ries
+temporelles avec l=E2=80=99algorithme d=E2=80=99approximation par morceau, =
+tout en
+concevant l=E2=80=99information contenue dans les s=C3=A9ries temporelles. =
+Si le
+principe de fonction de cette heuristique est similaire =C3=A0 celui de la
+recherche gloutonne randomis=C3=A9e, elle a la particularit=C3=A9 de propos=
+er une
+strat=C3=A9gie sp=C3=A9cifique de recherche globale. Le deuxi=C3=A8me mod=
+=C3=A8le est une
+mesure de similarit=C3=A9 qui permet de capturer la structure fondamentale =
+des
+s=C3=A9ries temporelles et qui est robuste =C3=A0 la pr=C3=A9sence d=E2=80=
+=99incertitude. Cette
+mesure de similarit=C3=A9 est bas=C3=A9e sur la comparaison =C3=A0 l=E2=80=
+=99aide de la norme de
+Frobenius des vecteurs propres des matrices d=E2=80=99autocorr=C3=A9lation =
+des s=C3=A9ries
+temporelles. Le troisi=C3=A8me mod=C3=A8le est une repr=C3=A9sentation symb=
+olique de
+s=C3=A9ries temporelle cycliques bas=C3=A9e sur les propri=C3=A9t=C3=A9s de=
+ cycles qui utilise
+un algorithme de segmentation des s=C3=A9ries temporelles cycliques en cycl=
+e et
+un algorithme de classification non supervis=C3=A9e pour comparer les cycle=
+s en
+fonction de leurs propri=C3=A9t=C3=A9s. Cette repr=C3=A9sentation symboliqu=
+e permet une
+meilleure visualisation et une meilleure analyse bas=C3=A9e sur les propri=
+=C3=A9t=C3=A9s
+des cycles des s=C3=A9ries temporelles cycliques. Nos mod=C3=A8les permette=
+nt de
+mettre en =C3=A9vidence le caract=C3=A8re asym=C3=A9trique de la locomotion=
+ en fauteuil
+roulant manuel et d=E2=80=99=C3=A9tablir que l=E2=80=99asym=C3=A9trie de la=
+ locomotion diminue avec
+les ann=C3=A9es de pratique. Ils permettent =C3=A9galement d=E2=80=99=C3=A9=
+valuer de mani=C3=A8re
+objective et intelligible les capacit=C3=A9s motrices des utilisateurs de
+fauteuil roulant manuel.
+
+Les programmes sont disponibles =C3=A0 l'adresse: https://github.com/VanelS
+
+--------
+
+*Title:* Extraction of knowledge from cyclical and uncertain time series:
+application to Manual Wheelchair locomotion analysis
+
+*Abstract*
+
+The assessment of the motor skills of manual wheelchair users is often
+subjective because it is based on expert opinion. Therefore, a manual field
+ergometer wheelchair was conceived and constructed. It records the efforts
+made by manual wheelchair users during their locomotion. The measurements
+made are time series with the following specific characteristics: they are
+long, uncertain and cyclical. Based on these measurements and their
+properties, the objective of this thesis is to perform an objective
+analysis of manual wheelchair locomotion. To this, we proposed three
+models. The first model is a heuristic to find the appropriate number of
+segments to consider for time series compression with the piece aggregate
+approximation algorithm while keeping the information they contained. If
+the principle of this heuristic is similar to that of greedy randomized
+adaptive search, it has the particularity of proposing a specific global
+search strategy. The second model is a similarity measure that captures the
+fundamental structure of time series and is robust to the presence of
+uncertainty. This similarity measure is based on the comparison using the
+Frobenius norm of eigenvectors of time series autocorrelation matrices. The
+third model is a symbolic representation of cyclic time series based on
+cycle properties that utilises a segmentation algorithm of cyclic time
+series in cycles and an unsupervised classification algorithm to compare
+cycles according to their properties. This symbolic representation allows
+better visualization and analysis based on the cycle properties of cyclic
+time series. Our models highlight the asymmetrical nature of manual
+wheelchair locomotion and establish that the asymmetry of locomotion
+decreases with years of practice. They also provide an objective and
+intelligible assessment of the motor abilities of manual wheelchair users.
+
+
+Programs are available and downloadable at the address:
+https://github.com/VanelS
+
+--=20
+Vanel SIYOU
+Ph.D. Candidate
+Clermont Auvergne University
+
+--00000000000091ea13057bef760b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><p style=3D"margin:0px 0px 10px;outline:0=
+px;text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;let=
+ter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:n=
+ormal;font-variant:normal;font-weight:400;text-decoration:none;word-spacing=
+:0px;white-space:normal;background-color:transparent"><span style=3D"outlin=
+e:0px;font-size:16px"><span style=3D"outline:0px;font-family:Times New Roma=
+n,Times,serif">Chers tous, (Dear All)<br style=3D"outline:0px"><br style=3D=
+"outline:0px">J&#39;ai le plaisir de vous inviter =C3=A0 ma soutenance de t=
+h=C3=A8se qui se d=C3=A9roulera le <b style=3D"outline:0px;font-weight:700"=
+>Mardi 11 D=C3=A9cembre =C3=A0 13h30</b>, dans la salle A002 du LIMOS (UCA,=
+ Campus des C=C3=A9zeaux)</span></span></p><span style=3D"text-align:left;c=
+olor:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;f=
+ont-family:arial,sans-serif;font-size:13px;font-style:normal;font-variant:n=
+ormal;font-weight:400;text-decoration:none;word-spacing:0px;display:inline;=
+white-space:normal;float:none;background-color:transparent"> </span><p styl=
+e=3D"margin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-=
+transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans=
+-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:400=
+;text-decoration:none;word-spacing:0px;white-space:normal;background-color:=
+transparent"><span style=3D"outline:0px;font-size:16px"><span style=3D"outl=
+ine:0px;font-family:Times New Roman,Times,serif">I am pleased to invite you=
+ to my thesis defense which will take place on <b style=3D"outline:0px;font=
+-weight:700">Tuesday, December 11 at 1:30 pm</b>, in room A002 at LIMOS (UC=
+A, Campus des C=C3=A9zeaux)</span></span></p><span style=3D"text-align:left=
+;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal=
+;font-family:arial,sans-serif;font-size:13px;font-style:normal;font-variant=
+:normal;font-weight:400;text-decoration:none;word-spacing:0px;display:inlin=
+e;white-space:normal;float:none;background-color:transparent"> </span><p st=
+yle=3D"margin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);tex=
+t-transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sa=
+ns-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:4=
+00;text-decoration:none;word-spacing:0px;white-space:normal;background-colo=
+r:transparent"><span style=3D"outline:0px;font-size:16px"><span style=3D"ou=
+tline:0px;font-family:Times New Roman,Times,serif">Jury (Committee) :</span=
+></span></p><span style=3D"text-align:left;color:rgb(0,0,0);text-transform:=
+none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;fon=
+t-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-deco=
+ration:none;word-spacing:0px;display:inline;white-space:normal;float:none;b=
+ackground-color:transparent"> </span><p style=3D"margin:0px 0px 10px;outlin=
+e:0px;text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;=
+letter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-styl=
+e:normal;font-variant:normal;font-weight:400;text-decoration:none;word-spac=
+ing:0px;white-space:normal;background-color:transparent"><span style=3D"out=
+line:0px;font-size:16px"><span style=3D"outline:0px;font-family:Times New R=
+oman,Times,serif"><b style=3D"outline:0px;font-weight:700">Rapporteurs :</b=
+></span></span></p><span style=3D"text-align:left;color:rgb(0,0,0);text-tra=
+nsform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-se=
+rif;font-size:13px;font-style:normal;font-variant:normal;font-weight:400;te=
+xt-decoration:none;word-spacing:0px;display:inline;white-space:normal;float=
+:none;background-color:transparent"> </span><p style=3D"margin:0px 0px 10px=
+;outline:0px;text-align:left;color:rgb(0,0,0);text-transform:none;text-inde=
+nt:0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:13px;fo=
+nt-style:normal;font-variant:normal;font-weight:400;text-decoration:none;wo=
+rd-spacing:0px;white-space:normal;background-color:transparent"><span style=
+=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;font-family:Time=
+s New Roman,Times,serif">MASSEGLIA Florent, Charg=C3=A9 de Recherches - HDR=
+, INRIA, Montpellier, France.</span></span></p><span style=3D"text-align:le=
+ft;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:norm=
+al;font-family:arial,sans-serif;font-size:13px;font-style:normal;font-varia=
+nt:normal;font-weight:400;text-decoration:none;word-spacing:0px;display:inl=
+ine;white-space:normal;float:none;background-color:transparent"> </span><p =
+style=3D"margin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);t=
+ext-transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,=
+sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight=
+:400;text-decoration:none;word-spacing:0px;white-space:normal;background-co=
+lor:transparent"><span style=3D"outline:0px;font-size:16px"><span style=3D"=
+outline:0px;font-family:Times New Roman,Times,serif">MEIRA Jr. Wagner, Prof=
+esseur, Universidade Federal de Minas Gerais, Br=C3=A9sil.</span></span></p=
+><span style=3D"text-align:left;color:rgb(0,0,0);text-transform:none;text-i=
+ndent:0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:13px=
+;font-style:normal;font-variant:normal;font-weight:400;text-decoration:none=
+;word-spacing:0px;display:inline;white-space:normal;float:none;background-c=
+olor:transparent"> </span><p style=3D"margin:0px 0px 10px;outline:0px;text-=
+align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spac=
+ing:normal;font-family:arial,sans-serif;font-size:13px;font-style:normal;fo=
+nt-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;whi=
+te-space:normal;background-color:transparent"><span style=3D"outline:0px;fo=
+nt-size:16px"><span style=3D"outline:0px;font-family:Times New Roman,Times,=
+serif">PALPANAS Themis, Professeur, IUF, Universit=C3=A9 Paris Descartes, F=
+rance.</span></span></p><span style=3D"text-align:left;color:rgb(0,0,0);tex=
+t-transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sa=
+ns-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:4=
+00;text-decoration:none;word-spacing:0px;display:inline;white-space:normal;=
+float:none;background-color:transparent"> </span><p style=3D"margin:0px 0px=
+ 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transform:none;text=
+-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:13=
+px;font-style:normal;font-variant:normal;font-weight:400;text-decoration:no=
+ne;word-spacing:0px;white-space:normal;background-color:transparent"><span =
+style=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;font-family=
+:Times New Roman,Times,serif"><b style=3D"outline:0px;font-weight:700">Exam=
+inatrices :</b></span></span></p><span style=3D"text-align:left;color:rgb(0=
+,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-family=
+:arial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;font=
+-weight:400;text-decoration:none;word-spacing:0px;display:inline;white-spac=
+e:normal;float:none;background-color:transparent"> </span><p style=3D"margi=
+n:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transform:=
+none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;fon=
+t-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-deco=
+ration:none;word-spacing:0px;white-space:normal;background-color:transparen=
+t"><span style=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;fo=
+nt-family:Times New Roman,Times,serif">ZEITOUNI Karine, Professeur, Univers=
+it=C3=A9 de Versailles St Quentin, France.</span></span></p><span style=3D"=
+text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter=
+-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:norm=
+al;font-variant:normal;font-weight:400;text-decoration:none;word-spacing:0p=
+x;display:inline;white-space:normal;float:none;background-color:transparent=
+"> </span><p style=3D"margin:0px 0px 10px;outline:0px;text-align:left;color=
+:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-=
+family:arial,sans-serif;font-size:13px;font-style:normal;font-variant:norma=
+l;font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal;=
+background-color:transparent"><span style=3D"outline:0px;font-size:16px"><s=
+pan style=3D"outline:0px;font-family:Times New Roman,Times,serif">CHEZE Lau=
+rence, Professeur, Universit=C3=A9 de Lyon 1, France.</span></span></p><spa=
+n style=3D"text-align:left;color:rgb(0,0,0);text-transform:none;text-indent=
+:0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font=
+-style:normal;font-variant:normal;font-weight:400;text-decoration:none;word=
+-spacing:0px;display:inline;white-space:normal;float:none;background-color:=
+transparent"> </span><p style=3D"margin:0px 0px 10px;outline:0px;text-align=
+:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:n=
+ormal;font-family:arial,sans-serif;font-size:13px;font-style:normal;font-va=
+riant:normal;font-weight:400;text-decoration:none;word-spacing:0px;white-sp=
+ace:normal;background-color:transparent"><span style=3D"outline:0px;font-si=
+ze:16px"><span style=3D"outline:0px;font-family:Times New Roman,Times,serif=
+"><b style=3D"outline:0px;font-weight:700">Directeurs de th=C3=A8se</b> :</=
+span></span></p><span style=3D"text-align:left;color:rgb(0,0,0);text-transf=
+orm:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif=
+;font-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-=
+decoration:none;word-spacing:0px;display:inline;white-space:normal;float:no=
+ne;background-color:transparent"> </span><p style=3D"margin:0px 0px 10px;ou=
+tline:0px;text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:=
+0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-=
+style:normal;font-variant:normal;font-weight:400;text-decoration:none;word-=
+spacing:0px;white-space:normal;background-color:transparent"><span style=3D=
+"outline:0px;font-size:16px"><span style=3D"outline:0px;font-family:Times N=
+ew Roman,Times,serif">MEPHU NGUIFO Engelbert, Professeur, Universit=C3=A9 C=
+lermont Auvergne, France.</span></span></p><span style=3D"text-align:left;c=
+olor:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;f=
+ont-family:arial,sans-serif;font-size:13px;font-style:normal;font-variant:n=
+ormal;font-weight:400;text-decoration:none;word-spacing:0px;display:inline;=
+white-space:normal;float:none;background-color:transparent"> </span><p styl=
+e=3D"margin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-=
+transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans=
+-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:400=
+;text-decoration:none;word-spacing:0px;white-space:normal;background-color:=
+transparent"><span style=3D"outline:0px;font-size:16px"><span style=3D"outl=
+ine:0px;font-family:Times New Roman,Times,serif">VASLIN Philippe, Maitre de=
+ conf=C3=A9rences, Universit=C3=A9 Clermont Auvergne, France.</span></span>=
+</p><span style=3D"text-align:left;color:rgb(0,0,0);text-transform:none;tex=
+t-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;font-size:1=
+3px;font-style:normal;font-variant:normal;font-weight:400;text-decoration:n=
+one;word-spacing:0px;display:inline;white-space:normal;float:none;backgroun=
+d-color:transparent"> </span><p style=3D"margin:0px 0px 10px;outline:0px;te=
+xt-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-s=
+pacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:normal=
+;font-variant:normal;font-weight:400;text-decoration:none;word-spacing:0px;=
+white-space:normal;background-color:transparent"><span style=3D"outline:0px=
+;font-size:16px"><span style=3D"outline:0px;font-family:Times New Roman,Tim=
+es,serif">-------- </span></span></p><span style=3D"text-align:left;color:r=
+gb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-fa=
+mily:arial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;=
+font-weight:400;text-decoration:none;word-spacing:0px;display:inline;white-=
+space:normal;float:none;background-color:transparent"> </span><p style=3D"m=
+argin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transf=
+orm:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif=
+;font-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-=
+decoration:none;word-spacing:0px;white-space:normal;background-color:transp=
+arent"><span style=3D"outline:0px;font-size:16px"><span style=3D"outline:0p=
+x;font-family:Times New Roman,Times,serif"><b style=3D"outline:0px;font-wei=
+ght:700">Titre :</b> Extraction de connaissances de s=C3=A9ries temporelles=
+ cycliques et incertaines : application =C3=A0 l=E2=80=99analyse de la loco=
+motion en fauteuil roulant manuel</span></span></p><span style=3D"text-alig=
+n:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:=
+normal;font-family:arial,sans-serif;font-size:13px;font-style:normal;font-v=
+ariant:normal;font-weight:400;text-decoration:none;word-spacing:0px;display=
+:inline;white-space:normal;float:none;background-color:transparent"> </span=
+><p style=3D"margin:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,=
+0);text-transform:none;text-indent:0px;letter-spacing:normal;font-family:ar=
+ial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-we=
+ight:400;text-decoration:none;word-spacing:0px;white-space:normal;backgroun=
+d-color:transparent"><span style=3D"outline:0px;font-size:16px"><span style=
+=3D"outline:0px;font-family:Times New Roman,Times,serif"><b style=3D"outlin=
+e:0px;font-weight:700">R=C3=A9sum=C3=A9</b></span></span></p><span style=3D=
+"text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;lette=
+r-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:nor=
+mal;font-variant:normal;font-weight:400;text-decoration:none;word-spacing:0=
+px;display:inline;white-space:normal;float:none;background-color:transparen=
+t"> </span><p style=3D"margin:0px 0px 10px;outline:0px;text-align:left;colo=
+r:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font=
+-family:arial,sans-serif;font-size:13px;font-style:normal;font-variant:norm=
+al;font-weight:400;text-decoration:none;word-spacing:0px;white-space:normal=
+;background-color:transparent"><span style=3D"outline:0px;font-size:16px"><=
+span style=3D"outline:0px;font-family:Times New Roman,Times,serif">L=E2=80=
+=99=C3=A9valuation des capacit=C3=A9s motrices des utilisateurs de Fauteuil=
+ roulant manuel est souvent subjective, car elle se base sur l=E2=80=99avis=
+ d=E2=80=99un expert. C=E2=80=99est pourquoi, un fauteuil roulant manuel er=
+gom=C3=A8tre de terrain a =C3=A9t=C3=A9 fabriqu=C3=A9. Il permet d=E2=80=99=
+enregistrer les efforts effectu=C3=A9s par les utilisateurs de fauteuil rou=
+lant manuel pendant leur d=C3=A9placement. Les mesures ainsi effectu=C3=A9e=
+s sont des s=C3=A9ries temporelles ayant les caract=C3=A9ristiques sp=C3=A9=
+cifiques suivantes : elles sont longues, incertaines et cycliques. En nous =
+appuyant sur ces mesures ainsi que sur leurs propri=C3=A9t=C3=A9s, l=E2=80=
+=99objectif de cette th=C3=A8se est d=E2=80=99effectuer une analyse objecti=
+ve de la locomotion en fauteuil roulant manuel. =C3=80 cet effet, nous prop=
+osons trois mod=C3=A8les. Le premier mod=C3=A8le est une heuristique permet=
+tant de trouver le nombre judicieux de segment =C3=A0 consid=C3=A9rer pour =
+la compression des s=C3=A9ries temporelles avec l=E2=80=99algorithme d=E2=
+=80=99approximation par morceau, tout en concevant l=E2=80=99information co=
+ntenue dans les s=C3=A9ries temporelles. Si le principe de fonction de cett=
+e heuristique est similaire =C3=A0 celui de la recherche gloutonne randomis=
+=C3=A9e, elle a la particularit=C3=A9 de proposer une strat=C3=A9gie sp=C3=
+=A9cifique de recherche globale. Le deuxi=C3=A8me mod=C3=A8le est une mesur=
+e de similarit=C3=A9 qui permet de capturer la structure fondamentale des s=
+=C3=A9ries temporelles et qui est robuste =C3=A0 la pr=C3=A9sence d=E2=80=
+=99incertitude. Cette mesure de similarit=C3=A9 est bas=C3=A9e sur la compa=
+raison =C3=A0 l=E2=80=99aide de la norme de Frobenius des vecteurs propres =
+des matrices d=E2=80=99autocorr=C3=A9lation des s=C3=A9ries temporelles. Le=
+ troisi=C3=A8me mod=C3=A8le est une repr=C3=A9sentation symbolique de s=C3=
+=A9ries temporelle cycliques bas=C3=A9e sur les propri=C3=A9t=C3=A9s de cyc=
+les qui utilise un algorithme de segmentation des s=C3=A9ries temporelles c=
+ycliques en cycle et un algorithme de classification non supervis=C3=A9e po=
+ur comparer les cycles en fonction de leurs propri=C3=A9t=C3=A9s. Cette rep=
+r=C3=A9sentation symbolique permet une meilleure visualisation et une meill=
+eure analyse bas=C3=A9e sur les propri=C3=A9t=C3=A9s des cycles des s=C3=A9=
+ries temporelles cycliques. Nos mod=C3=A8les permettent de mettre en =C3=A9=
+vidence le caract=C3=A8re asym=C3=A9trique de la locomotion en fauteuil rou=
+lant manuel et d=E2=80=99=C3=A9tablir que l=E2=80=99asym=C3=A9trie de la lo=
+comotion diminue avec les ann=C3=A9es de pratique. Ils permettent =C3=A9gal=
+ement d=E2=80=99=C3=A9valuer de mani=C3=A8re objective et intelligible les =
+capacit=C3=A9s motrices des utilisateurs de fauteuil roulant manuel.</span>=
+</span></p><span style=3D"text-align:left;color:rgb(0,0,0);text-transform:n=
+one;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;font=
+-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-decor=
+ation:none;word-spacing:0px;display:inline;white-space:normal;float:none;ba=
+ckground-color:transparent"> </span><p style=3D"margin:0px 0px 10px;outline=
+:0px;text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;l=
+etter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style=
+:normal;font-variant:normal;font-weight:400;text-decoration:none;word-spaci=
+ng:0px;white-space:normal;background-color:transparent"><span style=3D"outl=
+ine:0px;font-size:16px"><span style=3D"outline:0px;font-family:Times New Ro=
+man,Times,serif">Les programmes sont disponibles =C3=A0 l&#39;adresse: <a t=
+abindex=3D"-1" style=3D"outline:0px;color:rgb(0,0,255);text-decoration:unde=
+rline;background-color:transparent" href=3D"https://github.com/VanelS" targ=
+et=3D"_blank" rel=3D"external nofollow noopener noreferrer">https://github.=
+com/VanelS</a></span></span></p><span style=3D"text-align:left;color:rgb(0,=
+0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-family:=
+arial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-=
+weight:400;text-decoration:none;word-spacing:0px;display:inline;white-space=
+:normal;float:none;background-color:transparent"> </span><p style=3D"margin=
+:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transform:n=
+one;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;font=
+-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-decor=
+ation:none;word-spacing:0px;white-space:normal;background-color:transparent=
+"><span style=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;fon=
+t-family:Times New Roman,Times,serif">--------</span></span></p><span style=
+=3D"text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;le=
+tter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:=
+normal;font-variant:normal;font-weight:400;text-decoration:none;word-spacin=
+g:0px;display:inline;white-space:normal;float:none;background-color:transpa=
+rent"> </span><p style=3D"margin:0px 0px 10px;outline:0px;text-align:left;c=
+olor:rgb(0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;f=
+ont-family:arial,sans-serif;font-size:13px;font-style:normal;font-variant:n=
+ormal;font-weight:400;text-decoration:none;word-spacing:0px;white-space:nor=
+mal;background-color:transparent"><span style=3D"outline:0px;font-size:16px=
+"><span style=3D"outline:0px;font-family:Times New Roman,Times,serif"><b st=
+yle=3D"outline:0px;font-weight:700">Title:</b> Extraction of knowledge from=
+ cyclical and uncertain time series: application to Manual Wheelchair locom=
+otion analysis</span></span></p><span style=3D"text-align:left;color:rgb(0,=
+0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-family:=
+arial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;font-=
+weight:400;text-decoration:none;word-spacing:0px;display:inline;white-space=
+:normal;float:none;background-color:transparent"> </span><p style=3D"margin=
+:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transform:n=
+one;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;font=
+-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-decor=
+ation:none;word-spacing:0px;white-space:normal;background-color:transparent=
+"><span style=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;fon=
+t-family:Times New Roman,Times,serif"><b style=3D"outline:0px;font-weight:7=
+00">Abstract</b></span></span></p><span style=3D"text-align:left;color:rgb(=
+0,0,0);text-transform:none;text-indent:0px;letter-spacing:normal;font-famil=
+y:arial,sans-serif;font-size:13px;font-style:normal;font-variant:normal;fon=
+t-weight:400;text-decoration:none;word-spacing:0px;display:inline;white-spa=
+ce:normal;float:none;background-color:transparent"> </span><p style=3D"marg=
+in:0px 0px 10px;outline:0px;text-align:left;color:rgb(0,0,0);text-transform=
+:none;text-indent:0px;letter-spacing:normal;font-family:arial,sans-serif;fo=
+nt-size:13px;font-style:normal;font-variant:normal;font-weight:400;text-dec=
+oration:none;word-spacing:0px;white-space:normal;background-color:transpare=
+nt"><span style=3D"outline:0px;font-size:16px"><span style=3D"outline:0px;f=
+ont-family:Times New Roman,Times,serif">The assessment of the motor skills =
+of manual wheelchair users is often subjective because it is based on exper=
+t opinion. Therefore, a manual field ergometer wheelchair was conceived and=
+ constructed. It records the efforts made by manual wheelchair users during=
+ their locomotion. The measurements made are time series with the following=
+ specific characteristics: they are long, uncertain and cyclical. Based on =
+these measurements and their properties, the objective of this thesis is to=
+ perform an objective analysis of manual wheelchair locomotion. To this, we=
+ proposed three models. The first model is a heuristic to find the appropri=
+ate number of segments to consider for time series compression with the pie=
+ce aggregate approximation algorithm while keeping the information they con=
+tained. If the principle of this heuristic is similar to that of greedy ran=
+domized adaptive search, it has the particularity of proposing a specific g=
+lobal search strategy. The second model is a similarity measure that captur=
+es the fundamental structure of time series and is robust to the presence o=
+f uncertainty. This similarity measure is based on the comparison using the=
+ Frobenius norm of eigenvectors of time series autocorrelation matrices. Th=
+e third model is a symbolic representation of cyclic time series based on c=
+ycle properties that utilises a segmentation algorithm of cyclic time serie=
+s in cycles and an unsupervised classification algorithm to compare cycles =
+according to their properties. This symbolic representation allows better v=
+isualization and analysis based on the cycle properties of cyclic time seri=
+es. Our models highlight the asymmetrical nature of manual wheelchair locom=
+otion and establish that the asymmetry of locomotion decreases with years o=
+f practice. They also provide an objective and intelligible assessment of t=
+he motor abilities of manual wheelchair users.</span></span></p><span style=
+=3D"text-align:left;color:rgb(0,0,0);text-transform:none;text-indent:0px;le=
+tter-spacing:normal;font-family:arial,sans-serif;font-size:13px;font-style:=
+normal;font-variant:normal;font-weight:400;text-decoration:none;word-spacin=
+g:0px;display:inline;white-space:normal;float:none;background-color:transpa=
+rent"> </span><br style=3D"outline:0px;text-align:left;color:rgb(0,0,0);tex=
+t-transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,sa=
+ns-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:4=
+00;text-decoration:none;word-spacing:0px;white-space:normal;background-colo=
+r:transparent"><br style=3D"outline:0px;text-align:left;color:rgb(0,0,0);te=
+xt-transform:none;text-indent:0px;letter-spacing:normal;font-family:arial,s=
+ans-serif;font-size:13px;font-style:normal;font-variant:normal;font-weight:=
+400;text-decoration:none;word-spacing:0px;white-space:normal;background-col=
+or:transparent"><span style=3D"outline:0px;text-align:left;color:rgb(0,0,0)=
+;text-transform:none;text-indent:0px;letter-spacing:normal;font-family:aria=
+l,sans-serif;font-size:16px;font-style:normal;font-variant:normal;font-weig=
+ht:400;text-decoration:none;word-spacing:0px;white-space:normal;background-=
+color:transparent"><span style=3D"outline:0px;font-family:Times New Roman,T=
+imes,serif">Programs are available and downloadable at the address: <a tabi=
+ndex=3D"-1" style=3D"outline:0px;color:rgb(0,0,255);text-decoration:underli=
+ne;background-color:transparent" href=3D"https://github.com/VanelS" target=
+=3D"_blank" rel=3D"external nofollow noopener noreferrer">https://github.co=
+m/VanelS</a></span></span><br clear=3D"all"><br>-- <br><div class=3D"gmail_=
+signature" dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">Vanel SIYOU</=
+div><div>Ph.D. Candidate</div><div>Clermont Auvergne University</div></div>=
+</div></div></div></div>
+
+--00000000000091ea13057bef760b--

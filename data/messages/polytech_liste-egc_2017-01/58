@@ -1,0 +1,376 @@
+Return-Path: <marcilio.souto@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id AE6721903874
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 20 Jan 2017 16:42:10 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id A8042242555
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 20 Jan 2017 16:42:10 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 9E37E45161BE
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 20 Jan 2017 16:42:10 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -0.178
+X-Spam-Level:
+X-Spam-Status: No, score=-0.178 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001, J_CHICKENPOX_65=0.6,
+	RCVD_IN_DNSWL_LOW=-1, SPF_PASS=-0.001,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.9116 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id hGCr3Nhb_D4L for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 20 Jan 2017 16:42:10 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-lf0-x232.google.com (mail-lf0-x232.google.com [IPv6:2a00:1450:4010:c07::232])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id CCE4B40C6D76
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 20 Jan 2017 16:42:09 +0100 (CET)
+Received: by mail-lf0-x232.google.com with SMTP id k86so60523614lfi.0
+        for <liste-egc@polytech.univ-nantes.fr>; Fri, 20 Jan 2017 07:42:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=NNaF+fB/DFfBSbTSmBeYB8X9imM5WFwvfMKLsbxV2Os=;
+        b=W0UgUVqUm3F7m1KCLDvthf51xCiPUeZSGTrInbNYJqvnrTQxhsH2H7oVaILlQAkqF1
+         eRldygxVoyVXvY3ThDwlLWqnZc/7Jj0u7SiBxNVmqGW5KNIZ8ttHwk2x/92ystrt7UzF
+         M0BDAmIiQ3feX76zS/fjzV1dlNCb5zYmrmYKNvzoOJPiWxN2ykRTkEvv+jIOHDPI0dDw
+         aHjJ1s0DEC7nliHhOUGToPciSCOqLpsvyQjVFD1YLMI+sVtOQ2zwFUCiK+vRhZoNiWpc
+         kGIWLhG+ryDSjHIY00oVN0U96fBCsZiVvfJmk9EneuluH0UZH64o8chrldqw8jU9UOPu
+         1Z4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=NNaF+fB/DFfBSbTSmBeYB8X9imM5WFwvfMKLsbxV2Os=;
+        b=m8EZP/28OBiwB3Mr0EVBK+PYKNUTH9kx4BKRdRiQDfEdr0tgNz/gJC/C92i8iKd1V7
+         lFr0ImcgD/8nGh+zN0PRgjt4gQz9UNJAsYpWiiNryJpqk/l1Zl2BXJLSMngA1mIyvo7p
+         u6IUZfDsFeXM9pFuGZMpyLBLqGKo6L3yVKxzlQBF4StZazG+nuyInCf+Txq/pKfmrZYj
+         oCVhXN0gEkKYzQzWA+yeDVi/SH01PrfO0iH/aOkpv6Mt5pmyYi61YagfJ0NKODRge2i8
+         kwBq50FZ4pFhySAaG7eM2oTLcgo86CIGsOy0Hpgan9xbbMgJxwUb7Ie5cAMW8kwEd//f
+         u28g==
+X-Gm-Message-State: AIkVDXLWC22ZmWKrEhyjsVhj6vtmpQEZUYtnHRZW/tnoYFwuCl0EkDO6v1YrMU2UZG3tfhqTfd+ZNKJPMEPgSQ==
+X-Received: by 10.46.19.25 with SMTP id 25mr6783134ljt.15.1484926928993; Fri,
+ 20 Jan 2017 07:42:08 -0800 (PST)
+MIME-Version: 1.0
+Sender: marcilio.souto@gmail.com
+Received: by 10.25.125.212 with HTTP; Fri, 20 Jan 2017 07:42:08 -0800 (PST)
+From: Marcilio de Souto <marcilio.desouto@univ-orleans.fr>
+Date: Fri, 20 Jan 2017 16:42:08 +0100
+X-Google-Sender-Auth: Q8QwGcHwElmvPa2ieX-rwrnQJTI
+Message-ID: <CAA9-f1fQgaC17xoajQOxTPErHS=HKh+0spWp-5HUs5O05utW2w@mail.gmail.com>
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=f403043605c61ec20f0546887ef7
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Sujet stage M2: Analyse =?UTF-8?Q?exp=C3=A9rimentale?=
+ des fonctions objectives pour le MOCLE
+
+--f403043605c61ec20f0546887ef7
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+*Analyse exp=C3=A9rimentale des fonctions objectives pour le MOCLE*
+
+
+
+*Comp=C3=A9tences requises :*
+
+- Data Mining : clustering, algorithmes g=C3=A9n=C3=A9tiques
+
+- Langages de programmation : C++
+
+*Lieu : *LIFO, Universit=C3=A9 d'Orl=C3=A9ans
+
+*Responsable du stage :  *Marcilio de Souto,
+marcilio.desouto@univ-orleans.fr
+
+*D=C3=A9but du stage : *mars/avril 2017
+
+*Dur=C3=A9e du stage (M2) : *4 mois
+
+*Observation :* ce stage est susceptible de se prolonger en sujet de th=C3=
+=A8se
+de doctorat par la suite.
+
+
+
+
+
+Nous avons d=C3=A9velopp=C3=A9 un algorithme de clustering, *Multi-Objectiv=
+e
+Clustering Ensemble* - MOCLE, qui emploie simultan=C3=A9ment des concepts d=
+e
+l'ensemble de clusterings (*cluster ensembles*) et ceux des algorithmes de
+clustering multiobjectifs (par exemple, via des algorithmes g=C3=A9n=C3=A9t=
+iques
+multiobjectifs) [1,2,3]. L=E2=80=99id=C3=A9e n=E2=80=99est pas seulement de=
+ r=C3=A9duire les
+probl=C3=A8mes intrins=C3=A8ques de l=E2=80=99analyse de clustering (e.g., =
+un seul crit=C3=A8re
+pour la d=C3=A9finition de cluster), mais aussi de contourner les limites d=
+es
+techniques d=E2=80=99ensemble de clusterings et des m=C3=A9thodes de cluste=
+ring
+multiobjectifs lorsqu'elles sont utilis=C3=A9es s=C3=A9par=C3=A9ment.
+
+
+
+Les travaux pr=C3=A9c=C3=A9dents sur le clustering multiobjectif ont montr=
+=C3=A9 que les
+m=C3=A9thodes de clustering bi-crit=C3=A8re surpassent souvent les versions
+mono-objectif : un algorithme qui optimise deux objectifs, X et Y,
+simultan=C3=A9ment g=C3=A9n=C3=A8re souvent des solutions meilleures que le=
+s solutions
+g=C3=A9n=C3=A9r=C3=A9es par un algorithme qui optimise X ou Y uniquement. D=
+ans ce
+contexte, comme le travail pr=C3=A9sent=C3=A9 par [4,5], *le sujet de ce st=
+age est de
+comparer pour le MOCLE les diff=C3=A9rents choix de (paires de) crit=C3=A8r=
+es en
+fonction de leurs buts conceptuels ou leur performance empirique*. Plus
+pr=C3=A9cis=C3=A9ment, le but est d'=C3=A9tudier cette question en comparan=
+t quatre paires
+de crit=C3=A8res de clustering qui ont =C3=A9t=C3=A9 propos=C3=A9es dans de=
+s travaux pr=C3=A9c=C3=A9dents
+sur le clustering multiobjectif. L'une des sous-t=C3=A2ches abord=C3=A9es c=
+onsistera
+=C3=A0 =C3=A9toffer la bibliographie.
+
+
+
+
+
+[1] Katti Faceli, A. de Carvalho, M. C.  P. de Souto: *Multi-objective
+clustering ensemble*. Int. J. Hybrid Intell. Syst. 4(3): 145-156 (2007)
+
+
+
+[2] Katti Faceli, M. C. P. de Souto, D. S. A. de Araujo, A.   de
+Carvalho: *Multi-objective
+clustering ensemble for gene expression data analysis*. Neurocomputing
+72(13-15): 2763-2774 (2009)
+
+
+
+[3] Jane Piantoni, Katti Faceli, Tiemi C. Sakata, Julio C. Pereira, M. C.
+P. de Souto: *Impact of Base Partitions on Multi-objective and Traditional
+Ensemble Clustering Algorithms*. ICONIP (1) 2015: 696-704
+
+
+
+[4] Julia Handl, Joshua D. Knowles: *An Evolutionary Approach to
+Multiobjective Clustering*. IEEE Trans. Evolutionary Computation 11(1):
+56-76 (2007)
+
+
+
+[5] Julia Handl, Joshua D. Knowles: *Clustering Criteria in Multiobjective
+Data Clustering*. PPSN (2) 2012: 32-41
+
+--f403043605c61ec20f0546887ef7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Analyse exp=C3=A9rimentale des fonctions
+objectives pour le MOCLE</span></b><span lang=3D"FR" style=3D"font-size:16p=
+t;font-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n lang=3D"FR" style=3D"font-family:arial;color:black">=C2=A0</span></b><spa=
+n lang=3D"FR" style=3D"font-size:16pt;font-family:arial;color:black"><span>=
+</span></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Comp=C3=A9tences requises :</span></b><span lang=3D"FR" style=3D"f=
+ont-size:16pt;font-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"FR" style=3D"font-family:arial;color:b=
+lack">- Data Mining=C2=A0: clustering,
+algorithmes g=C3=A9n=C3=A9tiques</span><span lang=3D"FR" style=3D"font-size=
+:16pt;font-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"FR" style=3D"font-family:arial;color:b=
+lack">- Langages de programmation : C++</span><span lang=3D"FR" style=3D"fo=
+nt-size:16pt;font-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Lieu : </span></b><span lang=3D"FR" style=3D"font-family:arial;col=
+or:black">LIFO, Universit=C3=A9 d&#39;Orl=C3=A9ans</span><span lang=3D"FR" =
+style=3D"font-size:16pt;font-family:arial;color:black"><span></span></span>=
+</p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Responsable du stage :=C2=A0 </span></b><span lang=3D"FR" style=3D=
+"font-family:arial;color:black">Marcilio de Souto, </span><span style=3D"fo=
+nt-family:arial;color:black"><a href=3D"mailto:marcilio.desouto@univ-orlean=
+s.fr"><span lang=3D"FR" style=3D"color:black">marcilio.desouto@univ-orleans=
+.fr</span></a></span><span lang=3D"FR" style=3D"font-size:16pt;font-family:=
+arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">D=C3=A9but du stage : </span></b><span lang=3D"FR" style=3D"font-f=
+amily:arial;color:black">mars/avril 2017<b><span></span></b></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Dur=C3=A9e du stage (M2) : </span></b><span lang=3D"FR" style=3D"f=
+ont-family:arial;color:black">4 mois</span><span lang=3D"FR" style=3D"font-=
+size:16pt;font-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"FR" style=3D"font-family:arial;colo=
+r:black">Observation=C2=A0:</span></b><span lang=3D"FR" style=3D"font-famil=
+y:arial;color:black"> ce stage est susceptible de se prolonger en sujet de =
+th=C3=A8se de doctorat par
+la suite.</span><span lang=3D"FR" style=3D"font-size:16pt;font-family:arial=
+;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n lang=3D"FR" style=3D"font-family:arial;color:black">=C2=A0</span></b><spa=
+n lang=3D"FR" style=3D"font-size:16pt;font-family:arial;color:black"><span>=
+</span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:arial;color:black">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:arial;color:black">Nous avons d=C3=A9velopp=C3=A9 un algori=
+thme
+de clustering, <i>Multi-Objective Clustering
+Ensemble</i> - MOCLE, qui emploie simultan=C3=A9ment des concepts de l&#39;=
+ensemble de
+clusterings (<i>cluster ensembles</i>) et
+ceux des algorithmes de clustering multiobjectifs (par exemple, via des
+algorithmes g=C3=A9n=C3=A9tiques multiobjectifs) [1,2,3]. L=E2=80=99id=C3=
+=A9e n=E2=80=99est pas seulement de r=C3=A9duire
+les probl=C3=A8mes intrins=C3=A8ques de l=E2=80=99analyse de clustering (e.=
+g., un seul crit=C3=A8re
+pour la d=C3=A9finition de cluster), mais aussi de contourner les limites d=
+es techniques
+d=E2=80=99ensemble de clusterings et des m=C3=A9thodes de clustering multio=
+bjectifs
+lorsqu&#39;elles sont utilis=C3=A9es s=C3=A9par=C3=A9ment.<span></span></sp=
+an></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:arial;color:black">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:arial;color:black">Les travaux pr=C3=A9c=C3=A9dents sur le
+clustering multiobjectif ont montr=C3=A9 que les m=C3=A9thodes de clusterin=
+g bi-crit=C3=A8re
+surpassent souvent les versions mono-objectif : un algorithme qui optimise =
+deux
+objectifs, X et Y, simultan=C3=A9ment g=C3=A9n=C3=A8re souvent des solution=
+s meilleures que
+les solutions g=C3=A9n=C3=A9r=C3=A9es par un algorithme qui optimise X ou Y=
+ uniquement. Dans
+ce contexte, comme le travail pr=C3=A9sent=C3=A9 par [4,5], <b>le sujet de =
+ce stage est de comparer pour le MOCLE les diff=C3=A9rents choix
+de (paires de) crit=C3=A8res en fonction de leurs buts conceptuels ou leur
+performance empirique</b>. Plus pr=C3=A9cis=C3=A9ment, le but est d&#39;=C3=
+=A9tudier cette
+question en comparant quatre paires de crit=C3=A8res de clustering qui ont =
+=C3=A9t=C3=A9
+propos=C3=A9es dans des travaux pr=C3=A9c=C3=A9dents sur le clustering mult=
+iobjectif. L&#39;une
+des sous-t=C3=A2ches abord=C3=A9es consistera =C3=A0 =C3=A9toffer la biblio=
+graphie.<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"FR" style=
+=3D"font-family:arial;color:black">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"PT-BR" style=3D"font-family:arial;colo=
+r:black">=C2=A0</span><span lang=3D"PT-BR" style=3D"font-size:16pt;font-fam=
+ily:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"PT-BR" style=3D"font-family:arial;colo=
+r:black">[1] Katti Faceli, A. de Carvalho,
+M. C.=C2=A0 P. de Souto:</span><span lang=3D"PT-BR" style=3D"font-size:16pt=
+;font-family:arial;color:black"> </span><b><span lang=3D"PT-BR" style=3D"fo=
+nt-family:arial;color:black">Multi-objective clustering ensemble</span></b>=
+<span lang=3D"PT-BR" style=3D"font-family:arial;color:black">. </span><span=
+ style=3D"font-family:arial;color:black">Int. J. Hybrid Intell. Syst. 4(3):=
+ 145-156 (2007)</span><span lang=3D"FR" style=3D"font-size:16pt;font-family=
+:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:arial;color:black">=C2=A0=
+</span><span style=3D"font-size:16pt;font-family:arial;color:black"><span><=
+/span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"PT-BR" style=3D"font-family:arial;colo=
+r:black">[2] Katti Faceli, M. C. P. de
+Souto, D. S. A. de Araujo, A.=C2=A0 =C2=A0de Carvalho:</span><span lang=3D"=
+PT-BR" style=3D"font-size:16pt;font-family:arial;color:black"> </span><b><s=
+pan lang=3D"PT-BR" style=3D"font-family:arial;color:black">Multi-objective
+clustering ensemble for gene expression data analysis</span></b><span lang=
+=3D"PT-BR" style=3D"font-family:arial;color:black">. Neurocomputing 72(13-1=
+5): 2763-2774 (2009)</span><span lang=3D"PT-BR" style=3D"font-size:16pt;fon=
+t-family:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"PT-BR" style=3D"font-family:arial;colo=
+r:black">=C2=A0</span><span lang=3D"PT-BR" style=3D"font-size:16pt;font-fam=
+ily:arial;color:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"PT-BR" style=3D"font-family:arial;colo=
+r:black">[3] Jane Piantoni, Katti Faceli,
+Tiemi C. Sakata, Julio C. Pereira, M. C. P. de Souto:</span><span lang=3D"P=
+T-BR" style=3D"font-size:16pt;font-family:arial;color:black"> </span><b><sp=
+an lang=3D"PT-BR" style=3D"font-family:arial;color:black">Impact of Base
+Partitions on Multi-objective and Traditional Ensemble Clustering Algorithm=
+s</span></b><span lang=3D"PT-BR" style=3D"font-family:arial;color:black">. =
+</span><span style=3D"font-family:arial;color:black">ICONIP (1) 2015: 696-7=
+04</span><span lang=3D"PT-BR" style=3D"font-size:16pt;font-family:arial;col=
+or:black"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:arial;color:black">=C2=A0=
+</span><span style=3D"font-size:16pt;font-family:arial;color:black"><span><=
+/span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:arial;color:black">[4] Ju=
+lia Handl, Joshua D. Knowles:</span><span style=3D"font-size:16pt;font-fami=
+ly:arial;color:black"> </span><b><span style=3D"font-family:arial;color:bla=
+ck">An Evolutionary
+Approach to Multiobjective Clustering</span></b><span style=3D"font-family:=
+arial;color:black">. IEEE Trans. Evolutionary Computation 11(1):
+56-76 (2007)</span><span style=3D"font-size:16pt;font-family:arial;color:bl=
+ack"><span></span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:arial;color:black">=C2=A0=
+</span><span style=3D"font-size:16pt;font-family:arial;color:black"><span><=
+/span></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-family:arial;color:black">[5] Ju=
+lia Handl, Joshua D. Knowles:</span><span style=3D"font-size:16pt;font-fami=
+ly:arial;color:black"> </span><b><span style=3D"font-family:arial;color:bla=
+ck">Clustering Criteria
+in Multiobjective Data Clustering</span></b><span style=3D"font-family:aria=
+l;color:black">. PPSN (2) 2012: 32-41</span><span style=3D"font-size:16pt;f=
+ont-family:arial;color:black"><span></span></span></p>
+
+</div>
+
+--f403043605c61ec20f0546887ef7--

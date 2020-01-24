@@ -1,0 +1,835 @@
+Return-Path: <nourmawas@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 0A4D7229294E
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  3 Mar 2017 14:14:27 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id E2AF7242517
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri,  3 Mar 2017 14:14:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id DA5294185BE9
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  3 Mar 2017 14:14:26 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -1.329
+X-Spam-Level:
+X-Spam-Status: No, score=-1.329 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_LOW=-1, RCVD_IN_MSPIKE_H2=-0.001,
+	RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001, T_KAM_HTML_FONT_INVALID=0.01,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 2.1272 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id AjjMuMpgLQ-z for <liste-egc@polytech.univ-nantes.fr>;
+	Fri,  3 Mar 2017 14:14:25 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from BAY004-OMC1S1.hotmail.com (bay004-omc1s1.hotmail.com [65.54.190.12])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id BF9114024FC2
+	for <liste-egc@polytech.univ-nantes.fr>; Fri,  3 Mar 2017 14:14:24 +0100 (CET)
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com ([65.54.190.60]) by BAY004-OMC1S1.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Fri, 3 Mar 2017 05:14:23 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=p9lq4rlk5QFRAnZq6TgE6ThbXsmBxykjhIeq2HSBQEE=;
+ b=BrQUXijiHZ3QH53mg79hQiL0/Mqh/q1+YDou5BILJqdUDd9PJUejBIAKpPs0NgZtuLih6X1gGbiK3OkfpaDi/OHi+sP2KBvF/AJhmhAlA7BjuQyfsbzHbRtRk7InriIpZQeI1WwXEU48Oh16y64F35n9UMkb+xag64yRBzfh0tQCheTEgZNnIwT6n1pR49LOfVwHSTwozbzCWbWR83WyMUD+9wOXIUszTduKYGlVw56kQRubvjzThmYid6RTI1sobXNm/s5dt3Bja3KZ2pb4IDD1gkGKv+UmwownbKhPFphzqmL38CSOVABxDUBbiFe5B279Sif9Vwv+Gwil6hwkLg==
+Received: from VE1EUR01FT005.eop-EUR01.prod.protection.outlook.com
+ (10.152.2.59) by VE1EUR01HT108.eop-EUR01.prod.protection.outlook.com
+ (10.152.3.100) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.933.11; Fri, 3 Mar
+ 2017 13:14:21 +0000
+Received: from HE1PR0602MB2843.eurprd06.prod.outlook.com (10.152.2.54) by
+ VE1EUR01FT005.mail.protection.outlook.com (10.152.2.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.933.11 via Frontend Transport; Fri, 3 Mar 2017 13:14:21 +0000
+Received: from HE1PR0602MB2843.eurprd06.prod.outlook.com ([10.175.32.139]) by
+ HE1PR0602MB2843.eurprd06.prod.outlook.com ([10.175.32.139]) with mapi id
+ 15.01.0933.020; Fri, 3 Mar 2017 13:14:20 +0000
+From: Nour EL Mawas <nourmawas@hotmail.com>
+To: Nour EL Mawas <nourmawas@hotmail.com>
+Thread-Topic: =?Windows-1252?Q?Atelier_EIAH_2017_Apprentissage_tout_au_long_de_la_vie_-?=
+ =?Windows-1252?Q?_Appel_=E0_communications?=
+Thread-Index: AQHSlB+j+i4u9HqTbkqQ4V/kI8Ej0A==
+Date: Fri, 3 Mar 2017 13:14:20 +0000
+Message-ID: <HE1PR0602MB2843F7B60B78C20CFF6A1011A02B0@HE1PR0602MB2843.eurprd06.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-slblob-mailprops: 7vaohneSo7qmSs5ez0GR/GvNcm3e2OBEPHStpyEY58ILM5R+2QpYJeBnTUDMB8i27M9uyp/pYTIVt3bb83GVzllDVzPz6pXYibmQ4faF5+CeBUuKSBzONu5K4xEU4218jsGpYkXbsnCc6ciFqyRKTnCAq3QabtzeEgub7b2O5mGfQ5WRROcs3AY23Shfx0WDZt3cy8+FAtd6bF6kDUJMqiwr2mGLbTHeIq1fTZP1EpnUJiJNgO8KmCA0v4gsS/Rbq9SoWNNI/JveIlsKf8OlDTw7fHzzVvig2iPAjsXrw370PbTYbppVLeV1f6Wmk2DfECNM3xhh9XcaMS+hAR3uMxY/2KHpfSX4A1nn6BoKJdghCT6lCSZSrWa31zavlGCX/ibDOr8CgISfGq1GasW9y8mT30d60QmfWCJVXZBLzqerQRQuU3tf9KH0eFKKaiMbggv04YB9pM9fkeXaz1TsUw7FlUSGSTqEh960zgiNEaaiJ/P2ud1k1I+20A8d0U5MxhNl2HG3L2YHMWjOiuTb3LqlW3UyAWrEbrAurPXGHqBWoWsyhtM4Y896ae+F9r4RnH1F8Yuybx8cQ+pHaTkl1b4eW6GlqAOrTjeKVQkvXkklD/XEItBWqUaRUPqyHhl307SW9XmOARLnncmy7P4s0HVNGQgF12J6feDd31Q501WgP7dGjOLJc28rw/QJf3yhmQ+620FuTK1GIkAYHY55QJMXRhh8WNxpVVnHMKuSLurtFcOtV5nZBho1Lk0YHtHZo8cv+HuJtfA9oniCjtS+tAW9DP+5CJOHrvFiqaYnDeKhZO8hBJdSq+lf6CU8ZR+fcdTbSHS5fr4FvxRgj3i/GCexHo/9JZpkzcprCAuea3mgflVayKbxJQT1ggmAKQWswrU9fy8EHjl1qOXH7K1e8pQMrWdxwz4dMXQXzyPJOSo=
+authentication-results: polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=none action=none
+ header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:28D3F0C50D9CBDD5877557AD3DF58CAB4A36CAF470294D4AAFF7F5160A94B785;UpperCasedChecksum:D1F3D57FD5B6CC514E748B372632E58D0B7BB1A7BE080DFC97F042E0B1538C28;SizeAsReceived:8903;Count:38
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [m0bsfqwoRjH4Vz5IXe+bsSm5tecQXdV/]
+x-incomingheadercount: 38
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1;VE1EUR01HT108;5:mPy8mRdWZirQCSzbyrIX3JJguKXIfWfPO7/Fb+CPhZhi0gqDpILIXsHPFkfXrBquJmjvNynDBv96cDAygbGzcr8IzDS25fwx9ttAHmzpqgYQnplKnOQObNAxeqqOC7eY80Xr961RJOazjPNix+/B3A==;24:n5snp7Luxfujqxx3grSAxTrZFLGp9XWkQpTpRsE/kmOgZpC+EDKniA6Q4qmgITf9IrO0nHZwtJT/WJ1kIzJjGH69eSaiwBOgG3bP4JrZhNs=;7:nrQlXnN9kgLHuSzuX7aly7UW8Tq0hu3cEEfRBt+GyKw2kNE9KGbST1z2Q6M5klIgRnywkG2yTSWOh53c36yYX9RPiiljslhzgraOlzB1Ka8coWpjd5zNUGnEc/C5Nsh9OVSB5dfIA+oNrnYYojahuUK98zr/wroLpeaKxUXS7K7bXJhQUFegEmwMrMMy3sCWywV9w4LI1SoW1DDhGu4tlnAbV/wUpTVtY62WNXWDbHny8+o8QiS35HCsZeUQ2ATn3tM+puf8U6g+A+NWaFh+gpDzNQse8G9hRikjB/V+yrlPyrkRz5HKfKW0ZTJe+tyc
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900014);DIR:OUT;SFP:1102;SCL:1;SRVR:VE1EUR01HT108;H:HE1PR0602MB2843.eurprd06.prod.outlook.com;FPR:;SPF:None;LANG:fr;
+x-ms-office365-filtering-correlation-id: 06a520fb-94f7-4f35-5d28-08d462373481
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(201702181095)(1601125254)(1603101448)(1701031045);SRVR:VE1EUR01HT108;
+x-ms-exchange-slblob-mailprops: =?Windows-1252?Q?AmdWLMug4rlPspnjlXi0tg2pyyhHcXFYkEtXe2b2c7JZGj8PLJQsD8nP?=
+ =?Windows-1252?Q?NvJaM1d7qcaYrdd8Lm+kbZDYRvbWahAVk6kIYuSa0+ucLpFz9vgkZnkR?=
+ =?Windows-1252?Q?rLBG84BOfisRG+p8QR5T/Nolj+YmNKhRxhXNrBeZa1eYQ/liT6P5YHNY?=
+ =?Windows-1252?Q?zeZkroI4ffjZbx769kuuEGYpV2DqyMYmo3Lxtl716W3wxQq2K7IE4xq0?=
+ =?Windows-1252?Q?aNeSqwior0KH45ykcos54gwoAh74og3kws/fEDswPHIhjoNZXqeT5Fme?=
+ =?Windows-1252?Q?f5AuoVwY1VreZwshwOusT4zDlJgQ+Z2ObvH6pIxOQaFJ2q9PFqEgUHnX?=
+ =?Windows-1252?Q?S7rfLrDf04CbZbr4Y84fHXYbW2fxlfiKYFN2CF97aeqJlE9Iq6oGSANF?=
+ =?Windows-1252?Q?/9bfe+aC5fL4qJK3+PhJCxJPP3N7txow5jPop+WAr1hllyrnaY6G5EEr?=
+ =?Windows-1252?Q?+WOqrC8sR0rlqWYXxopefV7bCDZ1DWBc5FFa9QY1vG2Pq2LeQdS7tEbx?=
+ =?Windows-1252?Q?xsFYg0ecG5dT744k+S8pe156hKUSX6zmUp2Dno063Q3zUCm2IQ4tOPDZ?=
+ =?Windows-1252?Q?/0Kg1WoUCrd8kATgrLwpH8I2axfe9NbWaI3lgG11lbxP5f8Rx7vD27R1?=
+ =?Windows-1252?Q?j3d5EXJnhmskQJ94+J8/9bcqWHTuU9lFSgoqpl4E06puD4TezGMgcIWQ?=
+ =?Windows-1252?Q?WwFZK8ar9x4O9/h/st5HM92C5gGoObtmyQLqoivvT/sgx3ev6K+XYFEM?=
+ =?Windows-1252?Q?YCcweuqr6MJSb93tzNM5xsrIesQxoxUJBEngN3LDHHcJPe8OakXXneQb?=
+ =?Windows-1252?Q?ugjjRGPjYRopdW+NmIe8aLgkTXt9qOQHBaomfjRTG3VX2z+No9YddfgS?=
+ =?Windows-1252?Q?8J4IK2jIMi9GHx4+jLShK87rpkyI+EXQZ0yPvI6B4JTDqUU/7JO1X5QS?=
+ =?Windows-1252?Q?brdE30r6q5Wq9wM26dKb0bVeK3NzS9ELee4eY2DoFS1aHykLjbleYiuQ?=
+ =?Windows-1252?Q?tPTO0JlaciI0+hFpy8daFfF2qRW3Wo0AX7Yov/kv6FhVMeow3eVNCUlH?=
+ =?Windows-1252?Q?qXOxVkJ+dbnhcr4HJOuiuu6jOz810n/bZ81jGVVF5kwMtkbhHcVK3y/T?=
+ =?Windows-1252?Q?JLpgdb9incngJQimIZ37CzZXWQtYVNk4uW8=3D?=
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(432015087)(444000031);SRVR:VE1EUR01HT108;BCL:0;PCL:0;RULEID:;SRVR:VE1EUR01HT108;
+x-forefront-prvs: 0235CBE7D0
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_HE1PR0602MB2843F7B60B78C20CFF6A1011A02B0HE1PR0602MB2843_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2017 13:14:20.9230
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR01HT108
+X-OriginalArrivalTime: 03 Mar 2017 13:14:23.0179 (UTC) FILETIME=[135B71B0:01D29420]
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Atelier EIAH 2017 Apprentissage tout au long de la vie
+ - Appel =?WINDOWS-1252?Q?=E0?= communications
+
+--_000_HE1PR0602MB2843F7B60B78C20CFF6A1011A02B0HE1PR0602MB2843_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+*** Pourriez-vous SVP diffuser l'appel suivant ? Vous en remerciant. ***
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+*** Appel =E0 communications ***
+
+Des EIAH centr=E9s apprenants pour l'apprentissage tout au long de la vie (=
+ATLV)
+
+http://recherche.telecom-bretagne.eu/atlv/
+
+Conf=E9rence Environnements Informatiques pour l'Apprentissage Humain (EIAH=
+ 2017<http://eiah2017.unistra.fr/>)
+
+6 au 9 juin 2017, Strasbourg, France
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+
+---Objectif de l'atelier---
+
+
+
+Les changements sont devenus et resteront permanents dans notre soci=E9t=E9=
+. Il est donc n=E9cessaire de nous pr=E9parer =E0 devoir apprendre r=E9guli=
+=E8rement tout au long de notre vie pour acqu=E9rir de nouvelles comp=E9ten=
+ces ou occuper de nouvelles fonctions, qui n=92existaient pas auparavant.
+
+
+
+Ce nouveau paradigme d=92=E9volution de l=92Apprentissage Tout au Long de l=
+a Vie (ATLV) renouvelle et =E9largit les perspectives des EIAH. L=92ATLV se=
+ produit dans des cadres formels, mais aussi dans des contextes informels. =
+Pour pouvoir tirer parti des nombreuses occasions d=92apprentissage que les=
+ personnes rencontrent, il faut que celles-ci aient une capacit=E9 d=92acti=
+on, un pouvoir d=92agir sur leurs environnements au sens de Rabardel.
+
+
+
+La notion de pouvoir d=92agir doit =EAtre distingu=E9e de celle de capacit=
+=E9 d=92agir.
+
+
+
+Un sujet =93capable=94 dispose de ressources personnelles (ressources au se=
+ns large, acquises en formation ou par exp=E9rience) qui lui conf=E8rent un=
+ potentiel d=92action et de r=E9alisation. Pour autant, un sujet =93capable=
+=94 ne dispose pas syst=E9matiquement d=92un pouvoir d=92agir. Le pouvoir d=
+=92agir d=E9signe ce qu=92il lui est possible de faire effectivement, compt=
+e tenu des caract=E9ristiques des situations dans lesquelles il est suscept=
+ible d=92agir. Le pouvoir d=92agir est, pour une part, d=E9pendant de la ca=
+pacit=E9 individuelle d=92agir et surtout, d=92autre part, des opportunit=
+=E9s qu=92il est possible de saisir en situation. Un sujet =93capable=94 ne=
+ dispose donc pas ni d=92un =E9gal pouvoir d=92agir ni des m=EAmes marges d=
+e man=9Cuvre face aux contraintes et aux exigences des situations.
+
+
+
+Mettre =E0 disposition des ressources ad=E9quates est une des conditions po=
+ur que les personnes apprenantes s=92en saisissent pour augmenter leur pouv=
+oir d=92agir, c=92est-=E0-dire qu=92elles transforment leur environnement e=
+t, par voie de cons=E9quence, se transforment elles-m=EAmes. Le but de ces =
+op=E9rations est la poursuite du d=E9veloppement cognitif, affectif et soci=
+al des personnes. La perception de l=92augmentation du pouvoir d=92agir s=
+=92accompagne potentiellement d=92un d=E9veloppement de l=92auto-efficacit=
+=E9 individuelle et/ou collective.  L=92auto-efficacit=E9 est d=E9finie par=
+ Bandura comme =93la croyance en la capacit=E9 d=92un individu d=92organise=
+r et d=92ex=E9cuter la ligne de conduite requise pour produire des r=E9sult=
+ats souhait=E9s=94.
+
+
+---Th=E8mes de l'atelier---
+
+
+
+Cet atelier pluridisciplinaire a pour vocation d=92explorer les diff=E9rent=
+es dimensions permettant d=92apporter des r=E9ponses =E0 la question : =93C=
+omment cr=E9er des environnements d=92apprentissage formels, informels, non=
+ formels au service des apprenants pour accro=EEtre leur pouvoir d=92agir ?=
+=94. Cet accroissement du pouvoir d=92agir est ici vu comme une valeur cl=
+=E9 =E0 int=E9grer dans le d=E9veloppement des EIAH pour le d=E9veloppement=
+ de l=92ATLV :
+
+  *   Quels dispositifs renforcent le pouvoir d=92agir de la personne et fa=
+vorisent la prise de conscience ?
+     *   En mettant les apprenants en situation de r=E9ussite
+     *   En favorisant l=92apprentissage avec et par les autres
+     *   En prenant en compte la dimension temporelle des apprentissages
+     *   En identifiant les mani=E8res d=92apprendre et d=92agir des person=
+nes
+     *   En proposant des strat=E9gies de soutien
+
+  *   Comment caract=E9riser de tels dispositifs ?
+  *   Comment concevoir ces dispositifs ?
+  *   Quels services derri=E8re ces dispositifs ?
+  *   Quelle =E9thique pour l=92ATLV ?
+  *   Comment =E9valuer le pouvoir d=92agir et les dispositifs ?
+
+---Communication attendue---
+
+
+Chaque proposition devra =EAtre transmise sous la forme d=92un article cour=
+t, de 4 =E0 8 pages et sera =E9valu=E9e par trois =E9valuateurs, membres du=
+ comit=E9 de programme. Des d=E9monstrations pourront =EAtre programm=E9es =
+pour les personnes qui le d=E9sirent.
+
+La soumission des propositions de communication se fera sous format =E9lect=
+ronique via la page Easychair de la conf=E9rence<https://easychair.org/acco=
+unt/signin.cgi?timeout=3D1;key=3D49923683.6PDxynnMmiCaHc3m>.
+
+Les articles soumis devront =EAtre anonymes (ne pas faire appara=EEtre les =
+auteurs sur la page de garde).
+
+Ils devront respecter le mod=E8le =AB modeleEIAH2017.docx<https://eiah2017.=
+unistra.fr/wp-content/uploads/2016/10/modeleEIAH2017.docx> =BB fond=E9 sur =
+le style Springer LNCS.
+Les auteurs qui le souhaitent pourront utiliser le style latex de LNCS<http=
+://www.springer.com/fr/computer-science/lncs/conference-proceedings-guideli=
+nes> =E0 condition de respecter la premi=E8re page d=E9crite dans le fichie=
+r Word (r=E9sum=E9s et mots-cl=E9s en Fran=E7ais et Anglais) ainsi que les =
+ent=EAtes des pages paires et impaires.
+
+
+
+---Calendrier---
+
+Date limite de soumission : 1 avril 2017
+
+Notification aux auteurs : 1 mai 2017
+
+Textes d=E9finitifs rendus par les auteurs : 15 mai 2017
+
+D=E9roulement de l'atelier =E0 Strasbourg : 6 juin 2017
+
+
+---Inscriptions---
+
+Les inscriptions =E0 l'atelier se font via le lien<https://cloud.agoraevent=
+.fr/Site/172901/1951/InscriptionPre?&AspxAutoDetectCookieSupport=3D1>.
+
+
+
+Cordialement,
+
+
+Nour El Mawas, Serge Garlatti et Marc Nagels
+
+
+
+
+--_000_HE1PR0602MB2843F7B60B78C20CFF6A1011A02B0HE1PR0602MB2843_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-family: 'Times New Roman',serif;" data-mce-style=3D"fon=
+t-family: 'Times New Roman',serif;"><span>*** Pourriez-vous SVP diffuser l'=
+appel suivant ? Vous en remerciant. ***</span><br>
+</span></p>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-family: 'Times New Roman',serif;" data-mce-style=3D"fon=
+t-family: 'Times New Roman',serif;"><br>
+</span></p>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-family: 'Times New Roman',serif;" data-mce-style=3D"fon=
+t-family: 'Times New Roman',serif;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><span style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman',serif;" data-mce-style=3D"font-size: 12.0pt; fon=
+t-family: 'Times New Roman',serif;"></span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+br>
+*** Appel =E0 communications ***</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">D=
+es EIAH centr=E9s apprenants pour l'apprentissage tout au long de la vie (A=
+TLV)</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<a data-mce-href=3D"http://recherche.telecom-bretagne.eu/atlv/" href=3D"htt=
+p://recherche.telecom-bretagne.eu/atlv/" id=3D"LPlnk463358" previewremoved=
+=3D"true"><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',=
+serif;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman'=
+,serif;">http://recherche.telecom-bretagne.eu/atlv/</span></a><br data-mce-=
+bogus=3D"1">
+</p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">C=
+onf=E9rence Environnements Informatiques pour l'Apprentissage Humain (<a hr=
+ef=3D"http://eiah2017.unistra.fr/" data-mce-href=3D"http://eiah2017.unistra=
+.fr/"><span style=3D"color: blue;" data-mce-style=3D"color: blue;">EIAH
+ 2017</span></a>)</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">6=
+ au 9 juin 2017, Strasbourg, France</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-family: 'Times New Roman',serif;" data-mce-style=3D"fon=
+t-family: 'Times New Roman',serif;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><span style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman',serif;" data-mce-style=3D"font-size: 12.0pt; fon=
+t-family: 'Times New Roman',serif;"></span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<strong><span style=3D"font-size: 12pt; font-family: &quot;Times New Roman&=
+quot;,serif;" data-mce-style=3D"font-size: 12pt; font-family: 'Times New Ro=
+man',serif;">---Objectif de l'atelier---</span></strong></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">L=
+es changements sont devenus et resteront permanents dans notre soci=E9t=E9.=
+ Il est donc n=E9cessaire de nous pr=E9parer
+ =E0 devoir apprendre r=E9guli=E8rement tout au long de notre vie pour acqu=
+=E9rir de nouvelles comp=E9tences ou occuper de nouvelles fonctions, qui n=
+=92existaient pas auparavant.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">C=
+e nouveau paradigme d=92=E9volution de l=92Apprentissage Tout au Long de la=
+ Vie (ATLV) renouvelle et =E9largit les perspectives
+ des EIAH. L=92ATLV se produit dans des cadres formels, mais aussi dans des=
+ contextes informels. Pour pouvoir tirer parti des nombreuses occasions d=
+=92apprentissage que les personnes rencontrent, il faut que celles-ci aient=
+ une capacit=E9 d=92action, un pouvoir d=92agir
+ sur leurs environnements au sens de Rabardel.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">L=
+a notion de pouvoir d=92agir doit =EAtre distingu=E9e de celle de capacit=
+=E9 d=92agir.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">U=
+n sujet =93capable=94 dispose de ressources personnelles (ressources au sen=
+s large, acquises en formation ou par exp=E9rience)
+ qui lui conf=E8rent un potentiel d=92action et de r=E9alisation. Pour auta=
+nt, un sujet =93capable=94 ne dispose pas syst=E9matiquement d=92un pouvoir=
+ d=92agir. Le pouvoir d=92agir d=E9signe ce qu=92il lui est possible de fai=
+re effectivement, compte tenu des caract=E9ristiques des
+ situations dans lesquelles il est susceptible d=92agir. Le pouvoir d=92agi=
+r est, pour une part, d=E9pendant de la capacit=E9 individuelle d=92agir et=
+ surtout, d=92autre part, des opportunit=E9s qu=92il est possible de saisir=
+ en situation. Un sujet =93capable=94 ne dispose donc
+ pas ni d=92un =E9gal pouvoir d=92agir ni des m=EAmes marges de man=9Cuvre =
+face aux contraintes et aux exigences des situations.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">M=
+ettre =E0 disposition des ressources ad=E9quates est une des conditions pou=
+r que les personnes apprenantes s=92en saisissent
+ pour augmenter leur pouvoir d=92agir, c=92est-=E0-dire qu=92elles transfor=
+ment leur environnement et, par voie de cons=E9quence, se transforment elle=
+s-m=EAmes. Le but de ces op=E9rations est la poursuite du d=E9veloppement c=
+ognitif, affectif et social des personnes. La perception
+ de l=92augmentation du pouvoir d=92agir s=92accompagne potentiellement d=
+=92un d=E9veloppement de l=92auto-efficacit=E9 individuelle et/ou collectiv=
+e.&nbsp; L=92auto-efficacit=E9 est d=E9finie par Bandura comme =93la croyan=
+ce en la capacit=E9 d=92un individu d=92organiser et d=92ex=E9cuter la
+ ligne de conduite requise pour produire des r=E9sultats souhait=E9s=94.</s=
+pan></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span><span data-mce-style=3D"=
+font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce=
+-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><spa=
+n style=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=
+=3D"FR"></span></span></span><span data-mce-style=3D"font-size: 11.0pt;" st=
+yle=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=3D"font-size: 1=
+1.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span style=3D"font-size: =
+11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=3D"FR"></span></span></=
+span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+br>
+</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<strong><span style=3D"font-size: 12pt; font-family: &quot;Times New Roman&=
+quot;,serif;" data-mce-style=3D"font-size: 12pt; font-family: 'Times New Ro=
+man',serif;">---Th=E8mes de l'atelier---</span></strong></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">C=
+et atelier pluridisciplinaire a pour vocation d=92explorer les diff=E9rente=
+s dimensions permettant d=92apporter des r=E9ponses
+ =E0 la question : =93Comment cr=E9er des environnements d=92apprentissage =
+formels, informels, non formels au service des apprenants pour accro=EEtre =
+leur pouvoir d=92agir ?=94. Cet accroissement du pouvoir d=92agir est ici v=
+u comme une valeur cl=E9 =E0 int=E9grer dans le d=E9veloppement
+ des EIAH pour le d=E9veloppement de l=92ATLV :</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<ul>
+<li><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;=
+" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif=
+;">Quels dispositifs renforcent le pouvoir d=92agir de la personne et favor=
+isent la prise de conscience ?</span>
+<ul>
+<li><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;=
+" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif=
+;">En mettant les apprenants en situation de r=E9ussite</span></li><li><spa=
+n style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" data-m=
+ce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">En fa=
+vorisant l=92apprentissage avec et par les autres</span></li><li><span data=
+-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR">=
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"></span></span><span data-mce-style=3D"font-size: 11.0pt;" style=
+=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=3D"font-size: 11.0=
+pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span style=3D"font-size: 11.=
+0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=3D"FR"></span></span></spa=
+n><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" =
+data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"=
+>En
+ prenant en compte la dimension temporelle des apprentissages</span></li><l=
+i><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" =
+data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"=
+>En identifiant les mani=E8res d=92apprendre et d=92agir des personnes</spa=
+n></li><li><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: =
+11.0pt;" lang=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"f=
+ont-size: 11.0pt;" lang=3D"FR"></span></span><span data-mce-style=3D"font-s=
+ize: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=
+=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span styl=
+e=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=3D"FR">=
+</span></span></span><span style=3D"font-size: 12.0pt; font-family: 'Times =
+New Roman',serif;" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times=
+ New Roman',serif;">En
+ proposant des strat=E9gies de soutien &nbsp;</span></li></ul>
+</li></ul>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<ul>
+<li><span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;=
+" data-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif=
+;">Comment caract=E9riser de tels dispositifs ?</span></li><li><span style=
+=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" data-mce-styl=
+e=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">Comment conc=
+evoir ces dispositifs ?</span></li><li><span data-mce-style=3D"font-size: 1=
+1.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=3D"fo=
+nt-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"></span></span><s=
+pan data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=
+=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.=
+0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"font=
+-size: 11.0pt;" lang=3D"FR"></span></span></span><span style=3D"font-size: =
+12.0pt; font-family: 'Times New Roman',serif;" data-mce-style=3D"font-size:=
+ 12.0pt; font-family: 'Times New Roman',serif;">Quels
+ services derri=E8re ces dispositifs ?</span></li><li><span style=3D"font-s=
+ize: 12.0pt; font-family: 'Times New Roman',serif;" data-mce-style=3D"font-=
+size: 12.0pt; font-family: 'Times New Roman',serif;">Quelle =E9thique pour =
+l=92ATLV ?</span></li><li><span data-mce-style=3D"font-size: 11.0pt;" style=
+=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=3D"font-size: 11.0=
+pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"></span></span><span data-mce-=
+style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span=
+ data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D=
+"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt=
+;" lang=3D"FR"></span></span></span><span style=3D"font-size: 12.0pt; font-=
+family: 'Times New Roman',serif;" data-mce-style=3D"font-size: 12.0pt; font=
+-family: 'Times New Roman',serif;">Comment
+ =E9valuer le pouvoir d=92agir et les dispositifs ?</span></li></ul>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span><span data-mce-style=3D"=
+font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce=
+-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><spa=
+n style=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=
+=3D"FR"></span></span></span><span data-mce-style=3D"font-size: 11.0pt;" st=
+yle=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce-style=3D"font-size: 1=
+1.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span style=3D"font-size: =
+11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=3D"FR"></span></span></=
+span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+br>
+<strong>---Communication attendue---</strong><br>
+&nbsp; <br>
+</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">C=
+haque proposition devra =EAtre transmise sous la forme d=92un article court=
+, de 4 =E0 8 pages et sera =E9valu=E9e par trois
+ =E9valuateurs, membres du comit=E9 de programme. Des d=E9monstrations pour=
+ront =EAtre programm=E9es pour les personnes qui le d=E9sirent.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">L=
+a soumission des propositions de communication se fera sous format =E9lectr=
+onique via la
+<a href=3D"https://easychair.org/account/signin.cgi?timeout=3D1;key=3D49923=
+683.6PDxynnMmiCaHc3m" data-mce-href=3D"https://easychair.org/account/signin=
+.cgi?timeout=3D1;key=3D49923683.6PDxynnMmiCaHc3m">
+<span style=3D"color: windowtext; text-decoration: none;" data-mce-style=3D=
+"color: windowtext; text-decoration: none;">page Easychair de la conf=E9ren=
+ce</span></a>.<br>
+<br>
+Les articles soumis devront =EAtre anonymes (ne pas faire appara=EEtre les =
+auteurs sur la page de garde).<br>
+<br>
+Ils devront respecter le mod=E8le =AB <a href=3D"https://eiah2017.unistra.f=
+r/wp-content/uploads/2016/10/modeleEIAH2017.docx" data-mce-href=3D"https://=
+eiah2017.unistra.fr/wp-content/uploads/2016/10/modeleEIAH2017.docx">
+<span style=3D"color: windowtext; text-decoration: none;" data-mce-style=3D=
+"color: windowtext; text-decoration: none;">modeleEIAH2017.docx</span></a> =
+=BB fond=E9 sur le style Springer LNCS.<br>
+Les auteurs qui le souhaitent pourront utiliser le <a href=3D"http://www.sp=
+ringer.com/fr/computer-science/lncs/conference-proceedings-guidelines" data=
+-mce-href=3D"http://www.springer.com/fr/computer-science/lncs/conference-pr=
+oceedings-guidelines">
+<span style=3D"color: windowtext; text-decoration: none;" data-mce-style=3D=
+"color: windowtext; text-decoration: none;">style latex de LNCS</span></a> =
+=E0 condition de respecter la premi=E8re page d=E9crite dans le fichier Wor=
+d (r=E9sum=E9s et mots-cl=E9s en Fran=E7ais et Anglais)
+ ainsi que les ent=EAtes des pages paires et impaires.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span><span data-mce-style=3D"=
+font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce=
+-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><spa=
+n style=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=
+=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+strong>---Calendrier---</strong><br>
+<br>
+Date limite de soumission : 1 avril 2017<br>
+<br>
+Notification aux auteurs : 1 mai 2017<br>
+<br>
+Textes d=E9finitifs rendus par les auteurs : 15 mai 2017<br>
+<br>
+D=E9roulement de l'atelier =E0 Strasbourg : 6 juin 2017</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span><span data-mce-style=3D"=
+font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><span data-mce=
+-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" lang=3D"FR"><spa=
+n style=3D"font-size: 11.0pt;" data-mce-style=3D"font-size: 11.0pt;" lang=
+=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<strong><span style=3D"font-size: 12pt; font-family: &quot;Times New Roman&=
+quot;,serif;" data-mce-style=3D"font-size: 12pt; font-family: 'Times New Ro=
+man',serif;"><br>
+</span></strong></p>
+<strong><span style=3D"font-size: 11pt;" data-mce-style=3D"font-size: 11pt;=
+" lang=3D"FR"><span style=3D"font-size: 11pt;" data-mce-style=3D"font-size:=
+ 11pt;" lang=3D"FR"><span style=3D"font-size: 11pt;" data-mce-style=3D"font=
+-size: 11pt;" lang=3D"FR"></span></span></span></strong>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+strong>---Inscriptions---</strong><br>
+<br>
+Les inscriptions =E0 l'atelier se font via le <a href=3D"https://cloud.agor=
+aevent.fr/Site/172901/1951/InscriptionPre?&amp;AspxAutoDetectCookieSupport=
+=3D1" data-mce-href=3D"https://cloud.agoraevent.fr/Site/172901/1951/Inscrip=
+tionPre?&amp;AspxAutoDetectCookieSupport=3D1">
+<span style=3D"color: windowtext; text-decoration: none;" data-mce-style=3D=
+"color: windowtext; text-decoration: none;">lien</span></a>.</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+br>
+</span></p>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;"><=
+br>
+</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">C=
+ordialement,<br>
+<br>
+</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">N=
+our El Mawas, Serge Garlatti et Marc Nagels</span></p>
+<span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 11.0pt;" la=
+ng=3D"FR"><span data-mce-style=3D"font-size: 11.0pt;" style=3D"font-size: 1=
+1.0pt;" lang=3D"FR"><span style=3D"font-size: 11.0pt;" data-mce-style=3D"fo=
+nt-size: 11.0pt;" lang=3D"FR"></span></span></span>
+<p style=3D"margin: 0px; line-height: normal;" data-mce-style=3D"margin: 0p=
+x; line-height: normal;">
+<span style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;" da=
+ta-mce-style=3D"font-size: 12.0pt; font-family: 'Times New Roman',serif;">&=
+nbsp;</span></p>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_HE1PR0602MB2843F7B60B78C20CFF6A1011A02B0HE1PR0602MB2843_--

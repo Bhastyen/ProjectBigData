@@ -1,0 +1,339 @@
+Return-Path: <julien.velcin@univ-lyon2.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 6B5CB229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 30 Mar 2018 14:34:59 +0200 (CEST)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 69CDC6287F9
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 30 Mar 2018 14:34:59 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 62C7CB4A246
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 30 Mar 2018 14:34:59 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -13.93
+X-Spam-Level:
+X-Spam-Status: No, score=-13.93 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, IMPRONONCABLE_2=1.5,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	RP_MATCHES_RCVD=-0.55, SPF_HELO_PASS=-0.001, SPF_PASS=-0.001,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 10.5127 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=univ-lyon2.fr
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eh1mSUVBgQ_1 for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 30 Mar 2018 14:34:58 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.univ-lyon2.fr (smtp.univ-lyon2.fr [159.84.182.45])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id 029EA661928
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 30 Mar 2018 14:34:57 +0200 (CEST)
+Received: from ru.univ-lyon2.fr (localhost [127.0.0.1])
+	by smtp.univ-lyon2.fr (Postfix) with ESMTP id 81F43139A3A
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 30 Mar 2018 14:34:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=univ-lyon2.fr;
+	s=201509-490482f6; t=1522413297;
+	bh=l9le+gNhrR8kgs/KGd/MaXdYJYW5NDmRH/LFTbJfQn8=;
+	h=Date:From:To:Subject;
+	b=rzjdWnO7x7HwhbZNV3N3myHub40948O+8q/xl1I+8Cm4S1aZc40x+mt89Z/192BuW
+	 I4XaUaO0buDCnNsj7QOjXsNe1Cy6XDWgbJrSalPYIjQsrnLQiPgh9rDKTyaZCLbzfh
+	 D5rKe7jThHybqCxlpjWxnwfkNPQlyMuAMqVHdIAOraAmF4Tgxirnx7t2/FdbOQySMF
+	 GoIO5YywoN3ILaYce2UqrDJbsaDJSNpdBKNGAtvmKl+INyhmXLVMHlw3tg8TY6ptyi
+	 XsPq505ApO8r1TPgL8KceJWncchACjfIBQjWK58w0eDohgOzVSwo7AqVQGg7qo8yBz
+	 d3Uc7Z0HveY0Q==
+X-Virus-Scanned: amavisd-new at univ-lyon2.fr
+Received: from amavis.at.univ-lyon2.fr ([127.0.0.1])
+	by ru.univ-lyon2.fr (smtp.univ-lyon2.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id iFFZFLvpexRC for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 30 Mar 2018 14:34:56 +0200 (CEST)
+Received: from MacBook-Pro-de-Lee.local (coconut-dhcp-159-84-108-183.univ-lyon2.fr [159.84.108.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.univ-lyon2.fr (Postfix) with ESMTPSA
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 30 Mar 2018 14:34:56 +0200 (CEST)
+Message-ID: <5ABE2EEF.5040000@univ-lyon2.fr>
+Date: Fri, 30 Mar 2018 14:34:55 +0200
+From: Julien Velcin <julien.velcin@univ-lyon2.fr>
+User-Agent: Postbox 5.0.20 (Macintosh/20171016)
+MIME-Version: 1.0
+To: liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative;
+ boundary="------------020408020404020400090405"
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Fake ou pas Fake ? Appel =?UTF-8?Q?=C3=A0?=
+ participation pour un hackathon CORIA-TALN 2018
+
+This is a multi-part message in MIME format.
+--------------020408020404020400090405
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+*Fake ou pas Fake ?*
+/Hackathon CORIA-TALN 2018/
+(hackathon en recherche d’information et traitement automatique des 
+langues)**
+
+Tâches : détection et visualisation de fausses informations sur les réseaux
+Site web : http://hackatal.github.io/2018
+Dates : 14 et 15 mai 2018
+Lieu : IRISA, Rennes
+Inscription (gratuite mais obligatoire) : 
+https://goo.gl/forms/soTeFTikjWol8bj13 !
+
+*Description*
+
+Dans le cadre de la conférence CORIA-TALN-RJC 2018 est organisé un 
+hackathon, 3ème édition côté CORIA (Hack Days) et TALN (HackaTAL). 
+L’évènement porte sur des problématiques en RI et en TAL. L’objectif est 
+de réunir les communautés scientifiques, et au delà, autour de défis à 
+relever, pour modéliser, prototyper, coder, expérimenter, développer, 
+tester, évaluer, échanger, etc. - par équipes, dans une ambiance 
+décontractée !
+
+Les tâches proposées portent cette année sur la détection et le 
+traitement d’informations manifestement fausses, un sujet de 
+préoccupation pour les médias et citoyens. Ces problématiques, nouvelles 
+pour la société de l’information, soulèvent de nombreuses questions et 
+nous essaierons de voir si des traitements RI et TAL peuvent y répondre, 
+pour mieux comprendre les phénomènes en jeu et y réagir, plus rapidement 
+et de manière plus adéquate, à l’aide d’algorithmes du domaine.
+
+L’événement est ouvert à tous (informaticiens, linguistes, 
+journalistes), ne nécessite aucune préparation particulière et ne 
+requiert pas de compétences spécifiques aux tâches que nous proposons... 
+tout le monde est bienvenu !
+
+*Tâches*
+
+_1. Détection : repérer et catégoriser les fausses informations_
+
+/Objectifs/
+
+Parmi les informations disponibles en ligne certaines sont manifestement 
+fausses et il n’est pas évident de faire la part des choses, autant pour 
+les médias, entreprises ou laboratoires (notamment à cause des volumes 
+de données à traiter), que pour les citoyens : quels indices 
+caractérisent les fausses informations ? L’objectif de cette tâche est 
+de voir si des algorithmes TAL et RI sont capables de détecter et 
+catégoriser finement ces fausses informations.
+
+/Sous-tâches/
+
+- parmi un ensemble de textes, déterminer automatiquement lesquels sont 
+des faux (contrefactuels, détournés, trompeurs, parodiques),
+- catégoriser les fausses informations parmi un ensemble de catégories 
+prédéfinies (sites propagandistes, conspirationnistes, pseudo-science, 
+satires),
+- caractériser les faux d’un point de vue linguistique : quels modes 
+d’expression, quelles tournures sont utilisées pour propager de fausses 
+informations.
+
+_2. Visualisation : agrégation des fausses nouvelles pour une vision 
+synthétique_
+
+/Objectifs/
+
+Le traitement des fausses nouvelles soulève d’autres questions lorsque 
+l’on tient compte des liens (informationnels, thématiques, 
+linguistiques) entre ces dernières, ou au sein des médias et des réseaux 
+sociaux. Certaines reprennent des fausses nouvelles déjà connues, les 
+complètent ou les modifient. Il est aussi intéressant d’étudier les 
+mécanismes de leur propagation sur des réseaux (statiques) ou sur les 
+relations temporelles (dynamiques).
+
+/Sous-tâches/
+
+- regrouper les fausses nouvelles de manière non-supervisée ou peu 
+supervisée,
+- déterminer la structure d’un réseau de fausses nouvelles, pour 
+identifier des liens orientés selon l’axe temporel et l’axe thématique,
+- détecter des communautés (sites ou individus) qui propagent des 
+fausses nouvelles.
+
+*Planning prévisionnel*
+
+Lundi 14 mai :
+- 13h-14h : accueil et café
+- 14h-15h : présentation du hackathon
+- 15h-18h : développements en équipes
+- 18h-19h : présentations invitées
+- 19h-20h : cocktail dinatoire
+- 20h-... : développements en équipes
+
+Mardi 15 mai :
+- 09h-10h : accueil et café
+- 10h-12h : développements en équipes
+- 12h-14h : déjeuner et café
+- 14h-17h : développements en équipes
+- 17h-19h : présentation des résultats
+- 19h-21h : conclusion et cocktail
+
+*Organisation pratique*
+
+BYOD (amenez votre ordinateur)
+Pas de critères pour participer, le hackathon est ouvert à tous !
+Aucune préparation requise des participants en amont de l’évènement
+Logiciels et données en ligne : https://github.com/HackaTAL/2018
+
+*Organisateurs*
+
+Kevin Deturck (Viseo / ERTIM)
+Nicolas Dugué (LIUM)
+Loïc Grobol (LaTTiCe)
+Gael Guibon (LSIS, Caléa)
+Charles Huyghues-Despointes (Bertin)
+Damien Nouvel (ERTIM)
+Benjamin Piwowarski (LIP6)
+Ramon Ruti (Storyzi)
+Raphaël Troncy (Eurecom)
+Julien Velcin (ERIC)
+
+--------------020408020404020400090405
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head><body bgcolor="#FFFFFF" text="#000000">
+  <b>Fake ou pas Fake ?</b><br>
+  <i>Hackathon CORIA-TALN 2018</i><br>
+(hackathon en recherche d’information et traitement automatique des 
+langues)<b></b><br>
+  <br>
+Tâches : détection et visualisation de fausses informations sur les 
+réseaux<br>
+Site web : <a href="http://hackatal.github.io/2018">http://hackatal.github.io/2018</a><br>
+Dates : 14 et 15 mai 2018<br>
+Lieu : IRISA, Rennes<br>
+Inscription (gratuite mais obligatoire) : <a 
+href="https://goo.gl/forms/soTeFTikjWol8bj13">https://goo.gl/forms/soTeFTikjWol8bj13</a>
+ !<br>
+  <br>
+  <b>Description</b><br>
+  <br>
+Dans
+ le cadre de la conférence CORIA-TALN-RJC 2018 est organisé un 
+hackathon, 3ème édition côté CORIA (Hack Days) et TALN (HackaTAL). 
+L’évènement porte sur des problématiques en RI et en TAL. L’objectif est
+ de réunir les communautés scientifiques, et au delà, autour de défis à 
+relever, pour modéliser, prototyper, coder, expérimenter, développer, 
+tester, évaluer, échanger, etc. - par équipes, dans une ambiance 
+décontractée <span title=":)" class="moz-smiley-s1"></span> !<br>
+  <br>
+Les
+ tâches proposées portent cette année sur la détection et le traitement 
+d’informations manifestement fausses, un sujet de préoccupation pour les
+ médias et citoyens. Ces problématiques, nouvelles pour la société de 
+l’information, soulèvent de nombreuses questions et nous essaierons de 
+voir si des traitements RI et TAL peuvent y répondre, pour mieux 
+comprendre les phénomènes en jeu et y réagir, plus rapidement et de 
+manière plus adéquate, à l’aide d’algorithmes du domaine.<br>
+  <br>
+L’événement
+ est ouvert à tous (informaticiens, linguistes, journalistes), ne 
+nécessite aucune préparation particulière et ne requiert pas de 
+compétences spécifiques aux tâches que nous proposons... tout le monde 
+est bienvenu !<br>
+  <br>
+  <b>Tâches</b><br>
+  <br>
+  <u>1. Détection : repérer et catégoriser les fausses informations</u><br>
+  <br>
+  <i>Objectifs</i><br>
+  <br>
+Parmi
+ les informations disponibles en ligne certaines sont manifestement 
+fausses et il n’est pas évident de faire la part des choses, autant pour
+ les médias, entreprises ou laboratoires (notamment à cause des volumes 
+de données à traiter), que pour les citoyens : quels indices 
+caractérisent les fausses informations ? L’objectif de cette tâche est 
+de voir si des algorithmes TAL et RI sont capables de détecter et 
+catégoriser finement ces fausses informations.<br>
+  <br>
+  <i>Sous-tâches</i><br>
+  <br>
+-
+ parmi un ensemble de textes, déterminer automatiquement lesquels sont 
+des faux (contrefactuels, détournés, trompeurs, parodiques),<br>
+- 
+catégoriser les fausses informations parmi un ensemble de catégories 
+prédéfinies (sites propagandistes, conspirationnistes, pseudo-science, 
+satires),<br>
+- caractériser les faux d’un point de vue linguistique : 
+quels modes d’expression, quelles tournures sont utilisées pour propager
+ de fausses informations.<br>
+  <br>
+  <u>2. Visualisation : agrégation des fausses nouvelles pour une vision
+ synthétique</u><br>
+  <br>
+  <i>Objectifs</i><br>
+  <br>
+Le
+ traitement des fausses nouvelles soulève d’autres questions lorsque 
+l’on tient compte des liens (informationnels, thématiques, 
+linguistiques) entre ces dernières, ou au sein des médias et des réseaux
+ sociaux. Certaines reprennent des fausses nouvelles déjà connues, les 
+complètent ou les modifient. Il est aussi intéressant d’étudier les 
+mécanismes de leur propagation sur des réseaux (statiques) ou sur les 
+relations temporelles (dynamiques).<br>
+  <br>
+  <i>Sous-tâches</i><br>
+  <br>
+- regrouper les fausses nouvelles de manière non-supervisée ou peu 
+supervisée,<br>
+-
+ déterminer la structure d’un réseau de fausses nouvelles, pour 
+identifier des liens orientés selon l’axe temporel et l’axe thématique,<br>
+- détecter des communautés (sites ou individus) qui propagent des 
+fausses nouvelles.<br>
+  <br>
+  <b>Planning prévisionnel</b><br>
+  <br>
+Lundi 14 mai :<br>
+- 13h-14h : accueil et café<br>
+- 14h-15h : présentation du hackathon<br>
+- 15h-18h : développements en équipes<br>
+- 18h-19h : présentations invitées<br>
+- 19h-20h : cocktail dinatoire<br>
+  <span __postbox-detected-content="__postbox-detected-date" 
+class="__postbox-detected-content __postbox-detected-date" 
+style="display: inline; font-size: inherit; padding: 0pt;">- 20h-...</span>
+ : développements en équipes<br>
+  <br>
+Mardi 15 mai :<br>
+- 09h-10h : accueil et café<br>
+- 10h-12h : développements en équipes<br>
+- 12h-14h : déjeuner et café<br>
+- 14h-17h : développements en équipes<br>
+- 17h-19h : présentation des résultats<br>
+- 19h-21h : conclusion et cocktail<br>
+  <br>
+  <b>Organisation pratique</b><br>
+  <br>
+BYOD (amenez votre ordinateur)<br>
+Pas de critères pour participer, le hackathon est ouvert à tous !<br>
+Aucune préparation requise des participants en amont de l’évènement<br>
+Logiciels et données en ligne : <a 
+href="https://github.com/HackaTAL/2018">https://github.com/HackaTAL/2018</a><br>
+  <br>
+  <b>Organisateurs</b><br>
+  <br>
+Kevin Deturck (Viseo / ERTIM)<br>
+Nicolas Dugué (LIUM)<br>
+Loïc Grobol (LaTTiCe)<br>
+Gael Guibon (LSIS, Caléa)<br>
+Charles Huyghues-Despointes (Bertin)<br>
+Damien Nouvel (ERTIM)<br>
+Benjamin Piwowarski (LIP6)<br>
+Ramon Ruti (Storyzi)<br>
+Raphaël Troncy (Eurecom)<br>
+Julien Velcin (ERIC)
+</body>
+</html>
+
+--------------020408020404020400090405--

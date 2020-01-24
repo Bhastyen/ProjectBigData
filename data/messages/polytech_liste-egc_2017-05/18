@@ -1,0 +1,347 @@
+Return-Path: <slim.kallel@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id A4133229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  9 May 2017 00:28:50 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 9FC2E73A1A4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  9 May 2017 00:28:50 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 95B4D4821B3F
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  9 May 2017 00:28:50 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.61
+X-Spam-Level: *
+X-Spam-Status: No, score=1.61 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	RCVD_IN_DNSWL_LOW=-1, RCVD_IN_WSFF=0.01, SARE_HEAD_8BIT_SPAM=0.888,
+	SPF_PASS=-0.001, T_FILL_THIS_FORM_SHORT=0.01, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1, URIBL_BLOCKED=0.001, VOWEL_TOCC_6=1.5]
+	autolearn=disabled
+X-CRM114-Status: UNSURE ( 4.1139 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Lqz3Ia6LitN6 for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  9 May 2017 00:28:49 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-oi0-x22e.google.com (mail-oi0-x22e.google.com [IPv6:2607:f8b0:4003:c06::22e])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 48ABB451E0CE
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  9 May 2017 00:28:49 +0200 (CEST)
+Received: by mail-oi0-x22e.google.com with SMTP id h4so67863125oib.3
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 08 May 2017 15:28:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=WSvtgJHfpAqi9FScbTEgcAJAPkeSq5RuzqempCApKC4=;
+        b=EBmz7PHpYhRevYw5VDW41+A434XxoxaHWWMN6ZcRy6Gx4WRsoai9VY4MpCN6jd9Z+A
+         tNRegGCS8vkEo0Wg4LHAbRxb/0xe/k0WR04EP6Sx1DECIMBnP7nPDEiGY+3giRy11rSY
+         M0X5vM9xX9X3qIvQO3NKMIsVYhAYbFQCFTXm46UdU+20UYc+NNfFa2aQbHUtn24IGVyg
+         GaeT4JOjztL7Vqk/YTBqeXBL/hYb1Dr0Ng7NTn6HhelmMLyO56jMW9nd/tHmBKb2wkth
+         LDKHAsSBNwINUrH4tZLisd5nuVF/KeHFYIraYJKEb7qoGVCz1Ki/kwZa71nxlhU7ZkTT
+         DvXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=WSvtgJHfpAqi9FScbTEgcAJAPkeSq5RuzqempCApKC4=;
+        b=F4V1/1uA5N+DMzUttwZtFbTdKiO7wnDfHda2cjNl/EzK7SH/2J/LMLrjz+LXBUnt6y
+         anHwYLLba4dLEW0Dkdf7bIOJv+zxaM8Gj2OVZPCGOm/Pet1eOqOMiJZ46olkDmYChQSr
+         pApFiaGwNIKDCDjGj0ySQQU4Pt0FAFO98lY5Ie1dq5xqy+hsSVSxVxDdqIYg6/wGbsPG
+         d12s4Qg/YQidJ5n6oaMyXf79IEayWUeVQ2pV+Y94Wa17pjK8yyKxUSRmiMT3dgUbfsnP
+         zFMiL1d3ojrFS1ilqMV9qfgltJrqX+5lQCT6z8ILfqAxTHvziXiwpvDK/g920bfTVID2
+         9Qbw==
+X-Gm-Message-State: AN3rC/71KVXbRRRM8YeuM1oZPZmph64nyQdA8Zl3xe5jtNTEnEk+MS5c
+	6odEqyZjFttGk8TBYsr33aMvMwLZ8g==
+X-Received: by 10.157.37.194 with SMTP id q60mr21992685ota.44.1494282527744;
+ Mon, 08 May 2017 15:28:47 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.157.9.66 with HTTP; Mon, 8 May 2017 15:28:47 -0700 (PDT)
+From: Slim Kallel <slim.kallel@gmail.com>
+Date: Tue, 9 May 2017 00:28:47 +0200
+Message-ID: <CAJq=jJsMhRfcDqRY3=bAo7adDSdteL=Y8zoZtc3az2tX5i3H_A@mail.gmail.com>
+To: strqds@laas.fr, "agents (" <agents@cs.umbc.edu>, ahsntc@l2ti.univ-paris13.fr, 
+	modularity-announce@googlegroups.com, 
+	"ecoop-info@ecoop.org" <ecoop-info@ecoop.org>, gdr gpl <gdr.gpl@imag.fr>, bull-i3@irit.fr, 
+	concurrency@listserver.tue.nl, liste-egc@polytech.univ-nantes.fr
+Content-Type: multipart/alternative; boundary=001a11455dfe42aa42054f0ac3c6
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] E-Learning, E-Governement, =?UTF-8?Q?E-Health=40IEEE-?=
+ =?UTF-8?Q?AICCSA=E2=80=992017_=E2=80=93?= Hammamet (Tunisia)
+
+--001a11455dfe42aa42054f0ac3c6
+Content-Type: text/plain; charset=UTF-8
+
+*14th ACS/IEEE International Conference on Computer Systems and
+Applications (AICCSA 2017)*
+
+
+*October 30th to November 3rd, 2017*
+
+
+*Hammamet, Tunisia*
+
+
+*http://www.aiccsa.net/AICCSA2017/ <http://www.aiccsa.net/AICCSA2017/>*
+
+
+*Track 11: Digital Living including E-Learning, E-Governement, E-Health*
+
+As networked devices become increasingly ubiquitous, the potential benefits
+to users, businesses, public administrations and authorities increase
+exponentially. Entities and process are embracing information technologies
+in order to communicate in modern ways. In this context new concepts are
+paving their way to completely change our lifestyle. Among others, we
+observe the rise of the egovernment, e-Learning and ehealth.
+
+*eGovernment* leverages information and communication technology to
+strengthen and improve the quality and efficiency of public administration.
+Communication is made easier for citizens and businesses, costs are lowered
+and at the same time internal processes are sped up substantially. The
+quality and transparency of public services is raised considerably to
+everyone's benefit.
+
+*e-Learning* is learning utilizing electronic technologies to access
+educational curriculum outside of a traditional classroom. In most cases,
+it refers to a course, program or degree delivered completely online.
+e-Learning allows people to learn anywhere and usually at any time. And
+hence widening the way one can learn and share new knowledge.
+
+*e-Health* is the transfer of health resources and health care by
+electronic means. It consists of the delivery of health information, for
+health professionals and health consumers, through the Internet and
+telecommunications.
+
+*The  Track 11*: *Digital Living including E-Learning, E-Governement,
+E-Health* <http://www.aiccsa.net/AICCSA2017/13-tracks/38-track-11> encourages
+the submission of research papers in one of these topics (non-exhaustive
+list):
+
+*e-Learning*
+
+   - Learning Technologies
+   - Large-scale learning systems
+   - Personalization, user modeling and adaptation
+   - Learning analytics
+   - Context-aware systems
+   - Visualization techniques for learning
+   - Adapted learning flow, content and monitoring process
+   - Serious games, simulations and 3D virtual worlds
+   - Augmented reality
+   - Social computing and social media
+   - Semantic Web
+   - Remote labs
+   - Mobile, wearable and pervasive technologies
+   - Network infrastructures and architectures for TEL
+   - IoT and Education
+   - Cloud Computing in TEL
+   - eLearning specifications and standards
+   - Interoperability and sharing of devices, tools and architectures
+
+*e-Government*
+
+   - Strategies and policies for ICT-enabled public administration overhaul
+   - E-Government architectures
+   - Public administration back and front offices overhaul
+   - Design approaches for ICT solutions in the public sector
+   - Information governance (strategies, information sharing practices,
+   privacy practices)
+   - Public-sector ICT workforce (management, retention, compensation, etc.)
+   - Intergovernmental integration and interoperation
+   - Safe public online access and online identity management
+   - Data protection and privacy management in the public sphere
+   - ICT-enabled transnational government collaboration
+
+
+*E-Health*
+
+   - Bioinformatics
+   - Business Intelligence applied to Healthcare Information Systems
+   - EHR - Electronic Health Records
+   - ePrescription
+   - eTherapy
+   - HIE- Health Information Exchange Solutions
+   - Health IT Infrastructure
+   - Healthcare Content Management
+   - Healthcare Information Systems Management
+   - Healthcare IT Management and Governance
+   - Healthcare Information Systems Integration, Interoperability &
+   Connectivity solutions
+   - Practice Management Systems
+   - PRM - Patient Relationship Management
+   - Telemedicine
+
+
+*Submissions Guidelines and PROCEEDINGS*
+Manuscripts should be prepared in 10-point font using the IEEE 8.5" x 11"
+two-column format. All papers should be in PDF format, and submitted
+electronically at Paper Submission Link. A full paper must not exceed the
+stated length (including all figures, tables and references). Submitted
+papers must present original unpublished research that is not currently
+under review for any other conference or journal. Papers not following
+these guidelines may be rejected without review. Also submissions received
+after the due date, exceeding length limit, or not appropriately structured
+may also not be considered. Authors may contact the Program Chair for
+further information or clarification.
+
+All submissions are peer-reviewed by at least three reviewers. Accepted
+papers will appear in the Conference Proceedings, and be published by the
+IEEE Computer Society Conference Publishing Services and be submitted to
+IEEE Xplore for inclusion.
+
+Submitted papers must include original work, and must not be under
+consideration for another conference or journal. Submission of regular
+papers must not exceed 8 pages and must follow the IEEE paper format.
+Please include up to 7 keywords, complete postal and e-mail address, and
+fax and phone numbers of the corresponding author. Authors of accepted
+papers are expected to present their work at the conference. Submitted
+papers that are deemed of good quality but that could not be accepted as
+regular papers will be accepted as short papers.
+
+
+*Important Dates:*
+
+    *Paper Submission Due Date: May 10, 2017*
+    Notification to authors: July 17, 2017
+    Camera-ready papers due: August 15, 2017
+
+*Submission system*
+
+https://easychair.org/conferences/?conf=aiccsa2017
+
+--001a11455dfe42aa42054f0ac3c6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div align=3D"center" style=3D"font-size:12.8px"><strong><=
+span style=3D"color:black">14th ACS/IEEE International Conference on Comput=
+er Systems and Applications=C2=A0<br>(AICCSA 2017)</span></strong></div><p =
+style=3D"font-size:12.8px;text-align:center;line-height:normal;background-i=
+mage:initial;background-position:initial;background-size:initial;background=
+-repeat:initial;background-origin:initial;background-clip:initial;margin:0p=
+x"><strong><span style=3D"color:black"><br></span></strong></p><p style=3D"=
+font-size:12.8px;text-align:center;line-height:normal;background-image:init=
+ial;background-position:initial;background-size:initial;background-repeat:i=
+nitial;background-origin:initial;background-clip:initial;margin:0px"><stron=
+g><span style=3D"color:black">October 30th to November 3rd, 2017</span></st=
+rong></p><p style=3D"font-size:12.8px;text-align:center;line-height:normal;=
+background-image:initial;background-position:initial;background-size:initia=
+l;background-repeat:initial;background-origin:initial;background-clip:initi=
+al;margin:0px"><strong><span style=3D"color:black"><br></span></strong></p>=
+<p style=3D"font-size:12.8px;text-align:center;line-height:normal;backgroun=
+d-image:initial;background-position:initial;background-size:initial;backgro=
+und-repeat:initial;background-origin:initial;background-clip:initial;margin=
+:0px"><strong><span style=3D"color:black">Hammamet, Tunisia</span></strong>=
+</p><p style=3D"font-size:12.8px;text-align:center;line-height:normal;backg=
+round-image:initial;background-position:initial;background-size:initial;bac=
+kground-repeat:initial;background-origin:initial;background-clip:initial;ma=
+rgin:0px"><strong><span style=3D"font-size:12pt;color:rgb(0,90,149)"><br></=
+span></strong></p><div align=3D"center" style=3D"font-size:12.8px"><strong>=
+<span style=3D"font-size:12pt;color:rgb(0,90,149)"><a href=3D"http://www.ai=
+ccsa.net/AICCSA2017/" target=3D"_blank"><span style=3D"color:rgb(0,90,149)"=
+>http://www.aiccsa.net/AICCSA20<wbr>17/</span></a></span></strong><strong><=
+span style=3D"font-size:10pt;color:red"></span></strong><br><u><b><br></b><=
+/u><div align=3D"left"><u><b><br><font color=3D"#000066">Track 11: Digital =
+Living including E-Learning, E-Governement, E-Health</font></b></u><br><br>=
+As networked devices become increasingly ubiquitous, the potential benefits=
+ to users, businesses, public administrations and authorities increase expo=
+nentially. Entities and process are embracing information technologies in o=
+rder to communicate in modern ways. In this context new concepts are paving=
+ their way to completely change our lifestyle. Among others, we observe the=
+ rise of the egovernment, e-Learning and ehealth.<br><br><u>eGovernment</u>=
+=C2=A0leverages information and communication technology to strengthen and =
+improve the quality and efficiency of public administration. Communication =
+is made easier for citizens and businesses, costs are lowered and at the sa=
+me time internal processes are sped up substantially. The quality and trans=
+parency of public services is raised considerably to everyone&#39;s benefit=
+.<br><br><u>e-Learning</u>=C2=A0is learning utilizing electronic technologi=
+es to access educational curriculum outside of a traditional classroom. In =
+most cases, it refers to a course, program or degree delivered completely o=
+nline. e-Learning allows people to learn anywhere and usually at any time. =
+And hence widening the way one can learn and share new knowledge.<br><br><u=
+>e-Health</u>=C2=A0is the transfer of health resources and health care by e=
+lectronic means. It consists of the delivery of health information, for hea=
+lth professionals and health consumers, through the Internet and telecommun=
+ications.<br><br><span style=3D"font-size:10pt"><span style=3D"font-family:=
+&quot;times new roman&quot;,serif;color:black"></span></span><u><b>The=C2=
+=A0 Track 11</b></u>:=C2=A0<a href=3D"http://www.aiccsa.net/AICCSA2017/13-t=
+racks/38-track-11" target=3D"_blank"><b><u>Digital Living including E-Learn=
+ing, E-Governement, E-Health</u></b></a>=C2=A0encourages the submission of =
+research papers in one of these topics (non-exhaustive list):=C2=A0<br><br>=
+<b>e-Learning</b><br><ul><li style=3D"margin-left:15px">Learning Technologi=
+es</li><li style=3D"margin-left:15px">Large-scale learning systems</li><li =
+style=3D"margin-left:15px">Personalization, user modeling and adaptation</l=
+i><li style=3D"margin-left:15px">Learning analytics</li><li style=3D"margin=
+-left:15px">Context-aware systems</li><li style=3D"margin-left:15px">Visual=
+ization techniques for learning</li><li style=3D"margin-left:15px">Adapted =
+learning flow, content and monitoring process</li><li style=3D"margin-left:=
+15px">Serious games, simulations and 3D virtual worlds</li><li style=3D"mar=
+gin-left:15px">Augmented reality</li><li style=3D"margin-left:15px">Social =
+computing and social media</li><li style=3D"margin-left:15px">Semantic Web<=
+/li><li style=3D"margin-left:15px">Remote labs</li><li style=3D"margin-left=
+:15px">Mobile, wearable and pervasive technologies</li><li style=3D"margin-=
+left:15px">Network infrastructures and architectures for TEL</li><li style=
+=3D"margin-left:15px">IoT and Education</li><li style=3D"margin-left:15px">=
+Cloud Computing in TEL</li><li style=3D"margin-left:15px">eLearning specifi=
+cations and standards</li><li style=3D"margin-left:15px">Interoperability a=
+nd sharing of devices, tools and architectures</li></ul><b>e-Government</b>=
+<br><ul><li style=3D"margin-left:15px">Strategies and policies for ICT-enab=
+led public administration overhaul</li><li style=3D"margin-left:15px">E-Gov=
+ernment architectures</li><li style=3D"margin-left:15px">Public administrat=
+ion back and front offices overhaul</li><li style=3D"margin-left:15px">Desi=
+gn approaches for ICT solutions in the public sector</li><li style=3D"margi=
+n-left:15px">Information governance (strategies, information sharing practi=
+ces, privacy practices)</li><li style=3D"margin-left:15px">Public-sector IC=
+T workforce (management, retention, compensation, etc.)</li><li style=3D"ma=
+rgin-left:15px">Intergovernmental integration and interoperation</li><li st=
+yle=3D"margin-left:15px">Safe public online access and online identity mana=
+gement</li><li style=3D"margin-left:15px">Data protection and privacy manag=
+ement in the public sphere</li><li style=3D"margin-left:15px">ICT-enabled t=
+ransnational government collaboration</li></ul><br><b>E-Health</b><br><ul><=
+li style=3D"margin-left:15px">Bioinformatics</li><li style=3D"margin-left:1=
+5px">Business Intelligence applied to Healthcare Information Systems</li><l=
+i style=3D"margin-left:15px">EHR - Electronic Health Records</li><li style=
+=3D"margin-left:15px">ePrescription</li><li style=3D"margin-left:15px">eThe=
+rapy</li><li style=3D"margin-left:15px">HIE- Health Information Exchange So=
+lutions</li><li style=3D"margin-left:15px">Health IT Infrastructure</li><li=
+ style=3D"margin-left:15px">Healthcare Content Management</li><li style=3D"=
+margin-left:15px">Healthcare Information Systems Management</li><li style=
+=3D"margin-left:15px">Healthcare IT Management and Governance</li><li style=
+=3D"margin-left:15px">Healthcare Information Systems Integration, Interoper=
+ability &amp; Connectivity solutions</li><li style=3D"margin-left:15px">Pra=
+ctice Management Systems</li><li style=3D"margin-left:15px">PRM - Patient R=
+elationship Management</li><li style=3D"margin-left:15px">Telemedicine</li>=
+</ul><b><br></b><b>Submissions Guidelines and PROCEEDINGS</b><br>Manuscript=
+s should be prepared in 10-point font using the IEEE 8.5&quot; x 11&quot; t=
+wo-column format. All papers should be in PDF format, and submitted electro=
+nically at Paper Submission Link. A full paper must not exceed the stated l=
+ength (including all figures, tables and references). Submitted papers must=
+ present original unpublished research that is not currently under review f=
+or any other conference or journal. Papers not following these guidelines m=
+ay be rejected without review. Also submissions received after the due date=
+, exceeding length limit, or not appropriately structured may also not be c=
+onsidered. Authors may contact the Program Chair for further information or=
+ clarification.<br><br>All submissions are peer-reviewed by at least three =
+reviewers. Accepted papers will appear in the Conference Proceedings, and b=
+e published by the IEEE Computer Society Conference Publishing Services and=
+ be submitted to IEEE Xplore for inclusion.<br><br>Submitted papers must in=
+clude original work, and must not be under consideration for another confer=
+ence or journal. Submission of regular papers must not exceed 8 pages and m=
+ust follow the IEEE paper format. Please include up to 7 keywords, complete=
+ postal and e-mail address, and fax and phone numbers of the corresponding =
+author. Authors of accepted papers are expected to present their work at th=
+e conference. Submitted papers that are deemed of good quality but that cou=
+ld not be accepted as regular papers will be accepted as short papers.=C2=
+=A0<br><br><br><b>Important Dates:</b><br><br>=C2=A0=C2=A0=C2=A0=C2=A0<font=
+ color=3D"#ff0000"><u>Paper Submission Due Date: May 10, 2017</u></font><br=
+>=C2=A0=C2=A0=C2=A0 Notification to authors: July 17, 2017<br>=C2=A0=C2=A0=
+=C2=A0 Camera-ready papers due: August 15, 2017<br><b><br></b><b>Submission=
+ system</b><br><a href=3D"https://easychair.org/conferences/?conf=3Daiccsa2=
+017" target=3D"_blank"><br>https://easychair.org/conferen<wbr>ces/?conf=3Da=
+iccsa2017</a></div></div></div>
+
+--001a11455dfe42aa42054f0ac3c6--

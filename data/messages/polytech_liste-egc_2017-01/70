@@ -1,0 +1,257 @@
+Return-Path: <p_bruneau@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 145E01903A06
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat, 28 Jan 2017 11:19:58 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 07E8226A4BE
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Sat, 28 Jan 2017 11:19:58 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id F33D34821B62
+	for <liste-egc@polytech.univ-nantes.fr>; Sat, 28 Jan 2017 11:19:57 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -1.458
+X-Spam-Level:
+X-Spam-Status: No, score=-1.458 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_LOW=-1, RCVD_IN_MSPIKE_H3=-0.01,
+	RCVD_IN_MSPIKE_WL=-0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 0.1791 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id e_3iLCEZgXuI for <liste-egc@polytech.univ-nantes.fr>;
+	Sat, 28 Jan 2017 11:19:56 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from BLU004-OMC4S17.hotmail.com (blu004-omc4s17.hotmail.com [65.55.111.156])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id 7FA9D40C6D72
+	for <liste-egc@polytech.univ-nantes.fr>; Sat, 28 Jan 2017 11:19:55 +0100 (CET)
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com ([65.55.111.135]) by BLU004-OMC4S17.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Sat, 28 Jan 2017 02:19:54 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=34VkjUczsJCaXgYTGKdHbV6yxEZGr7fbtdx/HWOMisw=;
+ b=kMjXICI0Po14gMnFlzDH4oRcXv/NL/m6e7/oo5aTPGvIXtIN++gpHvhz18kFnVzO+QWLEalC76ojvrLTXBhwjFBVP08IcnZPKfy9/iqdAQDUGz9b4QKbkmVtqmAkXuyGuWoTGj64PueAJk3xX+HimLrWjQ8GvFtLfaSg/6zmCjKFkxmTXbznedbOL/Kh0eix/RBpflq/WlIs9W6D+MGJvICAgvGuoaWxAcQxbnHyW4cjL9eTGvT0WIPihg2HQxEQSX3Wwe+SqLdZ2rqZs+9B7riFmRAL/b2PIPBmnhj02qIVbZ85sjgSuvzrCTu8wRgfSv0qLmlLWFnDACa1Fae6aw==
+Received: from AM5EUR02FT038.eop-EUR02.prod.protection.outlook.com
+ (10.152.8.52) by AM5EUR02HT248.eop-EUR02.prod.protection.outlook.com
+ (10.152.8.195) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.803.8; Sat, 28 Jan
+ 2017 10:19:40 +0000
+Received: from AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM (10.152.8.60) by
+ AM5EUR02FT038.mail.protection.outlook.com (10.152.9.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.874.2 via Frontend Transport; Sat, 28 Jan 2017 10:19:40 +0000
+Received: from AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM ([10.168.0.144]) by
+ AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM ([10.168.0.144]) with mapi id
+ 15.01.0874.018; Sat, 28 Jan 2017 10:19:40 +0000
+From: Pierrick Bruneau <p_bruneau@hotmail.com>
+To: "bull-i3@irit.fr" <bull-i3@irit.fr>, "info-ic@inria.fr"
+	<info-ic@inria.fr>, "liste-egc@polytech.univ-nantes.fr"
+	<liste-egc@polytech.univ-nantes.fr>
+Thread-Topic: EnviroInfo 2017 Call For Papers (deadline 17/04/2017)
+Thread-Index: AQHSeU8mgZTrx0Hxo0qkubrwUaunRg==
+Date: Sat, 28 Jan 2017 10:19:40 +0000
+Message-ID: <DB5PR1001MB090168DE9F46876E3E27A7249A490@DB5PR1001MB0901.EURPRD10.PROD.OUTLOOK.COM>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: irit.fr; dkim=none (message not signed)
+ header.d=none;irit.fr; dmarc=none action=none header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:783638F8A9F90237098629046E96B86D89E78BA269564F15C7A08C494CDBC5DA;UpperCasedChecksum:0BBF8ECEB4F3A184BE413CCE560ADE007758EDF4A4C0083FD6DF2FC627BFEE7B;SizeAsReceived:7713;Count:36
+x-tmn: [wsP6ShuTOYNJ9w3SKlD5SUZXeXj2WN5u]
+x-incomingheadercount: 36
+x-eopattributedmessage: 0
+x-microsoft-exchange-diagnostics: 1;AM5EUR02HT248;7:NluJz2wvFtNb+DMc2xoDN0r0DU01V0TIWpCzgQtf1OfgGc4yenv00xNIq0oTFRjshyWIvsU+mgw12kBogTBOXqHjsi04vxFfkRDcSvIWB3EjWRvJ7kwWc36tUsgoZwwpl5xA0RNIpMThH9b/QfsTzx2nkeT8hgZwad8YzKSk70cdfJAIdKSuGNOeS22pVQE10E/Jp1VG8iZqXLTCSfzyNSXsYOjl9uirD4mXyFBG3gtg+zCjNFolul35XtJqTEnZw2H4J0w4T1K7Cjrpojhzsx81xq6pFJGZpdZ7unZj71673MZZyz2etFuioxARJG2qgp3IK+Ap4ROsbQKAQ/SlPCUO/dehphORQ/XgK7Zwr2fqBUFw18S7TxdtxT2t2eUHP9qRloG0B7YbEIyiFAwyj4SdjDMFIpGIWh/tlH9dk4B7vCzmwWq5lG7Wjmz7KgKMltT6/CqFS2Q88pQ4Nh2qfg==
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900005);DIR:OUT;SFP:1102;SCL:1;SRVR:AM5EUR02HT248;H:AM4PR1001MB0900.EURPRD10.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;
+x-ms-office365-filtering-correlation-id: 3fb37c0e-d4e4-4ad6-c658-08d447672b75
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(1601124038)(5061506344)(5061507293)(1603103113)(1601125047)(1701031023);SRVR:AM5EUR02HT248;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(444111334)(444112120)(432015012)(82015046);SRVR:AM5EUR02HT248;BCL:0;PCL:0;RULEID:;SRVR:AM5EUR02HT248;
+x-forefront-prvs: 02015246A9
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_DB5PR1001MB090168DE9F46876E3E27A7249A490DB5PR1001MB0901_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2017 10:19:40.1784
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT248
+X-OriginalArrivalTime: 28 Jan 2017 10:19:54.0376 (UTC) FILETIME=[116B6080:01D27950]
+Subject: [liste-egc] EnviroInfo 2017 Call For Papers (deadline 17/04/2017)
+
+--_000_DB5PR1001MB090168DE9F46876E3E27A7249A490DB5PR1001MB0901_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+EnviroInfo 2017: Environmental Informatics
+From Science to Society: The Bridge provided by Environmental Informatics
+Luxembourg, 13th - 15th September 2017 at Neim=EBnster Abbey, Luxembourg
+(submission deadline: 17/04/2017)
+
+We invite you to the EnviroInfo 2017 in Luxembourg to discuss the state of =
+the art in
+research and application of Environmental Informatics, and how the discipli=
+ne can
+help to improve our societies.
+
+
+The conference is open for contributions covering topics at the
+crossover between informatics and environmental research, such as geographi=
+cal
+information systems, environmental modelling and simulation, risk managemen=
+t,
+material and energy flow management, climate change, environmental data ana=
+lytics
+and visualisation, application of satellite data and navigation (Copernicus=
+, Galileo
+etc.), tools and database applications and other aspects with regard to the=
+ main topic
+ICT and the environment.
+
+
+The full CfP can be found here : http://www.enviroinfo2017.org/fileadmin/fi=
+les/banners/EnviroInfo2017-CfP-v5.pdf
+
+
+Pierrick Bruneau
+
+Research Associate - LIST (www.list.lu<http://www.list.lu>)
+
+
+--_000_DB5PR1001MB090168DE9F46876E3E27A7249A490DB5PR1001MB0901_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<div style=3D"left: 119.698px; top: 460.731px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00158);" data-canvas-width=3D"739.66=
+53567665782">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>
+<div style=3D"left: 389.018px; top: 220.045px; font-size: 28.262px; font-fa=
+mily: sans-serif; transform: scaleX(1.06218);" data-canvas-width=3D"210.340=
+93131413917">
+</div>
+</span></div>
+<div style=3D"left: 119.698px; top: 460.731px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00158);" data-canvas-width=3D"739.66=
+53567665782">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>
+<div><b>EnviroInfo 2017:&nbsp;<span style=3D"font-size: 12pt;">Environmenta=
+l Informatics</span></b></div>
+<div><b><span style=3D"font-size: 12pt;">From Science to Society:&nbsp;</sp=
+an><span style=3D"font-size: 12pt;">The Bridge provided by Environmental In=
+formatics&nbsp;</span></b></div>
+<div><span style=3D"font-size: 12pt;"><b>Luxembourg, 13th &#8211; 15th Sept=
+ember 2017 at Neim=EBnster Abbey, Luxembourg</b></span></div>
+<div><span style=3D"font-size: 12pt;"><b>(submission deadline: 17/04/2017)<=
+/b></span></div>
+<br>
+</span></div>
+<div style=3D"left: 119.698px; top: 460.731px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00158);" data-canvas-width=3D"739.66=
+53567665782">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>W</span><span style=3D"font-family: Arial, Helvetica, sans-serif; font-siz=
+e: 12pt;">e invite you to the EnviroInfo 2017 in Luxembourg to discuss the =
+state of the art in</span></div>
+<div style=3D"left: 119.698px; top: 488.162px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00085);" data-canvas-width=3D"720.80=
+6729793158">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>research and application of Environmental Informatics, and how the discipl=
+ine can</span></div>
+<div style=3D"left: 119.698px; top: 515.593px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00086);" data-canvas-width=3D"259.47=
+17199547869">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>help to improve our societies.</span></div>
+<br>
+<p></p>
+<p></p>
+<div style=3D"left: 119.698px; top: 907.104px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00108);" data-canvas-width=3D"677.56=
+63134352782">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>The conference is open for contributions covering topics at the</span></di=
+v>
+<div style=3D"left: 119.698px; top: 934.535px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00085);" data-canvas-width=3D"721.88=
+7983552583">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>crossover between informatics and environmental research, such as geograph=
+ical</span></div>
+<div style=3D"left: 119.698px; top: 961.965px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00079);" data-canvas-width=3D"708.53=
+30365882187">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>information systems, environmental modelling and simulation, risk manageme=
+nt,</span></div>
+<div style=3D"left: 119.698px; top: 989.396px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00088);" data-canvas-width=3D"748.51=
+99496688464">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>material and energy flow management, climate change, environmental data an=
+alytics</span></div>
+<div style=3D"left: 119.698px; top: 1016.83px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00077);" data-canvas-width=3D"715.30=
+30499835985">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>and visualisation, application of satellite data and navigation (Copernicu=
+s, Galileo</span></div>
+<div style=3D"left: 119.698px; top: 1044.26px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00104);" data-canvas-width=3D"749.66=
+93906382343">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>etc.), tools and database applications and other aspects with regard to th=
+e main topic</span></div>
+<div style=3D"left: 119.698px; top: 1071.69px; font-size: 19.9496px; font-f=
+amily: sans-serif; transform: scaleX(1.00096);" data-canvas-width=3D"225.10=
+537870166186">
+<span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-serif;"=
+>ICT and the environment.</span></div>
+<br>
+<p></p>
+<p><span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-seri=
+f;">The full CfP can be found here :&nbsp;</span><a href=3D"http://www.envi=
+roinfo2017.org/fileadmin/files/banners/EnviroInfo2017-CfP-v5.pdf" class=3D"=
+OWAAutoLink" id=3D"LPlnk269742" previewremoved=3D"true"><span style=3D"font=
+-size: 12pt; font-family: Arial, Helvetica, sans-serif;">http://www.enviroi=
+nfo2017.org/fileadmin/files/banners/EnviroInfo2017-CfP-v5.pdf</span></a></p=
+>
+<p><br>
+</p>
+<p><span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-seri=
+f;">Pierrick Bruneau</span></p>
+<p><span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-seri=
+f;">Research Associate - LIST (</span><a href=3D"http://www.list.lu" class=
+=3D"OWAAutoLink" id=3D"LPlnk83430" previewremoved=3D"true"><span style=3D"f=
+ont-size: 12pt; font-family: Arial, Helvetica, sans-serif;">www.list.lu</sp=
+an></a><span style=3D"font-size: 12pt; font-family: Arial, Helvetica, sans-=
+serif;">)</span></p>
+<br>
+</div>
+</body>
+</html>
+
+--_000_DB5PR1001MB090168DE9F46876E3E27A7249A490DB5PR1001MB0901_--

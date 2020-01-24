@@ -1,0 +1,353 @@
+Return-Path: <germain.forestier@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 1004A19039D0
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  9 Jan 2017 11:05:02 +0100 (CET)
+Received: from mx2.d101.univ-nantes.fr (MX2.univ-nantes.fr [193.52.101.136])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 1192B6D2198
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  9 Jan 2017 11:05:02 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTP id 0A321B4A24E
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Jan 2017 11:05:02 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 1.812
+X-Spam-Level: *
+X-Spam-Status: No, score=1.812 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, HTML_FONT_FACE_BAD=0.289, HTML_MESSAGE=0.001,
+	HTML_OBFUSCATE_05_10=0.001, MANGLED_DEALS=2.3, RCVD_IN_DNSWL_LOW=-1,
+	SPF_PASS=-0.001, T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( 3.7499 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx2.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Obq-5gfHp80g for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  9 Jan 2017 11:05:01 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-yw0-x243.google.com (mail-yw0-x243.google.com [IPv6:2607:f8b0:4002:c05::243])
+	by mx2.d101.univ-nantes.fr (Postfix) with ESMTPS id C0D50642FED
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  9 Jan 2017 11:05:00 +0100 (CET)
+Received: by mail-yw0-x243.google.com with SMTP id a10so9487641ywa.1
+        for <liste-egc@polytech.univ-nantes.fr>; Mon, 09 Jan 2017 02:05:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to:cc;
+        bh=80aQXzP9PKhMm+xFJKJKxD38VRiOrCKgXe+0iIbsuiY=;
+        b=IjQo8NclItFr+HnqLtIpRvG/PgJbx4hA6n6SPOOaMIJBctXxd/TyZycCpCOQtftMWS
+         6ycyAGquveqocajx8p90sTJpaAlC/+Y9vaMbL2ic3njAU/xYxueOHoh0gp1A5uB0OWWz
+         IvKG+OSAquYhqAd2M570xqpnzTk6pNa3D3QhZ4a8Qv4ebfEF7z7JoKnWsRxHZJvLpl1H
+         cjUJjdzKt0cjZq6wWiq4vfuKHWELFmxOrFrRTokjo0ptw12US1XF/3hAnE15PxRVknqP
+         O5hAG83JzINsHaBRNRi44YsVKER//MOtbnFRx32jSjvogqsbb5JjfzWNlNT9sx5Zuiru
+         80bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:cc;
+        bh=80aQXzP9PKhMm+xFJKJKxD38VRiOrCKgXe+0iIbsuiY=;
+        b=kyGJez0yQoZlCZdU8fD9r2Arfj5/Lp/CBVRFHh4G2RRS8j0+R0a6ITFw7q0hDAREmn
+         mSrc1OZtzt72xKGZb85FWrSnlDaD2pH9L9N4CJIhzeC/1pVobk+WM5LXH/JS67PJfLnU
+         xsCxHhRiN930bocN6lXS5DoFlCAgFOFf27MWaQpkI4R97O1bt8rAeugfGtD9PKd5VSO/
+         ya3mG7F6SoM6sN4j5nJ/j0Cf6fHd3n5Y6eW+T+f778QzSBQ+TZNWeMAsm3dYh0R0d6au
+         1Eqk96t+9g4WiGksXws8RkXieubmM2tiw1KY8/8Ye+tT6Muy6z5/jhK0RH2b42V+Fm5V
+         YgKQ==
+X-Gm-Message-State: AIkVDXK3hoozLESlWO4UWLAyzPsNiYhlDGDeYluRCNS6WotlBGzVz1BTh3PwaMqKX2PwR2eHHRbfNPvQXSQH0g==
+X-Received: by 10.13.233.4 with SMTP id s4mr96044422ywe.192.1483956299575;
+ Mon, 09 Jan 2017 02:04:59 -0800 (PST)
+MIME-Version: 1.0
+Sender: germain.forestier@gmail.com
+Received: by 10.37.182.10 with HTTP; Mon, 9 Jan 2017 02:04:39 -0800 (PST)
+From: Germain Forestier <germain.forestier@uha.fr>
+Date: Mon, 9 Jan 2017 11:04:39 +0100
+X-Google-Sender-Auth: 6PwMDGuInShaOEyHhmbFLuRPc5s
+Message-ID: <CAJO=9uTe_Sd-gREfapd6TqG=SPs++ZxigW7aEpD_9-LegMPCPA@mail.gmail.com>
+To: liste-sfc@sfc-classification.net, liste-egc@polytech.univ-nantes.fr, 
+	madics-annonces@imag.fr, bull-i3@irit.fr
+Cc: Camille Kurtz <camille.kurtz@parisdescartes.fr>, 
+	=?UTF-8?Q?C=C3=A9cile_Favre?= <cecile.favre@univ-lyon2.fr>
+Content-Type: multipart/alternative; boundary=94eb2c0758a61936df0545a6805c
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Appel =?UTF-8?Q?=C3=A0?= participation atelier FDC@EGC
+ 2017 : mardi 24 janvier 2017, Grenoble
+
+--94eb2c0758a61936df0545a6805c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+**** APPEL A PARTICIPATION ****
+Merci de diffuser cet appel =C3=A0 toute personne susceptible d'=C3=AAtre i=
+nt=C3=A9ress=C3=A9e.
+
+Le 14=C3=A8me Atelier Fouille de Donn=C3=A9es Complexes (FDC) en conjonctio=
+n avec EGC
+2017 se d=C3=A9roulera le *mardi 24 janvier 2017 =C3=A0 Grenoble*.
+
+
+*http://eric.univ-lyon2.fr/~gt-fdc/afdc17/programme.html
+<http://eric.univ-lyon2.fr/~gt-fdc/afdc17/programme.html>*
+
+*Pr=C3=A9ambule :*
+
+Dans tous les domaines tels que le multim=C3=A9dia, la t=C3=A9l=C3=A9d=C3=
+=A9tection, l'imagerie
+m=C3=A9dicale, les bases de donn=C3=A9es, le web s=C3=A9mantique, la bio-in=
+formatique, la
+g=C3=A9omatique et bien d'autres, les donn=C3=A9es =C3=A0 traiter pour y ex=
+traire de la
+connaissance sont de plus en plus complexes et volumineuses. Nous sommes
+ainsi conduits =C3=A0 manipuler des donn=C3=A9es souvent peu ou non structu=
+r=C3=A9es. Dans
+ce contexte, la complexit=C3=A9 peut concerner les processus (acquisition,
+structuration, entreposage, extraction de connaissances) ou les
+donn=C3=A9es elles-m=C3=AAmes
+(donn=C3=A9es manquantes, floues, incertaines, =E2=80=A6).
+
+Cet atelier vise =C3=A0 cr=C3=A9er un espace privil=C3=A9gi=C3=A9 de rencon=
+tres,
+d'=C3=A9changes, de partage
+d=E2=80=99exp=C3=A9riences, de r=C3=A9flexions pour des chercheurs et indus=
+triels travaillant
+dans le domaine de la fouille de donn=C3=A9es complexes, =C3=A0 la fois au =
+niveau de la
+complexit=C3=A9 des donn=C3=A9es et des processus.
+
+*Programme de l=E2=80=99atelier (mardi 24 janvier 2017) :*
+
+
+
+   - 9h00 - 9h30 : Accueil et introduction de l'atelier FDC
+   - 9h30 - 10h30 : Session Image 1
+      - *Beck Ga=C3=ABl, Hanane Azzag, Mustapha Lebbah et Tarn Duong, *
+      Mean-shift : Clustering scalable avec les plus proches voisins
+      approxim=C3=A9s
+      - *Tianatahina Jimmy Francky Randrianasoa, Camille Kurtz, Eric
+      Desjardin et Nicolas Passat*
+      R=C3=A9flexions sur l=E2=80=99=C3=A9valuation supervis=C3=A9e de la q=
+ualit=C3=A9 d=E2=80=99un arbre
+      binaire de partitions d=E2=80=99image
+   - 10h30 - 11h00 : Pause caf=C3=A9
+   - 11h00 - 12h00 : Session Image 2
+      - *Stephane Cholet, Helene Paugam-Moisy, Sebastien Regis et Lionel
+      Prevost*
+      Informatique Affective : Classification de l=E2=80=99Etat Emotionel
+      - *Myriam Lekkal *
+      - Pr=C3=A9diction en neuroimagerie
+
+
+
+
+*- 12h30-14h00 : pause d=C3=A9jeuner- 14h00 - 15h30 : Session Texte- Ruslan
+   Kalitvianski, Val=C3=A9rie Bellynck et Christian Boitet Un outil de segm=
+entation
+   de courriels imbriqu=C3=A9s en courriels individuels et en phrases- Emma=
+nuelle
+   Claeys, Pierre Gan=C3=A7arski, Myriam Maumy-Bertrand et Hubert Wassner
+   Conception d=E2=80=99un mod=C3=A8le g=C3=A9n=C3=A9raliste pour l=E2=80=
+=99=C3=A9valuation d=E2=80=99un test A/B- Thomas
+   Hassan, Rafael Peixoto, Christophe Cruz et Aur=C3=A9lie Bertaux Classifi=
+cation
+   Hi=C3=A9rarchique Multi-Etiquette de Larges Volumes de Donn=C3=A9es par =
+Raisonnement
+   S=C3=A9mantique- 15h30 - 15h45 : Conclusion- 15h45 - 16h00 : Pause caf=
+=C3=A9- *
+
+*Pour s=E2=80=99inscrire, rendez-vous sur le site de la conf=C3=A9rence EGC=
+ 2017 :
+**http://egc2017.imag.fr/inscriptions/
+<http://egc2017.imag.fr/inscriptions/>*
+
+
+*Les responsables de FDC 2017 :*
+
+*C=C3=A9cile FAVRE *(ERIC, Universit=C3=A9 Lumi=C3=A8re Lyon 2)
+
+*Germain FORESTIER *(MIPS, Universit=C3=A9 de Haute Alsace)
+
+*Camille KURTZ *(LIPADE, Universit=C3=A9 Paris 5)
+
+--=20
+Germain Forestier - Maitre de conf=C3=A9rences - A/Prof
+Universit=C3=A9 de Haute-Alsace, France
+Tel : 03 89 33 69 63
+Twitter : @gforestier <http://twitter.com/gforestier>
+http://germain-forestier.info/
+
+--94eb2c0758a61936df0545a6805c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><p class=3D"m_-9064904021522841584m_5429262303626374282gma=
+il-m_-8138193770688281701MsoPlainText" style=3D"font-size:12.8px"><font siz=
+e=3D"4"><span lang=3D"FR"><b>*** APPEL A PARTICIPATION ***</b><br></span></=
+font></p><font size=3D"4"></font><span style=3D"font-size:12.8px">Merci=C2=
+=A0</span><span class=3D"m_-9064904021522841584m_5429262303626374282gmail-i=
+l" style=3D"font-size:12.8px">de</span><span style=3D"font-size:12.8px">=C2=
+=A0diffuser cet appel =C3=A0 toute personne susceptible d&#39;=C3=AAtre int=
+=C3=A9ress=C3=A9e.</span><div><br style=3D"font-size:12.8px"><p class=3D"Ms=
+oNormal" style=3D"font-size:12.8px"><font size=3D"4"><span lang=3D"FR">Le 1=
+4=C3=A8me Atelier=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626=
+374282gmail-il">Fouille</span>=C2=A0<span class=3D"m_-9064904021522841584m_=
+5429262303626374282gmail-il">de</span>=C2=A0<span class=3D"m_-9064904021522=
+841584m_5429262303626374282gmail-il">Donn=C3=A9es</span>=C2=A0<span class=
+=3D"m_-9064904021522841584m_5429262303626374282gmail-il">Com<wbr>plexes</sp=
+an>=C2=A0(FDC) en conjonction avec=C2=A0<span class=3D"m_-90649040215228415=
+84m_5429262303626374282gmail-il">EGC</span>=C2=A0<span class=3D"m_-90649040=
+21522841584m_5429262303626374282gmail-il">2017</span>=C2=A0se d=C3=A9rouler=
+a le=C2=A0<b>mardi 24 janvier=C2=A0<span class=3D"m_-9064904021522841584m_5=
+429262303626374282gmail-il">2017</span>=C2=A0=C3=A0=C2=A0Grenoble</b>.<br><=
+/span></font></p><p class=3D"MsoNormal" style=3D"font-size:12.8px"></p><p a=
+lign=3D"justify" style=3D"margin-bottom:0cm;line-height:14.72px"><span lang=
+=3D"fr-FR"><b><font color=3D"#1155cc"><span style=3D"font-size:12.8px"><u><=
+a href=3D"http://eric.univ-lyon2.fr/~gt-fdc/afdc17/programme.html" target=
+=3D"_blank">http://eric.univ-lyon2.fr/~gt-<wbr>fdc/afdc17/programme.html</a=
+></u></span></font><br></b></span></p><p align=3D"justify" style=3D"font-si=
+ze:12.8px;margin-bottom:0cm;line-height:14.72px"><span lang=3D"fr-FR"><b>Pr=
+=C3=A9ambule=C2=A0:</b></span></p><p align=3D"justify" style=3D"font-size:1=
+2.8px;margin-bottom:0cm;line-height:12.8px"><span lang=3D"fr-FR">Dans tous =
+les domaines tels que le multim=C3=A9dia, la t=C3=A9l=C3=A9d=C3=A9tection, =
+l&#39;imagerie m=C3=A9dicale, les bases=C2=A0<span class=3D"m_-906490402152=
+2841584m_5429262303626374282gmail-il">de</span>=C2=A0<span class=3D"m_-9064=
+904021522841584m_5429262303626374282gmail-il">donn=C3=A9es</span>, le web s=
+=C3=A9mantique, la bio-informatique, la g=C3=A9omatique et bien d&#39;autre=
+s, les=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gmail=
+-il">donn=C3=A9es</span>=C2=A0=C3=A0 traiter pour y extraire=C2=A0<span cla=
+ss=3D"m_-9064904021522841584m_5429262303626374282gmail-il">de</span>=C2=A0l=
+a connaissance sont=C2=A0<span class=3D"m_-9064904021522841584m_54292623036=
+26374282gmail-il">de=C2=A0</span>plus en plus=C2=A0<span class=3D"m_-906490=
+4021522841584m_5429262303626374282gmail-il">complexes</span>=C2=A0et volumi=
+neuses. Nous sommes ainsi conduits =C3=A0 manipuler des=C2=A0<span class=3D=
+"m_-9064904021522841584m_5429262303626374282gmail-il">donn=C3=A9es</span>=
+=C2=A0souvent peu ou non structur=C3=A9es. Dans ce contexte, la complexit=
+=C3=A9 peut concerner les processus (acquisition, structuration, entreposag=
+e, extraction=C2=A0<span class=3D"m_-9064904021522841584m_54292623036263742=
+82gmail-il">de</span>=C2=A0connaissances) ou les=C2=A0<span class=3D"m_-906=
+4904021522841584m_5429262303626374282gmail-il">donn=C3=A9es</span>=C2=A0ell=
+es-m=C3=AAmes (<span class=3D"m_-9064904021522841584m_5429262303626374282gm=
+ail-il">donn=C3=A9es</span>=C2=A0manquantes, floues, incertaines, =E2=80=A6=
+).</span></p><p align=3D"justify" style=3D"font-size:12.8px;margin-bottom:0=
+cm;line-height:12.8px"><span lang=3D"fr-FR">Cet atelier vise =C3=A0 cr=C3=
+=A9er un espace privil=C3=A9gi=C3=A9=C2=A0<span class=3D"m_-906490402152284=
+1584m_5429262303626374282gmail-il">de</span>=C2=A0rencontres, d&#39;=C3=A9c=
+hanges,=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gmai=
+l-il">de</span>=C2=A0partage d=E2=80=99exp=C3=A9riences,=C2=A0<span class=
+=3D"m_-9064904021522841584m_5429262303626374282gmail-il">de</span>=C2=A0r=
+=C3=A9flexions pour des chercheurs et industriels travaillant dans le domai=
+ne=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gmail-il"=
+>de</span>=C2=A0la=C2=A0<span class=3D"m_-9064904021522841584m_542926230362=
+6374282gmail-il">fouille</span>=C2=A0<span class=3D"m_-9064904021522841584m=
+_5429262303626374282gmail-il">de</span>=C2=A0<span class=3D"m_-906490402152=
+2841584m_5429262303626374282gmail-il">donn=C3=A9<wbr>es</span>=C2=A0<span c=
+lass=3D"m_-9064904021522841584m_5429262303626374282gmail-il">complexes</spa=
+n>, =C3=A0 la fois au niveau=C2=A0<span class=3D"m_-9064904021522841584m_54=
+29262303626374282gmail-il">de</span>=C2=A0la complexit=C3=A9 des=C2=A0<span=
+ class=3D"m_-9064904021522841584m_5429262303626374282gmail-il">donn=C3=A9es=
+</span>=C2=A0et des processus.</span></p><p align=3D"justify" style=3D"font=
+-size:12.8px;margin-top:0.49cm;margin-bottom:0cm;line-height:12.8px"><span =
+lang=3D"fr-FR"><b>Programme=C2=A0<span class=3D"m_-9064904021522841584m_542=
+9262303626374282gmail-il">de</span>=C2=A0l=E2=80=99atelier=C2=A0(mardi 24 j=
+anvier=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gmail=
+-il">2017</span>) :</b></span></p><p align=3D"justify" style=3D"font-size:1=
+2.8px;margin-top:0.49cm;margin-bottom:0cm;line-height:12.8px"><span lang=3D=
+"fr-FR"><b><br></b></span></p><ul style=3D"box-sizing:border-box;margin-top=
+:0px;margin-bottom:10px;font-family:&quot;helvetica neue&quot;,helvetica,ar=
+ial,sans-serif;font-size:14px"><li style=3D"color:rgb(51,51,51);box-sizing:=
+border-box"><span style=3D"box-sizing:border-box;font-weight:700">9h00 - 9h=
+30 :</span>=C2=A0Accueil et introduction de l&#39;atelier FDC</li><li style=
+=3D"color:rgb(51,51,51);box-sizing:border-box"><span style=3D"box-sizing:bo=
+rder-box;font-weight:700">9h30 - 10h30 :</span>=C2=A0Session Image 1</li><u=
+l style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:0px"><li styl=
+e=3D"box-sizing:border-box"><i style=3D"color:rgb(51,51,51);box-sizing:bord=
+er-box">Beck Ga=C3=ABl, Hanane Azzag, Mustapha Lebbah et Tarn Duong,=C2=A0<=
+/i><br style=3D"box-sizing:border-box"><font color=3D"#3d85c6">Mean-shift :=
+ Clustering scalable avec les plus proches voisins approxim=C3=A9s</font></=
+li><li style=3D"box-sizing:border-box"><i style=3D"color:rgb(51,51,51);box-=
+sizing:border-box">Tianatahina Jimmy Francky Randrianasoa, Camille Kurtz, E=
+ric Desjardin et Nicolas Passat</i><br style=3D"box-sizing:border-box"><fon=
+t color=3D"#3d85c6">R=C3=A9flexions sur l=E2=80=99=C3=A9valuation supervis=
+=C3=A9e de la qualit=C3=A9 d=E2=80=99un arbre binaire de partitions d=E2=80=
+=99image</font></li></ul><li style=3D"color:rgb(51,51,51);box-sizing:border=
+-box"><span style=3D"box-sizing:border-box;font-weight:700">10h30 - 11h00 :=
+</span>=C2=A0Pause caf=C3=A9</li><li style=3D"color:rgb(51,51,51);box-sizin=
+g:border-box"><span style=3D"box-sizing:border-box;font-weight:700">11h00 -=
+ 12h00 :</span>=C2=A0Session Image 2</li><ul style=3D"box-sizing:border-box=
+;margin-top:0px;margin-bottom:0px"><li style=3D"box-sizing:border-box"><i s=
+tyle=3D"color:rgb(51,51,51);box-sizing:border-box">Stephane Cholet, Helene =
+Paugam-Moisy, Sebastien Regis et Lionel Prevost</i><br style=3D"box-sizing:=
+border-box"><font color=3D"#3d85c6">Informatique Affective : Classification=
+ de l=E2=80=99Etat Emotionel</font></li><li style=3D"box-sizing:border-box"=
+><i style=3D"color:rgb(51,51,51);box-sizing:border-box">Myriam Lekkal=C2=A0=
+</i></li><li style=3D"box-sizing:border-box"><span style=3D"box-sizing:bord=
+er-box"><font color=3D"#3d85c6">Pr=C3=A9diction en neuroimagerie</font></sp=
+an></li><font color=3D"#333333"><i style=3D"box-sizing:border-box"></i></fo=
+nt></ul><i style=3D"box-sizing:border-box"><li style=3D"color:rgb(51,51,51)=
+;box-sizing:border-box"><span style=3D"box-sizing:border-box;font-weight:70=
+0">12h30-14h00 :</span>=C2=A0pause d=C3=A9jeuner</li><li style=3D"box-sizin=
+g:border-box"><span style=3D"color:rgb(51,51,51);box-sizing:border-box;font=
+-weight:700">14h00 - 15h30 :</span><font color=3D"#333333">=C2=A0Session Te=
+xte</font><ul style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:0=
+px"><li style=3D"box-sizing:border-box"><i style=3D"color:rgb(51,51,51);box=
+-sizing:border-box">Ruslan Kalitvianski, Val=C3=A9rie Bellynck et Christian=
+ Boitet</i><br style=3D"box-sizing:border-box"><font color=3D"#3d85c6">Un o=
+util de segmentation de courriels imbriqu=C3=A9s en courriels individuels e=
+t en phrases</font></li><li style=3D"box-sizing:border-box"><i style=3D"col=
+or:rgb(51,51,51);box-sizing:border-box">Emmanuelle Claeys, Pierre Gan=C3=A7=
+arski, Myriam Maumy-Bertrand et Hubert Wassner</i><br style=3D"box-sizing:b=
+order-box"><font color=3D"#3d85c6">Conception d=E2=80=99un mod=C3=A8le g=C3=
+=A9n=C3=A9raliste pour l=E2=80=99=C3=A9valuation d=E2=80=99un test A/B</fon=
+t></li><li style=3D"box-sizing:border-box"><i style=3D"color:rgb(51,51,51);=
+box-sizing:border-box">Thomas Hassan, Rafael Peixoto, Christophe Cruz et Au=
+r=C3=A9lie Bertaux</i><br style=3D"box-sizing:border-box"><font color=3D"#3=
+d85c6">Classification Hi=C3=A9rarchique Multi-Etiquette de Larges Volumes d=
+e Donn=C3=A9es par Raisonnement S=C3=A9mantique</font></li></ul></li><li st=
+yle=3D"color:rgb(51,51,51);box-sizing:border-box"><span style=3D"box-sizing=
+:border-box;font-weight:700">15h30 - 15h45 :</span>=C2=A0Conclusion</li><li=
+ style=3D"color:rgb(51,51,51);box-sizing:border-box"><span style=3D"box-siz=
+ing:border-box;font-weight:700">15h45 - 16h00 :</span>=C2=A0Pause caf=C3=A9=
+</li><li style=3D"color:rgb(51,51,51);box-sizing:border-box"><br></li></i><=
+/ul><p align=3D"justify" style=3D"margin-bottom:0cm;line-height:12.8px"><fo=
+nt color=3D"#000000" style=3D"font-size:12.8px"><font face=3D"-moz-fixed, s=
+erif"><font style=3D"font-size:12pt"><span lang=3D"fr-FR"><i>Pour s=E2=80=
+=99inscrire, rendez-vous sur le site=C2=A0<span class=3D"m_-906490402152284=
+1584m_5429262303626374282gmail-il">de</span>=C2=A0la conf=C3=A9rence=C2=A0<=
+span class=3D"m_-9064904021522841584m_5429262303626374282gmail-il">EGC</spa=
+n>=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gmail-il"=
+>2017</span>=C2=A0:=C2=A0</i></span></font></font></font><font color=3D"#11=
+55cc" face=3D"-moz-fixed, serif"><span style=3D"font-size:16px"><i><u><a hr=
+ef=3D"http://egc2017.imag.fr/inscriptions/" target=3D"_blank">http://e<wbr>=
+gc2017.imag.fr/inscriptions/</a></u></i></span></font></p><p lang=3D"fr-FR"=
+ align=3D"justify" style=3D"font-size:12.8px;margin-bottom:0cm;line-height:=
+12.8px"><br></p><span lang=3D"fr-FR" style=3D"font-size:12.8px"><b>Les resp=
+onsables=C2=A0<span class=3D"m_-9064904021522841584m_5429262303626374282gma=
+il-il">de</span>=C2=A0FDC=C2=A0<span class=3D"m_-9064904021522841584m_54292=
+62303626374282gmail-il">2017 :</span></b></span><span style=3D"font-size:12=
+.8px"></span><p align=3D"justify" style=3D"font-size:12.8px;margin-bottom:0=
+cm;line-height:12.8px"><span lang=3D"fr-FR"><b>C=C3=A9cile FAVRE=C2=A0</b><=
+/span><span lang=3D"fr-FR">(ERIC, Universit=C3=A9 Lumi=C3=A8re Lyon 2)</spa=
+n></p><p align=3D"justify" style=3D"font-size:12.8px;margin-bottom:0cm;line=
+-height:12.8px"><span lang=3D"fr-FR"><b>Germain FORESTIER=C2=A0</b></span><=
+span lang=3D"fr-FR">(MIPS, Universit=C3=A9=C2=A0<span class=3D"m_-906490402=
+1522841584m_5429262303626374282gmail-il">de</span>=C2=A0Haute Alsace)</span=
+></p><p align=3D"justify" style=3D"font-size:12.8px;margin-bottom:0cm;line-=
+height:12.8px"><span lang=3D"fr-FR"><b>Camille KURTZ=C2=A0</b></span><span =
+lang=3D"fr-FR">(LIPADE, Universit=C3=A9 Paris 5)</span></p><div><br></div>-=
+- <br><div class=3D"m_-9064904021522841584m_5429262303626374282gmail_signat=
+ure"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"font-family:&quot;courier=
+ new&quot;,monospace"></span><font size=3D"2"><span style=3D"font-family:ar=
+ial,helvetica,sans-serif">Germain Forestier - Maitre de conf=C3=A9rences - =
+A/Prof<br>Universit=C3=A9 de Haute-Alsace, France<br>Tel : <a href=3D"tel:0=
+3%2089%2033%2069%2063" value=3D"+33389336963" target=3D"_blank">03 89 33 69=
+ 63</a><br></span></font><div><font size=3D"2">Twitter :=C2=A0<a href=3D"ht=
+tp://twitter.com/gforestier" target=3D"_blank">@gforestier</a></font></div>=
+<div><a href=3D"http://germain-forestier.info/" style=3D"font-family:arial,=
+helvetica,sans-serif" target=3D"_blank"><font size=3D"2">http://germain-for=
+estier.info/</font></a><br></div></div></div></div></div></div></div></div>=
+</div></div></div>
+</div></div>
+
+--94eb2c0758a61936df0545a6805c--

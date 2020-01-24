@@ -1,0 +1,372 @@
+Return-Path: <ladjel.bellatreche@ensma.fr>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 528EC2292956
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  7 May 2018 09:45:00 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 50C81724FB4
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon,  7 May 2018 09:45:00 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 4960C43C151C
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  7 May 2018 09:45:00 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.829
+X-Spam-Level:
+X-Spam-Status: No, score=-4.829 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, HTML_MESSAGE=0.001, MR_NOT_ATTRIBUTED_IP=0.2,
+	NO_RDNS=0.5, NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 14.1487 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=ensma.fr
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id oJn1B9mzIlvG for <liste-egc@polytech.univ-nantes.fr>;
+	Mon,  7 May 2018 09:44:59 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from excalibur.ensma.fr (smtp.ensma.fr [193.55.167.4])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 3A5B242C8DA1
+	for <liste-egc@polytech.univ-nantes.fr>; Mon,  7 May 2018 09:44:59 +0200 (CEST)
+Received: from localhost (arthur.ensma.fr [193.55.167.16])
+	by excalibur.ensma.fr (Postfix) with ESMTP id 1180F280056;
+	Mon,  7 May 2018 09:44:59 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at ensma.fr
+Received: from excalibur.ensma.fr ([193.55.167.4])
+	by localhost (arthur.ensma.fr [193.55.167.16]) (amavisd-new, port 10024)
+	with ESMTP id 6fWu_8pWzdlz; Mon,  7 May 2018 09:44:57 +0200 (CEST)
+Received: from MacBook-Pro-de-Ladjel.local (unknown [41.96.229.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by excalibur.ensma.fr (Postfix) with ESMTPSA id 242BF28003E;
+	Mon,  7 May 2018 09:44:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ensma.fr; s=mail;
+	t=1525679097; bh=1hxHl020xdSsew6IyJIhASyDBo0pjIevGf0FcwH5xFk=;
+	h=Subject:References:To:From:Date:In-Reply-To;
+	b=gTGlt6K6VYQwaIkee+h1Eryp1uP/erIRZ7xr2/0b58/TmLbUsaaNsBfJThIa4Ye+D
+	 86xIOTKPB4lkux/TL/vq7oGcAMXdgkcGG5rycqh/9Ecp48Mf7T2nnESQhNVVYI+Nez
+	 U8ei7ISe9FYYOjGgsq0K4h7ksqDFLxNVMF9ePhnI=
+References: <3f589b65-dd7e-abb2-96b8-334339c577f8@ensma.fr>
+To: "bull-i3@irit.fr" <bull-i3@irit.fr>,
+ "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>,
+ "gazettebd3@imag.fr" <gazettebd3@imag.fr>
+From: Ladjel Bellatreche <ladjel.bellatreche@ensma.fr>
+X-Forwarded-Message-Id: <3f589b65-dd7e-abb2-96b8-334339c577f8@ensma.fr>
+Message-ID: <9b2e9772-5573-cdbc-020f-90ae70c901f5@ensma.fr>
+Date: Mon, 7 May 2018 09:44:56 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:52.0)
+ Gecko/20100101 Thunderbird/52.7.0
+MIME-Version: 1.0
+In-Reply-To: <3f589b65-dd7e-abb2-96b8-334339c577f8@ensma.fr>
+Content-Type: multipart/alternative;
+ boundary="------------0ED824D9A456A1F59BF9B54B"
+Content-Language: fr
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] MEDI'2018: Only ONE WEEK to SUBMIT
+
+This is a multi-part message in MIME format.
+--------------0ED824D9A456A1F59BF9B54B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+
+
+Sorry for multiple postings:
+
+*8th International Conference on Model and Data Engineering (MEDI 2018)**
+**
+**24-26 October 2018**
+**
+**Marrakesh, Morocco**
+**http://medi2018.uca.ma/**
+*
+
+
+Important Dates:
+- *Full-paper submission: May 14, 2018*
+-       Acceptance notification: June 25, 2018
+-       Early bird registration: July 2, 2018
+-       Camera ready: July 9, 2018
+
+SPECIAL ISSUES:
+
+Future Generation Computer Systems, Elsevier: (IF: 3.997)
+Cluster Computing, Springer: (IF=2.040)
+
+
+KEYNOTE SPEAKERS:
+
+Professor Georg Gottlob, Oxford University, UK
+Professor Mohamed Mosbah, Institut Polytechnique de Bordeaux 
+(ENSEIRB-MATMECA), France
+
+
+The Eight International Conference on Model & Data Engineering (MEDI) 
+will be held from 24 to 26 October 2018 in Marrakesh, Morocco. Its main 
+objective is to provide a forum for the dissemination of research 
+accomplishments and to promote the interaction and collaboration between 
+the models and data research communities. MEDI’2018 provides an 
+international platform for the presentation of research on models and 
+data theory, development of advanced technologies related to models and 
+data and their advanced applications. This international scientific 
+event, initiated by researchers from Euro-Mediterranean countries, aims 
+also at promoting the creation of north-south scientific networks, 
+projects and faculty/student exchanges.
+
+Topics
+
+Specific areas of interest to MEDI 2018 include but are not limited to:
+
+Modelling and Models Engineering
+
+-       Modelling languages and related standards
+-       Modelling in software and complex system engineering
+-       Formal methods, analysis, verification & validation
+-       Model-based testing and performance analyses
+-       Ontology-based modelling
+-       Heterogeneous modelling, model integration, interoperability, 
+model transformation
+-       Collaborative modelling and model repositories
+-       Models as services and models monitoring
+-       Modelling for reuse, dependability and maintainability
+-       Models for Big Data & NoSql databases
+
+Data Engineering
+
+-       New models and architectures for databases
+-       Heterogeneous data, data Integration, Interoperability
+-       Data warehouses, OLAP, data mining and Analytics
+-       Extending Data Warehousing Technology
+-       Database system Internals, performance analysis, self-tuning 
+benchmarking and testing
+-       Database security, personalization, recommendation
+-       Web databases, ontology-based databases
+-       Service based data management
+-       Service oriented applications
+-       Urbanization of database applications
+
+Applications and tooling
+
+-       Industry transfer, experiences
+-       Applications of modelling for Data Management
+-       Modelling tools and experimentation
+-       Lessons learned and reports related to models/data engineering
+
+Submission Guidelines and Instructions
+
+Authors are invited to submit English-language research and application 
+papers representing original, previously unpublished work. Duplicate 
+submissions are not allowed. Papers must be submitted as a single PDF 
+document, via the Easychair system 
+(https://easychair.org/conferences/?conf=medi2018). Submissions must 
+conform to Springer's LNCS style (Latex style only for camera-ready 
+papers) and should not exceed 14 pages. Submitted papers will be 
+carefully evaluated based on originality, significance, technical 
+soundness, and clarity of exposition. The program committee may decide 
+to accept a submission as a short paper if it reports interesting 
+results, but does not justify a publication as a full paper. All 
+accepted papers including short papers will be published in Springer 
+LNCS series. An author of an accepted paper must register to MEDI 2018 
+in order to have the paper published. Each accepted paper must be 
+presented at the conference by one of the authors.
+
+Publication
+All accepted papers will be published in Lecture Notes in Computer 
+Science (LNCS) by Springer-Verlag.
+
+
+General Chairs
+-       El Hassan Abdelwahed, University Cadi Ayyad Marrakesh, Morocco
+-       Ladjel Bellatreche, ISAE-ENSMA, Poitiers, France
+
+Program Committee Co-Chairs
+-       Carlos Ordonez, University of Houston, USA.
+-       Matteo Golfarelli, University of Bologna, Italy
+-       Dominique Mery, LORIA, Nancy, France
+
+Publicity Chairs
+-       Djoudi Mahieddine, Poitiers University, France
+
+PC Members
+
+http://medi2018.uca.ma/conference-committee.html
+
+
+
+-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail:bellatreche@ensma.fr
+URL:http://www.lias-lab.fr/members/bellatreche
+
+
+--------------0ED824D9A456A1F59BF9B54B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <div class="moz-forward-container"><br>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Sorry for multiple postings:<br>
+      <br>
+      <div align="center"><font size="+2"><b>8th International
+            Conference on Model and Data Engineering (MEDI 2018)</b><b><br>
+          </b><b><br>
+          </b><b>24-26 October 2018</b><b><br>
+          </b><b><br>
+          </b><b>Marrakesh, Morocco</b><b><br>
+          </b><b><a class="moz-txt-link-freetext"
+              href="http://medi2018.uca.ma/" moz-do-not-send="true">http://medi2018.uca.ma/</a></b><b><br>
+          </b></font></div>
+      <br>
+      <br>
+      Important Dates:<br>
+      -       <font color="#ff0000"><b>Full-paper submission: May 14,
+          2018</b></font><br>
+      -       Acceptance notification: June 25, 2018<br>
+      -       Early bird registration: July 2, 2018<br>
+      -       Camera ready: July 9, 2018<br>
+      <br>
+      SPECIAL ISSUES:<br>
+      <br>
+      Future Generation Computer Systems, Elsevier: (IF: 3.997)<br>
+      Cluster Computing, Springer: (IF=2.040)<br>
+      <br>
+      <br>
+      KEYNOTE SPEAKERS:<br>
+      <br>
+      Professor Georg Gottlob, Oxford University, UK<br>
+      Professor Mohamed Mosbah, Institut Polytechnique de Bordeaux
+      (ENSEIRB-MATMECA), France<br>
+      <br>
+      <br>
+      The Eight International Conference on Model &amp; Data Engineering
+      (MEDI) will be held from 24 to 26 October 2018 in Marrakesh,
+      Morocco. Its main objective is to provide a forum for the
+      dissemination of research accomplishments and to promote the
+      interaction and collaboration between the models and data research
+      communities. MEDI’2018 provides an international platform for the
+      presentation of research on models and data theory, development of
+      advanced technologies related to models and data and their
+      advanced applications. This international scientific event,
+      initiated by researchers from Euro-Mediterranean countries, aims
+      also at promoting the creation of north-south scientific networks,
+      projects and faculty/student exchanges.<br>
+      <br>
+      Topics<br>
+      <br>
+      Specific areas of interest to MEDI 2018 include but are not
+      limited to:<br>
+      <br>
+      Modelling and Models Engineering<br>
+      <br>
+      -       Modelling languages and related standards<br>
+      -       Modelling in software and complex system engineering<br>
+      -       Formal methods, analysis, verification &amp; validation<br>
+      -       Model-based testing and performance analyses<br>
+      -       Ontology-based modelling<br>
+      -       Heterogeneous modelling, model integration,
+      interoperability, model transformation<br>
+      -       Collaborative modelling and model repositories<br>
+      -       Models as services and models monitoring<br>
+      -       Modelling for reuse, dependability and maintainability<br>
+      -       Models for Big Data &amp; NoSql databases<br>
+      <br>
+      Data Engineering<br>
+      <br>
+      -       New models and architectures for databases<br>
+      -       Heterogeneous data, data Integration, Interoperability<br>
+      -       Data warehouses, OLAP, data mining and Analytics<br>
+      -       Extending Data Warehousing Technology<br>
+      -       Database system Internals, performance analysis,
+      self-tuning benchmarking and testing<br>
+      -       Database security, personalization, recommendation<br>
+      -       Web databases, ontology-based databases<br>
+      -       Service based data management<br>
+      -       Service oriented applications<br>
+      -       Urbanization of database applications<br>
+      <br>
+      Applications and tooling<br>
+      <br>
+      -       Industry transfer, experiences<br>
+      -       Applications of modelling for Data Management<br>
+      -       Modelling tools and experimentation<br>
+      -       Lessons learned and reports related to models/data
+      engineering<br>
+      <br>
+      Submission Guidelines and Instructions<br>
+      <br>
+      Authors are invited to submit English-language research and
+      application papers representing original, previously unpublished
+      work. Duplicate submissions are not allowed. Papers must be
+      submitted as a single PDF document, via the Easychair system (<a
+        class="moz-txt-link-freetext"
+        href="https://easychair.org/conferences/?conf=medi2018"
+        moz-do-not-send="true">https://easychair.org/conferences/?conf=medi2018</a>).
+      Submissions must conform to Springer's LNCS style (Latex style
+      only for camera-ready papers) and should not exceed 14 pages.
+      Submitted papers will be carefully evaluated based on originality,
+      significance, technical soundness, and clarity of exposition. The
+      program committee may decide to accept a submission as a short
+      paper if it reports interesting results, but does not justify a
+      publication as a full paper. All accepted papers including short
+      papers will be published in Springer LNCS series. An author of an
+      accepted paper must register to MEDI 2018 in order to have the
+      paper published. Each accepted paper must be presented at the
+      conference by one of the authors.<br>
+      <br>
+      Publication<br>
+      All accepted papers will be published in Lecture Notes in Computer
+      Science (LNCS) by Springer-Verlag.<br>
+      <br>
+      <br>
+      General Chairs<br>
+      -       El Hassan Abdelwahed, University Cadi Ayyad Marrakesh,
+      Morocco<br>
+      -       Ladjel Bellatreche, ISAE-ENSMA, Poitiers, France<br>
+      <br>
+      Program Committee Co-Chairs<br>
+      -       Carlos Ordonez, University of Houston, USA.<br>
+      -       Matteo Golfarelli, University of Bologna, Italy<br>
+      -       Dominique Mery, LORIA, Nancy, France<br>
+      <br>
+      Publicity Chairs<br>
+      -       Djoudi Mahieddine, Poitiers University, France<br>
+      <br>
+      PC Members<br>
+      <br>
+      <a class="moz-txt-link-freetext"
+        href="http://medi2018.uca.ma/conference-committee.html"
+        moz-do-not-send="true">http://medi2018.uca.ma/conference-committee.html</a>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <pre class="moz-signature" cols="72">-- 
+Ladjel BELLATRECHE
+Professor
+LIAS/ISAE-ENSMA  
+Téléport 2 - 1 avenue Clément Ader -  BP 40109
+86961 FUTUROSCOPE CHASSENEUIL Cedex - FRANCE
+Tel. (+33) (0)5-49-49-80-77  -  Fax :  (+33) (0)5-49-49-80-64
+E-mail: <a class="moz-txt-link-abbreviated" href="mailto:bellatreche@ensma.fr" moz-do-not-send="true">bellatreche@ensma.fr</a>
+URL: <a class="moz-txt-link-freetext" href="http://www.lias-lab.fr/members/bellatreche" moz-do-not-send="true">http://www.lias-lab.fr/members/bellatreche</a></pre>
+    </div>
+  </body>
+</html>
+
+--------------0ED824D9A456A1F59BF9B54B--

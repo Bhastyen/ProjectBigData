@@ -1,5 +1,7 @@
 import re
 
+import requests
+from translate import Translator
 
 class Article:
 
@@ -41,6 +43,32 @@ class Article:
             self.preprocess(self.stop_en, self.dico_en)
         else:
             self.preprocess(self.stop_fr, self.dico_fr)
+            # traduction en anglais
+            # string = " "
+            # title_en = Translator('en', 'fr').translate(string.join(self.title))
+            # self.title = title_en.split(" ")
+            # abstract_en = Translator('en', 'fr').translate(string.join(self.abstract))
+            # self.abstract = abstract_en.split(" ")
+
+            # string = " "
+            # url = 'http://translate.google.com/translate_a/t'
+            # params = {
+            #         "text": string.join(self.title),
+            #         "sl": "fr",
+            #         "tl": "en",
+            #         "client": "p"
+            # }
+            # self.title = requests.get(url, params=params).content
+            # params = {
+            #         "text": string.join(self.abstract),
+            #         "sl": "fr",
+            #         "tl": "en",
+            #         "client": "p"
+            # }
+            # self.abstract = requests.get(url, params=params).content
+
+
+
 
     def preprocess(self, stop_word, dico):
         strange_word = []

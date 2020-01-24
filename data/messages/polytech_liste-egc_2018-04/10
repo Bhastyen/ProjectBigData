@@ -1,0 +1,230 @@
+Return-Path: <alammehw@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 18F52229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Apr 2018 17:38:30 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 1747C62882F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed,  4 Apr 2018 17:38:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 10B6443939BF
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 17:38:30 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.978
+X-Spam-Level:
+X-Spam-Status: No, score=-4.978 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 9.4289 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vPuVn9qw8rLQ for <liste-egc@polytech.univ-nantes.fr>;
+	Wed,  4 Apr 2018 17:38:29 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wr0-x243.google.com (mail-wr0-x243.google.com [IPv6:2a00:1450:400c:c0c::243])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 0A75B4389CD8
+	for <liste-egc@polytech.univ-nantes.fr>; Wed,  4 Apr 2018 17:38:29 +0200 (CEST)
+Received: by mail-wr0-x243.google.com with SMTP id l49so23432636wrl.4
+        for <liste-egc@polytech.univ-nantes.fr>; Wed, 04 Apr 2018 08:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:subject:message-id:date:to:mime-version;
+        bh=7hZU4IWSuJ9Sns5CnJefzgmCdXtzdHUu22e0IypmobY=;
+        b=JB/kqP1HWg24YiE0vwGBGCkZ3vO9myDq/QunnopKtL9AZ3pJ/Zz0xpySl9BSyjj95+
+         suOsLemRpOw+8/8Iy515WqHAEVsDDELBZcHUYIYhJINMS7SyEvGLxR07PlMKJdfP2dIl
+         CQ6gga2i5YFE92oZIKnDPOkwpcfi87RWNamJCYXN5Ls4Scku7YBXwDZpgZvrUXFBE3GM
+         Ggr9spbxGDr03HX59sckWaPmXU88pn/L6v7xu8qPXFvp+AVt7lxkjdGRBwoxkRvWYsLc
+         VzM8LytsrXsNTnrLBN26d+JCdpGQhgLnqA6jX3qNRUQclv+dS2Xn5dUWy1oPZTxJtxR6
+         K6bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:subject:message-id:date:to:mime-version;
+        bh=7hZU4IWSuJ9Sns5CnJefzgmCdXtzdHUu22e0IypmobY=;
+        b=kaFWXDD72XSI/ZBFU6NgO9HCaM+5T/aURkNkMdy5Y1SRP7cOw+ENRxjdG7hYRGh2Js
+         M2oSwQstKwb8rWRg0nufPYGaBorBD/fIcPirOpy1tV/jRJer0OoOxszBEgxd+gvreArB
+         F3BVgb8Dt79t5dTuIvphhQXFwRc8OKApty26KPQNIzc+B7taotzbZV1GPUPIW6LWEkny
+         UBrrlKdyNU/E5s1ieJA18m9cOrvZnqhGaSX9Exrh1J7osb1JRrYFDRuSY062kVwXtQ6D
+         5co/7jRn2ihDM6C/ZMaKTyOBvh9GpZ3jPS8LFXWpI9O03PfqFtK0HqjFw3ysX+FsZ27u
+         nVjA==
+X-Gm-Message-State: AElRT7Gq8UeLNGlZYvJjxpihKRcJdQWn6w7Sb/9uByN+JllZMNMuN5V/
+	WJ7qF6u1L+PlTGjFNxqey3Y=
+X-Google-Smtp-Source: AIpwx488cq9dAoAdxurcAOaRxR1wBLJT8iyvs+Gq3leR/xdHjUo8Illrjhph/oTbuhLQ94Sv0QwF9A==
+X-Received: by 10.223.142.164 with SMTP id q33mr13001023wrb.72.1522856308657;
+        Wed, 04 Apr 2018 08:38:28 -0700 (PDT)
+Received: from [10.200.13.4] ([137.204.150.13])
+        by smtp.gmail.com with ESMTPSA id r109sm1964695wrb.54.2018.04.04.08.38.27
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 04 Apr 2018 08:38:28 -0700 (PDT)
+From: Mehwish Alam <alammehw@gmail.com>
+Content-Type: multipart/alternative; boundary="Apple-Mail=_CE0BD0E3-3BD8-4847-9FAD-0A955CE87D9F"
+Message-Id: <6244DEAF-96BC-4D8E-9C52-FB2BEC3858B7@gmail.com>
+Date: Wed, 4 Apr 2018 17:38:26 +0200
+To: bull-i3@irit.fr,
+ info-ic@listes.irisa.fr,
+ liste-egc@polytech.univ-nantes.fr,
+ ln@cines.fr,
+ web.semantique@inria.fr
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Second Call: Project Networking Session @ ESWC 2018
+
+
+--Apple-Mail=_CE0BD0E3-3BD8-4847-9FAD-0A955CE87D9F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+
+[Apologies for multiple postings.]
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+PROJECT NETWORKING SESSION @ ESWC2018.
+
+Link: https://2018.eswc-conferences.org/call-for-project-networking/ =
+<https://2018.eswc-conferences.org/call-for-project-networking/>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+Call for Project Networking:
+
+The project networking track of ESWC2018 will provide an opportunity for
+
+* Knowledge sharing among EU and national projects
+
+* Data and technology transfer between projects
+
+* Presentation and discussion of project requirements and results with =
+ESWC participants
+
+* Discussion about funding opportunities such as H2020 and ERC
+
+Also, it will include a presentation by a representative of the European =
+Commission on the European Research Council (ERC) and ERC funding =
+schemes.
+
+The project networking track is intended to provide national and EU =
+funded projects with the ability to connect with each other and engage =
+in discussions about their respective research and development, =
+establish opportunities for knowledge and technology sharing, and =
+identify complementary activities and goals which can form the basis for =
+future collaborations, research proposals, researcher exchange or joint =
+participation at events or in initiatives.=20
+
+We equally welcome submissions from recently finished projects, which =
+have results to transfer as well as recently started EU and national =
+projects, which are seeking datasets and tools to perform their work.=20
+
+Submission
+---------------
+
+Projects willing to participate at the session must submit a 2-page =
+extended abstract (PDF, Springer LNCS style). The abstract should =
+introduce the project, briefly describe its R&D activities and goals and =
+outline what the project would show / demonstrate in the session, =
+focused specifically on what the project plans to offer to other =
+projects and/or wishes to request from other projects. This should be =
+backed up by links to online datasets, tools or use cases where =
+requirements are identified.=20
+
+There will be a limited number of places for projects in the networking =
+space. Decisions about acceptance will be based on relevance to =
+ESWC2018, tangible innovation and uniqueness in the R&D activities and a =
+clear goal to benefit from networking with other projects.
+
+The submissions page at Easychair is now open: =
+https://easychair.org/conferences/?conf=3Deswc2018eunw =
+<https://easychair.org/conferences/?conf=3Deswc2018eunw>
+
+
+
+Deadline:=20
+
+Abstract submission deadline: April 27th, 2018, 23:59
+
+Notification of acceptance/rejection: May 4th, 2018, 23:59
+
+EU Project Networking Session: TBA
+
+
+
+Chairs:
+
+	Maria Maleshkova, Karlsruhe Institute of Technology (KIT), =
+Germany=
+
+--Apple-Mail=_CE0BD0E3-3BD8-4847-9FAD-0A955CE87D9F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><div class=3D""><br class=3D""></div>[Apologies for multiple =
+postings.]<br class=3D""><br =
+class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br class=3D"">PROJECT =
+NETWORKING SESSION @ ESWC2018.<br class=3D""><br class=3D"">Link:&nbsp;<a =
+href=3D"https://2018.eswc-conferences.org/call-for-project-networking/" =
+class=3D"">https://2018.eswc-conferences.org/call-for-project-networking/<=
+/a><br class=3D"">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br =
+class=3D""><br class=3D""><br class=3D"">Call for Project Networking:<br =
+class=3D""><br class=3D"">The project networking track of ESWC2018 will =
+provide an opportunity for<br class=3D""><br class=3D"">* Knowledge =
+sharing among EU and national projects<br class=3D""><br class=3D"">* =
+Data and technology transfer between projects<br class=3D""><br =
+class=3D"">* Presentation and discussion of project requirements and =
+results with ESWC participants<br class=3D""><br class=3D"">* Discussion =
+about funding opportunities such as H2020 and ERC<br class=3D""><br =
+class=3D"">Also, it will include a presentation by a representative of =
+the European Commission on the European Research Council (ERC) and ERC =
+funding schemes.<br class=3D""><br class=3D"">The project networking =
+track is intended to provide national and EU funded projects with the =
+ability to connect with each other and engage in discussions about their =
+respective research and development, establish opportunities for =
+knowledge and technology sharing, and identify complementary activities =
+and goals which can form the basis for future collaborations, research =
+proposals, researcher exchange or joint participation at events or in =
+initiatives.&nbsp;<br class=3D""><br class=3D"">We equally welcome =
+submissions from recently finished projects, which have results to =
+transfer as well as recently started EU and national projects, which are =
+seeking datasets and tools to perform their work.&nbsp;<br class=3D""><br =
+class=3D"">Submission<br class=3D"">---------------<br class=3D""><br =
+class=3D"">Projects willing to participate at the session must submit a =
+2-page extended abstract (PDF, Springer LNCS style). The abstract should =
+introduce the project, briefly describe its R&amp;D activities and goals =
+and outline what the project would show / demonstrate in the session, =
+focused specifically on what the project plans to offer to other =
+projects and/or wishes to request from other projects. This should be =
+backed up by links to online datasets, tools or use cases where =
+requirements are identified.&nbsp;<br class=3D""><br class=3D"">There =
+will be a limited number of places for projects in the networking space. =
+Decisions about acceptance will be based on relevance to ESWC2018, =
+tangible innovation and uniqueness in the R&amp;D activities and a clear =
+goal to benefit from networking with other projects.<br class=3D""><br =
+class=3D"">The submissions page at Easychair is now open:&nbsp;<a =
+href=3D"https://easychair.org/conferences/?conf=3Deswc2018eunw" =
+class=3D"">https://easychair.org/conferences/?conf=3Deswc2018eunw</a><br =
+class=3D""><br class=3D""><br class=3D""><br class=3D"">Deadline:&nbsp;<br=
+ class=3D""><br class=3D"">Abstract submission deadline: April 27th, =
+2018, 23:59<br class=3D""><br class=3D"">Notification of =
+acceptance/rejection: May 4th, 2018, 23:59<br class=3D""><br class=3D"">EU=
+ Project Networking Session: TBA<br class=3D""><br class=3D""><br =
+class=3D""><br class=3D"">Chairs:<br class=3D""><br class=3D""><span =
+class=3D"Apple-tab-span" style=3D"white-space: pre;">	</span>Maria =
+Maleshkova, Karlsruhe Institute of Technology (KIT), =
+Germany</body></html>=
+
+--Apple-Mail=_CE0BD0E3-3BD8-4847-9FAD-0A955CE87D9F--

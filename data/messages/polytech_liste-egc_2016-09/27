@@ -1,0 +1,173 @@
+Return-Path: <yannis.haralambous@telecom-bretagne.eu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 863BF19039C1
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 19 Sep 2016 12:28:55 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 76D449543
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Mon, 19 Sep 2016 12:28:55 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 5ECD42D9054
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Sep 2016 12:28:55 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -12.494
+X-Spam-Level:
+X-Spam-Status: No, score=-12.494 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, MANGLED_MEDS=2.3,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, TW_XI=0.077, UN_PHISHING_PW=0.1,
+	UN_PHISHING_WEBMAIL=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 8.0818 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=telecom-bretagne.eu
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id EfYqmfDHJdbc for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 19 Sep 2016 12:28:54 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy210.enst-bretagne.fr (zproxy210.enst-bretagne.fr [192.108.117.8])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 0E3682B2349
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Sep 2016 12:28:54 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id E5F1D23204F
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Sep 2016 12:28:53 +0200 (CEST)
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id Cnggu0JCnWQv for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 19 Sep 2016 12:28:52 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTP id DAA9F232045
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Sep 2016 12:28:52 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy210.enst-bretagne.fr DAA9F232045
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telecom-bretagne.eu;
+	s=CFDC2CFA-4654-11E5-AACD-7BCC68B6580D; t=1474280932;
+	bh=43G9iOO1/TX+6WS5Xs7ScuZXkNj2lQoJ7aLjF+yYOUE=;
+	h=From:Content-Type:Content-Transfer-Encoding:Mime-Version:Subject:
+	 Message-Id:Date:To;
+	b=ZaQf3rdF9tKK1YQtV69vZTXPz3Tu0Yjbh6oLOGO6wm1Xz1gJDfQpMFR4ghYGD19XW
+	 67h6Wx0qVrB5OXKu2F/5uF1m9TLIJcYURAiDPuJ2rFk7VJ+rpsSTvIn5a1I0aUBXrQ
+	 ynPH10V7dT4/wSejAjlsky6EhkPjRudOAbU0q4no=
+X-Virus-Scanned: amavisd-new at zproxy210.enst-bretagne.fr
+Received: from zproxy210.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy210.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id H_juIRBkKqq4 for <liste-egc@polytech.univ-nantes.fr>;
+	Mon, 19 Sep 2016 12:28:52 +0200 (CEST)
+Received: from [IPv6:2001:660:7302:5:ac6f:fc89:6a1a:4fa0] (passerelle-interne.enst-bretagne.fr [192.108.117.210])
+	by zproxy210.enst-bretagne.fr (Postfix) with ESMTPSA id BA27323203F
+	for <liste-egc@polytech.univ-nantes.fr>; Mon, 19 Sep 2016 12:28:52 +0200 (CEST)
+From: Yannis Haralambous <yannis.haralambous@telecom-bretagne.eu>
+Content-Type: text/plain; charset=utf-8
+X-Mao-Original-Outgoing-Id: 495973732.326004-3d759fa7c0a0fef1b749bf576ccafec0
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Message-Id: <D4303D7D-443F-48B6-9D83-8E49DD6FEE29@telecom-bretagne.eu>
+Date: Mon, 19 Sep 2016 12:28:52 +0200
+To: liste-egc@polytech.univ-nantes.fr
+X-Mailer: Apple Mail (2.3124)
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Proposition de post-doc sur 2 ans, =?UTF-8?Q?financ?=
+ =?UTF-8?Q?=C3=A9?= par =?UTF-8?Q?Ark=C3=A9a?= / =?UTF-8?Q?Cr=C3=A9dit?=
+ Mutuel
+
+De : Yannis Haralambous <yannis.haralambous@telecom-bretagne.eu>
+
+Proposition de post-doc sur 2 ans, financ=C3=A9 par Ark=C3=A9a / Cr=C3=A9d=
+it Mutuel
+
+Titre :
+
+D=C3=A9tection, repr=C3=A9sentation et pr=C3=A9vention de conflits =
+techniques, syntaxiques et s=C3=A9mantiques au sein d'un syst=C3=A8me =
+d'information bancaire
+
+R=C3=A9sum=C3=A9 du projet :
+
+Les processus complexes en informatique de gestion sont compos=C3=A9s de =
+milliers de traitements en interconnexion et =C3=A0 large =C3=A9chelle, =
+entre les producteurs de donn=C3=A9es et les traitements de reporting =
+les exploitant. Une des grandes difficult=C3=A9s =C3=A0 laquelle sont =
+confront=C3=A9s ces syst=C3=A8mes est celle de l=E2=80=99occurrence =
+d=E2=80=99erreurs rares mais pouvant entra=C3=AEner des graves =
+dysfonctionnements et amenant =C3=A0 une intervention rapide d=E2=80=99exp=
+erts pour corriger les probl=C3=A8mes. Ainsi, des dysfonctionnements =
+peuvent appara=C3=AEtre suite =C3=A0 des probl=C3=A8mes =
+d=E2=80=99ordonnancement, de d=C3=A9faut physique (machine), de d=C3=A9fau=
+t de p=C3=A9riode (donn=C3=A9e du mois pr=C3=A9c=C3=A9dent au lieu du =
+mois en cours), de d=C3=A9faut de valeur (valeurs incorrectes) ou enfin =
+de d=C3=A9faut atypique. Le probl=C3=A8me est rendu complexe par le =
+nombre d=E2=80=99interconnexions en jeu, la raret=C3=A9 des incidents =
+compar=C3=A9e au nombre de traitements et processus op=C3=A9r=C3=A9s =
+ainsi que la temporalit=C3=A9 menant =C3=A0 une erreur (effet papillon). =
+Par ailleurs les dysfonctionnements ne sont pas toujours =C3=A9vidents =
+=C3=A0 comprendre par les experts en charge du syst=C3=A8me =
+informatique. Ce sujet de post-doc porte sur une taxonomie et =
+s=C3=A9mantique des types d'erreurs et la mise en =C5=93uvre d=E2=80=99un =
+syst=C3=A8me observant et apprenant, capable de d=C3=A9tecter au plus =
+t=C3=B4t des dysfonctionnements, de les pr=C3=A9senter de fa=C3=A7on =
+synth=C3=A9tique =C3=A0 un et de lui montrer l=E2=80=99imminence d=E2=80=99=
+un d=C3=A9faut, ou m=C3=AAme de proposer des corrections pr=C3=A9ventives.=
+ Ce syst=C3=A8me se basera sur les traces d=E2=80=99utilisations =
+enregistr=C3=A9es dans des bases de connaissances, qui contiennent des =
+s=C3=A9quences d=E2=80=99=C3=A9v=C3=A9nements =E2=80=98normales=E2=80=99 =
+et des s=C3=A9quences contenant des dysfonctionnements associ=C3=A9s =C3=A0=
+ des corrections pass=C3=A9es ainsi que sur des signatures s=C3=A9mantique=
+s des entr=C3=A9es-sorties des processus. Il pourra =C3=AAtre branch=C3=A9=
+ en ligne pour accro=C3=AEtre son expertise au cours du temps. Deux =
+verrous seront abord=C3=A9s :=20
+=E2=80=93 l=E2=80=99apprentissage de s=C3=A9quences =
+s=C3=A9mantico-spatio-temporelles en temps r=C3=A9el ;
+=E2=80=93 la repr=C3=A9sentation synth=C3=A9tique (graphique et =
+textuelle) de la dynamique des donn=C3=A9es complexes.
+Les sources de donn=C3=A9es exploitables sont multiples, sondes =
+physiques / m=C3=A9caniques, bases de donn=C3=A9es des incidents, bases =
+de donn=C3=A9es des =C3=A9volutions, bus =C3=A9v=C3=A9nementiels, les =
+data warehouses, et enfin les diagnostics-expert de l=E2=80=99observant, =
+qui enrichissent en direct le moteur d=E2=80=99aide =C3=A0 la d=C3=A9cisio=
+n. La solution propos=C3=A9e sera assez g=C3=A9n=C3=A9rique pour =
+s=E2=80=99appliquer =C3=A0 des cadres applicatifs diff=C3=A9rents : de =
+l=E2=80=99informatique de gestion aux big data multiplateforme. =
+L=E2=80=99=C3=A9tude et la r=C3=A9alisation finale doivent permettre =
+d=E2=80=99aboutir =C3=A0 un d=C3=A9monstrateur, permettant le test et =
+l=E2=80=99analyse de diff=C3=A9rent cas d=E2=80=99usage et d=E2=80=99=C3=A9=
+prouver les concepts mis en =C5=93uvre.=20
+
+Lieu : T=C3=A9l=C3=A9com Bretagne, Brest. (Laboratoire Lab-STICC, =
+=C3=A9quipe DECIDE)
+
+Contact : yannis.haralambous@telecom-bretagne.eu  et   =
+laurent.le-bodic@arkea.com
+
+Pour plus d'informations :
+
+=
+http://perso.telecom-bretagne.eu/yannisharalambous/data/Arkea-postdoc-05-2=
+016.pdf
+
+D=C3=A9but de contrat : d=C3=A8s que possible
+--=20
+-------------------------------------------------------
+Yannis Haralambous
+Professor
+Institut Mines-T=C3=A9l=C3=A9com, T=C3=A9l=C3=A9com Bretagne
+Computer Science Department
+UMR CNRS 6285 Lab-STICC
+Technop=C3=B4le Brest Iroise
+CS 83818, 29238 Brest Cedex 3, France
+Email: yannis.haralambous@telecom-bretagne.eu
+Internet: http://perso.telecom-bretagne.eu/yannisharalambous/
+ICBM address: 48=C2=B021'31.57"N 4=C2=B034'16.76"W
+Twitter: y_haralambous
+-------------------------------------------------------
+...the ball I threw while playing in the park
+has not yet reached the ground
+(Dylan Thomas)
+
+Es gab eine Zeit, wo ich nur ungern =C3=BCber Schubert sprechen,
+nur N=C3=A4chtens den B=C3=A4umen und Sternen von ihm vorerz=C3=A4hlen =
+m=C3=B6gen.
+(Robert Schumann)
+

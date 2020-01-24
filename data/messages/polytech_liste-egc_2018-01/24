@@ -1,0 +1,871 @@
+Return-Path: <sylvain.mahe@laposte.net>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 7F0662292953
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 11 Jan 2018 14:25:37 +0100 (CET)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 7F45F608BA7
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu, 11 Jan 2018 14:25:37 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 6F35E41FC505
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 11 Jan 2018 14:25:37 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -3.417
+X-Spam-Level:
+X-Spam-Status: No, score=-3.417 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	MANGLED_MEDS=2.3, NO_REAL_NAME=1, RCVD_IN_DNSWL_LOW=-1,
+	RCVD_IN_WSFF=0.01, RP_MATCHES_RCVD=-0.55,
+	SARE_FREE_WEBM_LAPOSTE=0.721, SPF_PASS=-0.001, UN_FROM_LASPOSTE=-1,
+	UN_PHISHING_COMPTE=0.1, UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001]
+	autolearn=disabled
+X-CRM114-Status: GOOD ( 7.2000 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=laposte.net
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id iAoYQdSGF0rF for <liste-egc@polytech.univ-nantes.fr>;
+	Thu, 11 Jan 2018 14:25:36 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from smtp.laposte.net (smtpoutz12.laposte.net [194.117.213.173])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 6029141E11A9
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 11 Jan 2018 14:25:36 +0100 (CET)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout002 (Postfix) with ESMTP id 25740A23F56
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 11 Jan 2018 14:25:36 +0100 (CET)
+Received: from smtp.laposte.net (localhost [127.0.0.1])
+	by lpn-prd-vrout002 (Postfix) with ESMTP id 07354A21ACB
+	for <liste-egc@polytech.univ-nantes.fr>; Thu, 11 Jan 2018 14:25:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=laposte.net; s=mail0;
+	t=1515677136; bh=hyInRLfNzMUUvnhItHGcL8LYAc/BmYO7MfuOdOVOTcw=;
+	h=Date:From:To:Cc:In-Reply-To:Subject;
+	b=Ng3SV9LNvCtwG7Xs09EEivuFV4e2a66nUoW2BZVuSoGexxN2fJZFWh3nWdL+CWznP
+	 Lmpdm4Ac6uQHV3dto/MMmuhfbKXuvQIbPN0QhEQHc/IHQ1Z+ay+a5HafYunR7Xyzpy
+	 Ihj5sw0If3qjdvI6Lu0yNpMJVl35NJPoiqi/2cMRSq1rU6UDKvT89QfpZ/MVi9zMpZ
+	 652aGHzrVOXY0n7ieodY7Mt3gLn2qAvgwTe5PdJNJj/aFUW4d8A7Vy7Xe1qAWP0Mwu
+	 uccJ6Zi3DbqMUmKOXnEFeDqquW3tqdsJmhrYAHrkoEv0u614iZPKlPYO8rXa4joA/J
+	 HU8JPvhE4iY/g==
+Received: from lpn-prd-mstr209.laposte (lpn-prd-mstr209.prosodie [10.128.59.209])
+	by lpn-prd-vrout002 (Postfix) with ESMTP id C5D82A23F98;
+	Thu, 11 Jan 2018 14:25:23 +0100 (CET)
+Date: Thu, 11 Jan 2018 14:25:23 +0100 (CET)
+From: sylvain.mahe@laposte.net
+To: info-ic@inria.fr, liste-egc@polytech.univ-nantes.fr
+Cc: sylvain.mahe@edf.fr
+Message-ID: <478199577.220877.1515677123461.JavaMail.zimbra@laposte.net>
+In-Reply-To: <1442888666.179643.1515676352965.JavaMail.zimbra@laposte.net>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_220876_1988945597.1515677123459"
+X-Originating-IP: [192.196.142.97]
+X-Mailer: Zimbra 8.0.6_GA_5922 (ZimbraWebClient - IE7 (Win)/La Poste)
+Thread-Topic: Offre stage EDF R&D - TALN, text-mining et ontologies pour la maintenance =?utf-8?Q?d=27=C3=A9oliennes?= H/F (Ref. St-18-0018)
+Thread-Index: yZDhx9ij+nfKAklOuGmcLW6YIlE1jw==
+X-VR-SrcIP: [192.196.142.97]
+X-VR-FullState: 0
+X-VR-Score: 0
+X-VR-Cause-1: gggruggvucftvghtrhhoucdtuddrgedtuddrledtgdegjecutefuodetggdotefrodftvfcurfhrohhf
+X-VR-Cause-2: ihhlvgemucfntefrqffuvffgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepfffhvffkjgfu
+X-VR-Cause-3: gggtihfothesrgdttggsredtjeenucfhrhhomhepshihlhhvrghinhdrmhgrhhgvsehlrghpohhsthgv
+X-VR-Cause-4: rdhnvghtnecuffhomhgrihhnpegvughfrdhfrhenucfkphepuddtrdduvdekrdehledrvddtledpudel
+X-VR-Cause-5: vddrudeliedrudegvddrleejnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghloheplhhp
+X-VR-Cause-6: nhdqphhrugdqmhhsthhrvddtledrlhgrphhoshhtvgdpihhnvghtpedutddruddvkedrheelrddvtdel
+X-VR-Cause-7: pdhmrghilhhfrhhomhepshihlhhvrghinhdrmhgrhhgvsehlrghpohhsthgvrdhnvghtpdhrtghpthht
+X-VR-Cause-8: ohepmhgrhhgvsehorhgrnhhgvgdrfhhrnecuvehluhhsthgvrhfuihiivgeptd
+X-VR-AvState: No
+X-VR-State: 0
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] Offre stage EDF R&D - TALN, text-mining et ontologies
+ pour la maintenance =?UTF-8?Q?d=27=C3=A9oliennes?= H/F (Ref. St-18-0018)
+
+------=_Part_220876_1988945597.1515677123459
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Bonjour,=20
+
+
+=C2=A0=20
+
+Veuillez trouver ci-dessous le sujet de stage << TALN, text-mining et ontol=
+ogies pour la maintenance d'=C3=A9oliennes >>=C2=A0que nous proposons en 20=
+18.=20
+
+=C2=A0=20
+
+Pouvez-vous, svp, le faire suivre dans vos r=C3=A9seaux aux personnes poten=
+tiellement int=C3=A9ress=C3=A9es=C2=A0?=20
+
+=C2=A0=20
+
+Vous en remerciant par avance et restant =C3=A0 votre disposition pour tout=
+e information compl=C3=A9mentaire,=20
+
+=C2=A0=20
+
+Bien cordialement,=20
+
+=C2=A0=20
+
+
+=09
+
+=C2=A0=20
+
+
+Dr Sylvain MAHE=20
+Ing=C3=A9nieur Chercheur=20
+
+Ing=C3=A9nierie des Connaissances / SI M=C3=A9tiers pour le Producteurs=20
+
+Innovations SI pour le Producteur (ISIP)=20
+
+
+EDF - R&D D=C3=A9partement PRISME=20
+6, quai Watier=20
+78401 Chatou Cedex=20
+
+sylvain.mahe@edf.fr=20
+
+=C2=A0 =C2=A0=20
+
+
+
+
+Stage - TALN, text-mining et ontologies pour la maintenance d'=C3=A9olienne=
+s H/F (Ref. St-18-0018)=20
+
+=C2=A0=20
+
+Mise en ligne le 11/01/2018=20
+
+Type d'offre =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 Offre de stage (long)=20
+
+Niveau de formation=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 A partir de bac +4=20
+
+Sp=C3=A9cialit=C3=A9(s) =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 G=C3=A9nie informatique / T=C3=A9l=C3=A9communicat=
+ions=20
+
+Domaine d'intervention =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 R&D=
+=20
+
+Pays / R=C3=A9gion(s)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 France / Ile d=
+e France=20
+
+D=C3=A9partement =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 YVELINES (78)=20
+
+Ville =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 CHATOU (78400)=20
+
+Nombre de places =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1=20
+
+=C2=A0=20
+
+Description de la mission=20
+
+=C2=A0=20
+
+CONTEXTE DE LA MISSION=20
+
+=C2=A0=20
+
+Sur les =C3=A9oliennes des param=C3=A8tres issus de capteurs permettent de =
+r=C3=A9guler et de surveiller le fonctionnement des diff=C3=A9rents composa=
+nts de l=E2=80=99installation et sont historis=C3=A9s dans des entrep=C3=B4=
+ts de donn=C3=A9es. Lors de l=E2=80=99observation d=E2=80=99un ph=C3=A9nom=
+=C3=A8ne inhabituel ou d=E2=80=99un param=C3=A8tre proche des limites pr=C3=
+=A9vues de fonctionnement, l=E2=80=99exploitant consulte notamment ces s=C3=
+=A9ries de donn=C3=A9es num=C3=A9riques pour =C3=A9tablir un diagnostic et =
+un pronostic sur le ph=C3=A9nom=C3=A8ne sous-jacent et ses cons=C3=A9quence=
+s pr=C3=A9visibles. Son objectif est de d=C3=A9terminer si l=E2=80=99exploi=
+tation doit =C3=AAtre adapt=C3=A9e ou interrompue pour maintenance ou si el=
+le peut continuer jusqu=E2=80=99=C3=A0 la prochaine p=C3=A9riode de mainten=
+ance pr=C3=A9vue. Pour interpr=C3=A9ter les =C3=A9volutions de ces param=C3=
+=A8tres dans le temps, il a besoin de prendre en compte des informations de=
+ contexte sur les op=C3=A9rations de maintenance (c=E2=80=99est-=C3=A0-dire=
+ =C3=A9v=C3=A9nements de maintenance) qui ont =C3=A9t=C3=A9 r=C3=A9alis=C3=
+=A9es sur l=E2=80=99installation ainsi que les =C3=A9v=C3=A9nements d=E2=80=
+=99exploitation subis par l=E2=80=99installation. Une grande partie de ces =
+=C3=A9v=C3=A9nements sont pr=C3=A9sents dans des documents textuels non str=
+uctur=C3=A9s ou dans du texte libre d=E2=80=99outils de maintenance.=20
+
+=C2=A0=20
+
+L=E2=80=99objectif du stage est de contribuer =C3=A0 la reconstitution de b=
+ases de donn=C3=A9es d=E2=80=99=C3=A9v=C3=A9nements de maintenance et d=E2=
+=80=99exploitation =C3=A0 partir de corpus textuels non structur=C3=A9s. Il=
+ s=E2=80=99agit de mettre en oeuvre des techniques de fouille de donn=C3=A9=
+es textuelles ou text-mining non pas statistiques (ou pas uniquement) mais =
+de traitement automatique du langage naturel (TALN) et d=E2=80=99analyse s=
+=C3=A9mantique afin de retrouver ces =C3=A9v=C3=A8nements pr=C3=A9sents dan=
+s les textes pour reconstituer ces bases d=E2=80=99=C3=A9v=C3=A8nements de =
+maintenance et d=E2=80=99exploitation des installations.=20
+
+=C2=A0=20
+
+Un =C3=A9v=C3=A9nement est une combinaison d=E2=80=99informations, comme pa=
+r exemple pour la maintenance, une date, un composant d=E2=80=99un mat=C3=
+=A9riel, un type d=E2=80=99op=C3=A9ration de maintenance et une action (pre=
+scription, r=C3=A9alisation, =E2=80=A6). Certaines de ces informations peuv=
+ent =C3=AAtre corrobor=C3=A9es par des informations structur=C3=A9es dispon=
+ibles dans d=E2=80=99autres parties du syst=C3=A8me d=E2=80=99information (=
+base de donn=C3=A9es de pi=C3=A8ces de rechange=E2=80=A6). Des documents pe=
+uvent ne contenir aucune des informations recherch=C3=A9es alors que d=E2=
+=80=99autres documents peuvent en contenir plusieurs qu=E2=80=99il ne faudr=
+a pas m=C3=A9langer.=20
+
+=C2=A0=20
+
+De premiers d=C3=A9monstrateurs ont =C3=A9t=C3=A9 r=C3=A9alis=C3=A9s en 201=
+7 (stage et d=C3=A9veloppement de chercheurs EDF R&D) pour r=C3=A9pondre =
+=C3=A0 un besoin m=C3=A9tier et en exploitant des donn=C3=A9es textuelles d=
+e maintenance. La cha=C3=AEne de traitement comporte notamment une phase de=
+ correction orthographique, des d=C3=A9veloppements dans GATE (lexiques par=
+ cat=C3=A9gorie d=E2=80=99actions, r=C3=A8gles JAPE, ontologies) pour l=E2=
+=80=99annotation ainsi qu=E2=80=99une restitution sous forme structur=C3=A9=
+e des donn=C3=A9es extraites. Les premiers r=C3=A9sultats ayant =C3=A9t=C3=
+=A9 jug=C3=A9s pertinents par le m=C3=A9tier, nous souhaitons continuer les=
+ travaux au-del=C3=A0 du premier cas test, ce qui n=C3=A9cessite d=E2=80=99=
+am=C3=A9liorer la cha=C3=AEne de traitement.=20
+
+=C2=A0=20
+
+OBJECTIF DE LA MISSION=20
+
+=C2=A0=20
+
+L=E2=80=99objectif du stage est de proposer et de r=C3=A9aliser des am=C3=
+=A9liorations sur la cha=C3=AEne de traitement (am=C3=A9lioration des d=C3=
+=A9veloppements et de l=E2=80=99ontologie, d=C3=A9veloppements compl=C3=A9m=
+entaires) afin de contribuer =C3=A0 am=C3=A9liorer les r=C3=A9sultats, =C3=
+=A0 g=C3=A9n=C3=A9raliser =C3=A0 un p=C3=A9rim=C3=A8tre plus large et =C3=
+=A0 compl=C3=A9ter la r=C3=A9ponse au besoin d=E2=80=99analyse du retour d=
+=E2=80=99exp=C3=A9rience.=20
+
+=C2=A0=20
+
+Avec des techniques et outils de text mining TALN/analyse s=C3=A9mantique, =
+le travail de stage consiste =C3=A0 :=20
+
+    * Prendre connaissance de la cha=C3=AEne de traitement, l=E2=80=99analy=
+ser et proposer des pistes d=E2=80=99am=C3=A9lioration ;=20
+    * Contribuer =C3=A0 la priorisation des pistes d=E2=80=99am=C3=A9liorat=
+ion avec les chercheurs EDF R&D ;=20
+    * Concevoir, d=C3=A9velopper et =C3=A9valuer des am=C3=A9liorations et =
+compl=C3=A9ments dans la cha=C3=AEne de traitement ;=20
+    * Positionner la solution mise en oeuvre dans l=E2=80=99=C3=A9tude vis-=
+=C3=A0-vis des autres solutions d=C3=A9j=C3=A0 mises en =C5=93uvre par EDF =
+sur d=E2=80=99autres projets.=20
+
+
+
+=C2=A0=20
+
+DEBUT : =C3=A0 partir du 2=C3=A8me trimestre 2018=20
+
+=C2=A0=20
+
+DUREE : 6 mois (stage r=C3=A9mun=C3=A9r=C3=A9)=20
+
+=C2=A0=20
+
+=C2=A0=20
+
+Profil souhait=C3=A9=20
+
+=C2=A0=20
+
+ETUDIANTS CONCERNES : MASTER, ou Fin d=E2=80=99=C3=A9tudes ing=C3=A9nieur.=
+=20
+
+=C2=A0=20
+
+COMPETENCES SOUHAITEES : La r=C3=A9alisation de cette =C3=A9tude n=C3=A9ces=
+site des comp=C3=A9tences en mod=C3=A9lisation des connaissances, en techni=
+ques de fouille de textes, en text-mining de type Traitement Automatique du=
+ Langage Naturel et d=E2=80=99Analyse S=C3=A9mantique, ainsi que des techni=
+ques et outils du web s=C3=A9mantique, notamment RDF.=20
+
+=C2=A0=20
+
+Information et candidature=20
+
+En postulant sur cette offre sur le site internet edf recrute :=20
+
+https://www.edf.fr/edf-recrute/rejoignez-nous/voir-les-offres/nos-offres =
+=C2=A0=20
+
+La r=C3=A9f=C3=A9rence de cette offre est : ST-18-0018=20
+
+=C2=A0=20
+
+=C2=A0=20
+
+Lien vers cette offre :=20
+
+https://www.edf.fr/edf-recrute/rejoignez-nous/voir-les-offres/nos-offres?se=
+arch[keyword]=3DST-18-0018=20
+
+=C2=A0=20
+
+=C2=A0=20
+
+=C2=A0=20
+
+
+
+------=_Part_220876_1988945597.1515677123459
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"font-family: times new roman, new york, times, se=
+rif; font-size: 14pt; color: #000000"><DIV><SPAN style=3D"FONT-SIZE: medium=
+" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMI=
+LY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D"Calibri">Bonj=
+our, </SPAN></SPAN></DIV>
+<DIV>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri">Veuillez trouver ci-dessous le sujet de stage &lt;&lt; TALN, text=
+-mining et ontologies pour la maintenance d'=C3=A9oliennes &gt;&gt;&nbsp;qu=
+e nous proposons en 2018.</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri">Pouvez-vous, svp, le faire suivre dans vos r=C3=A9seaux aux perso=
+nnes potentiellement int=C3=A9ress=C3=A9es&nbsp;?</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri">Vous en remerciant par avance et restant =C3=A0 votre disposition=
+ pour toute information compl=C3=A9mentaire,</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri">Bien cordialement, </SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P>
+<TABLE style=3D"BORDER-COLLAPSE: collapse; MARGIN: auto auto auto 2.85pt" c=
+ellSpacing=3D0 cellPadding=3D0 border=3D1 data-mce-style=3D"border-collapse=
+: collapse; margin: auto auto auto 2.85pt;">
+<TBODY>
+<TR>
+<TD style=3D"BORDER-TOP: #f0f0f0; BORDER-RIGHT: #f0f0f0; WIDTH: 90.8pt; BOR=
+DER-BOTTOM: #f0f0f0; PADDING-BOTTOM: 1.5pt; PADDING-TOP: 1.5pt; PADDING-LEF=
+T: 1.5pt; BORDER-LEFT: #f0f0f0; PADDING-RIGHT: 1.5pt; BACKGROUND-COLOR: tra=
+nsparent" vAlign=3Dtop rowSpan=3D2 width=3D121 data-mce-style=3D"width: 90.=
+8pt; background-color: transparent; border: #f0f0f0; padding: 1.5pt;">
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><BR></P></TD>
+<TD style=3D"BORDER-TOP: #f0f0f0; BORDER-RIGHT: #f0f0f0; WIDTH: 337.15pt; B=
+ORDER-BOTTOM: #f0f0f0; PADDING-BOTTOM: 1.5pt; PADDING-TOP: 1.5pt; PADDING-L=
+EFT: 1.5pt; BORDER-LEFT: #f0f0f0; PADDING-RIGHT: 1.5pt; BACKGROUND-COLOR: t=
+ransparent" vAlign=3Dtop width=3D450 data-mce-style=3D"width: 337.15pt; bac=
+kground-color: transparent; border: #f0f0f0; padding: 1.5pt;">
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><SPAN style=3D"FONT-SIZE: 9pt; FONT-FAMILY:=
+ 'Helv',sans-serif; COLOR: black; mso-fareast-language: FR" data-mce-style=
+=3D"font-size: 9pt; font-family: 'Helv',sans-serif; color: black; mso-farea=
+st-language: FR;">&nbsp;</SPAN></P></TD></TR>
+<TR>
+<TD style=3D"BORDER-TOP: #f0f0f0; BORDER-RIGHT: #f0f0f0; WIDTH: 337.15pt; B=
+ORDER-BOTTOM: #f0f0f0; PADDING-BOTTOM: 1.5pt; PADDING-TOP: 1.5pt; PADDING-L=
+EFT: 1.5pt; BORDER-LEFT: #f0f0f0; PADDING-RIGHT: 1.5pt; BACKGROUND-COLOR: t=
+ransparent" vAlign=3Dtop width=3D450 data-mce-style=3D"width: 337.15pt; bac=
+kground-color: transparent; border: #f0f0f0; padding: 1.5pt;">
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><B><SPAN style=3D"FONT-SIZE: 8pt; FONT-FAMI=
+LY: 'Arial',sans-serif; COLOR: #ff8100; mso-fareast-language: FR" data-mce-=
+style=3D"font-size: 8pt; font-family: 'Arial',sans-serif; color: #ff8100; m=
+so-fareast-language: FR;">Dr Sylvain MAHE<BR>Ing=C3=A9nieur Chercheur </SPA=
+N></B></P>
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><B><SPAN style=3D"FONT-SIZE: 8pt; FONT-FAMI=
+LY: 'Arial',sans-serif; COLOR: #ff8100; mso-fareast-language: FR" data-mce-=
+style=3D"font-size: 8pt; font-family: 'Arial',sans-serif; color: #ff8100; m=
+so-fareast-language: FR;">Ing=C3=A9nierie des Connaissances / SI M=C3=A9tie=
+rs pour le Producteurs</SPAN></B></P>
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><B><SPAN style=3D"FONT-SIZE: 8pt; FONT-FAMI=
+LY: 'Arial',sans-serif; COLOR: #ff8100; mso-fareast-language: FR" data-mce-=
+style=3D"font-size: 8pt; font-family: 'Arial',sans-serif; color: #ff8100; m=
+so-fareast-language: FR;">Innovations SI pour le Producteur (ISIP)</SPAN></=
+B></P>
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><SPAN style=3D"FONT-SIZE: 8pt; FONT-FAMILY:=
+ 'Arial',sans-serif; COLOR: #0062e1; mso-fareast-language: FR" data-mce-sty=
+le=3D"font-size: 8pt; font-family: 'Arial',sans-serif; color: #0062e1; mso-=
+fareast-language: FR;"><BR>EDF - R&amp;D D=C3=A9partement PRISME<BR>6, quai=
+ Watier<BR>78401 Chatou Cedex</SPAN><SPAN></SPAN></P>
+<P style=3D"PAGE-BREAK-AFTER: avoid; MARGIN: 0px" data-mce-style=3D"page-br=
+eak-after: avoid; margin: 0px;"><B><SPAN style=3D"FONT-SIZE: 8pt; FONT-FAMI=
+LY: 'Arial',sans-serif; COLOR: #0062e1; mso-fareast-language: FR" data-mce-=
+style=3D"font-size: 8pt; font-family: 'Arial',sans-serif; color: #0062e1; m=
+so-fareast-language: FR;"><A href=3D"mailto:sylvain.mahe@edf.fr" data-mce-h=
+ref=3D"mailto:sylvain.mahe@edf.fr"><SPAN style=3D"COLOR: #0563c1" data-mce-=
+style=3D"color: #0563c1;" color=3D"#0563c1">sylvain.mahe@edf.fr</SPAN></A> =
+</SPAN></B><SPAN></SPAN></P></TD></TR></TBODY></TABLE>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;<SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><BR></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-SIZE: 20pt; FONT-FAMILY: Arial-BoldMT; COLOR: black" data-mce-style=3D=
+"font-size: 20pt; font-family: Arial-BoldMT; color: black;"><SPAN style=3D"=
+FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D"Cali=
+bri">Stage - TALN, text-mining et ontologies pour la maintenance d'=C3=A9ol=
+iennes H/F (Ref. St-18-0018)</SPAN></SPAN></B></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-FAMILY: ArialMT; COLOR: #023065" data-mce-style=3D"font-family: ArialMT; =
+color: #023065;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-styl=
+e=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-styl=
+e=3D"font-family: Calibri;" face=3D"Calibri"></SPAN></SPAN></SPAN>&nbsp;</P=
+>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-FAMILY: ArialMT; COLOR: #023065" data-mce-style=3D"font-family: ArialMT; =
+color: #023065;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-styl=
+e=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-styl=
+e=3D"font-family: Calibri;" face=3D"Calibri">Mise en ligne le 11/01/2018</S=
+PAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Type d'offre &nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN sty=
+le=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=3D"font-family: Ar=
+ialMT; color: black;">Offre de stage (long)</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Niveau de formation&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN>=
+<SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=3D"font-f=
+amily: ArialMT; color: black;">A partir de bac +4</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Sp=C3=A9cialit=C3=A9(s) &nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPA=
+N><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=3D"font=
+-family: ArialMT; color: black;">G=C3=A9nie informatique / T=C3=A9l=C3=A9co=
+mmunications</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Domaine d'intervention &nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style=3D"FONT-FAMILY=
+: ArialMT; COLOR: black" data-mce-style=3D"font-family: ArialMT; color: bla=
+ck;">R&amp;D</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Pays / R=C3=A9gion(s)&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style=3D"FONT-FAMILY: ArialMT; =
+COLOR: black" data-mce-style=3D"font-family: ArialMT; color: black;">France=
+ / Ile de France</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">D=C3=A9partement &nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style=
+=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=3D"font-family: Aria=
+lMT; color: black;">YVELINES (78)</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Ville &nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </SPAN><SPAN style=
+=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=3D"font-family: Aria=
+lMT; color: black;">CHATOU (78400)</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: #023065" data-mce-sty=
+le=3D"font-family: ArialMT; color: #023065;">Nombre de places &nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; </SPAN><SPAN style=3D"FONT-FAMILY: ArialMT; COLOR: black" data-mce-style=
+=3D"font-family: ArialMT; color: black;">1</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-SIZE: 14pt; FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-size: 14=
+pt; font-family: Arial-BoldMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri"></SPAN></SPAN></B>&nbsp=
+;</P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-SIZE: 14pt; FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-size: 14=
+pt; font-family: Arial-BoldMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri">Description de la missi=
+on</SPAN></SPAN></B></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;"><S=
+PAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;"=
+ face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-sty=
+le=3D"font-size: medium;"></SPAN></SPAN></SPAN></B>&nbsp;</P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;"><S=
+PAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;"=
+ face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-sty=
+le=3D"font-size: medium;">CONTEXTE DE LA MISSION</SPAN></SPAN></SPAN></B></=
+P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: Arial-ItalicMT" data-mc=
+e-style=3D"font-family: Arial-ItalicMT;"><SPAN style=3D"FONT-FAMILY: Calibr=
+i" data-mce-style=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D=
+"FONT-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"></SPAN=
+></SPAN></SPAN>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: Arial-ItalicMT" data-mc=
+e-style=3D"font-family: Arial-ItalicMT;"><SPAN style=3D"FONT-FAMILY: Calibr=
+i" data-mce-style=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D=
+"FONT-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;">Sur le=
+s =C3=A9oliennes des param=C3=A8tres issus de capteurs permettent de r=C3=
+=A9guler et de surveiller le fonctionnement des diff=C3=A9rents composants =
+de l=E2=80=99installation et sont historis=C3=A9s dans des entrep=C3=B4ts d=
+e donn=C3=A9es. Lors de l=E2=80=99observation d=E2=80=99un ph=C3=A9nom=C3=
+=A8ne inhabituel ou d=E2=80=99un param=C3=A8tre proche des limites pr=C3=A9=
+vues de fonctionnement, l=E2=80=99exploitant consulte notamment ces s=C3=A9=
+ries de donn=C3=A9es num=C3=A9riques pour =C3=A9tablir un diagnostic et un =
+pronostic sur le ph=C3=A9nom=C3=A8ne sous-jacent et ses cons=C3=A9quences p=
+r=C3=A9visibles. Son objectif est de d=C3=A9terminer si l=E2=80=99exploitat=
+ion doit =C3=AAtre adapt=C3=A9e ou interrompue pour maintenance ou si elle =
+peut continuer jusqu=E2=80=99=C3=A0 la prochaine p=C3=A9riode de maintenanc=
+e pr=C3=A9vue. Pour interpr=C3=A9ter les =C3=A9volutions de ces param=C3=A8=
+tres dans le temps, il a besoin de prendre en compte des informations de co=
+ntexte sur les op=C3=A9rations de maintenance (c=E2=80=99est-=C3=A0-dire =
+=C3=A9v=C3=A9nements de maintenance) qui ont =C3=A9t=C3=A9 r=C3=A9alis=C3=
+=A9es sur l=E2=80=99installation ainsi que les =C3=A9v=C3=A9nements d=E2=80=
+=99exploitation subis par l=E2=80=99installation. Une grande partie de ces =
+=C3=A9v=C3=A9nements sont pr=C3=A9sents dans des documents textuels non str=
+uctur=C3=A9s ou dans du texte libre d=E2=80=99outils de maintenance.</SPAN>=
+</SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=
+=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: mediu=
+m" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAM=
+ILY: ArialMT" data-mce-style=3D"font-family: ArialMT;"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=
+=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: mediu=
+m" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAM=
+ILY: ArialMT" data-mce-style=3D"font-family: ArialMT;">L=E2=80=99objectif d=
+u stage est de contribuer =C3=A0 la reconstitution de bases de donn=C3=A9es=
+ d=E2=80=99=C3=A9v=C3=A9nements de maintenance et d=E2=80=99exploitation =
+=C3=A0 partir de corpus textuels non structur=C3=A9s. Il s=E2=80=99agit de =
+mettre en oeuvre des </SPAN><B><SPAN style=3D"FONT-FAMILY: Arial-BoldMT" da=
+ta-mce-style=3D"font-family: Arial-BoldMT;">techniques de fouille de donn=
+=C3=A9es textuelles ou text-mining non pas statistiques </SPAN></B><SPAN st=
+yle=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-family: ArialMT;">(ou p=
+as uniquement) </SPAN><B><SPAN style=3D"FONT-FAMILY: Arial-BoldMT" data-mce=
+-style=3D"font-family: Arial-BoldMT;">mais de traitement automatique du lan=
+gage naturel (TALN) et d=E2=80=99analyse s=C3=A9mantique </SPAN></B><SPAN s=
+tyle=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-family: ArialMT;">afin=
+ de retrouver ces =C3=A9v=C3=A8nements pr=C3=A9sents dans les textes pour r=
+econstituer ces bases d=E2=80=99=C3=A9v=C3=A8nements de maintenance et d=E2=
+=80=99exploitation des installations.</SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;">Un =C3=A9v=C3=A9neme=
+nt est une combinaison d=E2=80=99informations, comme par exemple pour la ma=
+intenance, une date, un composant d=E2=80=99un mat=C3=A9riel, un type d=E2=
+=80=99op=C3=A9ration de maintenance et une action (prescription, r=C3=A9ali=
+sation, =E2=80=A6). Certaines de ces informations peuvent =C3=AAtre corrobo=
+r=C3=A9es par des informations structur=C3=A9es disponibles dans d=E2=80=99=
+autres parties du syst=C3=A8me d=E2=80=99information (base de donn=C3=A9es =
+de pi=C3=A8ces de rechange=E2=80=A6). Des documents peuvent ne contenir auc=
+une des informations recherch=C3=A9es alors que d=E2=80=99autres documents =
+peuvent en contenir plusieurs qu=E2=80=99il ne faudra pas m=C3=A9langer.</S=
+PAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;">De premiers d=C3=A9m=
+onstrateurs ont =C3=A9t=C3=A9 r=C3=A9alis=C3=A9s en 2017 (stage et d=C3=A9v=
+eloppement de chercheurs EDF R&amp;D) pour r=C3=A9pondre =C3=A0 un besoin m=
+=C3=A9tier et en exploitant des donn=C3=A9es textuelles de maintenance. La =
+cha=C3=AEne de traitement comporte notamment une phase de correction orthog=
+raphique, des d=C3=A9veloppements dans GATE (lexiques par cat=C3=A9gorie d=
+=E2=80=99actions, r=C3=A8gles JAPE, ontologies) pour l=E2=80=99annotation a=
+insi qu=E2=80=99une restitution sous forme structur=C3=A9e des donn=C3=A9es=
+ extraites. Les premiers r=C3=A9sultats ayant =C3=A9t=C3=A9 jug=C3=A9s pert=
+inents par le m=C3=A9tier, nous souhaitons continuer les travaux au-del=C3=
+=A0 du premier cas test, ce qui n=C3=A9cessite d=E2=80=99am=C3=A9liorer la =
+cha=C3=AEne de traitement.</SPAN></SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;"><S=
+PAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;"=
+ face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-sty=
+le=3D"font-size: medium;"></SPAN></SPAN></SPAN></B>&nbsp;</P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;"><S=
+PAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;"=
+ face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-sty=
+le=3D"font-size: medium;">OBJECTIF DE LA MISSION</SPAN></SPAN></SPAN></B></=
+P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;">L=E2=80=99objectif d=
+u stage est de proposer et de r=C3=A9aliser des am=C3=A9liorations sur la c=
+ha=C3=AEne de traitement (am=C3=A9lioration des d=C3=A9veloppements et de l=
+=E2=80=99ontologie, d=C3=A9veloppements compl=C3=A9mentaires) afin de contr=
+ibuer =C3=A0 am=C3=A9liorer les r=C3=A9sultats, =C3=A0 g=C3=A9n=C3=A9ralise=
+r =C3=A0 un p=C3=A9rim=C3=A8tre plus large et =C3=A0 compl=C3=A9ter la r=C3=
+=A9ponse au besoin d=E2=80=99analyse du retour d=E2=80=99exp=C3=A9rience.</=
+SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-st=
+yle=3D"font-family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: me=
+dium" size=3D"3" data-mce-style=3D"font-size: medium;">Avec des techniques =
+et outils de text mining TALN/analyse s=C3=A9mantique, le travail de stage =
+consiste =C3=A0 :</SPAN></SPAN></SPAN></P>
+<UL>
+<LI><SPAN style=3D"FONT-FAMILY: Symbol" data-mce-style=3D"font-family: Symb=
+ol;"></SPAN><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-fam=
+ily: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-=
+family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=
+=3D"3" data-mce-style=3D"font-size: medium;">Prendre connaissance de la cha=
+=C3=AEne de traitement, l=E2=80=99analyser et proposer des pistes d=E2=80=
+=99am=C3=A9lioration ;</SPAN></SPAN></SPAN></LI>
+<LI><SPAN style=3D"FONT-FAMILY: Symbol" data-mce-style=3D"font-family: Symb=
+ol;"></SPAN><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-fam=
+ily: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-=
+family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=
+=3D"3" data-mce-style=3D"font-size: medium;">Contribuer =C3=A0 la priorisat=
+ion des pistes d=E2=80=99am=C3=A9lioration avec les chercheurs EDF R&amp;D =
+;</SPAN></SPAN></SPAN></LI>
+<LI><SPAN style=3D"FONT-FAMILY: Symbol" data-mce-style=3D"font-family: Symb=
+ol;"></SPAN><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-fam=
+ily: ArialMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-=
+family: Calibri;" face=3D"Calibri"><SPAN style=3D"FONT-SIZE: medium" size=
+=3D"3" data-mce-style=3D"font-size: medium;">Concevoir, d=C3=A9velopper et =
+=C3=A9valuer des am=C3=A9liorations et compl=C3=A9ments dans la cha=C3=AEne=
+ de traitement ;</SPAN></SPAN></SPAN></LI>
+<LI><SPAN style=3D"FONT-FAMILY: Symbol" data-mce-style=3D"font-family: Symb=
+ol;"></SPAN><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=3D"font-fam=
+ily: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-mce-style=
+=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" data-mce-style=
+=3D"font-family: Calibri;" face=3D"Calibri">Positionner la solution mise en=
+ oeuvre dans l=E2=80=99=C3=A9tude vis-=C3=A0-vis des autres solutions d=C3=
+=A9j=C3=A0 mises en =C5=93uvre par EDF sur d=E2=80=99autres projets.</SPAN>=
+</SPAN></SPAN></LI></UL>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri">DEBUT : =C3=A0 parti=
+r du 2=C3=A8me trimestre 2018</SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri"></SPAN></SPAN></SPAN=
+>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri">DUREE : 6 mois (stag=
+e r=C3=A9mun=C3=A9r=C3=A9)</SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-SIZE: 14pt; FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-size: 14=
+pt; font-family: Arial-BoldMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri">Profil souhait=C3=A9</S=
+PAN></SPAN></B></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><B><SPAN style=3D"FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"fo=
+nt-family: Arial-BoldMT;"></SPAN></B></SPAN></SPAN>&nbsp;</P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN styl=
+e=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=3D=
+"Calibri"><B><SPAN style=3D"FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"fo=
+nt-family: Arial-BoldMT;">ETUDIANTS CONCERNES : </SPAN></B><SPAN style=3D"F=
+ONT-FAMILY: ArialMT" data-mce-style=3D"font-family: ArialMT;">MASTER, ou Fi=
+n d=E2=80=99=C3=A9tudes ing=C3=A9nieur.</SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-m=
+ce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri"><B><SPAN style=3D"FONT-=
+FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;"></SPAN>=
+</B></SPAN></SPAN>&nbsp;</P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" data-m=
+ce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri"><B><SPAN style=3D"FONT-=
+FAMILY: Arial-BoldMT" data-mce-style=3D"font-family: Arial-BoldMT;">COMPETE=
+NCES SOUHAITEES : </SPAN></B><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-=
+style=3D"font-family: ArialMT;">La r=C3=A9alisation de cette =C3=A9tude n=
+=C3=A9cessite des comp=C3=A9tences en mod=C3=A9lisation des connaissances, =
+en techniques de fouille de textes, en text-mining de type Traitement Autom=
+atique du Langage Naturel et d=E2=80=99Analyse S=C3=A9mantique, ainsi que d=
+es techniques et outils du web s=C3=A9mantique, notamment RDF.</SPAN></SPAN=
+></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><B><SPAN style=3D"=
+FONT-SIZE: 14pt; FONT-FAMILY: Arial-BoldMT" data-mce-style=3D"font-size: 14=
+pt; font-family: Arial-BoldMT;"><SPAN style=3D"FONT-FAMILY: Calibri" data-m=
+ce-style=3D"font-family: Calibri;" face=3D"Calibri">Information et candidat=
+ure</SPAN></SPAN></B></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri">En postulant sur cet=
+te offre sur le site internet edf recrute : </SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><A href=3D"https://www.edf.fr/edf-recrute/rejoignez=
+-nous/voir-les-offres/nos-offres" data-mce-href=3D"https://www.edf.fr/edf-r=
+ecrute/rejoignez-nous/voir-les-offres/nos-offres"><SPAN style=3D"FONT-FAMIL=
+Y: ArialMT" data-mce-style=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SI=
+ZE: medium; FONT-FAMILY: Calibri; COLOR: #0563c1" size=3D"3" data-mce-style=
+=3D"font-size: medium; font-family: Calibri; color: #0563c1;" face=3D"Calib=
+ri" color=3D"#0563c1">https://www.edf.fr/edf-recrute/rejoignez-nous/voir-le=
+s-offres/nos-offres</SPAN></SPAN></A><SPAN style=3D"FONT-FAMILY: ArialMT" d=
+ata-mce-style=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" s=
+ize=3D"3" data-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY:=
+ Calibri" data-mce-style=3D"font-family: Calibri;" face=3D"Calibri">&nbsp; =
+</SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri">La r=C3=A9f=C3=A9ren=
+ce de cette offre est : <B>ST-18-0018</B></SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium" size=3D"3" dat=
+a-mce-style=3D"font-size: medium;"><SPAN style=3D"FONT-FAMILY: Calibri" dat=
+a-mce-style=3D"font-family: Calibri;" face=3D"Calibri">Lien vers cette offr=
+e : </SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><A href=3D"https://www.edf.fr/edf-recrute/rejoignez=
+-nous/voir-les-offres/nos-offres?search%5bkeyword%5d=3DST-18-0018" data-mce=
+-href=3D"https://www.edf.fr/edf-recrute/rejoignez-nous/voir-les-offres/nos-=
+offres?search%5bkeyword%5d=3DST-18-0018"><SPAN style=3D"FONT-FAMILY: ArialM=
+T" data-mce-style=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: mediu=
+m; FONT-FAMILY: Calibri; COLOR: #0563c1" size=3D"3" data-mce-style=3D"font-=
+size: medium; font-family: Calibri; color: #0563c1;" face=3D"Calibri" color=
+=3D"#0563c1">https://www.edf.fr/edf-recrute/rejoignez-nous/voir-les-offres/=
+nos-offres?search[keyword]=3DST-18-0018</SPAN></SPAN></A><SPAN style=3D"FON=
+T-FAMILY: ArialMT" data-mce-style=3D"font-family: ArialMT;"><SPAN style=3D"=
+FONT-SIZE: medium" size=3D"3" data-mce-style=3D"font-size: medium;"><SPAN s=
+tyle=3D"FONT-FAMILY: Calibri" data-mce-style=3D"font-family: Calibri;" face=
+=3D"Calibri"> </SPAN></SPAN></SPAN></P>
+<P style=3D"TEXT-ALIGN: justify; MARGIN: 0px" data-mce-style=3D"text-align:=
+ justify; margin: 0px;"><SPAN style=3D"FONT-FAMILY: ArialMT" data-mce-style=
+=3D"font-family: ArialMT;"><SPAN style=3D"FONT-SIZE: medium; FONT-FAMILY: C=
+alibri" size=3D"3" data-mce-style=3D"font-size: medium; font-family: Calibr=
+i;" face=3D"Calibri">&nbsp;</SPAN></SPAN></P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri"></SPAN>&nbsp;</P>
+<P style=3D"MARGIN: 0px" data-mce-style=3D"margin: 0px;"><SPAN style=3D"FON=
+T-SIZE: medium; FONT-FAMILY: Calibri" size=3D"3" data-mce-style=3D"font-siz=
+e: medium; font-family: Calibri;" face=3D"Calibri">&nbsp;</SPAN></P></DIV>
+<DIV><SPAN name=3D"x"></SPAN><SPAN name=3D"x"></SPAN><BR></DIV>
+<DIV><BR></DIV></div></body></html>
+------=_Part_220876_1988945597.1515677123459--
+

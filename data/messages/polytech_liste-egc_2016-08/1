@@ -1,0 +1,1127 @@
+Return-Path: <hocine.cherifi@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 8BA7C190398F
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 Aug 2016 16:41:16 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 8C79326A4BE
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Thu,  4 Aug 2016 16:41:16 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 748294135415
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 Aug 2016 16:41:16 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.946
+X-Spam-Level: **
+X-Spam-Status: No, score=2.946 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001,
+	HTML_MESSAGE=0.001, MANGLED_STOP=2.3, SPF_PASS=-0.001,
+	SUBJ_ALL_CAPS=1.625, T_FRT_PROFILE2=0.01, UN_PHISHING_PW=0.1,
+	UN_STOCK3=4] autolearn=disabled
+X-CRM114-Status: GOOD ( 8.1797 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 3VyQ8ZKQ6IQ7 for <liste-egc@polytech.univ-nantes.fr>;
+	Thu,  4 Aug 2016 16:41:13 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x242.google.com (mail-wm0-x242.google.com [IPv6:2a00:1450:400c:c09::242])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 7DE8E423CEAC
+	for <liste-egc@polytech.univ-nantes.fr>; Thu,  4 Aug 2016 16:41:13 +0200 (CEST)
+Received: by mail-wm0-x242.google.com with SMTP id q128so45180363wma.1
+        for <liste-egc@polytech.univ-nantes.fr>; Thu, 04 Aug 2016 07:41:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Wx8yBs/yj+dbym6q+fUp4zJMkrsz8t7B7m7cUWjJ1AU=;
+        b=vFbXOM2YZgHp7TN2n278gnDjWnLuvOrC8sq/QR3BeGoiwOk9pVf3cU9mVP4Y6PJhy4
+         Kp3IEIJfsyCuA0lfzGH7OvGWEVNkdHmVMdqATA27dPBYR8rc/fQjJaXcn59Twcd63N0f
+         cOr73xFSapg0x9JGNEWjpVjScCpcxOc8pV/jUkNhZWgRAucNMKjBWAbEEKX02MTXvvwf
+         pOGnRfi+CNm1pcBjQwBrSW1PYangLtis0xRcOOY6u+QdHrm2Xb/KTe4an5sqUurVg+eA
+         ff6tfbAiMYCImrUhtkL8Z0UKcCuSGVaIH6NWR6AK12JylXJ00r4iqQYQkkE8X4YT4hAw
+         nE8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Wx8yBs/yj+dbym6q+fUp4zJMkrsz8t7B7m7cUWjJ1AU=;
+        b=UcX6Gg7+sPlcdSsq85K4+cbSM4POZ8+xEF2r/l6xsSGDGOklBRvT8VQWbTWp6hplwL
+         dD6Jl4uiXgpXUBg3kcAYZimMo3B7u6J/wYs60npnvxO1UVC1EFBLXulrBt1VSkXtUShX
+         5SPN72t0fIrFhY0vtNPj5QEqMmFKgJw1+NU/6SZ9ASumg81PyF62GkPGlKnuD7o+VYKG
+         wGuSbsphJg3E2QA+NtNzuXppqUcR6BXTc5m0sv5FYGwDGletTP54cZ2oLbyAeWkpU20i
+         cTdSCOpgVSoTNzxOsNZfi0HAlYkrkZpOdt2ICdck+FgZkmgIXy+6oHNPJUERHBCRX9aH
+         ZlrQ==
+X-Gm-Message-State: AEkoous4YKj3+ND3Ynmt3gnET6NFeFzd8czg6qEXG+2e24GxD98Vw/7/6m1qOnswvbI3m+ZAYVKcO8VLvD/Lfw==
+X-Received: by 10.194.7.100 with SMTP id i4mr74385204wja.154.1470321672641;
+ Thu, 04 Aug 2016 07:41:12 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.28.152.72 with HTTP; Thu, 4 Aug 2016 07:41:11 -0700 (PDT)
+From: Hocine Cherifi <hocine.cherifi@gmail.com>
+Date: Thu, 4 Aug 2016 16:41:11 +0200
+Message-ID: <CAFX-JVvUnD5ECxO4vEkK1iTW4XT=bgdYAQ2kRYCjbyqRK-oDcg@mail.gmail.com>
+To: cna2016@iutdijon.u-bourgogne.fr, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, SOCNET@lists.ufl.edu, 
+	tciin.isat@u-bourgogne.fr, tcbd@comsoc.org, 
+	"bull-i3@irit.fr" <bull-i3@irit.fr>
+Content-Type: multipart/alternative; boundary=047d7b5d49de00eb2305393ff187
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] COMPLEX NETWORKS 2016 MILAN KEYNOTES & TUTORIALS
+ PROGRAM
+
+--047d7b5d49de00eb2305393ff187
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+COMPLEX NETWORKS 2016 The 5th International Workshop on Complex Networks
+and their Applications MILAN November 30 =E2=80=93December 02, 2016
+http://complexnetworks.org/   Full papers and Extended abstracts submission
+are welcome Submission deadline: September 05, 2016
+
+*KEYNOTES  PROGRAM*
+
+
+
+
+*GUIDO CALDARELLI: Instability in financial networks*
+
+
+
+Following the financial crisis of 2007-2008, a deep analogy between the
+origins of instability in financial systems and in complex ecosystems has
+been pointed out: in both cases, topological features of network structures
+influence how easy it is for distress to spread within the system. However,
+in financial network models, the intricate details of how financial
+institutions interact typically play a decisive role. Hence, a general
+understanding of precisely how network topology creates instability remains
+lacking. Here we show how processes that are widely believed to stabilise
+the financial system, i.e.market integration and diversification, can
+actually drive it towards instability, as they contribute to create
+cyclical structures which tend to amplify financial distress, thereby
+undermining systemic stability and making large crises more likely. This
+result holds irrespective of the precise details of how institutions
+interact, and demonstrates that policy-relevant analysis of the factors
+affecting financial stability can be carried out while abstracting away
+from such details.
+
+
+
+*Guido Caldarelli** studied Statistical Physics, and he works in the field
+of Complex Networks. He got his degree in 1992 in Rome (La Sapienza), his
+PhD in 1996 in Trieste (SISSA). After Postdocs in Manchester and Cambridge
+he became firstly "Research Assistant" in INFM and secondly "Primo
+Ricercatore" at ISC-CNR where he is still working with many friends and
+colleagues. Presently he is Full Professor of Physics at IMT Lucca, and a
+LIMS Fellow. From November 15th 2015 he is the Vice-President of the
+Complex Systems Society.*
+
+
+
+
+
+
+
+*Raissa D'SOUZA : Steering and controlling systems of interdependent
+networks*
+
+
+
+Networks are at the core of modern society, spanning physical, biological
+and social systems. Each distinct network is typically a complex system,
+shaped by the collective action of individual agents and displaying
+emergent behaviors. Moreover, collections of these complex networks often
+interact and depend upon one another, which can lead to unanticipated
+consequences such as cascading failures and novel phase transitions. Simple
+mathematical models of networks can provide important insights into such
+phenomena. Here we will cover several such models, beginning with control
+of phase transitions in an individual network then moving on to modeling
+phenomena in coupled networks, including cascading failures and optimal
+interdependence.
+
+
+
+*Raissa D=E2=80=99Souza** is Professor of Computer Science and of Mechanica=
+l
+Engineering at the University of California, Davis, as well as an External
+Professor at the Santa Fe Institute. She received a PhD in Statistical
+Physics from MIT in 1999, then was a postdoctoral fellow at Bell
+Laboratories and at Microsoft Research. Her interdisciplinary work on
+network theory spans the fields of statistical physics, theoretical
+computer science and applied math, and has appeared in journals such as
+Science, PNAS, and Physical Review Letters. She serves on the editorial
+board of numerous international mathematics and physics journals, is a
+member of the World Economic Forum's Global Agenda Council on Complex
+Systems, and is the President of the Network Science Society.*
+
+
+
+
+
+*Renaud LAMBIOTTE: Burstiness and spreading on networks: models and
+predictions*
+
+
+
+When modelling dynamical systems on networks, it is often assumed that the
+process is Markovian, that is future states depend only upon the present
+state and not on the sequence of events that preceded it. Examples include
+diffusion of ideas or diseases on social networks, or synchronisation of
+interacting dynamical units. In each case, the dynamics is governed by
+coupled differential equation, where the coupling is defined by the
+adjacency matrix of the underlying network. The main purpose of this talk
+is to challenge this Markovian picture. We will argue that non-Markovian
+models can provide a more realistic picture in the case of temporal
+networks where edges change in time, or in situations when pathways can be
+measured empirically. We will focus on the importance of non-Poisson
+temporal statistics, and show analytically the impact of burstiness on
+diffusive dynamics, before turning to applications and incorporating memory
+kernels in predictive models of retweet dynamics.
+
+
+*After a PhD in Physics at ULB, and Post-docs at ULg, UCLouvain and
+Imperial College, he is currently associate professor in the Department of
+Mathematics of the University of Namur. His recent research includes the
+development of algorithms to uncover information in large-scale networks,
+the study of empirical data in social and biological systems, and the
+mathematical modelling of human mobility and diffusion on networks. He has
+authored more than 60 publications in peer-reviewed journals and conference
+proceedings, with around 5000 citations (Google Citations). He also acts as
+an academic editor for PLoS One and the European Physical Journal B.*
+
+
+
+*Yamir MORENO: On the structure and dynamics of multilayer networks
+<http://complexnetworks.org/#collapse6>*
+
+
+
+The availability of highly detailed data of real-world systems have allowed
+to study systems that are made up of multiple layers. In this talk, we will
+revise recent advances on the topic of multilayer networked systems. First,
+we will discuss how to represent these networks and what kind of metrics
+are needed to capture the new topological complexity arising from the
+interdependency of the layers. Secondly, we will also study contagion
+processes on these topologies and present results regarding the interplay
+between the critical properties of the system and its structural scales. To
+summarize, we will discuss possible future directions in this new, but very
+active field of research
+
+*Prof. Yamir Moreno** is the head of the Complex Systems and Networks Lab
+(COSNET) since 2003 and is also affiliated to the Department of Theoretical
+Physics of the Faculty of Sciences, University of Zaragoza. He is the
+Deputy Director of the Institute for Bio-computation and Physics of Complex
+Systems (BIFI) and member of its Government Board and Steering Committee.
+He has been working on nonlinear dynamical systems coupled to complex
+structures, transport processes and diffusion with applications in
+communication and technological networks, dynamics of virus and rumors
+propagation, game theory, systems biology, the study of more complex and
+realistic scenarios for the modeling of infectious diseases,
+synchronization phenomena, the emergence of collective behaviors in
+biological and social environments, the development of new optimization
+data algorithms and the structure and dynamics of socio-technicaland
+biological systems. He has published more than 145 scientific papers in
+international refereed journals and he serves as reviewer for around 30
+scientific journals and research agencies. His research works have
+collected more than 9300 citations (h=3D39). At present, he is a member of
+the Editorial Board of Scientific Reports, Applied Network Science and
+Journal of Complex Networks, and Academic Editor of PLoS ONE. Prof. Moreno
+is the elected President of the Complex Systems Society (CSS) and also
+belongs to its Executive Committee and Council. He is also the
+Vice-President of the Network Science Society and a member of the Future
+and Emerging Technology Advisory Group of the European Union=E2=80=99s Rese=
+arch
+Program: H2020. Besides, he belongs the Advisory Board of the WHO
+Collaborative Center =E2=80=9CComplexity Sciences for Health Systems=E2=80=
+=9D (CS4HS),
+whose headquarters is at the University of British Columbia Centre for
+Disease Control, in Vancouver, Canada. He is a Fellow of the Institute for
+Scientific Interchange Foundation (ISI), Turin, Italy since 2013.*
+
+
+Eiko Yoneki: Efficient Large-Scale Graph Processing
+
+
+
+The emergence of big data requires fundamental new methodology for data
+analysis, processing, and information extraction. The main challenge here
+is to perform efficient and robust data processing, while adapting to the
+underlying resource availability in a dynamic, large-scale computing
+environment. I would introduce our recent work on the graph processing that
+have billion-scale of vertices and edges in a commodity single computer,
+which requires secondary storage as external memory. Executing algorithms
+results in access to such secondary storage and performance of I/O takes an
+important role, regardless of the algorithmic complexity or runtime
+efficiency of the actual algorithm in use.
+
+
+
+*Eiko Yoneki** is a Research Fellow in the Systems Research Group of the
+University of Cambridge Computer Laboratory. She leads a group called =E2=
+=80=98data
+centric systems and networking=E2=80=99, where current research focuses on =
+the
+exploration of new abstractions for supporting the design and
+implementation of robust and heterogeneous large-scale data processing.
+More information can be found at **http://www.cl.cam.ac.uk/~ey204/
+<http://www.cl.cam.ac.uk/~ey204/>**.*
+
+
+Ben Y. Zhao: TBD
+
+
+
+*Ben Zhao is a Professor at the Computer Science department, U. C. Santa
+Barbara. He completed his M.S. and Ph.D. degrees in Computer Science at
+U.C. Berkeley (2000, 2004), and his B.S. from Yale (1997). He is a
+recipient of the National Science Foundation's CAREER award, MIT Technology
+Review's TR-35 Award (Young Innovators Under 35), ComputerWorld
+Magazine's* *Top
+40 Technology Innovators award, Google Faculty awards, the IEEE ITC Early
+Career Award, and an ACM Distinguished Scientist. His work has been covered
+by media outlets such as New York Times, Boston Globe, MIT Tech Review, and
+Slashdot. He has published over 120 publications in areas of security and
+privacy, networked and distributed systems, wireless networks,
+data-intensive computing and HCI, with more than 20,000 citations (H-index
+51). Finally, he has chaired a number of conferences (WOSN, WWW OSN track,
+IPTPS, IEEE P2P), and the upcoming World Wide Web Conference (WWW 2016). He
+is a co-founder and on the steering committee of the ACM Conference on
+Online Social Networks (COSN).*COSN).
+
+
+
+
+
+
+
+
+*TUTORIALS : NOVEMBER 29, 2016*
+
+
+
+*ERNESTO ESTRADA: Consensus dynamics on networks. Theory and applications*
+
+
+
+Consensus is well documented across the social sciences, with examples
+ranging from behavioral flocking in popular cultural styles, emotional
+contagion, collective decision making, pedestrians=E2=80=99 walking behavio=
+r, and
+others. We can model consensus in a social group by encoding the state of
+each individual at a given time in a vector. The group reaches consensus at
+when the difference in the =E2=80=9Copinions=E2=80=9D for every pair of ind=
+ividuals is
+asymptotically zero, and the collective dynamics of the system is modeled
+by a diffusion equation dominated by the graph Laplacian. Decisions in
+groups trying to reach consensus are frequently influenced by a small
+proportion of the group who guides or dictates the behavior of the entire
+network. In this situation a group of leaders indicates and/or initiates
+the route to the consensus, and the rest of the group readily follows their
+attitudes. The study of leadership in social groups has always intrigued
+researchers in the social and behavioral sciences. Specifically, the way in
+which leaders emerge in social groups is not well understood. Leaders may
+emerge either randomly in response to particular historical circumstances
+or from the individual having the most prominent position (centrality) in
+the social network at any time. In this tutorial I will introduce the
+theoretical model of consensus in a network, for the general case of
+undirected as well as directed ones. First, I will introduce the
+mathematical concepts of the model, and show when in every case there is a
+consensus in the network. I will also introduce some properties of the
+Laplacian matrix for networks that will help to understand the main results
+of the model. Then, I will introduce a controllability problem and its
+solution in networks consisting of leaders and followers. Following this
+initial part I will how to use Matlab to model a consensus process in a
+given network (codes will be provided to participants). At this point I
+will motive the necessity of considering the indirect influence of peers
+apart from the direct peers pressure. In mathematical terms I will make a
+generalization of the Laplacian matrix on graphs to consider the k-path
+Laplacians and their transform. Using this transformed k-path Laplacians I
+will show how to study a few interesting topics on networks, such as the
+controllability of networks, the selection of leaders, the diffusion of
+innovations under direct+indirect peers pressure. Finally, I will prove and
+illustrate how the consensus and diffusion of innovations can be
+superdiffusive or ballistic in complex networks under the effect of direct
+and indirect peers pressure. Some examples, such as diffusion of methods
+among high schools or the adoption of a biotechnological product among
+farmers will be used in the tutorial.
+
+
+
+*Professor Estrada* has an internationally leading reputation for shaping
+and developing the study of complex networks. His expertise ranges in the
+areas of network structure, algebraic network theory, dynamical systems on
+networks and the study of random models of networks. He has a distinguished
+track record of high-quality publications, which has attracted more than 8,
+500 citations. His h-index (number of papers with at least h citations) is
+53. His publications are in the areas of network theory and its
+applications to social, ecological, engineering, physical, chemical and
+biological real-world problems. Professor Estrada has published two text
+books on network sciences both published by Oxford University Press in 2011
+and 2015, respectively. He has demonstrated a continuous international
+leadership in his field where he has been invited and plenary speaker at
+the major conferences in network sciences and applied mathematics. His
+research interests include the use of matrix functions; random geometric
+networks; generalised Laplacian operators for networks; generalised
+diffusion models for networks; study of indirect peer pressure over
+consensus dynamics on networks; applications of network sciences to oil and
+gas exploration; spatial efficiency of networks; Euclidean geometrical
+embedding of networks, among many others.
+
+
+
+
+
+*Bruno GONCALVES: A practical introduction to Machine Learning (with
+Python)*
+
+
+
+The data deluge we currently witnessing presents both opportunities and
+challenges. Never before have so many aspects of our world been so
+thoroughly quantified as now and never before has data been so plentiful.
+On the other hand, the complexity of the analyses required to extract
+useful information from these piles of data is also rapidly increasing
+rendering more traditional and simpler approaches simply unfeasible or
+unable to provide new insights.
+
+
+In this tutorial we provide a practical introduction to some of the most
+important algorithms of machine learning that are relevant to the field of
+Complex Networks in general, with a particular emphasis on the analysis and
+modeling of empirical data. The goal is to provide the fundamental concepts
+necessary to make sense of the more sophisticated data analysis approaches
+that are currently appearing in the literature and to provide a field guide
+to the advantages an disadvantages of each algorithm.
+In particular, we will cover unsupervised learning algorithms such as
+K-means, Expectation-Maximization, and supervised ones like Support Vector
+Machines, Neural Networks and Deep Learning. Participants are expected to
+have a basic understanding of calculus and linear algebra as well as
+working proficiency with the Python programming language.
+
+
+
+*Bruno Gonc=CC=A7alves** is a Data Science fellow at NYU's Center for Data
+Science while on leave from a tenured faculty position at Aix-Marseille
+Universit=C3=A9. He has a strong expertise in using large scale datasets fo=
+r the
+analysis of human behavior. After completing his joint PhD in Physics, MSc
+in C.S. at Emory University in Atlanta, GA in 2008 he joined the Center for
+Complex Networks and Systems Research at Indiana University as a Research
+Associate. From September 2011 until August 2012 he was an Associate
+Research Scientist at the Laboratory for the Modeling of Biological and
+Technical Systems at Northeastern University. Since 2008 he has been
+pursuing the use of Data Science and Machine Learning to study human
+behavior. By processing and analyzing large datasets from Twitter,
+Wikipedia, web access logs, and Yahoo! Meme he studied how we can observe
+both large scale and individual human behavior in an obtrusive and
+widespread manner. The main applications have been to the study of
+Computational Linguistics, Information Diffusion, Behavioral Change and
+Epidemic Spreading. He is the author of 60+ publications with over 3800+
+Google Scholar citations and an h-index of 26. In 2015 he was awarded the
+Complex Systems Society's 2015 Junior Scientific Award for "outstanding
+contributions in Complex Systems Science" and he is the editor of the book
+Social Phenomena: From Data Analysis to Models (Springer, 2015).*
+
+
+
+
+
+
+
+
+
+
+*Join us at *:  COMPLEX NETWORKS 2016 Milan <http://complexnetworks.org/>
+
+*Publish your work on:* Applied Network Science
+<http://www.springer.com/physics/complexity/journal/41109>
+*re**ad:
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>*Complex
+Networks & their Applications
+<http://www.cambridgescholars.com/complex-networks-and-their-applications-9=
+>
+***********************************************
+*   Pr Hocine CHERIFI                             *
+*          LE2I   UMR CNRS 6306              *
+*   Facult=C3=A9 des Sciences Mirande            *
+*    9 , avenue Alain Savary                     *
+*    BP 47870                                           *
+*    21078 DIJON    FRANCE                  *
+**********************************************
+
+--047d7b5d49de00eb2305393ff187
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+
+
+
+
+
+
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"517" style=
+=3D"border-collapse:collapse;width:517pt">
+
+ <colgroup><col width=3D"287" style=3D"width:287pt">
+ <col width=3D"230" style=3D"width:230pt">
+ </colgroup><tbody><tr height=3D"14" style=3D"height:14pt">
+  <td height=3D"14" width=3D"287" style=3D"height:14pt;width:287pt">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 align=3D"center" style=3D"margin:15pt 0cm 7.5pt;text-align:center"><spa=
+n lang=3D"EN-US" style=3D"font-size:28pt;font-family:&#39;Helvetica Neue&#3=
+9;;color:windowtext;text-transform:uppercase;letter-spacing:0.75pt">COMPLEX
+NETWORKS 2016</span></h2>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:13.5pt;font-family:&#39;Helvetica Neue&#39;;=
+letter-spacing:0.75pt">The 5th International Workshop on Complex Networks a=
+nd
+their Applications</span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:13.5pt;font-family:&#39;Helvetica Neue&#39;;=
+letter-spacing:0.75pt">MILAN </span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:13.5pt;font-family:&#39;Helvetica Neue&#39;;=
+letter-spacing:0.75pt">November 30 =E2=80=93December 02, 2016</span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-family:&#39;Helvetica Neue&#39;;letter-spacing:0.=
+75pt"><a href=3D"http://complexnetworks.org/">http://complexnetworks.org/</=
+a></span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-family:&#39;Helvetica Neue&#39;;letter-spacing:0.=
+75pt">=C2=A0</span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-family:&#39;Helvetica Neue&#39;;letter-spacing:0.=
+75pt">Full papers and
+Extended abstracts submission are welcome </span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-family:&#39;Helvetica Neue&#39;;letter-spacing:0.=
+75pt">Submission
+deadline: September 05, 2016</span></h4>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:13.5pt;font-family:&#39;Helvetica Neue&#39;;=
+letter-spacing:0.75pt">=C2=A0</span></h4>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n lang=3D"EN-GB" style=3D"font-size:20pt;font-family:&#39;Helvetica Neue&#3=
+9;">KEYNOTES =C2=A0PROGRAM</span></b></p>
+
+<h4 align=3D"center" style=3D"margin:7.5pt 0cm;text-align:center"><span lan=
+g=3D"EN-GB" style=3D"font-size:13.5pt;font-family:&#39;Helvetica Neue&#39;;=
+letter-spacing:0.75pt">=C2=A0</span></h4>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Times;color:red;letter-spacing:1pt">GUIDO CALDARELLI: Instability i=
+n financial
+networks</span></b></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Following
+the financial crisis of 2007-2008, a deep analogy between the origins of
+instability in financial systems and in complex ecosystems has been pointed
+out: in both cases, topological features of network structures influence ho=
+w
+easy it is for distress to spread within the system. However, in financial
+network models, the intricate details of how financial institutions interac=
+t
+typically play a decisive role. Hence, a general understanding of precisely=
+ how
+network topology creates instability remains lacking. Here we show how
+processes that are widely believed to stabilise the financial system,
+i.e.market integration and diversification, can actually drive it towards
+instability, as they contribute to create cyclical structures which tend to
+amplify financial distress, thereby undermining systemic stability and maki=
+ng
+large crises more likely. This result holds irrespective of the precise det=
+ails
+of how institutions interact, and demonstrates that policy-relevant analysi=
+s of
+the factors affecting financial stability can be carried out while abstract=
+ing
+away from such details.</span></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><b><i><span style=3D"fo=
+nt-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Guido
+Caldarelli</span></i></b><i><span style=3D"font-size:10.5pt;font-family:&#3=
+9;Helvetica Neue&#39;"> studied
+Statistical Physics, and he works in the field of Complex Networks. He got =
+his
+degree in 1992 in Rome (La Sapienza), his PhD in 1996 in Trieste (SISSA). A=
+fter
+Postdocs in Manchester and Cambridge he became firstly &quot;Research
+Assistant&quot; in INFM and secondly &quot;Primo Ricercatore&quot; at ISC-C=
+NR
+where he is still working with many friends and colleagues. Presently he is
+Full Professor of Physics at IMT Lucca, and a LIMS Fellow. From November 15=
+th
+2015 he is the Vice-President of the Complex Systems Society.</span></i><i>=
+<span style=3D"font-family:Times"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</span>=
+</p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"font-size:12pt;font=
+-family:Times;color:red">=C2=A0</span></b></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Times;color:red">Raissa
+D&#39;SOUZA : Steering and controlling systems of interdependent networks</=
+span></b><b><span lang=3D"EN-US" style=3D"font-size:12pt;font-family:Times;=
+color:red;letter-spacing:1pt"></span></b></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Times;letter-spacing:1pt">=C2=A0</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Networks
+are at the core of modern society, spanning physical, biological and social
+systems. Each distinct network is typically a complex system, shaped by the
+collective action of individual agents and displaying emergent behaviors.
+Moreover, collections of these complex networks often interact and depend u=
+pon
+one another, which can lead to unanticipated consequences such as cascading
+failures and novel phase transitions. Simple mathematical models of network=
+s
+can provide important insights into such phenomena. Here we will cover seve=
+ral
+such models, beginning with control of phase transitions in an individual
+network then moving on to modeling phenomena in coupled networks, including
+cascading failures and optimal interdependence.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</span>=
+</p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><b><i><span style=3D"fo=
+nt-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Raissa
+D=E2=80=99Souza</span></i></b><i><span style=3D"font-size:10.5pt;font-famil=
+y:&#39;Helvetica Neue&#39;"> is
+Professor of Computer Science and of Mechanical Engineering at the Universi=
+ty
+of California, Davis, as well as an External Professor at the Santa Fe
+Institute. She received a PhD in Statistical Physics from MIT in 1999, then=
+ was
+a postdoctoral fellow at Bell Laboratories and at Microsoft Research. Her
+interdisciplinary work on network theory spans the fields of statistical
+physics, theoretical computer science and applied math, and has appeared in
+journals such as Science, PNAS, and Physical Review Letters. She serves on =
+the
+editorial board of numerous international mathematics and physics journals,=
+ is
+a member of the World Economic Forum&#39;s Global Agenda Council on Complex
+Systems, and is the President of the Network Science Society.</span></i><i>=
+<span style=3D"font-family:Times"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span lang=3D"EN-GB"=
+ style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</sp=
+an></i></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Times;color:red;letter-spacing:1pt">Renaud LAMBIOTTE: Burstiness an=
+d spreading on
+networks: models and predictions</span></b></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:15pt"><span =
+lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#3=
+9;">When modelling dynamical systems on
+networks, it is often assumed that the process is Markovian, that is future
+states depend only upon the present state and not on the sequence of events
+that preceded it. Examples include diffusion of ideas or diseases on social
+networks, or synchronisation of interacting dynamical units. In each case, =
+the
+dynamics is governed by coupled differential equation, where the coupling i=
+s
+defined by the adjacency matrix of the underlying network. The main purpose=
+ of
+this talk is to challenge this Markovian picture. We will argue that
+non-Markovian models can provide a more realistic picture in the case of
+temporal networks where edges change in time, or in situations when pathway=
+s
+can be measured empirically. We will focus on the importance of non-Poisson
+temporal statistics, and show analytically the impact of burstiness on
+diffusive dynamics, before turning to applications and incorporating memory
+kernels in predictive models of retweet dynamics.</span></p>
+
+<h4 style=3D"margin:0cm 0cm 0.0001pt"><span lang=3D"EN-GB" style=3D"font-fa=
+mily:&#39;Helvetica Neue&#39;;letter-spacing:0.75pt">=C2=A0</span></h4>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:15pt"><i><sp=
+an lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue=
+&#39;">After a PhD in Physics at ULB, and Post-docs at ULg,
+UCLouvain and Imperial College, he is currently associate professor in the
+Department of Mathematics of the University of Namur. His recent research
+includes the development of algorithms to uncover information in large-scal=
+e
+networks, the study of empirical data in social and biological systems, and=
+ the
+mathematical modelling of human mobility and diffusion on networks. He has
+authored more than 60 publications in peer-reviewed journals and conference
+proceedings, with around 5000 citations (Google Citations). He also acts as=
+ an
+academic editor for PLoS One and the European Physical Journal B.</span></i=
+></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:12pt;font=
+-family:Times;color:red">Yamir
+MORENO: <a href=3D"http://complexnetworks.org/#collapse6"><span style=3D"co=
+lor:red;text-decoration:none">On the structure and dynamics of
+multilayer networks</span></a></span></b></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&#39;Hel=
+vetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;Helvetica Neue&#39;">The
+availability of highly detailed data of real-world systems have allowed to
+study systems that are made up of multiple layers. In this talk, we will re=
+vise
+recent advances on the topic of multilayer networked systems. First, we wil=
+l
+discuss how to represent these networks and what kind of metrics are needed=
+ to
+capture the new topological complexity arising from the interdependency of =
+the
+layers. Secondly, we will also study contagion processes on these topologie=
+s
+and present results regarding the interplay between the critical properties=
+ of
+the system and its structural scales. To summarize, we will discuss possibl=
+e
+future directions in this new, but very active field of research</span><spa=
+n lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&=
+#39;"></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:15pt"><b><i>=
+<span lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica N=
+eue&#39;">Prof. Yamir Moreno</span></i></b><i><span lang=3D"EN-US" style=3D=
+"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;"> is the
+head of the Complex Systems and Networks Lab (COSNET) since 2003 and is als=
+o
+affiliated to the Department of Theoretical Physics of the Faculty of Scien=
+ces,
+University of Zaragoza. He is the Deputy Director of the Institute for
+Bio-computation and Physics of Complex Systems (BIFI) and member of its
+Government Board and Steering Committee. He has been working on nonlinear
+dynamical systems coupled to complex structures, transport processes and
+diffusion with applications in communication and technological networks,
+dynamics of virus and rumors propagation, game theory, systems biology, the
+study of more complex and realistic scenarios for the modeling of infectiou=
+s
+diseases, synchronization phenomena, the emergence of collective behaviors =
+in
+biological and social environments, the development of new optimization dat=
+a
+algorithms and the structure and dynamics of socio-technicaland biological
+systems. He has published more than 145 scientific papers in international
+refereed journals and he serves as reviewer for around 30 scientific journa=
+ls
+and research agencies. His research works have collected more than 9300
+citations (h=3D39). At present, he is a member of the Editorial Board of
+Scientific Reports, Applied Network Science and Journal of Complex Networks=
+,
+and Academic Editor of PLoS ONE. Prof. Moreno is the elected President of t=
+he
+Complex Systems Society (CSS) and also belongs to its Executive Committee a=
+nd
+Council. He is also the Vice-President of the Network Science Society and a
+member of the Future and Emerging Technology Advisory Group of the European
+Union=E2=80=99s Research Program: H2020. Besides, he belongs the Advisory B=
+oard of the
+WHO Collaborative Center =E2=80=9CComplexity Sciences for Health Systems=E2=
+=80=9D (CS4HS),
+whose headquarters is at the University of British Columbia Centre for Dise=
+ase
+Control, in Vancouver, Canada. He is a Fellow of the Institute for Scientif=
+ic
+Interchange Foundation (ISI), Turin, Italy since 2013.</span></i></p>
+
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-=
+family:&#39;Helvetica Neue&#39;;color:red">=C2=A0</span></p>
+
+<h4 style=3D"margin:0cm 0cm 0.0001pt"><span lang=3D"EN-GB" style=3D"font-fa=
+mily:&#39;Helvetica Neue&#39;;color:red;letter-spacing:0.75pt">Eiko Yoneki:=
+ Efficient Large-Scale Graph Processing</span></h4>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span style=3D"font-siz=
+e:10.5pt;font-family:&#39;Helvetica Neue&#39;">The
+emergence of big data requires fundamental new methodology for data analysi=
+s,
+processing, and information extraction. The main challenge here is to perfo=
+rm
+efficient and robust data processing, while adapting to the underlying reso=
+urce
+availability in a dynamic, large-scale computing environment. I would intro=
+duce
+our recent work on the graph processing that have billion-scale of vertices=
+ and
+edges in a commodity single computer, which requires secondary storage as
+external memory. Executing algorithms results in access to such secondary
+storage and performance of I/O takes an important role, regardless of the
+algorithmic complexity or runtime efficiency of the actual algorithm in use=
+.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><b><i><span lang=3D"EN-=
+US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Eiko Yo=
+neki</span></i></b><i><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-f=
+amily:&#39;Helvetica Neue&#39;"> is a Research Fellow in the Systems
+Research Group of the University of Cambridge Computer Laboratory. She lead=
+s a
+group called =E2=80=98data centric systems and networking=E2=80=99, where c=
+urrent research
+focuses on the exploration of new abstractions for supporting the design an=
+d
+implementation of robust and heterogeneous large-scale data processing. Mor=
+e
+information can be found at<span class=3D"">=C2=A0</span></span></i><i><spa=
+n lang=3D"EN-US"><a href=3D"http://www.cl.cam.ac.uk/~ey204/"><span style=3D=
+"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">http://www.cl.cam.a=
+c.uk/~ey204/</span></a></span></i><i><span lang=3D"EN-US" style=3D"font-siz=
+e:10.5pt;font-family:&#39;Helvetica Neue&#39;">.</span></i><i><span lang=3D=
+"EN-US"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span style=3D"font-=
+family:Times">=C2=A0</span></i></p>
+
+<h4 style=3D"margin:0cm 0cm 0.0001pt"><span lang=3D"EN-GB" style=3D"font-fa=
+mily:&#39;Helvetica Neue&#39;;color:red;letter-spacing:0.75pt">Ben Y. Zhao:=
+ TBD</span></h4>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:15pt"><i><sp=
+an lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue=
+&#39;">=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify;line-height:15pt"><i><sp=
+an lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue=
+&#39;">Ben Zhao is a Professor at the Computer Science department,
+U. C. Santa Barbara. He completed his M.S. and Ph.D. degrees in Computer
+Science at U.C. Berkeley (2000, 2004), and his B.S. from Yale (1997). He is=
+ a
+recipient of the National Science Foundation&#39;s CAREER award, MIT Techno=
+logy
+Review&#39;s TR-35 Award (Young Innovators Under 35), ComputerWorld Magazin=
+e&#39;s</span></i><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-famil=
+y:&#39;Helvetica Neue&#39;;color:white"> </span><i><span lang=3D"EN-US" sty=
+le=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Top 40 Technol=
+ogy Innovators award, Google Faculty awards,
+the IEEE ITC Early Career Award, and an ACM Distinguished Scientist. His wo=
+rk
+has been covered by media outlets such as New York Times, Boston Globe, MIT
+Tech Review, and Slashdot. He has published over 120 publications in areas =
+of
+security and privacy, networked and distributed systems, wireless networks,
+data-intensive computing and HCI, with more than 20,000 citations (H-index =
+51).
+Finally, he has chaired a number of conferences (WOSN, WWW OSN track, IPTPS=
+,
+IEEE P2P), and the upcoming World Wide Web Conference (WWW 2016). He is a
+co-founder and on the steering committee of the ACM Conference on Online So=
+cial
+Networks (COSN).</span></i><span lang=3D"EN-US" style=3D"font-size:10.5pt;f=
+ont-family:&#39;Helvetica Neue&#39;;color:white">COSN).</span></p>
+
+<h4 style=3D"margin:0cm 0cm 0.0001pt;text-align:justify"><i><span lang=3D"E=
+N-GB" style=3D"font-family:&#39;Helvetica Neue&#39;;letter-spacing:0.75pt">=
+=C2=A0</span></i></h4>
+
+<p class=3D"MsoNormal"><i><span lang=3D"EN-GB" style=3D"font-size:10.5pt;fo=
+nt-family:&#39;Helvetica Neue&#39;">=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal"><i><span lang=3D"EN-GB" style=3D"font-size:10.5pt;fo=
+nt-family:&#39;Helvetica Neue&#39;">=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal"><i><span lang=3D"EN-GB" style=3D"font-size:10.5pt;fo=
+nt-family:&#39;Helvetica Neue&#39;">=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n lang=3D"EN-GB" style=3D"font-size:20pt;font-family:&#39;Helvetica Neue&#3=
+9;">TUTORIALS : NOVEMBER 29,
+2016</span></b></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"font-size:12pt;font=
+-family:&#39;Helvetica Neue&#39;;color:white;letter-spacing:0.75pt">=C2=A0<=
+/span></b></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"font-size:12pt;font=
+-family:&#39;Helvetica Neue&#39;;color:red;letter-spacing:0.75pt">ERNESTO E=
+STRADA: Consensus dynamics on networks.
+Theory and applications</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-family:Times">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Consensus
+is well documented across the social sciences, with examples ranging from
+behavioral flocking in popular cultural styles, emotional contagion, collec=
+tive
+decision making, pedestrians=E2=80=99 walking behavior, and others. We can =
+model
+consensus in a social group by encoding the state of each individual at a g=
+iven
+time in a vector. The group reaches consensus at when the difference in the
+=E2=80=9Copinions=E2=80=9D for every pair of individuals is asymptotically =
+zero, and the
+collective dynamics of the system is modeled by a diffusion equation domina=
+ted
+by the graph Laplacian. Decisions in groups trying to reach consensus are
+frequently influenced by a small proportion of the group who guides or dict=
+ates
+the behavior of the entire network. In this situation a group of leaders
+indicates and/or initiates the route to the consensus, and the rest of the
+group readily follows their attitudes. The study of leadership in social gr=
+oups
+has always intrigued researchers in the social and behavioral sciences.
+Specifically, the way in which leaders emerge in social groups is not well
+understood. Leaders may emerge either randomly in response to particular
+historical circumstances or from the individual having the most prominent
+position (centrality) in the social network at any time. In this tutorial I
+will introduce the theoretical model of consensus in a network, for the gen=
+eral
+case of undirected as well as directed ones. First, I will introduce the
+mathematical concepts of the model, and show when in every case there is a
+consensus in the network. I will also introduce some properties of the
+Laplacian matrix for networks that will help to understand the main results=
+ of
+the model. Then, I will introduce a controllability problem and its solutio=
+n in
+networks consisting of leaders and followers. Following this initial part I
+will how to use Matlab to model a consensus process in a given network (cod=
+es
+will be provided to participants). At this point I will motive the necessit=
+y of
+considering the indirect influence of peers apart from the direct peers
+pressure. In mathematical terms I will make a generalization of the Laplaci=
+an
+matrix on graphs to consider the k-path Laplacians and their transform. Usi=
+ng
+this transformed k-path Laplacians I will show how to study a few interesti=
+ng
+topics on networks, such as the controllability of networks, the selection =
+of
+leaders, the diffusion of innovations under direct+indirect peers pressure.
+Finally, I will prove and illustrate how the consensus and diffusion of
+innovations can be superdiffusive or ballistic in complex networks under th=
+e
+effect of direct and indirect peers pressure. Some examples, such as diffus=
+ion
+of methods among high schools or the adoption of a biotechnological product
+among farmers will be used in the tutorial.</span><span lang=3D"EN-GB" styl=
+e=3D"font-family:Times"></span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-family:Times">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><b><span lang=3D"EN-GB"=
+ style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Professor =
+Estrada</span></b><span lang=3D"EN-GB" style=3D"font-size:10.5pt;font-famil=
+y:&#39;Helvetica Neue&#39;"> has an
+internationally leading reputation for shaping and developing the study of
+complex networks. His expertise ranges in the areas of network structure,
+algebraic network theory, dynamical systems on networks and the study of ra=
+ndom
+models of networks. He has a distinguished track record of high-quality
+publications, which has attracted more than 8, 500 citations. His h-index
+(number of papers with at least h citations) is 53. His publications are in=
+ the
+areas of network theory and its applications to social, ecological,
+engineering, physical, chemical and biological real-world problems. Profess=
+or
+Estrada has published two text books on network sciences both published by
+Oxford University Press in 2011 and 2015, respectively. He has demonstrated=
+ a
+continuous international leadership in his field where he has been invited =
+and
+plenary speaker at the major conferences in network sciences and applied
+mathematics. His research interests include the use of matrix functions; ra=
+ndom
+geometric networks; generalised Laplacian operators for networks; generalis=
+ed
+diffusion models for networks; study of indirect peer pressure over consens=
+us
+dynamics on networks; applications of network sciences to oil and gas
+exploration; spatial efficiency of networks; Euclidean geometrical embeddin=
+g of
+networks, among many others.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-US">=
+=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-US">=
+=C2=A0</span></p>
+
+<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"font-size:12pt;font=
+-family:&#39;Helvetica Neue&#39;;color:red;letter-spacing:0.75pt">Bruno GON=
+CALVES: A practical introduction to
+Machine Learning (with Python)</span></b></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-US" st=
+yle=3D"color:red">=C2=A0</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">The data
+deluge we currently witnessing presents both opportunities and challenges.
+Never before have so many aspects of our world been so thoroughly quantifie=
+d as
+now and never before has data been so plentiful. On the other hand, the
+complexity of the analyses required to extract useful information from thes=
+e
+piles of data is also rapidly increasing rendering more traditional and sim=
+pler
+approaches simply unfeasible or unable to provide new insights.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><span lang=3D"EN-GB" st=
+yle=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;"><br>
+In this tutorial we provide a practical introduction to some of the most
+important algorithms of machine learning that are relevant to the field of
+Complex Networks in general, with a particular emphasis on the analysis and
+modeling of empirical data. The goal is to provide the fundamental concepts
+necessary to make sense of the more sophisticated data analysis approaches =
+that
+are currently appearing in the literature and to provide a field guide to t=
+he
+advantages an disadvantages of each algorithm.<br>
+In particular, we will cover unsupervised learning algorithms such as K-mea=
+ns,
+Expectation-Maximization, and supervised ones like Support Vector Machines,
+Neural Networks and Deep Learning. Participants are expected to have a basi=
+c
+understanding of calculus and linear algebra as well as working proficiency
+with the Python programming language.</span></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span lang=3D"EN-GB"=
+ style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</sp=
+an></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><b><i><span lang=3D"EN-=
+GB" style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">Bruno
+Gonc=CC=A7alves</span></i></b><i><span lang=3D"EN-GB" style=3D"font-size:10=
+.5pt;font-family:&#39;Helvetica Neue&#39;"> is a
+Data Science fellow at NYU&#39;s Center for Data Science while on leave fro=
+m a
+tenured faculty position at Aix-Marseille Universit=C3=A9. He has a strong =
+expertise
+in using large scale datasets for the analysis of human behavior. After
+completing his joint PhD in Physics, MSc in C.S. at Emory University in
+Atlanta, GA in 2008 he joined the Center for Complex Networks and Systems
+Research at Indiana University as a Research Associate. From September 2011
+until August 2012 he was an Associate Research Scientist at the Laboratory =
+for
+the Modeling of Biological and Technical Systems at Northeastern University=
+.
+Since 2008 he has been pursuing the use of Data Science and Machine Learnin=
+g to
+study human behavior. By processing and analyzing large datasets from Twitt=
+er,
+Wikipedia, web access logs, and Yahoo! Meme he studied how we can observe b=
+oth
+large scale and individual human behavior in an obtrusive and widespread
+manner. The main applications have been to the study of Computational
+Linguistics, Information Diffusion, Behavioral Change and Epidemic Spreadin=
+g.
+He is the author of 60+ publications with over 3800+ Google Scholar citatio=
+ns
+and an h-index of 26. In 2015 he was awarded the Complex Systems Society&#3=
+9;s 2015
+Junior Scientific Award for &quot;outstanding contributions in Complex Syst=
+ems
+Science&quot; and he is the editor of the book Social Phenomena: From Data
+Analysis to Models (Springer, 2015).</span></i><i><span lang=3D"EN-GB" styl=
+e=3D"font-family:Times"></span></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span lang=3D"EN-GB"=
+ style=3D"font-size:10.5pt;font-family:&#39;Helvetica Neue&#39;">=C2=A0</sp=
+an></i></p>
+
+<p class=3D"MsoNormal" style=3D"text-align:justify"><i><span lang=3D"EN-US"=
+>=C2=A0</span></i></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&#39;Times=
+ New Roman&#39;">=C2=A0</span></p>
+
+</td><td width=3D"230" style=3D"width:230pt"><br></td></tr>
+ <tr height=3D"16" style=3D"height:16pt">
+  <td height=3D"16" style=3D"height:16pt"></td><td class=3D""><br></td></tr=
+></tbody></table><br><div class=3D"gmail_signature" data-smartmail=3D"gmail=
+_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></div=
+><div><b>Join us at </b>:<span style=3D"font-size:12.8px">=C2=A0 </span><a =
+href=3D"http://complexnetworks.org/" style=3D"font-size:12.8px" target=3D"_=
+blank">COMPLEX NETWORKS 2016 Milan</a></div><div><br></div><div><b>Publish =
+your work on:</b>=C2=A0<a href=3D"http://www.springer.com/physics/complexit=
+y/journal/41109" target=3D"_blank">Applied Network Science</a></div><div><b=
+>re</b><span style=3D"font-size:12.8px"><b>ad:<a href=3D"http://www.cambrid=
+gescholars.com/complex-networks-and-their-applications-9" target=3D"_blank"=
+> </a></b><a href=3D"http://www.cambridgescholars.com/complex-networks-and-=
+their-applications-9" target=3D"_blank">Complex Networks &amp; their Applic=
+ations</a></span></div><div>***********************************************=
+<br>* =C2=A0 Pr Hocine CHERIFI =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LE2I =C2=A0 UMR CNRS 6306 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>*=C2=A0=C2=A0 Facult=C3=A9 d=
+es Sciences Mirande =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*<br>*=C2=A0 =
+=C2=A0 9 , avenue Alain Savary =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0 BP 47870 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 *<br>*=C2=A0 =C2=A0=
+ 21078 DIJON=C2=A0 =C2=A0 FRANCE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0* <br>**********************************************</d=
+iv></div></div></div></div></div></div></div></div></div>
+</div>
+
+--047d7b5d49de00eb2305393ff187--

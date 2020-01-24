@@ -1,0 +1,833 @@
+Return-Path: <lhuuuq@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 67A5F1903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 29 Mar 2016 10:08:49 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 5556F700DB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue, 29 Mar 2016 10:08:49 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id 4812B4198821
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 Mar 2016 10:08:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -4.812
+X-Spam-Level:
+X-Spam-Status: No, score=-4.812 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DNS_FROM_AHBL_RHSBL=0.01, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	SPF_PASS=-0.001, TW_XI=0.077, UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: GOOD ( 7.7102 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id WDKvprNLJ-Rt for <liste-egc@polytech.univ-nantes.fr>;
+	Tue, 29 Mar 2016 10:08:48 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x241.google.com (mail-wm0-x241.google.com [IPv6:2a00:1450:400c:c09::241])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id 2B72441353F5
+	for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 Mar 2016 10:08:48 +0200 (CEST)
+Received: by mail-wm0-x241.google.com with SMTP id i204so1251059wmd.0
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 29 Mar 2016 01:08:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=p6JojJf/fYJlbs/Y6fSxCWkgC/nCsrMBdpWv72DqMao=;
+        b=JqMmw+qUfURasWI56dJG+wHAGZiXStcHIAyKbGp9By3E2qbjq88OTR/3qteEsIT2Ob
+         yaIu11wZaJKEWqNNb3xpqT79wqXjpQrSsIqq9iXCOm+teI/UuUXAs1U5uledWUJP6kEp
+         GZdquFjTPLK5G9fKxehwomruWGRCxIE4m0e5bvw9TNHDqv1u2uGk28znroDR/QcDXria
+         ZEOFIbZyA1slOfnPsoG1Zzs8+F8d+6Z85AHeXW9LAoGxT2iBdjztQiy4yWfYiKB+lfua
+         2ENvvJDwv16yjcg8gPhHASFlTHiusZoxNeqfxvaq1TK9R/GIUfAFDZxKpsTstOugARqE
+         gCHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=p6JojJf/fYJlbs/Y6fSxCWkgC/nCsrMBdpWv72DqMao=;
+        b=DxITdVO+H7yEPQYvscWD9RHwuPBwOmdK5A7SGVknw9ny91BQAzHiVTrhDJplm2qSAJ
+         Idkc7kKaTmfA6C5DbRjtrlAlCuDB+/AD7N8CVqD0L3PCwr8TmA9P88LGPVs7SpdMa/79
+         TF4w6fdQRGCjDo86bryu1Y4ijb3CzsrFHi1ipxdpQlZ9SueUvscLnUPZ4MZ0OdZ4Px67
+         avtUPpVLiRk4lEcV4B3UNGl/8hHHjRU8Clo0IoGsNRHWmjkgZoDwyyS3gl6d3dPnkc+b
+         Arllor6tOIu2f3Kn2H/BXjQzSnKAKFb9drwVXn1id+971W/11bpKzLYeR6KLMISrTVpQ
+         xb/A==
+X-Gm-Message-State: AD7BkJJdZ9fDcEobqShhs8y+WYxxuwNi4ElPOE/19KmlnMXk36mDuPBzrcqG6QyuF+6w+zgsaCKOrumO4pAHiQ==
+X-Received: by 10.194.61.209 with SMTP id s17mr1095341wjr.35.1459238927458;
+ Tue, 29 Mar 2016 01:08:47 -0700 (PDT)
+MIME-Version: 1.0
+Sender: lhuuuq@gmail.com
+Received: by 10.28.150.20 with HTTP; Tue, 29 Mar 2016 01:08:27 -0700 (PDT)
+From: Luc Damas <luc.damas@univ-savoie.fr>
+Date: Tue, 29 Mar 2016 10:08:27 +0200
+X-Google-Sender-Auth: 1IsMbIFMJ9CBoZ-WnRriZ90w6gI
+Message-ID: <CAFW-+pZKyqfJPSh+wa+hXLfibQeshz36Z=+u4gFFOu+Yd6Td+w@mail.gmail.com>
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary=047d7b86e0d2e9f4b7052f2b897e
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] Workshop TOTH 2016
+
+--047d7b86e0d2e9f4b7052f2b897e
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+*Journ=C3=A9e d=E2=80=99=C3=A9tude TOTh 25 novembre 2016*
+
+
+*La n=C3=A9ologie en terminologie*
+
+
+*Amphi Turing, b=C3=A2timent Sophie Germain*
+
+*Place Aur=C3=A9lie Nemours, 75913 PARIS*
+
+*Universit=C3=A9 Sorbonne-Paris-Cit=C3=A9 (Paris-Diderot)*
+
+*HTL =E2=80=93 CNRS UMR 7597** / **CLILLAC-ARP EA3967*
+
+
+http://www.porphyre.org/workshop-toth/2016
+
+
+*Appel =C3=A0 communication*
+
+Paris doit accueillir, apr=C3=A8s les Journ=C3=A9es TOTh consacr=C3=A9es au=
+x th=C3=A8mes
+suivants :
+
+   -
+
+   La d=C3=A9finition en terminologie (Lisbonne, 2011)
+   -
+
+   Contextes et notes en terminologie (Forli, 2012)
+   -
+
+   Repr=C3=A9sentations verbales et non-verbales en terminologie (Copenhagu=
+e,
+   2013)
+   -
+
+   Th=C3=A9saurus et terminologie multilingues (Bruxelles, 2014)
+   -
+
+   Terminologie et normes (Luxembourg, 2015)
+
+celle de 2016, consacr=C3=A9e =C3=A0 la question de la place de la
+
+   -
+
+   N=C3=A9ologie en terminologie.
+
+
+
+*Argumentaire*
+
+
+La pertinence de la n=C3=A9ologie ne fait pas de doute dans le cadre des
+applications de la terminologie, telles l=E2=80=99am=C3=A9nagement linguist=
+ique ou la
+terminographie. En effet, en am=C3=A9nagement linguistique, la question du
+d=C3=A9veloppement de vocabulaires scientifiques et techniques capables
+d=E2=80=99exprimer la modernit=C3=A9 est primordiale, tout comme l=E2=80=99=
+est celle de la mise
+=C3=A0 jour des bases de donn=C3=A9es terminologiques disponibles dans une
+perspective terminographique. La n=C3=A9ologie peut toutefois avoir d=E2=80=
+=99autres
+fonctions encore en terminologie : une journ=C3=A9e d=E2=80=99=C3=A9tudes p=
+eut =C3=AAtre le lieu
+d=E2=80=99en d=C3=A9battre.
+
+
+*Journ=C3=A9e d=E2=80=99=C3=A9tude*
+
+
+Au cours de cette journ=C3=A9e d=E2=80=99=C3=A9tudes, on s=E2=80=99interrog=
+era sur :
+
+
+
+   -
+
+   les aspects th=C3=A9oriques de la n=C3=A9ologie en terminologie
+
+
+
+   -
+
+   l=E2=80=99impact d=E2=80=99un mod=C3=A8le conceptuel sur la cr=C3=A9atio=
+n n=C3=A9ologique en
+   terminologie
+
+   -
+
+   les sp=C3=A9cificit=C3=A9s terminologiques de la formation morpho-syntax=
+ique des
+   termes, comme
+
+
+
+   -
+
+         la mise =C3=A0 jour des ressources terminologiques/lexicographique=
+s
+         -
+
+         la cr=C3=A9ation de ressources terminologiques/lexicographiques
+         -
+
+         =E2=80=A6
+
+
+
+   -
+
+   le r=C3=B4le des dimensions chronologiques, comme
+
+
+   -
+
+      obsolescence et mort terminologique
+      -
+
+      n=C3=A9ologie en brachychronie
+      -
+
+      =E2=80=A6
+
+
+
+   -
+
+   La n=C3=A9ologie et la veille technologique
+
+
+
+   -
+
+   La n=C3=A9ologie dans le cadre de la terminologie prescriptive
+
+
+   -
+
+      n=C3=A9ologie et normes
+      -
+
+      =E2=80=A6
+
+
+La r=C3=A9flexion est donc ouverte =C3=A0 toutes les questions concernant l=
+e r=C3=B4le de
+la n=C3=A9ologie en terminologie.
+
+
+*Soumission de propositions de communications*
+
+
+Les propositions de communication, sous la forme de r=C3=A9sum=C3=A9s de 50=
+0 mots,
+sont =C3=A0 adresser aux organisateurs avant le 30 juin 2016. Elles sont
+examin=C3=A9es par le comit=C3=A9 scientifique dont l=E2=80=99avis est comm=
+uniqu=C3=A9 le 30
+octobre.
+
+
+Les communications sont de 25 minutes, suivies de cinq minutes de
+discussion.
+
+
+*Actes*
+
+
+Une s=C3=A9lection des articles tir=C3=A9s des communications de la journ=
+=C3=A9e d=E2=80=99=C3=A9tudes
+pourra =C3=AAtre publi=C3=A9e dans la revue *Neologica* 11 (=C3=A0 para=C3=
+=AEtre juin 2017).
+Les propositions seront examin=C3=A9es par le comit=C3=A9 scientifique de l=
+a journ=C3=A9e
+d=E2=80=99=C3=A9tudes (voir *infra*) en collaboration avec le comit=C3=A9 s=
+cientifique de la
+revue.
+
+
+
+*Inscription : gratuite mais n=C3=A9cessaire*
+
+
+Les participants sont pri=C3=A9s de s=E2=80=99inscrire aupr=C3=A8s du secr=
+=C3=A9tariat avant le 18
+novembre 2016.
+
+
+*Calendrier*
+
+
+Remise des r=C3=A9sum=C3=A9s (500 mots) 30 juin 2016
+
+Avis du comit=C3=A9 scientifique  15 septembre 2016
+
+Journ=C3=A9e d=E2=80=99=C3=A9tude  25 novembre 2016
+
+Remise des articles tir=C3=A9s des communications  31 d=C3=A9cembre 2016
+
+Retour du comit=C3=A9 scientifique 01 f=C3=A9vrier 2017
+
+Publication juin 2017
+
+
+*Comit=C3=A9 scientifique*
+
+
+Marc Van Campenhoudt - Belgique
+Danielle Candel - France
+
+Emmanuel Cartier - France
+Rute Costa - Portugal
+
+Judit Freixa - Espagne
+Fidelma N=C3=AD Ghallchobhair - Irlande
+John Humbley - France
+
+Christine Jacquet-Pfau - France
+
+Natalie Kubler - France
+
+Teresa Rijo da Fonseca Lino - Portugal
+Georg L=C3=B6ckinger =E2=80=93 Autriche
+Johan Myking - Norv=C3=A8ge
+
+Michele Prandi - Italie
+Christophe Roche - France
+
+Klaus Dirk Schmitz - Allemagne
+
+*Responsables scientifiques *
+
+
+Danielle Candel, HTL =E2=80=93 CNRS UMR 7597, Univ. Paris =E2=80=93 Diderot=
+ (Paris 7)
+
+John Humbley, CLILLAC-ARP EA3967, Univ. Paris =E2=80=93 Diderot (Paris 7)
+
+
+
+*Comit=C3=A9 d=E2=80=99organisation*
+
+
+Danielle Candel
+
+Rute Costa
+
+Luc Damas
+
+John Humbley
+
+Christophe Roche
+
+
+*Langues* : fran=C3=A7ais, anglais
+
+
+
+
+
+*Renseignements *: workshop-toth@porphyre.org
+
+*Soumission *: workshop-toth@porphyre.org
+
+*Secr=C3=A9tariat *: workshop-toth@porphyre.org
+
+*Organisation *: workshop-toth@porphyre.org
+
+
+[Version du 29 f=C3=A9vrier 2016]
+
+--047d7b86e0d2e9f4b7052f2b897e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+
+=09
+=09
+=09
+=09
+
+
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Journ=C3=
+=A9e
+d=E2=80=99=C3=A9tude TOTh 25 novembre 2016</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>La
+n=C3=A9ologie en terminologie</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Amphi
+Turing, b=C3=A2timent Sophie Germain</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Place
+Aur=C3=A9lie Nemours, 75913 PARIS</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Universit=
+=C3=A9
+Sorbonne-Paris-Cit=C3=A9  (Paris-Diderot)</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><span lang=
+=3D"en-GB"><b>HTL
+=E2=80=93 CNRS UMR 7597</b></span></font></font><font color=3D"#000000"><fo=
+nt face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"=
+><b>
+/ </b></font></font></font><font face=3D"Helvetica, sans-serif"><font style=
+=3D"font-size:14pt" size=3D"4"><span lang=3D"en-GB"><b>CLILLAC-ARP
+EA3967</b></span></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB"><=
+br>
+</p><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-G=
+B"><a href=3D"http://www.porphyre.org/workshop-toth/2016">http://www.porphy=
+re.org/workshop-toth/2016</a><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Appel
+=C3=A0 communication</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Paris
+doit accueillir, apr=C3=A8s les Journ=C3=A9es TOTh consacr=C3=A9es aux th=
+=C3=A8mes
+suivants=C2=A0:</font></font></p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">La
+	d=C3=A9finition en terminologie (Lisbonne, 2011)</font></font></p>
+	</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">Contextes
+	et notes en terminologie (Forli, 2012)</font></font></p>
+	</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">Repr=C3=A9sentations
+	verbales et non-verbales en terminologie (Copenhague, 2013)</font></font><=
+/p>
+	</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">Th=C3=A9saurus
+	et terminologie multilingues (Bruxelles, 2014)</font></font></p>
+	</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">Terminologie
+	et normes (Luxembourg, 2015)</font></font></p>
+</li></ul>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">celle
+de 2016, consacr=C3=A9e =C3=A0 la question de la place de la </font></font>
+</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">N=C3=A9ologie
+	en terminologie.</font></font></p>
+</li></ul>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Argumenta=
+ire</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">La
+pertinence de la n=C3=A9ologie ne fait pas de doute dans le cadre des
+applications de la terminologie, telles l=E2=80=99am=C3=A9nagement linguist=
+ique
+ou la terminographie. En effet, en am=C3=A9nagement linguistique, la
+question du d=C3=A9veloppement de vocabulaires scientifiques et
+techniques capables d=E2=80=99exprimer la modernit=C3=A9 est primordiale, t=
+out
+comme l=E2=80=99est celle de la mise =C3=A0 jour des bases de donn=C3=A9es
+terminologiques disponibles dans une perspective terminographique. La
+n=C3=A9ologie peut toutefois avoir d=E2=80=99autres fonctions encore en
+terminologie=C2=A0: une journ=C3=A9e d=E2=80=99=C3=A9tudes peut =C3=AAtre l=
+e lieu d=E2=80=99en
+d=C3=A9battre.</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4"><b>Journ=C3=A9e
+d=E2=80=99=C3=A9tude</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Au
+cours de cette journ=C3=A9e d=E2=80=99=C3=A9tudes, on s=E2=80=99interrogera=
+ sur=C2=A0:</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">les
+	aspects th=C3=A9oriques de la n=C3=A9ologie en terminologie</font></font><=
+/p>
+</li></ul>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">l=E2=80=99impact
+	d=E2=80=99un mod=C3=A8le conceptuel sur la cr=C3=A9ation n=C3=A9ologique e=
+n
+	<br>terminologie<br></font></font><br>
+	</p>
+	</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">les
+	sp=C3=A9cificit=C3=A9s terminologiques de la formation morpho-syntaxique d=
+es
+	termes, comme </font></font>
+	</p>
+</li></ul>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<ul><ul><ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+			<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">la
+			mise =C3=A0 jour des ressources terminologiques/lexicographiques</font><=
+/font></p>
+			</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+			<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">la
+			cr=C3=A9ation de ressources terminologiques/lexicographiques</font></fon=
+t></p>
+			</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+			=E2=80=A6</p>
+		</li></ul></ul></ul>
+<p class=3D"" style=3D"margin-left:3.18cm;margin-bottom:0cm;line-height:100=
+%">
+<br>
+</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">le
+	r=C3=B4le des dimensions chronologiques, comme</font></font></p>
+</li></ul>
+<ul><ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+		<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">obsolescence
+		et mort terminologique</font></font></p>
+		</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+		<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">n=C3=A9ologie
+		en brachychronie</font></font></p>
+		</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+		=E2=80=A6</p>
+	</li></ul></ul>
+<p class=3D"" style=3D"margin-left:1.91cm;margin-bottom:0cm;line-height:100=
+%">
+<br>
+</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">La
+	n=C3=A9ologie et la veille technologique</font></font></p>
+</li></ul>
+<p class=3D"" style=3D"margin-left:0.64cm;margin-bottom:0cm;line-height:100=
+%">
+=C2=A0</p>
+<ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+	<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">La
+	n=C3=A9ologie dans le cadre de la terminologie prescriptive</font></font><=
+/p>
+</li></ul>
+<ul><ul><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+		<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=
+=3D"4">n=C3=A9ologie
+		et normes</font></font></p>
+		</li><li><p class=3D"" style=3D"margin-bottom:0cm;line-height:100%">
+		=E2=80=A6</p>
+	</li></ul></ul>
+<p class=3D"" style=3D"margin-left:0.64cm;margin-bottom:0cm;line-height:100=
+%">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">La
+r=C3=A9flexion est donc ouverte =C3=A0 toutes les questions concernant le
+r=C3=B4le de la n=C3=A9ologie en terminologie.</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Soumissio=
+n
+de propositions de communications</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Les
+propositions de communication, sous la forme de r=C3=A9sum=C3=A9s de 500
+mots, sont =C3=A0 adresser aux organisateurs avant le 30 juin 2016.=20
+Elles sont examin=C3=A9es par le comit=C3=A9 scientifique dont l=E2=80=99av=
+is est
+communiqu=C3=A9 le 30 octobre.</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Les
+communications sont de 25 minutes, suivies de cinq minutes de
+discussion.</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4"><b>Actes</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Une
+s=C3=A9lection des articles tir=C3=A9s des communications de la journ=C3=A9=
+e
+d=E2=80=99=C3=A9tudes pourra =C3=AAtre publi=C3=A9e dans la revue </font></=
+font><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" si=
+ze=3D"4"><i>Neologica</i></font></font><font face=3D"Helvetica, sans-serif"=
+><font style=3D"font-size:14pt" size=3D"4">
+11 (=C3=A0 para=C3=AEtre juin 2017).  Les propositions seront examin=C3=A9e=
+s par
+le comit=C3=A9 scientifique de la journ=C3=A9e d=E2=80=99=C3=A9tudes (voir =
+</font></font><font face=3D"Helvetica, sans-serif"><font style=3D"font-size=
+:14pt" size=3D"4"><i>infra</i></font></font><font face=3D"Helvetica, sans-s=
+erif"><font style=3D"font-size:14pt" size=3D"4">)
+en collaboration avec le comit=C3=A9 scientifique de la revue.</font></font=
+></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Inscripti=
+on=C2=A0:
+gratuite mais n=C3=A9cessaire</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Les
+participants sont pri=C3=A9s de s=E2=80=99inscrire aupr=C3=A8s du secr=C3=
+=A9tariat
+avant le 18 novembre 2016.</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"justify=
+">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Calendrie=
+r</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Remise
+des r=C3=A9sum=C3=A9s=C2=A0(500 mots)  		   30 juin 2016</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Avis
+du comit=C3=A9 scientifique=C2=A0                                15
+septembre 2016 </font></font>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Journ=C3=A9e
+d=E2=80=99=C3=A9tude=C2=A0                                      	   25 nove=
+mbre
+2016</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Remise
+des articles tir=C3=A9s des communications=C2=A0  31 d=C3=A9cembre 2016</fo=
+nt></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Retour
+du comit=C3=A9 scientifique			   01 f=C3=A9vrier 2017</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Publication
+						   juin 2017</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Comit=C3=
+=A9
+scientifique</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Marc
+Van Campenhoudt - Belgique<br>Danielle  Candel - France</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Emmanuel
+Cartier - France<br>Rute Costa - Portugal</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Judit
+Freixa - Espagne<br>Fidelma </font></font><font face=3D"Helvetica, sans-ser=
+if"><font style=3D"font-size:14pt" size=3D"4">N=C3=AD
+Ghallchobhair</font></font><font face=3D"Helvetica, sans-serif"><font style=
+=3D"font-size:14pt" size=3D"4">
+- Irlande<br>John Humbley - France</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Christine
+Jacquet-Pfau - France</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Natalie
+Kubler - France</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Teresa
+Rijo da Fonseca Lino - Portugal<br>Georg L=C3=B6ckinger =E2=80=93
+Autriche<br>Johan Myking - Norv=C3=A8ge</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><span lang=
+=3D"de-DE">Michele
+Prandi - Italie<br>Christophe Roche - France</span></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"de-DE">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Klaus
+Dirk Schmitz - Allemagne<br></font></font><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Responsab=
+les
+scientifiques=C2=A0</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4">Danielle
+Candel, </font></font></font><font face=3D"Helvetica, sans-serif"><font sty=
+le=3D"font-size:14pt" size=3D"4"><span lang=3D"en-GB">HTL
+=E2=80=93 CNRS UMR 7597, Univ. Paris =E2=80=93 Diderot (Paris 7)</span></fo=
+nt></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4">John
+Humbley, </font></font></font><font face=3D"Helvetica, sans-serif"><font st=
+yle=3D"font-size:14pt" size=3D"4"><span lang=3D"en-GB">CLILLAC-ARP
+EA3967, Univ. Paris =E2=80=93 Diderot (Paris 7)</span></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Comit=C3=
+=A9
+d=E2=80=99organisation</b></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Danielle
+Candel</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">Rute
+Costa</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Luc
+Damas</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">John
+Humbley</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">Christophe
+Roche</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" lang=3D"en-GB">
+<br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font face=3D"He=
+lvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>Langues</=
+b></font></font><font face=3D"Helvetica, sans-serif"><font style=3D"font-si=
+ze:14pt" size=3D"4">=C2=A0:
+fran=C3=A7ais, anglais</font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4"><b>Renseignements
+</b></font></font></font><font color=3D"#000000"><font face=3D"Helvetica, s=
+ans-serif"><font style=3D"font-size:14pt" size=3D"4">:
+workshop-toth</font></font></font><font color=3D"#af2247"><font face=3D"Hel=
+vetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4">@<a href=3D"h=
+ttp://porphyre.org">porphyre.org</a></font></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4"><b>Soumission=C2=A0</b></font></font></font><font color=3D"#000=
+000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" si=
+ze=3D"4">:
+</font></font></font><font color=3D"#000000"><font face=3D"Helvetica, sans-=
+serif"><font style=3D"font-size:14pt" size=3D"4">workshop-toth</font></font=
+></font><font color=3D"#af2247"><font face=3D"Helvetica, sans-serif"><font =
+style=3D"font-size:14pt" size=3D"4">@<a href=3D"http://porphyre.org">porphy=
+re.org</a></font></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4"><b>Secr=C3=A9tariat=C2=A0</b></font></font></font><font color=
+=3D"#000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:=
+14pt" size=3D"4">:</font></font></font><font color=3D"#000000"><font face=
+=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>
+</b></font></font></font><font color=3D"#000000"><font face=3D"Helvetica, s=
+ans-serif"><font style=3D"font-size:14pt" size=3D"4">workshop-toth</font></=
+font></font><font color=3D"#af2247"><font face=3D"Helvetica, sans-serif"><f=
+ont style=3D"font-size:14pt" size=3D"4">@<a href=3D"http://porphyre.org">po=
+rphyre.org</a></font></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><font color=3D"#=
+000000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt"=
+ size=3D"4"><b>Organisation=C2=A0</b></font></font></font><font color=3D"#0=
+00000"><font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" =
+size=3D"4">:</font></font></font><font color=3D"#000000"><font face=3D"Helv=
+etica, sans-serif"><font style=3D"font-size:14pt" size=3D"4"><b>
+</b></font></font></font><font color=3D"#000000"><font face=3D"Helvetica, s=
+ans-serif"><font style=3D"font-size:14pt" size=3D"4">workshop-toth</font></=
+font></font><font color=3D"#af2247"><font face=3D"Helvetica, sans-serif"><f=
+ont style=3D"font-size:14pt" size=3D"4">@<a href=3D"http://porphyre.org">po=
+rphyre.org</a></font></font></font></p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%"><br>
+</p>
+<p class=3D"" style=3D"margin-bottom:0cm;line-height:100%" align=3D"right">
+<font face=3D"Helvetica, sans-serif"><font style=3D"font-size:14pt" size=3D=
+"4">[Version
+du 29 f=C3=A9vrier 2016]</font></font></p>
+
+</div>
+
+--047d7b86e0d2e9f4b7052f2b897e--

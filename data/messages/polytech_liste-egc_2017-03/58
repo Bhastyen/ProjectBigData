@@ -1,0 +1,444 @@
+Return-Path: <elianaraad@hotmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from bouncesmtp2.univ-nantes.fr (BounceSMTP2.univ-nantes.prive [172.20.12.67])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 7ADAF229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 17 Mar 2017 18:30:48 +0100 (CET)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by bouncesmtp2.univ-nantes.fr (Postfix) with ESMTP id 742CF24255A
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Fri, 17 Mar 2017 18:30:48 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 6AC3B4540221
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 17 Mar 2017 18:30:48 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: 2.371
+X-Spam-Level: **
+X-Spam-Status: No, score=2.371 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, FREEMAIL_FROM=0.001, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_MSPIKE_H2=-0.001,
+	RCVD_IN_PSBL=2.7, RP_MATCHES_RCVD=-0.55, SPF_PASS=-0.001,
+	T_KAM_HTML_FONT_INVALID=0.01, UN_PHISHING_COMPTE=0.1,
+	UN_PHISHING_PW=0.1, URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: UNSURE ( -0.9873 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=hotmail.com
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ax5itW8Qjhw7 for <liste-egc@polytech.univ-nantes.fr>;
+	Fri, 17 Mar 2017 18:30:47 +0100 (CET)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from BAY004-OMC3S25.hotmail.com (bay004-omc3s25.hotmail.com [65.54.190.163])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTPS id B818E4540226
+	for <liste-egc@polytech.univ-nantes.fr>; Fri, 17 Mar 2017 18:30:46 +0100 (CET)
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com ([65.54.190.187]) by BAY004-OMC3S25.hotmail.com over TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008);
+	 Fri, 17 Mar 2017 10:30:45 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1; h=From:Date:Subject:Message-ID:Content-Type:MIME-Version;
+ bh=fbQu45SjoUJO3WxTcBMZhRQY+oFS3Ua8bU+n+0jkhBo=;
+ b=On/qZ/Aie/pNUVUuEr5UCyuOwyRK4SHA+F4iwlsUpwn6ou4/wkUOk+c0hEVp8PdR3bu2RakLwqzDaf+ybMPb20Gtfnzj1XRf4R3+ezhkLDxF/iX7cC5qPOxLsMh3wllYAgYjVmtmOmFp6+YKwgkF9ie07KcmMHr6P3BFcN3gZSJKuekxh9FmybGMFsiNzmyD0z6bg/A2aiG6vANzLZf6XxYuikY0qUzDmpNKOAC/59BZD4+7i0JGpNU+E4U6p0WU2HLY5i1wG1DtZpr1vYeuzn6wDoRXYpdsJLGJUS/lgsL3fOB0MIFlZxLpqpWdnS7powVlULqrzNqeMl/ctAYgyA==
+Received: from CO1NAM03FT044.eop-NAM03.prod.protection.outlook.com
+ (10.152.80.52) by CO1NAM03HT104.eop-NAM03.prod.protection.outlook.com
+ (10.152.81.137) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.977.7; Fri, 17 Mar
+ 2017 17:30:44 +0000
+Received: from BLUPR08MB534.namprd08.prod.outlook.com (10.152.80.54) by
+ CO1NAM03FT044.mail.protection.outlook.com (10.152.81.108) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.977.7 via Frontend Transport; Fri, 17 Mar 2017 17:30:44 +0000
+Received: from BLUPR08MB534.namprd08.prod.outlook.com ([10.141.81.13]) by
+ BLUPR08MB534.namprd08.prod.outlook.com ([10.141.81.13]) with mapi id
+ 15.01.0977.010; Fri, 17 Mar 2017 17:30:43 +0000
+From: Eliana Raad <elianaraad@hotmail.com>
+To: "liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>
+Thread-Topic: =?Windows-1252?Q?[inforsid]_Data_Visualisation_dans_les_Syst=E8mes_d'Info?=
+ =?Windows-1252?Q?rmation_-_INFORSID_2017_-_Appel_=E0_soumission_30/04/201?=
+ =?Windows-1252?Q?7?=
+Thread-Index: AQHSn0QHciE+qt2gwU+cBKE7931vpw==
+Date: Fri, 17 Mar 2017 17:30:43 +0000
+Message-ID: <BLUPR08MB534DC9A17CA4B1FA2624CA2D7390@BLUPR08MB534.namprd08.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: polytech.univ-nantes.fr; dkim=none (message not
+ signed) header.d=none;polytech.univ-nantes.fr; dmarc=none action=none
+ header.from=hotmail.com;
+x-incomingtopheadermarker: OriginalChecksum:AF7108FD2F8A6B0B1B98D95299B8160B9A7AF4D3A6A428F068986566B541E21E;UpperCasedChecksum:6C90D911174A45C1AF283B3CCFAB5D79A45A14D4969E12A336DC6F27FF594FAB;SizeAsReceived:8212;Count:40
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [c19d+9Ik4z+9tZm0B6G3OY/mBvG0WCWS]
+x-microsoft-exchange-diagnostics: 1;CO1NAM03HT104;5:rI5qv/qutoL4BlXdzGFODNzwRy4NqEkbGDNgOC/2WIPYh59vEAefmGfAEXvOYbmkMGVTHe9Rw7sw7VKquPidabW7PE8Q9B5XNQnTuxoS9KPxGN09W54eXEFjZx2D6bLtURnGepgjLtVR3PZg2rZ2OA==;24:5nR+w87qgIaYXbUpu/5ZCSdFcpvisFG8k8/3BBH/u2YUr82Yqe4uS2sud/Qjq1ROyxjFUaU8srvqCQUoH6lz9vGU/FJ+l8fS6N+/jzVEXN0=;7:3GyvsIj6G8M3mx5UGyHVDflUyDBoWtapG8kP+Iz60OusneBAssUQmR/WEF5TNincX9BgjqSDOsLRRdZFuNzkB4e9WcdT1ROJhol/xwuMziQE/8MAC6us3U6l7tdVhZyrTRCYeTZZA3PLWjowdHBHTJ4dGiF9BBfX0rkTIRqeWY8T6dHyhYETQMJ1zOqnpR7aoICIjdQKcCXRtCbPIr0ZrWA/AvpiyYQWRL5RIFQx3ecxk4E7FBg1pwpe7Rd1DgBJSyW8tPwdSVm8iBe8s6pTx7wyBmgKgULWomMSX68l+0jwzYX3G7Q87yr6FyYX+GoH
+x-incomingheadercount: 40
+x-eopattributedmessage: 0
+x-forefront-antispam-report: EFV:NLI;SFV:NSPM;SFS:(10019020)(98900017);DIR:OUT;SFP:1102;SCL:1;SRVR:CO1NAM03HT104;H:BLUPR08MB534.namprd08.prod.outlook.com;FPR:;SPF:None;LANG:fr;
+x-ms-office365-filtering-correlation-id: 80eee3c0-a888-4856-7b21-08d46d5b573d
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:(22001)(201702061074)(5061506573)(5061507331)(1603103135)(2017031320035)(2017031322035)(1601125254)(1603101448)(1701031045);SRVR:CO1NAM03HT104;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:(432015265)(444000031);SRVR:CO1NAM03HT104;BCL:0;PCL:0;RULEID:;SRVR:CO1NAM03HT104;
+x-forefront-prvs: 0249EFCB0B
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/alternative;
+	boundary="_000_BLUPR08MB534DC9A17CA4B1FA2624CA2D7390BLUPR08MB534namprd_"
+MIME-Version: 1.0
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2017 17:30:43.8243
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM03HT104
+X-OriginalArrivalTime: 17 Mar 2017 17:30:45.0357 (UTC) FILETIME=[35A209D0:01D29F44]
+X-Validation-by: p_bruneau@hotmail.com
+Subject: [liste-egc] [inforsid] Data Visualisation dans les
+ =?WINDOWS-1252?Q?Syst=E8mes?= d'Information - INFORSID 2017 - Appel
+ =?WINDOWS-1252?Q?=E0?= soumission 30/04/2017
+
+--_000_BLUPR08MB534DC9A17CA4B1FA2624CA2D7390BLUPR08MB534namprd_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Atelier
+Data Visualisation dans les Syst=E8mes d=92Information
+
+Date limite de proposition de pr=E9sentation : 30 avril 2017
+
+Dans le cadre des ateliers du congr=E8s
+INFORSID 2017<http://inforsid.fr/Toulouse2017/>
+Toulouse (30 mai au 2 juin 2017)
+L'atelier aura lieu durant la conf=E9rence
+
+Les syst=E8mes d=92information modernes contiennent de grandes quantit=E9s =
+de donn=E9es de diff=E9rents types (quantitatives, qualitatives, et multim=
+=E9dias). D=E8s lors que l'on interconnecte de tels syst=E8mes entre eux, l=
+e volume de donn=E9es disponible explose, donnant ainsi naissance =E0 des i=
+nformations plus riches de sens mais aussi plus complexes =E0 exploiter. Da=
+ns cet objectif, il existe des outils de data visualisation (ou Dataviz) qu=
+i offrent la possibilit=E9 =E0 un utilisateur de r=E9v=E9ler des informatio=
+ns utiles, voire cach=E9es. Ils permettent de faire apparaitre visuellement=
+ des connexions entre les donn=E9es pour en faire =E9merger des tendances f=
+ortes et insoup=E7onn=E9es. Les agences gouvernementales et les m=E9dias ut=
+ilisent cette technologie pour cartographier des r=E9seaux criminels ou ter=
+roristes, ou encore d=E9tecter les fraudes. Par exemple, les data journalis=
+tes impliqu=E9s dans l=92affaire des Panama Papers[1] ont exploit=E9 une pl=
+ateforme de visualisation de donn=E9es pour mener leurs investigations. Cer=
+tains fichiers =E9taient non structur=E9s et d=92autres comme les comptes b=
+ancaires, se pr=EAtaient =E0 des analyses structur=E9es.
+
+Th=E8mes de l=92atelier
+L=92appel =E0 contributions est ouvert pour des pr=E9sentations courtes (2 =
+=E0 4 pages - 10 mn) et longues (8 =E0 12 pages - 20 mn) sur les th=E8mes s=
+uivants (liste non exhaustive) :
+
+-       Les outils de traitement et de visualisation de donn=E9es ;
+
+-       Les apports de la visualisation de donn=E9es (la lutte contre la fr=
+aude, le terrorisme et la criminalit=E9, etc.) ;
+
+-       La data visualisation et l=92analyse de donn=E9es (l=92analyse de s=
+entiments, l=92analyse de r=E9seaux, l=92analyse comportementale, etc.) ;
+
+-       La data visualisation comme outil d=92aide =E0 la d=E9cision ;
+
+-       La data visualisation dans les syst=E8mes d=92information g=E9ograp=
+hiques ;
+
+-       La data visualisation et le crowdsourcing notamment via les r=E9sea=
+ux sociaux ;
+
+-       L=92=E9volution des tableaux de bords pour repr=E9senter des donn=
+=E9es provenant de sources diversifi=E9es (GPS, smartphone, objets connect=
+=E9s, etc.) ;
+
+-       La s=E9curit=E9 des donn=E9es (les droits d=92acc=E8s, la compr=E9h=
+ension et l=92utilisation des donn=E9es personnelles/priv=E9es ou professio=
+nnelles, etc.) ;
+
+-       La qualit=E9 des donn=E9es (ou comment d=E9tecter les donn=E9es fau=
+sses) ;
+
+-       Retours d=92exp=E9riences et =E9tudes de cas concrets d'utilisation=
+ de la data visualisation.
+Les articles pourront =EAtre r=E9dig=E9s en fran=E7ais ou en anglais et doi=
+vent =EAtre envoy=E9s avant le 30 avril 2017 =E0 : eliana.raad@univ-pau.fr<=
+mailto:eliana.raad@univ-pau.fr> (Objet : Soumission Atelier INFORSID). Les =
+soumissions devront se conformer au mod=E8le Hermes-Lavoisier (cf. le site =
+de la conf=E9rence).
+Comit=E9 de programme
+Eliana RAAD, Universit=E9 de Pau et des Pays de l=92Adour
+Olivier LE GOAER, Universit=E9 de Pau et des Pays de l=92Adour
+Richard CHBEIR, Universit=E9 de Pau et des Pays de l=92Adour
+Christian SALLABERRY, Universit=E9 de Pau et des Pays de l=92Adour
+Regina TICONA-HERRERA, Ecole Sup=E9rieure des Technologies Industrielles Av=
+anc=E9es (ESTIA)
+Joe TEKLI, Lebanese American University (LAU), Liban
+Ghada BEN NEJMA, Institut Sup=E9rieur d'Informatique du Kef, Tunisie
+
+
+--_000_BLUPR08MB534DC9A17CA4B1FA2624CA2D7390BLUPR08MB534namprd_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;" dir=3D"ltr">
+<p></p>
+<center style=3D"color: rgb(34, 34, 34); font-family: arial, sans-serif; fo=
+nt-size: 12.8px;">
+<h1>Atelier&nbsp;<br>
+</h1>
+<h1>Data Visualisation dans les Syst=E8mes d=92Information<br>
+</h1>
+</center>
+<center style=3D"color: rgb(34, 34, 34); font-family: arial, sans-serif; fo=
+nt-size: 12.8px;">
+<br>
+<strong>Date limite de proposition de pr=E9sentation : 30 avril 2017</stron=
+g><br>
+<br>
+Dans le cadre des ateliers du congr=E8s<br>
+<a href=3D"http://inforsid.fr/Toulouse2017/" target=3D"_blank" data-safered=
+irecturl=3D"https://www.google.com/url?hl=3Dfr&amp;q=3Dhttp://inforsid.fr/T=
+oulouse2017/&amp;source=3Dgmail&amp;ust=3D1489858122530000&amp;usg=3DAFQjCN=
+G1R0FbXjq1CfP1IUHThNA6CWixdQ" style=3D"color: rgb(17, 85, 204);">INFORSID
+ 2017</a><br>
+Toulouse (30 mai au 2 juin 2017)<br>
+<strong>L'atelier aura lieu durant la conf=E9rence</strong></center>
+<center style=3D"color: rgb(34, 34, 34); font-family: arial, sans-serif; fo=
+nt-size: 12.8px;">
+<strong><br>
+</strong></center>
+<center style=3D"color: rgb(34, 34, 34); font-family: arial, sans-serif; fo=
+nt-size: 12.8px; text-align: left;">
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify; line-height: 19.2px;">
+<span style=3D"line-height: 19.2px; color: black; background-image: initial=
+; background-position: initial; background-size: initial; background-repeat=
+: initial; background-origin: initial; background-clip: initial;"><font fac=
+e=3D"arial, helvetica, sans-serif">Les
+ syst=E8mes d=92information modernes contiennent de grandes quantit=E9s de =
+donn=E9es de diff=E9rents types (quantitatives, qualitatives, et multim=E9d=
+ias). D=E8s lors que l'on interconnecte de tels syst=E8mes entre eux, le vo=
+lume de donn=E9es disponible explose, donnant ainsi
+ naissance =E0 des informations plus riches de sens mais aussi plus complex=
+es =E0 exploiter. Dans cet objectif, il existe des outils de data visualisa=
+tion (ou Dataviz) qui offrent la possibilit=E9 =E0 un utilisateur de r=E9v=
+=E9ler des informations utiles, voire cach=E9es.
+ Ils permettent de faire apparaitre visuellement des connexions entre les d=
+onn=E9es pour en faire =E9merger des tendances fortes et insoup=E7onn=E9es.=
+ Les agences gouvernementales et les m=E9dias utilisent cette technologie p=
+our cartographier des r=E9seaux criminels ou
+ terroristes, ou encore d=E9tecter les fraudes. Par exemple, les data journ=
+alistes impliqu=E9s dans l=92affaire des Panama Papers<a name=3D"m_-6542835=
+691931133477_m_7227920557778953042_m_42264143158523147__ftnref1" title=3D""=
+ style=3D"color: rgb(34, 34, 34);"><span class=3D"m_-6542835691931133477gma=
+il-m_7227920557778953042gmail-m_42264143158523147gmail-MsoFootnoteReference=
+"><span class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_4=
+2264143158523147gmail-MsoFootnoteReference"><span style=3D"line-height: 14.=
+72px; color: black; background-image: initial; background-position: initial=
+; background-size: initial; background-repeat: initial; background-origin: =
+initial; background-clip: initial;">[1]</span></span></span></a>&nbsp;ont
+ exploit=E9 une plateforme de visualisation de donn=E9es pour mener leurs i=
+nvestigations. Certains fichiers =E9taient non structur=E9s et d=92autres c=
+omme les comptes bancaires, se pr=EAtaient =E0 des analyses structur=E9es.<=
+/font></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify; line-height: 19.2px;">
+<span style=3D"line-height: 19.2px; color: black; background-image: initial=
+; background-position: initial; background-size: initial; background-repeat=
+: initial; background-origin: initial; background-clip: initial;"><font fac=
+e=3D"arial, helvetica, sans-serif"><br>
+</font></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify; line-height: 19.2px;">
+<b><span style=3D"line-height: 19.2px; color: black; background-image: init=
+ial; background-position: initial; background-size: initial; background-rep=
+eat: initial; background-origin: initial; background-clip: initial;"><font =
+face=3D"arial, helvetica, sans-serif">Th=E8mes
+ de l=92atelier</font></span></b></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-bottom: 8pt; marg=
+in-left: 0px; font-size: 12.8px; text-align: justify; line-height: 19.2px;"=
+>
+<span style=3D"line-height: 19.2px;"><font face=3D"arial, helvetica, sans-s=
+erif">L=92appel =E0 contributions est ouvert pour des pr=E9sentations court=
+es (2 =E0 4 pages - 10 mn) et longues (8 =E0 12 pages - 20 mn) sur les th=
+=E8mes suivants (liste non exhaustive) :</font></span></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpFirst" style=3D"font-size: 12.8px; mar=
+gin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">Les
+ outils de traitement et de visualisation de donn=E9es&nbsp;;</span></font>=
+</p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpFirst" style=3D"font-size: 12.8px; mar=
+gin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<span style=3D"font-family: arial, helvetica, sans-serif; line-height: 19.2=
+px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; li=
+ne-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span=
+><span style=3D"font-family: arial, helvetica, sans-serif; line-height: 19.=
+2px; color: black; background-image: initial; background-position: initial;=
+ background-size: initial; background-repeat: initial; background-origin: i=
+nitial; background-clip: initial;">Les
+ apports de la visualisation de donn=E9es (la lutte contre la fraude, le te=
+rrorisme et la criminalit=E9, etc.)&nbsp;;</span></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">La
+ data visualisation et l=92analyse de donn=E9es (l=92analyse de sentiments,=
+ l=92analyse de r=E9seaux, l=92analyse comportementale, etc.)&nbsp;;</span>=
+<span style=3D"line-height: 19.2px;"></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">La
+ data visualisation comme outil d=92aide =E0 la d=E9cision&nbsp;;</span><sp=
+an style=3D"line-height: 19.2px;"></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">La
+ data visualisation dans les syst=E8mes d=92information g=E9ographiques&nbs=
+p;;</span><span style=3D"line-height: 19.2px;"></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">La
+ data visualisation et le crowdsourcing notamment via les r=E9seaux sociaux=
+&nbsp;;</span><span style=3D"line-height: 19.2px;"></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px;">L=92=E9volution des tableaux de bord=
+s pour
+ repr=E9senter des donn=E9es provenant de sources diversifi=E9es (<span sty=
+le=3D"background-image: initial; background-position: initial; background-s=
+ize: initial; background-repeat: initial; background-origin: initial; backg=
+round-clip: initial;">GPS, smartphone, objets
+ connect=E9s, etc.</span>)&nbsp;;</span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px; color: black;">-<span style=3D"font-variant-numeric: normal; font-stre=
+tch: normal; line-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;</span></span><span style=3D"line-height: 19.2px;">La s=E9curit=E9 des do=
+nn=E9es&nbsp;(les
+ droits d=92acc=E8s, la compr=E9hension et l=92utilisation des donn=E9es pe=
+rsonnelles/priv=E9es ou professionnelles, etc.)&nbsp;;<span style=3D"color:=
+ black; background-image: initial; background-position: initial; background=
+-size: initial; background-repeat: initial; background-origin: initial; bac=
+kground-clip: initial;"></span></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpMiddle" style=3D"font-size: 12.8px; ma=
+rgin-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px; color: black; background-image: initi=
+al; background-position: initial; background-size: initial; background-repe=
+at: initial; background-origin: initial; background-clip: initial;">La
+ qualit=E9 des donn=E9es (ou comment d=E9tecter les donn=E9es fausses)&nbsp=
+;;</span><span style=3D"line-height: 19.2px;"></span></font></p>
+<p class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_422641=
+43158523147gmail-MsoListParagraphCxSpLast" style=3D"font-size: 12.8px; marg=
+in-bottom: 8pt; text-align: justify; line-height: 19.2px;">
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">-<span style=3D"font-variant-numeric: normal; font-stretch: normal; l=
+ine-height: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></spa=
+n><span style=3D"line-height: 19.2px;">Retours d=92exp=E9riences et =E9tude=
+s de&nbsp;<span style=3D"color: black; background-image: initial; backgroun=
+d-position: initial; background-size: initial; background-repeat: initial; =
+background-origin: initial; background-clip: initial;">cas
+ concrets d'utilisation de la data visualisation.</span></span></font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-bottom: 8pt; marg=
+in-left: 0px; font-size: 12.8px; text-align: justify; line-height: 19.2px;"=
+>
+<font face=3D"arial, helvetica, sans-serif"><span style=3D"line-height: 19.=
+2px;">Les articles pourront =EAtre r=E9dig=E9s en fran=E7ais ou en anglais =
+et doivent =EAtre envoy=E9s&nbsp;<b>avant le 30 avril 2017</b>&nbsp;=E0&nbs=
+p;:&nbsp;</span><i><span style=3D"line-height: 19.2px; color: windowtext;">=
+<a href=3D"mailto:eliana.raad@univ-pau.fr" target=3D"_blank" style=3D"color=
+: rgb(17, 85, 204);">eliana.raad@univ-pau.<wbr>fr</a>&nbsp;</span></i><span=
+ class=3D"m_-6542835691931133477gmail-m_7227920557778953042gmail-m_42264143=
+158523147gmail-MsoHyperlink"><i><span style=3D"line-height: 19.2px; color: =
+windowtext;"></span></i></span><span style=3D"line-height: 19.2px;">(Objet&=
+nbsp;:
+ Soumission Atelier INFORSID). Les soumissions devront se conformer au mod=
+=E8le Hermes-Lavoisier (cf. le site de la conf=E9rence).</span></font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-bottom: 8pt; marg=
+in-left: 0px; font-size: 12.8px; text-align: justify; line-height: 19.2px;"=
+>
+<font face=3D"arial, helvetica, sans-serif"><b>Comit=E9 de programme</b></f=
+ont></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Eliana RAAD, Universit=E9 de Pa=
+u et des Pays de l=92Adour</font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Olivier LE GOAER, Universit=E9 =
+de Pau et des Pays de l=92Adour</font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Richard CHBEIR, Universit=E9 de=
+ Pau et des Pays de l=92Adour</font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Christian SALLABERRY, Universit=
+=E9 de Pau et des Pays de l=92Adour</font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Regina TICONA-HERRERA, Ecole Su=
+p=E9rieure des Technologies Industrielles Avanc=E9es (ESTIA)</font></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<span lang=3D"EN-US"><font face=3D"arial, helvetica, sans-serif">Joe TEKLI,=
+ Lebanese American University (LAU), Liban</font></span></p>
+<p class=3D"MsoNormal" style=3D"margin-right: 0px; margin-left: 0px; font-s=
+ize: 12.8px; text-align: justify;">
+<font face=3D"arial, helvetica, sans-serif">Ghada BEN NEJMA, Institut Sup=
+=E9rieur d'Informatique du Kef, Tunisie</font></p>
+</center>
+<br>
+<p></p>
+</div>
+</body>
+</html>
+
+--_000_BLUPR08MB534DC9A17CA4B1FA2624CA2D7390BLUPR08MB534namprd_--

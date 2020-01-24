@@ -1,0 +1,1565 @@
+Return-Path: <philippe.lenca@telecom-bretagne.eu>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id 92AE11903983
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 10 Aug 2016 08:19:42 +0200 (CEST)
+Received: from mx1.d101.univ-nantes.fr (MX1.univ-nantes.fr [193.52.101.135])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id 767B0700DB
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Wed, 10 Aug 2016 08:19:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 5E7052CE3FC
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 10 Aug 2016 08:19:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -9.793
+X-Spam-Level:
+X-Spam-Status: No, score=-9.793 tagged_above=-1000 required=5
+	tests=[CRM114_UNSURE=0.1, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	DKIM_VALID_AU=-0.1, DNS_FROM_AHBL_RHSBL=0.01, HTML_MESSAGE=0.001,
+	NO_RDNS2=0.01, RCVD_IN_DNSWL_MED=-10, RCVD_IN_WSFF=0.01,
+	SPF_PASS=-0.001, TW_GK=0.077, UN_PHISHING_PW=0.1] autolearn=disabled
+X-CRM114-Status: UNSURE ( 1.6306 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (1024-bit key)
+	header.d=telecom-bretagne.eu
+Received: from mx1.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id pP8F1H8PYcgn for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 10 Aug 2016 08:19:38 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from zproxy220.enst-bretagne.fr (zproxy220.enst-bretagne.fr [192.108.117.9])
+	by mx1.d101.univ-nantes.fr (Postfix) with ESMTP id 9CF572CE3F4
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 10 Aug 2016 08:19:38 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTP id 725BF3025F
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 10 Aug 2016 08:19:38 +0200 (CEST)
+Received: from zproxy220.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy220.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id w1PDxfkbkby6 for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 10 Aug 2016 08:19:36 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTP id A8D883026D
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 10 Aug 2016 08:19:36 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.9.2 zproxy220.enst-bretagne.fr A8D883026D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=telecom-bretagne.eu;
+	s=CFDC2CFA-4654-11E5-AACD-7BCC68B6580D; t=1470809976;
+	bh=7eSM+pb1EIEzIcKCiV98EDfIFhzt06H4Q4f+lrUcQ9I=;
+	h=To:From:Subject:Message-ID:Date:MIME-Version:Content-Type;
+	b=Xkscyxz+n1hC5NpODektbtrkM3d6LVGNQkAmLi7az62BoDJj/lku/eamBVgZ3iByJ
+	 SZj9YMOmd/UQpRJwlmVJ/89AElva5YTdXZL6Q3SvIbBivGlRua5/lOuVrmAuy539qA
+	 jucbQyx0b5unWq1GJj6mqGgQCHMIujaMSWUUUjjc=
+X-Virus-Scanned: amavisd-new at zproxy220.enst-bretagne.fr
+Received: from zproxy220.enst-bretagne.fr ([127.0.0.1])
+	by localhost (zproxy220.enst-bretagne.fr [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 6_YEFGFO3T4D for <liste-egc@polytech.univ-nantes.fr>;
+	Wed, 10 Aug 2016 08:19:36 +0200 (CEST)
+Received: from [IPv6:2a01:e35:8b2d:7780:e47f:cb3a:92f5:c6c7] (passerelle-interne.enst-bretagne.fr [192.108.117.210])
+	by zproxy220.enst-bretagne.fr (Postfix) with ESMTPSA id A979E3025F
+	for <liste-egc@polytech.univ-nantes.fr>; Wed, 10 Aug 2016 08:19:35 +0200 (CEST)
+To: liste-egc@polytech.univ-nantes.fr
+From: Philippe Lenca <philippe.lenca@telecom-bretagne.eu>
+Message-ID: <911064a3-132e-8b29-dec1-2f790203aa84@telecom-bretagne.eu>
+Date: Wed, 10 Aug 2016 08:19:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+ Thunderbird/45.2.0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------------F5ED8E6BBF7A82822A34B86F"
+X-Validation-by: cyril.de-runz@univ-reims.fr
+Subject: [liste-egc] CFP iConference 2017
+
+This is a multi-part message in MIME format.
+--------------F5ED8E6BBF7A82822A34B86F
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+*Now Accepting Submissions: iConference 2017 *
+
+iConference 2017 | Effect =E2=80=A2 Expand =E2=80=A2 Evolve: Global Colla=
+boration Across=20
+the Information Community
+
+Wuhan, China
+
+March 22-25, 2017
+
+Conference website: http://ischools.org/the-iconference/
+
+Conference submissions site: https://www.conftool.com/iConference2017/__
+
+We are now accepting submissions for iConference 2017, our twelfth=20
+annual gathering of scholars, researchers and professionals who share an=20
+interest in the critical information issues of contemporary information=20
+society.
+
+iConference 2017 takes place March 22-25, 2017, in Wuhan, China. The=20
+theme of this first-ever Asia-based iConference is =E2=80=9CEffect =E2=80=
+=A2 Expand =E2=80=A2=20
+Evolve: Global Collaboration Across the Information Community.=E2=80=9D
+
+Authors and organizers can now submit materials using our secure=20
+submissions website: https://www.conftool.com/iConference2017/. The=20
+official proceedings will be published in the open access Illinois=20
+Digital Environment for Access to Learning and Scholarship (IDEALS). The=20
+submissions deadline is September 16, 2016.
+
+iConference 2017 is jointly hosted by the Wuhan University School of=20
+Information Management and Korea=E2=80=99s Sungkyunkwan University Librar=
+y &=20
+Information Science and Data Science Department. The 3,500-year-old city=20
+of Wuhan represents a combination of ancient culture and modern living,=20
+and conference participants are assured a memorable and rewarding=20
+experience.
+
+As always, the iConference will include peer-reviewed papers, posters,=20
+workshops and sessions for interaction and engagement, interspersed with=20
+multiple opportunities for networking.Early career and next generation=20
+researchers can engage in the Doctoral Student Colloquium and Early=20
+Career Colloquium.
+
+New this year are special conference programs focused on iSchool Best=20
+Practices, and also on iSchools and Industry Partnership. In addition,=20
+there will be a special track for papers originating in China.
+
+The iConference brings together scholars and researchers addressing=20
+critical information issues in contemporary society. The iConference=20
+pushes the boundaries of information studies, explores core concepts and=20
+ideas, and creates new technological and conceptual configurations=E2=80=94=
+all=20
+shaping interdisciplinary discourses. Affiliation with a member iSchool=20
+is not required=E2=80=94all information scholars, researchers, and practi=
+tioners=20
+are encouraged to make submissions. Visit our website for more=20
+information, including sample topics and links to past proceedings:=20
+http://ischools.org/the-iconference/
+
+The iConference is presented by the iSchools organization=20
+(www.ischools.org <http://www.ischools.org/>), a worldwide association=20
+of information schools dedicated to advancing the information field, and=20
+preparing students to meet the information challenges of the 21st=20
+Century. The event is sponsored by Microsoft Research, and other=20
+sponsorships are available.
+
+IMPORTANT LINKS
+
+* Conference: http://ischools.org/the-iconference/
+
+* Submissions: https://www.conftool.com/iConference2017/__
+
+* Past Proceedings:=20
+http://ischools.org/the-iconference/about-the-iconference/
+
+* Facebook: IConference: https://www.facebook.com/IConference
+
+* Twitter: @iConf <https://twitter.com/iconf>| #iconf17
+
+_SUBMISSION INFORMATION_
+
+All submissions must be in English using our official template. All work=20
+should be original and not previously published. Complete guidelines can=20
+be found on the Author Instructions page:=20
+http://ischools.org/the-iconference/program/author-instructions/
+
+*All submissions are due by September 16, 2016.*
+
+* PAPERS
+
+We invite papers falling into two categories: completed research or=20
+early work/preliminary results. Each paper will be refereed in a=20
+double-blind process. The author(s) of the completed research paper=20
+judged the best of the iConference will receive the Lee Dirks Award for=20
+Best Paper and $5,000.
+
+http://ischools.org/the-iconference/program/papers/
+
+Submission deadline: September 16, 2016
+
+
+
+Papers Chairs: Jian Qin, Syracuse University; Mika Grundstrom,=20
+University of Tampere; Jevin West, University of Washington=E2=80=A8
+
+
+
+* POSTERS
+
+We welcome submission of posters presenting new work, preliminary=20
+results and designs, or educational projects. Posters will undergo a=20
+double-blind review, and accepted abstracts will be published in the=20
+proceedings.
+
+http://ischools.org/the-iconference/program/posters/
+
+Submission deadline: September 16, 2016
+
+
+
+Posters Chairs: Ann-Sofie Axelsson, University of Boras; Min Song,=20
+Yonsei University; Esfandiar Haghverdi, Indiana University
+
+
+
+* WORKSHOPS
+
+This year=E2=80=99s workshops will be half-day only, and are intended to =
+foster=20
+interactive discussions focusing on the particular topic within the=20
+purview of the iSchools, namely, the relationships among information,=20
+people and technology. Workshops provide a great opportunity for=20
+attendees who share common interests and want to have intensive discussio=
+ns.
+
+http://ischools.org/the-iconference/program/workshops/
+
+Submission deadline: September 16, 2016
+
+
+
+Workshops Chairs: Noa Aharony, Bar-Ilan University; Daqing He,=20
+University of Pittsburgh; Fred Ye, Nanjing University
+
+
+
+* SESSIONS FOR INTERACTION AND ENGAGEMENT (SIE)
+
+These sessions provide an excellent opportunity to present ideas,=20
+facilitate discussions, and foster knowledge-sharing in unconventional=20
+ways. Formats can include panels, fishbowls, performances, storytelling,=20
+roundtable discussions, wildcard sessions, demos/exhibitions, and more.=20
+All should be highly participatory, informal, engaging, and pluralistic.
+
+http://ischools.org/the-iconference/program/sessions-for-interaction-and-=
+engagement/
+
+Submission deadline: September 16, 2016
+
+
+
+SIE Chairs: Ryan Shaw, University of North Carolina; Andrew Cox,=20
+University of Sheffield; Jin Ha Lee, University of Washington
+
+
+
+* DOCTORAL COLLOQUIUM
+
+The Doctoral Colloquium provides doctoral students the opportunity to=20
+present their work to senior faculty and engage with one another in a=20
+setting that is relatively informal but that allows for the fullest of=20
+intellectual exchanges. Students receive feedback on their dissertation,=20
+career paths, and other areas from participating faculty and student peer=
+s.
+
+http://ischools.org/the-iconference/program/doctoral-colloquium/
+
+Application deadline: September 16, 2016
+
+
+
+Doctoral Colloquium Chairs:  Kevin Crowston, Syracuse University; Bella=20
+Jing Zhang, Sun Yat-sen University; Pia Borlund, University of=20
+Copenhagen;Jiangping Chen, University of North Texas
+
+
+
+* DOCTORAL DISSERTATION AWARD
+
+Recognizing the outstanding dissertation of the preceding year, this=20
+competition is open to all member iSchools. Each school may submit one=20
+dissertation for consideration. The winner will receive a cash prize of=20
+$2,500, the runner up $1,000; both will be honored at the iConference.
+
+http://ischools.org/the-iconference/program/dissertation-award/
+
+Submission deadline: September 16, 2016
+
+
+
+Dissertation Award Chairs: Michael Seadle, Humboldt University of=20
+Berlin; Soo Young Rieh, University of Michigan; Masooda Bashir,=20
+University of Illinois
+
+
+
+* EARLY CAREER COLLOQUIUM
+
+This half-day event is intended for assistant professors, post-docs, or=20
+others in pre-tenure positions and builds on the tradition of highly=20
+successful events at past iConferences. Participants will sign up at=20
+registration.
+
+http://ischools.org/the-iconference/program/early-career-colloquium/
+
+
+
+Early Career Colloquium Chairs: Marcia Zeng, Kent State=20
+University; Kathy Burnett, Florida State University; Antonio Soares,=20
+University of Porto
+
+
+
+_THE FOLLOWING ARE NEW THIS YEAR_
+
+
+
+* SPECIAL TRACK: CHINESE PAPERS
+
+This special track for 2017 aims to provide excellent opportunities for=20
+scientists, scholars and participants throughout China to present their=20
+latest research results and to exchange views or experience not only in=20
+Library and Information Science, but also in other related areas. The=20
+theme is =E2=80=9CData Management and Services.=E2=80=9D
+
+http://ischools.org/the-iconference/program/chinese-papers/
+
+Submission Deadline: September 16, 2016
+
+
+
+Chinese Papers Chairs: Ruhua Huang, Wuhan University; Wei Lu, Wuhan=20
+University
+
+
+
+* SPECIAL PROGRAM: iSCHOOL BEST PRACTICES
+
+This special session will focus on issues pertaining to=20
+curriculum/teaching/student experience. iSchools are invited to submit=20
+proposals and case studies to be considered for inclusion in this=20
+special program.
+
+http://ischools.org/the-iconference/program/ischool-best-practices/
+
+
+
+iSchool Best Practices Chairs: Gary Marchionini, University of North=20
+Carolina; Shigeo Sugimoto, University of Tsukuba; Ann-Sofie Axelsson,=20
+University of Boras
+
+=E2=80=A8
+
+* SPECIAL PROGRAM: iSCHOOLS AND INDUSTRY PARTNERSHIP
+
+New this year, the iConference will present a number of sessions focused=20
+on successful industry partnerships of iSchools worldwide. iSchools are=20
+invited to submit proposals in the form of case studies to be considered=20
+for inclusion in this special program.=20
+http://ischools.org/the-iconference/program/ischools-and-industry-partner=
+ship/
+
+
+
+iSchools and Industry Partnership Chairs: Sean McGann, University of=20
+Washington; Gobinda Chowdhury, Northumbria University; Joon Lee, Seoul=20
+National University =E2=80=A8
+
+=E2=80=A8
+
+ADDITIONAL ORGANIZERS
+
+*iConference 2017 Chairs:*Qing Fang, Wuhan University; Sam Oh,=20
+Sungkyunkwan University
+
+
+
+*Program Chairs:*Wonsik Jeff Shim, Sungkyunkwan University; Chuanfu=20
+Chen, Wuhan University
+
+
+
+*Local Arrangements Chairs:*Lihong Zhou, Wuhan University; Fei Wang,=20
+Wuhan University
+
+
+
+*Proceedings Chairs:*Wayne de Fremery, Sogang University; Preben Hansen,=20
+Stockholm University
+
+
+
+*Program Committee: *
+
+Alessandro Acquisti, Carnegie Mellon University
+
+Denice Adkins, University of Missouri
+
+Naresh Agarwal, Simmons
+
+Jim Andrews, University of South Florida
+
+Ann-Sofie Axelsson , University of Boras
+
+Tim Baldwin, University of Melbourne
+
+Dania Bilal, University of Tennessee, Knoxville
+
+Leanne Bowler, University of Pittsburgh
+
+Josep Cobarsi Morales, Open University of Catalonia
+
+Constantinos Coursaris, Michigan State University
+
+Gianluca Demartini, University of Sheffield
+
+Stephen Downie, University of Illinois
+
+Karen Fisher, University of Washington
+
+Paul Gandel, Syracuse University
+
+Lisa Given, Charles Sturt University
+
+Sara Grimes, University of Toronto
+
+Lorna Hughes, University of Glasgow
+
+Jaap Kamps, University of Amsterdam
+
+Robert Kauffman, Singapore Management University
+
+Diane Kelly, University of North Carolina-Chapel Hill
+
+Kyung-Sun =E2=80=9CSunny=E2=80=9D Kim, University of Wisconsin-Madison
+
+Young Seek Kim, University of Kentucky
+
+Lars Konzack, University of Copenhagen
+
+Andy Koronios, University of South Australia
+
+Serap Kurbano=C4=9Flu, Hacettepe University
+
+Philippe Lenca, T=C3=A9l=C3=A9com Bretagne
+
+Claire R. McInerney, Rutgers University
+
+Julie McLeod, University of Northumbria at Newcastle
+
+Ruth Nalumaga, Makerere University
+
+Sanghee Oh, Florida State University
+
+Virginia Ort=C3=ADz-Repiso Jim=C3=A9nez, Universidad Carlos III de Madrid
+
+Jung-ran Park, Drexel University
+
+Vivien Petras, Humboldt-Universitat zu Berlin
+
+Nils Pharo, University College Oslo and Akershus
+
+Peter Reid, Robert Gordon University Aberdeen
+
+David Reitter, Penn State University
+
+Howard Rosenbaum, Indiana University
+
+Reijo Savolainen, University of Tampere
+
+Kalpana Shankar, University College Dublin
+
+Elizabeth Shepherd, University College London
+
+Antonio Lucas Soares, University of Porto
+
+Martin Sou=C4=8Dek, Charles University in Prague
+
+Eduardo Vendrell Vidal, Polytechnic University of Valencia
+
+Iris Xie, University of Wisconsin =E2=80=93 Milwaukee
+
+Yong Jeong Yi, Sungkyunkwan University
+
+Yan Zhang, University of Texas Austin
+
+Lihong Zhou, Wuhan University
+
+
+More at: http://ischools.org/the-iconference/
+
+
+--------------F5ED8E6BBF7A82822A34B86F
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf=
+-8">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <p>
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3Du=
+tf-8">
+    </p>
+    <p>
+      <title></title>
+      <meta name=3D"generator" content=3D"LibreOffice 5.1.4.2 (Linux)">
+      <style type=3D"text/css">
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; direction: ltr; line-height: 120%; text-alig=
+n: left; orphans: 2; widows: 2 }
+		p.western { font-family: "Cambria", serif; font-size: 12pt; so-language=
+: en-US }
+		p.cjk { font-family: "=EF=BC=AD=EF=BC=B3 =E6=98=8E=E6=9C=9D"; font-size=
+: 12pt; so-language: en-US }
+		p.ctl { font-family: "Cambria"; font-size: 12pt; so-language: en-US }
+		a:link { color: #0000ff }
+		a.ctl:link { font-family: "Times New Roman" }
+	</style>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>Now Accepting Submissions:
+            iConference
+            2017 </b></font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">iConference 2017 | Effect =E2=80=A2=
+ Expand =E2=80=A2
+          Evolve: Global Collaboration Across the Information Community</=
+font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Wuhan, China</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">March 22-25, 2017</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Conference website:
+        </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">Conference submissions site:
+        </font><a class=3D"western"
+          href=3D"https://www.conftool.com/iConference2017/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">https://www.conf=
+tool.com/iConference2017/</span></font></a><font
+          color=3D"#0000ff"><font face=3D"Calibri, serif"><u>
+            </u></font></font>
+      </p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">We are now accepting submissions fo=
+r
+          iConference 2017, our twelfth annual gathering of scholars,
+          researchers and professionals who share an interest in the
+          critical
+          information issues of contemporary information society.</font><=
+/p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">iConference 2017 takes place March
+          22</font><font face=3D"Calibri, serif">-</font><font
+          face=3D"Calibri, serif">25,
+          2017, in Wuhan, China. The theme of this first-ever Asia-based
+          iConference is =E2=80=9CEffect =E2=80=A2 Expand =E2=80=A2 Evolv=
+e: Global Collaboration
+          Across the Information Community.=E2=80=9D</font></p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">Authors and organizers can now
+          submit
+          materials using our secure submissions website:
+        </font><a class=3D"western"
+          href=3D"https://www.conftool.com/iConference2017/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">https://www.conf=
+tool.com/iConference2017/</span></font></a><font
+          face=3D"Calibri, serif">.
+          The official proceedings will be published in the open access
+          Illinois Digital Environment for Access to Learning and
+          Scholarship
+          (IDEALS). The submissions deadline is September 16, 2016.</font=
+></p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">iConference 2017 is jointly hosted
+          by the
+          Wuhan University School of Information Management and Korea=E2=80=
+=99s
+          Sungkyunkwan University Library &amp; Information Science and
+          Data
+          Science Department. The 3,500-year-old city of Wuhan
+          represents a
+          combination of ancient culture and modern living, and
+          conference
+          participants are assured a memorable and rewarding experience.<=
+/font></p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">As always, the iConference will
+          include
+          peer-reviewed papers, posters, workshops and sessions for
+          interaction
+          and engagement, interspersed with multiple opportunities for
+          networking</font><font face=3D"Calibri, serif">.</font><font
+          face=3D"Calibri, serif">
+          Early career and next generation researchers can engage in the
+          Doctoral Student Colloquium and Early Career Colloquium. </font=
+>
+      </p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">New this year are special conferenc=
+e
+          programs focused on iSchool Best Practices, and also on
+          iSchools and
+          Industry Partnership. In addition, there will be a special
+          track for
+          papers originating in China.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">The iConference brings together
+          scholars
+          and researchers addressing critical information issues in
+          contemporary society. The iConference pushes the boundaries of
+          information studies, explores core concepts and ideas, and
+          creates
+          new technological and conceptual configurations=E2=80=94all sha=
+ping
+          interdisciplinary discourses. Affiliation with a member
+          iSchool is
+          not required=E2=80=94all information scholars, researchers, and
+          practitioners are encouraged to make submissions. Visit our
+          website
+          for more information, including sample topics and links to
+          past
+          proceedings: </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-bottom: 0cm; line-height: 100%=
+;
+        orphans: 2; widows: 2" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">The iConference is presented by the
+          iSchools organization (</font><a class=3D"western"
+          href=3D"http://www.ischools.org/"><font face=3D"Calibri, serif"=
+><span
+              lang=3D"en-US">www.ischools.org</span></font></a><font
+          face=3D"Calibri, serif">),
+          a worldwide association of information schools dedicated to
+          advancing
+          the information field, and preparing students to meet the
+          information
+          challenges of the 21st Century. The event is sponsored by
+          Microsoft
+          Research, and other sponsorships are available</font><font
+          face=3D"Calibri, serif">.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">IMPORTANT LINKS</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* Conference:
+        </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* Submissions:
+        </font><a class=3D"western"
+          href=3D"https://www.conftool.com/iConference2017/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">https://www.conf=
+tool.com/iConference2017/</span></font></a><font
+          color=3D"#0000ff"><font face=3D"Calibri, serif"><u>
+            </u></font></font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* Past Proceedings:
+        </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/about-the-iconferen=
+ce/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/about-the-iconference/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* Facebook: IConference:</font>
+        <a class=3D"western" href=3D"https://www.facebook.com/IConference=
+"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">https://www.face=
+book.com/IConference</span></font></a><font
+          face=3D"Calibri, serif">
+        </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* Twitter: </font><a
+          class=3D"western" href=3D"https://twitter.com/iconf"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">@iConf</span></f=
+ont></a><font
+          face=3D"Calibri, serif">
+          | #iconf17</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><u>SUBMISSION INFORMATION</u></font=
+></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">All submissions must be in English
+          using
+          our official template. All work should be original and not
+          previously
+          published. Complete guidelines can be found on the Author
+          Instructions page:
+        </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/author-inst=
+ructions/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/author-instructions/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font color=3D"#000000"><font face=3D"Calibri, serif"><span
+              lang=3D"en-US"><b>All
+                submissions are due by September 16, 2016.</b></span></fo=
+nt></font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* PAPERS</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">We invite papers falling into two
+          categories: completed research or early work/preliminary
+          results.
+          Each paper will be refereed in a double-blind process. The
+          author(s)
+          of the completed research paper judged the best of the
+          iConference
+          will receive the Lee Dirks Award for Best Paper and $5,000.</fo=
+nt></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/papers/"><f=
+ont
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/papers/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Papers Chairs: Jian Qin, Syracuse
+          University; Mika Grundstrom, University of Tampere; Jevin
+          West,
+          University of Washington=E2=80=A8</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US"> <font face=3D"Calibri, serif">* POSTERS</font></p=
+>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-top:
+        0.18cm; margin-bottom: 0.18cm; line-height: 100%; orphans: 0;
+        widows: 0" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">We welcome submission of posters
+          presenting new work, preliminary results and designs, or
+          educational
+          projects. Posters will undergo a double-blind review, and
+          accepted
+          abstracts will be published in the proceedings.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-top:
+        0.18cm; margin-bottom: 0.18cm; line-height: 100%; orphans: 0;
+        widows: 0" align=3D"left" lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/posters/"><=
+font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/posters/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Posters Chairs: </font><font
+          face=3D"Calibri, serif">Ann-Sofie
+          Axelsson, University of Boras; Min Song, Yonsei University;
+          Esfandiar
+          Haghverdi, Indiana University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* WORKSHOPS</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">This year=E2=80=99s workshops will =
+be
+          half-day
+          only, and are intended to foster interactive discussions
+          focusing on
+          the particular topic within the purview of the iSchools,
+          namely, the
+          relationships among information, people and technology.
+          Workshops
+          provide a great opportunity for attendees who share common
+          interests
+          and want to have intensive discussions.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/workshops/"=
+><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/workshops/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Workshops Chairs: </font><font
+          face=3D"Calibri, serif">Noa
+          Aharony, Bar-Ilan University; Daqing He, University of
+          Pittsburgh;
+          Fred Ye, Nanjing University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* SESSIONS FOR INTERACTION AND
+          ENGAGEMENT
+          (SIE)</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">These sessions provide an excellent
+          opportunity to present ideas, facilitate discussions, and
+          foster
+          knowledge-sharing in unconventional ways. Formats can include
+          panels,
+          fishbowls, performances, storytelling, roundtable discussions,
+          wildcard sessions, demos/exhibitions, and more. All should be
+          highly
+          participatory, informal, engaging, and pluralistic.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+href=3D"http://ischools.org/the-iconference/program/sessions-for-interact=
+ion-and-engagement/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/sessions-for-interaction-and-engagement/</spa=
+n></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">SIE Chairs: </font><font
+          face=3D"Calibri, serif">Ryan
+          Shaw, University of North Carolina; Andrew Cox, University of
+          Sheffield; Jin Ha Lee, University of Washington </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* DOCTORAL COLLOQUIUM</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">The Doctoral Colloquium provides
+          doctoral
+          students the opportunity to present their work to senior
+          faculty and
+          engage with one another in a setting that is relatively
+          informal but
+          that allows for the fullest of intellectual exchanges.
+          Students
+          receive feedback on their dissertation, career paths, and
+          other areas
+          from participating faculty and student peers.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/doctoral-co=
+lloquium/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/doctoral-colloquium/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Application deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Doctoral Colloquium Chairs:=C2=A0 K=
+evin
+          Crowston, Syracuse University; Bella Jing Zhang, Sun Yat-sen
+          University; Pia Borlund, University of Copenhagen;</font><font
+          face=3D"Lato-Regular, serif">
+        </font><font face=3D"Calibri, serif">Jiangping Chen,=C2=A0Univers=
+ity of
+          North Texas</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* DOCTORAL DISSERTATION AWARD</font=
+></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Recognizing the outstanding
+          dissertation
+          of the preceding year, this competition is open to all member
+          iSchools. Each school may submit one dissertation for
+          consideration.
+          The winner will receive a cash prize of $2,500, the runner up
+          $1,000;
+          both will be honored at the iConference.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/dissertatio=
+n-award/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/dissertation-award/</span></font></a></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-bottom: 0.52cm; line-height:
+        0.6cm; orphans: 0; widows: 0" align=3D"left" lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-bottom: 0.52cm; line-height:
+        0.6cm; orphans: 0; widows: 0" align=3D"left" lang=3D"en-US">
+        <font face=3D"Calibri, serif">Dissertation Award Chairs: Michael
+          Seadle, Humboldt University of Berlin; Soo Young Rieh,
+          University of
+          Michigan; Masooda Bashir, University of Illinois</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* EARLY CAREER COLLOQUIUM</font></p=
+>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">This half-day event is intended for
+          assistant professors, post-docs, or others in pre-tenure
+          positions
+          and builds on the tradition of highly successful events at
+          past
+          iConferences. Participants will sign up at registration.</font>=
+</p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+href=3D"http://ischools.org/the-iconference/program/early-career-colloqui=
+um/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/early-career-colloquium/</span></font></a></p=
+>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Early Career Colloquium Chairs:
+          Marcia
+          Zeng, Kent State University;=C2=A0Kathy Burnett, Florida State
+          University; Antonio Soares, University of Porto</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><u>THE FOLLOWING ARE NEW THIS YEAR<=
+/u></font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* SPECIAL TRACK: CHINESE PAPERS</fo=
+nt></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">This special track for 2017 aims to
+          provide excellent opportunities for scientists, scholars and
+          participants throughout China to present their latest research
+          results and to exchange views or experience not only in
+          Library and
+          Information Science, but also in other related areas. The
+          theme is
+          =E2=80=9CData Management and Services.=E2=80=9D</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/program/chinese-pap=
+ers/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/chinese-papers/</span></font></a><font
+          face=3D"Calibri, serif"> </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Submission Deadline: September 16,
+          2016</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Chinese Papers Chairs: Ruhua Huang,
+          Wuhan
+          University; Wei Lu, Wuhan University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* SPECIAL PROGRAM: iSCHOOL BEST
+          PRACTICES</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">This special session will focus on
+          issues
+          pertaining to curriculum/teaching/student experience. iSchools
+          are
+          invited to submit proposals and case studies to be considered
+          for
+          inclusion in this special program.</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <a class=3D"western"
+href=3D"http://ischools.org/the-iconference/program/ischool-best-practice=
+s/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/ischool-best-practices/</span></font></a><fon=
+t
+          face=3D"Calibri, serif">
+        </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">iSchool Best Practices Chairs: Gary
+          Marchionini, University of North Carolina; Shigeo Sugimoto,
+          University of Tsukuba; Ann-Sofie Axelsson, University of Boras<=
+/font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        =E2=80=A8</p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">* SPECIAL PROGRAM: iSCHOOLS AND
+          INDUSTRY
+          PARTNERSHIP</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">New this year, the iConference will
+          present a number of sessions focused on successful industry
+          partnerships of iSchools worldwide. iSchools are invited to
+          submit
+          proposals in the form of case studies to be considered for
+          inclusion
+          in this special program.
+        </font><a class=3D"western"
+href=3D"http://ischools.org/the-iconference/program/ischools-and-industry=
+-partnership/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/program/ischools-and-industry-partnership/</span></fo=
+nt></a><font
+          face=3D"Calibri, serif">
+        </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">iSchools and Industry Partnership
+          Chairs:
+          Sean McGann, University of Washington; Gobinda Chowdhury,
+          Northumbria
+          University; Joon Lee, Seoul National University =E2=80=A8</font=
+></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US"> =E2=80=A8</p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">ADDITIONAL ORGANIZERS</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>iConference 2017 Chairs:</b></fo=
+nt><font
+          face=3D"Calibri, serif">
+          Qing Fang, Wuhan University; Sam Oh, Sungkyunkwan University</f=
+ont></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>Program Chairs:</b></font><font
+          face=3D"Calibri, serif">
+        </font><font face=3D"Calibri, serif">Wonsik Jeff Shim, </font><fo=
+nt
+          face=3D"Calibri, serif">Sungkyunkwan
+          University; Chuanfu Chen, Wuhan University </font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>Local Arrangements Chairs:</b></=
+font><font
+          face=3D"Calibri, serif">
+          Lihong Zhou, Wuhan University; Fei Wang, Wuhan University</font=
+></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>Proceedings Chairs:</b></font><f=
+ont
+          face=3D"Calibri, serif">
+          Wayne de Fremery, Sogang University; Preben Hansen, Stockholm
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif"><b>Program Committee: </b></font>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Alessandro Acquisti, Carnegie Mello=
+n
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Denice Adkins, University of
+          Missouri</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Naresh Agarwal, Simmons</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Jim Andrews, University of South
+          Florida</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Ann-Sofie Axelsson , University of
+          Boras</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Tim Baldwin, University of Melbourn=
+e</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Dania Bilal, University of
+          Tennessee,
+          Knoxville</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Leanne Bowler, University of
+          Pittsburgh</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Josep Cobarsi Morales, Open
+          University of
+          Catalonia</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Constantinos Coursaris, Michigan
+          State
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Gianluca Demartini, University of
+          Sheffield</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Stephen Downie, University of
+          Illinois</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Karen Fisher, University of
+          Washington</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Paul Gandel, Syracuse University</f=
+ont></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Lisa Given, Charles Sturt Universit=
+y</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Sara Grimes, University of Toronto<=
+/font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Lorna Hughes, University of Glasgow=
+</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Jaap Kamps, University of Amsterdam=
+</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Robert Kauffman, Singapore
+          Management
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Diane Kelly, University of North
+          Carolina-Chapel Hill</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Kyung-Sun =E2=80=9CSunny=E2=80=9D K=
+im, University of
+          Wisconsin-Madison</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Young Seek Kim, University of
+          Kentucky</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Lars Konzack, University of
+          Copenhagen</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Andy Koronios, University of South
+          Australia</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri Tur, serif">Serap Kurbano=C4=9Flu, Hacettep=
+e
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Philippe Lenca, T=C3=A9l=C3=A9com B=
+retagne</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Claire R. McInerney, Rutgers
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Julie McLeod, University of
+          Northumbria
+          at Newcastle</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Ruth Nalumaga, Makerere University<=
+/font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Sanghee Oh, Florida State Universit=
+y</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Virginia Ort=C3=ADz-Repiso Jim=C3=A9=
+nez,
+          Universidad Carlos III de Madrid</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Jung-ran Park, Drexel University</f=
+ont></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Vivien Petras, Humboldt-Universitat
+          zu
+          Berlin</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Nils Pharo, University College Oslo
+          and
+          Akershus</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Peter Reid, Robert Gordon Universit=
+y
+          Aberdeen</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">David Reitter, Penn State Universit=
+y</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Howard Rosenbaum, Indiana Universit=
+y</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Reijo Savolainen, University of
+          Tampere</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Kalpana Shankar, University College
+          Dublin</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Elizabeth Shepherd, University
+          College
+          London</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Antonio Lucas Soares, University of
+          Porto</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri CE, serif">Martin Sou=C4=8Dek, Charles </fo=
+nt><font
+          face=3D"Calibri, serif">University
+          in Prague</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Eduardo Vendrell Vidal, Polytechnic
+          University of Valencia</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Iris Xie, University of Wisconsin =E2=
+=80=93
+          Milwaukee</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Yong Jeong Yi, Sungkyunkwan
+          University</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Yan Zhang, University of Texas
+          Austin</font></p>
+      <p class=3D"western" style=3D"margin-right: -0.69cm; margin-bottom:
+        0.42cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">Lihong Zhou, Wuhan University</font=
+></p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <br>
+      </p>
+      <p class=3D"western" style=3D"margin-right: -0.68cm; margin-bottom:
+        0cm; line-height: 100%; orphans: 0; widows: 0" align=3D"left"
+        lang=3D"en-US">
+        <font face=3D"Calibri, serif">More at:
+        </font><a class=3D"western"
+          href=3D"http://ischools.org/the-iconference/"><font
+            face=3D"Calibri, serif"><span lang=3D"en-US">http://ischools.=
+org/the-iconference/</span></font></a></p>
+    </p>
+  </body>
+</html>
+
+--------------F5ED8E6BBF7A82822A34B86F--

@@ -1,0 +1,203 @@
+Return-Path: <emmanuel.viennet@gmail.com>
+X-Original-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Delivered-To: polytech_liste-egc@sympa6.univ-nantes.prive
+Received: from BounceSmtp1.univ-nantes.fr (BounceSMTP1.univ-nantes.prive [172.20.12.66])
+	by sympa6.univ-nantes.prive (Postfix) with ESMTP id E257E229294D
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  5 Sep 2017 10:52:03 +0200 (CEST)
+Received: from mx3.d101.univ-nantes.fr (MX3.univ-nantes.fr [193.52.101.137])
+	by BounceSmtp1.univ-nantes.fr (Postfix) with ESMTP id E20C76D220B
+	for <polytech_liste-egc@sympa6.univ-nantes.prive>; Tue,  5 Sep 2017 10:52:03 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTP id D4794414A82F
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  5 Sep 2017 10:52:03 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at univ-nantes.fr
+X-Spam-Flag: NO
+X-Spam-Score: -5.292
+X-Spam-Level:
+X-Spam-Status: No, score=-5.292 tagged_above=-1000 required=5
+	tests=[CRM114_GOOD=-5, DKIM_SIGNED=0.1, DKIM_VALID=-0.1,
+	FREEMAIL_FROM=0.001, RCVD_IN_DNSWL_NONE=-0.0001, RCVD_IN_WSFF=0.01,
+	SMILEY=-0.5, SPF_PASS=-0.001, TW_EG=0.077,
+	T_FREEMAIL_FORGED_FROMDOMAIN=0.01,
+	T_HEADER_FROM_DIFFERENT_DOMAINS=0.01, UN_PHISHING_PW=0.1,
+	URIBL_BLOCKED=0.001] autolearn=disabled
+X-CRM114-Status: GOOD ( 10.3675 )
+X-CRM114-CacheID: 
+Authentication-Results: univ-nantes.fr (amavisd-new); dkim=pass (2048-bit key)
+	header.d=gmail.com
+Received: from mx3.d101.univ-nantes.fr ([127.0.0.1])
+	by localhost (univ-nantes.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id jZLLqqdNraEr for <liste-egc@polytech.univ-nantes.fr>;
+	Tue,  5 Sep 2017 10:52:02 +0200 (CEST)
+X-Greylist: domain auto-whitelisted by SQLgrey-1.6.7
+Received: from mail-wm0-x244.google.com (mail-wm0-x244.google.com [IPv6:2a00:1450:400c:c09::244])
+	by mx3.d101.univ-nantes.fr (Postfix) with ESMTPS id C7C0A401874E
+	for <liste-egc@polytech.univ-nantes.fr>; Tue,  5 Sep 2017 10:52:02 +0200 (CEST)
+Received: by mail-wm0-x244.google.com with SMTP id e64so2384553wmi.2
+        for <liste-egc@polytech.univ-nantes.fr>; Tue, 05 Sep 2017 01:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:in-reply-to:references:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=17ztCWA97l1RpDEo4alU6FQJwASAruJ+9QCotbwpiSk=;
+        b=ASOwbL7VmU4KKgMCJTruUVyiJ4UxlFCorArUP4Ml22OVbE312ExIZnLJ7a9z4C50Z6
+         +t4j6cNnJC2jXk3VizwA1kP1e2VfhH0M0InRBjZE5urho+YoqBeXsQEn0kADwHUo548X
+         qupReECX+PJGFKmI/MxhxvM+J52XRFbdE6tu9VDTiHBYF8V9hvYC3c+8kQCxuS5vZNI0
+         cZqSwV2SOW6Xp4K4KfdIpj+0MurZrd7c7YSO0HloXnXbwFrRmgJbBBs3TJdjpYaoRzR8
+         BcUEC0F1t0nQs1f3Zk2F/IOnMHD8z3jWlAHWv8TrZfXvvkjIz/UQpXkGIt6xesS29YyL
+         S4mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:sender:in-reply-to:references:from
+         :date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=17ztCWA97l1RpDEo4alU6FQJwASAruJ+9QCotbwpiSk=;
+        b=EzWrnplFYFuIYrVmzxCu4MbC6HVu4lWgzXzjQsncNq8GVg/f/y/yVUp5BZoaA/mTDm
+         YKO5BuK0q829snULZJkiqoF0/GdWppi+0plWIKi+FPmUOLxDCGVTwhfGINL8gD1MQHzt
+         lhahYBD4iYMDPTH2Uoj65QNX0uNJ8qoGICwtFGnBCnEE/jO5T14/e/Oj1OJp+qv/6F4R
+         d7K75dWYH7dIMK82wGTGGA/SKvL49P51ciiLNYRtUOr/t5OIwPXtleqgp4tl6fh/oFX6
+         yCY2lQ588lEP9vbU+hHJROnl6kmvwujSSFuAmewAG4aeD0FNB564C+XMMhAPfFslXMzT
+         W18A==
+X-Gm-Message-State: AHPjjUiLpHPS47jSAzwVCw73YdcKcdCQ4VOJ8JwLv4c1WFSfLT2zk40R
+	PekqsTIqoNKOCkaq8RcdBLYt4lEpKQ==
+X-Google-Smtp-Source: ADKCNb5zB9cxtYQ2dg7lGnwGRDcsOCOolux8WqfUCYY6gw/fdoamPwqngYEZMJZWVzRgXZvBut9vxm67Nxt/zV83tEk=
+X-Received: by 10.80.195.19 with SMTP id a19mr2666974edb.276.1504601522168;
+ Tue, 05 Sep 2017 01:52:02 -0700 (PDT)
+MIME-Version: 1.0
+Sender: emmanuel.viennet@gmail.com
+Received: by 10.80.185.3 with HTTP; Tue, 5 Sep 2017 01:51:41 -0700 (PDT)
+In-Reply-To: <CAFX-JVvrrz=hwXt3Cab5M8JazE5npt2EFYGHziRakNKsP8ZH7g@mail.gmail.com>
+References: <CAFX-JVvrrz=hwXt3Cab5M8JazE5npt2EFYGHziRakNKsP8ZH7g@mail.gmail.com>
+From: Emmanuel Viennet <emmanuel.viennet@univ-paris13.fr>
+Date: Tue, 5 Sep 2017 10:51:41 +0200
+X-Google-Sender-Auth: RJWjeASb2bu4__QzEzckc5L5XEo
+Message-ID: <CAF6rPBBpWqBL464AkzN0c6CvVHS3BbZK5nXBJp8p-Qo-mG5tKw@mail.gmail.com>
+To: Hocine Cherifi <hocine.cherifi@gmail.com>
+Cc: annonces@madics.fr, 
+	"liste-egc@polytech.univ-nantes.fr" <liste-egc@polytech.univ-nantes.fr>, Liste ASR FORUM <asr-forum@cines.fr>, 
+	"bull-i3@irit.fr" <bull-i3@irit.fr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Validation-by: p_bruneau@hotmail.com
+Subject: Re: [liste-egc] COMPLEX NETWORKS 2017 SUBMISSION DEADLINE EXTENDED
+ SEPTEMBER 18, 2017
+
+A ce niveau l=C3=A0, c'est du spam ;-)
+
+2017-09-04 12:23 GMT+02:00 Hocine Cherifi <hocine.cherifi@gmail.com>:
+> Apologies for any cross posting
+>
+> Due to many requests the submission deadline to COMPLEX NETWORKS 2017 is
+> extended to: September 18, 2016 (Firm deadline)
+>
+> http://www.complexnetworks.org
+>
+>
+>
+> Full papers (up to 12 pages) and Extended Abstracts (up to 3 pages) are
+> welcome.
+>
+> To submit your contribution visits the submission page.
+>
+>
+>
+> Papers will be included in the conference proceedings edited by Springer
+> Extended abstracts will be published in the Book of Abstracts (with ISBN)
+> Extended versions of accepted contributions will be invited for publicati=
+on
+> in special issues of international journals:
+>
+> Computational Social Networks edited by Springer
+> Applied Network Science edited by Springer
+> Journal of Complex Networks edited by Oxford University Press
+>
+>
+>
+> Speakers:
+>
+> Alex Arenas,                Universidad Rovira i Virgili, Spain
+>
+> Santo Fortunato,         Indiana University, USA
+>
+> Jennifer Neville,         Purdue University,USA
+>
+> Daniele Quercia,          Bell Labs Cambridge, UK
+>
+> Frank Schweitzer,        ETH Zurich, Switzerland
+>
+> Katharina Anna Zweig, Technical University Kaiserslautern, Germany
+>
+>
+>
+> Tutorials: November 28, 2017
+>
+> Ginestra Bianconi,      Queen Mary University of London, UK
+>
+> Francesco Bonchi,      ISI Foundation, Italy
+>
+>
+>
+> Topics include, but are not limited to:
+>
+> Models of Complex Networks
+> Structural Network Properties and Analysis
+> Complex Networks and Epidemics
+> Community Structure in Networks
+> Community Discovery in Complex Networks
+> Motif Discovery in Complex Networks
+> Complex Networks Mining
+> Dynamics and Evolution Patterns of Complex Networks
+> Link Prediction
+> Multiplex Networks
+> Network Controllability
+> Synchronization in Networks
+> Visual Representation of Complex Networks
+> Large-scale Graph Analytics
+> Social Reputation, Influence, and Trust
+> Information Spreading in Social Media
+> Rumour and Viral Marketing in Social Networks
+> Recommendation Systems and Complex Networks
+> Financial and Economic Networks
+> Complex Networks and Mobility
+> Biological and Technological Complex Networks
+> Mobile call Complex Networks
+> Bioinformatics and Earth Sciences Applications
+> Resilience and Robustness of Complex Networks
+> Complex Networks for Physical Infrastructures
+> Complex Networks, Smart Cities and Smart Grids
+> Political networks
+> Supply chain networks
+> Complex networks and information systems
+> Complex networks and CPS/IoT
+> Graph signal processing
+> Cognitive Network Science
+> Network Medicine
+> Network Neuroscience
+> Quantifying success through network analysis
+> Temporal and spatial networks
+>
+>
+> --
+>
+> Join us at :  COMPLEX NETWORKS 2017, Lyon, France
+>
+> Publish your work on: Applied Network Science
+> read: Complex Networks & their Applications
+> ***********************************************
+> *   Pr Hocine CHERIFI                             *
+> *          LE2I   UMR CNRS 6306              *
+> *   Facult=C3=A9 des Sciences Mirande            *
+> *    9 , avenue Alain Savary                     *
+> *    BP 47870                                           *
+> *    21078 DIJON    FRANCE                  *
+> **********************************************
+>
+> Association Extraction et Gestion des Connaissances
+> Site Web : egc.asso.fr
+>
+> Suivez-nous aussi sur Twitter : @associationEGC, et Facebook :
+> facebook.com/AssociationEGC
+>
+> G=C3=A9rer votre abonnement : egc.asso.fr/13-FR-Liste_de_diffusion
+> Informations sur la liste :
+> sympa.univ-nantes.fr/sympa/info/polytech_liste-egc
+> Le Mod=C3=A9rateur, Pierrick Bruneau, p_bruneau@hotmail.com
